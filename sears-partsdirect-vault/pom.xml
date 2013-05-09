@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>com.spd.cq.searspartsdirect</groupId>
+		<artifactId>searspartsdirect-parent</artifactId>
+		<version>0.0.1</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.spd.cq.searspartsdirect</groupId>
+	<artifactId>searspartsdirect-vault</artifactId>
+
+	<!-- snapshot can't uninstall -->
+	<version>0.0.1</version>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.day.jcr.vault</groupId>
+				<artifactId>content-package-maven-plugin</artifactId>
+				<version>0.0.16</version>
+				<configuration>
+					<name>${project.artifactId}</name>
+					<failOnError>true</failOnError>
+					<filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
+					<builtContentDirectory>src/main/content/jcr_root</builtContentDirectory>
+
+					<packageFile>target/${project.artifactId}.zip</packageFile>
+					<targetURL>${crx_url}/crx/packmgr/service.jsp</targetURL>
+
+					<verbose>true</verbose>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>package</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- Add Sears Parts Direct Vault dependencies, as needed. -->
+		<dependency>
+			<groupId>com.spd.cq.searspartsdirect</groupId>
+			<artifactId>searspartsdirect-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root 
+	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
+	xmlns:cq="http://www.day.com/jcr/cq/1.0" 
+	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
+	xmlns:mix="http://www.jcp.org/jcr/mix/1.0" 
+	xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+	jcr:primaryType="cq:Page">
+	<jcr:content
+		cq:doctype="html_5"
+		jcr:mixinTypes="[mix:versionable]"
+		jcr:primaryType="nt:unstructured"
+		jcr:title="Sears Parts Direct Design"
+		sling:resourceType="wcm/core/components/designer">
+		<base jcr:primaryType="nt:unstructured">
+
+		</base>		
+	</jcr:content>
+	<clientlib_base/>
+	<clientlib_cq/>
+	<clientlib_home/>
+	<fonts/>
+	<ico/>
+	<images/>
+</jcr:root>

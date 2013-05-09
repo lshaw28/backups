@@ -1,0 +1,12 @@
+# NetBeans Files #
+#####################
+/nbproject/
+/nbproject/private/
+*/nb-configuration.xml
+build.xml
+!/sears-partsdirect--common/pom.xml
+*.vlt
+*.project
+*.settings
+*.DS_Store
+*.*~
