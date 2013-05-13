@@ -18,7 +18,7 @@ public class DeleteMeTag extends CQBaseTag {
 
 		try {
 			JspWriter out = pageContext.getOut();
-			out.print("hey hey hey");
+			out.print("Test Output");
 		}
         catch (Exception ioe) {
             throw new JspException("Error: " + ioe.getMessage());
