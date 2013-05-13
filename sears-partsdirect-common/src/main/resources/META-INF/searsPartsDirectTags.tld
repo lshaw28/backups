@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" version="2.1">
+	<tlib-version>0.0.1</tlib-version>
+	<short-name>Sears Parts Direct TagLib</short-name>
+	<uri>http://cms.testsears.com/bundles/cq/tags</uri>
+	<tag>
+		<name>DeleteMe</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.DeleteMeTag</tag-class>
+		<info>DELETE ME</info>
+	</tag>
+</taglib>
