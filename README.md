@@ -8,12 +8,14 @@ This is the repository for Sears PartsDirect migration project.
 - Install the latest version of GIT
 - Set up a working directory to house your local working copy of the GIT repository and AEM
 - Setup AEM 5.6 on `localhost:4502`
-	Available on the Dropbox
-		Grab the AEM .jar and license.properties
-		Mac - smb://ushofsvpnetapp1/ecomms/partsdirect/aem
-		PC - //ushofsvpnetapp1/ecomms/partsdirect/aem/
-	Copy the AEM .jar and license.properties file to your working directory and double-click on the AEM .jar
-	AEM should install itself and open in a browser
+
+- Available on the Dropbox
+- Grab the cq56-author-p4502.jar and license.properties
+- Mac - smb://ushofsvpnetapp1/ecomms/partsdirect/aem
+- PC - //ushofsvpnetapp1/ecomms/partsdirect/aem/
+- Copy the cq56-author-p4502.jar and license.properties file to your working directory and double-click on the cq56-author-p4502.jar
+- AEM should install itself and open in a browser
+
 - Install Apache Maven 3.0.3
 - In another folder in your working directory, clone the GIT repo
 	`git clone git@git301p.prod.ch3.s.com:aempd`
@@ -49,6 +51,7 @@ This is the repository for Sears PartsDirect migration project.
 **Run Sears Parts Direct Parent with Modules**
 - uncomment out modules on `sears-partsdirect/sears-partsdirect-parent/pom.xml`
 - run `mvn install -P<SEARS_PARTS_DIRECT_PROFILE_NAME>` on `sears-partsdirect/sears-partsdirect-parent`
+- the -P flag is optional if you only have one profile
 
 **Run Sears Parts Direct File Vault**
 - run `mvn clean package content-package:install` on `sears-partsdirect/sears-partsdirect-vault`
