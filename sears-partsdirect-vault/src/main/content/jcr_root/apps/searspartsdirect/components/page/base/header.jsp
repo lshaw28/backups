@@ -1,2 +1,2 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<% ' @TODO: Markup for global page header %>
+<% // @TODO: Markup for global page header %>
