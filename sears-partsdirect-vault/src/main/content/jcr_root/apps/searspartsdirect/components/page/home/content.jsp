@@ -1,1 +1,1 @@
-<% ' @TODO: Implement homepage-specific components and layout %>
+<% // @TODO: Implement homepage-specific components and layout %>
