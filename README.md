@@ -42,20 +42,20 @@ This is the repository for Sears PartsDirect migration project.
 		</settings>
 
 **Run CQ Parent**
-- run `mvn install` on `sears-partsdirect/cq-parent`
+- run `mvn install` on `aempd/cq-parent`
 
 **Run bare Sears Parts Direct Parent**
-- !Important! comment out modules on `sears-partsdirect/sears-partsdirect-parent/pom.xml`
-- run `mvn install -P<SEARS_PARTS_DIRECT_PROFILE_NAME>` on `sears-partsdirect/sears-partsdirect-parent`
+- !Important! comment out modules on `aempd/sears-partsdirect-parent/pom.xml`
+- run `mvn install -P<SEARS_PARTS_DIRECT_PROFILE_NAME>` on `aempd/sears-partsdirect-parent`
 
 **Run Sears Parts Direct Parent with Modules**
-- uncomment out modules on `sears-partsdirect/sears-partsdirect-parent/pom.xml`
-- run `mvn install -P<SEARS_PARTS_DIRECT_PROFILE_NAME>` on `sears-partsdirect/sears-partsdirect-parent`
+- uncomment out modules on `aempd/sears-partsdirect-parent/pom.xml`
+- run `mvn install -P<SEARS_PARTS_DIRECT_PROFILE_NAME>` on `aempd/sears-partsdirect-parent`
 - the -P flag is optional if you only have one profile
 
 **Run Sears Parts Direct File Vault**
-- run `mvn clean package content-package:install` on `sears-partsdirect/sears-partsdirect-vault`
+- run `mvn clean package content-package:install` on `aempd/sears-partsdirect-vault`
 
 ### Iterative testing
-- run `mvn install -P<SEARS_PARTS_DIRECT_PROFILE_NAME>` on `sears-partsdirect/sears-partsdirect-common`
-- run `clean package content-package:uninstall content-package:install` on `sears-partsdirect/sears-partsdirect-vault`
+- run `mvn install -P<SEARS_PARTS_DIRECT_PROFILE_NAME>` on `aempd/sears-partsdirect-common`
+- run `clean package content-package:uninstall content-package:install` on `aempd/sears-partsdirect-vault`
