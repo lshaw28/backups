@@ -1,4 +1,4 @@
-<%@ include file="/apps/gecapitalbank/global.jsp"%>
+<%@ include file="/apps/searspartsdirect/global.jsp"%>
 <c:set var="pageClientLib"><cq:text property="pageClientLib" placeholder="" /></c:set><body class="<cq:text property="pageCssClassName" placeholder="" />">
 	<cq:include path="clientcontext" resourceType="cq/personalization/components/clientcontext" />
 	<cq:include script="header.jsp" />
