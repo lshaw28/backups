@@ -1,0 +1,21 @@
+/* Base: Mixins */
+/* 1. Border Radius */
+.borderRadius(@e: 0px) {
+	-webkit-border-radius: @e;
+	-moz-border-radius: @e;
+	-ms-border-radius: @e;
+	-o-border-radius: @e;
+	border-radius: @e;
+}
+
+/* 2. Opacity */
+.opacity(@o: 0.5) {
+	-moz-opacity: @o;
+	-khtml-opacity: @o;
+	-webkit-opacity: @o;
+	opacity: @o;
+	@oP: @o * 100;
+	filter: ~"alpha(opacity=@{oP})";
+	@ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{oP})";
+	-ms-filter: "@{ms-filter}";
+}
