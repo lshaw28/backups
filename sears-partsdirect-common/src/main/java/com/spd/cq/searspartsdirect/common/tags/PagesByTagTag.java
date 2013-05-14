@@ -1,17 +1,15 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
-import java.io.IOException;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DeleteMeTag extends CQBaseTag {
-
-	protected static Logger log = LoggerFactory.getLogger(DeleteMeTag.class);
-
+public class PagesByTagTag extends CQBaseTag {
+	
+	protected static Logger log = LoggerFactory.getLogger(PagesByTagTag.class);
+	
 
 	@Override
 	public int doStartTag() throws JspException {
