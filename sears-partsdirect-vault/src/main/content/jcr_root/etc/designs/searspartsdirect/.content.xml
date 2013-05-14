@@ -15,11 +15,10 @@
 		<base jcr:primaryType="nt:unstructured">
 
 		</base>		
+		<home jcr:primaryType="nt:unstructured">
+
+		</home>
 	</jcr:content>
 	<clientlib_base/>
 	<clientlib_cq/>
-	<clientlib_home/>
-	<fonts/>
-	<ico/>
-	<images/>
 </jcr:root>
