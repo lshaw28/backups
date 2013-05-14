@@ -1,0 +1,1 @@
+<cq:include path="parsys" resourceType="foundation/components/parsys" />
