@@ -6,6 +6,8 @@
 <cq:includeClientLib categories="cq.foundation-main" />
 <cq:includeClientLib css="apps.searspartsdirect" />
 
+<cq:include script="templatelibs.jsp"/>
+
 <c:if test="${isEditMode or isDesignMode}">
     <cq:includeClientLib css="apps.searspartsdirect.cq.edit"/>
 </c:if>

@@ -17,20 +17,19 @@
 					<rtePlugins jcr:primaryType="nt:unstructured">
 						<paraformat
 							jcr:primaryType="nt:unstructured"
-							features="-">
-						</paraformat>
+							features="[]" />
 						<links 
 							jcr:primaryType="nt:unstructured"
 							features="*" />
 						<lists 
 							jcr:primaryType="nt:unstructured"
-							features="-" />
+							features="[]" />
 						<format
 							jcr:primaryType="nt:unstructured"
-							features="*" />
+							features="[]" />
 						<justify
 							jcr:primaryType="nt:unstructured"
-							features="-" />
+							features="[]" />
 					</rtePlugins>
 				</text>
 				<richFlag
