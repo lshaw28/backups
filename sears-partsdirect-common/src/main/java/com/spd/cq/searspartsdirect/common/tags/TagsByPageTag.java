@@ -14,22 +14,21 @@ import com.day.cq.wcm.api.Page;
 public class TagsByPageTag extends CQBaseTag {
 
 	protected static Logger log = LoggerFactory.getLogger(TagsByPageTag.class);
-	protected String format;
-
+	protected String pagepath;
+	
 	@Override
 	public int doStartTag() throws JspException {
-		ArrayList<String> tags = new ArrayList<String>();
-		Tag[] pageTags = currentPage.getTags();
+		ArrayList<Tag> tags = new ArrayList<Tag>();
+		
+		Tag[] pageTags = null;
+		if (pagepath != null) {
+			pageTags = pageManager.getPage(pagepath).getTags();
+		}
+		else {
+			pageTags = currentPage.getTags();
+		}
 		for (Tag tag : pageTags) {
-			if(format.equals("title")) {
-				tags.add(tag.getTitle());
-			}
-			else if(format.equals("tagid")) {
-				tags.add(tag.getTagID());
-			}
-			else {
-				tags.add(tag.getPath());
-			}
+			tags.add(tag);
 		}
 		pageContext.setAttribute("tags",tags);
         return SKIP_BODY;
@@ -40,7 +39,7 @@ public class TagsByPageTag extends CQBaseTag {
         return EVAL_PAGE;
     }
 	
-	public void setFormat(String format) {
-		this.format = format;
+	public void setPagepath(String pagepath) {
+		this.pagepath = pagepath;
 	}
 }

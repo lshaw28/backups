@@ -7,11 +7,11 @@
 	<tag>
 		<name>TagsByPage</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.TagsByPageTag</tag-class>
-		<info>Generates a list of strings representing the tags of a page</info>
+		<info>Generates a list of Tag objects representing the tags of a page</info>
 		<attribute>
-			<name>format</name>
+			<name>pagepath</name>
 			<type>java.lang.String</type>
-			<required>true</required>
+			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
@@ -19,5 +19,11 @@
 		<name>PagesByTag</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.PagesByTagTag</tag-class>
 		<info>Generates a list of Pages represented by a specific Tag</info>
+		<attribute>
+			<name>tag</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 </taglib>
