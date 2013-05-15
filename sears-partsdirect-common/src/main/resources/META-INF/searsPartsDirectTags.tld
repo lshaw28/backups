@@ -5,8 +5,19 @@
 	<short-name>Sears Parts Direct TagLib</short-name>
 	<uri>http://cms.testsears.com/bundles/cq/tags</uri>
 	<tag>
-		<name>DeleteMe</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.DeleteMeTag</tag-class>
-		<info>DELETE ME</info>
+		<name>TagsByPage</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.TagsByPageTag</tag-class>
+		<info>Generates a list of strings representing the tags of a page</info>
+		<attribute>
+			<name>format</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>PagesByTag</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.PagesByTagTag</tag-class>
+		<info>Generates a list of Pages represented by a specific Tag</info>
 	</tag>
 </taglib>
