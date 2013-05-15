@@ -1,1 +1,4 @@
 #base=js/.
+Modernizr.js
+Class.js
+Utilities.js
