@@ -14,30 +14,24 @@
 					fieldLabel="Text"
 					name="./text"
 					xtype="richtext">
-					<rtePlugins jcr:primaryType="nt:unstructured">
-						<paraformat
-							jcr:primaryType="nt:unstructured"
-							features="[]" />
-						<links 
-							jcr:primaryType="nt:unstructured"
-							features="*" />
-						<lists 
-							jcr:primaryType="nt:unstructured"
-							features="[]" />
-						<format
-							jcr:primaryType="nt:unstructured"
-							features="[]" />
-						<justify
-							jcr:primaryType="nt:unstructured"
-							features="[]" />
-					</rtePlugins>
+					<listeners
+						jcr:primaryType="nt:unstructured"
+						afterrender="function() {$(&quot;.x-edit-justifyleft&quot;).parent().parent().parent().parent().parent().parent().prev().hide();
+							&#xa;$(&quot;.x-edit-justifyleft&quot;).parent().parent().parent().parent().parent().parent().hide();
+							&#xa;$(&quot;.x-edit-justifycenter&quot;).parent().parent().parent().parent().parent().parent().hide();
+							&#xa;$(&quot;.x-edit-justifyright&quot;).parent().parent().parent().parent().parent().parent().hide();
+							&#xa;$(&quot;.x-edit-insertunorderedlist&quot;).parent().parent().parent().parent().parent().parent().prev().hide();
+							&#xa;$(&quot;.x-edit-insertunorderedlist&quot;).parent().parent().parent().parent().parent().parent().hide();
+							&#xa;$(&quot;.x-edit-insertorderedlist&quot;).parent().parent().parent().parent().parent().parent().hide();
+							&#xa;$(&quot;.x-edit-outdent&quot;).parent().parent().parent().parent().parent().parent().hide();
+							&#xa;$(&quot;.x-edit-indent&quot;).parent().parent().parent().parent().parent().parent().hide(); }"/>
 				</text>
 				<richFlag
 					jcr:primaryType="cq:Widget"
 					ignoreData="{Boolean}true"
 					name="./textIsRich"
 					value="true"
-					xtype="hidden"/>
+					xtype="hidden"/> 
 			</items>
 		</tab1>
 	</items>
