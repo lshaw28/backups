@@ -26,4 +26,15 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>Image</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.ImageTag</tag-class>
+		<info>Displays an image</info>
+		<attribute>
+			<name>path</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>

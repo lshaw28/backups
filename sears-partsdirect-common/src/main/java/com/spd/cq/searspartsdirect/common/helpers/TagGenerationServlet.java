@@ -3,7 +3,6 @@ package com.spd.cq.searspartsdirect.common.helpers;
 import java.io.IOException;
 import java.util.Iterator;
 
-import javax.jcr.security.AccessControlException;
 import javax.servlet.ServletException;
 
 import org.apache.felix.scr.annotations.Reference;
@@ -17,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.commons.jcr.JcrUtil;
-import com.day.cq.tagging.InvalidTagFormatException;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.day.text.csv.Csv;
