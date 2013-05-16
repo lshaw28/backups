@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:description=""
+    jcr:primaryType="cq:Tag"
+    jcr:title="Kitchen Appliances"
+    sling:resourceType="cq/tagging/components/tag">
+    <compactors/>
+    <cooktops/>
+    <dishwashers/>
+    <freezers/>
+    <ice_makers/>
+    <microwaves/>
+    <range_hoods/>
+    <ranges/>
+    <refrigerators/>
+    <vent_systems/>
+    <wall_ovens/>
+    <wall_oven_microwavecombo/>
+    <warming_drawers/>
+    <wine_beverage_coolers/>
+</jcr:root>

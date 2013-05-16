@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:description=""
+    jcr:primaryType="cq:Tag"
+    jcr:title="Small Kitchen Appliances"
+    sling:resourceType="cq/tagging/components/tag">
+    <blenders/>
+    <breadmakers/>
+    <butter_dispensers/>
+    <can_openers/>
+    <canner_cookers/>
+    <choppers/>
+    <coffee_grinders/>
+    <coffee_makers/>
+    <cookware/>
+    <crepe_makers/>
+    <deep_fryers/>
+    <electric_knives/>
+    <electric_skillets/>
+    <food_processors/>
+    <food_steamers/>
+    <fry_pans/>
+    <griddles/>
+    <hot_plates/>
+    <ice_cream_makers/>
+    <irons/>
+    <juicers/>
+    <kitchen_counter-topappliancess/>
+    <kitchen_equipment/>
+    <meat_choppers_slicers/>
+    <microwave_melterdispensers/>
+    <mixers/>
+    <pasta_makers/>
+    <popcorn_poppers/>
+    <portable_broilers/>
+    <portable_convectionovens/>
+    <portable_oven_broilers/>
+    <portable_ovens/>
+    <portable_rotisseries/>
+    <potpourri_pots/>
+    <pressure_cookers/>
+    <slow_cookers/>
+    <soda_fountains/>
+    <toaster_ovens/>
+    <toasters/>
+    <waffle_makers/>
+    <woks/>
+    <yogurt_makers/>
+</jcr:root>
