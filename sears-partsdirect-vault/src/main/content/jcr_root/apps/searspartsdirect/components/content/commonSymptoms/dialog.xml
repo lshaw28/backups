@@ -2,17 +2,19 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		  jcr:primaryType="cq:TabPanel"
 		  activeTab="0"
-		  xtype="tabpanel">
-	
+		  xtype="panel">
+	<items jcr:primaryType="cq:WidgetCollection">
 	<text jcr:primaryType="cq:Widget"
 					fieldLabel="Text"
 					name="./text"
-					xtype="richtext"/>
-   
+					xtype="textfield"
+					maxlength="140"/>
+					
+	<!-- 				
    <selection jcr:primaryType="cq:Widget"
     fieldLabel="Category Selection"
     fieldDescription="Please select a category"
-    name=".selection"
+    name="./selection"
     type="select"
     xtype="selection">
    		 <options jcr:primaryType="cq:WidgetCollection">
@@ -23,6 +25,7 @@
             			 text="Value2"
                          value="value2"/>    
     	</options>
-</selection>
+</selection>  -->
+</items>
 </jcr:root>
 		  
