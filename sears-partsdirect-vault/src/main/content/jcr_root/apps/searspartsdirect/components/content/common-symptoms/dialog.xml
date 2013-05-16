@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:TabPanel"
+		  activeTab="0"
+		  xtype="tabpanel">
+	
+	<text jcr:primaryType="cq:Widget"
+					fieldLabel="Text"
+					name="./text"
+					xtype="richtext"/>
+   
+   <selection jcr:primaryType="cq:Widget"
+    fieldLabel="Category Selection"
+    fieldDescription="Please select a category"
+    name=".selection"
+    type="select"
+    xtype="selection">
+   		 <options jcr:primaryType="cq:WidgetCollection">
+        		<option1 jcr:primaryType="nt:unstructured"
+		            	 text="Value1"
+		            	 value="value1"/>
+        		<option2 jcr:primaryType="nt:unstructured"
+            			 text="Value2"
+                         value="value2"/>    
+    	</options>
+</selection>
+</jcr:root>
+		  
