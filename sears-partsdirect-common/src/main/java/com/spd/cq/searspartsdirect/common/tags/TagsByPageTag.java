@@ -11,6 +11,12 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 
+/**
+ * Custom tag to draw out a list of Tag objects when given a Page path
+ * Defaults to current page
+ * @author Joseph
+ *
+ */
 public class TagsByPageTag extends CQBaseTag {
 
 	protected static Logger log = LoggerFactory.getLogger(TagsByPageTag.class);

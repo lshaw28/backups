@@ -20,6 +20,11 @@ import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 
+/**
+ * Custom tag to draw out a list of Page objects when given a Tag path or id
+ * @author Joseph
+ *
+ */
 public class PagesByTagTag extends CQBaseTag {
 	
 	protected static Logger log = LoggerFactory.getLogger(PagesByTagTag.class);
