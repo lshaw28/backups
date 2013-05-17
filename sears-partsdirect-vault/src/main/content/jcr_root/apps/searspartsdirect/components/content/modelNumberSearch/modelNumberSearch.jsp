@@ -1,3 +1,3 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-    THIS WILL BE THE HEADER
+    THIS WILL BE THE MODEL NUMBER SEARCH

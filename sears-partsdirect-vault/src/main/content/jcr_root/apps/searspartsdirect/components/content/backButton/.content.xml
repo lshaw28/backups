@@ -6,4 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Get Parent Page"
 	jcr:description="Link to parent path url if it exists"
-	componentGroup="Sears Parts Direct" />
+	componentGroup="SearsPartsDirect" />
