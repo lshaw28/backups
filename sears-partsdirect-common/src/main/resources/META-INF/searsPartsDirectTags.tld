@@ -41,23 +41,12 @@
 	   <name>getProductCategoryName</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
 		 <info>Provides the product category name</info>
-	<tag>
+	</tag>
 	<tag>
 		<name>BackButton</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.BackButtonTag</tag-class>
 		<info>Creates link to parent url</info>
 	</tag>
-
-
-
-
-
-
-
-
-
-
-
 	<tag>
 	   <name>getLoginStatus</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.LoginStatusTag</tag-class>
@@ -82,5 +71,16 @@
 	   <name>getShoppingCart</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.ShoppingCartTag</tag-class>
 	   <info>Get shopping cart information</info>
+	</tag>
+	<tag>
+		<name>getCommonSymptoms</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.CommonSymptomsTag</tag-class>
+	   	<info>Get common symptoms for the category</info>
+	   	<attribute>
+			<name>categoryName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 </taglib>
