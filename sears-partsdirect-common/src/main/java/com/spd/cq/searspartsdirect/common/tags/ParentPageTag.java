@@ -13,6 +13,7 @@ public class ParentPageTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		
 		try {
+			
 			url = currentPage.getParent().getPath();
 			if (url != null && !url.isEmpty()){
 				pageContext.setAttribute("parentPage", url);
