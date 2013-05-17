@@ -15,6 +15,8 @@ public class ParentPageTag extends CQBaseTag {
 		try {
 			
 			url = currentPage.getParent().getPath();
+			
+			// verify that a parent page url exists
 			if (url != null && !url.isEmpty()){
 				pageContext.setAttribute("parentPage", url);
 			}
