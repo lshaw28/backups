@@ -8,8 +8,8 @@
 					xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
 				<link 	jcr:primaryType="cq:Widget"
-					   	fieldLabel="Back Button"
-					   	fieldDescription="Previous page title"
+					   	fieldLabel="Parent Page Description"
+					   	fieldDescription="Character limit is 140"
 					   	name="./linkName"
 					   	maxLength="140"
 					   	xtype="textfield" />

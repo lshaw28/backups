@@ -12,7 +12,7 @@
 					xtype="panel">
 					<items jcr:primaryType="cq:WidgetCollection">
 						<title jcr:primaryType="cq:Widget"
-							   fieldLabel="Category101Field"
+							   fieldLabel="Category 101"
 							   name="./header"
 							   xtype="textfield" />
 					</items>
