@@ -8,7 +8,7 @@
 					xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
 				<header jcr:primaryType="cq:Widget"
-					   path="/apps/searspartsdirect/components/content/genericheader/dialog/items/GenericHeader/items/textvalue.json"
+					   path="/apps/searspartsdirect/components/content/genericHeader/dialog/items/GenericHeader/items/textvalue.json"
 					   xtype="cqinclude"/>
 				   
 				<shorttext jcr:primaryType="cq:Widget"
