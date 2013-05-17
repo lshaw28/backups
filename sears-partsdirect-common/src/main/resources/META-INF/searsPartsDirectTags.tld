@@ -27,7 +27,7 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>Image</name>
+	<name>Image</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ImageTag</tag-class>
 		<info>Displays an image</info>
 		<attribute>
@@ -37,9 +37,54 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-		<tag>
+	<tag>
 		<name>getParentPage</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ParentPageTag</tag-class>
 		<info>Creates path to parent url</info>
+	<tag>
+	   <name>getProductCategoryName</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
+		 <info>Provides the product category name</info>
+	</tag>
+	<tag>
+		<name>BackButton</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.BackButtonTag</tag-class>
+		<info>Creates link to parent url</info>
+	</tag>
+	<tag>
+	   <name>getLoginStatus</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.LoginStatusTag</tag-class>
+	   <info>Checks if the user is logged in or not</info>
+	</tag>
+	<tag>
+	   <name>getRegisterStatus</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.RegisterStatusTag</tag-class>
+	   <info>Checks if the user is registered or not</info>
+	</tag>
+	<tag>
+	   <name>getRecentlyViewed</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.RecentlyViewedTag</tag-class>
+	   <info>Get the recently viewed model and parts</info>
+	</tag>
+	<tag>
+	   <name>getMyModels</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.MyModelTag</tag-class>
+	   <info>Get user's model information</info>
+	</tag>
+	<tag>
+	   <name>getShoppingCart</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.ShoppingCartTag</tag-class>
+	   <info>Get shopping cart information</info>
+	</tag>
+	<tag>
+		<name>getCommonSymptoms</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.CommonSymptomsTag</tag-class>
+	   	<info>Get common symptoms for the category</info>
+	   	<attribute>
+			<name>categoryName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 </taglib>

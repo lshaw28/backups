@@ -1,3 +1,17 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-<p>Add a logic to have a text box for common symptom text and a drop down for an author to select the category.</p>
+<!--  <h2>Most Common <spd:getProductCategoryName /> Symptoms</h2>  -->
+
+<h2><cq:text property="text1"/> ${productCategoryName} <cq:text property="text2"/></h2>
+
+<spd:getCommonSymptoms categoryName="${productCategoryName}" />
+
+Common symptoms are
+
+<c:forEach items="${commonSymptoms}">
+  <c:out><a href="${commonSymptomUrl}">{commonSymptomText}</a></c:out>
+</c:forEach>
+
+
+
+
