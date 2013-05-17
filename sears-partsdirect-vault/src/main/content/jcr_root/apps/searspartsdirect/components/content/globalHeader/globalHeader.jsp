@@ -6,7 +6,7 @@
 
 <!--   <cq:include path="/content/searspartsdirect/en/jcr:content/global_logo" resourceType="foundation/components/text" /> -->
 
-<!--  <cq:include path="errorCodesTable" resourceType="/apps/searspartsdirect/components/content/errorCodesTable" />  -->
+<!-- 	<cq:include path="errorCodesTable" resourceType="/apps/searspartsdirect/components/content/errorCodesList" />  -->
  
    <li class="first login_link">
 		<a class="mainSignInModal" href="javascript:void(0)" title="Login"><spd:getLoginStatus/></a>
@@ -24,7 +24,7 @@
   
      <p>include dynamic tags libs along with static html</p>
      
-     <!--  <cq:include path="commonSymptoms" resourceType="/apps/searspartsdirect/components/content/commonSymptoms" />  -->
+     <cq:include path="commonSymptoms" resourceType="/apps/searspartsdirect/components/content/commonSymptoms" />
      
      
      <!--  <cq:include path="errorCodesTable" resourceType="/apps/searspartsdirect/components/content/errorCodesTable" /> -->

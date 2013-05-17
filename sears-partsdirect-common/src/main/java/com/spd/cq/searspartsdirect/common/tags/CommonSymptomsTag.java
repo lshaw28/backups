@@ -15,8 +15,7 @@ import com.spd.cq.searspartsdirect.common.model.CommonSymptomsModel;
 public class CommonSymptomsTag extends CQBaseTag {
 
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = LoggerFactory
-			.getLogger(CommonSymptomsTag.class);
+	protected static Logger log = LoggerFactory.getLogger(CommonSymptomsTag.class);
 
 	private String categoryName;
 

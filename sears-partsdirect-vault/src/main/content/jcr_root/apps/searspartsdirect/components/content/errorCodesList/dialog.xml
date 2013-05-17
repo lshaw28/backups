@@ -2,19 +2,41 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		  jcr:primaryType="cq:TabPanel"
 		  activeTab="0"
-		  xtype="tabpanel">
+		  xtype="panel">
 	<items jcr:primaryType="cq:WidgetCollection">
-	<text jcr:primaryType="cq:Widget"
-					fieldLabel="Error Code Text"
-					name="./textfield"
-					xtype="textfield"
-					maxlength="140"/>
-					
-	<text jcr:primaryType="cq:Widget"
-					fieldLabel="Error Code Description"
-					name="./desc"
-					xtype="richtext"
-					maxlength="500"/>
-</items>
-</jcr:root>
-		  
+		<image
+	            jcr:primaryType="cq:Widget"
+	            cropParameter="./image1/imageCrop"
+	            ddGroups="[media]"
+	            fileNameParameter="./image1/fileName"
+	            fileReferenceParameter="./image1/fileReference"
+	            mapParameter="./image1/imageMap"
+	            name="./image1/errorcodeimage"
+	            requestSuffix=".image1/img.png"
+	            rotateParameter="./image1/errorcodeimageRotate"
+	            title="Error Code Image"
+	            xtype="html5smartimage"/>
+	      <resType
+                    jcr:primaryType="cq:Widget"
+                    ignoreData="{Boolean}true"
+                    name="./image1/sling:resourceType"
+                    value="foundation/components/image"
+                    xtype="hidden"/>
+                           
+		<errorcodetext jcr:primaryType="cq:Widget"
+						fieldLabel="Error Code Text"
+						name="./errorcodetext"
+						xtype="textfield"
+						maxlength="140"/>
+		<linktext jcr:primaryType="cq:Widget"
+						fieldLabel="link text"
+						name="./linktext"
+						xtype="textfield"
+						maxlength="70"/>
+		<linkurl jcr:primaryType="cq:Widget"
+						fieldLabel="link text url"
+						name="./linkurl"
+						xtype="textfield"
+						maxlength="70"/>				
+	</items>
+</jcr:root>  
