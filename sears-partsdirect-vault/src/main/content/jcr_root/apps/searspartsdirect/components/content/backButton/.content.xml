@@ -4,6 +4,6 @@
 	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Component"
-	jcr:title="Back Button"
-	jcr:description="Link to previous page visited"
+	jcr:title="Get Parent Page"
+	jcr:description="Link to parent path url if it exists"
 	componentGroup="Sears Parts Direct" />

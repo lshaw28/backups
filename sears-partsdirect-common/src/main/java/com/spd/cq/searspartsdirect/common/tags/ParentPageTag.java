@@ -1,31 +1,26 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
-import java.util.ArrayList;
-
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.tagging.Tag;
-import com.sun.mail.mbox.NewlineOutputStream;
-
-public class BackButtonTag extends CQBaseTag {
+public class ParentPageTag extends CQBaseTag {
+	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(TagsByPageTag.class);
 	protected String url;
 	
 	@Override
 	public int doStartTag() throws JspException {
-		JspWriter out = pageContext.getOut();
 		
 		try {
 			
 			url = currentPage.getParent().getPath();
-			
-			// need to account for case where parent page = null
-			out.print(url);
-
+			if (url != null && !url.isEmpty()){
+				pageContext.setAttribute("parentPage", url);
+			}
+			else {
+				url ="";
+			}
 		}
 		catch (Exception e) {
 			log.error(e.toString());

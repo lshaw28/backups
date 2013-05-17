@@ -38,8 +38,8 @@
 		</attribute>
 	</tag>
 		<tag>
-		<name>BackButton</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.BackButtonTag</tag-class>
-		<info>Creates link to parent url</info>
+		<name>getParentPage</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.ParentPageTag</tag-class>
+		<info>Creates path to parent url</info>
 	</tag>
 </taglib>
