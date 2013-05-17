@@ -6,9 +6,7 @@
 
 <!--   <cq:include path="/content/searspartsdirect/en/jcr:content/global_logo" resourceType="foundation/components/text" /> -->
 
- <!--  <cq:include path="commonSymptoms" resourceType="/apps/searspartsdirect/components/content/commonSymptoms" /> -->
- 
-  <!--  <cq:include path="errorCodesTable" resourceType="/apps/searspartsdirect/components/content/errorCodesTable" />  -->
+<!--  <cq:include path="errorCodesTable" resourceType="/apps/searspartsdirect/components/content/errorCodesTable" />  -->
  
 
    <li class="first login_link">
@@ -26,3 +24,9 @@
      <p><spd:getShoppingCart/></p>
   
      <p>include dynamic tags libs along with static html</p>
+     
+     
+     <cq:include path="commonSymptoms" resourceType="/apps/searspartsdirect/components/content/commonSymptoms" />
+     
+     
+     <!--  <cq:include path="errorCodesTable" resourceType="/apps/searspartsdirect/components/content/errorCodesTable" /> -->

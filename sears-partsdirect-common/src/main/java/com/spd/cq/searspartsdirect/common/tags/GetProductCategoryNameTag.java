@@ -22,7 +22,7 @@ public class GetProductCategoryNameTag extends CQBaseTag {
 
 			//Make use of API call here
 			//out.print("Refrigerator");
-			out.print(currentPage.getPageTitle());
+			out.print(currentPage.getTitle());
 		} catch (IOException e) {
 			log.error("Error in getting the product category name API call" + e.getStackTrace());
 		}

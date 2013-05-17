@@ -27,6 +27,17 @@
 		</attribute>
 	</tag>
 	<tag>
+	<name>Image</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.ImageTag</tag-class>
+		<info>Displays an image</info>
+		<attribute>
+			<name>path</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
 	   <name>getProductCategoryName</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
 	   <info>Provides the product category name</info>
