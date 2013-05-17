@@ -6,4 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Header"
 	jcr:description="Page Header"
-	componentGroup="Sears Parts Direct" />
+	componentGroup="SearsPartsDirect" />

@@ -3,4 +3,4 @@
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" jcr:primaryType="cq:Component"
 	jcr:title="Subhead" jcr:description="Page Subheaders"
 	sling:resourceSuperType="searspartsdirect/components/content/genericHeader"
-	componentGroup="Sears Parts Direct" />
+	componentGroup="SearsPartsDirect" />

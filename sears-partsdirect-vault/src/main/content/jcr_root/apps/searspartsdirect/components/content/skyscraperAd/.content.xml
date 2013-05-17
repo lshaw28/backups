@@ -6,4 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Skyscraper Advertisement"
 	jcr:description="Skyscraper Advertisement for Sears"
-	componentGroup="Sears Parts Direct" />
+	componentGroup="SearsPartsDirect" />

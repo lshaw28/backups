@@ -6,4 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Model Number Search"
 	jcr:description=""
-	componentGroup="Sears Parts Direct" />
+	componentGroup="SearsPartsDirect" />

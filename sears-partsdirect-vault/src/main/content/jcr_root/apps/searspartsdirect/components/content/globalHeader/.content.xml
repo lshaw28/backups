@@ -6,4 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Global Logo"
 	jcr:description="Global header component"
-	componentGroup="Sears Parts Direct" />
+	componentGroup="SearsPartsDirect" />

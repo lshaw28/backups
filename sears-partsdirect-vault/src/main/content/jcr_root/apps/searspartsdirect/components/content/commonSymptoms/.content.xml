@@ -6,4 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="common symptom"
 	jcr:description="Custom text and selection component for common symptoms for a category"
-	componentGroup="Sears Parts Direct" />
+	componentGroup="SearsPartsDirect" />

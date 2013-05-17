@@ -6,4 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Category Listing"
 	jcr:description=""
-	componentGroup="Sears Parts Direct" />
+	componentGroup="SearsPartsDirect" />

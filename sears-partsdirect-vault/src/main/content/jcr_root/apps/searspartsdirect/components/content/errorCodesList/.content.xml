@@ -6,4 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="error code list"
 	jcr:description="Error code list for a product"
-	componentGroup="Sears Parts Direct" />
+	componentGroup="SearsPartsDirect" />

@@ -6,4 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Text"
 	jcr:description="Custom Text component for Sears"
-	componentGroup="Sears Parts Direct" />
+	componentGroup="SearsPartsDirect" />

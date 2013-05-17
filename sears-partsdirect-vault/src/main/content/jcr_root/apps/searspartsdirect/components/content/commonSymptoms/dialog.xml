@@ -14,13 +14,13 @@
 					name="./text2"
 					xtype="textfield"
 					maxlength="42"/>
-		
 		<richtext jcr:primaryType="cq:Widget"
 					fieldLabel="optional description"
-					name="./richtext"
+					name="./errorCodesRichtext"
 					xtype="cqinclude"
 					path="/apps/searspartsdirect/components/content/text/dialog/items/tab1/items/text.infinity.json"
-					maxlength="500"/>	
-</items>
+					maxlength="500"
+					allowBlank="{Boolean}true"/>	
+	</items>
 </jcr:root>
 		  
