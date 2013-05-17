@@ -1,3 +1,3 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
+My Footer
 
-    THIS WILL BE THE THE TOOLS REQUIRED REPAIR

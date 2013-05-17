@@ -1,3 +1,3 @@
-<%@ include file="/apps/gecapitalbank/global.jsp" %>
+<%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-    THIS WILL BE THE CATEGORY
+    THIS WILL BE CATEGORY 101
