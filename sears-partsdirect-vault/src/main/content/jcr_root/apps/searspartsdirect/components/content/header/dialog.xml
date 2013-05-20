@@ -17,6 +17,14 @@
 					   name="./shorttext"
 					   maxLength="35"
 					   xtype="textfield" />
+					   
+				<abstract jcr:primaryType="cq:Widget"
+					   fieldLabel="Abstract Text"
+					   fieldDescription="Character limit is 400"
+					   name="./abstracttext"
+					   maxLength="400"
+					   xtype="textarea" />
+					   
 			</items>
 		</Subhead>
 	</items>
