@@ -1,7 +1,7 @@
 /*global $:true, window:true, Class:true */
 (function (window) {
 	"use strict";
-	window.SPDUtils = Class.extend({
+	window.SPDUtils = {
 		/**
 		 * @class SPDUtils
 		 * Global utilities and helper methods
@@ -74,5 +74,6 @@
 				}
 			}
 		}
-	});
+	};
+	window.SPDUtils.init();
 }(window));

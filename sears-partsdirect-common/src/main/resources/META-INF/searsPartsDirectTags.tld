@@ -78,6 +78,11 @@
 	   <info>Get shopping cart information</info>
 	</tag>
 	<tag>
+	   <name>DefineObjects</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.DefineObjectsTag</tag-class>
+	   <info>Sets page context information required for clientlibs</info>
+	</tag>
+	<tag>
 		<name>getCommonSymptoms</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.CommonSymptomsTag</tag-class>
 	   	<info>Get common symptoms for the category</info>

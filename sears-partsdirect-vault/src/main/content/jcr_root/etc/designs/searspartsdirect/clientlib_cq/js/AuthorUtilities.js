@@ -1,7 +1,7 @@
 /*global $:true, window:true, Class:true */
 (function (window) {
 	"use strict";
-	window.SPDAuthorUtils = Class.extend({
+	window.SPDAuthorUtils = {
 		/**
 		 * @class SPDAuthorUtils
 		 * Global utilities and helper methods for Author environment
@@ -10,7 +10,7 @@
 		 */
 		init: function () {
 			try {
-				console.log('SPDUtils available');
+				console.log('SPDAuthorUtils available');
 			} catch (e) {
 			}
 		},
@@ -19,6 +19,7 @@
 		 * @param {Object} el ExtJS caller
 		 */
 		setRTEPlugins: function () {
+			console.log(this.el.dom);
 			/* @TODO: Make this cleaner and more reusable */
 			$('.x-edit-justifyleft').parent().parent().parent().parent().parent().parent().prev().hide();
 			$('.x-edit-justifyleft').parent().parent().parent().parent().parent().parent().hide();
@@ -30,5 +31,6 @@
 			$('.x-edit-outdent').parent().parent().parent().parent().parent().parent().hide();
 			$('.x-edit-indent').parent().parent().parent().parent().parent().parent().hide();
 		}
-	});
+	};
+	window.SPDAuthorUtils.init();
 }(window));
