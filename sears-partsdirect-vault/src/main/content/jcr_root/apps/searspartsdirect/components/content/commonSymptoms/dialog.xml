@@ -14,21 +14,17 @@
 					name="./text2"
 					xtype="textfield"
 					maxlength="42"/>
-		<!--  some how updates do not reflect on the page when we use the following inherited richtext -->			
-		<!--   <errorCodesRichtext jcr:primaryType="cq:Widget"
+					
+		<optionalDescription jcr:primaryType="cq:Widget"
 					fieldLabel="Optional Description"
-					name="./errorCodesRichtext"
-					xtype="cqinclude"
-					path="/apps/searspartsdirect/components/content/text/dialog/items/tab1/items/text.infinity.json"
-					maxlength="500"
-					allowBlank="{Boolean}true"/> -->
-		
-		<errorCodesRichtext jcr:primaryType="cq:Widget"
-					fieldLabel="Text after product name"
-					name="./errorCodesRichtext"
+					name="./optionalDescription"
 					xtype="richtext"
 					maxlength="500"
-					allowBlank="{Boolean}true"/>		
+					allowBlank="{Boolean}true">
+			<!--  <listeners
+		      jcr:primaryType="nt:unstructured"
+		      afterrender="SPDAuthorUtils.setRTEPlugins"/> -->
+		    </optionalDescription> 			 	
 	</items>
 </jcr:root>
 		  
