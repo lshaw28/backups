@@ -1,3 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-My Footer
 
+Model Symptoms
+ <cq:include path="modelSymptoms" resourceType="/apps/searspartsdirect/components/content/modelSymptoms" />

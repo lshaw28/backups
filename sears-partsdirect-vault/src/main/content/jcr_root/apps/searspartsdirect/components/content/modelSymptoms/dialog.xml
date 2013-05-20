@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:TabPanel"
+		  activeTab="0"
+		  xtype="panel">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<text1 jcr:primaryType="cq:Widget"
+					fieldLabel="Text1"
+					name="./text1"
+					xtype="textfield"
+					maxlength="42"/>
+		<richtext jcr:primaryType="cq:Widget"
+					fieldLabel="optional description"
+					name="./errorCodesRichtext"
+					xtype="cqinclude"
+					path="/apps/searspartsdirect/components/content/text/dialog/items/tab1/items/text.infinity.json"
+					maxlength="500"
+					allowBlank="{Boolean}true"/>		
+	</items>
+</jcr:root>
+		  
