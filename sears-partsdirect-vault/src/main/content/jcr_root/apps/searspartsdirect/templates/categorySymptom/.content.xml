@@ -4,13 +4,13 @@
 	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Template"
-	jcr:title="Sears PartsDirect Homepage Template"
+	jcr:title="Sears PartsDirect Category Symptom Template"
 	jcr:description=""
 	allowedPaths="[/content/searspartsdirect(/.*)?]"
-	ranking="10">
+	ranking="50">
 	<jcr:content
 		jcr:primaryType="cq:PageContent"
-		sling:resourceType="searspartsdirect/components/page/home"
+		sling:resourceType="searspartsdirect/components/page/categorySymptom"
 		cq:designPath="/etc/designs/searspartsdirect">
 	</jcr:content>
 </jcr:root>

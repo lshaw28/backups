@@ -16,15 +16,7 @@
 					xtype="richtext">
 					<listeners
 						jcr:primaryType="nt:unstructured"
-						afterrender="function() {$(&quot;.x-edit-justifyleft&quot;).parent().parent().parent().parent().parent().parent().prev().hide();
-							&#xa;$(&quot;.x-edit-justifyleft&quot;).parent().parent().parent().parent().parent().parent().hide();
-							&#xa;$(&quot;.x-edit-justifycenter&quot;).parent().parent().parent().parent().parent().parent().hide();
-							&#xa;$(&quot;.x-edit-justifyright&quot;).parent().parent().parent().parent().parent().parent().hide();
-							&#xa;$(&quot;.x-edit-insertunorderedlist&quot;).parent().parent().parent().parent().parent().parent().prev().hide();
-							&#xa;$(&quot;.x-edit-insertunorderedlist&quot;).parent().parent().parent().parent().parent().parent().hide();
-							&#xa;$(&quot;.x-edit-insertorderedlist&quot;).parent().parent().parent().parent().parent().parent().hide();
-							&#xa;$(&quot;.x-edit-outdent&quot;).parent().parent().parent().parent().parent().parent().hide();
-							&#xa;$(&quot;.x-edit-indent&quot;).parent().parent().parent().parent().parent().parent().hide(); }"/>
+						afterrender="SPDAuthorUtils.setRTEPlugins"/>
 				</text>
 				<richFlag
 					jcr:primaryType="cq:Widget"

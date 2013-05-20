@@ -10,7 +10,7 @@
 		cq:doctype="html_5"
 		jcr:mixinTypes="[mix:versionable]"
 		jcr:primaryType="nt:unstructured"
-		jcr:title="Sears Parts Direct Design"
+		jcr:title="Sears PartsDirect Design"
 		sling:resourceType="wcm/core/components/designer">
 		<base jcr:primaryType="nt:unstructured">
 

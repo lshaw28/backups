@@ -25,21 +25,27 @@
 --%><%@include file="/libs/foundation/global.jsp" %><%
 %><%@ page import="com.day.cq.commons.Doctype,
                    org.apache.commons.lang3.StringEscapeUtils" %><%
-    String xs = Doctype.isXHTML(request) ? "/" : "";
     String favIcon = currentDesign.getPath() + "/favicon.ico";
     if (resourceResolver.getResource(favIcon) == null) {
         favIcon = null;
     }
 %><head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"<%=xs%>>
-    <meta http-equiv="keywords" content="<%= StringEscapeUtils.escapeHtml4(WCMUtils.getKeywords(currentPage, false)) %>"<%=xs%>>
-    <meta http-equiv="description" content="<%= StringEscapeUtils.escapeHtml4(properties.get("jcr:description", "")) %>"<%=xs%>>
+	<!-- Metadata -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Sears PartsDirect" />
+    <meta name="keywords" content="<%= StringEscapeUtils.escapeHtml4(WCMUtils.getKeywords(currentPage, false)) %>" />
+    <meta description="description" content="<%= StringEscapeUtils.escapeHtml4(properties.get("jcr:description", "")) %>" />
+	<meta name="robots" content="index, follow" />
+	<title><%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %></title>
+	<!-- Viewport and Styles -->
     <cq:include script="headlibs.jsp"/>
+	<!-- Head Scripts -->
     <cq:include script="/libs/wcm/core/components/init/init.jsp"/>
     <cq:include script="stats.jsp"/>
+	<!-- Favorite Icons -->
     <% if (favIcon != null) { %>
-    <link rel="icon" type="image/vnd.microsoft.icon" href="<%= favIcon %>"<%=xs%>>
-    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<%= favIcon %>"<%=xs%>>
+	<% // @TODO: Implement all favourite icon types %>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="<%= favIcon %>" />
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<%= favIcon %>" />
     <% } %>
-    <title><%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %></title>
 </head>
