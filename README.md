@@ -58,4 +58,4 @@ This is the repository for Sears PartsDirect migration project.
 
 ### Iterative testing
 - run `mvn install -P<SEARS_PARTS_DIRECT_PROFILE_NAME>` on `aempd/sears-partsdirect-common`
-- run `clean package content-package:uninstall content-package:install` on `aempd/sears-partsdirect-vault`
+- run `mvn clean package content-package:uninstall content-package:install` on `aempd/sears-partsdirect-vault`
