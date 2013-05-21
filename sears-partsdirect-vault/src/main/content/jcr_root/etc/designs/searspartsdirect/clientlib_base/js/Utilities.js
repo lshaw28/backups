@@ -44,18 +44,18 @@
 			// but also allow string representations through
 			if (typeof obj === 'integer') {
 				return obj;
-			} else if (parseInt(obj) !== null && parseInt(obj) !== 'undefined' && isNaN(parseInt(obj)) === false) {
+			} else if (isNaN(parseInt(obj)) === false) {
 				return parseInt(obj);
 			} else {
 				return '';
 			}
 		},
 		/**
-		 * Check if the screen is currently sized at a mobile breakpoint
+		 * Check if the screen is currently sized at an internally-defined mobile breakpoint
 		 * @return {Boolean} Check result
 		 */
 		isMobileBreakpoint: function () {
-			var breakpoints = [],
+			var breakpoints = ['320','480','720'],
 				currentWidth = $(window).width();
 			
 			if (breakpoints.indexOf(currentWidth) > -1) {

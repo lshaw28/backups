@@ -32,7 +32,7 @@
 			</div>
 		</div>
 		<div class="mani_search_panel">
-		<div class="tagline1"><img src="img/homepage/tagline.png" alt="" border="0" title="" /></div>
+		<div class="tagline1"><img src="${publicRootDir}/clientlib_base/img/tagline.png" alt="" border="0" title="" /></div>
 		<form id="searchBarForm" method="post">
 			<input name="pathTaken" id="pathTaken" value="partSearch" type="hidden"/>
 			<input name="prst" id="prst" value="0" type="hidden"/>
