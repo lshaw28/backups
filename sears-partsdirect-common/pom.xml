@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<groupId>com.spd.cq.searspartsdirect</groupId>
 		<artifactId>searspartsdirect-parent</artifactId>
@@ -55,59 +56,79 @@
 	</build>
 	<dependencies>
 		<!-- Add Sears Parts Direct Common dependencies, as needed. -->
-	        <dependency>
-	                <groupId>org.apache.sling</groupId>
-	                <artifactId>org.apache.sling.commons.json</artifactId>
-	                <version>2.0.6</version>
-	                <type>jar</type>
-	        </dependency>
-	        <dependency>
-	                <groupId>com.day.cq</groupId>
-	                <artifactId>cq-tagging</artifactId>
-	                <version>5.5.0</version>
-	                <type>jar</type>
-	        </dependency>
-	        <dependency>
-	                <groupId>com.day.cq</groupId>
-	                <artifactId>cq-search</artifactId>
-	                <version>5.6.2</version>
-	                <type>jar</type>
-	        </dependency>
-	        <dependency>
-	            <groupId>com.day.cq</groupId>
-	            <artifactId>cq-commons</artifactId>
-	            <version>5.6.2</version>
-	            <type>jar</type>
-	        </dependency>
-	        <dependency>
-	            <groupId>org.apache.sling</groupId>
-	            <artifactId>org.apache.sling.api</artifactId>
-	            <version>2.3.0</version>
-	            <type>jar</type>
-	        </dependency>
-	        <dependency>
-	            <groupId>org.apache.sling</groupId>
-	            <artifactId>org.apache.sling.jcr.api</artifactId>
-	            <version>2.1.0</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>com.day.commons</groupId>
-	            <artifactId>day-commons-text</artifactId>
-	            <version>1.1.8</version>
-	        </dependency>
-	        
-	        <dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.10</version>
-				<scope>test</scope>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.easymock</groupId>
-				<artifactId>easymock</artifactId>
-				<version>3.0</version>
-				<scope>test</scope>
-			</dependency>
-		</dependencies>
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.commons.json</artifactId>
+			<version>2.0.6</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>com.day.cq</groupId>
+			<artifactId>cq-tagging</artifactId>
+			<version>5.5.0</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>com.day.cq</groupId>
+			<artifactId>cq-search</artifactId>
+			<version>5.6.2</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>com.day.cq</groupId>
+			<artifactId>cq-commons</artifactId>
+			<version>5.6.2</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.api</artifactId>
+			<version>2.3.0</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.jcr.api</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.day.commons</groupId>
+			<artifactId>day-commons-text</artifactId>
+			<version>1.1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-easymock</artifactId>
+			<version>1.4.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>1.4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>3.1.2.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.1.2.RELEASE</version>
+		</dependency>
+	</dependencies>
 </project>
