@@ -20,7 +20,26 @@
 			<div class="cart_navigation ">
 				<ul>
 					<div class="li_shadow_curve"></div>
-					<li id="RecentlyViewed"><a href="javascript:void(0);">Recently viewed&nbsp;&nbsp;<span></span></a></li>
+					<li id="RecentlyViewed"><a href="javascript:void(0);">Recently viewed&nbsp;&nbsp;<span></span></a>
+						<spd:getRecentlyViewed />
+						<!--  
+						<c:forEach var="model" items="${rvModelList}">
+					     	<div>Model <a href="${model.itemURL}">{model.itemName}</a><br/>
+					     		<a href="${model.itemURL}">${model.itemDescription}</a>
+					     	</div>
+						</c:forEach>
+						
+						<c:forEach var="part" items="${rvPartList}">
+							<c:choose>
+								<c:when test="${part.itemImageURL != null}">
+									<a href="${part.itemURL}"><img src="${part.itemImageURL}" alt="${part.itemDescription}"/></a>
+    							</c:when>
+								<c:otherwise>
+									<a href="${part.itemURL}"><img src="/assets/img/images/no_part_100x100.gif" alt="No part image available" height="20px" width="20px"/></a>
+								</c:otherwise>
+					     	</c:choose>
+						</c:forEach> -->
+					</li>
 					<li id="MyModels">
 						<div id="modelListBtn" class="my_owned_models" ><a href="javascript:void(0);" id="modelCountBtn">My Models (
 							<label id="modelCount">0</label>
