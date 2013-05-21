@@ -29,12 +29,21 @@ public class RecentlyViewedTag extends CQBaseTag {
 			if (recentlyViewedModelsCookie != null && recentlyViewedModelsCookie.getValue() != null) {
 				LinkedList<CookieModelItem> modelList = PartsDirectCookieHelper.parseRecentltyViewedModelItems(recentlyViewedModelsCookie.getValue());
 				pageContext.setAttribute("rvModelList", modelList);
+				log.error("modelList" + modelList);
+				for (CookieModelItem cookieModelItem : modelList) {
+					log.error("name="+cookieModelItem.getItemName()+",desc="+cookieModelItem.getItemDescription()+",url="+cookieModelItem.getItemURL());
+				}
 			}
 			
 			recentlyViewedPartsCookies = PartsDirectCookieHelper.getCookieInfo(cookies, "recentlyViewedParts");
 			if (recentlyViewedPartsCookies != null && recentlyViewedPartsCookies.getValue() != null) {
 				LinkedList<CookiePartItem> partList =  PartsDirectCookieHelper.parseRecentltyViewedPartItems(recentlyViewedPartsCookies.getValue());
 				pageContext.setAttribute("rvPartList", partList);
+				log.error("partList" +partList);
+				
+				for (CookiePartItem cookiePartItem : partList) {
+					log.error("item name"+cookiePartItem.getItemName()+",desc="+cookiePartItem.getItemDescription()+","+cookiePartItem.getItemImageURL());
+				}
 			}
 		}
 
