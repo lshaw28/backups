@@ -48,9 +48,9 @@
 		<info>Creates list of parts required</info>
 	</tag>
 	<tag>
-	   <name>getProductCategoryName</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
-		 <info>Provides the product category name</info>
+	   	<name>getProductCategoryName</name>
+	   	<tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
+		<info>Provides the product category name</info>
 	</tag>
 	<tag>
 	   <name>getLoginStatus</name>
@@ -78,9 +78,9 @@
 	   <info>Get shopping cart information</info>
 	</tag>
 	<tag>
-	   <name>DefineObjects</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.DefineObjectsTag</tag-class>
-	   <info>Sets page context information required for clientlibs</info>
+		<name>DefineObjects</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.DefineObjectsTag</tag-class>
+		<info>Sets page context information required for clientlibs</info>
 	</tag>
 	<tag>
 		<name>getCommonSymptoms</name>
@@ -88,6 +88,27 @@
 	   	<info>Get common symptoms for the category</info>
 	   	<attribute>
 			<name>categoryName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>requiredTools</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.RequiredToolsTag</tag-class>
+		<info>Sets page context information required for Tools Required for Repair</info>
+	</tag>
+	<tag>
+	   <name>getBrandCategoryModelNo</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetBrandCategoryModelNoTag</tag-class>
+		 <info>Provides the Brand Category and Model No.</info>
+	</tag>
+	<tag>
+		<name>getModelSymptoms</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.ModelSymptomsTag</tag-class>
+	   	<info>Get repair symptoms for the given model no.</info>
+	   	<attribute>
+			<name>modelNumber</name>
 			<type>java.lang.String</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
