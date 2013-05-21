@@ -5,7 +5,7 @@
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Template"
 	jcr:title="Sears PartsDirect Category Guide List Template"
-	jcr:description=""
+	jcr:description="Category guide list template for the Sears PartsDirect site."
 	allowedPaths="[/content/searspartsdirect(/.*)?]"
 	ranking="30">
 	<jcr:content

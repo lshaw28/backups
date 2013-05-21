@@ -5,7 +5,7 @@
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Template"
 	jcr:title="Sears PartsDirect Repair Guide Template"
-	jcr:description=""
+	jcr:description="Repair guide template for the Sears PartsDirect site."
 	allowedPaths="[/content/searspartsdirect(/.*)?]"
 	ranking="50">
 	<jcr:content

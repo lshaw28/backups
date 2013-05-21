@@ -5,7 +5,7 @@
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Template"
 	jcr:title="Sears PartsDirect Homepage Template"
-	jcr:description=""
+	jcr:description="Template for the home page of the Sears PartsDirect site."
 	allowedPaths="[/content/searspartsdirect(/.*)?]"
 	ranking="10">
 	<jcr:content

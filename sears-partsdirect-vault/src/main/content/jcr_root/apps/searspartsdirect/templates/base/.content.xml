@@ -5,7 +5,7 @@
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Template"
 	jcr:title="Base Template"
-    jcr:description=""
+    jcr:description="This template is inherited by other Sears PartsDirect templates and should not be used directly."
     allowedParents="[hidden]"
     ranking="90">
     <jcr:content
