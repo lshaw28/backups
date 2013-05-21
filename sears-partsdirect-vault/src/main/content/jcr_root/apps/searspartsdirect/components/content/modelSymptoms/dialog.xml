@@ -5,17 +5,17 @@
 		  xtype="panel">
 	<items jcr:primaryType="cq:WidgetCollection">
 		<text1 jcr:primaryType="cq:Widget"
-					fieldLabel="Text1"
+					fieldLabel="Title"
 					name="./text1"
 					xtype="textfield"
 					maxlength="42"/>
-		<richtext jcr:primaryType="cq:Widget"
-					fieldLabel="optional description"
+
+		<errorCodesRichtext jcr:primaryType="cq:Widget"
+					fieldLabel="Description"
 					name="./errorCodesRichtext"
-					xtype="cqinclude"
-					path="/apps/searspartsdirect/components/content/text/dialog/items/tab1/items/text.infinity.json"
+					xtype="richtext"
 					maxlength="500"
-					allowBlank="{Boolean}true"/>		
+					allowBlank="{Boolean}true"/>
 	</items>
 </jcr:root>
 		  
