@@ -1,0 +1,25 @@
+@import "base.reset.less";
+@import "base.variables.less";
+@import "base.mixins.less";
+
+/* Core: Error Codes */
+dl.error-codes {
+}
+dl.error-codes dt {
+	padding: 20px 40px;
+	background: @headlineBackgroundColor url('../img/logosSmall.png') no-repeat 95% 50%;
+	background: none, url('../img/logosSmall.svg') no-repeat 95% 50%;
+	background-size: 3% 100%;
+	background-color: @headlineBackgroundColor;
+	font-size: 18px;
+	font-weight: normal;
+	color: @headlineColor;
+}
+dl.error-codes dd {
+	border-top: 1px solid @borderColor;
+	margin-left: 40px;
+}
+dl.error-codes dd a {
+	padding: 15px 0 15px 0px;
+	display: block;
+}

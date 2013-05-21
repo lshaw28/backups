@@ -3,16 +3,13 @@
 	"use strict";
 	window.SPDAuthorUtils = {
 		/**
-		 * @class SPDAuthorUtils
+		 * @namespace SPDAuthorUtils
 		 * Global utilities and helper methods for Author environment
 		 *
 		 * init: On page load events to fire
 		 */
 		init: function () {
-			try {
-				console.log('SPDAuthorUtils available');
-			} catch (e) {
-			}
+			console.log('SPDAuthorUtils available');
 		},
 		/**
 		 * Set rich text plug-in visibility

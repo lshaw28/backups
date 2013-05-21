@@ -1,0 +1,72 @@
+@import "base.reset.less";
+@import "base.variables.less";
+@import "base.mixins.less";
+
+/* Component: Search Tabs */
+.phone_menu_tabs {
+	width: 265px;
+	height: 38px;
+	position: relative;
+	margin: 0 auto -8px;
+	z-index: 120;
+}
+.phone_menu_tabs ul {
+	list-style: none;
+	margin: 0 0 10px -200px;
+	position: relative;
+}
+.phone_menu_tabs ul li {
+	float: left;
+}
+.phone_menu_tabs ul li a {
+	height: 27px;
+	line-height: 32px;
+	text-decoration: none;
+	padding: 10px;
+	color: @searchColor;
+	border: 1px solid @searchColor;
+	border-radius: 4px 4px 0 0px;
+}
+.phone_menu_tabs ul li.active a {
+	color: #fff;
+	height: 32px;
+	line-height: 32px;
+	background-color: @searchActiveColor;
+	border-width: 3px;
+	border-radius: 4px 4px 0 0;
+	text-align: center;
+	font-size: 14px;
+	padding: 10px;
+}
+.phone_menu_tabs ul li:first-child a {
+	border-radius: 4px 0 0 0;
+	padding: 10px 10px 10px 41px;
+}
+.phone_menu_tabs ul li:first-child.active a {
+	border-radius: 4px 4px 0 0;
+}
+.phone_menu_tabs ul li:last-child a {
+	border-radius: 0 4px 0 0;
+}
+.phone_menu_tabs ul li:last-child.active a {
+	border-radius: 4px 4px 0 0;
+}
+.mag_glass_icon a {
+	background-position: 17% center;
+	background-repeat: no-repeat;
+	background-image: url('../img/magGlass_off.png');
+	padding: 10px 10px 10px 41px;
+}
+.phone_menu_tabs ul li.mag_glass_icon.active a {
+	background-position: 17% center;
+	background-repeat: no-repeat;
+	background-image: url('../img/magGlass_on.png');
+	padding: 10px 10px 10px 41px;
+}
+.mani_search_panel .tagline1 {
+	display: none;
+}
+.new_DdArrow input {
+	background: none;
+	cursor: default;
+}

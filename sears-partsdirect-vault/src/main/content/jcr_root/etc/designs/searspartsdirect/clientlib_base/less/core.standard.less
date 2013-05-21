@@ -1,0 +1,33 @@
+@import "base.reset.less";
+@import "base.variables.less";
+@import "base.mixins.less";
+
+/* Core: Standard Tags */
+body {
+	font: normal @paragraphSize @bodyFont;
+	background: url('../img/bg.jpg') repeat-x top left;
+}
+h1, h2, h3, h4 {
+	margin: 10px 0;
+	font-weight: normal;
+	text-rendering: optimizelegibility;
+	color: @headlineColor;
+}
+h1 {
+	font-size: @header1Size;
+}
+h2 {
+	font-size: @header2Size;
+}
+h3 {
+	font-size: @header3Size;
+}
+h4 {
+	font-size: @header4Size;
+}
+a {
+	color: @linkColor;
+}
+a:hover {
+	color: @linkHoverColor;
+}

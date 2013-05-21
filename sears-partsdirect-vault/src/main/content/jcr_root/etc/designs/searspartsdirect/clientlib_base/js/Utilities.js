@@ -3,15 +3,24 @@
 	"use strict";
 	window.SPDUtils = {
 		/**
-		 * @class SPDUtils
+		 * @namespace SPDUtils
 		 * Global utilities and helper methods
 		 *
 		 * init: On page load events to fire
 		 */
 		init: function () {
-			try {
-				console.log('SPDUtils available');
-			} catch (e) {
+			window.SPDUtils.checkConsole();
+			console.log('SPDUtils available');
+		},
+		/*
+		 * Creates a console stub for unsupported browsers
+		 */
+		checkConsole: function () {
+			if (!console) {
+				window.console = {
+					log: function () {
+					}
+				};
 			}
 		},
 		/**

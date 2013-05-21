@@ -1,10 +1,15 @@
 /* Imports */
+/* Temp: CSS File To Break Out */
+@import "temp.homepage.less";
+
 /* Base: Universal Variables and Mixins */
 @import "base.reset.less";
 @import "base.variables.less";
 @import "base.mixins.less";
 
 /* Core: Shared by All Components */
+@import "core.standard.less";
+@import "core.textclasses.less";
 @import "core.grid.less";
 @import "core.buttons.less";
 @import "core.forms.less";
@@ -12,9 +17,26 @@
 
 /* Components: Targeted Styling per Component */
 @import "comp.accordion.less";
+@import "comp.boxlinks.less";
+@import "comp.errorcodes.less";
+@import "comp.footer.less";
+@import "comp.manualshelp.less";
+@import "comp.search.less";
+@import "comp.sidebarlinks.less";
 
 /* Theme: Template-specific Overrides */
 /* Not required for base */
+@import "temp.homepage.less";
+@import "temp.homepageoverride.less";
+
+/* Theme: Styles */
+/* @TODO: DP: Are these global? */
+.body_shadow_left {
+	background: transparent url('../img/content_shadow1.png') no-repeat top left;
+}
+.body_shadow_right {
+	background: transparent url('../img/content_shadow2.png') no-repeat top left;
+}
 
 /* Responsive: Overrides for Breakpoints */
 @import "resp.mobile.less";

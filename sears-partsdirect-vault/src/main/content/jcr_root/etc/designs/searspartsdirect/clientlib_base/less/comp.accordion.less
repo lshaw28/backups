@@ -3,3 +3,57 @@
 @import "base.mixins.less";
 
 /* Component: Accordion */
+.accordion-group {
+	margin-bottom: 2px;
+	border-radius: 0;
+	border: none;
+	background: @tableHoverColor;
+}
+.accordion-heading .accordion-toggle {
+	display: block;
+	padding: 8px 15px;
+	color: @headlineColor;
+}
+.accordion-heading .accordion-toggle span {
+	font-weight: bold;
+	font-size: 32px;
+	float: left;
+	margin: 0 10px 0 0;
+}
+.accordion-heading .accordion-toggle span.findPartOpen {
+	margin-top: -3px;
+}
+.accordion-inner {
+	padding: 9px 15px;
+	border-top: none;
+}
+.accordion .accordion-body {
+	margin-bottom: 2px;
+	border-radius: 0;
+	border: none;
+	background: @tableHoverColor;
+	color: @headlineColor;
+}
+.accordion .description-text {
+	width: 26%;
+	float: left;
+	margin: 0 25px 0 10px;
+}
+.accordion .search-model-num {
+	width: 25%;
+	float: left;
+	margin: 0 25px 20px 0;
+}
+.accordion .search-model-num input {
+	border-radius: 0;
+	width: 95%;
+	height: 45px;
+}
+.accordion .search-model-num a {
+	float: left;
+	clear: both;
+}
+.accordion .no-model-num {
+	width: 20%;
+	float: left;
+}
