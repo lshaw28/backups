@@ -43,9 +43,9 @@
 		<info>Creates path to parent url</info>
 	</tag>
 	<tag>
-	   <name>getProductCategoryName</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
-		 <info>Provides the product category name</info>
+	   	<name>getProductCategoryName</name>
+	   	<tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
+		<info>Provides the product category name</info>
 	</tag>
 	<tag>
 		<name>BackButton</name>
@@ -78,9 +78,9 @@
 	   <info>Get shopping cart information</info>
 	</tag>
 	<tag>
-	   <name>DefineObjects</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.DefineObjectsTag</tag-class>
-	   <info>Sets page context information required for clientlibs</info>
+		<name>DefineObjects</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.DefineObjectsTag</tag-class>
+		<info>Sets page context information required for clientlibs</info>
 	</tag>
 	<tag>
 		<name>getCommonSymptoms</name>
@@ -92,5 +92,10 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+	</tag>
+	<tag>
+		<name>requiredTools</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.RequiredToolsTag</tag-class>
+		<info>Sets page context information required for Tools Required for Repair</info>
 	</tag>
 </taglib>

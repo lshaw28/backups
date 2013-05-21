@@ -21,7 +21,7 @@ public class ImageTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		JspWriter out = pageContext.getOut();
 		Image image = path == null ? new Image(resource) : new Image(resource,path);
-
+		
 	    //drop target css class = dd prefix + name of the drop target in the edit config
 	    image.addCssClass(DropTarget.CSS_CLASS_PREFIX + "image");
 	    image.loadStyleData(currentStyle);
