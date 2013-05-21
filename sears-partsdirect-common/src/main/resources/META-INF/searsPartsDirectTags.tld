@@ -42,15 +42,15 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ParentPageTag</tag-class>
 		<info>Creates path to parent url</info>
 	</tag>
+		<tag>
+		<name>getPartsRequired</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.PartsRequiredTag</tag-class>
+		<info>Creates list of parts required</info>
+	</tag>
 	<tag>
 	   	<name>getProductCategoryName</name>
 	   	<tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
 		<info>Provides the product category name</info>
-	</tag>
-	<tag>
-		<name>BackButton</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.BackButtonTag</tag-class>
-		<info>Creates link to parent url</info>
 	</tag>
 	<tag>
 	   <name>getLoginStatus</name>
@@ -97,5 +97,21 @@
 		<name>requiredTools</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.RequiredToolsTag</tag-class>
 		<info>Sets page context information required for Tools Required for Repair</info>
+	</tag>
+	<tag>
+	   <name>getBrandCategoryModelNo</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetBrandCategoryModelNoTag</tag-class>
+		 <info>Provides the Brand Category and Model No.</info>
+	</tag>
+	<tag>
+		<name>getModelSymptoms</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.ModelSymptomsTag</tag-class>
+	   	<info>Get repair symptoms for the given model no.</info>
+	   	<attribute>
+			<name>modelNumber</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 </taglib>
