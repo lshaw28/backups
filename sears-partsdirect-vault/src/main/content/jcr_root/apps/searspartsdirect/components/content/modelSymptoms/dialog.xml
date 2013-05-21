@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:TabPanel"
+		  activeTab="0"
+		  xtype="panel">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<text1 jcr:primaryType="cq:Widget"
+					fieldLabel="Title"
+					name="./text1"
+					xtype="textfield"
+					maxlength="42"/>
+
+		<errorCodesRichtext jcr:primaryType="cq:Widget"
+					fieldLabel="Description"
+					name="./errorCodesRichtext"
+					xtype="richtext"
+					maxlength="500"
+					allowBlank="{Boolean}true"/>
+	</items>
+</jcr:root>
+		  
