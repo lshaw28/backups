@@ -1,4 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<div id="content">
+<article id="content">
 	<cq:include path="parsys" resourceType="foundation/components/parsys" />
-</div>
+</article>

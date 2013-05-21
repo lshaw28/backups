@@ -1,3 +1,2 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-
-    THIS WILL BE CATEGORY 101
+<p>This will be category 101.</p>

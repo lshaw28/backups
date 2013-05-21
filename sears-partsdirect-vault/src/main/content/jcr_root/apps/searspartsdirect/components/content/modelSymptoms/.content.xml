@@ -6,4 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Model Symptoms"
 	jcr:description="Lists the repair symptoms for models"
-	componentGroup="Sears Parts Direct" />
+	componentGroup="SearsPartsDirect" />

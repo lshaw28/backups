@@ -3,4 +3,5 @@
 bootstrap.less
 bootstrap-responsive.less
 temp.homepage.less
+temp.styleguide.less
 temp.styles.less

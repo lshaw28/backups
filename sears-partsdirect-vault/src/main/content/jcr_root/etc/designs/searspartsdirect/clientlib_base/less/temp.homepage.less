@@ -1,7 +1,9 @@
-/* @TODO: DP: This was a homepage CSS file
-* Not sure if I should take this literally and put this in the home page client libs or not
-* So implementing in this temp file for now */
-body.newHomePage {
+/* Base: Universal Variables and Mixins */
+@import "base.reset.less";
+@import "base.variables.less";
+@import "base.mixins.less";
+
+body {
 	margin: 0px;
 	padding: 0px;
 	font-size: 12px;
@@ -66,7 +68,7 @@ body.newHomePage {
 	top: 20px;
 	width: 146px;
 	height: 60px;
-	background: url(../img/sears_logo_new.png) no-repeat 0 0;
+	background: url('../../img/sears_logo_new.png') no-repeat 0 0;
 	z-index: 999;
 }
 .home_logo a:link,  .home_logo a:visited {
@@ -131,7 +133,7 @@ body.newHomePage {
 	position: absolute;
 	right: 0;
 	width: 7px;
-	background-image: url(../img/home_sprite.png);
+	background-image: url(../../img/home_sprite.png);
 }
 .cart_navigation ul li {
 	float: left;
@@ -156,7 +158,7 @@ body.newHomePage {
 	display: inline-block;
 	height: 7px;
 	width: 10px;
-	background-image: url(../img/home_sprite.png);
+	background-image: url(../../img/home_sprite.png);
 }
 .cart_navigation ul li a span.cart {
 	background-position: 0 -21px;
@@ -166,7 +168,7 @@ body.newHomePage {
 	width: 20px;
 	position: relative;
 	top: 5px;
-	background-image: url(../img/home_sprite.png);
+	background-image: url(../../img/home_sprite.png);
 }
 .cart_navigation ul li a #scCartItemCountHeader {
 	background: none;
@@ -191,7 +193,7 @@ body.newHomePage {
 	background-position: -19px -21px;
 	background-repeat: no-repeat;
 	display: inline-block;
-	background-image: url(../img/home_sprite.png);
+	background-image: url(../../img/home_sprite.png);
 }
 .cart_navigation ul li:hover a span {
 	background-position: -16px 0;
@@ -497,21 +499,21 @@ v
 	height: 103px;
 	position: relative;
 	z-index: 100;
-	background: url(../img/search_blue_spacer.png) repeat-x 0 0;
+	background: url(../../img/search_blue_spacer.png) repeat-x 0 0;
 }
 .mani_search_panel .legacy_left_shadow {
 	float: left;
 	width: 149px;
 	height: 103px;
 	display: inline-block;
-	background: url(../img/search_sprite3.png) no-repeat -40px 0;
+	background: url(../../img/search_sprite3.png) no-repeat -40px 0;
 }
 .mani_search_panel .legacy_right_shadow {
 	float: left;
 	width: 149px;
 	height: 103px;
 	display: inline-block;
-	background: url(../img/search_sprite3.png) no-repeat 0 -115px;
+	background: url(../../img/search_sprite3.png) no-repeat 0 -115px;
 }
 .man_img {
 	position: absolute;
@@ -519,7 +521,7 @@ v
 	height: 234px;
 	right: 100px;
 	top: -144px;
-	background: url(../img/man2.png) no-repeat 0 0;
+	background: url(../../img/man2.png) no-repeat 0 0;
 }
 .search_input_div {
 	position: absolute;
@@ -607,7 +609,7 @@ v
 	width: 66%;
 	border-radius: 2px;
 	border: 1px solid #cccccc;
-	background-image: url(../img/drop_arrow.png);
+	background-image: url(../../img/drop_arrow.png);
 }
 .new_DdArrow input {
 	border: none;

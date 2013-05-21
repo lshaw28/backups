@@ -1,9 +1,11 @@
-@charset "UTF-8";
-/* CSS Document */
+/* Base: Universal Variables and Mixins */
+@import "base.reset.less";
+@import "base.variables.less";
+@import "base.mixins.less";
 
 body {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	background: url('../img/bg.jpg') repeat-x top left;
+	background: url('../../img/bg.jpg') repeat-x top left;
 }
 h1, h2, h3, h4 {
 	margin: 10px 0;
@@ -66,8 +68,8 @@ dl.error-codes {
 }
 dl.error-codes dt {
 	padding: 20px 40px;
-	background: #f0f0f0 url('../img/logosSmall.png') no-repeat 95% 50%;
-	background: none, url('../img/logosSmall.svg') no-repeat 95% 50%;
+	background: #f0f0f0 url('../../img/logosSmall.png') no-repeat 95% 50%;
+	background: none, url('../../img/logosSmall.svg') no-repeat 95% 50%;
 	background-size: 3% 100%;
 	background-color: #f0f0f0;
 	font-size: 18px;
@@ -92,8 +94,8 @@ ul.box-links {
 ul.box-links li {
 }
 ul.box-links li a {
-	background: transparent url('../img/arrows.png') no-repeat 95% 50%;
- none, url('../img/arrows.svg') no-repeat 95% 50%;
+	background: transparent url('../../img/arrows.png') no-repeat 95% 50%;
+ none, url('../../img/arrows.svg') no-repeat 95% 50%;
 	display: block;
 	padding: 16px 0 16px 14px;
 	border: 1px solid #ebebeb;
@@ -204,8 +206,8 @@ ul.box-links li a {
 	top: 20px;
 	width: 14%;
 	height: 28%;
-	background: url('../img/sears_logo_new.png') no-repeat 0 0;
-	background: none, url('../img/sears_logo_new.svg') no-repeat 0 0;
+	background: url('../../img/sears_logo_new.png') no-repeat 0 0;
+	background: none, url('../../img/sears_logo_new.svg') no-repeat 0 0;
 	z-index: 999;
 	background-size: 100%;
 }
@@ -213,7 +215,7 @@ ul.box-links li a {
 	height: 31px;
 	z-index: 1000;
 	margin: 0 auto;
-	background: url('../img/brandBarBkg.png') repeat-x 0 0;
+	background: url('../../img/brandBarBkg.png') repeat-x 0 0;
 }
 img.center {
 	display: block;
@@ -275,13 +277,13 @@ img.center {
 .mag_glass_icon a {
 	background-position: 17% center;
 	background-repeat: no-repeat;
-	background-image: url('../img/magGlass_off.png');
+	background-image: url('../../img/magGlass_off.png');
 	padding: 10px 10px 10px 41px;
 }
 .phone_menu_tabs ul li.mag_glass_icon.active a {
 	background-position: 17% center;
 	background-repeat: no-repeat;
-	background-image: url('../img/magGlass_on.png');
+	background-image: url('../../img/magGlass_on.png');
 	padding: 10px 10px 10px 41px;
 }
 .manuals_help_list {
@@ -300,10 +302,10 @@ img.center {
 	display: none;
 }
 .body_shadow_left {
-	background: transparent url('../img/content_shadow1.png') no-repeat top left;
+	background: transparent url('../../img/content_shadow1.png') no-repeat top left;
 }
 .body_shadow_right {
-	background: transparent url('../img/content_shadow2.png') no-repeat top left;
+	background: transparent url('../../img/content_shadow2.png') no-repeat top left;
 }
 .mani_search_panel .legacy_left_shadow {
 	width: 15%;
@@ -333,8 +335,8 @@ img.center {
 	width: 701px;
 	padding: 15px 0;
 	margin: -19px auto 0;
-	background: none url('../img/waterfilterdrop.png') no-repeat left 8px;
-	background: none, url('../img/waterfilterdrop.svg') no-repeat left 8px;
+	background: none url('../../img/waterfilterdrop.png') no-repeat left 8px;
+	background: none, url('../../img/waterfilterdrop.svg') no-repeat left 8px;
 	background-size: 4%;
 }
 .waterfiltertagline p .btn {
@@ -504,10 +506,10 @@ img.center {
 	color: #999999;
 }
 .icons_div, #car_icon, .icon_bg_curves, #right_icon {
-	background-image: url('../img/footer_sprite.png');
+	background-image: url('../../img/footer_sprite.png');
 }
 #lpchatbutton4 a, #lpvoicebutton4 a, .new_homePage_footer #lpchatbutton4 a, .new_homePage_footer #lpvoicebutton4 a {
-	background-image: url('../img/lp_btn_sprite.png');
+	background-image: url('../../img/lp_btn_sprite.png');
 }
 .footer_two {
 	float: left;
@@ -551,7 +553,7 @@ body {
 	height: 108px;
 	position: relative;
 	z-index: 100;
-	background: url('../img/blueSearchBoxBkg.png') repeat-x 0 0;
+	background: url('../../img/blueSearchBoxBkg.png') repeat-x 0 0;
 }
 .mani_search_panel .legacy_left_shadow {
 	float: left;
@@ -559,7 +561,7 @@ body {
 	height: 27px;
 	z-index: 99;
 	display: inline-block;
-	background: url('../img/headerLeftShadow.png') no-repeat 0 0;
+	background: url('../../img/headerLeftShadow.png') no-repeat 0 0;
 	margin-top: 25px;
 }
 .mani_search_panel .legacy_right_shadow {
@@ -568,7 +570,7 @@ body {
 	height: 27px;
 	z-index: 99;
 	display: inline-block;
-	background: url('../img/headerRightShadow.png') no-repeat 0 0;
+	background: url('../../img/headerRightShadow.png') no-repeat 0 0;
 	margin-top: 25px;
 }
 .Our_finder {
@@ -581,7 +583,7 @@ body {
  @media (max-width: 1299px) {
 .brandBar {
 	display: block;
-	background: url('../img/brandBarBkg.png') repeat-x 0 0;
+	background: url('../../img/brandBarBkg.png') repeat-x 0 0;
 }
 .footer_one .column_one {
 	float: left;
@@ -643,8 +645,8 @@ body {
 .waterfiltertagline p {
 	padding: 15px 0 15px 22px;
 	margin: -19px auto 0;
-	background: none url('../img/waterfilterdrop.png') no-repeat 20px 10px;
-	background: none, url('../img/waterfilterdrop.svg') no-repeat 20px 10px;
+	background: none url('../../img/waterfilterdrop.png') no-repeat 20px 10px;
+	background: none, url('../../img/waterfilterdrop.svg') no-repeat 20px 10px;
 	background-size: 4%;
 }
 .new_homePage_footer_inner_page {
@@ -882,7 +884,7 @@ body {
 .waterfiltertagline {
 	padding: 0;
 	height: 57px;
-	background: url('../img/waterfiltershadow.png') no-repeat bottom center;
+	background: url('../../img/waterfiltershadow.png') no-repeat bottom center;
 }
 .waterfiltertagline p {
 	width: 92%;
@@ -987,7 +989,7 @@ body {
 	display: none;
 }
 #viewport {
-	background: #ebebeb url('../img/menu_shadow.png') repeat-y 577px 0;
+	background: #ebebeb url('../../img/menu_shadow.png') repeat-y 577px 0;
 }
 #logNav {
 	position: fixed;
@@ -1044,7 +1046,7 @@ body.menu-moving .container-fluid {
 	display: block;
 	width: 44px;
 	height: 44px;
-	background: #b7b7b7 url('../img/menu-trigger.png') no-repeat center center;
+	background: #b7b7b7 url('../../img/menu-trigger.png') no-repeat center center;
 }
 .mani_search_panel {
 	padding: 0 0 0 0px;
@@ -1064,9 +1066,9 @@ body.menu-moving .container-fluid {
 	top: 52px;
 	width: 217px;
 	height: 60px;
-	background: url('../img/sears_logo_new.png') no-repeat 0 0;
-	background: none url('../img/sears_logo_mob.png') no-repeat 0 0;
-	background: none, url('../img/sears_logo_mob.svg') no-repeat 0 0;
+	background: url('../../img/sears_logo_new.png') no-repeat 0 0;
+	background: none url('../../img/sears_logo_mob.png') no-repeat 0 0;
+	background: none, url('../../img/sears_logo_mob.svg') no-repeat 0 0;
 	z-index: 999;
 }
 .header_right_panel {
@@ -1080,7 +1082,7 @@ body.menu-moving .container-fluid {
 }
 #ItemsCarts .shoppCart_leftImg {
 	text-indent: -9999px;
-	background: url('../img/cart_icon.png') no-repeat 11px 13px;
+	background: url('../../img/cart_icon.png') no-repeat 11px 13px;
 	height: 34px;
 	width: 30px;
 }
@@ -1124,7 +1126,7 @@ body.menu-moving .container-fluid {
 }
 .waterfiltertagline p {
 	width: 83%;
-	background: url('../img/waterfiltercup.png') no-repeat top left;
+	background: url('../../img/waterfiltercup.png') no-repeat top left;
 	padding: 5px 0 5px 80px;
 	font-size: 12px;
 }
