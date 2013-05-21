@@ -3,3 +3,80 @@
 @import "base.mixins.less";
 
 /* Responsive: Large Breakpoints */
+@media (min-width: 1300px) {
+body {
+	margin: 0 2%;
+}
+.brandBar {
+	display: block;
+}
+.cart_navigation ul li a {
+	font-size: 13px;
+}
+#searchBarForm {
+	width: 1172px;
+	margin: 50px auto 0;
+	position: relative;
+}
+.phone_menu_tabs ul {
+	list-style: none;
+	margin: 0 0 10px -237px;
+	position: relative;
+}
+.mani_search_panel .legacy_search {
+	float: left;
+	min-width: 700px;
+	height: 108px;
+	position: relative;
+	z-index: 100;
+	background: url('../img/blueSearchBoxBkg.png') repeat-x 0 0;
+}
+.mani_search_panel .legacy_left_shadow {
+	float: left;
+	width: 216px;
+	height: 27px;
+	z-index: 99;
+	display: inline-block;
+	background: url('../img/headerLeftShadow.png') no-repeat 0 0;
+	margin-top: 25px;
+}
+.mani_search_panel .legacy_right_shadow {
+	float: left;
+	width: 216px;
+	height: 27px;
+	z-index: 99;
+	display: inline-block;
+	background: url('../img/headerRightShadow.png') no-repeat 0 0;
+	margin-top: 25px;
+}
+.Our_finder {
+	margin: 12px 0px 0 75px;
+}
+}
+/*                  */
+/* 1299px MAX-WIDTH */
+/*                  */
+ @media (max-width: 1299px) {
+.brandBar {
+	display: block;
+	background: url('../img/brandBarBkg.png') repeat-x 0 0;
+}
+.footer_one .column_one {
+	float: left;
+	width: 32%;
+	padding: 20px 0px 16px 25px;
+}
+.new_homePage_footer_inner_page .column_two {
+	width: 27%;
+}
+.footer_one .column_three h3 {
+	padding: 0 28px 1px 0;
+}
+.footer_one .column_three {
+	padding: 0px 17px 15px 0px;
+	margin: -185px 0 0 0;
+}
+.footer_one .column_three form input {
+	width: 55%;
+}
+}

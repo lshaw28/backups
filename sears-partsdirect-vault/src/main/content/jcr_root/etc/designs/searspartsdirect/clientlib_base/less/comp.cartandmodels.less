@@ -1,0 +1,131 @@
+@import "base.reset.less";
+@import "base.variables.less";
+@import "base.mixins.less";
+
+/* Component: Cart and Models */
+#ItemsCarts #ghost_cart {
+	right: -67px;
+	top: 0;
+	width: 240px;
+}
+#ItemsCarts #ghost_cart .topArrowDiv {
+	left: 192px;
+}
+#ItemsCarts #ghost_cart .ViewContent * {
+	background-color: #fff;
+}
+.ViewContent .ghostCart_bottom {
+	background: none;
+}
+.ViewContent h3.blue {
+	color: rgb(34, 72, 150);
+	float: none;
+	font-size: 11px;
+	font-weight: bold;
+	margin: 5px 0 0;
+	text-align: center;
+}
+.ViewContent p.ghostCart_noItems {
+	color: rgb(51, 51, 51);
+	font-size: 14px;
+	margin: 20px 0;
+	text-align: center;
+}
+.ViewContent p.copy {
+	border-top: 1px solid rgb(205, 205, 205);
+	color: rgb(83, 83, 83);
+	font-weight: bold;
+	padding: 10px 0 5px;
+	text-align: center;
+}
+#ItemsCarts div#currentCart #checkout .button a, #ItemsCarts .ghostCart_details {
+	line-height: 15px;
+}
+#ItemsCarts div#currentCart #checkout .button a {
+	color: #fff;
+	font-size: 13px;
+	padding: 8px 15px 8px 10px;
+	text-align: center;
+	background: none;
+	background-color: #ff6600;
+	border-radius: 2px;
+	text-shadow: 1px 0 1px #666666;
+}
+div#currentCart .itemInCart .partNumber, #ItemsCarts div#currentCart #editLink a.arrow_blue_link {
+	line-height: normal;
+	float: none;
+}
+#ItemsCarts div#currentCart p.copy {
+	border-top: 1px solid #CDCDCD;
+	color: #535353;
+	font-weight: bold;
+	padding: 10px 0 5px 0;
+	text-align: center;
+}
+#ItemsCarts #showCart {
+	clear: both;
+}
+#ItemsCarts #editLink a, #MyModelsDiv #modelFlyOut .middle {
+	border: none;
+}
+#MyModelsDiv #modelFlyOut .middle {
+	margin: 0;
+	padding: 7px 5px;
+}
+.cart_navigation ul li #modelCount {
+	color: #067bb5;
+	font-size: 11px;
+	display: inline;
+}
+.cart_navigation ul li:hover #modelCount {
+	color: #ffffff;
+}
+#MyModelsDiv #modelFlyOut .top_border, #MyModelsDiv #modelFlyOut .bottom_border {
+	display: none;
+}
+#MyModelsDiv #modelFlyOut .items_list {
+	border: none;
+	margin: 0;
+	overflow-x: hidden;
+	width: auto;
+}
+#MyModelsDiv #modelFlyOut .items_list ul li a, #MyModelsDiv #modelFlyOut .items_list ul li {
+	background: #fff;
+	border: none;
+	color: #067bb5;
+	line-height: normal;
+	width: 100%;
+}
+#MyModelsDiv #modelFlyOut .items_list ul li a:hover {
+	text-decoration: underline;
+}
+#MyModelsDiv #modelUserListing .items_list ul li {
+	background: none;
+	border-bottom: 1px solid #efefef;
+	padding: 10px 0;
+}
+#MyModelsDiv #modelFlyOut .items_list ul li .check {
+	padding: 5px 5px 0 0;
+	position: relative;
+}
+#MyModelsDiv #modelFlyOut .items_list ul li .item_info {
+	display: inline-block;
+	float: left;
+	padding: 0;
+	width: 91%;
+}
+#MyModelsDiv #modelFlyOut .model_list h4 {
+	clear: both;
+	width: 100%;
+}
+#MyModelsDiv #modelUserListing .items_list li.last {
+	border: none;
+}
+#MyModelsDiv #modelUserListing .items_list ul {
+	overflow: hidden;
+	border: none;
+	height: auto;
+}
+#MyModelsDiv #modelGuestListing ul li {
+	border-bottom: 1px solid #efefef;
+}
