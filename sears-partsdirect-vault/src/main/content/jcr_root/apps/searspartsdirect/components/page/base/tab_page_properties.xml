@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="cq:Panel"
+	width="500"
+	title="Page Properties">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<!-- @TODO: Your custom page properties here instead of my example -->
+		<textvalue jcr:primaryType="cq:Widget"
+			fieldLabel="Test Text Property"
+			fieldDescription="Test text property."
+			allowBlank="{Boolean}false"
+			name="./testtext"
+			xtype="textfield"
+			maxLength="140" />
+	</items>
+</jcr:root>
