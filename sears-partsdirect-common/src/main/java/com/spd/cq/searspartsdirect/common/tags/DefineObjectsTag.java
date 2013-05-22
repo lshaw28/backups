@@ -27,7 +27,7 @@ public class DefineObjectsTag extends CQBaseTag {
 				pageContext.setAttribute("ObjectsDefined", "true");
 			}
 		} catch (Exception e) {
-			log.error("JSON error", e);
+			log.error("Error setting object definitions", e);
 		}
 
 		return super.doStartTag();
