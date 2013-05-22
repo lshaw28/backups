@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-		  jcr:primaryType="cq:Panel"
-		  activeTab="0"
-		  xtype="panel">
+	jcr:primaryType="cq:Panel"
+	activeTab="0"
+	xtype="panel">
 	<items jcr:primaryType="cq:WidgetCollection">
-			<errorCodeText jcr:primaryType="cq:Widget"
-							fieldLabel="text value"
-							name="./errorCodeText"
-							xtype="textfield"
-							maxLength="140"/>
-							
-			<errorCodeDesc jcr:primaryType="cq:Widget"
-							fieldLabel="description value"
-							name="./errorCodeDesc"
-							xtype="richtext"
-							maxLength="500">
-					<!--    <listeners
-		      jcr:primaryType="nt:unstructured"
-		      afterrender="SPDAuthorUtils.setRTEPlugins"/> -->		
-			</errorCodeDesc>				
+		<errorCodeText jcr:primaryType="cq:Widget"
+			fieldLabel="text value"
+			name="./errorCodeText"
+			xtype="textfield"
+			maxLength="140"/>
+		<errorCodeDesc jcr:primaryType="cq:Widget"
+			fieldLabel="description value"
+			name="./errorCodeDesc"
+			xtype="richtext"
+			maxLength="500">
+		<listeners
+			jcr:primaryType="nt:unstructured"
+			loadcontent="function(field){window.SPDAuthorUtils.setRTEPlugins(field);}"/>
+		</errorCodeDesc>			
 	</items>
 </jcr:root>
-		  

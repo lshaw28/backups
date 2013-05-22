@@ -15,8 +15,7 @@
 		 * Set rich text plug-in visibility
 		 * @param {Object} el ExtJS caller
 		 */
-		setRTEPlugins: function () {
-			console.log(this.el.dom);
+		setRTEPlugins: function (field) {
 			/* @TODO: Make this cleaner and more reusable */
 			$('.x-edit-justifyleft').parent().parent().parent().parent().parent().parent().prev().hide();
 			$('.x-edit-justifyleft').parent().parent().parent().parent().parent().parent().hide();
