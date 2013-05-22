@@ -24,14 +24,14 @@
 						<spd:getRecentlyViewed />
 						<!--  
 						<c:forEach var="model" items="${rvModelList}">
-					     	<div>Model <a href="${model.itemURL}">{model.itemName}</a><br/>
+					     	<div>Model <a href="${model.itemURL}">${model.itemName}</a><br/>
 					     		<a href="${model.itemURL}">${model.itemDescription}</a>
 					     	</div>
 						</c:forEach>
 						
 						<c:forEach var="part" items="${rvPartList}">
 							<c:choose>
-								<c:when test="${part.itemImageURL != null}">
+								<c:when test='${part.itemImageURL != null && part.itemImageURL != "null"}'>
 									<a href="${part.itemURL}"><img src="${part.itemImageURL}" alt="${part.itemDescription}"/></a>
     							</c:when>
 								<c:otherwise>
@@ -46,7 +46,8 @@
 							)<span></span></a> </div>
 					</li>
 					<li id="ItemsCarts" class="Btn_ghostCart ">
-						<a class="shoppCart_leftImg" href="/partsdirect/showCart.pd" title="Shopping"><span class="cart"></span> Cart&nbsp;<span id="scCartItemCountHeader"></span><span></span></a></li>
+						<spd:getShoppingCart/>
+						<a class="shoppCart_leftImg" href="/partsdirect/showCart.pd" title="Shopping"><span class="cart"></span> Cart&nbsp;<span id="scCartItemCountHeader">${cartItemCount}</span><span></span></a></li>
 				</ul>
 			</div>
 		</div>
