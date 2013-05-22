@@ -4,6 +4,6 @@
 	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Component"
-	jcr:title="Error code table"
+	jcr:title="Error Code Table"
 	jcr:description="Error code table for a product"
 	componentGroup="SearsPartsDirect" />
