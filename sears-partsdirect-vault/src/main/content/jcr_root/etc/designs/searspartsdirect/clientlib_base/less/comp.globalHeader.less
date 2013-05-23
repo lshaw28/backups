@@ -2,77 +2,16 @@
 @import "base.mixins.less";
 
 /* Component: Global Header */
-.globalHeader {
-	.home_header {
-		background-color: #fff;
-		margin: 0 20px;
-		
-		.inner_header {
-			background: #fff;
-			padding: 60px 0 0 0;
-			position: relative;
-			z-index: 9;
-		}
-	}
-	.home_logo {
-		background: url('../img/sears_logo_new.png') no-repeat 0 0;
-		height: 60px;
-		left: 20px;
-		position: absolute;
-		top: 20px;
-		width: 146px;
-		z-index: 999;
-		
-		a:link, a:visited {
-			float: left;
-			height: 69px;
-			width: 148px;
-		}
-		a:active, a:hover {
-			outline: none;
-		}
-		a span {
-			display: none;
-		}
-	}
-	.header_right_panel {
-		position: absolute;
-		right: -5px;
-		top: 20px;
-		z-index: 998;
-
-		.login_navigation {
-			float: right;
-			margin: 0 0 15px 0;
-
-			ul {
-				margin: 0 5px 0 0;
-				padding: 0;
-				list-style-type: none;
-
-				li {
-					float: left;
-					margin: 0 15px 0 0;
-					padding: 0;
-					color: #304295;
-					font-size: 11px;
-					list-style-type: none;
-
-					a {
-						float: left;
-						margin: 0;
-						padding: 0;
-						font-size: 11px;
-					}
-				}
-			}
-		}
-	}
+.home_header {
+	margin: 0 20px;
+	background-color: #fff;
 }
-
-
-
-
+.home_header .inner_header {
+	position: relative;
+	padding: 60px 0 0 0;
+	z-index: 9;
+	background: #fff;
+}
 .body_shadow_left {
 	width: 6px;
 	height: 188px;
@@ -87,6 +26,56 @@
 	right: -6px;
 	top: 0px;
 }
+.home_logo {
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	width: 146px;
+	height: 60px;
+	background: url('../img/sears_logo_new.png') no-repeat 0 0;
+	z-index: 999;
+}
+.home_logo a:link,  .home_logo a:visited {
+	float: left;
+	width: 148px;
+	height: 69px;
+}
+.home_logo a:active,  .home_logo a:hover {
+	outline: none;
+}
+.home_logo a span {
+	display: none;
+}
+.header_right_panel {
+	position: absolute;
+	right: -5px;
+	top: 20px;
+	z-index: 998;
+}
+.header_right_panel .login_navigation {
+	float: right;
+	margin: 0 0 15px 0;
+}
+.login_navigation ul {
+	margin: 0 5px 0 0;
+	padding: 0;
+	list-style-type: none;
+}
+.login_navigation ul li {
+	float: left;
+	margin: 0 15px 0 0;
+	padding: 0;
+	color: #304295;
+	font-size: @loginNavigationSize;
+	list-style-type: none;
+}
+.login_navigation ul li a {
+	float: left;
+	margin: 0;
+	padding: 0;
+	font-size: @loginNavigationSize;
+}
+
 
 .header_right_panel .cart_navigation {
 	float: right;
@@ -122,7 +111,7 @@
 	line-height: 34px;
 	margin: 0;
 	padding: 0 8px 0 7px;
-	font-size: 11px;
+	font-size: @loginNavigationSize;
 	text-decoration: none;
 	border-right: 1px solid #c3c3c3;
 }
@@ -784,7 +773,7 @@ ul.ui-autocomplete li.autocompleteSectionCnt {
 	background-size: 4%;
 }
 .waterfiltertagline p .btn {
-	font-size: 11px;
+	font-size: @loginNavigationSize;
 	color: #4577a3;
 	background: none;
 	border: 1px solid #b5cde4;
