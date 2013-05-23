@@ -5,12 +5,12 @@
 	xtype="panel">
 	<items jcr:primaryType="cq:WidgetCollection">
 		<errorCodeText jcr:primaryType="cq:Widget"
-			fieldLabel="text value"
+			fieldLabel="Text Value"
 			name="./errorCodeText"
 			xtype="textfield"
 			maxLength="140"/>
 		<errorCodeDesc jcr:primaryType="cq:Widget"
-			fieldLabel="description value"
+			fieldLabel="Optional Description"
 			name="./errorCodeDesc"
 			xtype="richtext"
 			maxLength="500">
