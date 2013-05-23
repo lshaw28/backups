@@ -2,7 +2,7 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		  jcr:primaryType="cq:Dialog"
 		  title="Category 101"
-		  xtype="panel">
+		  xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
 		<Panel 	jcr:primaryType="cq:Widget"
 				xtype="panel">
@@ -11,7 +11,7 @@
 					   fieldLabel="Header"
 					   name="./header"
 					   xtype="textfield"
-					   fieldDescription="enter text to replace default header" />
+					   fieldDescription="enter suffix to replace default" />
 					   
 				<multi
 		            jcr:primaryType="cq:Widget"
