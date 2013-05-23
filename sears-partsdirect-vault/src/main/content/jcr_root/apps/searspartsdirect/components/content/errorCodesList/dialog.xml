@@ -35,12 +35,12 @@
 			value="foundation/components/image"
 			xtype="hidden"/>
 		<errorCodeTitle jcr:primaryType="cq:Widget"
-			fieldLabel="Error code title text"
+			fieldLabel="Error Code Title Text"
 			name="./errorCodeTitle"
 			xtype="textfield"
 			maxlength="70"/>
 		<errorCodeDescription jcr:primaryType="cq:Widget"
-			fieldLabel="Error code Description"
+			fieldLabel="Error Code Description"
 			name="./errorCodeDescription"
 			xtype="richtext"
 			maxlength="500">
