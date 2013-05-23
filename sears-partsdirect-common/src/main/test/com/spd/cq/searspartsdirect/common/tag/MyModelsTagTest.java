@@ -4,7 +4,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-public class MyModelTagTest {
+public class MyModelsTagTest {
 
 	@Test
 	public void test() {
