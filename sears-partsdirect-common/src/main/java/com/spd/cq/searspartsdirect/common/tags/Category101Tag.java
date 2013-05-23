@@ -13,7 +13,7 @@ import com.spd.cq.searspartsdirect.common.model.CategoryModel;
 
 public class Category101Tag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = LoggerFactory.getLogger(RequiredToolsTag.class);
+	protected static Logger log = LoggerFactory.getLogger(Category101Tag.class);
 	
 	@Override
 	public int doStartTag() throws JspException {
