@@ -1,4 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <spd:tagsByPage tagType ="parentCategory"/>
 <spd:category101/>
@@ -9,7 +10,9 @@
 
 <c:if test="${!empty categories}">
 	
-	${parentCategoryTag.title} <cq:text property="header" placeholder=" 101" />
+	<c:if test="${fn:length(parentCategoryTag.title) < 38 }">
+ 		<cq:text property="header" placeholder="${parentCategoryTag.title} 101" />
+	</c:if>
 	
 	<ul>
 		<c:forEach var="category" items="${categories}">
