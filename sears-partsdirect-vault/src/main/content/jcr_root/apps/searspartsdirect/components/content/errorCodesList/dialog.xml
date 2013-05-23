@@ -4,36 +4,6 @@
 	activeTab="0"
 	xtype="panel">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<image
-			jcr:primaryType="cq:Widget"
-			cropParameter="./errorCodeIcon/imageCrop"
-			ddGroups="[media]"
-			fileNameParameter="./errorCodeIcon/fileName"
-			fileReferenceParameter="./errorCodeIcon/fileReference"
-			mapParameter="./errorCodeIcon/imageMap"
-			name="./errorCodeIcon/file"
-			requestSuffix=".errorCodeIcon/img.png"
-			rotateParameter="./errorCodeIcon/imageRotate"
-			title="error Code Icon"
-			xtype="html5smartimage"/>
-		<alt
-			jcr:primaryType="cq:Widget"
-			fieldDescription="(leave empty to use the title defined above)"
-			fieldLabel="Alt Text"
-			name="./errorCodeIcon/alt"
-			xtype="textfield"/>
-		<linkURL
-			jcr:primaryType="cq:Widget"
-			fieldDescription="Drop files or pages from the Content Finder"
-			fieldLabel="Link to"
-			name="./errorCodeIcon/linkURL"
-			xtype="pathfield"/>
-		<resType
-			jcr:primaryType="cq:Widget"
-			ignoreData="{Boolean}true"
-			name="./errorCodeIcon/sling:resourceType"
-			value="foundation/components/image"
-			xtype="hidden"/>
 		<errorCodeTitle jcr:primaryType="cq:Widget"
 			fieldLabel="Error Code Title Text"
 			name="./errorCodeTitle"

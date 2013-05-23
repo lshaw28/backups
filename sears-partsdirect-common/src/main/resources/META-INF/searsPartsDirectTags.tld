@@ -125,4 +125,27 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+	   <name>getPagesByTag</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetPagesByTagTag</tag-class>
+	   <info>This tag will get the list of pages by tags</info>
+	   <attribute>
+	   		<name>categoryName</name>
+	   		<type>java.lang.String</type>
+	   		<required>false</required>
+	   		<rtexprvalue>true</rtexprvalue>
+	   	</attribute>
+	   	<attribute>
+	   		<name>subCategoryName</name>
+	   		<type>java.lang.String</type>
+	   		<required>false</required>
+	   		<rtexprvalue>true</rtexprvalue>
+	   	</attribute>
+	   	<attribute>
+	   		<name>brandName</name>
+	   		<type>java.lang.String</type>
+	   		<required>false</required>
+	   		<rtexprvalue>true</rtexprvalue>
+	   	</attribute>
+	</tag>
 </taglib>
