@@ -1,4 +1,4 @@
-/*global $:true, window:true, document:true, Class:true */
+/*global $:true, window:true, document:true, Class:true, responsiveImage: true */
 (function (window) {
 	"use strict";
 	/**
@@ -15,6 +15,12 @@
 			})
 			.bind('change', function () {
 			});
+		});
+		/**
+		 * responsiveImage component setup
+		 */
+		$('.responsiveImage div[data-desktopimage]').each(function () {
+			var newResponsiveImage = new ResponsiveImage($(this));
 		});
 	});
 }(window));

@@ -19,6 +19,10 @@
 					jcr:primaryType="cq:Widget"
 					path="/libs/foundation/components/page/tab_image.infinity.json"
 					xtype="cqinclude"/>
+				<cloudservices
+                    jcr:primaryType="cq:Widget"
+                    path="/libs/foundation/components/page/tab_cloudservices.infinity.json"
+                    xtype="cqinclude"/>
 				<impressions
 					jcr:primaryType="cq:Widget"
 					path="/libs/foundation/components/page/tab_impressions.infinity.json"

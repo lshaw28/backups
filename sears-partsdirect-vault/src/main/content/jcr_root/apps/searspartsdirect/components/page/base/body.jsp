@@ -10,4 +10,5 @@
 			<cq:include script="jsbody.jsp" />
 		</div>
 	</div>
+	<cq:include path="cloudservices" resourceType="cq/cloudserviceconfigs/components/servicecomponents" />
 </body>
