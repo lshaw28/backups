@@ -1,23 +1,24 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <spd:tagsByPage tagType ="parentCategory"/>
 <spd:category101/>
 
-<%-- Question: how to make conditionally mandatory? --%>
-${parentCategoryTag.title} <cq:text property="header" placeholder=" 101" />
-
 <c:if test="${empty categories}">  
-  IT IS EMPTY!!! 
-</c:if>  
-<c:if test="${!empty categories}">  
-  IT IS *NOT* EMPTY!!! 
+  CATEGORY 101 PLACEHOLDER. PLEASE UPDATE WITH CATEGORIES TO BE DISPLAYED. 
 </c:if>  
 
-<ul>
-	<c:forEach var="category" items="${categories}">
-		<li><a href="<cq:text property="${category}"/>.html"> ${category} the category title would go here</a></li>
-	</c:forEach>
-</ul>
-<br>
-
-<a href="<cq:text property="viewAllLink"/>.html">Articles Index Page</a>
+<c:if test="${!empty categories}">
+	
+	<c:if test="${fn:length(parentCategoryTag.title) < 38 }">
+ 		<cq:text property="header" placeholder="${parentCategoryTag.title} 101" />
+	</c:if>
+	
+	<ul>
+		<c:forEach var="category" items="${categories}">
+			<li><a href="${category.url}.html">${category.title}</a></li>
+		</c:forEach>
+	</ul>
+	
+	<a href="<cq:text property="viewAllLink"/>.html">Articles Index Page</a>
+</c:if>  
