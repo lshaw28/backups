@@ -5,5 +5,5 @@
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Component"
 	jcr:title="Cateogry 101"
-	jcr:description="List of Categories"
+	jcr:description="List of category articles"
 	componentGroup="SearsPartsDirect" />
