@@ -1,18 +1,78 @@
-@import "base.reset.less";
 @import "base.variables.less";
 @import "base.mixins.less";
 
 /* Component: Global Header */
-.home_header {
-	margin: 0 20px;
-	background-color: #fff;
+.globalHeader {
+	.home_header {
+		background-color: #fff;
+		margin: 0 20px;
+		
+		.inner_header {
+			background: #fff;
+			padding: 60px 0 0 0;
+			position: relative;
+			z-index: 9;
+		}
+	}
+	.home_logo {
+		background: url('../img/sears_logo_new.png') no-repeat 0 0;
+		height: 60px;
+		left: 20px;
+		position: absolute;
+		top: 20px;
+		width: 146px;
+		z-index: 999;
+		
+		a:link, a:visited {
+			float: left;
+			height: 69px;
+			width: 148px;
+		}
+		a:active, a:hover {
+			outline: none;
+		}
+		a span {
+			display: none;
+		}
+	}
+	.header_right_panel {
+		position: absolute;
+		right: -5px;
+		top: 20px;
+		z-index: 998;
+
+		.login_navigation {
+			float: right;
+			margin: 0 0 15px 0;
+
+			ul {
+				margin: 0 5px 0 0;
+				padding: 0;
+				list-style-type: none;
+
+				li {
+					float: left;
+					margin: 0 15px 0 0;
+					padding: 0;
+					color: #304295;
+					font-size: 11px;
+					list-style-type: none;
+
+					a {
+						float: left;
+						margin: 0;
+						padding: 0;
+						font-size: 11px;
+					}
+				}
+			}
+		}
+	}
 }
-.home_header .inner_header {
-	position: relative;
-	padding: 60px 0 0 0;
-	z-index: 9;
-	background: #ffffff;
-}
+
+
+
+
 .body_shadow_left {
 	width: 6px;
 	height: 188px;
@@ -27,56 +87,6 @@
 	right: -6px;
 	top: 0px;
 }
-.home_logo {
-	position: absolute;
-	left: 20px;
-	top: 20px;
-	width: 146px;
-	height: 60px;
-	background: url('../img/sears_logo_new.png') no-repeat 0 0;
-	z-index: 999;
-}
-.home_logo a:link,  .home_logo a:visited {
-	float: left;
-	width: 148px;
-	height: 69px;
-}
-.home_logo a:active,  .home_logo a:hover {
-	outline: none;
-}
-.home_logo a span {
-	display: none;
-}
-.header_right_panel {
-	position: absolute;
-	right: -5px;
-	top: 20px;
-	z-index: 998;
-}
-.header_right_panel .login_navigation {
-	float: right;
-	margin: 0 0 15px 0;
-}
-.login_navigation ul {
-	margin: 0 5px 0 0;
-	padding: 0;
-	list-style-type: none;
-}
-.login_navigation ul li {
-	float: left;
-	margin: 0 15px 0 0;
-	padding: 0;
-	color: #304295;
-	font-size: 11px;
-	list-style-type: none;
-}
-.login_navigation ul li a {
-	float: left;
-	margin: 0;
-	padding: 0;
-	font-size: 11px;
-}
-
 
 .header_right_panel .cart_navigation {
 	float: right;
@@ -194,11 +204,11 @@ div#currentCart .itemInCart .partNumber:hover {
 	text-decoration: underline;
 }
 div#currentCart p.ghostCart_addedItem {
-	color: #666666;
+	color: #666;
 }
 #showCart h3 {
-	font-size: 14px;
-	color: #666666;
+	font-size: @paragraphSize;
+	color: #666;
 	text-align: center;
 }
 #ItemsCarts div#currentCart #editLink a.arrow_blue_link {
@@ -333,7 +343,7 @@ div#currentCart p.ghostCart_addedItem {
 	background: none;
 	text-decoration: none;
 	word-wrap: break-word;
-	font-size: 12px;
+	font-size: @smallLinkSize;
 }
 .view_row a:hover {
 	color: #304e88;
@@ -341,7 +351,7 @@ div#currentCart p.ghostCart_addedItem {
 }
 .view_row .row_col1 {
 	float: left;
-	font-size: 12px;
+	font-size: @smallLinkSize;
 }
 .view_row .row_col1 span {
 	float: left;
@@ -351,7 +361,7 @@ div#currentCart p.ghostCart_addedItem {
 .view_row .row_col2 {
 	float: left;
 	padding: 0 10px 0 0;
-	font-size: 12px;
+	font-size: @smallLinkSize;
 }
 .view_row .row_col2 img {
 	width: 60px;
@@ -373,11 +383,11 @@ div#currentCart p.ghostCart_addedItem {
 }
 .Our_finder {
 	bottom: -84px;
-	color: #FFFFFF;
+	color: #fff;
 	left: 165px;
 	position: absolute;
 	z-index: 101;
-	font-size: 12px;
+	font-size: @smallLinkSize;
 	margin: 17px 0 0 0;
 }
 .left_pos {
@@ -393,7 +403,7 @@ div#currentCart p.ghostCart_addedItem {
 .Our_finder span.arrow {
 	background-position: 0 -71px;
 	background-repeat: no-repeat;
-	color: #FFFFFF;
+	color: #fff;
 	display: inline-block;
 	height: 4px;
 	padding: 0;
@@ -423,9 +433,9 @@ div#currentCart p.ghostCart_addedItem {
 .mani_search_panel .tagline2 {
 	width: 100%;
 	text-align: center;
-	font-size: 16px;
+	font-size: @footerColumnSize;
 	padding: 0 0 10px 0;
-	color: #666666;
+	color: #666;
 	clear: both;
 }
 .tagline2 span {
@@ -507,7 +517,7 @@ div#currentCart p.ghostCart_addedItem {
 	background: #fff;
 	line-height: 35px;
 	color: #666;
-	font-size: 16px;
+	font-size: @footerColumnSize;
 	font-family: arial;
 }
 .in {
@@ -515,7 +525,7 @@ div#currentCart p.ghostCart_addedItem {
 	padding: 0 10px;
 	text-align: center;
 	font-size: 26px;
-	color: #ffffff;
+	color: #fff;
 }
 .search_input_div .input2 {
 	float: left;
@@ -529,7 +539,7 @@ div#currentCart p.ghostCart_addedItem {
 	background: #fff;
 	line-height: 35px;
 	color: #666;
-	font-size: 16px;
+	font-size: @footerColumnSize;
 	font-family: arial;
 	width: 90%;
 	border-radius: 0;
@@ -546,7 +556,7 @@ div#currentCart p.ghostCart_addedItem {
 	background: #fff;
 	line-height: 35px;
 	color: #666;
-	font-size: 16px;
+	font-size: @footerColumnSize;
 	font-family: arial;
 	width: 55%;
 }
@@ -556,14 +566,14 @@ div#currentCart p.ghostCart_addedItem {
 	height: 35px;
 	border: 0px;
 	line-height: 35px;
-	color: #666666;
-	font-size: 14px;
+	color: #666;
+	font-size: @paragraphSize;
 	font-family: arial;
 	width: 85%;
 	font-weight: bold;
 }
 .new_DdArrow {
-	background-color: #FFFFFF;
+	background-color: #fff;
 	background-position: 90% center;
 	background-repeat: no-repeat;
 	float: left;
@@ -592,12 +602,12 @@ div#currentCart p.ghostCart_addedItem {
 	padding: 0px 22px 0 22px;
 	background: #ff6600;
 	border-radius: 2px;
-	text-shadow: 1px 1px 0px #666666;
+	text-shadow: 1px 1px 0px #666;
 	text-align: center;
-	font-size: 14px;
+	font-size: @paragraphSize;
 }
 .search_input_div p {
-	color: #FFFFFF;
+	color: #fff;
 	float: left;
 	margin: -3px 0 0 0;
 	padding: 0 0 0 15px;
@@ -636,7 +646,7 @@ ul.ui-autocomplete li.autocompleteSectionCnt {
 	display: block;
 	padding: 0 0 0 11px;
 	text-decoration: none;
-	font-size: 14px;
+	font-size: @paragraphSize;
 	font-weight: bold;
 }
 .new_popMenu ul.selType li a:hover {
@@ -647,7 +657,7 @@ ul.ui-autocomplete li.autocompleteSectionCnt {
 	float: left;
 	margin: 0;
 	padding: 0;
-	font-size: 12px;
+	font-size: @smallLinkSize;
 }
 .home_logo {
 	position: absolute;
@@ -692,7 +702,7 @@ ul.ui-autocomplete li.autocompleteSectionCnt {
 	border-width: 3px;
 	border-radius: 4px 4px 0 0;
 	text-align: center;
-	font-size: 14px;
+	font-size: @paragraphSize;
 	padding: 10px;
 }
 .phone_menu_tabs ul li:first-child a {
@@ -750,18 +760,18 @@ ul.ui-autocomplete li.autocompleteSectionCnt {
 	left: 157px;
 	position: absolute;
 	z-index: 101;
-	font-size: 12px;
+	font-size: @smallLinkSize;
 	margin: 12px 0 0 0;
 	font-weight: 600;
 }
 #newFinderModel {
-	font-size: 12px;
+	font-size: @smallLinkSize;
 }
 .waterfiltertagline {
 	color: #304e88;
 	width: 100%;
 	text-align: center;
-	font-size: 14px;
+	font-size: @paragraphSize;
 	padding: 10px 0 10px 0;
 	clear: both;
 }

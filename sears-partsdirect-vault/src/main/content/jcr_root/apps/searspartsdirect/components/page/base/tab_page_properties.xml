@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="cq:Panel"
+	width="500"
+	title="Page Properties">
+	<items jcr:primaryType="cq:WidgetCollection">
+		
+		<subcontainer1
+			jcr:primaryType="cq:Widget"
+                  flex="{Long}1"
+                  height="250"
+                  xtype="dialogfieldset">
+               <items jcr:primaryType="cq:WidgetCollection">
+                   
+                    <image
+			        jcr:primaryType="cq:Widget"
+				    cropParameter="./image/imageCrop"
+				    ddGroups="[media]"
+				    fileNameParameter="./image/fileName"
+				    fileReferenceParameter="./image/fileReference"
+				    name="./image/file"
+				    requestSuffix="/image.img.png"
+				    rotateParameter="./image/imageRotate"
+				    title="image"
+				    height="200"
+				    uploadUrl="/tmp/upload/*"
+				    xtype="smartimage"/>
+			</items>
+		</subcontainer1>
+		
+        <subcontainer2
+			jcr:primaryType="cq:Widget"
+                  flex="{Long}1"
+                  height="150"
+                  xtype="dialogfieldset">
+        	<items jcr:primaryType="cq:WidgetCollection">
+	            <abstracttext jcr:primaryType="cq:Widget"
+							   fieldLabel="Abstract Text"
+							   fieldDescription="Character limit is 400"
+							   name="./abstracttext"
+							   maxLength="400"
+							   xtype="textarea" />
+	            <resType
+		        	jcr:primaryType="cq:Widget"
+		        	ignoreData="{Boolean}true"
+		        	xtype="hidden"
+		        	name="./image1/sling:resourceType"
+		        	value="foundation/components/image"/>
+			</items>
+        </subcontainer2>
+        
+	</items>
+</jcr:root>

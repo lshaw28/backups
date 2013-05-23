@@ -1,54 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-		  jcr:primaryType="cq:TabPanel"
-		  activeTab="0"
-		  xtype="panel">
+	jcr:primaryType="cq:TabPanel"
+	activeTab="0"
+	xtype="panel">
 	<items jcr:primaryType="cq:WidgetCollection">
 		<image
-	            jcr:primaryType="cq:Widget"
-	            cropParameter="./errorCodeIcon/imageCrop"
-	            ddGroups="[media]"
-	            fileNameParameter="./errorCodeIcon/fileName"
-	            fileReferenceParameter="./errorCodeIcon/fileReference"
-	            mapParameter="./errorCodeIcon/imageMap"
-	            name="./errorCodeIcon/file"
-	            requestSuffix=".errorCodeIcon/img.png"
-	            rotateParameter="./errorCodeIcon/imageRotate"
-	            title="error Code Icon"
-	            xtype="html5smartimage"/>
-		         
-                <alt
-                    jcr:primaryType="cq:Widget"
-                    fieldDescription="(leave empty to use the title defined above)"
-                    fieldLabel="Alt Text"
-                    name="./errorCodeIcon/alt"
-                    xtype="textfield"/>
-                <linkURL
-                    jcr:primaryType="cq:Widget"
-                    fieldDescription="Drop files or pages from the Content Finder"
-                    fieldLabel="Link to"
-                    name="./errorCodeIcon/linkURL"
-                    xtype="pathfield"/>
-                 <resType
-                    jcr:primaryType="cq:Widget"
-                    ignoreData="{Boolean}true"
-                    name="./errorCodeIcon/sling:resourceType"
-                    value="foundation/components/image"
-                    xtype="hidden"/>
-                           
+			jcr:primaryType="cq:Widget"
+			cropParameter="./errorCodeIcon/imageCrop"
+			ddGroups="[media]"
+			fileNameParameter="./errorCodeIcon/fileName"
+			fileReferenceParameter="./errorCodeIcon/fileReference"
+			mapParameter="./errorCodeIcon/imageMap"
+			name="./errorCodeIcon/file"
+			requestSuffix=".errorCodeIcon/img.png"
+			rotateParameter="./errorCodeIcon/imageRotate"
+			title="error Code Icon"
+			xtype="html5smartimage"/>
+		<alt
+			jcr:primaryType="cq:Widget"
+			fieldDescription="(leave empty to use the title defined above)"
+			fieldLabel="Alt Text"
+			name="./errorCodeIcon/alt"
+			xtype="textfield"/>
+		<linkURL
+			jcr:primaryType="cq:Widget"
+			fieldDescription="Drop files or pages from the Content Finder"
+			fieldLabel="Link to"
+			name="./errorCodeIcon/linkURL"
+			xtype="pathfield"/>
+		<resType
+			jcr:primaryType="cq:Widget"
+			ignoreData="{Boolean}true"
+			name="./errorCodeIcon/sling:resourceType"
+			value="foundation/components/image"
+			xtype="hidden"/>
 		<errorCodeTitle jcr:primaryType="cq:Widget"
-					fieldLabel="Error code title text"
-					name="./errorCodeTitle"
-					xtype="textfield"
-					maxlength="70"/>
+			fieldLabel="Error Code Title Text"
+			name="./errorCodeTitle"
+			xtype="textfield"
+			maxlength="70"/>
 		<errorCodeDescription jcr:primaryType="cq:Widget"
-					fieldLabel="Error code Description"
-					name="./errorCodeDescription"
-					xtype="richtext"
-					maxlength="500">
-		<!--  <listeners
-		      jcr:primaryType="nt:unstructured"
-		      afterrender="SPDAuthorUtils.setRTEPlugins"/> -->
-		</errorCodeDescription>													
+			fieldLabel="Error Code Description"
+			name="./errorCodeDescription"
+			xtype="richtext"
+			maxlength="500">
+			<listeners
+				jcr:primaryType="nt:unstructured"
+				loadcontent="function(field){window.SPDAuthorUtils.setRTEPlugins(field);}"/>
+		</errorCodeDescription>
 	</items>
-</jcr:root>  
+</jcr:root>

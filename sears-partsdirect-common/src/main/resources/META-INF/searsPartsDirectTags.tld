@@ -5,7 +5,7 @@
 	<short-name>Sears Parts Direct TagLib</short-name>
 	<uri>http://cms.testsears.com/bundles/cq/tags</uri>
 	<tag>
-		<name>TagsByPage</name>
+		<name>tagsByPage</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.TagsByPageTag</tag-class>
 		<info>Generates a list of Tag objects representing the tags of a page</info>
 		<attribute>
@@ -14,9 +14,15 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+		<attribute>
+			<name>tagType</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	<tag>
-		<name>PagesByTag</name>
+		<name>pagesByTag</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.PagesByTagTag</tag-class>
 		<info>Generates a list of Pages represented by a specific Tag</info>
 		<attribute>
@@ -27,7 +33,7 @@
 		</attribute>
 	</tag>
 	<tag>
-	<name>Image</name>
+	<name>image</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ImageTag</tag-class>
 		<info>Displays an image</info>
 		<attribute>
@@ -97,6 +103,11 @@
 		<name>requiredTools</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.RequiredToolsTag</tag-class>
 		<info>Sets page context information required for Tools Required for Repair</info>
+	</tag>
+	<tag>
+		<name>category101</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.Category101Tag</tag-class>
+		<info>Sets page context information required for Category 101 categories</info>
 	</tag>
 	<tag>
 	   <name>getBrandCategoryModelNo</name>

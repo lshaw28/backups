@@ -3,3 +3,6 @@ Modernizr.js
 Class.js
 Utilities.js
 DocumentReady.js
+WindowResize.js
+#base=js/components/.
+responsiveImage.js

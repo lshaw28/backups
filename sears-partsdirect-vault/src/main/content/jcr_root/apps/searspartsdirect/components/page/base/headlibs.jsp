@@ -14,3 +14,4 @@
 	<!-- Author Styles -->
     <cq:includeClientLib css="apps.searspartsdirect.cq.edit" />
 </c:if>
+<cq:include script="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp"/>
