@@ -2,9 +2,6 @@
 #base=less/.
 bootstrap.less
 bootstrap-responsive.less
-base.reset.less
-base.variables.less
-base.mixins.less
 core.standardtags.less
 core.textclasses.less
 core.helperclasses.less
@@ -20,7 +17,7 @@ comp.cartandmodels.less
 comp.errorcodes.less
 comp.findpartcategories.less
 comp.footer.less
-comp.header.less
+comp.globalHeader.less
 comp.maincarousel.less
 comp.manualshelp.less
 comp.modelfinder.less
