@@ -148,4 +148,9 @@
 	   		<rtexprvalue>true</rtexprvalue>
 	   	</attribute>
 	</tag>
+	<tag>
+	   <name>getImagePathTag</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetImagePathTag</tag-class>
+		 <info>Provides the path of an image</info>
+	</tag>
 </taglib>
