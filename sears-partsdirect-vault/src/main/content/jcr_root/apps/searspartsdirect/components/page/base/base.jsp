@@ -19,38 +19,38 @@
   ==============================================================================
 
 --%><%@page session="false"
-            contentType="text/html; charset=utf-8"
-            import="com.day.cq.commons.Doctype,
-                    com.day.cq.wcm.api.WCMMode,
-                    com.day.cq.wcm.foundation.ELEvaluator" %><%
+			contentType="text/html; charset=utf-8"
+			import="com.day.cq.commons.Doctype,
+					com.day.cq.wcm.api.WCMMode,
+					com.day.cq.wcm.foundation.ELEvaluator" %><%
 %><%@taglib prefix="cq" uri="http://www.day.com/taglibs/cq/1.0" %><%
 %><cq:defineObjects/><%
 
-    // read the redirect target from the 'page properties' and perform the
-    // redirect if WCM is disabled.
-    String location = properties.get("redirectTarget", "");
-    // resolve variables in path
-    location = ELEvaluator.evaluate(location, slingRequest, pageContext);
-    if (WCMMode.fromRequest(request) != WCMMode.EDIT && location.length() > 0) {
-        // check for recursion
-        if (!location.equals(currentPage.getPath())) {
-            final String redirectTo = slingRequest.getResourceResolver().map(request, location) + ".html";
-            response.sendRedirect(redirectTo);
-        } else {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
-        }
-        return;
-    }
-    // set doctype
-    if (currentDesign != null) {
-        currentDesign.getDoctype(currentStyle).toRequest(request);
-    }
+	// read the redirect target from the 'page properties' and perform the
+	// redirect if WCM is disabled.
+	String location = properties.get("redirectTarget", "");
+	// resolve variables in path
+	location = ELEvaluator.evaluate(location, slingRequest, pageContext);
+	if (WCMMode.fromRequest(request) != WCMMode.EDIT && location.length() > 0) {
+		// check for recursion
+		if (!location.equals(currentPage.getPath())) {
+			final String redirectTo = slingRequest.getResourceResolver().map(request, location) + ".html";
+			response.sendRedirect(redirectTo);
+		} else {
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
+		return;
+	}
+	// set doctype
+	if (currentDesign != null) {
+		currentDesign.getDoctype(currentStyle).toRequest(request);
+	}
 
 %><%= Doctype.fromRequest(request).getDeclaration() %>
 <!--[if lt IE 7]> <html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="lt-ie10 lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="lt-ie10 lt-ie9" lang="en"> <![endif]-->
-<!--[if IE 9]>    <html class="lt-ie10" lang="en"> <![endif]-->
+<!--[if IE 7]>	<html class="lt-ie10 lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>	<html class="lt-ie10 lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9]>	<html class="lt-ie10" lang="en"> <![endif]-->
 <!--[if gt IE 9]><!--> <html lang="en"> <!--<![endif]-->
 <cq:include script="head.jsp"/>
 <cq:include script="body.jsp"/>

@@ -12,6 +12,6 @@
 <cq:include script="templatelibs.jsp" />
 <c:if test="${isEditMode or isDesignMode}">
 	<!-- Author Styles -->
-    <cq:includeClientLib css="apps.searspartsdirect.cq.edit" />
+	<cq:includeClientLib css="apps.searspartsdirect.cq.edit" />
 </c:if>
 <cq:include script="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp"/>

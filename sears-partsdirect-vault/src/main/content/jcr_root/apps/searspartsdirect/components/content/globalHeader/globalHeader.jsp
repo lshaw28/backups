@@ -25,7 +25,7 @@
 					<li id="RecentlyViewed"><a href="javascript:void(0);">Recently viewed&nbsp;&nbsp;<span></span></a>
 						<div id="RecentlyViewedDiv" class="png_fix" style="display: none;">
 							<div class="topArrowDiv"></div>
-							<div class="resentView">                           	   
+							<div class="resentView">						   	   
 								<div class="resentViewTopRow"><div class="topLeftCurve"></div><div class="topRightCurve"></div></div>
 								<div class="clear"></div>
 								<div class="resentViewContentDiv">
@@ -65,7 +65,7 @@
 								</div>
 								<div class="clear"></div>
 								<div class="resentViewBottopRow"><div class="bottomLeftCurve"></div><div class="bottomRightCurve"></div></div>
-							</div>                        	
+							</div>							
 						</div>
 					</li>
 					<li id="MyModels">
