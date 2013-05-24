@@ -9,11 +9,17 @@
 		 * Input help text listeners
 		 */
 		$('[data-inputhelp]').each(function () {
+			// Perform initial check
+			window.SPDUtils.checkInput($(this));
+			// Bind events
 			$(this).bind('blur', function () {
+				window.SPDUtils.checkInput($(this));
 			})
 			.bind('focus', function () {
+				window.SPDUtils.checkInput($(this), true);
 			})
 			.bind('change', function () {
+				window.SPDUtils.checkInput($(this));
 			});
 		});
 		/**

@@ -20,12 +20,12 @@
 			<div class="cart_navigation ">
 				<ul>
 					<div class="li_shadow_curve"></div>
-					
-					
+
+
 					<li id="RecentlyViewed"><a href="javascript:void(0);">Recently viewed&nbsp;&nbsp;<span></span></a>
 						<div id="RecentlyViewedDiv" class="png_fix" style="display: none;">
 							<div class="topArrowDiv"></div>
-							<div class="resentView">						   	   
+							<div class="resentView">
 								<div class="resentViewTopRow"><div class="topLeftCurve"></div><div class="topRightCurve"></div></div>
 								<div class="clear"></div>
 								<div class="resentViewContentDiv">
@@ -65,7 +65,7 @@
 								</div>
 								<div class="clear"></div>
 								<div class="resentViewBottopRow"><div class="bottomLeftCurve"></div><div class="bottomRightCurve"></div></div>
-							</div>							
+							</div>
 						</div>
 					</li>
 					<li id="MyModels">
@@ -98,7 +98,7 @@
 					<div class="man_img"></div>
 					<div class="search_input_div">
 						<div class="input2">
-							<input id="searchBarField" class="input_2" type="text" maxlength="100" tabindex="1" value="Enter model or part number" name="searchModPar">
+							<input id="searchBarField" class="input_2" type="text" maxlength="100" tabindex="1" data-inputhelp="Enter model or part number" data-inputhelpmobile="Model/Part #" name="searchModPar">
 						</div>
 						<div class="in">in</div>
 						<div class="input3">

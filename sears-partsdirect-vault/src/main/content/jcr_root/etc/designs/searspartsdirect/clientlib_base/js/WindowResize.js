@@ -6,7 +6,11 @@
 	 */
 	$(window).resize(function () {
 		/**
-		 * Comment each function separately to explain purpose
+		 * Input help text listeners
 		 */
+		$('[data-inputhelp]').each(function () {
+			// Check in case the breakpoint is different
+			window.SPDUtils.checkInput($(this));
+		});
 	});
 }(window));

@@ -55,10 +55,9 @@
 		 * @return {Boolean} Check result
 		 */
 		isMobileBreakpoint: function () {
-			var breakpoints = ['320','480','720'],
-				currentWidth = $(window).width();
-			
-			if (breakpoints.indexOf(currentWidth) > -1) {
+			var currentWidth = $(window).width();
+
+			if (parseInt(currentWidth) < 480) {
 				return true;
 			} else {
 				return false;
@@ -66,21 +65,29 @@
 		},
 		/**
 		 * Handles responsive input help text
-		 * @param {Object} el jQuery element to check
+		 * @param {object} el jQuery element to check
+		 * @param {boolean} edit Optional boolean denoting the user is about to edit
 		 */
-		checkInput: function (el) {
+		checkInput: function (el, edit) {
 			var self = window.SPDUtils,
-				value = el.value(),
+				value = el.attr('value'),
 				helpText = el.data('inputhelp'),
-				helpTextMobile = el.data('inputhelpmobile');
-			
-			// If there is no user-entered information, use the appropriate data attribute value
-			if (self.validString(value) === '') {
-				if (self.validString(helpTextMobile) !== '' && self.isMobileBreakpoint()) {
-					el.value(helpTextMobile);
-				} else if (self.validString(helpText) !== '') {
-					el.value(helpText);
-				}
+				helpTextMobile = el.data('inputhelpmobile'),
+				newValue = '';
+
+			// Check attribute values
+			if (self.validString(helpTextMobile) !== '' && self.isMobileBreakpoint() === true) {
+				newValue = helpTextMobile;
+			} else if (self.validString(helpText) !== '') {
+				newValue = helpText;
+			}
+			// Determine what to display
+			if ((value === helpText || value === helpTextMobile) && edit === true) {
+				// Edit mode, value is help text
+				el.attr('value', '');
+			} else if ((value === '' || value === helpText || value === helpTextMobile) && edit !== true) {
+				// Not edit mode, value is empty
+				el.attr('value', newValue);
 			}
 		}
 	};
