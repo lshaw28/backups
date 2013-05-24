@@ -5,4 +5,5 @@
 	    <exclude pattern="/etc/designs/searspartsdirect/jcr:content/base(/.*)?"/>
 	</filter>
 	<filter root="/etc/tags/searspartsdirect" />
+	<filter root="/etc/scaffolding" />
 </workspaceFilter>
