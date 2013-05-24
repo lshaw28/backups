@@ -4,12 +4,12 @@
     <jcr:content
         cq:lastModified="{Date}2013-05-23T16:44:54.231-04:00"
         cq:lastModifiedBy="admin"
-        cq:targetPath="/etc/spdAssets/scaffolding/brand"
-        cq:targetTemplate="/apps/searspartsdirect/templates/scaffolding/brand"
+        cq:targetPath="/etc/spdAssets/scaffolding/errorCode"
+        cq:targetTemplate="/apps/searspartsdirect/templates/scaffolding/errorCode"
         cq:template="/libs/wcm/scaffolding/templates/scaffolding"
-        jcr:description="Brand desc"
+        jcr:description="Error Code desc"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Brand"
+        jcr:title="Error Code"
         sling:resourceType="wcm/scaffolding/components/scaffolding">
         <dialog/>
     </jcr:content>

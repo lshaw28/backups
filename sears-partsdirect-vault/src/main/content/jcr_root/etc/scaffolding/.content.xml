@@ -4,4 +4,11 @@
     <jcr:content/>
     <geometrixx/>
     <brand/>
+    <errorCode/>
+    <productCategory/>
+    <hazard/>
+    <jobCode/>
+    <partType/>
+    <tip/>
+    <warning/>
 </jcr:root>
