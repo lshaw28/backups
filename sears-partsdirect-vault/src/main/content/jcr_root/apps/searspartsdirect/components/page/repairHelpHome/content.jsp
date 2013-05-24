@@ -3,7 +3,7 @@
 	<cq:include path="header" resourceType="searspartsdirect/components/content/header" />
 	<div class="row-fluid">
 		<div class="span9">
-			<p>Introduction copy with left-aligned image. Which component?</p>
+			<cq:include path="overview" resourceType="searspartsdirect/components/content/text" />
 		</div>
 		<div class="span3">
 			<cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />

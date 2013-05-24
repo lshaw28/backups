@@ -11,9 +11,9 @@
 					title="TabOne"
 					xtype="panel">
 					<items jcr:primaryType="cq:WidgetCollection">
-						<title jcr:primaryType="cq:Widget"
-							   fieldLabel="ModelNumberSearchField"
-							   name="./header"
+						<buttonTitle jcr:primaryType="cq:Widget"
+							   fieldLabel="Search Button Title"
+							   name="./buttonTitle"
 							   xtype="textfield" />
 					</items>
 				</tab1>
