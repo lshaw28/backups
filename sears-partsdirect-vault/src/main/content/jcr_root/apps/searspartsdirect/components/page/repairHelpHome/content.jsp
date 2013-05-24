@@ -1,10 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <article id="content">
-	<div class="row-fluid">
-		<div class="span12">
-			<cq:include path="header" resourceType="foundation/components/header" />
-		</div>
-	</div>
+	<cq:include path="header" resourceType="searspartsdirect/components/content/header" />
 	<div class="row-fluid">
 		<div class="span9">
 			<cq:include path="overview" resourceType="searspartsdirect/components/content/text" />
