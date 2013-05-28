@@ -5,9 +5,4 @@
     jcr:title="Sears Parts Direct"
     sling:resourceType="cq/tagging/components/tag">
     <product_categories/>
-    <brands/>
-    <part_types/>
-    <seasons/>
-    <weather_conditions/>
-    <product_engagement/>
 </jcr:root>

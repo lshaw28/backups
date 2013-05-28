@@ -4,9 +4,9 @@
 	
 	Responsive Image
 <spd:getImagePathTag/>
-Image1 Path  : ${image1Path}
-Image2 Path  : ${image2Path}
-Image3 Path  : ${image3Path}
+Image1 Path  : ${desktopImagePath}
+Image2 Path  : ${tabletImagePath}
+Image3 Path  : ${mobileImagePath}
 
 <image path="image1"/>
-<div class="responsiveImage" data-desktopimage="${image1Path}" data-tabletimage="${image2Path}" data-mobileimage="${image3Path}">&nbsp;</div>
+<div class="responsiveImage" data-desktopimage="${desktopImagePath}" data-tabletimage="${tabletImagePath}" data-mobileimage="${mobileImagePath}">&nbsp;</div>
