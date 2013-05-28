@@ -4,9 +4,19 @@
 		  title="Category Listing"
 		  xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<title jcr:primaryType="cq:Widget"
-			   fieldLabel="Category ListingField"
-			   name="./categorylisting"
-			   xtype="textfield" />
+		<Panel 	jcr:primaryType="cq:Widget"
+				xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<header jcr:primaryType="cq:Widget"
+					   fieldLabel="Header"
+					   fieldDescription="Character limit is 60"
+					   name="./componentHeader"
+					   maxLength="60"
+					   xtype="textfield" />
+					   
+			    <checkBox  />	
+			    
+			</items>
+		</Panel>
 	</items>
 </jcr:root>
