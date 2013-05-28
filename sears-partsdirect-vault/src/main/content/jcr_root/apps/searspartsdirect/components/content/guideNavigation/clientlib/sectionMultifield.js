@@ -42,7 +42,7 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
 
         this.name = new CQ.Ext.form.TextField({
             cls: 'cls-name-1',
-            fieldLabel: 'Name: ',
+            fieldLabel: 'Resource type: ',
             maxLength: 80,
             maxLengthText: 'A maximum of 80 characters is allowed for the Section Name.',
             allowBlank: false,
@@ -58,8 +58,8 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
 
         this.link = new CQ.Ext.form.TextField({
             cls: 'cls-link-1',
-            fieldLabel: 'Bind to Section ID',
-			fieldDescription: 'This ID should match the Section Block ID.',
+            fieldLabel: 'Link text',
+			fieldDescription: 'Text of link, unless overridden per resource type.',
             maxLength: 80,
             maxLengthText: 'A maximum of 80 characters is allowed for the Link Text.',
             allowBlank: false,

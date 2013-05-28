@@ -16,7 +16,7 @@
 				title="Sections">
 				<items jcr:primaryType="cq:WidgetCollection">
 					<primary jcr:primaryType="cq:Widget"
-						fieldDescription="Click the '+' button to add a new section"
+						fieldDescription="Click the '+' button to add a new recognized section"
 						fieldLabel="Sections"
 						name="./sections"
 						xtype="multifield">
