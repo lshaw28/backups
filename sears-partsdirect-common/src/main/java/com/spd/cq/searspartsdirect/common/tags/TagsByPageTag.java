@@ -1,6 +1,7 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,7 +20,7 @@ import com.day.cq.tagging.TagManager;
  *
  */
 public class TagsByPageTag extends CQBaseTag {
-
+	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(TagsByPageTag.class);
 	protected String pagepath;
 	protected String tagType;
@@ -27,6 +28,7 @@ public class TagsByPageTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		ArrayList<Tag> tags = new ArrayList<Tag>();
+		LinkedHashSet<String> parentCategoryTitles = new LinkedHashSet<String>();
 		Tag brandTag = null;
 		Tag parentCategoryTag = null;
 		Tag productTag = null;
@@ -37,10 +39,12 @@ public class TagsByPageTag extends CQBaseTag {
 		Tag[] pageTags = null;
 		if (pagepath != null) {
 			pageTags = pageManager.getPage(pagepath).getTags();
+			
 		}
 		else {
 			pageTags = currentPage.getTags();
 		}
+		
 		Pattern p;
 		Matcher m;
 		for (Tag tag : pageTags) {
@@ -55,7 +59,7 @@ public class TagsByPageTag extends CQBaseTag {
 					brandTag = tag;
 				}
 			}
-			//Parent Category
+			//Parent Category - creates the parentCategoryTag tag and parentCategoryTitles ArrayList
 			if (tagType == null || tagType.equals("parentCategory")) {
 				p = Pattern.compile("(searspartsdirect:product_categories/[^/]+)");
 				m = p.matcher(tagID);
@@ -63,9 +67,11 @@ public class TagsByPageTag extends CQBaseTag {
 					Tag t = tm.resolve(m.group());
 					if (t != null) {
 						parentCategoryTag = t;
+						parentCategoryTitles.add(t.getTitle());
 					}
 				}
 			}
+			
 			//Product (Category)
 			if (tagType == null || tagType.equals("product")) {
 				p = Pattern.compile("(searspartsdirect:product_categories/[^/]+/[^/]+)");
@@ -77,6 +83,7 @@ public class TagsByPageTag extends CQBaseTag {
 					}
 				}
 			}
+			
 			//SubCategory
 			if (tagType == null || tagType.equals("subCategory")) {
 				p = Pattern.compile("(searspartsdirect:product_categories/[^/]+/[^/]+/[^/]+)");
@@ -104,6 +111,7 @@ public class TagsByPageTag extends CQBaseTag {
 		}
 		if (tagType == null || tagType.equals("parentCategory")) {
 			pageContext.setAttribute("parentCategoryTag",parentCategoryTag);
+			pageContext.setAttribute("parentCategoryTitles",parentCategoryTitles);
 		}
 		if (tagType == null || tagType.equals("product")) {
 			pageContext.setAttribute("productTag",productTag);
@@ -114,6 +122,7 @@ public class TagsByPageTag extends CQBaseTag {
 		if (tagType == null || tagType.equals("model")) {
 			pageContext.setAttribute("modelNumberTag",modelNumberTag);
 		}
+		
         return SKIP_BODY;
 	}
 	
