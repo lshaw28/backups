@@ -4,27 +4,27 @@
 /* Component: Global Header */
 .home_header {
 	margin: 0 20px;
-	background-color: #fff;
+	background-color: @bodyColor;
 }
 .home_header .inner_header {
 	position: relative;
 	padding: 60px 0 0 0;
 	z-index: 9;
-	background: #fff;
+	background: @bodyColor;
 }
 .body_shadow_left {
 	width: 6px;
 	height: 188px;
 	position: absolute;
 	left: -6px;
-	top: 0px;
+	top: 0;
 }
 .body_shadow_right {
 	width: 6px;
 	height: 188px;
 	position: absolute;
 	right: -6px;
-	top: 0px;
+	top: 0;
 }
 .home_logo {
 	position: absolute;
@@ -100,7 +100,7 @@
 }
 .cart_navigation ul li {
 	float: left;
-	background: #ebebeb;
+	background: @tableHoverColor;
 	line-height: 34px;
 	padding: 0;
 	margin: 0;
@@ -139,12 +139,12 @@
 }
 .cart_navigation ul li:hover a {
 	background: #304e88;
-	color: #fff;
+	color: @bodyColor;
 	border-right: 1px solid #304295;
 }
 .cart_navigation ul li.itemsInCart a {
 	background: #304e88;
-	color: #fff;
+	color: @bodyColor;
 	border-right: 1px solid #304295;
 }
 .cart_navigation ul li.itemsInCart a span {
@@ -170,7 +170,7 @@
 }
 .cart_navigation ul li.currentClass a {
 	background: #304295;
-	color: #fff;
+	color: @bodyColor;
 	border-right: 1px solid #304295;
 }
 .cart_navigation ul li.currentClass a span {
@@ -193,11 +193,11 @@ div#currentCart .itemInCart .partNumber:hover {
 	text-decoration: underline;
 }
 div#currentCart p.ghostCart_addedItem {
-	color: #666;
+	color: @bodyCopyColor;
 }
 #showCart h3 {
 	font-size: @paragraphSize;
-	color: #666;
+	color: @bodyCopyColor;
 	text-align: center;
 }
 #ItemsCarts div#currentCart #editLink a.arrow_blue_link {
@@ -214,7 +214,7 @@ div#currentCart p.ghostCart_addedItem {
 #RecentlyViewedDiv, #ItemsCartsDiv {
 	position: absolute;
 	top: 34px;
-	left: 0px;
+	left: 0;
 	width: 240px;
 	display: none;
 }
@@ -258,7 +258,7 @@ div#currentCart p.ghostCart_addedItem {
 }
 .resentViewTopRow .topLeftCurve {
 	position: absolute;
-	left: 0px;
+	left: 0;
 	top: 0;
 	width: 12px;
 	height: 8px;
@@ -267,7 +267,7 @@ div#currentCart p.ghostCart_addedItem {
 }
 .resentViewTopRow .topRightCurve {
 	position: absolute;
-	right: 0px;
+	right: 0;
 	top: 0;
 	width: 12px;
 	height: 8px;
@@ -284,7 +284,7 @@ div#currentCart p.ghostCart_addedItem {
 }
 .resentViewBottopRow .bottomLeftCurve {
 	position: absolute;
-	left: 0px;
+	left: 0;
 	bottom: 0;
 	width: 12px;
 	height: 11px;
@@ -293,7 +293,7 @@ div#currentCart p.ghostCart_addedItem {
 }
 .resentViewBottopRow .bottomRightCurve {
 	position: absolute;
-	right: 0px;
+	right: 0;
 	bottom: 0;
 	width: 12px;
 	height: 11px;
@@ -310,14 +310,14 @@ div#currentCart p.ghostCart_addedItem {
 	background-position: 228px top;
 	background-repeat: repeat-y;
 	float: left;
-	padding: 0px 8px;
+	padding: 0 8px;
 	width: 224px;
 }
 .view_row {
 	float: left;
 	width: 204px;
 	line-height: 150%;
-	background: #fff;
+	background: @bodyColor;
 	border-bottom: 1px solid #e0e0e0;
 	padding: 10px;
 	margin: 0;
@@ -325,7 +325,7 @@ div#currentCart p.ghostCart_addedItem {
 
 .view_row a {
 	float: none;
-	padding: 0 0 0 0px;
+	padding: 0 0 0 0;
 	color: #067bb5;
 	line-height: normal;
 	border: none;
@@ -372,7 +372,7 @@ div#currentCart p.ghostCart_addedItem {
 }
 .Our_finder {
 	bottom: -84px;
-	color: #fff;
+	color: @bodyColor;
 	left: 165px;
 	position: absolute;
 	z-index: 101;
@@ -383,16 +383,16 @@ div#currentCart p.ghostCart_addedItem {
 	left: 205px;
 }
 .Our_finder a {
-	color: #fff;
+	color: @bodyColor;
 }
 .Our_finder a:hover {
-	color: #fff;
+	color: @bodyColor;
 	text-decoration: underline;
 }
 .Our_finder span.arrow {
 	background-position: 0 -71px;
 	background-repeat: no-repeat;
-	color: #fff;
+	color: @bodyColor;
 	display: inline-block;
 	height: 4px;
 	padding: 0;
@@ -424,7 +424,7 @@ div#currentCart p.ghostCart_addedItem {
 	text-align: center;
 	font-size: @footerColumnSize;
 	padding: 0 0 10px 0;
-	color: #666;
+	color: @bodyCopyColor;
 	clear: both;
 }
 .tagline2 span {
@@ -485,7 +485,7 @@ div#currentCart p.ghostCart_addedItem {
 }
 .search_input_div {
 	position: absolute;
-	left: 0px;
+	left: 0;
 	top: 0;
 	height: 35px;
 	line-height: 35px;
@@ -502,19 +502,19 @@ div#currentCart p.ghostCart_addedItem {
 	width: 93%;
 	padding: 0 10px;
 	height: 35px;
-	border: 0px;
-	background: #fff;
+	border: 0;
+	background: @bodyColor;
 	line-height: 35px;
-	color: #666;
+	color: @bodyCopyColor;
 	font-size: @footerColumnSize;
-	font-family: arial;
+	font-family: @standardFont;
 }
 .in {
 	float: left;
 	padding: 0 10px;
 	text-align: center;
 	font-size: 26px;
-	color: #fff;
+	color: @bodyColor;
 }
 .search_input_div .input2 {
 	float: left;
@@ -524,14 +524,14 @@ div#currentCart p.ghostCart_addedItem {
 	margin: 0 240px 0 15px;
 	padding: 0 10px;
 	height: 35px;
-	border: 0px;
-	background: #fff;
+	border: 0;
+	background: @bodyColor;
 	line-height: 35px;
-	color: #666;
+	color: @bodyCopyColor;
 	font-size: @footerColumnSize;
-	font-family: arial;
+	font-family: @standardFont;
 	width: 90%;
-	border-radius: 0;
+	.borderRadius(0);
 }
 .search_input_div .input3 {
 	float: left;
@@ -541,33 +541,33 @@ div#currentCart p.ghostCart_addedItem {
 .search_input_div .input3 .input_3 {
 	padding: 0 10px;
 	height: 35px;
-	border: 0px;
-	background: #fff;
+	border: 0;
+	background: @bodyColor;
 	line-height: 35px;
-	color: #666;
+	color: @bodyCopyColor;
 	font-size: @footerColumnSize;
-	font-family: arial;
+	font-family: @standardFont;
 	width: 55%;
 }
 .new_fFinputType {
 	background-color: transparent;
 	padding: 0 0 0 5px;
 	height: 35px;
-	border: 0px;
+	border: 0;
 	line-height: 35px;
-	color: #666;
+	color: @bodyCopyColor;
 	font-size: @paragraphSize;
-	font-family: arial;
+	font-family: @standardFont;
 	width: 85%;
 	font-weight: bold;
 }
 .new_DdArrow {
-	background-color: #fff;
+	background-color: @bodyColor;
 	background-position: 90% center;
 	background-repeat: no-repeat;
 	float: left;
 	width: 66%;
-	border-radius: 2px;
+	.borderRadius(2px);
 	border: 1px solid #cccccc;
 	background-image: url(../img/drop_arrow.png);
 }
@@ -575,28 +575,28 @@ div#currentCart p.ghostCart_addedItem {
 	border: none;
 	padding: 9px 0 0 11px;
 	height: 13px;
-	border-radius: 0;
+	.borderRadius(0);
 }
 .search_input_div .input_btn {
 	position: absolute;
-	right: 0px;
-	top: 0px;
+	right: 0;
+	top: 0;
 }
 .search_input_div .input_btn a {
 	float: left;
 	text-decoration: none;
-	color: #fff;
+	color: @bodyColor;
 	height: 36px;
 	line-height: 35px;
-	padding: 0px 22px 0 22px;
+	padding: 0 22px 0 22px;
 	background: #ff6600;
-	border-radius: 2px;
-	text-shadow: 1px 1px 0px #666;
+	.borderRadius(2px);
+	text-shadow: 1px 1px 0 @bodyCopyColor;
 	text-align: center;
 	font-size: @paragraphSize;
 }
 .search_input_div p {
-	color: #fff;
+	color: @bodyColor;
 	float: left;
 	margin: -3px 0 0 0;
 	padding: 0 0 0 15px;
@@ -604,25 +604,25 @@ div#currentCart p.ghostCart_addedItem {
 }
 .search_input_div p a {
 	text-decoration: underline;
-	color: #fff;
+	color: @bodyColor;
 }
 ul.ui-autocomplete li.autocompleteSectionCnt {
 	margin: 1px 0 0;
 }
 .new_popMenu {
 	display: none;
-	left: 0px;
+	left: 0;
 	position: absolute;
 	top: 35px;
 	width: 148px;
-	background-color: #fff;
-	border: 0px solid #ccc;
-	border-top: 0px;
+	background-color: @bodyColor;
+	border: 0 solid #ccc;
+	border-top: 0;
 }
 .new_popMenu ul.selType {
 	list-style: none outside none;
-	padding: 0px;
-	background-color: #fff;
+	padding: 0;
+	background-color: @bodyColor;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
@@ -640,7 +640,7 @@ ul.ui-autocomplete li.autocompleteSectionCnt {
 }
 .new_popMenu ul.selType li a:hover {
 	background-color: #067bb5;
-	color: #FFF;
+	color: @bodyColor;
 }
 .login_navigation ul li a {
 	float: left;
@@ -681,31 +681,31 @@ ul.ui-autocomplete li.autocompleteSectionCnt {
 	padding: 10px;
 	color: #436eb8;
 	border: 1px solid #436eb8;
-	border-radius: 4px 4px 0 0px;
+	.borderRadius(4px 4px 0 0);
 }
 .phone_menu_tabs ul li.active a {
-	color: #fff;
+	color: @bodyColor;
 	height: 32px;
 	line-height: 32px;
 	background-color: #426dbf;
 	border-width: 3px;
-	border-radius: 4px 4px 0 0;
+	.borderRadius(4px 4px 0 0);
 	text-align: center;
 	font-size: @paragraphSize;
 	padding: 10px;
 }
 .phone_menu_tabs ul li:first-child a {
-	border-radius: 4px 0 0 0;
+	.borderRadius(4px 0 0 0);
 	padding: 10px 10px 10px 41px;
 }
 .phone_menu_tabs ul li:first-child.active a {
-	border-radius: 4px 4px 0 0;
+	.borderRadius(4px 4px 0 0);
 }
 .phone_menu_tabs ul li:last-child a {
-	border-radius: 0 4px 0 0;
+	.borderRadius(0 4px 0 0);
 }
 .phone_menu_tabs ul li:last-child.active a {
-	border-radius: 4px 4px 0 0;
+	.borderRadius(4px 4px 0 0);
 }
 .mag_glass_icon a {
 	background-position: 17% center;
@@ -729,7 +729,7 @@ ul.ui-autocomplete li.autocompleteSectionCnt {
 }
 .manuals_help_list li a {
 	text-decoration: none;
-	color: #fff;
+	color: @bodyColor;
 }
 .mani_search_panel .tagline1 {
 	display: none;
@@ -745,7 +745,7 @@ ul.ui-autocomplete li.autocompleteSectionCnt {
 }
 .Our_finder {
 	bottom: -79px;
-	color: #fff;
+	color: @bodyColor;
 	left: 157px;
 	position: absolute;
 	z-index: 101;

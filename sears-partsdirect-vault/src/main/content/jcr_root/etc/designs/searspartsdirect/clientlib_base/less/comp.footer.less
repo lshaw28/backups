@@ -6,7 +6,7 @@
 	float: left;
 	width: 963px;
 	margin: 0 0 0 20px;
-	border-top: 2px solid #fff;
+	border-top: 2px solid @bodyColor;
 	position: relative;
 }
 .gray_border {
@@ -15,12 +15,12 @@
 	height: 1px;
 	position: absolute;
 	top: -2px;
-	left: 0px;
+	left: 0;
 }
 .footer_one {
 	float: left;
 	width: 100%;
-	background: #ebebeb;
+	background: @tableHoverColor;
 }
 .footer_one .column_one {
 	float: left;
@@ -46,7 +46,7 @@
 }
 .footer_one .column_one a span {
 	display: block;
-	color: #666;
+	color: @bodyCopyColor;
 	font-size: @smallLinkSize;
 	font-weight: normal;
 }
@@ -90,7 +90,7 @@
 	float: left;
 	width: 246px;
 	margin: 0 15px 0 20px;
-	padding: 20px 0px 15px 0px;
+	padding: 20px 0 15px 0;
 }
 .footer_one .column_two .fast_shipping {
 	float: left;
@@ -109,7 +109,7 @@
 	background-repeat: no-repeat;
 }
 .footer_one .column_two .fast_shipping .icon_bg_curves {
-	background-position: -149px 0px;
+	background-position: -149px 0;
 	background-repeat: no-repeat;
 	position: absolute;
 	width: 45px;
@@ -124,10 +124,10 @@
 }
 .footer_one .column_two .shipping_cont {
 	float: left;
-	padding: 5px 20px 10px 0px;
+	padding: 5px 20px 10px 0;
 	margin: 0 0 0 30px;
-	background: none #fff;
-	border-radius: 3px;
+	background: none @bodyColor;
+	.borderRadius(3px);
 	width: 100%;
 }
 .footer_one .column_two .shipping_cont h3 {
@@ -151,7 +151,7 @@
 	color: #304e88;
 }
 .footer_one .column_two .shipping_cont p {
-	color: #666;
+	color: @bodyCopyColor;
 	font-size: @smallLinkSize;
 	padding-left: 36px;
 	clear: both;
@@ -167,7 +167,7 @@
 	position: relative;
 	text-align: center;
 	color: #4577a3;
-	border-radius: 2px;
+	.borderRadius(2px);
 }
 .footer_one .column_two .shipping_cont a span {
 	width: 15px;
@@ -180,16 +180,16 @@
 }
 #car_icon {
 	position: absolute;
-	left: 0px;
+	left: 0;
 	top: 41px;
-	background-position: -87px 0px;
+	background-position: -87px 0;
 	background-repeat: no-repeat;
 	height: 44px;
 	width: 60px;
 }
 #right_icon {
 	position: absolute;
-	left: 0px;
+	left: 0;
 	top: 42px;
 	background-position: -91px -48px;
 	background-repeat: no-repeat;
@@ -202,7 +202,7 @@
 	padding: 20px 25px 15px 20px;
 }
 .footer_one .column_three h3 {
-	color: #666;
+	color: @bodyCopyColor;
 	font-size: @header4Size;
 	font-weight: normal;
 	display: block;
@@ -220,12 +220,12 @@
 .column_three ul {
 	float: left;
 	margin: 10px 0 0 0;
-	padding: 0px;
+	padding: 0;
 	list-style-type: none;
 }
 .column_three ul li {
 	display: block;
-	margin: 0px;
+	margin: 0;
 	padding: 0 0 9px 0;
 }
 .column_three ul li a {
@@ -242,7 +242,7 @@
 	background-repeat: repeat-x;
 }
 .footer_two .glow_div {
-	margin: 0px auto;
+	margin: 0 auto;
 	width: 100%;
 	height: 6px;
 	background-color: #304e88;
@@ -253,9 +253,8 @@
 }
 .footer_two .footer_a_div a {
 	float: left;
-	font-family: Verdana;
 	font-size: @loginNavigationSize;
-	color: #666;
+	color: @bodyCopyColor;
 	margin: 12px 13px 0 13px;
 	text-decoration: none;
 }
@@ -266,7 +265,7 @@
 	width: 150px;
 	float: left;
 	padding: 12px 0 0 0;
-	color: #666;
+	color: @bodyCopyColor;
 }
 .footer_two .otherLogos {
 	width: 88px;
@@ -275,10 +274,10 @@
 }
 .footer_three {
 	float: left;
-	padding: 15px 0px;
+	padding: 15px 0;
 	width: 100%;
-	font-family: arial;
-	color: #666;
+	font-family: @standardFont;
+	color: @bodyCopyColor;
 }
 .footer_three .f_left {
 	float: left;
@@ -297,7 +296,7 @@
 .footer_one .column_one {
 	float: left;
 	width: 33%;
-	padding: 20px 0px 16px 25px;
+	padding: 20px 0 16px 25px;
 }
 .footer_one .column_one a {
 	width: 100%;
@@ -307,10 +306,10 @@
 	margin: -4px 15px 0 0;
 }
 .footer_one .column_one a #icon_2 {
-	background-position: 0px -52px;
+	background-position: 0 -52px;
 }
 .footer_one .column_one a:hover #icon_1 {
-	background-position: -44px 0px;
+	background-position: -44px 0;
 }
 .footer_one .column_one a:hover #icon_2 {
 	background-position: -44px -52px;
@@ -318,7 +317,7 @@
 .footer_one .column_one a p {
 	font-size: @header4Size;
 	font-weight: 600;
-	margin: 0px 0 2px 0;
+	margin: 0 0 2px 0;
 }
 .footer_one .column_one a span {
 	font-size: @paragraphSize;
@@ -332,7 +331,7 @@
 	width: 26%;
 	position: relative;
 	margin: 0 auto;
-	padding: 20px 0px 15px 0px;
+	padding: 20px 0 15px 0;
 	float: none;
 }
 .footer_one .column_two .shipping_cont p {
@@ -342,7 +341,7 @@
 	margin: 4px 0 0 0;
 }
 .footer_one .column_two .shipping_cont {
-	padding: 2px 20px 18px 0px;
+	padding: 2px 20px 18px 0;
 }
 .footer_one .column_two .fast_shipping {
 	float: left;
@@ -379,7 +378,7 @@
 .footer_one .column_three {
 	float: right;
 	width: 31%;
-	padding: 0px 25px 15px 0px;
+	padding: 0 25px 15px 0;
 	margin: -185px 0 0 0;
 }
 .footer_one .column_three h3 {
@@ -391,7 +390,7 @@
 .column_three p {
 	float: left;
 	width: 100%;
-	padding: 0 0 0px 0;
+	padding: 0 0 0 0;
 	font-size: @footerColumnSize;
 	margin: 0 0 3px 0;
 }
@@ -401,7 +400,7 @@
 }
 .column_three ul li {
 	display: block;
-	margin: 0px;
+	margin: 0;
 	padding: 0 0 6px 0;
 }
 .footer_one .column_three ul li a {
@@ -414,12 +413,12 @@
 .footer_one .column_three form p {
 	margin: 0 0 5px 0;
 	font-size: @paragraphSize;
-	color: #666;
-	font-family: Arial, Helvetica, sans-serif;
+	color: @bodyCopyColor;
+	font-family: @standardFont;
 }
 .footer_one .column_three form input {
 	float: left;
-	border-radius: 0;
+	.borderRadius(0);
 	margin: 0 5px 0 0;
 	padding: 10px 0 10px 12px;
 	border: 1px solid #cccccc;
@@ -428,15 +427,15 @@
 	float: left;
 	font-size: @smallLinkSize;
 	font-weight: bold;
-	margin: 0px 0 0 3px;
+	margin: 0 0 0 3px;
 	padding: 10px 27px;
 	border: 1px solid #b5cde4;
 	position: relative;
 	text-align: center;
 	color: #4577a3;
-	border-radius: 2px;
+	.borderRadius(2px);
 	background-image: none;
-	background-color: #fff;
+	background-color: @bodyColor;
 }
 .new_homePage_footer_inner_page .footer_two .copyright {
 	width: 130px;
@@ -456,5 +455,5 @@
 	width: 100%;
 	background-position: bottom left;
 	background-repeat: repeat-x;
-	background: #fff;
+	background: @bodyColor;
 }

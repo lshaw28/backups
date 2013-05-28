@@ -4,7 +4,7 @@
 /* Component: Main Carousel */
 .main_carousel {
 	position: relative;
-	left: 0px;
+	left: 0;
 }
 .main_carousel_arrow_button {
 	width: 48px;
@@ -140,7 +140,7 @@
 	background-position: -308px -1860px;
 }
 .main_carousel li .mc_slide_bottom {
-	background-color: #ebebeb;
+	background-color: @tableHoverColor;
 	width: 290px;
 	height: 170px;
 	margin: 0 5px;
@@ -167,11 +167,11 @@
 	display: block;
 	position: relative;
 	float: left;
-	background-color: #fff;
+	background-color: @bodyColor;
 	border: 1px solid #b5cde4;
 	padding: 4px 15px 4px 15px;
 	font-weight: bold;
-	border-radius: 2px;
+	.borderRadius(2px);
 }
 .main_carousel li .mc_slide_bottom .mc_slide_content a:hover {
 }
@@ -188,9 +188,9 @@
 	line-height: 30px;
 	width: 890px;
 	margin: 0 auto;
-	background-color: #ebebeb;
+	background-color: @tableHoverColor;
 	position: relative;
-	left: 0px;
+	left: 0;
 }
 .main_carousel .mc_slide_number_bar a {
 	margin: 0 1px;
@@ -200,6 +200,6 @@
 	text-decoration: none;
 }
 .main_carousel .mc_slide_number_bar a.mcsn_active {
-	color: #fff;
+	color: @bodyColor;
 	background-position: -405px -219px;
 }

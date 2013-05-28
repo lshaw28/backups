@@ -4,14 +4,14 @@
 /* Component: Accordion */
 .accordion-group {
 	margin-bottom: 2px;
-	border-radius: 0;
+	.borderRadius(0);
 	border: none;
-	background: #ebebeb;
+	background: @tableHoverColor;
 }
 .accordion-heading .accordion-toggle {
 	display: block;
 	padding: 8px 15px;
-	color: #666;
+	color: @bodyCopyColor;
 }
 .accordion-heading .accordion-toggle span {
 	font-weight: bold;
@@ -28,10 +28,10 @@
 }
 .accordion .accordion-body {
 	margin-bottom: 2px;
-	border-radius: 0;
+	.borderRadius(0);
 	border: none;
-	background: #ebebeb;
-	color: #666;
+	background: @tableHoverColor;
+	color: @bodyCopyColor;
 }
 .accordion .description-text {
 	width: 26%;
@@ -44,7 +44,7 @@
 	margin: 0 25px 20px 0;
 }
 .accordion .search-model-num input {
-	border-radius: 0;
+	.borderRadius(0);
 	width: 95%;
 	height: 45px;
 }
