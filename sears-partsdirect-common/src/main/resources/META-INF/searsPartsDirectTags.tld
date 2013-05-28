@@ -153,4 +153,9 @@
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetImagePathTag</tag-class>
 		 <info>Provides the path of an image</info>
 	</tag>
+	<tag>
+	   <name>guideNavigation</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GuideNavigationTag</tag-class>
+		 <info>Provides information to the guideNavigation component</info>
+	</tag>
 </taglib>
