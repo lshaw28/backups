@@ -14,6 +14,8 @@ import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
+
 public class GuideNavigationTag extends CQBaseTag {
 	protected static Logger log = LoggerFactory
 			.getLogger(GuideNavigationTag.class);
@@ -21,6 +23,26 @@ public class GuideNavigationTag extends CQBaseTag {
 	// We need a collection from somewhere which is what components we try to link to
 	// Do we always look in the same parsys? Same as we are, or fixed, or configd?
 	// Do we ever look in more than one?
+	private static abstract class LabelGenerator {
+		public abstract String generateLabel(Node beingLabelled);
+	}
+	private static class SubheadLabelGenerator extends LabelGenerator {
+		public String generateLabel(Node subheadBeingLabelled) {
+			String label = Constants.EMPTY;
+			try {
+				label = subheadBeingLabelled.getProperty("textvalue").getString();
+			} catch (Exception e) {
+				log.error("retrieving subhead label: ",e);
+			}
+			return label;
+		}
+	}
+	private final static Map<String,LabelGenerator> specialLabelGenerators = initSpecialLabelGenerators();
+	private final static Map<String,LabelGenerator> initSpecialLabelGenerators() {
+		Map<String,LabelGenerator> generators = new HashMap<String,LabelGenerator>();
+		generators.put("searspartsdirect/components/content/subhead", new SubheadLabelGenerator());
+		return generators;
+	}
 	
 	
 	@Override
@@ -57,7 +79,13 @@ public class GuideNavigationTag extends CQBaseTag {
 				}
 				String labelFound = typeToLabel.get(siblingResourceType);
 				if (labelFound != null) {
-					// Will need special treatment for "Comments" to get the count in..
+					if (labelFound.matches(" *")) {
+						// look for and use special label generator
+						LabelGenerator specialGenerator = specialLabelGenerators.get(siblingResourceType);
+						if (specialGenerator != null) {
+							labelFound = specialGenerator.generateLabel(parSibling);
+						}
+					}
 					List<String> item = new ArrayList<String>();
 					item.add(labelFound);
 					item.add(parsysParent.getName()+"_"+parSibling.getName());
