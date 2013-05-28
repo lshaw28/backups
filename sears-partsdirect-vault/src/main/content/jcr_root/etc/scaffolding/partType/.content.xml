@@ -4,12 +4,12 @@
     <jcr:content
         cq:lastModified="{Date}2013-05-23T16:44:54.231-04:00"
         cq:lastModifiedBy="admin"
-        cq:targetPath="/etc/spdAssets/scaffolding/brand"
-        cq:targetTemplate="/apps/searspartsdirect/templates/scaffolding/brand"
+        cq:targetPath="/etc/spdAssets/scaffolding/partType"
+        cq:targetTemplate="/apps/searspartsdirect/templates/scaffolding/partType"
         cq:template="/libs/wcm/scaffolding/templates/scaffolding"
-        jcr:description="Brand desc"
+        jcr:description="Part Type desc"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Brand"
+        jcr:title="Part Type"
         sling:resourceType="wcm/scaffolding/components/scaffolding">
         <dialog/>
     </jcr:content>
