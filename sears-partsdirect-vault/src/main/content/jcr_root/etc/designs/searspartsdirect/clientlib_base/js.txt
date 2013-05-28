@@ -1,8 +1,10 @@
 #base=js/.
+bootstrap.min.js
 Modernizr.js
 Class.js
 Utilities.js
 DocumentReady.js
 WindowResize.js
+TemporaryScripts.js
 #base=js/components/.
 responsiveImage.js
