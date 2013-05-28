@@ -105,9 +105,9 @@
 		<info>Sets page context information required for Tools Required for Repair</info>
 	</tag>
 	<tag>
-		<name>category101</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.Category101Tag</tag-class>
-		<info>Sets page context information required for Category 101 categories</info>
+		<name>getMultifieldCategories</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMultifieldCategoriesTag</tag-class>
+		<info>Sets page context information required for Category 101 multifield categories</info>
 	</tag>
 	<tag>
 	   <name>getBrandCategoryModelNo</name>
