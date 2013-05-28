@@ -4,10 +4,12 @@ public class ProductCategoryModel {
 	
 	private String title;
 	private String description;
+	private String imagePath;
 	
-	public ProductCategoryModel(String title, String description) {
+	public ProductCategoryModel(String title, String description, String imagePath) {
 		this.title = title;
 		this.description = description;
+		this.imagePath = imagePath;
 	}
 	
 	public String getTitle() {
@@ -22,5 +24,12 @@ public class ProductCategoryModel {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }

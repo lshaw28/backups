@@ -33,8 +33,8 @@
 		</attribute>
 	</tag>
 	<tag>
-	<name>image</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.ImageTag</tag-class>
+	<name>displayImage</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.DisplayImageTag</tag-class>
 		<info>Displays an image</info>
 		<attribute>
 			<name>path</name>
@@ -157,5 +157,10 @@
 	   <name>guideNavigation</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GuideNavigationTag</tag-class>
 		 <info>Provides information to the guideNavigation component</info>
+	</tag>
+	<tag>
+		<name>getAssets</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAssetsTag</tag-class>
+ 		<info>Returns a list of SPD Assets for given filters</info>
 	</tag>
 </taglib>

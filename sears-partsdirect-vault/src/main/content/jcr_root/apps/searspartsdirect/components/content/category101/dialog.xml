@@ -11,6 +11,7 @@
 					   fieldLabel="New Header"
 					   name="./header"
 					   xtype="textfield"
+					   maxLength="42"
 					   fieldDescription="Character limit is 42" />
 					   
 				<multi
