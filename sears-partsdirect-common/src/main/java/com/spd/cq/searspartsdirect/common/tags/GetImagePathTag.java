@@ -8,24 +8,25 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.foundation.Image;
 
 public class GetImagePathTag extends CQBaseTag {
+	
 	protected static Logger log = LoggerFactory.getLogger(GetImagePathTag.class);
-
-
+	
 	@Override
 	public int doStartTag() throws JspException {
+		log.info("GetImagePathTag Start");
 		Image image1 = new Image(resource, "image1");
-		String image1Src = image1.getFileReference();
+		String desktopImage = image1.getFileReference();
 		
 		Image image2 = new Image(resource, "image2");
-		String image2Src = image2.getFileReference();
+		String tabletImage = image2.getFileReference();
 		
 		Image image3 = new Image(resource, "image3");
-		String image3Src = image3.getFileReference();
+		String mobileImage = image3.getFileReference();
 		
-		pageContext.setAttribute("image1Path", image1Src);
-		pageContext.setAttribute("image2Path", image2Src);
-		pageContext.setAttribute("image3Path", image3Src);
-		
+		pageContext.setAttribute("desktopImagePath", desktopImage);
+		pageContext.setAttribute("tabletImagePath", tabletImage);
+		pageContext.setAttribute("mobileImagePath", mobileImage);
+		log.info("GetImagePathTag End");
 		return SKIP_BODY;
 	}
 	
