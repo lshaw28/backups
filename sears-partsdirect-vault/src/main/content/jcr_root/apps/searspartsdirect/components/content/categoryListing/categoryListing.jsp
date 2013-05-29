@@ -17,7 +17,7 @@
 		<a href="${category.url}.html">${category.title}</a></li>
 	 </c:forEach>  --%>
 	
-	 <c:forEach var="category" items="${models}">
+	 <c:forEach var="category" items="${productCategories}">
 		<spd:displayImage path="${category.imagePath}"/>
 		${category.title} <br><br>
 	 </c:forEach>
