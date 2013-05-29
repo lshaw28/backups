@@ -10,9 +10,15 @@ import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
 import javax.servlet.jsp.JspException;
+
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.adobe.cq.social.commons.*;
+
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
@@ -24,10 +30,10 @@ public class GuideNavigationTag extends CQBaseTag {
 	// Do we always look in the same parsys? Same as we are, or fixed, or configd?
 	// Do we ever look in more than one?
 	private static abstract class LabelGenerator {
-		public abstract String generateLabel(Node beingLabelled);
+		public abstract String generateLabel(Node beingLabelled, ResourceResolver rr);
 	}
 	private static class SubheadLabelGenerator extends LabelGenerator {
-		public String generateLabel(Node subheadBeingLabelled) {
+		public String generateLabel(Node subheadBeingLabelled, ResourceResolver rr) {
 			String label = Constants.EMPTY;
 			try {
 				label = subheadBeingLabelled.getProperty("textvalue").getString();
@@ -38,9 +44,20 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 	}
 	private static class CommentsLabelGenerator extends LabelGenerator {
-		public String generateLabel(Node commentsBeingLabelled) {
+		public String generateLabel(Node commentsBeingLabelled, ResourceResolver rr) {
 			StringBuilder label = new StringBuilder("Comments");
-			
+			try {
+				Resource thoseComments = rr.resolve(commentsBeingLabelled.getPath());
+				CommentSystem thatCs = thoseComments.adaptTo(CommentSystem.class);
+				if (log.isDebugEnabled()) {
+					log.debug("comments node is "+commentsBeingLabelled);
+					log.debug("thoseComments is "+thoseComments);
+					log.debug("thatCs is "+thatCs)
+;				}
+				label.append(" (").append(thatCs.countComments()).append(")");
+			} catch (RepositoryException re) {
+				log.warn("finding out about comments, ",re);
+			}
 			return label.toString();
 		}
 	}
@@ -48,6 +65,7 @@ public class GuideNavigationTag extends CQBaseTag {
 	private final static Map<String,LabelGenerator> initSpecialLabelGenerators() {
 		Map<String,LabelGenerator> generators = new HashMap<String,LabelGenerator>();
 		generators.put("searspartsdirect/components/content/subhead", new SubheadLabelGenerator());
+		generators.put("searspartsdirect/components/content/comments",new CommentsLabelGenerator());
 		return generators;
 	}
 	
@@ -100,7 +118,7 @@ public class GuideNavigationTag extends CQBaseTag {
 						// look for and use special label generator
 						LabelGenerator specialGenerator = specialLabelGenerators.get(siblingResourceType);
 						if (specialGenerator != null) {
-							labelFound = specialGenerator.generateLabel(parSibling);
+							labelFound = specialGenerator.generateLabel(parSibling,resourceResolver);
 						}
 					}
 					List<String> item = new ArrayList<String>();
