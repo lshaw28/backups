@@ -98,17 +98,34 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		
 		// wrapper to store components
 		this.containerPanel = new CQ.Ext.Panel({
-			"layout": "column"
+			'layout': 'column'
 		});
+		
+		// create colletions model
+		this.dataStore = new CQ.Ext.data.Store({
+			writer: new CQ.Ext.data.JsonWriter({
+				encode: true
+			}),
+			proxy: new CQ.Ext.data.MemoryProxy(),
+			reader: new CQ.Ext.data.ArrayReader({}, CQ.Ext.data.Record.create([{
+				name: 'path'
+			}]))
+		});
+		this.dataStore.load();
 		
 		// tree configs
 		this.initTreePanel();
+		
+		// grid configs
+		this.initGridPanel();
 		
 		// append container to main
 		this.add(this.containerPanel);
 	},
 	/**
+	 * Initialize {TreePanel
 	 * @private
+	 * @return {undefined}
 	 */
 	initTreePanel: function () {
 		var _this = this;
@@ -130,7 +147,9 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 				dataUrl: CQ.HTTP.externalize('/bin/wcm/siteadmin/tree.json'),
 				requestMethod: 'GET',
 				// request params
-				baseParams: {'_charset_': 'utf-8'},
+				baseParams: {
+					'_charset_': 'utf-8'
+				},
 				// change request params before loading
 				listeners: {
 					beforeload: function(loader, node) {
@@ -166,10 +185,62 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		this.containerPanel.add(this.treePanel);
 	},
 	/**
+	 * Initialize Grid Panel
 	 * @private
+	 * @return {undefined}
 	 */
 	initGridPanel: function () {
+		var _this = this;
 		
+		this.gridPanel = new CQ.Ext.grid.GridPanel({
+			border: false,
+			columnWidth: 1,
+			style: 'min-height: ' + Shc.components.extsrc.PAGE_MAPPER_HEIGHT + 'px;',
+			autoHeight: true,
+			loadMask: true,
+			stripeRows: true,
+			autoExpandColumn: 'path',
+			enableColumnMove: false,
+			enableDragDrop: false,
+			// collections model
+			store: _this.dataStore,
+			enableHdMenu: false,
+			sm: new CQ.Ext.grid.RowSelectionModel({
+				singleSelect: true
+			}),
+			cm :new CQ.Ext.grid.ColumnModel([
+			{
+				'id': 'path',
+				'header': 'Content Path',
+				'dataIndex': 'path',
+				'sortable': true
+			}
+			])
+		});
+		
+		// enable drop configs and actions
+		this.gridPanel.on('render', function () {
+			return new CQ.Ext.dd.DropTarget(this.getEl(), {
+				ddGroup: Shc.components.extsrc.PAGE_MAPPER_GROUPDD,
+				grid: this,
+				// drop event callback
+				notifyDrop: function(dd, e, data) {
+					// clean up path
+					var path = data.node.attributes.loader.baseParams.path.toString().substr(1) +
+						'/' + data.node.attributes.name;
+
+					// record new item
+					_this.dataStore.add(new _this.dataStore.recordType({
+						path: path
+					}, CQ.Ext.id()));
+
+					// add field
+					_this.addValue(path);
+				}
+			});
+		});
+		
+		this.containerPanel.add(this.gridPanel);
 	},
 	/**
 	 * Sets type to save on JCR property
@@ -177,8 +248,12 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 * @return {undefined}
 	 */
 	setDataType: function (type) {
+		// name of field
+		var name = this.formName
+		
+		// field config
 		this.typeField = new CQ.Ext.form.Hidden({
-			name: this.getName() + CQ.Sling.TYPEHINT_SUFFIX,
+			name: name + CQ.Sling.TYPEHINT_SUFFIX,
 			value: type
 		});
 		
@@ -193,17 +268,20 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	addValue: function (value) {
 		// name of field
 		var name = this.formName,
-			// hidden form to store value
-			field = new CQ.Ext.form.Hidden({
-				name: name,
-				value: value
-			});
+		// hidden form to store value
+		field = new CQ.Ext.form.Hidden({
+			name: name,
+			value: value
+		});
 		
 		// save reference
 		this.hiddenFields.push(field);
 		
 		// add to component
 		this.add(field);
+		
+		// render
+		this.doLayout();
 	},
 	/**
 	 * Removes specified hidden field from component
@@ -221,6 +299,9 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 				this.remove(this.hiddenFields[i].getId(), true);
 			}
 		}
+		
+		// render
+		this.doLayout();
 	}
 });
 
