@@ -8,7 +8,7 @@ import javax.servlet.jsp.JspException;
 
 import com.spd.cq.searspartsdirect.common.model.ErrorCodeModel;
 
-public class GetPagesByTagTag extends CQBaseTag {
+public class GetErrorCodesDataTag extends CQBaseTag {
 	
 	private static final long serialVersionUID = 1L;
 	private String categoryName;

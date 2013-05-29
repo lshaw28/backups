@@ -8,10 +8,10 @@ import javax.servlet.jsp.JspWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RegisterStatusTag extends CQBaseTag {
+public class GetLoginStatusTag extends CQBaseTag {
 	
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = LoggerFactory.getLogger(RegisterStatusTag.class);
+	protected static Logger log = LoggerFactory.getLogger(GetLoginStatusTag.class);
 	
 	
 	@Override
@@ -22,9 +22,9 @@ public class RegisterStatusTag extends CQBaseTag {
 			
 			//Make the API call to see if user is logged in 
 			 if (loggedIn) {
-				 out.print("My Profile");
+				 out.print("Logout");
 			 } else {
-				 out.print("Register");
+				 out.print("Login");
 			 }
 
 		} catch (IOException e) {
