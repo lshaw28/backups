@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+	xmlns:cq="http://www.day.com/jcr/cq/1.0" 
+	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
+	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
+	jcr:primaryType="cq:Component"
+	jcr:title="Comments"
+	jcr:description="Stub of comments component, currently directly inherits ootb"
+	sling:resourceSuperType="social/commons/components/comments"
+	componentGroup="SearsPartsDirect" />

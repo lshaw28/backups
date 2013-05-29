@@ -1,2 +1,2 @@
-#base=/etc/designs/searspartsdirect/clientlib_base/less/.
+#base=/etc/designs/searspartsdirect/clientlib_base/less/components/.
 comp.modelNumberSearch.less

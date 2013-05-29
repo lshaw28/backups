@@ -26,7 +26,6 @@ $(".shipping_cont a").hover(function () {
 
 var viewportWidth = $(window).width();
 if (viewportWidth <= 450) {
-    console.log("less than 450: " + viewportWidth);
     $("#searchBarSelectArea input").val("Select");
     $("#searchBarField").val("Model or Part #");
     $("#changeText").val("");
@@ -181,23 +180,6 @@ function menuTrigger() {
 		});
 	}
 
-	function hasClass(el, className) {
-		className = " " + className + " ";
-		return (el.nodeType === 1 && (" " + el.className + " ").replace(/[\n\t\r]/g, " ").indexOf(className) > -1);
-	}
-
-	function addClass(el, className) {
-		if (!hasClass(el, className)) {
-			el.className += (el.className ? ' ' : '') + className;
-		}
-	}
-
-	function removeClass(el, className) {
-		if (hasClass(el, className)) {
-			el.className = el.className.replace(new RegExp('(\\s|^)' + className + '(\\s|$)'), ' ').replace(/^\s+|\s+$/g, '');
-		}
-	}
-
 	function whichTransitionEvent() {
 		var t, el = document.createElement('fakeelement');
 		var transitions = {
@@ -218,5 +200,4 @@ function menuTrigger() {
 
 $(document).ready(function () {
 	searchTabs();
-	console.log("doc ready");
 });

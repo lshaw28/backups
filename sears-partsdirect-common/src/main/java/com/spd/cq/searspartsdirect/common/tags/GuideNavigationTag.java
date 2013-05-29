@@ -10,9 +10,15 @@ import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
 import javax.servlet.jsp.JspException;
+
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.adobe.cq.social.commons.*;
+
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
@@ -24,10 +30,10 @@ public class GuideNavigationTag extends CQBaseTag {
 	// Do we always look in the same parsys? Same as we are, or fixed, or configd?
 	// Do we ever look in more than one?
 	private static abstract class LabelGenerator {
-		public abstract String generateLabel(Node beingLabelled);
+		public abstract String generateLabel(Node beingLabelled, ResourceResolver rr);
 	}
 	private static class SubheadLabelGenerator extends LabelGenerator {
-		public String generateLabel(Node subheadBeingLabelled) {
+		public String generateLabel(Node subheadBeingLabelled, ResourceResolver rr) {
 			String label = Constants.EMPTY;
 			try {
 				label = subheadBeingLabelled.getProperty("textvalue").getString();
@@ -37,34 +43,63 @@ public class GuideNavigationTag extends CQBaseTag {
 			return label;
 		}
 	}
+	private static class CommentsLabelGenerator extends LabelGenerator {
+		public String generateLabel(Node commentsBeingLabelled, ResourceResolver rr) {
+			StringBuilder label = new StringBuilder("Comments");
+			try {
+				Resource thoseComments = rr.resolve(commentsBeingLabelled.getPath());
+				CommentSystem thatCs = thoseComments.adaptTo(CommentSystem.class);
+				if (log.isDebugEnabled()) {
+					log.debug("comments node is "+commentsBeingLabelled);
+					log.debug("thoseComments is "+thoseComments);
+					log.debug("thatCs is "+thatCs)
+;				}
+				label.append(" (").append(thatCs.countComments()).append(")");
+			} catch (RepositoryException re) {
+				log.warn("finding out about comments, ",re);
+			}
+			return label.toString();
+		}
+	}
 	private final static Map<String,LabelGenerator> specialLabelGenerators = initSpecialLabelGenerators();
 	private final static Map<String,LabelGenerator> initSpecialLabelGenerators() {
 		Map<String,LabelGenerator> generators = new HashMap<String,LabelGenerator>();
 		generators.put("searspartsdirect/components/content/subhead", new SubheadLabelGenerator());
+		generators.put("searspartsdirect/components/content/comments",new CommentsLabelGenerator());
 		return generators;
 	}
 	
-	
-	@Override
-	public int doStartTag() throws JspException {
-		// list containing lists [sectionresourcetype,sectionlabel]
-		// Really we want a Map<String:sectionresourcetype,String:sectionlabel>
+	private Map<String,String> getConfiguredTypeLabels() {
 		List<List<String>> typesAndLabels = this.getMenuItems("sections", currentNode);
 		Map<String,String> typeToLabel = new HashMap<String,String>();
 		for (List<String> aType : typesAndLabels) {
 			typeToLabel.put(aType.get(0).trim(), aType.get(1));
 		}
+		return typeToLabel;
+	}
+	
+	private Node getParsys() throws RepositoryException {
+		Node parsysParent = currentNode.getParent();
+		if (log.isDebugEnabled()) {
+			log.debug("parsysParent is "+parsysParent);
+			log.debug("parsysParent name is "+parsysParent.getName());
+		}
+		//TODO maybe check to be sure this is a parsys.
+		return parsysParent;
+	}
+	
+	@Override
+	public int doStartTag() throws JspException {
+		// list containing lists [sectionresourcetype,sectionlabel]
+		// Really we want a Map<String:sectionresourcetype,String:sectionlabel>
+		Map<String,String> typeToLabel = getConfiguredTypeLabels();
+		
 		if (log.isDebugEnabled()) log.debug("typeToLabel is "+typeToLabel);
 		// list containing lists [sectionlabel,sectionlink]
 		List<List<String>> sections = new ArrayList<List<String>>();
 		try {
 			if (log.isDebugEnabled()) log.debug("currentNode is "+currentNode);
-			Node parsysParent = currentNode.getParent();
-			if (log.isDebugEnabled()) {
-				log.debug("parsysParent is "+parsysParent);
-				log.debug("parsysParent name is "+parsysParent.getName());
-			}
-			//TODO maybe check to be sure this is a parsys.
+			Node parsysParent = getParsys();
 			NodeIterator parsysChildren = parsysParent.getNodes();
 			while (parsysChildren.hasNext()) {
 				Node parSibling = parsysChildren.nextNode();
@@ -73,7 +108,7 @@ public class GuideNavigationTag extends CQBaseTag {
 				}
 				String siblingResourceType = parSibling.getProperty("sling:resourceType").getString();
 				if (log.isDebugEnabled()) {
-					log.debug("a child is "+parSibling);
+					log.debug("parSibling is "+parSibling);
 					log.debug("parSibling name is "+parSibling.getName());
 					log.debug("parSibling resourceType is "+siblingResourceType);
 				}
@@ -83,7 +118,7 @@ public class GuideNavigationTag extends CQBaseTag {
 						// look for and use special label generator
 						LabelGenerator specialGenerator = specialLabelGenerators.get(siblingResourceType);
 						if (specialGenerator != null) {
-							labelFound = specialGenerator.generateLabel(parSibling);
+							labelFound = specialGenerator.generateLabel(parSibling,resourceResolver);
 						}
 					}
 					List<String> item = new ArrayList<String>();

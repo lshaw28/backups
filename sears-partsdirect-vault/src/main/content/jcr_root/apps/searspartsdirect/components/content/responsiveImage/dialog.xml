@@ -4,142 +4,87 @@
 		  activeTab="0"
 		  xtype="tabpanel">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<tab1
+		<desktopImageTab
 			jcr:primaryType="cq:Widget"
+			itemId="desktopImageTab"
+			cropParameter="./desktopImage/imageCrop"
+			ddGroups="[media]"
+			fileNameParameter="./desktopImage/fileName"
+			fileReferenceParameter="./desktopImage/fileReference"
+			blankText="An image is required"
+			name="./desktopImage/file"
+			requestSuffix="/desktopImage.img.png"
+			rotateParameter="./desktopImage/imageRotate"
+			sizeLimit="100"
 			title="Desktop Image"
-			xtype="panel">
-			<items jcr:primaryType="cq:WidgetCollection">
-	 		    <image
-	            jcr:primaryType="cq:Widget"
-	            cropParameter="./image1/imageCrop"
-	            ddGroups="[media]"
-	            fileNameParameter="./image1/fileName"
-	            fileReferenceParameter="./image1/fileReference"
-	            mapParameter="./image1/imageMap"
-	            name="./image1/file"
-	            requestSuffix=".image1/img.png"
-	            rotateParameter="./image1/imageRotate"
-	            title="Image1"
-	            xtype="html5smartimage"/>
-		         
-                <alt
-                    jcr:primaryType="cq:Widget"
-                    fieldDescription="(leave empty to use the title defined above)"
-                    fieldLabel="Alt Text"
-                    name="./image1/alt"
-                    xtype="textfield"/>
-                <linkURL
-                    jcr:primaryType="cq:Widget"
-                    fieldDescription="Drop files or pages from the Content Finder"
-                    fieldLabel="Link to"
-                    name="./image1/linkURL"
-                    xtype="pathfield"/>
-                 <resType
-                    jcr:primaryType="cq:Widget"
-                    ignoreData="{Boolean}true"
-                    name="./image1/sling:resourceType"
-                    value="foundation/components/image"
-                    xtype="hidden"/>
-			</items>
-		</tab1>
-        
-        <tab2
+			uploadUrl="/tmp/upload/*"
+			xtype="html5smartimage" />
+		<tabletImageTab
 			jcr:primaryType="cq:Widget"
+			itemId="tabletImageTab"
+			cropParameter="./tabletImage/imageCrop"
+			ddGroups="[media]"
+			fileNameParameter="./tabletImage/fileName"
+			fileReferenceParameter="./tabletImage/fileReference"
+			blankText="An image is required"
+			name="./tabletImage/file"
+			requestSuffix="/tabletImage.img.png"
+			rotateParameter="./tabletImage/imageRotate"
+			sizeLimit="100"
 			title="Tablet Image"
-			xtype="panel">
-			<items jcr:primaryType="cq:WidgetCollection">
-	 		    <image
-	            jcr:primaryType="cq:Widget"
-	            cropParameter="./image2/imageCrop"
-	            ddGroups="[media]"
-	            fileNameParameter="./image2/fileName"
-	            fileReferenceParameter="./image2/fileReference"
-	            mapParameter="./image2/imageMap"
-	            name="./image2/file"
-	            requestSuffix="./image2/img.png"
-	            rotateParameter="./image2/imageRotate"
-	            title="TabletImage"
-	            xtype="html5smartimage"/>
-		       		            	
-                <alt
-                    jcr:primaryType="cq:Widget"
-                    fieldDescription="(leave empty to use the title defined above)"
-                    fieldLabel="Alt Text"
-                    name="./image2/alt"
-                    xtype="textfield"/>
-                <linkURL
-                    jcr:primaryType="cq:Widget"
-                    fieldDescription="Drop files or pages from the Content Finder"
-                    fieldLabel="Link to"
-                    name="./image2/linkURL"
-                    xtype="pathfield"/>
-          		 <resType
-                    jcr:primaryType="cq:Widget"
-                    ignoreData="{Boolean}true"
-                    name="./image2/sling:resourceType"
-                    value="foundation/components/image"
-                    xtype="hidden"/>
-        	</items>
-        </tab2>
-        
-         <tab3
+			uploadUrl="/tmp/upload/*"
+			xtype="html5smartimage" />
+		<mobileImageTab
 			jcr:primaryType="cq:Widget"
+			itemId="mobileImageTab"
+			cropParameter="./mobileImage/imageCrop"
+			ddGroups="[media]"
+			fileNameParameter="./mobileImage/fileName"
+			fileReferenceParameter="./mobileImage/fileReference"
+			blankText="An image is required"
+			name="./mobileImage/file"
+			requestSuffix="/mobileImage.img.png"
+			rotateParameter="./mobileImage/imageRotate"
+			sizeLimit="100"
 			title="Mobile Image"
-			xtype="panel">
-			<items jcr:primaryType="cq:WidgetCollection">
-	 		    <image
-	            jcr:primaryType="cq:Widget"
-	            cropParameter="./image3/imageCrop"
-	            ddGroups="[media]"
-	            fileNameParameter="./image3/fileName"
-	            fileReferenceParameter="./image3/fileReference"
-	            mapParameter="./image3/imageMap"
-	            name="./image3/file"
-	            requestSuffix=".image3/img.png"
-	            rotateParameter="./image3/imageRotate"
-	            title="MobileImage"
-	            xtype="html5smartimage"/>
-		   
-                <alt
-                    jcr:primaryType="cq:Widget"
-                    fieldDescription="(leave empty to use the title defined above)"
-                    fieldLabel="Alt Text"
-                    name="./image3/alt"
-                    xtype="textfield"/>
-                <linkURL
-                    jcr:primaryType="cq:Widget"
-                    fieldDescription="Drop files or pages from the Content Finder"
-                    fieldLabel="Link to"
-                    name="./image3/linkURL"
-                    xtype="pathfield"/>
-           		 <resType
-                    jcr:primaryType="cq:Widget"
-                    ignoreData="{Boolean}true"
-                    name="./image3/sling:resourceType"
-                    value="foundation/components/image"
-                    xtype="hidden"/>
-        	</items>
-         </tab3>
-         
-         <!-- <tab4
+			uploadUrl="/tmp/upload/*"
+			xtype="html5smartimage" />
+		<imageDimensionsTab
 			jcr:primaryType="cq:Widget"
-			title="Image Details"
+			title="Image Dimensions"
 			xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-                <alt
+				<displayWidth
                     jcr:primaryType="cq:Widget"
-                    fieldDescription="(leave empty to use the title defined above)"
-                    fieldLabel="Alt Text"
-                    name="./image3/alt"
+                    fieldDescription="Set a specific display width for the image."
+                    fieldLabel="Display Width"
+                    name="./displayWidth"
                     xtype="textfield"/>
-                <linkURL
+				<displayHeight
                     jcr:primaryType="cq:Widget"
-                    fieldDescription="Drop files or pages from the Content Finder"
-                    fieldLabel="Link to"
-                    name="./image3/linkURL"
-                    xtype="pathfield"/>
-           
-        	</items>
-         </tab4> -->
-    </items>
+                    fieldDescription="Set a specific display height for the image."
+                    fieldLabel="Display Height"
+                    name="./displayHeight"
+                    xtype="textfield"/>
+				<desktopResType
+					jcr:primaryType="cq:Widget"
+					ignoreData="{Boolean}true"
+					name="./desktopImage/sling:resourceType"
+					value="foundation/components/image"
+					xtype="hidden" />
+				<tabletResType
+					jcr:primaryType="cq:Widget"
+					ignoreData="{Boolean}true"
+					name="./tabletImage/sling:resourceType"
+					value="foundation/components/image"
+					xtype="hidden" />
+				<mobileResType
+					jcr:primaryType="cq:Widget"
+					ignoreData="{Boolean}true"
+					name="./mobileImage/sling:resourceType"
+					value="foundation/components/image"
+					xtype="hidden" />
+			</items>
+		</imageDimensionsTab>
+	</items>
 </jcr:root>
