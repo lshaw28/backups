@@ -37,6 +37,13 @@ public class GuideNavigationTag extends CQBaseTag {
 			return label;
 		}
 	}
+	private static class CommentsLabelGenerator extends LabelGenerator {
+		public String generateLabel(Node commentsBeingLabelled) {
+			StringBuilder label = new StringBuilder("Comments");
+			
+			return label.toString();
+		}
+	}
 	private final static Map<String,LabelGenerator> specialLabelGenerators = initSpecialLabelGenerators();
 	private final static Map<String,LabelGenerator> initSpecialLabelGenerators() {
 		Map<String,LabelGenerator> generators = new HashMap<String,LabelGenerator>();
@@ -44,27 +51,37 @@ public class GuideNavigationTag extends CQBaseTag {
 		return generators;
 	}
 	
-	
-	@Override
-	public int doStartTag() throws JspException {
-		// list containing lists [sectionresourcetype,sectionlabel]
-		// Really we want a Map<String:sectionresourcetype,String:sectionlabel>
+	private Map<String,String> getConfiguredTypeLabels() {
 		List<List<String>> typesAndLabels = this.getMenuItems("sections", currentNode);
 		Map<String,String> typeToLabel = new HashMap<String,String>();
 		for (List<String> aType : typesAndLabels) {
 			typeToLabel.put(aType.get(0).trim(), aType.get(1));
 		}
+		return typeToLabel;
+	}
+	
+	private Node getParsys() throws RepositoryException {
+		Node parsysParent = currentNode.getParent();
+		if (log.isDebugEnabled()) {
+			log.debug("parsysParent is "+parsysParent);
+			log.debug("parsysParent name is "+parsysParent.getName());
+		}
+		//TODO maybe check to be sure this is a parsys.
+		return parsysParent;
+	}
+	
+	@Override
+	public int doStartTag() throws JspException {
+		// list containing lists [sectionresourcetype,sectionlabel]
+		// Really we want a Map<String:sectionresourcetype,String:sectionlabel>
+		Map<String,String> typeToLabel = getConfiguredTypeLabels();
+		
 		if (log.isDebugEnabled()) log.debug("typeToLabel is "+typeToLabel);
 		// list containing lists [sectionlabel,sectionlink]
 		List<List<String>> sections = new ArrayList<List<String>>();
 		try {
 			if (log.isDebugEnabled()) log.debug("currentNode is "+currentNode);
-			Node parsysParent = currentNode.getParent();
-			if (log.isDebugEnabled()) {
-				log.debug("parsysParent is "+parsysParent);
-				log.debug("parsysParent name is "+parsysParent.getName());
-			}
-			//TODO maybe check to be sure this is a parsys.
+			Node parsysParent = getParsys();
 			NodeIterator parsysChildren = parsysParent.getNodes();
 			while (parsysChildren.hasNext()) {
 				Node parSibling = parsysChildren.nextNode();
@@ -73,7 +90,7 @@ public class GuideNavigationTag extends CQBaseTag {
 				}
 				String siblingResourceType = parSibling.getProperty("sling:resourceType").getString();
 				if (log.isDebugEnabled()) {
-					log.debug("a child is "+parSibling);
+					log.debug("parSibling is "+parSibling);
 					log.debug("parSibling name is "+parSibling.getName());
 					log.debug("parSibling resourceType is "+siblingResourceType);
 				}
