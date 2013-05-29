@@ -16,27 +16,11 @@
             <parsys
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="foundation/components/parsys"
-                components="[group:SearsPartsDirect]">
-                <section jcr:primaryType="nt:unstructured"/>
-            </parsys>
-       	</base>
-        <home jcr:primaryType="nt:unstructured">
-            <parsys
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="foundation/components/parsys"
-                components="[group:SearsPartsDirect]">
-                <section jcr:primaryType="nt:unstructured"/>
-            </parsys>
-        </home>
-        <repairHelpHome jcr:primaryType="nt:unstructured">
-            <parsys
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="foundation/components/parsys"
                 drawAnchors="true"
                 components="[group:SearsPartsDirect]">
                 <section jcr:primaryType="nt:unstructured"/>
             </parsys>
-        </repairHelpHome>
+       	</base>
 	</jcr:content>
 	<clientlib_base/>
 	<clientlib_cq/>
