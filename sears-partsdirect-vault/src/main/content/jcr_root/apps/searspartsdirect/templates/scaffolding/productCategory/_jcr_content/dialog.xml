@@ -40,7 +40,7 @@
 		            rotateParameter="./jcr:content/image/imageRotate"
 		            height="400"
 		            xtype="html5smartimage"/>
-            </image>
+            </items>
         </tab2>
     </items>
 </jcr:root>
