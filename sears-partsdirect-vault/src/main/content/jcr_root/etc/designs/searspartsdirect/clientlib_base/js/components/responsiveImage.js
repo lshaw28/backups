@@ -40,8 +40,8 @@
 			var self = this;
 			// Image URLs
 			self.desktopImage = self.el.data('desktopimage');
-			self.tabletImage = self.el.data('tabletImage');
-			self.mobileImage = self.el.data('mobileImage');
+			self.tabletImage = self.el.data('tabletimage');
+			self.mobileImage = self.el.data('mobileimage');
 			// Image dimensions
 			// Respect element dimensions < attribute < init parameter
 			self.fw = self.el.width();
@@ -128,6 +128,10 @@
 			// Remove previously rendered image
 			$('.responsiveImage_js', self.el).remove();
 			// Generate image
+			var img = $('<img />');
+			img.attr('src', imageURL)
+				.addClass('responsiveImage_js');
+			self.el.append(img);
 			// Bind event
 			if (self.isBound === false) {
 				self.bindEvent();
