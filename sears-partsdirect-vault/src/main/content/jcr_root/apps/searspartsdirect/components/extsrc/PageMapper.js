@@ -39,7 +39,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	typeField: null,
 	/**
 	 * @type {String}
-	 * Default is a name isn't provided
+	 * Default if a name isn't provided
 	 */
 	formName: './pageMapper',
 	/**
@@ -85,7 +85,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		// instantiate parent constructor
 		Shc.components.extsrc.PageMapper.superclass.initComponent.call(this);
 		
-		// get parent refernece
+		// get parent reference
 		this.parentDialog = this.findParentByType('dialog');
 		
 		// form key resolver
@@ -98,7 +98,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		
 		// wrapper to store components
 		this.containerPanel = new CQ.Ext.Panel({
-			'layout': 'column'
+			layout: 'column'
 		});
 		
 		// create colletions model
@@ -111,6 +111,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 				name: 'path'
 			}]))
 		});
+		// spin up proxy setting
 		this.dataStore.load();
 		
 		// tree configs
@@ -148,7 +149,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 				requestMethod: 'GET',
 				// request params
 				baseParams: {
-					'_charset_': 'utf-8'
+					_charset_: 'utf-8'
 				},
 				// change request params before loading
 				listeners: {
@@ -208,12 +209,12 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 			sm: new CQ.Ext.grid.RowSelectionModel({
 				singleSelect: true
 			}),
-			cm :new CQ.Ext.grid.ColumnModel([
+			cm: new CQ.Ext.grid.ColumnModel([
 			{
-				'id': 'path',
-				'header': 'Content Path',
-				'dataIndex': 'path',
-				'sortable': true
+				id: 'path',
+				header: 'Content Path',
+				dataIndex: 'path',
+				sortable: true
 			}
 			])
 		});
@@ -249,7 +250,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	setDataType: function (type) {
 		// name of field
-		var name = this.formName
+		var name = this.formName;
 		
 		// field config
 		this.typeField = new CQ.Ext.form.Hidden({
@@ -268,11 +269,11 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	addValue: function (value) {
 		// name of field
 		var name = this.formName,
-		// hidden form to store value
-		field = new CQ.Ext.form.Hidden({
-			name: name,
-			value: value
-		});
+			// hidden form to store value
+			field = new CQ.Ext.form.Hidden({
+				name: name,
+				value: value
+			});
 		
 		// save reference
 		this.hiddenFields.push(field);
