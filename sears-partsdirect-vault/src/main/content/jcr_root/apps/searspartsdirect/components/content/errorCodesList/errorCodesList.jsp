@@ -7,7 +7,7 @@
 <cq:text property="errorCodeDescription" placeholder=""/>
 
  
-<spd:getPagesByTag categoryName="${productTag.title}" />
+<spd:getErrorCodesData categoryName="${productTag.title}" />
 
 <c:forEach var="errorCode" items="${errorCodeList}">
 	<p> ${errorCode.key}</p>
