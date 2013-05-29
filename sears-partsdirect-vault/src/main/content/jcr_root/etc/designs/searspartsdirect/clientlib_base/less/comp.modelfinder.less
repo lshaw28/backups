@@ -14,7 +14,6 @@
 	float: left;
 }
 #newFinderModel {
-/**/
 }
 .left_pos_model_finder {
 	left: 183px;
@@ -23,14 +22,14 @@
 	position: absolute;
 	left: 143px;
 	top: -13px;
-	background: #fff;
+	background: @bodyColor;
 	border: 4px solid #1d276a;
-	border-top: 0px;
-	padding: 0px;
+	border-top: 0;
+	padding: 0;
 	display: none;
 }
 .newFinderDiv h2 {
-	color: #333;
+	color: @finderHeaderColor;
 	font-weight: normal;
 	font-size: @footerColumnSize;
 	padding: 0 0 5px 0;
@@ -39,7 +38,7 @@
 	text-align: left;
 }
 .newFinderDiv h4 {
-	color: #333;
+	color: @finderHeaderColor;
 	font-weight: normal;
 	font-size: 13px;
 	padding: 0 0 5px 0;
@@ -50,7 +49,7 @@
 .newFinderDiv .finder_work_div {
 	width: 96%;
 	padding: 1.5% 2%;
-	margin: 0px;
+	margin: 0;
 	float: left;
 	background-position: center top;
 	background-repeat: no-repeat;
@@ -67,38 +66,38 @@
 	line-height: 34px;
 	border: 1px solid #dedede;
 	font-size: @paragraphSize;
-	color: #666;
+	color: @bodyCopyColor;
 	background-position: 230px center;
 	background-repeat: no-repeat;
 }
 .finder_work_div .select_product .show_dropdown {
 	position: absolute;
 	z-index: 999;
-	left: 0px;
+	left: 0;
 	top: 36px;
 	width: 255px;
-	background: #fff;
+	background: @bodyColor;
 	border: 1px solid #dedede;
-	border-top: 0px;
+	border-top: 0;
 	display: none;
 }
 .finder_work_div .select_product .show_dropdown_product {
 	position: absolute;
-	left: 0px;
+	left: 0;
 	top: 36px;
 	width: 255px;
-	background: #fff;
+	background: @bodyColor;
 	border: 1px solid #dedede;
-	border-top: 0px;
+	border-top: 0;
 	display: none;
 }
 .show_dropdown ul, .show_dropdown_product ul {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	display: block;
 }
 .show_dropdown ul li, .show_dropdown_product ul li {
-	margin: 0px;
+	margin: 0;
 	padding: 0 0 1px 0;
 	display: block;
 }
@@ -106,17 +105,17 @@
 	display: block;
 	padding: 5px 0 5px 10px;
 	font-size: @paragraphSize;
-	color: #666;
+	color: @bodyCopyColor;
 	line-height: normal;
 	text-decoration: none;
 }
 .show_dropdown ul li a:hover, .show_dropdown_product ul li a:hover {
 	background: #1d276a;
-	color: #fff;
+	color: @bodyColor;
 }
 .show_dropdown ul li a.select_current, .show_dropdown_product ul li a.select_current {
 	background: #1d276a;
-	color: #fff;
+	color: @bodyColor;
 }
 .models_number_div {
 	margin: 20px 0 0 0;
@@ -130,7 +129,7 @@
 .models_number_div ul li {
 	float: left;
 	margin: 5px 20px 5px 5px;
-	padding: 0px;
+	padding: 0;
 }
 .li_width_28 {
 	width: 28%;
@@ -139,7 +138,7 @@
 	width: 40%;
 }
 .models_number_div ul li a {
-	color: #666;
+	color: @bodyCopyColor;
 	text-decoration: none;
 }
 .models_number_div ul li a:hover {
@@ -171,32 +170,32 @@
 .finder_nav {
 	float: left;
 	width: 100%;
-	margin: 10px 0px 20px 0px;
+	margin: 10px 0 20px 0;
 }
 .finder_nav ul {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	list-style-type: none;
 	float: left;
 }
 .finder_nav ul li {
 	float: left;
 	padding: 0 20px;
-	margin: 0px;
+	margin: 0;
 	border-left: 1px solid #dedede;
 	list-style-type: none;
 }
 .finder_nav ul li a {
 	float: left;
-	color: #333;
+	color: @finderHeaderColor;
 	font-size: @footerColumnSize;
 	height: 22px;
 	line-height: 22px;
 	text-decoration: none;
 }
 .finder_nav ul li.first {
-	border-left: 0px solid #dedede;
-	padding-left: 0px;
+	border-left: 0 solid #dedede;
+	padding-left: 0;
 }
 .finder_nav ul li a:hover {
 	color: #304295;
@@ -215,22 +214,22 @@
 	line-height: normal;
 }
 .common_model_number_plates h4 {
-	color: #333;
+	color: @finderHeaderColor;
 	font-weight: normal;
 	font-size: 13px;
 	padding: 0 0 10px 0;
 	font-weight: 800;
 	line-height: normal;
-	margin: 0px;
+	margin: 0;
 }
 .common_model_number_plates ul {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	width: 100%;
 }
 .common_model_number_plates ul li {
 	margin: 0 0 0 15px;
-	padding: 0px;
+	padding: 0;
 	line-height: normal;
 }
 .common_model_number_plates .CMNP_left {
@@ -239,14 +238,14 @@
 	padding: 0;
 }
 .CMNP_left ul {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	list-style-type: none;
 }
 .CMNP_left ul li {
-	margin: 0px;
+	margin: 0;
 	padding: 0 0 10px 10px;
-	background-position: 0px 4px;
+	background-position: 0 4px;
 	background-repeat: no-repeat;
 }
 .common_model_number_plates .CMNP_center {
@@ -260,8 +259,8 @@
 	padding: 0;
 }
 .common_model_number_plates .CMNP_right ul {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	list-style-type: none;
 	width: 100%;
 }

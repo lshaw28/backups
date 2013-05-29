@@ -3,17 +3,9 @@
 
 /* Core: Standard Tags */
 /* 1. Document */
-body {
-	background: url('../img/bg.jpg') repeat-x top left;
-	color: @bodyCopyColor;
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	font-size: @smallLinkSize;
-	margin: 0px;
-	padding: 0px;
-}
 article {
 	margin: 0 20px;
-	background: #fff;
+	background: @bodyColor;
 	padding: 0 20px;
 }
 
@@ -22,7 +14,7 @@ h1, h2, h3, h4 {
 	margin: 10px 0;
 	font-weight: normal;
 	text-rendering: optimizelegibility;
-	color: #666;
+	color: @bodyCopyColor;
 }
 h1 {
 	font-size: @header1Size;
@@ -38,16 +30,6 @@ h4 {
 }
 p {
 	font-size: @paragraphSize;
-}
-a {
-	font-size: @paragraphSize;
-	color: #067bb5;
-}
-a.small-links {
-	font-size: @smallLinkSize;
-}
-a:hover {
-	color: #304e88;
 }
 pre {
 	font-size: 100%;

@@ -24,38 +24,40 @@
 	padding: 10px;
 	color: @searchColor;
 	border: 1px solid @searchColor;
-	border-radius: 4px 4px 0 0px;
+	.borderRadius(4px 4px 0 0);
 }
 .phone_menu_tabs ul li.active a {
-	color: #fff;
+	color: @bodyColor;
 	height: 32px;
 	line-height: 32px;
 	background-color: @searchActiveColor;
 	border-width: 3px;
-	border-radius: 4px 4px 0 0;
+	.borderRadius(4px 4px 0 0);
 	text-align: center;
 	font-size: @paragraphSize;
 	padding: 10px;
 }
 .phone_menu_tabs ul li:first-child a {
-	border-radius: 4px 0 0 0;
+	.borderRadius(4px 0 0 0);
 	padding: 10px 10px 10px 41px;
 }
 .phone_menu_tabs ul li:first-child.active a {
-	border-radius: 4px 4px 0 0;
+	.borderRadius(4px 4px 0 0);
 }
 .phone_menu_tabs ul li:last-child a {
-	border-radius: 0 4px 0 0;
+	.borderRadius(0 4px 0 0);
 }
 .phone_menu_tabs ul li:last-child.active a {
-	border-radius: 4px 4px 0 0;
+	.borderRadius(4px 4px 0 0);
 }
+/* @TODO: Replace with icon from Font Awesome */
 .mag_glass_icon a {
 	background-position: 17% center;
 	background-repeat: no-repeat;
 	background-image: url('../img/magGlass_off.png');
 	padding: 10px 10px 10px 41px;
 }
+/* @TODO: Replace with icon from Font Awesome */
 .phone_menu_tabs ul li.mag_glass_icon.active a {
 	background-position: 17% center;
 	background-repeat: no-repeat;

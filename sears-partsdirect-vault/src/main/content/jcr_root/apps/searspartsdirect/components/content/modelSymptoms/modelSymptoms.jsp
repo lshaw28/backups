@@ -6,5 +6,5 @@
 <spd:getModelSymptoms modelNumber="${brandCategoryModelNo}" />
 <p>Repair Symptoms List</p>
 <c:forEach items="${modelSymptoms}">
-     <a href="${commonSymptomUrl}">{commonSymptomText}</a>
+	 <a href="${commonSymptomUrl}">{commonSymptomText}</a>
 </c:forEach>

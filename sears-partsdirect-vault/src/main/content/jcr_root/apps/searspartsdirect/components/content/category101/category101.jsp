@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <spd:tagsByPage tagType="parentCategory" />
-<spd:category101 />
+<spd:getMultifieldCategories />
+
 <c:if test="${not empty categories}">
 	<c:choose>
 		<c:when test="${fn:length(parentCategoryTag.title) < 38 }">

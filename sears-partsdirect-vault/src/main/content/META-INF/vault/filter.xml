@@ -6,4 +6,5 @@
 	</filter>
 	<filter root="/etc/tags/searspartsdirect" />
 	<filter root="/etc/scaffolding" />
+	<filter root="/etc/spdAssets" />
 </workspaceFilter>

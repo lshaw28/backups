@@ -1,11 +1,31 @@
 /* Base: Common, Generic Mixins */
 /* 1. Border Radius */
-.borderRadius(@e: 0px) {
+.borderRadius(@e: 0) {
 	-webkit-border-radius: @e;
 	-moz-border-radius: @e;
 	-ms-border-radius: @e;
 	-o-border-radius: @e;
 	border-radius: @e;
+}
+.borderTopLeftRadius(@e: 0) {
+	-webkit-border-top-left-radius: @e;
+	-moz-border-radius-topleft: @e;
+	border-top-left-radius: @e;
+}
+.borderTopRightRadius(@e: 0) {
+	-webkit-border-top-right-radius: @e;
+	-moz-border-radius-topright: @e;
+	border-top-right-radius: @e;
+}
+.borderBottomLeftRadius(@e: 0) {
+	-webkit-border-bottom-left-radius: @e;
+	-moz-border-radius-bottomleft: @e;
+	border-bottom-left-radius: @e;
+}
+.borderBottomRightRadius(@e: 0) {
+	-webkit-border-bottom-right-radius: @e;
+	-moz-border-radius-bottomright: @e;
+	border-bottom-right-radius: @e;
 }
 
 /* 2. Opacity */

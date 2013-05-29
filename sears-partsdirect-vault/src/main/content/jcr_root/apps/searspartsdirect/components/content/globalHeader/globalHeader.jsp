@@ -11,7 +11,7 @@
 					<li class="home_menu_link"><a href="#">Home</a>
 					<li class="first login_link"><a class="mainSignInModal" href="javascript:void(0)" title="Login"><spd:getLoginStatus/></a></li>
 					<li class="register"><a class="mainRegisterModal" title="Register" href="javascript:void(0)"><spd:getRegisterStatus/></a></li>
-					<li class="order_lookup"> <a href="/partsdirect/orderStatus.pd?pop=flush" title="Order status">Order lookup</a></li>
+					<li class="order_lookup"> <a href="${mainSitePath}/partsdirect/orderStatus.pd?pop=flush" title="Order status">Order lookup</a></li>
 					<li><a href="javascript:void(0);" id="getHelpTopLink">Get help</a></li>
 					<li class="feedback_link"> <a href="http://searshc.us2.qualtrics.com/SE/?SID=SV_5BkCXqmfocMN11W" onClick="window.open(this.href, 'GiveFeedback', 'resizable=no,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=yes,dependent=no, width=950, height =650, top=0, left=150'); return false;">Feedback</a></li>
 				</ul>
@@ -20,12 +20,12 @@
 			<div class="cart_navigation ">
 				<ul>
 					<div class="li_shadow_curve"></div>
-					
-					
+
+
 					<li id="RecentlyViewed"><a href="javascript:void(0);">Recently viewed&nbsp;&nbsp;<span></span></a>
 						<div id="RecentlyViewedDiv" class="png_fix" style="display: none;">
 							<div class="topArrowDiv"></div>
-							<div class="resentView">                           	   
+							<div class="resentView">
 								<div class="resentViewTopRow"><div class="topLeftCurve"></div><div class="topRightCurve"></div></div>
 								<div class="clear"></div>
 								<div class="resentViewContentDiv">
@@ -65,7 +65,7 @@
 								</div>
 								<div class="clear"></div>
 								<div class="resentViewBottopRow"><div class="bottomLeftCurve"></div><div class="bottomRightCurve"></div></div>
-							</div>                        	
+							</div>
 						</div>
 					</li>
 					<li id="MyModels">
@@ -75,7 +75,7 @@
 					</li>
 					<li id="ItemsCarts" class="Btn_ghostCart ">
 						<spd:getShoppingCart/>
-						<a class="shoppCart_leftImg" href="/partsdirect/showCart.pd" title="Shopping"><span class="cart"></span> Cart&nbsp;<span id="scCartItemCountHeader">${cartItemCount}</span><span></span></a></li>
+						<a class="shoppCart_leftImg" href="${mainSitePath}/partsdirect/showCart.pd" title="Shopping"><span class="cart"></span> Cart&nbsp;<span id="scCartItemCountHeader">${cartItemCount}</span><span></span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -98,7 +98,7 @@
 					<div class="man_img"></div>
 					<div class="search_input_div">
 						<div class="input2">
-							<input id="searchBarField" class="input_2" type="text" maxlength="100" tabindex="1" value="Enter model or part number" name="searchModPar">
+							<input id="searchBarField" class="input_2" type="text" maxlength="100" tabindex="1" data-inputhelp="Enter model or part number" data-inputhelpmobile="Model/Part #" name="searchModPar">
 						</div>
 						<div class="in">in</div>
 						<div class="input3">

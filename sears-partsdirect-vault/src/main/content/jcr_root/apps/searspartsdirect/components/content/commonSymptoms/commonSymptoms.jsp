@@ -7,6 +7,6 @@
 <c:if test="${productTag != null}">
 	<spd:getCommonSymptoms categoryName="${productTag.title}" />
 	<c:forEach items="${commonSymptoms}">
-	     <a href="${commonSymptomUrl}">{commonSymptomText}</a>
+		 <a href="${commonSymptomUrl}">{commonSymptomText}</a>
 	</c:forEach>
 </c:if>

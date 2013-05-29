@@ -1,7 +1,8 @@
-#base=css/.
 #base=less/.
 bootstrap.less
 bootstrap-responsive.less
+font-awesome.less
+font-awesome-ie7.less
 core.standardtags.less
 core.textclasses.less
 core.helperclasses.less

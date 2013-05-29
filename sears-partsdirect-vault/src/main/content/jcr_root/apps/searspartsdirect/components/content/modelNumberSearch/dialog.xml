@@ -1,22 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-		  jcr:primaryType="cq:Dialog"
+		  jcr:primaryType="cq:TabPanel"
 		  title="Model Number Search"
 		  xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
 		<tabpanel jcr:primaryType="cq:TabPanel">
 			<items jcr:primaryType="cq:WidgetCollection">
+			
 				<tab1
 					jcr:primaryType="cq:Widget"
-					title="TabOne"
+					title="Model Number Search"
 					xtype="panel">
 					<items jcr:primaryType="cq:WidgetCollection">
-						<title jcr:primaryType="cq:Widget"
-							   fieldLabel="ModelNumberSearchField"
-							   name="./header"
-							   xtype="textfield" />
+						<searchInstructions
+								jcr:primaryType="cq:Widget"
+							   	fieldLabel="Search Instructions"
+							   	fieldDescription="Enter text to replace default instrucitons. Character limit is 140"
+							   	name="./searchInstructions"
+							   	xtype="textfield" />
+						
+						<buttonTitle jcr:primaryType="cq:Widget"
+							   fieldLabel="Search Button Title"
+							   fieldDescription="Enter text to replace default button text. Character limit is 42"
+							   name="./buttonTitle"
+							   xtype="textfield"
+							   maxLength="42" />
+					
+						<linkText
+								jcr:primaryType="cq:Widget"
+							   	fieldLabel="Link Text"
+							   	fieldDescription="Enter text to replace default link text. Character limit is 42"
+							   	maxLength="42"
+							   	name="./linkText"
+							   	xtype="textfield" />
+							   
 					</items>
 				</tab1>
+				
+				<tab2	jcr:primaryType="cq:Widget"
+						title="Optional"
+						xtype="panel">
+						
+						<QuestionText
+								jcr:primaryType="cq:Widget"
+							   	fieldLabel="Search Instructions"
+							   	fieldDescription="Character limit is 42"
+							   	name="./QuestionText"
+							   	xtype="textfield" />
+					
+						<linkText2
+								jcr:primaryType="cq:Widget"
+							   	fieldLabel="Link Text"
+							   	fieldDescription="Enter text to for new link. Character limit is 42"
+							   	name="./linkText2"
+							   	xtype="textfield" 
+							   	maxLength="42" />
+						
+				</tab2>
+				
 			</items>
 		</tabpanel>
 	</items>

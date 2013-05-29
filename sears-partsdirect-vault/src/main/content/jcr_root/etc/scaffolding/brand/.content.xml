@@ -4,7 +4,7 @@
     <jcr:content
         cq:lastModified="{Date}2013-05-23T16:44:54.231-04:00"
         cq:lastModifiedBy="admin"
-        cq:targetPath="/content/searspartsdirect/en/test"
+        cq:targetPath="/etc/spdAssets/scaffolding/brand"
         cq:targetTemplate="/apps/searspartsdirect/templates/scaffolding/brand"
         cq:template="/libs/wcm/scaffolding/templates/scaffolding"
         jcr:description="Brand desc"
