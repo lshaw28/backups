@@ -1,8 +1,9 @@
 package com.spd.cq.searspartsdirect.common.model;
 
-public class CookieModelItem {
+public class PartCookieModel {
 	
-	public final static String recentlyViewedModelCookieName = "recentlyViewedModels";
+	public final static String recentlyViewedPartCookieName = "recentlyViewedParts";	
+	private String itemImageURL;
 	protected String itemName;
 	protected String itemDescription;
 	protected String itemURL;
@@ -24,6 +25,13 @@ public class CookieModelItem {
 	}
 	public void setItemDescription(String itemDescription) {
 		this.itemDescription = itemDescription;
+	}	
+	public String getItemImageURL() {
+		return itemImageURL;
+	}
+	
+	public void setItemImageURL(String itemImageURL) {
+		this.itemImageURL = itemImageURL;
 	}
 	@Override
 	public int hashCode() {
@@ -33,6 +41,7 @@ public class CookieModelItem {
 				+ ((itemDescription == null) ? 0 : itemDescription.hashCode());
 		result = prime * result
 				+ ((itemName == null) ? 0 : itemName.hashCode());
+		result = prime * result + ((itemURL == null) ? 0 : itemURL.hashCode());
 		return result;
 	}
 	@Override
@@ -43,7 +52,7 @@ public class CookieModelItem {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CookieModelItem other = (CookieModelItem) obj;
+		PartCookieModel other = (PartCookieModel) obj;
 		if (itemDescription == null) {
 			if (other.itemDescription != null)
 				return false;
@@ -54,7 +63,12 @@ public class CookieModelItem {
 				return false;
 		} else if (!itemName.equals(other.itemName))
 			return false;
+		if (itemURL == null) {
+			if (other.itemURL != null)
+				return false;
+		} else if (!itemURL.equals(other.itemURL))
+			return false;
 		return true;
-	}	
+	}		
 
 }
