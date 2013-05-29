@@ -8,7 +8,7 @@
     cq:layout="rollover" >
     <cq:listeners
         jcr:primaryType="cq:EditListenersConfig"
-        afterinsert="REFRESH_SELF"
-		afteredit="REFRESH_SELF"
-        afterMove="REFRESH_SELF" />
+        afterinsert="REFRESH_PAGE"
+		afteredit="REFRESH_PAGE"
+        afterMove="REFRESH_PAGE" />
  </jcr:root>
