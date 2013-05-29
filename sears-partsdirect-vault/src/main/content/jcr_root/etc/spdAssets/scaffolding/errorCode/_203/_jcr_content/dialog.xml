@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Dialog"
+    xtype="tabpanel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <tab1
+            jcr:primaryType="cq:Panel"
+            title="Properties">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <code
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Code"
+                    name="./jcr:content/jcr:title"/>
+                <condition
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Condition"
+                    name="./jcr:content/jcr:description"
+                    xtype="textfield"/>
+                <repair
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Repair"
+                    name="./jcr:content/repairLink"
+                    xtype="pathfield"/>
+            </items>
+        </tab1>
+    </items>
+</jcr:root>

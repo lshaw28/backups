@@ -24,10 +24,18 @@ public class GetAssetsTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		ArrayList<ProductCategoryModel> models = new ArrayList<ProductCategoryModel>();
-		ProductCategoryModel bike = new ProductCategoryModel("Bike", "Bike description", "/etc/spdAssets/scaffolding/productCategory/bike/jcr:content/image");
-		ProductCategoryModel musicPlayer = new ProductCategoryModel("Music Player", "Music Player description", "/etc/spdAssets/scaffolding/productCategory/music_player/jcr:content/image");
-        models.add(bike);
-        models.add(musicPlayer);
+		ProductCategoryModel chainsaws = new ProductCategoryModel("Chainsaws", "chainsaws description", "/etc/spdAssets/scaffolding/productCategory/chainsaws/jcr:content/image");
+		ProductCategoryModel dishwashers = new ProductCategoryModel("Dishwashers", "dishwashers description", "/etc/spdAssets/scaffolding/productCategory/dishwashers/jcr:content/image");
+		ProductCategoryModel microwaves = new ProductCategoryModel("Microwaves", "microwaves description", "/etc/spdAssets/scaffolding/productCategory/microwaves/jcr:content/image");
+		ProductCategoryModel ranges = new ProductCategoryModel("Ranges", "ranges description", "/etc/spdAssets/scaffolding/productCategory/ranges/jcr:content/image");
+		ProductCategoryModel refrigerators = new ProductCategoryModel("Refrigerators", "refrigerators description", "/etc/spdAssets/scaffolding/productCategory/refrigerators/jcr:content/image");
+		
+		models.add(chainsaws);
+        models.add(dishwashers);
+		models.add(microwaves);
+        models.add(ranges);
+        models.add(refrigerators);  
+        
         pageContext.setAttribute("models", models);
 		return SKIP_BODY;
 	}

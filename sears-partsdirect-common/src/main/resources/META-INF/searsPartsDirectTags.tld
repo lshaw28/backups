@@ -60,12 +60,12 @@
 	</tag>
 	<tag>
 	   <name>getLoginStatus</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.LoginStatusTag</tag-class>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetLoginStatusTag</tag-class>
 	   <info>Checks if the user is logged in or not</info>
 	</tag>
 	<tag>
 	   <name>getRegisterStatus</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.RegisterStatusTag</tag-class>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetRegisterStatusTag</tag-class>
 	   <info>Checks if the user is registered or not</info>
 	</tag>
 	<tag>
@@ -126,8 +126,8 @@
 		</attribute>
 	</tag>
 	<tag>
-	   <name>getPagesByTag</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetPagesByTagTag</tag-class>
+	   <name>getErrorCodesData</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetErrorCodesDataTag</tag-class>
 	   <info>This tag will get the list of pages by tags</info>
 	   <attribute>
 	   		<name>categoryName</name>
