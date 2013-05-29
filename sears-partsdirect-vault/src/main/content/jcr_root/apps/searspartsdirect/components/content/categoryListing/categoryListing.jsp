@@ -7,7 +7,7 @@
 
 <br>
 <c:forEach var="parentCategoryTitle" items="${parentCategoryTitles}">
-	 <br><br> ${parentCategoryTitle} <br>
+	 <br><br> ${parentCategoryTitle} <br><br>
 	
 	 <%-- nest another forEach to iterate through all categories, given current parent category
 		(sample code, if given "categories" tag)
@@ -19,7 +19,7 @@
 	
 	 <c:forEach var="category" items="${models}">
 		<spd:displayImage path="${category.imagePath}"/>
-		${category.title} <br>
+		${category.title} <br><br>
 	 </c:forEach>
 	
 </c:forEach>
