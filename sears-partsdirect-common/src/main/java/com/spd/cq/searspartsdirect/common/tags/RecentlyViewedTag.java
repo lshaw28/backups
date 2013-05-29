@@ -9,8 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectCookieHelper;
-import com.spd.cq.searspartsdirect.common.model.CookieModelItem;
-import com.spd.cq.searspartsdirect.common.model.CookiePartItem;
+import com.spd.cq.searspartsdirect.common.model.ModelCookieModel;
+import com.spd.cq.searspartsdirect.common.model.PartCookieModel;
 
 public class RecentlyViewedTag extends CQBaseTag {
 
@@ -27,21 +27,21 @@ public class RecentlyViewedTag extends CQBaseTag {
 		if (cookies != null) {
 			recentlyViewedModelsCookie = PartsDirectCookieHelper.getCookieInfo(cookies, "recentlyViewedModels");
 			if (recentlyViewedModelsCookie != null && recentlyViewedModelsCookie.getValue() != null) {
-				LinkedList<CookieModelItem> modelList = PartsDirectCookieHelper.parseRecentltyViewedModelItems(recentlyViewedModelsCookie.getValue());
+				LinkedList<ModelCookieModel> modelList = PartsDirectCookieHelper.parseRecentltyViewedModelItems(recentlyViewedModelsCookie.getValue());
 				pageContext.setAttribute("rvModelList", modelList);
 				log.error("modelList" + modelList);
-				for (CookieModelItem cookieModelItem : modelList) {
+				for (ModelCookieModel cookieModelItem : modelList) {
 					log.error("name="+cookieModelItem.getItemName()+",desc="+cookieModelItem.getItemDescription()+",url="+cookieModelItem.getItemURL());
 				}
 			}
 			
 			recentlyViewedPartsCookies = PartsDirectCookieHelper.getCookieInfo(cookies, "recentlyViewedParts");
 			if (recentlyViewedPartsCookies != null && recentlyViewedPartsCookies.getValue() != null) {
-				LinkedList<CookiePartItem> partList =  PartsDirectCookieHelper.parseRecentltyViewedPartItems(recentlyViewedPartsCookies.getValue());
+				LinkedList<PartCookieModel> partList =  PartsDirectCookieHelper.parseRecentltyViewedPartItems(recentlyViewedPartsCookies.getValue());
 				pageContext.setAttribute("rvPartList", partList);
 				log.error("partList" +partList);
 				
-				for (CookiePartItem cookiePartItem : partList) {
+				for (PartCookieModel cookiePartItem : partList) {
 					log.error("item name"+cookiePartItem.getItemName()+",desc="+cookiePartItem.getItemDescription()+","+cookiePartItem.getItemImageURL());
 				}
 			}

@@ -8,8 +8,8 @@ import javax.servlet.http.Cookie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.spd.cq.searspartsdirect.common.model.CookieModelItem;
-import com.spd.cq.searspartsdirect.common.model.CookiePartItem;
+import com.spd.cq.searspartsdirect.common.model.ModelCookieModel;
+import com.spd.cq.searspartsdirect.common.model.PartCookieModel;
 
 public class PartsDirectCookieHelper {
 
@@ -29,15 +29,15 @@ public class PartsDirectCookieHelper {
 	}
 	
 	
-	public static LinkedList<CookieModelItem> parseRecentltyViewedModelItems( String list ) {
-		LinkedList<CookieModelItem> modelList = new LinkedList<CookieModelItem>();
+	public static LinkedList<ModelCookieModel> parseRecentltyViewedModelItems( String list ) {
+		LinkedList<ModelCookieModel> modelList = new LinkedList<ModelCookieModel>();
 		StringTokenizer tokenizer = new StringTokenizer ( list, "|" );
 		while ( tokenizer.hasMoreTokens() && tokenizer.countTokens() >= 3 ) {
 			String modelName = tokenizer.nextToken();
 			String modelDescription = tokenizer.nextToken();
 			String modelURL = tokenizer.nextToken();
 			if (modelName!= null && modelURL!= null) {
-				CookieModelItem item = new CookieModelItem();
+				ModelCookieModel item = new ModelCookieModel();
 				item.setItemName( modelName );
 				item.setItemDescription( modelDescription );
 				item.setItemURL( modelURL );
@@ -48,8 +48,8 @@ public class PartsDirectCookieHelper {
 		return modelList;
 	}
 	
-	public static LinkedList<CookiePartItem> parseRecentltyViewedPartItems( String list ) {
-		LinkedList<CookiePartItem> partList = new LinkedList<CookiePartItem>();
+	public static LinkedList<PartCookieModel> parseRecentltyViewedPartItems( String list ) {
+		LinkedList<PartCookieModel> partList = new LinkedList<PartCookieModel>();
 		StringTokenizer tokenizer = new StringTokenizer ( list, "|" );
 		while ( tokenizer.hasMoreTokens() && tokenizer.countTokens() >= 4 ) {
 			String partName = tokenizer.nextToken();
@@ -57,7 +57,7 @@ public class PartsDirectCookieHelper {
 			String partURL = tokenizer.nextToken();
 			String partImageURL = tokenizer.nextToken();
 			if (partName != null && partURL != null) {
-				CookiePartItem item = new CookiePartItem();
+				PartCookieModel item = new PartCookieModel();
 				item.setItemName( partName );
 				item.setItemDescription( partDescription );
 				item.setItemURL( partURL );
