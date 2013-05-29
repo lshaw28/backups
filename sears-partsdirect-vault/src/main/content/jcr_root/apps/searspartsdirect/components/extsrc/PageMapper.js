@@ -6,6 +6,16 @@ CQ.Ext.namespace('Shc.components.extsrc');
  * @type {String}
  */
 Shc.components.extsrc.PAGE_MAPPER_XTYPE = 'pagemapper';
+/**
+ * @const
+ * @type {String}
+ */
+Shc.components.extsrc.PAGE_MAPPER_GROUPDD = Shc.components.extsrc.PAGE_MAPPER_XTYPE + 'dd';
+/**
+ * @const
+ * @type {Number}
+ */
+Shc.components.extsrc.PAGE_MAPPER_HEIGHT = 200;
 
 /**
  * @class Shc.components.extsrc.PageMapper
@@ -42,17 +52,31 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	parentDialog: null,
 	/**
-	 * @type {}
+	 * @type {CQ.Ext.tree.TreePanel}
 	 */
 	treePanel: null,
 	/**
-	 * @type {}
+	 * @type {CQ.Ext.grid.GridPanel}
 	 */
 	gridPanel: null,
 	/**
-	 * @type {}
+	 * @type {CQ.Ext.Panel}
 	 */
 	containerPanel: null,
+	/**
+	 * @type {String}
+	 */
+	treeRootPath: '/content',
+	/**
+	 * @type {CQ.Ext.data.Store}
+	 * Model reference
+	 */
+	parentStore: null,
+	/**
+	 * @type {CQ.Ext.data.Store}
+	 * PageMapper model
+	 */
+	dataStore: null,
 	/**
 	 * Initializer event
 	 * @return {undefined}
@@ -77,6 +101,9 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 			"layout": "column"
 		});
 		
+		// tree configs
+		this.initTreePanel();
+		
 		// append container to main
 		this.add(this.containerPanel);
 	},
@@ -84,7 +111,59 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 * @private
 	 */
 	initTreePanel: function () {
+		var _this = this;
 		
+		this.treePanel = new CQ.Ext.tree.TreePanel({
+			ddGroup: Shc.components.extsrc.PAGE_MAPPER_GROUPDD,
+			width: 240,
+			height: Shc.components.extsrc.PAGE_MAPPER_HEIGHT,
+			border: false,
+			autoScroll: true,
+			containerScroll: true,
+			// prevent annoying grey background default
+			bodyStyle: 'background: none',
+			// hide parent
+			rootVisible: false,
+			enableDrag: true,
+			loader: {
+				// data retriever
+				dataUrl: CQ.HTTP.externalize('/bin/wcm/siteadmin/tree.json'),
+				requestMethod: 'GET',
+				// request params
+				baseParams: {'_charset_': 'utf-8'},
+				// change request params before loading
+				listeners: {
+					beforeload: function(loader, node) {
+						// housekeeping to keep the tree not from exploding when it trys to read nodes
+						this.baseParams.path = node.getPath();
+						// you'd think enabling the drag feature on the parent would cascade down to the nodes :\
+						this.baseAttrs.draggable = true;
+					}
+				},
+				// attributes for all nodes created by the loader
+				baseAttrs: {
+					singleClickExpand: true,
+					// folders look bad, this has a familiar experience (at least in 5.5...)
+					iconCls: 'page',
+					// more dragging configs!
+					draggable: true
+				}
+			},
+
+			// CQ.Ext.tree.TreeNode config
+			root: {
+				nodeType: 'async',
+				// we don't show the root, no need to have text
+				text: '',
+				name: _this.treeRootPath,
+				expanded: true,
+				// no root dragging (its not like u can see it when its disabled anyways)
+				draggable: false
+			}
+		});
+		
+		// append to wrapper
+		this.containerPanel.add(this.treePanel);
 	},
 	/**
 	 * @private
