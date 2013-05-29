@@ -128,6 +128,10 @@
 			// Remove previously rendered image
 			$('.responsiveImage_js', self.el).remove();
 			// Generate image
+			var img = $('<img />');
+			img.attr('src', imageURL)
+				.addClass('responsiveImage_js');
+			self.el.append(img);
 			// Bind event
 			if (self.isBound === false) {
 				self.bindEvent();
