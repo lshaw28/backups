@@ -42,12 +42,12 @@
 		validNumber: function (obj) {
 			// Type checking ensures faster validation
 			// but also allow string representations through
-			if (typeof obj === 'integer') {
+			if (typeof obj === 'number') {
 				return obj;
 			} else if (isNaN(parseInt(obj, 10)) === false) {
 				return parseInt(obj, 10);
 			} else {
-				return '';
+				return 0;
 			}
 		},
 		/**

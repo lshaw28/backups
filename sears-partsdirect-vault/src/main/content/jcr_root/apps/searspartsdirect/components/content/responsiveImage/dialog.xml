@@ -13,7 +13,7 @@
 			fileReferenceParameter="./desktopImage/fileReference"
 			blankText="An image is required"
 			name="./desktopImage/file"
-			requestSuffix="/image.img.png"
+			requestSuffix="/desktopImage.img.png"
 			rotateParameter="./desktopImage/imageRotate"
 			sizeLimit="100"
 			title="Desktop Image"
@@ -28,7 +28,7 @@
 			fileReferenceParameter="./tabletImage/fileReference"
 			blankText="An image is required"
 			name="./tabletImage/file"
-			requestSuffix="/image.img.png"
+			requestSuffix="/tabletImage.img.png"
 			rotateParameter="./tabletImage/imageRotate"
 			sizeLimit="100"
 			title="Tablet Image"
@@ -43,7 +43,7 @@
 			fileReferenceParameter="./mobileImage/fileReference"
 			blankText="An image is required"
 			name="./mobileImage/file"
-			requestSuffix="/image.img.png"
+			requestSuffix="/mobileImage.img.png"
 			rotateParameter="./mobileImage/imageRotate"
 			sizeLimit="100"
 			title="Mobile Image"
@@ -66,6 +66,24 @@
                     fieldLabel="Display Height"
                     name="./displayHeight"
                     xtype="textfield"/>
+				<desktopResType
+					jcr:primaryType="cq:Widget"
+					ignoreData="{Boolean}true"
+					name="./desktopImage/sling:resourceType"
+					value="foundation/components/image"
+					xtype="hidden" />
+				<tabletResType
+					jcr:primaryType="cq:Widget"
+					ignoreData="{Boolean}true"
+					name="./tabletImage/sling:resourceType"
+					value="foundation/components/image"
+					xtype="hidden" />
+				<mobileResType
+					jcr:primaryType="cq:Widget"
+					ignoreData="{Boolean}true"
+					name="./mobileImage/sling:resourceType"
+					value="foundation/components/image"
+					xtype="hidden" />
 			</items>
 		</imageDimensionsTab>
 	</items>

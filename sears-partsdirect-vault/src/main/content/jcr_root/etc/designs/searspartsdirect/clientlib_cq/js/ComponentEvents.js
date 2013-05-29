@@ -16,7 +16,8 @@
 		 * @param {object} el ExtJS caller
 		 */
 		onResponsiveImageEdit: function () {
-			var target = $(this.el.dom),
+			this.refreshSelf();
+			var target = $('[data-desktopimage]', this.el.dom),
 				newResponsiveImage = new responsiveImage(target);
 
 		}

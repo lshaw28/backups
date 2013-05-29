@@ -45,22 +45,22 @@
 			// Image dimensions
 			// Respect element dimensions < attribute < init parameter
 			self.fw = self.el.width();
-			if (window.SPDUtils.validNumber(self.el.data('width')) === true) {
+			if (window.SPDUtils.validNumber(self.el.data('width')) > 0) {
 				self.fw = parseInt(self.el.data('width'), 10);
 				self.useParentDims = false;
 			}
-			if (window.SPDUtils.validNumber(fw) === true) {
+			if (window.SPDUtils.validNumber(fw) > 0) {
 				self.fw = parseInt(fw, 10);
 				self.useParentDims = false;
 			}
 			self.fh = self.el.height();
-			if (window.SPDUtils.validNumber(self.el.data('height')) === true) {
+			if (window.SPDUtils.validNumber(self.el.data('height')) > 0) {
 				self.fh = parseInt(self.el.data('height'), 10);
 			}
-			if (window.SPDUtils.validNumber(fh) === true) {
+			if (window.SPDUtils.validNumber(fh) > 0) {
 				self.fh = parseInt(fh, 10);
 			}
-			if (window.SPDUtils.validNumber(iq) === true) {
+			if (window.SPDUtils.validNumber(iq) > 0) {
 				self.iq = parseInt(iq, 10);
 			}
 		},
