@@ -44,8 +44,8 @@
 			// but also allow string representations through
 			if (typeof obj === 'integer') {
 				return obj;
-			} else if (isNaN(parseInt(obj)) === false) {
-				return parseInt(obj);
+			} else if (isNaN(parseInt(obj, 10)) === false) {
+				return parseInt(obj, 10);
 			} else {
 				return '';
 			}
@@ -55,9 +55,22 @@
 		 * @return {Boolean} Check result
 		 */
 		isMobileBreakpoint: function () {
-			var currentWidth = $(window).width();
+			var currentWidth = parseInt($(window).width(), 10);
 
-			if (parseInt(currentWidth) < 480) {
+			if (currentWidth < 481) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		/**
+		 * Check if the screen is currently sized at an internally-defined tablet breakpoint
+		 * @return {Boolean} Check result
+		 */
+		isTabletBreakpoint: function () {
+			var currentWidth = parseInt($(window).width(), 10);
+
+			if (currentWidth > 480 && currentWidth < 1025) {
 				return true;
 			} else {
 				return false;

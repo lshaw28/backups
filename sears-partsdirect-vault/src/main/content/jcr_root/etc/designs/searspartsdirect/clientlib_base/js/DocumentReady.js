@@ -26,7 +26,7 @@
 		 * responsiveImage component setup
 		 */
 		$('.responsiveImage div[data-desktopimage]').each(function () {
-			var newResponsiveImage = new ResponsiveImage($(this));
+			var newResponsiveImage = new responsiveImage($(this));
 		});
 	});
 }(window));

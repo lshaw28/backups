@@ -1,5 +1,6 @@
 #base=js/.
 AuthorUtilities.js
+ComponentEvents.js
 xtypes/multiCustomWidget.js
 xtypes/multiFieldLimit.js
 xtypes/multiLinkWidget.js
