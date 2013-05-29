@@ -2,7 +2,6 @@ package com.spd.cq.searspartsdirect.common.tag;
 
 import java.util.LinkedList;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
@@ -12,6 +11,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.spd.cq.searspartsdirect.common.fixture.RecentlyViewedFixture;
 import com.spd.cq.searspartsdirect.common.model.ModelCookieModel;
 import com.spd.cq.searspartsdirect.common.model.PartCookieModel;
 import com.spd.cq.searspartsdirect.common.tags.RecentlyViewedTag;
@@ -50,11 +50,12 @@ public class RecentlyViewedTagTest {
 
 	@Test
 	public void testWithNoCookie() throws JspException {
+		RecentlyViewedFixture fixture = new RecentlyViewedFixture();
 		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
 		PageContext pageContext = Mockito.mock(PageContext.class);
 		
 		Mockito.when(pageContext.getRequest()).thenReturn(request);
-		Mockito.when(request.getCookies()).thenReturn(getCookie());
+		Mockito.when(request.getCookies()).thenReturn(fixture.getCookie());
 
 		RecentlyViewedTag recentlyViewedTag = new RecentlyViewedTag();
 		recentlyViewedTag.setPageContext(pageContext);
@@ -64,14 +65,15 @@ public class RecentlyViewedTagTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testWithCookies() throws JspException {
-		LinkedList<ModelCookieModel> modelList = getModelList();
-		LinkedList<PartCookieModel> partList = getPartList();
+		RecentlyViewedFixture recentlyViewedFixture = new RecentlyViewedFixture();
+		LinkedList<ModelCookieModel> modelList = recentlyViewedFixture.getModelList();
+		LinkedList<PartCookieModel> partList = recentlyViewedFixture.getPartList();
 		
 		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
 		PageContext pageContext = Mockito.mock(PageContext.class);
 
 		Mockito.when(pageContext.getRequest()).thenReturn(request);
-		Mockito.when(request.getCookies()).thenReturn(getPartAndModelCookie());
+		Mockito.when(request.getCookies()).thenReturn(recentlyViewedFixture.getPartAndModelCookie());
 		Mockito.when(pageContext.getAttribute("rvModelList")).thenReturn(modelList);
 		Mockito.when(pageContext.getAttribute("recentlyViewedParts")).thenReturn(partList);
 
@@ -119,49 +121,4 @@ public class RecentlyViewedTagTest {
 		PowerMock.verify(PageContext.class);
 		PowerMock.verify(HttpServletRequest.class);
 	}*/
-
-	
-	private Cookie[] getCookie() {
-		Cookie cookie = new Cookie( "testCookie", "1234" );
-        cookie.setMaxAge(12000);
-        cookie.setPath("/partsdirect/");
-        cookie.setDomain("localhost");
-        return new Cookie[] {cookie};
-	}
-	
-	private Cookie[] getPartAndModelCookie() {
-		Cookie modelCookie = new Cookie( "recentlyViewedModels", "" );
-		modelCookie.setValue("3333|Some description|http://www.SPD.com/ModelUrl");
-        modelCookie.setMaxAge(12000);
-        modelCookie.setPath("/partsdirect/");
-        modelCookie.setDomain("localhost");
-        
-        Cookie partCookie = new Cookie( "recentlyViewedParts", "" );
-        partCookie.setValue("9010P|water filter|partUrl|itemImageURL");
-        partCookie.setMaxAge(12000);
-        partCookie.setPath("/partsdirect/");
-        partCookie.setDomain("localhost");
-        return new Cookie[] {modelCookie, partCookie};
-	}
-	
-	private LinkedList<ModelCookieModel> getModelList() {
-		LinkedList<ModelCookieModel> modelList = new LinkedList<ModelCookieModel>();
-		ModelCookieModel modelCookieModel = new ModelCookieModel();
-		modelCookieModel.setItemName("3333");
-		modelCookieModel.setItemDescription("Some description");
-		modelCookieModel.setItemURL("http://www.SPD.com/ModelUrl");
-		modelList.add(modelCookieModel);
-		return modelList;
-	}
-	
-	private LinkedList<PartCookieModel> getPartList() {
-		LinkedList<PartCookieModel> partModel = new LinkedList<PartCookieModel>();
-		PartCookieModel partCookieModel = new PartCookieModel();
-		partCookieModel.setItemName("9010P");
-		partCookieModel.setItemDescription("water filter");
-		partCookieModel.setItemImageURL("itemImageURL");
-		partCookieModel.setItemURL("partUrl");
-		partModel.add(partCookieModel);
-		return partModel;
-	}
 }
