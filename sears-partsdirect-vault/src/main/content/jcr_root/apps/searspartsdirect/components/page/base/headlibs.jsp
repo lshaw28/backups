@@ -8,6 +8,8 @@
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,600" rel="stylesheet" type="text/css">
 <cq:includeClientLib categories="cq.foundation-main" />
 <cq:includeClientLib css="apps.searspartsdirect" />
+<cq:includeClientLib css="cq.collab.comments" />
+<cq:includeClientLib css="cq.social.commons" />
 <!-- Template-specific Styles -->
 <cq:include script="templatelibs.jsp" />
 <c:if test="${isEditMode or isDesignMode}">
