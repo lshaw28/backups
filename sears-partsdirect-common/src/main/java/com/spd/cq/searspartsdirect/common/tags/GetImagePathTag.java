@@ -11,14 +11,28 @@ public class GetImagePathTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		log.info("GetImagePathTag Start");
-		Image desktopImageObj = new Image(resource, "desktopImage");
-		String desktopImage = repairHref(desktopImageObj.getHref(), "desktopImage");
+		String desktopImage = "";
+		String tabletImage = "";
+		String mobileImage = "";
 
-		Image tabletImageObj = new Image(resource, "tabletImage");
-		String tabletImage = repairHref(tabletImageObj.getHref(), "tabletImage");
-
-		Image mobileImageObj = new Image(resource, "mobileImage");
-		String mobileImage = repairHref(mobileImageObj.getHref(), "mobileImage");
+		try {
+			Image desktopImageObj = new Image(resource, "desktopImage");
+			desktopImage = repairHref(desktopImageObj.getHref(), "desktopImage");
+		} catch (Exception desktopEx) {
+			log.debug("Desktop image error:", desktopEx.getMessage());
+		}
+		try {
+			Image tabletImageObj = new Image(resource, "tabletImage");
+			tabletImage = repairHref(tabletImageObj.getHref(), "tabletImage");
+		} catch (Exception tabletEx) {
+			log.debug("Tablet image error:", tabletEx.getMessage());
+		}
+		try {
+			Image mobileImageObj = new Image(resource, "mobileImage");
+			mobileImage = repairHref(mobileImageObj.getHref(), "mobileImage");
+		} catch (Exception mobileEx) {
+			log.debug("Mobile image error:", mobileEx.getMessage());
+		}
 
 		pageContext.setAttribute("desktopImage", desktopImage);
 		pageContext.setAttribute("tabletImage", tabletImage);
