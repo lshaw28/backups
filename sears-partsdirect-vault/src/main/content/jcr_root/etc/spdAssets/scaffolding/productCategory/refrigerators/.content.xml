@@ -5,6 +5,7 @@
         cq:lastModified="{Date}2013-05-29T11:14:32.762-04:00"
         cq:lastModifiedBy="admin"
         cq:scaffolding="/etc/scaffolding/productCategory"
+        cq:tags="[searspartsdirect:parent_categories/kitchen_appliances]"
         jcr:description="Refrigerator description"
         jcr:primaryType="cq:PageContent"
         jcr:title="Refrigerators"

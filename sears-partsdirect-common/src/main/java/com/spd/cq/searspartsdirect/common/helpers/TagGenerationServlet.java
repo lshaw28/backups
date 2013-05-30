@@ -52,6 +52,24 @@ public class TagGenerationServlet extends SlingAllMethodsServlet {
 				return;
 			}
 		}
+		namespaceCheck = tm.resolve("searspartsdirect:parent_categories");
+		if (namespaceCheck == null) {
+			try {
+				tm.createTag("searspartsdirect:parent_categories", "Parent Categories", "Tag for Parent Categories");
+			} catch (Exception e) {
+				log.error(e.toString());
+				return;
+			}
+		}
+		namespaceCheck = tm.resolve("searspartsdirect:subcategories");
+		if (namespaceCheck == null) {
+			try {
+				tm.createTag("searspartsdirect:subcategories", "Subcategories", "Tag for Subcategories");
+			} catch (Exception e) {
+				log.error(e.toString());
+				return;
+			}
+		}
         
         while (rows.hasNext()) {
             String [] row = rows.next();
@@ -65,11 +83,9 @@ public class TagGenerationServlet extends SlingAllMethodsServlet {
 
 	private void generateTags(ResourceResolver resourceResolver, String[] row) {
 		TagManager tm = resourceResolver.adaptTo(TagManager.class);
-		String tagPath = "searspartsdirect:";
-		for (String tagTitle : row) {
-			if (tagTitle.equals("n/a")) {
-				break;
-			}
+		String tagPath = "searspartsdirect:parent_categories/";
+		if (row[0].equals("Product Categories")) {
+			String tagTitle = row[1];
 			String tagName = JcrUtil.createValidName(tagTitle);
 			Tag check = tm.resolve(tagPath + tagName);
 			if (check == null)
@@ -82,8 +98,21 @@ public class TagGenerationServlet extends SlingAllMethodsServlet {
 	            	log.error(e.toString());
 	            }
 	        }
-			else {
-				tagPath = check.getTagID() + "/";
+			tagPath = "searspartsdirect:subcategories/";
+			if (!row[3].equals("n/a")) {
+				tagTitle = row[3];
+				tagName = JcrUtil.createValidName(tagTitle);
+				check = tm.resolve(tagPath + tagName);
+				if (check == null)
+		        {
+		            try {
+		                check = tm.createTag(tagPath + tagName, tagTitle, "", true);
+		                tagPath = check.getTagID() + "/";
+	                	log.info("Created tag with ID [" + check.getTagID() + "], title [" + tagTitle + "]");
+		            } catch (Exception e) {
+		            	log.error(e.toString());
+		            }
+		        }
 			}
 		}
 	}
