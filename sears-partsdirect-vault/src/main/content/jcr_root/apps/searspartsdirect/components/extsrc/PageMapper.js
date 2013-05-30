@@ -38,6 +38,11 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	typeField: null,
 	/**
+	 * @type {CQ.Ext.form.Hidden}
+	 * Used to indicate empty set
+	 */
+	emptyField: null,
+	/**
 	 * @type {String}
 	 * Default if a name isn't provided
 	 */
@@ -104,17 +109,14 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		});
 		
 		// create colletions model
-		this.dataStore = new CQ.Ext.data.Store({
-			writer: new CQ.Ext.data.JsonWriter({
-				encode: true
-			}),
-			proxy: new CQ.Ext.data.MemoryProxy(),
-			reader: new CQ.Ext.data.ArrayReader({}, CQ.Ext.data.Record.create([{
-				name: 'path'
-			}]))
+		this.dataStore = new CQ.Ext.data.ArrayStore({
+			// store configs
+			autoDestroy: true,
+			storeId: 'pageMapperStore',
+			// reader configs
+			idIndex: 0,
+			fields: ['path']
 		});
-		// spin up proxy setting
-		this.dataStore.load();
 		
 		// tree configs
 		this.initTreePanel();
@@ -242,9 +244,36 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 						'/' + data.node.attributes.name;
 
 					// add value
-					_this.addValue(path);
+					try {
+						_this.addValue(path);
+					} catch (e) {
+						CQ.Ext.Msg.alert('Page Mapper', e.message);
+					}
 				}
 			});
+		});
+		
+		// config for right click > delete
+		this.gridPanel.on('rowcontextmenu', function (grid, index, e) {
+			var xy = e.getXY(),
+				menu = new CQ.Ext.menu.Menu({
+				items:[{
+					text: 'Remove',
+					handler: function() {
+						// get path
+						var path = _this.dataStore.getAt(index).data.path;
+						
+						// remove path
+						_this.removeValue(path);
+					}
+				}]
+			});
+			
+			// location of ext context menu
+			menu.showAt(xy);
+			
+			// preventDefault
+			e.stopEvent();
 		});
 		
 		this.containerPanel.add(this.gridPanel);
@@ -259,11 +288,43 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 			// get mapper data from parent
 			data = this.parentStore.getAt(0).get(mapperProperty),
 			i;
-		
-		// iterate over items, spin up data
-		for (i = 0; i < data.length; ++i) {
-			this.addValue(data[i]);
+			
+		// sometimes property isn't present like on first component use
+		if (typeof data !== 'undefined') {
+			// clear our current store so data isn't duplicated
+			this.truncateTable();
+			this.removeAllHiddenFields();
+
+			// iterate over items, spin up data
+			for (i = 0; i < data.length; ++i) {
+				this.addValue(data[i]);
+			}
 		}
+	},
+	/**
+	 * Clears collection
+	 * @return {undefined}
+	 */
+	truncateTable: function () {
+		this.dataStore.removeAll();
+	},
+	/**
+	 * Clears all hidden fields
+	 * @return {undefined}
+	 */
+	removeAllHiddenFields: function () {
+		var i;
+		
+		// itertate over fields
+		for (i = 0; i < this.hiddenFields.length; ++i) {
+			this.hiddenFields[i].remove();
+		}
+		
+		// clear
+		this.hiddenFields = [];
+		
+		// render
+		this.doLayout();
 	},
 	/**
 	 * Value addition handler
@@ -271,6 +332,11 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 * @return {undefined}
 	 */
 	addValue: function (path) {
+		// path check
+		if (this.pathExists(path) === true) {
+			throw new CQ.Ext.Error('Path already exists.');
+		}
+		
 		// record data to collections
 		this.insert({
 			path: path
@@ -278,6 +344,11 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		
 		// add hidden value for POST support
 		this.addHiddenValue(path);
+		
+		// make sure emptyField is disabled
+		if (this.hiddenFields.length > 0 && this.emptyField.disabled === false) {
+			this.emptyField.disable();
+		}
 	},
 	/**
 	 * Value removal handler
@@ -289,6 +360,11 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		
 		// remove hidden value for POST support
 		this.removeHiddenValue(path);
+		
+		// if no more items enable empty field
+		if (this.hiddenFields.length === 0) {
+			this.emptyField.enable();
+		}
 	},
 	/**
 	 * Adds a new record to the collections
@@ -305,7 +381,31 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 * @return {undefined}
 	 */
 	remove: function (key, value) {
+		var recordIndex = -1;
 		
+		this.dataStore.each(function (item, index) {
+			if (this.data[key] !== 'undefined' && this.data[key] === value) {
+				recordIndex = index;
+			}
+		});
+		
+		this.dataStore.remove(this.dataStore.getAt(recordIndex));
+	},
+	/**
+	 * Checks if path exists
+	 * @param {String} path
+	 * @return {undefined}
+	 */
+	pathExists: function (path) {
+		var output = false;
+		
+		this.dataStore.each(function () {
+			if (this.data.path !== 'undefined' && this.data.path === path) {
+				output = true;
+			}
+		});
+		
+		return output;
 	},
 	/**
 	 * Sets type to save on JCR property
@@ -322,8 +422,16 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 			value: type
 		});
 		
+		// field config
+		this.emptyField = new CQ.Ext.form.Hidden({
+			name: name,
+			value: '',
+			disabled: true
+		});
+		
 		// append to form to be collected on dialog submit
 		this.add(this.typeField);
+		this.add(this.emptyField);
 	},
 	/**
 	 * Creates a hidden field with a new value and appends to component
@@ -334,16 +442,13 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		// name of field
 		var name = this.formName,
 			// hidden form to store value
-			field = new CQ.Ext.form.Hidden({
-				name: name,
-				value: value
-			});
+			field = $CQ('<input type="hidden" name="' + name + '" value="' + value + '" />');
 		
 		// save reference
 		this.hiddenFields.push(field);
 		
 		// add to component
-		this.add(field);
+		$CQ(this.el.dom).append(field);
 		
 		// render
 		this.doLayout();
@@ -359,9 +464,13 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		// itertate over fields
 		for (i = 0; i < this.hiddenFields.length; ++i) {
 			// match?
-			if (this.hiddenFields[i].getValue() === value) {
+			if (this.hiddenFields[i].val() === value) {
 				// remove!
-				this.remove(this.hiddenFields[i].getId(), true);
+				this.hiddenFields[i].remove();
+				this.hiddenFields.splice(i, 1);
+				
+				// end
+				break;
 			}
 		}
 		
