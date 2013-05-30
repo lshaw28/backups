@@ -42,7 +42,7 @@ public class GuideNavigationTag extends CQBaseTag {
 	}
 	private static class CommentsLabelGenerator extends LabelGenerator {
 		public String generateLabel(Node commentsBeingLabelled, ResourceResolver rr) {
-			StringBuilder label = new StringBuilder("Comments");
+			StringBuilder label = new StringBuilder(Constants.COMMENTS_STICKY_LINK_PREFIX);
 			try {
 				Resource thoseComments = rr.resolve(commentsBeingLabelled.getPath());
 				CommentSystem thatCs = thoseComments.adaptTo(CommentSystem.class);
