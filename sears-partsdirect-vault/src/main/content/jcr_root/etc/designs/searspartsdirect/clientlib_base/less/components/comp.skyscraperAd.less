@@ -3,6 +3,11 @@
 
 /* Component: Skyscraper Ad
  * Notes: extends responsiveImage with unique styling */
+/* Container Class */
+.ad-span {
+	text-align: center;
+}
+
 /* Desktop Defaults */
 .skyscraperAd {
 	display: inline-block;
@@ -22,17 +27,25 @@
 }
 
 /* Tablet Breakpoints */
-@media (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
+	.ad-span {
+		text-align: left;
+	}
 	.skyscraperAd {
 		height: 90px;
+		margin: 0;
 		width: 728px;
 	}
 }
 
 /* Mobile Breakpoints */
-@media (max-width: 800px) {
+@media (max-width: 767px) {
+	.ad-span {
+		text-align: center;
+	}
 	.skyscraperAd {
 		height: 50px;
+		margin: 0;
 		width: 300px;
 	}
 }
