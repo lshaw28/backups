@@ -82,6 +82,8 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 * @return {undefined}
 	 */
 	initComponent: function () {
+		var _this = this;
+		
 		// instantiate parent constructor
 		Shc.components.extsrc.PageMapper.superclass.initComponent.call(this);
 		
@@ -119,6 +121,15 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		
 		// grid configs
 		this.initGridPanel();
+		
+		// when data is strapped to the dialog, import it
+		this.parentDialog.on('loadContent', function () {
+			// assign store reference to this component
+			_this.parentStore = this.store;
+			
+			// boot data up
+			_this.loadDataFromParent();
+		});
 		
 		// append container to main
 		this.add(this.containerPanel);
@@ -230,18 +241,71 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 					var path = data.node.attributes.loader.baseParams.path.toString().substr(1) +
 						'/' + data.node.attributes.name;
 
-					// record new item
-					_this.dataStore.add(new _this.dataStore.recordType({
-						path: path
-					}, CQ.Ext.id()));
-
-					// add field
+					// add value
 					_this.addValue(path);
 				}
 			});
 		});
 		
 		this.containerPanel.add(this.gridPanel);
+	},
+	/**
+	 * Populates grid from parent data
+	 * @return {undefined}
+	 */
+	loadDataFromParent: function () {
+		// set property level and remove path characters
+		var mapperProperty = this.formName.substr(2),
+			// get mapper data from parent
+			data = this.parentStore.getAt(0).get(mapperProperty),
+			i;
+		
+		// iterate over items, spin up data
+		for (i = 0; i < data.length; ++i) {
+			this.addValue(data[i]);
+		}
+	},
+	/**
+	 * Value addition handler
+	 * @param {String} path
+	 * @return {undefined}
+	 */
+	addValue: function (path) {
+		// record data to collections
+		this.insert({
+			path: path
+		});
+		
+		// add hidden value for POST support
+		this.addHiddenValue(path);
+	},
+	/**
+	 * Value removal handler
+	 * @param {String} path
+	 * @return {undefined}
+	 */
+	removeValue: function (path) {
+		this.remove(path);
+		
+		// remove hidden value for POST support
+		this.removeHiddenValue(path);
+	},
+	/**
+	 * Adds a new record to the collections
+	 * @param {Object} data
+	 * @return {undefined}
+	 */
+	insert: function (data) {
+		this.dataStore.add(new this.dataStore.recordType(data, CQ.Ext.id()));
+	},
+	/**
+	 * Removes a record from the collection based on the key/value
+	 * @param {String} key
+	 * @param {String} value
+	 * @return {undefined}
+	 */
+	remove: function (key, value) {
+		
 	},
 	/**
 	 * Sets type to save on JCR property
@@ -266,7 +330,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 * @param {String} value
 	 * @return {undefined}
 	 */
-	addValue: function (value) {
+	addHiddenValue: function (value) {
 		// name of field
 		var name = this.formName,
 			// hidden form to store value
@@ -289,7 +353,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 * @param {String} value
 	 * @return {undefined}
 	 */
-	removeValue: function (value) {
+	removeHiddenValue: function (value) {
 		var i;
 		
 		// itertate over fields
