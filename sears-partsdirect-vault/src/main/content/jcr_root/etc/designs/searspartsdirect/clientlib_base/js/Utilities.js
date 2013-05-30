@@ -57,7 +57,7 @@
 		isMobileBreakpoint: function () {
 			var currentWidth = parseInt($(window).width(), 10);
 
-			if (currentWidth < 481) {
+			if (currentWidth < 800) {
 				return true;
 			} else {
 				return false;
@@ -70,7 +70,7 @@
 		isTabletBreakpoint: function () {
 			var currentWidth = parseInt($(window).width(), 10);
 
-			if (currentWidth > 480 && currentWidth < 1025) {
+			if (currentWidth > 800 && currentWidth < 1025) {
 				return true;
 			} else {
 				return false;

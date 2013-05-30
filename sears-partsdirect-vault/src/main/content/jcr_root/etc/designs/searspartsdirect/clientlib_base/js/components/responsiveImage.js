@@ -102,25 +102,28 @@
 		 */
 		renderResponsive: function () {
 			var self = this,
+				imageNode = $('.responsiveImage_js', self.el),
 				imageURL = self.getResponsiveURL();
 
-			// Retrieve parent's current dimensions
-			if (self.useParentDims === true) {
-				self.getParentDims();
+			if (imageURL !== imageNode.attr('src')) {
+				// Retrieve parent's current dimensions
+				if (self.useParentDims === true) {
+					self.getParentDims();
+				}
+
+				// Remove previously rendered image
+				imageNode.remove();
+
+				// Generate image
+				var img = $('<img />');
+				img.attr('src', imageURL)
+					.addClass('responsiveImage_js')
+					.css({
+						'width': self.fw,
+						'height': self.fh
+					});
+				self.el.append(img);
 			}
-
-			// Remove previously rendered image
-			$('.responsiveImage_js', self.el).remove();
-
-			// Generate image
-			var img = $('<img />');
-			img.attr('src', imageURL)
-				.addClass('responsiveImage_js')
-				.css({
-					'width': self.fw,
-					'height': self.fh
-				});
-			self.el.append(img);
 
 			// Bind event
 			if (self.isBound === false) {
