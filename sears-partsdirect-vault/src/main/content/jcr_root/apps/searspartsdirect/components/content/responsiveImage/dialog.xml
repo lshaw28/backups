@@ -49,6 +49,45 @@
 			title="Mobile Image"
 			uploadUrl="/tmp/upload/*"
 			xtype="html5smartimage" />
+		<linkTab
+			jcr:primaryType="cq:Widget"
+			title="Image Link"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<linkAlt
+					jcr:primaryType="cq:Widget"
+					fieldLabel="Alternative Text"
+					allowBlank="{Boolean}true"
+					itemId="linkAlt"
+					name="./linkAlt"
+					xtype="textfield" />
+				<linkURL
+					jcr:primaryType="cq:Widget"
+					fieldLabel="Link"
+					allowBlank="{Boolean}true"
+					itemId="linkURL"
+					name="./linkURL"
+					xtype="pathfield" />
+				<linkTarget
+					jcr:primaryType="cq:Widget"
+					fieldLabel="Target"
+					name="./linkTarget"
+					type="select"
+					xtype="selection">
+					<options
+						jcr:primaryType="cq:WidgetCollection">
+						<r1
+							jcr:primaryType="nt:unstructured"
+							text="New Window"
+							value="_blank" />
+						<r2
+							jcr:primaryType="nt:unstructured"
+							text="This Window"
+							value="_self" />
+					</options>
+				</linkTarget>
+			</items>
+		</linkTab>
 		<imageDimensionsTab
 			jcr:primaryType="cq:Widget"
 			title="Image Dimensions"

@@ -12,7 +12,7 @@ core.forms.less
 core.tables.less
 comp.accordion.less
 comp.boxlinks.less
-comp.brandbar.less
+comp.brandBar.less
 comp.brandcarousel.less
 comp.cartandmodels.less
 comp.errorcodes.less

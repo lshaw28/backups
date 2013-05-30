@@ -17,12 +17,16 @@
 		init: function (el, fw, fh, iq) {
 			// Parameters
 			this.el = $(el);
+			this.targetEl = $(el);
 			// Properties
 			this.fw = 0;
 			this.fh = 0;
 			this.desktopImage = '';
 			this.tabletImage = '';
 			this.mobileImage = '';
+			this.linkAlt = '';
+			this.linkURL = '';
+			this.linkTarget = '';
 			this.imageQuality = 80;
 			this.useParentDims = true;
 			this.isBound = false;
@@ -39,37 +43,51 @@
 		 * @return {void}
 		 */
 		setProperties: function (fw, fh, iq) {
-			var self = this;
+			var self = this,
+				su = window.SPDUtils;
+
 			// Image URLs
 			self.desktopImage = self.el.data('desktopimage');
 			self.tabletImage = self.el.data('tabletimage');
 			self.mobileImage = self.el.data('mobileimage');
 
+			// Hyperlink
+			self.linkAlt = su.validString(self.el.data('linkalt'));
+			self.linkURL = su.validString(self.el.data('linkurl'));
+			self.linkTarget = su.validString(self.el.data('linktarget'));
+
+			if (self.linkURL !== '') {
+				self.targetEl = $('<a />');
+				self.targetEl.attr('href', self.linkURL);
+				self.targetEl.attr('target', self.linkTarget);
+				self.el.append(self.targetEl);
+			}
+
 			// Acquire parent dimensions
 			self.getParentDims();
 
 			// Override width
-			if (window.SPDUtils.validNumber(self.el.data('width')) > 0) {
+			if (su.validNumber(self.el.data('width')) > 0) {
 				self.fw = parseInt(self.el.data('width'), 10);
 				// Set the flag so re-renders do not reacquire parent dimensions
 				self.useParentDims = false;
-			} else if (window.SPDUtils.validNumber(fw) > 0) {
+			} else if (su.validNumber(fw) > 0) {
 				self.fw = parseInt(fw, 10);
 				// Set the flag so re-renders do not reacquire parent dimensions
 				self.useParentDims = false;
 			}
 
 			// Override height
-			if (window.SPDUtils.validNumber(self.el.data('height')) > 0) {
+			if (su.validNumber(self.el.data('height')) > 0) {
 				self.fh = parseInt(self.el.data('height'), 10);
-			} else if (window.SPDUtils.validNumber(fh) > 0) {
+			} else if (su.validNumber(fh) > 0) {
 				self.fh = parseInt(fh, 10);
 			}
 
 			// Override image quality
-			if (window.SPDUtils.validNumber(self.el.data('imagequality')) > 0) {
+			if (su.validNumber(self.el.data('imagequality')) > 0) {
 				self.iq = parseInt(self.el.data('imagequality'), 10);
-			} else if (window.SPDUtils.validNumber(iq) > 0) {
+			} else if (su.validNumber(iq) > 0) {
 				self.iq = parseInt(iq, 10);
 			}
 		},
@@ -102,7 +120,7 @@
 		 */
 		renderResponsive: function () {
 			var self = this,
-				imageNode = $('.responsiveImage_js', self.el),
+				imageNode = $('.responsiveImage_js', self.targetEl),
 				imageURL = self.getResponsiveURL();
 
 			if (imageURL !== imageNode.attr('src')) {
@@ -117,12 +135,13 @@
 				// Generate image
 				var img = $('<img />');
 				img.attr('src', imageURL)
+					.attr('alt', self.linkAlt)
 					.addClass('responsiveImage_js')
 					.css({
 						'width': self.fw,
 						'height': self.fh
 					});
-				self.el.append(img);
+				self.targetEl.append(img);
 			}
 
 			// Bind event
@@ -139,13 +158,14 @@
 				imageURL = self.getGeneratedURL();
 
 			// Remove previously rendered image
-			$('.responsiveImage_js', self.el).remove();
+			$('.responsiveImage_js', self.targetEl).remove();
 
 			// Generate image
 			var img = $('<img />');
 			img.attr('src', imageURL)
+				.attr('alt', self.linkAlt)
 				.addClass('responsiveImage_js');
-			self.el.append(img);
+			self.targetEl.append(img);
 
 			// Bind event
 			if (self.isBound === false) {
