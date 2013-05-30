@@ -29,7 +29,11 @@ Shc.components.extsrc.PAGE_MAPPER_HEIGHT = 200;
  */
 Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	/**
-	 * @type {String}
+	 * @type {Boolean}
+	 */
+	writeOnly: true,
+	/**
+	 * @type {Boolean}
 	 * Appear as a panel but act like a form!
 	 */
 	hideLabel: true,
@@ -92,9 +96,6 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		// instantiate parent constructor
 		Shc.components.extsrc.PageMapper.superclass.initComponent.call(this);
 		
-		// get parent reference
-		this.parentDialog = this.findParentByType('dialog');
-		
 		// form key resolver
 		if (typeof this.getName().toString() === 'string') {
 			this.formName = this.getName();
@@ -124,14 +125,20 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		// grid configs
 		this.initGridPanel();
 		
-		// when data is strapped to the dialog, import it
-		this.parentDialog.on('loadContent', function () {
-			// assign store reference to this component
-			_this.parentStore = this.store;
-			
-			// boot data up
-			_this.loadDataFromParent();
-		});
+		// no data model
+		if (this.writeOnly === false) {
+			// get parent reference
+			this.parentDialog = this.findParentByType('dialog');
+
+			// when data is strapped to the dialog, import it
+			this.parentDialog.on('loadContent', function () {
+				// assign store reference to this component
+				_this.parentStore = this.store;
+
+				// boot data up
+				_this.loadDataFromParent();
+			});
+		}
 		
 		// append container to main
 		this.add(this.containerPanel);
