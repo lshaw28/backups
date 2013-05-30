@@ -173,4 +173,9 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAssetsTag</tag-class>
  		<info>Returns a list of SPD Assets for given filters</info>
 	</tag>
+	<tag>
+	   <name>getMostViewedGuidesTag</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetMostViewedGuidesTag</tag-class>
+		 <info>Gets the list of most viewed Repair Guides</info>
+	</tag>
 </taglib>

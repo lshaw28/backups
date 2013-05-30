@@ -3,9 +3,86 @@
 
 /* Component: Brand Bar */
 .brandBar {
+	.verticalGradient(#fdfdfd, #d2d2d2);
+	border-bottom: inset 1px solid #d2d2d2;
 	display: block;
 	height: 31px;
-	z-index: 1000;
 	margin: 0 auto;
-	background: url('../img/brandBarBkg.png') repeat-x 0 0;
+	text-align: center;
+	width: 100%;
+	z-index: 1000;
+
+	ul.nav {
+		height: 24px;
+		margin: 0 auto;
+		padding: 4px 0;
+		width: 885px;
+
+		li {
+			border-right: 1px dotted @bodyCopyColor;
+			cursor: pointer;
+			display: block;
+			float: left;
+			height: 20px;
+			padding: 3px 10px 1px;
+
+			a {
+				background: url(../img/brandLogos.png) no-repeat 0 0;
+				display: block;
+				height: 20px;
+				text-indent: -9000px;
+			}
+		}
+		li.last {
+			border-right: 0;
+		}
+
+	}
+}
+
+#see_seeAll {
+	a {
+		background-position: 0 -276px;
+		width: 32px;
+	}
+}
+#brand_shs {
+	background-position: 0 -1px;
+	width: 62px;
+}
+#brand_sywr {
+	background-position: 0 -222px;
+	width: 85px;
+}
+#brand_kmart {
+	background-position: 0 -59px;
+	width: 44px;
+}
+#brand_myGofer {
+	background-position: 0 -86px;
+	width: 49px;
+}
+#brand_craftsman {
+	background-position: 2px -113px;
+	width: 62px;
+}
+#brand_kenmore {
+	background-position: 0 -141px;
+	width: 48px;
+}
+#brand_partsDirect {
+	background-position: 0 -169px;
+	width: 53px;
+}
+#brand_landsEnd {
+	background-position: 0 -198px;
+	width: 65px;
+}
+#brand_sellOnSears {
+	background-position: 0 -31px;
+	width: 77px;
+}
+#brand_searsOutlet {
+	background-position: 0 -251px;
+	width: 59px;
 }

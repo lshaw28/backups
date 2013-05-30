@@ -3,6 +3,7 @@
 	/**
 	 * @class responsiveImage
 	 * responsiveImage component, retrieves information and handles events
+	 * Can be extended with discreet functionality overrides
 	 */
 	"use strict";
 	window.responsiveImage = Class.extend({
@@ -11,6 +12,7 @@
 		 * @param {object} el Target element
 		 * @param {number} fw Optional forced width for consistent display
 		 * @param {number} fh Optional forced height for consistent display
+		 * @param {number} iq Optional forced image quality for Scene 7
 		 */
 		init: function (el, fw, fh, iq) {
 			// Parameters
@@ -18,7 +20,6 @@
 			// Properties
 			this.fw = 0;
 			this.fh = 0;
-			this.renderType = 'responsive';
 			this.desktopImage = '';
 			this.tabletImage = '';
 			this.mobileImage = '';
@@ -31,9 +32,10 @@
 			this.render();
 		},
 		/**
-		 * Retrieves data from attributes
+		 * Retrieves data from attributes and parameters
 		 * @param {number} fw Optional forced width for consistent display
 		 * @param {number} fh Optional forced height for consistent display
+		 * @param {number} iq Optional forced image quality for Scene 7
 		 * @return {void}
 		 */
 		setProperties: function (fw, fh, iq) {
@@ -42,35 +44,41 @@
 			self.desktopImage = self.el.data('desktopimage');
 			self.tabletImage = self.el.data('tabletimage');
 			self.mobileImage = self.el.data('mobileimage');
-			// Image dimensions
-			// Respect element dimensions < attribute < init parameter
-			self.fw = self.el.width();
+
+			// Acquire parent dimensions
+			self.getParentDims();
+
+			// Override width
 			if (window.SPDUtils.validNumber(self.el.data('width')) > 0) {
 				self.fw = parseInt(self.el.data('width'), 10);
+				// Set the flag so re-renders do not reacquire parent dimensions
 				self.useParentDims = false;
-			}
-			if (window.SPDUtils.validNumber(fw) > 0) {
+			} else if (window.SPDUtils.validNumber(fw) > 0) {
 				self.fw = parseInt(fw, 10);
+				// Set the flag so re-renders do not reacquire parent dimensions
 				self.useParentDims = false;
 			}
-			self.fh = self.el.height();
+
+			// Override height
 			if (window.SPDUtils.validNumber(self.el.data('height')) > 0) {
 				self.fh = parseInt(self.el.data('height'), 10);
-			}
-			if (window.SPDUtils.validNumber(fh) > 0) {
+			} else if (window.SPDUtils.validNumber(fh) > 0) {
 				self.fh = parseInt(fh, 10);
 			}
-			if (window.SPDUtils.validNumber(iq) > 0) {
+
+			// Override image quality
+			if (window.SPDUtils.validNumber(self.el.data('imagequality')) > 0) {
+				self.iq = parseInt(self.el.data('imagequality'), 10);
+			} else if (window.SPDUtils.validNumber(iq) > 0) {
 				self.iq = parseInt(iq, 10);
 			}
 		},
 		/**
-		 * Gets parent dimensions on re-render
+		 * Sets dimension values to parent dimensions
 		 * @return {void}
 		 */
 		getParentDims: function () {
 			var self = this;
-
 			self.fw = self.el.width();
 			self.fh = self.el.height();
 		},
@@ -94,24 +102,29 @@
 		 */
 		renderResponsive: function () {
 			var self = this,
+				imageNode = $('.responsiveImage_js', self.el),
 				imageURL = self.getResponsiveURL();
 
-			// Retrieve parent's current dimensions
-			if (self.useParentDims === true) {
-				self.getParentDims();
+			if (imageURL !== imageNode.attr('src')) {
+				// Retrieve parent's current dimensions
+				if (self.useParentDims === true) {
+					self.getParentDims();
+				}
+
+				// Remove previously rendered image
+				imageNode.remove();
+
+				// Generate image
+				var img = $('<img />');
+				img.attr('src', imageURL)
+					.addClass('responsiveImage_js')
+					.css({
+						'width': self.fw,
+						'height': self.fh
+					});
+				self.el.append(img);
 			}
 
-			// Remove previously rendered image
-			$('.responsiveImage_js', self.el).remove();
-			// Generate image
-			var img = $('<img />');
-			img.attr('src', imageURL)
-				.addClass('responsiveImage_js')
-				.css({
-					'width': self.fw,
-					'height': self.fh
-				});
-			self.el.append(img);
 			// Bind event
 			if (self.isBound === false) {
 				self.bindEvent();
@@ -127,11 +140,13 @@
 
 			// Remove previously rendered image
 			$('.responsiveImage_js', self.el).remove();
+
 			// Generate image
 			var img = $('<img />');
 			img.attr('src', imageURL)
 				.addClass('responsiveImage_js');
 			self.el.append(img);
+
 			// Bind event
 			if (self.isBound === false) {
 				self.bindEvent();
@@ -146,6 +161,7 @@
 				isMobile = window.SPDUtils.isMobileBreakpoint(),
 				isTablet = window.SPDUtils.isTabletBreakpoint();
 
+			// Determine which image to display
 			if (isMobile) {
 				return self.mobileImage;
 			} else if (isTablet) {
@@ -159,7 +175,15 @@
 		 * @return {string} Image URL
 		 */
 		getGeneratedURL: function () {
-			// @TODO: Logic to add query string parameters to generated URL based on breakpoint logic
+			var self = this,
+				baseURL = self.desktopImage.split('?')[0];
+
+			/* @TODO: Retrieve correct parameter names
+			 * and confirm pre-? substring contains image name */
+			return baseURL
+				+ '?width=' + self.fw
+				+ '&height=' + self.fh
+				+ '&quality=' + self.iq;
 		},
 		/**
 		 * Bind the window resize event
@@ -168,7 +192,11 @@
 		bindEvent: function () {
 			var self = this;
 
+			// Window resize and orientation change
 			$(window).resize(function () {
+				self.render();
+			})
+			.bind('orientationchange', function () {
 				self.render();
 			});
 
