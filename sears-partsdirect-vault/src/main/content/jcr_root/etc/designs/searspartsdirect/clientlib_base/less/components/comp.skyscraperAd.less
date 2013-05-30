@@ -1,0 +1,33 @@
+@import "../base.variables.less";
+@import "../base.mixins.less";
+
+/* Component: Skyscraper Ad
+ * Notes: extends responsiveImage with unique styling */
+/* Desktop Defaults */
+.skyscraperAd {
+	display: inline-block;
+	height: 600px;
+	margin: 0 auto 0 auto;
+	width: 160px;
+
+	div[data-desktopimage] {
+		height: 100%;
+		width: 100%;
+	}
+}
+
+/* Tablet Breakpoints */
+@media (max-width: 1024px) {
+	.skyscraperAd {
+		height: 90px;
+		width: 728px;
+	}
+}
+
+/* Mobile Breakpoints */
+@media (max-width: 800px) {
+	.skyscraperAd {
+		height: 50px;
+		width: 300px;
+	}
+}
