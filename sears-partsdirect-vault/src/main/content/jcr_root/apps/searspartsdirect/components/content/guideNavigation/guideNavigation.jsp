@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-
+<c:if test="${isEditMode or isDesignMode}"><spd:setupGuideNavigationDefaults /></c:if>
 <spd:guideNavigation />
 <div class="sticky-wrapper">
 	<nav id="sticky">

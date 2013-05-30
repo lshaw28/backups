@@ -11,7 +11,7 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
      * @type CQ.Ext.form.TextField
      */
     link: null,
-    name: null,
+    resType: null,
 
     /**
      * @private
@@ -23,7 +23,7 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
         config = config || {};
         var defaults = {
             border: true,
-            labelWidth: 75,
+            labelWidth: 100,
             layout: 'form'
         };
         config = CQ.Util.applyDefaults(config, defaults);
@@ -34,36 +34,47 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
     initComponent: function () {
         sectionMultifieldWidget.superclass.initComponent.call(this);
 
+        var cl = CQ.WCM.getComponentList(null)
+        var rawAllowedComponents = cl.allowedComponents;
+        var actualList = [];
+        for (var cPath in rawAllowedComponents) {
+        	var interior = {};
+        	interior.value = cPath;
+        	var cInfo = cl.getComponent(cPath);
+        	interior.text = cInfo.title;
+        	interior.qtip = cInfo.description;
+        	actualList.push(interior);
+        }
+        
         // Hidden field
         this.hiddenField = new CQ.Ext.form.Hidden({
-            name: this.name
+            name: './sections'
         });
         this.add(this.hiddenField);
 
-        this.name = new CQ.Ext.form.TextField({
-            cls: 'cls-name-1',
-            fieldLabel: 'Resource type: ',
-            maxLength: 80,
-            maxLengthText: 'A maximum of 80 characters is allowed for the Section Name.',
-            allowBlank: false,
-            width: 275,
-            listeners: {
-                change: {
-                    scope: this,
-                    fn: this.updateHidden
-                }
-            }
-        });
-        this.add(this.name);
+        this.resType = new CQ.form.Selection({
+    		cls: 'cls-resType-1',
+    		type: 'select',
+    		fieldLabel: 'Component&nbsp;type',
+    		allowBlank: false,
+    		width: 350,
+    		listeners: {
+    			selectionchanged: {
+    				scope: this,
+    				fn: this.updateHidden
+    			}
+    		},
+    		options: actualList
+    	});
+        this.add(this.resType);
 
         this.link = new CQ.Ext.form.TextField({
             cls: 'cls-link-1',
             fieldLabel: 'Link text',
-			fieldDescription: 'Text of link, unless overridden per resource type.',
-            maxLength: 80,
-            maxLengthText: 'A maximum of 80 characters is allowed for the Link Text.',
-            allowBlank: false,
-            width: 275,
+            maxLength: 40,
+            maxLengthText: 'A maximum of 40 characters is allowed for the Link Text.',
+            allowBlank: true,
+            width: 350,
             listeners: {
                 change: {
                     scope: this,
@@ -77,15 +88,14 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
 
     processInit: function (path, record) {
         this.link.processInit(path, record);
-        this.name.processInit(path, record);
-	this.openInNewWindow.processInit(path, record);
-
+    	this.resType.processInit(path, record);
+    	this.openInNewWindow.processInit(path, record);
     },
 
     setValue: function (value) {
         var section = JSON.parse(value);
         this.link.setValue(section.link);
-	this.name.setValue(section.name);
+		this.resType.setValue(section.resType);
         this.hiddenField.setValue(value);
     },
 
@@ -96,14 +106,15 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
     getRawValue: function () {
         var section = {
             link: this.link.getValue(),
-            name: this.name.getValue()
+        	resType: this.resType.getValue()
         };
         return JSON.stringify(section);
     },
 
     updateHidden: function () {
         this.hiddenField.setValue(this.getValue());
-    }
+    },
+    
+    getTypesAvailable: null
 });
-
 CQ.Ext.reg('spd.sectionMultifield', sectionMultifieldWidget);
