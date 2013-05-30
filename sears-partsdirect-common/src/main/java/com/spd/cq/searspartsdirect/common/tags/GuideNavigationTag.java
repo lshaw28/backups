@@ -26,19 +26,6 @@ public class GuideNavigationTag extends CQBaseTag {
 	protected static Logger log = LoggerFactory
 			.getLogger(GuideNavigationTag.class);
 
-	private final static Map<String,String> defaultTypeLabels = initDefaultTypeLabels();
-	private final static Map<String,String> initDefaultTypeLabels() {
-		Map<String,String> defaults = new HashMap<String,String>();
-		defaults.put("searspartsdirect/components/content/partsRequiredRepair", "Parts required");
-		defaults.put("searspartsdirect/components/content/toolsRequiredRepair", "Tools required");
-		defaults.put("searspartsdirect/components/content/subhead", "");
-		defaults.put("searspartsdirect/components/content/comments", "");
-		return defaults;
-	}
-	
-	// We need a collection from somewhere which is what components we try to link to
-	// Do we always look in the same parsys? Same as we are, or fixed, or configd?
-	// Do we ever look in more than one?
 	private static abstract class LabelGenerator {
 		public abstract String generateLabel(Node beingLabelled, ResourceResolver rr);
 	}
@@ -74,14 +61,14 @@ public class GuideNavigationTag extends CQBaseTag {
 	private final static Map<String,LabelGenerator> specialLabelGenerators = initSpecialLabelGenerators();
 	private final static Map<String,LabelGenerator> initSpecialLabelGenerators() {
 		Map<String,LabelGenerator> generators = new HashMap<String,LabelGenerator>();
-		generators.put("searspartsdirect/components/content/subhead", new SubheadLabelGenerator());
-		generators.put("searspartsdirect/components/content/comments",new CommentsLabelGenerator());
+		generators.put(Constants.SUBHEAD_COMPONENT, new SubheadLabelGenerator());
+		generators.put(Constants.COMMENTS_COMPONENT,new CommentsLabelGenerator());
 		return generators;
 	}
 	
 	private Map<String,String> getConfiguredTypeLabels() {
 		List<List<String>> typesAndLabels = this.getMenuItems("sections", currentNode);
-		Map<String,String> typeToLabel = new HashMap<String,String>(defaultTypeLabels);
+		Map<String,String> typeToLabel = new HashMap<String,String>();
 		for (List<String> aType : typesAndLabels) {
 			typeToLabel.put(aType.get(0).trim(), aType.get(1));
 		}
@@ -94,18 +81,16 @@ public class GuideNavigationTag extends CQBaseTag {
 			log.debug("parsysParent is "+parsysParent);
 			log.debug("parsysParent name is "+parsysParent.getName());
 		}
-		//TODO maybe check to be sure this is a parsys.
 		return parsysParent;
 	}
 	
 	@Override
 	public int doStartTag() throws JspException {
-		// list containing lists [sectionresourcetype,sectionlabel]
-		// Really we want a Map<String:sectionresourcetype,String:sectionlabel>
+		// Really we want a Map<String:sectionresourcetype,String:linktext>
 		Map<String,String> typeToLabel = getConfiguredTypeLabels();
 		
 		if (log.isDebugEnabled()) log.debug("typeToLabel is "+typeToLabel);
-		// list containing lists [sectionlabel,sectionlink]
+		// output list containing lists [linktext,sectionlink]
 		List<List<String>> sections = new ArrayList<List<String>>();
 		try {
 			if (log.isDebugEnabled()) log.debug("currentNode is "+currentNode);
@@ -150,7 +135,7 @@ public class GuideNavigationTag extends CQBaseTag {
 
 		try {
 			JSONObject menuItemConfig = new JSONObject(jsonString);
-			item.add(menuItemConfig.getString("name"));
+			item.add(menuItemConfig.getString("resType"));
 			item.add(menuItemConfig.getString("link"));
 		} catch (Exception e) {
 			log.error("JSON error", e);
@@ -160,6 +145,7 @@ public class GuideNavigationTag extends CQBaseTag {
 	}
 
 	protected List<List<String>> getMenuItems(String propertyName, Node node) {
+		// config list containing lists [sectionresourcetype,linktext]
 		List<List<String>> items = new ArrayList<List<String>>();
 		try {
 			if (node.hasProperty(propertyName) == true) {

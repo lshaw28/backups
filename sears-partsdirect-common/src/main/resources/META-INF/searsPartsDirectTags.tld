@@ -164,6 +164,11 @@
 		 <info>Provides information to the guideNavigation component</info>
 	</tag>
 	<tag>
+		<name>setupGuideNavigationDefaults</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.SetupGuideNavigationDefaultsTag</tag-class>
+		<info>author only, writes default setup for the guideNavigation component</info>
+	</tag>
+	<tag>
 		<name>getAssets</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAssetsTag</tag-class>
  		<info>Returns a list of SPD Assets for given filters</info>
