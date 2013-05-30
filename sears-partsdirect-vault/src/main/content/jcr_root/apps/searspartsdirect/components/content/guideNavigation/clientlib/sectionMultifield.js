@@ -23,7 +23,7 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
         config = config || {};
         var defaults = {
             border: true,
-            labelWidth: 75,
+            labelWidth: 100,
             layout: 'form'
         };
         config = CQ.Util.applyDefaults(config, defaults);
@@ -34,11 +34,6 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
     initComponent: function () {
         sectionMultifieldWidget.superclass.initComponent.call(this);
 
-        console.log('getting components');
-        
-        console.log('Page is '+CQ.Page);
-        console.log('this.path is '+this.path);
-        console.dir(CQ.WCM.getComponentList(null).allowedComponents);
         var cl = CQ.WCM.getComponentList(null)
         var rawAllowedComponents = cl.allowedComponents;
         var actualList = [];
@@ -50,7 +45,6 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
         	interior.qtip = cInfo.description;
         	actualList.push(interior);
         }
-        console.dir(actualList);
         
         // Hidden field
         this.hiddenField = new CQ.Ext.form.Hidden({
@@ -61,9 +55,9 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
         this.resType = new CQ.form.Selection({
     		cls: 'cls-resType-1',
     		type: 'select',
-    		fieldLabel: 'Resource type: ',
+    		fieldLabel: 'Component&nbsp;type',
     		allowBlank: false,
-    		width: 275,
+    		width: 350,
     		listeners: {
     			selectionchanged: {
     				scope: this,
@@ -77,11 +71,10 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
         this.link = new CQ.Ext.form.TextField({
             cls: 'cls-link-1',
             fieldLabel: 'Link text',
-			fieldDescription: 'Text of link, leave blank for default.',
-            maxLength: 80,
-            maxLengthText: 'A maximum of 80 characters is allowed for the Link Text.',
+            maxLength: 40,
+            maxLengthText: 'A maximum of 40 characters is allowed for the Link Text.',
             allowBlank: true,
-            width: 275,
+            width: 350,
             listeners: {
                 change: {
                     scope: this,
