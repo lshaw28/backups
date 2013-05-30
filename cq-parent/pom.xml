@@ -149,6 +149,11 @@
 			<version>1.6.4</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+		  <groupId>com.day.cq.wcm</groupId>
+		  <artifactId>cq-wcm-core</artifactId>
+		  <version>5.4.28</version>
+		</dependency>
 	</dependencies>
 
 	<profiles>
