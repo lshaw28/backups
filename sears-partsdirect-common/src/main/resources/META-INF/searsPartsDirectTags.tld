@@ -84,9 +84,9 @@
 	   <info>Get shopping cart information</info>
 	</tag>
 	<tag>
-	   <name>getVideoProperties</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetVideoPropertiesTag</tag-class>
-	   <info>Gets properties used to display video</info>
+	   <name>getYouTubeID</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetYouTubeIDTag</tag-class>
+	   <info>Return the ID from a YouTube URL</info>
 	</tag>
 	<tag>
 		<name>DefineObjects</name>
@@ -172,12 +172,6 @@
 		<name>getAssets</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAssetsTag</tag-class>
  		<info>Returns a list of SPD Assets for given filters</info>
-		<attribute>
-			<name>assetType</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
 	</tag>
 	<tag>
 	   <name>getMostViewedGuidesTag</name>
