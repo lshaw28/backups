@@ -26,6 +26,16 @@ public class GuideNavigationTag extends CQBaseTag {
 	protected static Logger log = LoggerFactory
 			.getLogger(GuideNavigationTag.class);
 
+	private final static Map<String,String> defaultTypeLabels = initDefaultTypeLabels();
+	private final static Map<String,String> initDefaultTypeLabels() {
+		Map<String,String> defaults = new HashMap<String,String>();
+		defaults.put("searspartsdirect/components/content/partsRequiredRepair", "Parts required");
+		defaults.put("searspartsdirect/components/content/toolsRequiredRepair", "Tools required");
+		defaults.put("searspartsdirect/components/content/subhead", "");
+		defaults.put("searspartsdirect/components/content/comments", "");
+		return defaults;
+	}
+	
 	// We need a collection from somewhere which is what components we try to link to
 	// Do we always look in the same parsys? Same as we are, or fixed, or configd?
 	// Do we ever look in more than one?
@@ -71,7 +81,7 @@ public class GuideNavigationTag extends CQBaseTag {
 	
 	private Map<String,String> getConfiguredTypeLabels() {
 		List<List<String>> typesAndLabels = this.getMenuItems("sections", currentNode);
-		Map<String,String> typeToLabel = new HashMap<String,String>();
+		Map<String,String> typeToLabel = new HashMap<String,String>(defaultTypeLabels);
 		for (List<String> aType : typesAndLabels) {
 			typeToLabel.put(aType.get(0).trim(), aType.get(1));
 		}
