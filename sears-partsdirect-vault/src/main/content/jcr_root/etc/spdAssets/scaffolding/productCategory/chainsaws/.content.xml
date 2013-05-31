@@ -5,6 +5,7 @@
         cq:lastModified="{Date}2013-05-29T11:15:31.778-04:00"
         cq:lastModifiedBy="admin"
         cq:scaffolding="/etc/scaffolding/productCategory"
+        cq:tags="[searspartsdirect:parent_categories/lawn_garden]"
         jcr:description="Chainsaw description"
         jcr:primaryType="cq:PageContent"
         jcr:title="Chainsaws"

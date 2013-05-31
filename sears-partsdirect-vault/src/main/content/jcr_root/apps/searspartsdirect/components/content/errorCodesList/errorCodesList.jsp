@@ -7,11 +7,21 @@
 <cq:text property="errorCodeDescription" placeholder=""/>
 
  
-<spd:getErrorCodesData categoryName="${productTag.title}" />
+<%-- <spd:getErrorCodesData categoryName="${productTag.title}" /> --%>
 
+<!--  no category -->
+<%-- 
+<spd:getErrorCodesData />
+<c:forEach var="errorCode" items="${errorCodeList}">
+	<p> ${errorCode.code} ${errorCode.condition}</p>
+</c:forEach>
+--%>
+
+<!--  with category -->
+<spd:getErrorCodesData categoryName="${productTag.title}" />
 <c:forEach var="errorCode" items="${errorCodeList}">
 	<p> ${errorCode.key}</p>
 	<c:forEach var="subCategory" items="${errorCode.value}">
-		${subCategory}<br/>
+		${subCategory.code} -- ${subCategory.condition}<br/>
 	</c:forEach>
 </c:forEach>

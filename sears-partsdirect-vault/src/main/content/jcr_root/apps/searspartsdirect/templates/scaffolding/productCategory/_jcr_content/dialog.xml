@@ -42,5 +42,16 @@
 		            xtype="html5smartimage"/>
             </items>
         </tab2>
+        <tab3
+        	jcr:primaryType="cq:Panel"
+        	title="Related Assets">
+        	<items jcr:primaryType="cq:WidgetCollection">
+        		<tags
+        			jcr:primaryType="cq:Widget"
+        			name="./jcr:content/cq:tags"
+        			fieldLabel="Tag Associations"
+        			xtype="tags"/>
+        	</items>
+       	</tab3>
     </items>
 </jcr:root>
