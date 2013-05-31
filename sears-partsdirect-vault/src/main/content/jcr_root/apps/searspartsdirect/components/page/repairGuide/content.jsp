@@ -1,4 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
+<cq:include path="guideNavigation" resourceType="searspartsdirect/components/content/guideNavigation" />
 <article id="content">
 	<div class="row-fluid">
 		<div class="span12">
