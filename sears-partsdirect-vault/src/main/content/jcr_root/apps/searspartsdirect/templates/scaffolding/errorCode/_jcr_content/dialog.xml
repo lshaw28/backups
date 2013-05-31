@@ -21,6 +21,13 @@
                     fieldLabel="Repair"
                     xtype="pathfield"
                     name="./jcr:content/repairLink"/>
+				<pageAssociations
+					jcr:primaryType="cq:Widget"
+					name="./jcr:content/pageAssociations"
+					treeRootPath="/etc/spdAssets/scaffolding"
+					hideLabel="{Boolean}false"
+					fieldLabel="Page Associations"
+					xtype="scaffoldingpagemapper" />
             </items>
         </tab1>
         <tab2

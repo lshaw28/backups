@@ -1,1 +1,2 @@
 PageMapper.js
+ScaffoldingPageMapper.js
