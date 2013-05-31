@@ -61,7 +61,7 @@ public class TagsByPageTag extends CQBaseTag {
 			}
 			//Parent Category - creates the parentCategoryTag tag and parentCategoryTitles LinkedHashSet
 			if (tagType == null || tagType.equals("parentCategory")) {
-				p = Pattern.compile("(searspartsdirect:product_categories/[^/]+)");
+				p = Pattern.compile("(searspartsdirect:parent_categories/[^/]+)");
 				m = p.matcher(tagID);
 				if (m.find()) {
 					Tag t = tm.resolve(m.group());
