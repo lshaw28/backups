@@ -37,6 +37,9 @@ public class GetAssetsTag extends CQBaseTag {
 
 	protected static Logger log = LoggerFactory.getLogger(GetAssetsTag.class);
 	protected String assetType;
+	protected String brandFilter;
+	protected String productCategoryFilter;
+	protected String tagFilter;
 	
 	protected static enum AssetType {
 		BRAND, ERRORCODE, HAZARD, JOBCODE, PARTTYPE, PRODUCTCATEGORY, TIP, WARNING
@@ -53,6 +56,18 @@ public class GetAssetsTag extends CQBaseTag {
 		HashMap<String, String> props = new HashMap<String, String>();
         props.put("type", "cq:Page");
         props.put("path", Constants.ASSETS_PATH + "/" + assetType);
+        if (brandFilter != null) {
+        	props.put("1_property", "jcr:content/pages");
+        	props.put("1_property.value", brandFilter);
+        }
+        if (productCategoryFilter != null) {
+        	props.put("2_property", "jcr:content/pages");
+        	props.put("2_property.value", productCategoryFilter);
+        }
+        if (tagFilter != null) {
+        	props.put("3_property", "jcr:content/cq:tags");
+        	props.put("3_property.value", tagFilter);
+        }
         List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
 		try {
 	        for (Hit hit: hits) {
@@ -117,5 +132,17 @@ public class GetAssetsTag extends CQBaseTag {
 	
 	public void setAssetType(String assetType) {
 		this.assetType = assetType;
+	}
+	
+	public void setBrandFilter(String brandFilter) {
+		this.brandFilter = brandFilter;
+	}
+
+	public void setProductCategoryFilter(String productCategoryFilter) {
+		this.productCategoryFilter = productCategoryFilter;
+	}
+
+	public void setTagFilter(String tagFilter) {
+		this.tagFilter = tagFilter;
 	}
 }

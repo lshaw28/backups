@@ -21,13 +21,6 @@
                     fieldLabel="Repair"
                     xtype="pathfield"
                     name="./jcr:content/repairLink"/>
-				<pageAssociations
-					jcr:primaryType="cq:Widget"
-					name="./jcr:content/pageAssociations"
-					treeRootPath="/etc/spdAssets/scaffolding"
-					hideLabel="{Boolean}false"
-					fieldLabel="Page Associations"
-					xtype="scaffoldingpagemapper" />
             </items>
         </tab1>
         <tab2
@@ -39,6 +32,13 @@
         			name="./jcr:content/cq:tags"
         			fieldLabel="Tag Associations"
         			xtype="tags"/>
+        		<pages
+        			jcr:primaryType="cq:Widget"
+        			name="./jcr:content/pages"
+					treeRootPath="/etc/spdAssets/scaffolding"
+        			hideLabel="{Boolean}false"
+        			fieldLabel="Page Associations"
+        			xtype="scaffoldingpagemapper"/>
         	</items>
        	</tab2>
     </items>

@@ -1,4 +1,4 @@
-package com.spd.cq.searspartsdirect.common.tag;
+package com.spd.cq.searspartsdirect.common.tags;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
