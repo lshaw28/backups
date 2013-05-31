@@ -30,10 +30,6 @@ Shc.components.extsrc.PAGE_MAPPER_HEIGHT = 200;
 Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	/**
 	 * @type {Boolean}
-	 */
-	writeOnly: true,
-	/**
-	 * @type {Boolean}
 	 * Appear as a panel but act like a form!
 	 */
 	hideLabel: true,
@@ -91,8 +87,6 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 * @return {undefined}
 	 */
 	initComponent: function () {
-		var _this = this;
-		
 		// instantiate parent constructor
 		Shc.components.extsrc.PageMapper.superclass.initComponent.call(this);
 		
@@ -119,29 +113,36 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 			fields: ['path']
 		});
 		
+		// configures parent data
+		this.parentStoreBootup();
+		
 		// tree configs
 		this.initTreePanel();
 		
 		// grid configs
 		this.initGridPanel();
-		
-		// no data model
-		if (this.writeOnly === false) {
-			// get parent reference
-			this.parentDialog = this.findParentByType('dialog');
 
-			// when data is strapped to the dialog, import it
-			this.parentDialog.on('loadContent', function () {
-				// assign store reference to this component
-				_this.parentStore = this.store;
-
-				// boot data up
-				_this.loadDataFromParent();
-			});
-		}
-		
 		// append container to main
 		this.add(this.containerPanel);
+	},
+	/**
+	 * Finds the primary data store by looking for this parent's dialog
+	 * @return {undefined}
+	 */
+	parentStoreBootup: function () {
+		var _this = this;
+		
+		// get parent reference
+		this.parentDialog = this.findParentByType('dialog');
+
+		// when data is strapped to the dialog, import it
+		this.parentDialog.on('loadContent', function () {
+			// assign store reference to this component
+			_this.parentStore = this.store;
+
+			// boot data up
+			_this.loadDataFromParent();
+		});
 	},
 	/**
 	 * Initialize {TreePanel
@@ -299,14 +300,21 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		// sometimes property isn't present like on first component use
 		if (typeof data !== 'undefined') {
 			// clear our current store so data isn't duplicated
-			this.truncateTable();
-			this.removeAllHiddenFields();
+			this.clearData();
 
 			// iterate over items, spin up data
 			for (i = 0; i < data.length; ++i) {
 				this.addValue(data[i]);
 			}
 		}
+	},
+	/**
+	 * Truncates all data
+	 * @return {undefined}
+	 */
+	clearData: function () {
+		this.truncateTable();
+		this.removeAllHiddenFields();
 	},
 	/**
 	 * Clears collection
