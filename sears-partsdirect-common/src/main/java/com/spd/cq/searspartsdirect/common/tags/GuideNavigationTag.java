@@ -42,7 +42,7 @@ public class GuideNavigationTag extends CQBaseTag {
 	}
 	private static class CommentsLabelGenerator extends LabelGenerator {
 		public String generateLabel(Node commentsBeingLabelled, ResourceResolver rr) {
-			StringBuilder label = new StringBuilder(Constants.COMMENTS_STICKY_LINK_PREFIX);
+			StringBuilder label = new StringBuilder(Constants.COMMENTS_GUIDE_NAV_LINK_PREFIX);
 			try {
 				Resource thoseComments = rr.resolve(commentsBeingLabelled.getPath());
 				CommentSystem thatCs = thoseComments.adaptTo(CommentSystem.class);
@@ -66,23 +66,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		return generators;
 	}
 	
-	private Map<String,String> getConfiguredTypeLabels() {
-		List<List<String>> typesAndLabels = this.getMenuItems("sections", currentNode);
-		Map<String,String> typeToLabel = new HashMap<String,String>();
-		for (List<String> aType : typesAndLabels) {
-			typeToLabel.put(aType.get(0).trim(), aType.get(1));
-		}
-		return typeToLabel;
-	}
-	
-	private Node getParsys() throws RepositoryException {
-		Node parsysParent = currentNode.getParent();
-		if (log.isDebugEnabled()) {
-			log.debug("parsysParent is "+parsysParent);
-			log.debug("parsysParent name is "+parsysParent.getName());
-		}
-		return parsysParent;
-	}
+	// We need to abstract out link generation. function pattern not quite applicable, diff info needed
 	
 	@Override
 	public int doStartTag() throws JspException {
@@ -118,6 +102,7 @@ public class GuideNavigationTag extends CQBaseTag {
 					}
 					List<String> item = new ArrayList<String>();
 					item.add(labelFound);
+					// refactor...
 					item.add(parsysParent.getName()+"_"+parSibling.getName());
 					sections.add(item);
 				}
@@ -127,9 +112,9 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 		pageContext.setAttribute("sections", sections);
 		
-		String jumpToString = "Jump to...";
+		String jumpToString = Constants.GUIDE_NAV_DEF_JUMPTO_TEXT;
 		try {
-			jumpToString = currentPage.getContentResource().adaptTo(Node.class).getProperty("jumptostring").getString();
+			jumpToString = currentPage.getContentResource().adaptTo(Node.class).getProperty("jumpToString").getString();
 		} catch (RepositoryException re) {
 			log.error("exception getting jump to text",re);
 		}
@@ -138,7 +123,22 @@ public class GuideNavigationTag extends CQBaseTag {
 		return EVAL_BODY_INCLUDE;
 	}
 	
-	protected List<String> getMenuItemConfig(String jsonString) {
+	/**
+	 * Reads config and builds the map of types to link text
+	 * @return The map of component types to their link text
+	 */
+	private Map<String,String> getConfiguredTypeLabels() {
+		List<List<String>> typesAndLabels = this.getMenuItems("sections", currentNode);
+		Map<String,String> typeToLabel = new HashMap<String,String>();
+		for (List<String> aType : typesAndLabels) {
+			typeToLabel.put(aType.get(0).trim(), aType.get(1));
+		}
+		return typeToLabel;
+	}
+	
+	
+	@Deprecated // due to inefficiency
+	private List<String> getMenuItemConfig(String jsonString) {
 
 		List<String> item = new ArrayList<String>();
 
@@ -153,7 +153,8 @@ public class GuideNavigationTag extends CQBaseTag {
 		return item;
 	}
 
-	protected List<List<String>> getMenuItems(String propertyName, Node node) {
+	@Deprecated // due to inefficiency - we could populate the map directly
+	private List<List<String>> getMenuItems(String propertyName, Node node) {
 		// config list containing lists [sectionresourcetype,linktext]
 		List<List<String>> items = new ArrayList<List<String>>();
 		try {
@@ -177,4 +178,13 @@ public class GuideNavigationTag extends CQBaseTag {
 		return items;
 	}
 
+	@Deprecated
+	private Node getParsys() throws RepositoryException {
+		Node parsysParent = currentNode.getParent();
+		if (log.isDebugEnabled()) {
+			log.debug("parsysParent is "+parsysParent);
+			log.debug("parsysParent name is "+parsysParent.getName());
+		}
+		return parsysParent;
+	}
 }
