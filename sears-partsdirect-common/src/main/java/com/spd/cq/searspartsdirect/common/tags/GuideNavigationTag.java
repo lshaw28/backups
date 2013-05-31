@@ -126,6 +126,15 @@ public class GuideNavigationTag extends CQBaseTag {
 			log.error("exception getting sections",re);
 		}
 		pageContext.setAttribute("sections", sections);
+		
+		String jumpToString = "Jump to...";
+		try {
+			jumpToString = currentPage.getContentResource().adaptTo(Node.class).getProperty("jumptostring").getString();
+		} catch (RepositoryException re) {
+			log.error("exception getting jump to text",re);
+		}
+		pageContext.setAttribute("jumpToString", jumpToString);
+		
 		return EVAL_BODY_INCLUDE;
 	}
 	
