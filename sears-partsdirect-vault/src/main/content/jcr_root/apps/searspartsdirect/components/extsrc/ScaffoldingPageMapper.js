@@ -12,10 +12,11 @@ Shc.components.extsrc.SCAFFOLDING_PAGE_MAPPER_XTYPE = 'scaffoldingpagemapper';
  * @extends Shc.components.extsrc.PageMapper
  * @constructor
  * @param {Object} config The config object
- * @xtype pagemapper
+ * @xtype scaffoldingpagemapper
  */
 Shc.components.extsrc.ScaffoldingPageMapper = CQ.Ext.extend(Shc.components.extsrc.PageMapper, {
 	/**
+	 * @Override
 	 * Change the primary source of the parent collections model
 	 * @return {undefined}
 	 */
