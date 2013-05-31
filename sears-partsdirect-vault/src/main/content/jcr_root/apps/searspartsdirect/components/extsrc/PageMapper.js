@@ -371,7 +371,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 * @return {undefined}
 	 */
 	removeValue: function (path) {
-		this.remove(path);
+		this.remove('path', path);
 		
 		// remove hidden value for POST support
 		this.removeHiddenValue(path);
