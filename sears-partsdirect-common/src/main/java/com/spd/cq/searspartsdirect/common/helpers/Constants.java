@@ -22,6 +22,15 @@ public final class Constants {
 	public static final String RECENTLY_VIEWED_MODEL_COOKIE = "recentlyViewedModels";
 	public static final String RECENTLY_VIEWED_PART_COOKIE = "recentlyViewedParts";
 
+	/**
+	 * This method returns its argument - this is to keep what would otherwise be literals
+	 * from being compiled into client code. If you want to be able to change a constant here
+	 * without needing to recompile all clients, you should wrap its initialization in this
+	 * call.
+	 * 
+	 * @param t
+	 * @return t
+	 */
 	private final static <T> T ident(T t) {
 		return t;
 	}
