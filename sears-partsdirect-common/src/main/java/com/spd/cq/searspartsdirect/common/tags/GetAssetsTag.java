@@ -58,42 +58,44 @@ public class GetAssetsTag extends CQBaseTag {
 	        for (Hit hit: hits) {
 	        	Page p = pageManager.getPage(hit.getPath());
 				ValueMap properties = p.getProperties();
+				String title = properties.get(Constants.ASSETS_TITLE_PATH,"");
+				String description = properties.get(Constants.ASSETS_DESCRIPTION_PATH,"");
 				switch (assetTypeEnum) {
 					case BRAND: 
-						result.add(new BrandModel(properties.get("jcr:title",""),
-								properties.get("jcr:description",""),
-								p.getPath() + "/jcr:content/logo"));
+						result.add(new BrandModel(title,
+								description,
+								p.getPath() + Constants.ASSETS_LOGO_PATH));
 						break;
 					case ERRORCODE: 
-						result.add(new ErrorCodeModel(properties.get("jcr:title",""),
-								properties.get("jcr:description",""),
+						result.add(new ErrorCodeModel(title,
+								description,
 								""));
 						break;
 					case HAZARD:
-						result.add(new HazardModel(properties.get("jcr:title",""),
-								p.getPath() + "/jcr:content/image"));
+						result.add(new HazardModel(title,
+								p.getPath() + Constants.ASSETS_IMAGE_PATH));
 						break;
 					case JOBCODE:
-						result.add(new JobCodeModel(properties.get("jcr:title",""),
-								properties.get("jcr:description","")));
+						result.add(new JobCodeModel(title,
+								description));
 						break;
 					case PARTTYPE:
-						result.add(new PartTypeModel(properties.get("jcr:title",""),
-								properties.get("jcr:description",""),
-								p.getPath() + "/jcr:content/image"));
+						result.add(new PartTypeModel(title,
+								description,
+								p.getPath() + Constants.ASSETS_IMAGE_PATH));
 						break;
 					case PRODUCTCATEGORY:
-						result.add(new ProductCategoryModel(properties.get("jcr:title",""),
-								properties.get("jcr:description",""),
-								p.getPath() + "/jcr:content/image"));
+						result.add(new ProductCategoryModel(title,
+								description,
+								p.getPath() + Constants.ASSETS_IMAGE_PATH));
 						break;
 					case TIP:
-						result.add(new TipModel(properties.get("jcr:title",""),
-								p.getPath() + "/jcr:content/image"));
+						result.add(new TipModel(title,
+								p.getPath() + Constants.ASSETS_IMAGE_PATH));
 						break;
 					case WARNING:
-						result.add(new WarningModel(properties.get("jcr:title",""),
-								p.getPath() + "/jcr:content/image"));
+						result.add(new WarningModel(title,
+								p.getPath() + Constants.ASSETS_IMAGE_PATH));
 						break;
 					default:
 						break;

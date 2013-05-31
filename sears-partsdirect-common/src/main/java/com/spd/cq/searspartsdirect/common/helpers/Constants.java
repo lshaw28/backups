@@ -5,6 +5,10 @@ public final class Constants {
 	public static final String EMPTY = "";
 	
 	public static final String ASSETS_PATH = ident("/etc/spdAssets/scaffolding");
+	public static final String ASSETS_TITLE_PATH = ident("jcr:title");
+	public static final String ASSETS_DESCRIPTION_PATH = ident("jcr:description");
+	public static final String ASSETS_LOGO_PATH = ident("/jcr:content/logo");
+	public static final String ASSETS_IMAGE_PATH = ident("/jcr:content/logo");
 	
 	public static final String COMMENTS_COMPONENT = ident("searspartsdirect/components/content/comments");
 	public static final String SUBHEAD_COMPONENT = ident("searspartsdirect/components/content/subhead");
