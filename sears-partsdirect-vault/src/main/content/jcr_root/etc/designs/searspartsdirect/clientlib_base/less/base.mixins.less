@@ -62,3 +62,12 @@
 	background: linear-gradient(to right, @s 0%,@e 100%);
 	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{s}', endColorstr='@{e}', GradientType=1)";
 }
+
+/* 4. Shadows */
+.boxShadow(@v: 0 0 0 0 #fff) {
+	-moz-box-shadow: @v;
+	-webkit-box-shadow: @v;
+	-o-box-shadow: @v;
+	-ms-box-shadow: @v;
+	box-shadow: @v;
+}
