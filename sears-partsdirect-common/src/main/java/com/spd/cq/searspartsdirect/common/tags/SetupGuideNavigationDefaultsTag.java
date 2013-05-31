@@ -10,11 +10,12 @@ import org.slf4j.LoggerFactory;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
-@Deprecated // Vivek believes this should be part of the main tag for the component.
+@Deprecated // It is stated that this should be part of the main tag for the component.
 public class SetupGuideNavigationDefaultsTag extends CQBaseTag {
 	private final static Logger log = LoggerFactory.getLogger(SetupGuideNavigationDefaultsTag.class);
 	@Override
 	public int doStartTag() throws JspException {
+		if (currentNode != null) // In a template, there is no currentNode..
 		try {
 			if (!currentNode.hasProperty("sections") || currentNode.getProperty("sections").isNew()) {
 				Session jcr = currentNode.getSession();
