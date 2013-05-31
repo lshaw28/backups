@@ -6,7 +6,8 @@
 <spd:getMultifieldCategories />
 
 <c:if test="${not empty categories}">
-	<c:choose>
+	<
+	c:choose>
 		<c:when test="${fn:length(parentCategoryTag.title) < 38 }">
 			<cq:text property="header" placeholder="${parentCategoryTag.title} 101" />
 		</c:when>
