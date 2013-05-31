@@ -22,6 +22,7 @@ import com.adobe.cq.social.commons.*;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
+// This component is being reworked, please hold any comments until rework is completed.
 public class GuideNavigationTag extends CQBaseTag {
 	protected static Logger log = LoggerFactory
 			.getLogger(GuideNavigationTag.class);
@@ -42,7 +43,7 @@ public class GuideNavigationTag extends CQBaseTag {
 	}
 	private static class CommentsLabelGenerator extends LabelGenerator {
 		public String generateLabel(Node commentsBeingLabelled, ResourceResolver rr) {
-			StringBuilder label = new StringBuilder(Constants.COMMENTS_STICKY_LINK_PREFIX);
+			StringBuilder label = new StringBuilder(Constants.COMMENTS_GUIDE_NAV_LINK_PREFIX);
 			try {
 				Resource thoseComments = rr.resolve(commentsBeingLabelled.getPath());
 				CommentSystem thatCs = thoseComments.adaptTo(CommentSystem.class);
@@ -66,23 +67,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		return generators;
 	}
 	
-	private Map<String,String> getConfiguredTypeLabels() {
-		List<List<String>> typesAndLabels = this.getMenuItems("sections", currentNode);
-		Map<String,String> typeToLabel = new HashMap<String,String>();
-		for (List<String> aType : typesAndLabels) {
-			typeToLabel.put(aType.get(0).trim(), aType.get(1));
-		}
-		return typeToLabel;
-	}
-	
-	private Node getParsys() throws RepositoryException {
-		Node parsysParent = currentNode.getParent();
-		if (log.isDebugEnabled()) {
-			log.debug("parsysParent is "+parsysParent);
-			log.debug("parsysParent name is "+parsysParent.getName());
-		}
-		return parsysParent;
-	}
+	// We need to abstract out link generation. function pattern not quite applicable, diff info needed
 	
 	@Override
 	public int doStartTag() throws JspException {
@@ -95,31 +80,34 @@ public class GuideNavigationTag extends CQBaseTag {
 		try {
 			if (log.isDebugEnabled()) log.debug("currentNode is "+currentNode);
 			Node parsysParent = getParsys();
-			NodeIterator parsysChildren = parsysParent.getNodes();
-			while (parsysChildren.hasNext()) {
-				Node parSibling = parsysChildren.nextNode();
-				if (parSibling.getName().equals(currentNode.getName())) {
-					continue; // We skip ourselves.
-				}
-				String siblingResourceType = parSibling.getProperty("sling:resourceType").getString();
-				if (log.isDebugEnabled()) {
-					log.debug("parSibling is "+parSibling);
-					log.debug("parSibling name is "+parSibling.getName());
-					log.debug("parSibling resourceType is "+siblingResourceType);
-				}
-				String labelFound = typeToLabel.get(siblingResourceType);
-				if (labelFound != null) {
-					if (labelFound.matches(" *")) {
-						// look for and use special label generator
-						LabelGenerator specialGenerator = specialLabelGenerators.get(siblingResourceType);
-						if (specialGenerator != null) {
-							labelFound = specialGenerator.generateLabel(parSibling,resourceResolver);
-						}
+			if (parsysParent != null) { //TODO PATCH - actually fix.
+				NodeIterator parsysChildren = parsysParent.getNodes();
+				while (parsysChildren.hasNext()) {
+					Node parSibling = parsysChildren.nextNode();
+					if (parSibling.getName().equals(currentNode.getName())) {
+						continue; // We skip ourselves.
 					}
-					List<String> item = new ArrayList<String>();
-					item.add(labelFound);
-					item.add(parsysParent.getName()+"_"+parSibling.getName());
-					sections.add(item);
+					String siblingResourceType = parSibling.getProperty("sling:resourceType").getString();
+					if (log.isDebugEnabled()) {
+						log.debug("parSibling is "+parSibling);
+						log.debug("parSibling name is "+parSibling.getName());
+						log.debug("parSibling resourceType is "+siblingResourceType);
+					}
+					String labelFound = typeToLabel.get(siblingResourceType);
+					if (labelFound != null) {
+						if (labelFound.matches(" *")) {
+							// look for and use special label generator
+							LabelGenerator specialGenerator = specialLabelGenerators.get(siblingResourceType);
+							if (specialGenerator != null) {
+								labelFound = specialGenerator.generateLabel(parSibling,resourceResolver);
+							}
+						}
+						List<String> item = new ArrayList<String>();
+						item.add(labelFound);
+						// refactor...
+						item.add(parsysParent.getName()+"_"+parSibling.getName());
+						sections.add(item);
+					}
 				}
 			}
 		} catch (RepositoryException re) {
@@ -127,18 +115,33 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 		pageContext.setAttribute("sections", sections);
 		
-		String jumpToString = "Jump to...";
+		String jumpToString = Constants.GUIDE_NAV_DEF_JUMPTO_TEXT;
 		try {
-			jumpToString = currentPage.getContentResource().adaptTo(Node.class).getProperty("jumptostring").getString();
+			jumpToString = currentPage.getContentResource().adaptTo(Node.class).getProperty(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR).getString();
 		} catch (RepositoryException re) {
 			log.error("exception getting jump to text",re);
 		}
-		pageContext.setAttribute("jumpToString", jumpToString);
+		pageContext.setAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR, jumpToString);
 		
 		return EVAL_BODY_INCLUDE;
 	}
 	
-	protected List<String> getMenuItemConfig(String jsonString) {
+	/**
+	 * Reads config and builds the map of types to link text
+	 * @return The map of component types to their link text
+	 */
+	private Map<String,String> getConfiguredTypeLabels() {
+		List<List<String>> typesAndLabels = this.getMenuItems("sections", currentNode);
+		Map<String,String> typeToLabel = new HashMap<String,String>();
+		for (List<String> aType : typesAndLabels) {
+			typeToLabel.put(aType.get(0).trim(), aType.get(1));
+		}
+		return typeToLabel;
+	}
+	
+	
+	@Deprecated // due to inefficiency
+	private List<String> getMenuItemConfig(String jsonString) {
 
 		List<String> item = new ArrayList<String>();
 
@@ -153,7 +156,8 @@ public class GuideNavigationTag extends CQBaseTag {
 		return item;
 	}
 
-	protected List<List<String>> getMenuItems(String propertyName, Node node) {
+	@Deprecated // due to inefficiency - we could populate the map directly
+	private List<List<String>> getMenuItems(String propertyName, Node node) {
 		// config list containing lists [sectionresourcetype,linktext]
 		List<List<String>> items = new ArrayList<List<String>>();
 		try {
@@ -177,4 +181,17 @@ public class GuideNavigationTag extends CQBaseTag {
 		return items;
 	}
 
+	@Deprecated
+	private Node getParsys() throws RepositoryException {
+		
+		Node parsysParent = null;
+		if (currentNode != null) //TODO PATCH, need actual fix
+			parsysParent = currentNode.getParent();
+		if (parsysParent != null) //TODO PATCH, need actual fix
+			if (log.isDebugEnabled()) {
+				log.debug("parsysParent is "+parsysParent);
+				log.debug("parsysParent name is "+parsysParent.getName());
+			}
+		return parsysParent;
+	}
 }

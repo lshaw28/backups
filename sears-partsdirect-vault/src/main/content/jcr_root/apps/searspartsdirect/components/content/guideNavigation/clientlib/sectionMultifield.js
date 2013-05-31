@@ -36,6 +36,8 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
 
         var cl = CQ.WCM.getComponentList(null)
         var rawAllowedComponents = cl.allowedComponents;
+        // We'll need to get components that are part of the template as well.
+        // We will in fact NOT be part of the parsys at all.
         var actualList = [];
         for (var cPath in rawAllowedComponents) {
         	var interior = {};
