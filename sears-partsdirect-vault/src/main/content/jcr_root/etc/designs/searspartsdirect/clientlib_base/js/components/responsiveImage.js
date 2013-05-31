@@ -107,8 +107,7 @@
 		render: function () {
 			var self = this;
 
-			/* @TODO: Correct check for Scene 7 */
-			if (self.desktopImage.indexOf('scene7') > -1) {
+			if (self.desktopImage.indexOf('s.sears.com') > -1) {
 				self.renderGenerated();
 			} else {
 				self.renderResponsive();
@@ -198,12 +197,11 @@
 			var self = this,
 				baseURL = self.desktopImage.split('?')[0];
 
-			/* @TODO: Retrieve correct parameter names
-			 * and confirm pre-? substring contains image name */
 			return baseURL
-				+ '?width=' + self.fw
-				+ '&height=' + self.fh
-				+ '&quality=' + self.iq;
+				+ '?wid=' + self.fw
+				+ '&hei=' + self.fh
+				+ '&op_sharpen=1'
+				+ '&qlt=' + self.iq;
 		},
 		/**
 		 * Bind the window resize event
