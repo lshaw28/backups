@@ -1,4 +1,4 @@
-package com.spd.cq.searspartsdirect.common.tag;
+package com.spd.cq.searspartsdirect.common.tags;
 
 
 import static org.junit.Assert.fail;

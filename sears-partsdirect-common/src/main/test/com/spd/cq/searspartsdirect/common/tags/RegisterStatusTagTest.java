@@ -1,10 +1,10 @@
-package com.spd.cq.searspartsdirect.common.tag;
+package com.spd.cq.searspartsdirect.common.tags;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class ShoppingCartTagTest {
+public class RegisterStatusTagTest  {
 
 	@Test
 	public void test() {

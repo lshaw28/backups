@@ -1,4 +1,4 @@
-package com.spd.cq.searspartsdirect.common.tag;
+package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.LinkedList;
 
@@ -15,7 +15,6 @@ import org.mockito.Mockito;
 import com.spd.cq.searspartsdirect.common.fixture.RecentlyViewedFixture;
 import com.spd.cq.searspartsdirect.common.model.ModelCookieModel;
 import com.spd.cq.searspartsdirect.common.model.PartCookieModel;
-import com.spd.cq.searspartsdirect.common.tags.RecentlyViewedTag;
 
 public class RecentlyViewedTagTest extends TestCase {
 	RecentlyViewedFixture recentlyViewedFixture;
