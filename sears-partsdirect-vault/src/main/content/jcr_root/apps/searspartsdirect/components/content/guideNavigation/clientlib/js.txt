@@ -1,2 +1,2 @@
-#base=.
-sectionMultifield.js 
+#base=/etc/designs/searspartsdirect/clientlib_base/js/components/.
+guideNavigation.js
