@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import javax.servlet.http.Cookie;
 
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.ModelCookieModel;
 import com.spd.cq.searspartsdirect.common.model.PartCookieModel;
 
@@ -18,13 +19,13 @@ public class RecentlyViewedFixture {
 	}
 	
 	public Cookie[] getPartAndModelCookie() {
-		Cookie modelCookie = new Cookie( "recentlyViewedModels", "" );
+		Cookie modelCookie = new Cookie(Constants.RECENTLY_VIEWED_MODEL_COOKIE, "");
 		modelCookie.setValue("3333|Some description|http://www.SPD.com/ModelUrl");
         modelCookie.setMaxAge(12000);
         modelCookie.setPath("/partsdirect/");
         modelCookie.setDomain("localhost");
         
-        Cookie partCookie = new Cookie( "recentlyViewedParts", "" );
+        Cookie partCookie = new Cookie(Constants.RECENTLY_VIEWED_PART_COOKIE, "");
         partCookie.setValue("9010P|water filter|partUrl|itemImageURL");
         partCookie.setMaxAge(12000);
         partCookie.setPath("/partsdirect/");

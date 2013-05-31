@@ -4,5 +4,6 @@
     jcr:primaryType="cq:Tag"
     jcr:title="Sears Parts Direct"
     sling:resourceType="cq/tagging/components/tag">
-    <product_categories/>
+    <parent_categories/>
+    <subcategories/>
 </jcr:root>

@@ -49,7 +49,7 @@ public class RecentlyViewedTagTest extends TestCase {
 		Mockito.when(pageContext.getRequest()).thenReturn(request);
 		Mockito.when(request.getCookies()).thenReturn(recentlyViewedFixture.getPartAndModelCookie());
 		Mockito.when(pageContext.getAttribute("rvModelList")).thenReturn(modelList);
-		Mockito.when(pageContext.getAttribute("recentlyViewedParts")).thenReturn(partList);
+		Mockito.when(pageContext.getAttribute("rvPartList")).thenReturn(partList);
 
 		recentlyViewedTag.setPageContext(pageContext);
 		recentlyViewedTag.doStartTag();
@@ -61,7 +61,7 @@ public class RecentlyViewedTagTest extends TestCase {
 		Assert.assertEquals("Some description", actualModelList.get(0).getItemDescription());
 		Assert.assertEquals("http://www.SPD.com/ModelUrl", actualModelList.get(0).getItemURL());
 		
-		LinkedList<PartCookieModel> actualPartList = (LinkedList<PartCookieModel>) pageContext.getAttribute("recentlyViewedParts");
+		LinkedList<PartCookieModel> actualPartList = (LinkedList<PartCookieModel>) pageContext.getAttribute("rvPartList");
 		Assert.assertNotNull(actualPartList);
 		Assert.assertTrue(actualPartList.size() > 0);
 		Assert.assertEquals("9010P", actualPartList.get(0).getItemName());

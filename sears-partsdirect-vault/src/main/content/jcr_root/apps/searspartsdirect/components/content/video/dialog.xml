@@ -2,71 +2,29 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		  jcr:primaryType="cq:Dialog"
 		  title="Video"
-		  xtype="dialog"
-		  height="500">
+		  xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
-    	<tabpanel 
-    		jcr:primaryType="cq:TabPanel"
-    		xtype="tabpanel">
-    		<items jcr:primaryType="cq:WidgetCollection">
-		        <tab1
-		            jcr:primaryType="cq:Widget"
-		            anchor="100%"
-		            title="Video Content"
-		            xtype="panel">
-		            <items jcr:primaryType="cq:WidgetCollection">
-		                <caption 
-		                	jcr:primaryType="cq:Widget" 
-		                	fieldLabel="Video Caption:" 
-		                	maxLength="200"
-		                	name="./caption" 
-		                	xtype="textfield" />
-						<youTube 
-							jcr:primaryType="cq:Widget" 
-							itemId="youTube"
-							title="YouTube"
-							xtype="dialogfieldset">
-							<items 
-								jcr:primaryType="cq:WidgetCollection">               
-				                <youTubeLink
-				                    jcr:primaryType="cq:Widget"
-				                    fieldDescription="YouTube Link (http://www.youtube.com/watch?v=&quot;videoID&quot;)"
-				                    fieldLabel="Link"
-				                    name="./youTubeLink"
-				                    allowBlank="{Boolean}false" 
-		            				blankText="Link field is required"
-				                    regex="/^http:\\/\\/www\\.youtube\\.com\\/watch\\?(.*&amp;)?v=([^\\?&amp;&quot;'>]+){11}/"
-				                    regexText="Please Enter a Valid YouTube Link (http://www.youtube.com/watch?v=&quot;videoID&quot;)"
-				                    xtype="textfield"/>
-							</items>
-						</youTube>
-						<overlay
-				            jcr:primaryType="cq:Widget"
-				            title="Video Overlay Content"
-				            xtype="dialogfieldset">
-				            <items jcr:primaryType="cq:WidgetCollection">
-				                <title 
-				                	jcr:primaryType="cq:Widget" 
-				                	fieldLabel="Title" 
-				                	allowBlank="{Boolean}false"
-				                	blankText="Title field in the Overlay tab is required"
-				                	name="./overlayTitle" 
-				                	xtype="textfield" />
-				                <headline 
-				                	jcr:primaryType="cq:Widget" 
-				                	fieldLabel="Headline"
-				                	allowBlank="{Boolean}false" 
-				                	blankText="Headline field in the Overlay tab is required"
-				                	name="./overlayHeadline" 
-				                	xtype="textfield" />
-				            </items>
-				        </overlay>
-						<resType jcr:primaryType="cq:Widget" ignoreData="{Boolean}true"
-							name="./image/sling:resourceType" value="foundation/components/image"
-							xtype="hidden" />
-		            </items>
-		        </tab1>
-			</items>
-		</tabpanel>
+        <Video
+            jcr:primaryType="cq:Widget"
+            xtype="panel">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <caption 
+                	jcr:primaryType="cq:Widget" 
+                	fieldLabel="Video Caption:" 
+                	maxLength="200"
+                	name="./caption" 
+                	xtype="textfield" />
+        
+                <youTubeLink
+                    jcr:primaryType="cq:Widget"
+                    fieldDescription="Enter a valid YouTube Link"
+                    fieldLabel="Youtube Link"
+                    name="./youTubeLink"
+                    allowBlank="{Boolean}false" 
+          			blankText="Link field is required"
+                    regex="/^(http|https)\:\\/\\/www\\.youtube\\.com\\/watch\\?(.*&amp;)?v=([^\\?&amp;&quot;'>]+){11}/"
+                    xtype="textfield"/>
+            </items>
+        </Video>
     </items>
 </jcr:root>

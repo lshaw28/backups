@@ -1,12 +1,25 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
-import com.spd.cq.searspartsdirect.common.model.ErrorCodeModel;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
+
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.Query;
+import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.Hit;
+import com.day.cq.search.result.SearchResult;
+import com.day.cq.wcm.api.Page;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
 
 public class GetErrorCodesDataTag extends CQBaseTag {
 	
@@ -20,37 +33,68 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 		if (categoryName != null && subCategoryName != null && brandName != null) {
 			//get the pages from scaffolding page by passing category, subcategory and brand and loop thru them to extract and store in
 			// errorCodeTable with error-code-type as a key and code, desc, condition, repair in the form of an object
-			
 			Map<String, ArrayList<ErrorCodeModel>> errorCodeTable = new LinkedHashMap<String, ArrayList<ErrorCodeModel>>();
 			ArrayList<ErrorCodeModel> errorCodeModels = new ArrayList<ErrorCodeModel>();
-			ErrorCodeModel errorCodeModel1 = new ErrorCodeModel();
-			errorCodeModel1.setCode("101");
-			errorCodeModel1.setDescription("recalled by the manufacturer");
-			
-			ErrorCodeModel errorCodeModel2 = new ErrorCodeModel();
-			errorCodeModel2.setCode("102");
-			errorCodeModel2.setDescription("major issue with the engine");
-			errorCodeModel2.setCondition("poor");
-			errorCodeModel2.setRepair("call kenmore at 1-800-KENMORE");
-			
+			ErrorCodeModel errorCodeModel1 = new ErrorCodeModel("101", "recalled by the manufacturer", null);
+			ErrorCodeModel errorCodeModel2 = new ErrorCodeModel("102","major issue with the engine", "call kenmore at 1-800-KENMORE");
+
 			errorCodeModels.add(errorCodeModel1);
 			errorCodeModels.add(errorCodeModel2);
 			
 			errorCodeTable.put("Error Code Type 1", errorCodeModels);
 			pageContext.setAttribute("errorCodeTable", errorCodeTable);
 		} else if (categoryName != null) {
-			//get all the page (group by brand if possible) by passing the category name and populate errorCodeList
-			//loop thru the pages and store brand as a key and subcategories list as a value in the map
+			//using QueryBuilder
+			Map<String, ArrayList<ErrorCodeModel>> errorCodeList = new LinkedHashMap<String, ArrayList<ErrorCodeModel>>();
+			ArrayList<ErrorCodeModel> errorCodeModels = new ArrayList<ErrorCodeModel>();
 			
-			Map<String, ArrayList<String>> errorCodeList = new LinkedHashMap<String, ArrayList<String>>();
+			Session session = slingRequest.getResourceResolver().adaptTo(Session.class);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("path", "/etc/spdAssets/scaffolding/errorCode/");
+			map.put("type", "cq:Page");
+			// map.put("property", "jcr:title");
+			//map.put("property.1_value", "Error Code");
+			//map.put("fulltext", categoryName) //need to figure out how to pass the input param 
+			 
+			QueryBuilder builder = resourceResolver.adaptTo(QueryBuilder.class);
+			/*log.error("build is "+ builder);
+			log.error("session is "+ session);*/
+			Query query = builder.createQuery(PredicateGroup.create(map), session);
 			
-			ArrayList<String> errorCodes = new ArrayList<String>();
-			errorCodes.add("door is broken");
-			errorCodes.add("engine error");
-			errorCodeList.put("101", errorCodes);
+			SearchResult result = query.getResult();
+			log.error("total results found "+ result.getQueryStatement().toString());
+			
+			// iterating over the results
+		    for (Hit hit : result.getHits()) {
+		        try {
+					/*String path = hit.getPath();
+					  log.error(path);*/
+					ValueMap props = hit.getProperties();
+					if (props != null) {
+						ErrorCodeModel model = new ErrorCodeModel(props.get("jcr:title", String.class), props.get("jcr:description", String.class), null);
+						errorCodeModels.add(model);
+					}
+				} catch (RepositoryException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    }
+		    errorCodeList.put("HardCoded Type", errorCodeModels);
 			pageContext.setAttribute("errorCodeList", errorCodeList);
 		} else {
-			//get all the scaffolding pages
+			//using the resource resolver
+			ArrayList<ErrorCodeModel> errorCodes = new ArrayList<ErrorCodeModel>();
+			Resource r = resourceResolver.getResource("/etc/spdAssets/scaffolding/errorCode");
+			if (r != null) {
+				Iterator<Resource> iter = r.listChildren();
+				while (iter.hasNext()) {
+					Resource child = iter.next();
+					Page p = child.adaptTo(Page.class);
+					ValueMap properties = p.getProperties();
+					errorCodes.add(new ErrorCodeModel(properties.get("jcr:title",""), properties.get("jcr:description",""), null));
+				}
+			}
+			pageContext.setAttribute("errorCodeList", errorCodes);
 		}
 		return SKIP_BODY;
 	}

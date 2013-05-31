@@ -8,6 +8,7 @@ import javax.servlet.jsp.JspException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectCookieHelper;
 import com.spd.cq.searspartsdirect.common.model.ModelCookieModel;
 import com.spd.cq.searspartsdirect.common.model.PartCookieModel;
@@ -25,28 +26,20 @@ public class RecentlyViewedTag extends CQBaseTag {
 		Cookie[] cookies = request.getCookies();
 
 		if (cookies != null) {
-			recentlyViewedModelsCookie = PartsDirectCookieHelper.getCookieInfo(cookies, "recentlyViewedModels");
+			recentlyViewedModelsCookie = PartsDirectCookieHelper.getCookieInfo(cookies, Constants.RECENTLY_VIEWED_MODEL_COOKIE);
 			if (recentlyViewedModelsCookie != null && recentlyViewedModelsCookie.getValue() != null) {
 				LinkedList<ModelCookieModel> modelList = PartsDirectCookieHelper.parseRecentltyViewedModelItems(recentlyViewedModelsCookie.getValue());
 				pageContext.setAttribute("rvModelList", modelList);
-				log.error("modelList" + modelList);
-				for (ModelCookieModel cookieModelItem : modelList) {
-					log.error("name="+cookieModelItem.getItemName()+",desc="+cookieModelItem.getItemDescription()+",url="+cookieModelItem.getItemURL());
-				}
+				//log.error("modelList" + modelList);
 			}
 			
-			recentlyViewedPartsCookies = PartsDirectCookieHelper.getCookieInfo(cookies, "recentlyViewedParts");
+			recentlyViewedPartsCookies = PartsDirectCookieHelper.getCookieInfo(cookies, Constants.RECENTLY_VIEWED_PART_COOKIE);
 			if (recentlyViewedPartsCookies != null && recentlyViewedPartsCookies.getValue() != null) {
 				LinkedList<PartCookieModel> partList =  PartsDirectCookieHelper.parseRecentltyViewedPartItems(recentlyViewedPartsCookies.getValue());
 				pageContext.setAttribute("rvPartList", partList);
-				log.error("partList" +partList);
-				
-				for (PartCookieModel cookiePartItem : partList) {
-					log.error("item name"+cookiePartItem.getItemName()+",desc="+cookiePartItem.getItemDescription()+","+cookiePartItem.getItemImageURL());
-				}
+				//log.error("partList" +partList);
 			}
 		}
-
 		return SKIP_BODY;
 	}
 

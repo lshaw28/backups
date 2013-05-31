@@ -12,8 +12,8 @@
 <c:forEach var="code" items="${errorCodeTable}">
 	<p>${code.key}</p>
 	<c:forEach var="detail" items="${code.value}">
-		${detail.code} ${detail.description}</br>
+		${detail.code} ${detail.condition}</br>
 		<c:if test="${detail.condition != null}">${detail.condition}</c:if>
-		<c:if test="${detail.repair != null}">${detail.repair}</c:if>
+		<c:if test="${detail.repairPath != null}">${detail.repairPath}</c:if>
 	</c:forEach>
 </c:forEach>
