@@ -16,6 +16,10 @@ public final class Constants {
 	public static final String PARTS_REQ_R_COMPONENT = ident("searspartsdirect/components/content/partsRequiredRepair");
 	public static final String TOOLS_REQ_R_COMPONENT = ident("searspartsdirect/components/content/toolsRequiredRepair");
 	
+	public static final String USERGEN_ROOT = ident("/content/usergenerated");
+	
+	public static final String COMMENTS_PATH = ident("/jcr:content/comments");
+	
 	// Constants specific to guide nav
 	public static final String PARTS_REQ_DEF_GUIDE_NAV_LINK = ident("Parts required");
 	public static final String TOOLS_REQ_DEF_GUIDE_NAV_LINK = ident("Tools required");
@@ -24,6 +28,9 @@ public final class Constants {
 	// /apps/searspartsdirect/components/page/repairGuide/tab_page_properties.xml
 	public static final String GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR = ident("jumpToString");
 	public static final String GUIDE_NAV_DEF_JUMPTO_TEXT = ident("Jump to...");
+	// following MUST match attribute declaration in 
+	// /apps/searspartsdirect/components/page/repairGuide/tab_page_properties.xml
+	public static final String GUIDE_NAV_SECTIONS_PAGE_ATTR = ident("sections");
 	
 	public static final String RECENTLY_VIEWED_MODEL_COOKIE = "recentlyViewedModels";
 	public static final String RECENTLY_VIEWED_PART_COOKIE = "recentlyViewedParts";
