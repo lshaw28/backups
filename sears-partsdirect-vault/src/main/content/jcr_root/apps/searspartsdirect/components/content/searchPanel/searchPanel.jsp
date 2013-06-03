@@ -9,7 +9,7 @@
 
 		<div id="searchContent">
 			<input id="searchBarField" class="text-input" type="text" maxlength="100" tabindex="1" data-inputhelp="Enter model or part number" data-inputhelpmobile="Model/Part #" name="searchModPar"><span class="large">in</span><div class="btn-group ">
-				<a class="btn btn-type" href="#" data-toggle="dropdown">Select Type <i class="icon-chevron-sign-down">&nbsp;</i></a>
+				<a class="btn btn-type" href="#" data-toggle="dropdown"><span data-texthelp="Select Type" data-texthelpmobile="Type">Select Type</span> <i class="icon-chevron-sign-down">&nbsp;</i></a>
 				<ul class="dropdown-menu">
 					<li class="selected">
 						<a href="#">Model #</a>

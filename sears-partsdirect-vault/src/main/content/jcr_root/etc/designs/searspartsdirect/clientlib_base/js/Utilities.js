@@ -102,7 +102,29 @@
 				// Not edit mode, value is empty
 				el.attr('value', newValue);
 			}
-		}
+		},
+		/**
+		 * Handles responsive link text
+		 * @param {object} el jQuery element to check
+		 */
+		checkLink: function (el) {
+			var self = window.SPDUtils,
+				value = el.text(),
+				helpText = el.data('texthelp'),
+				helpTextMobile = el.data('texthelpmobile'),
+				newValue = value;
+
+			// Check attribute values
+			if (self.validString(helpTextMobile) !== '' && self.isMobileBreakpoint() === true) {
+				newValue = helpTextMobile;
+			} else if (self.validString(helpText) !== '') {
+				newValue = helpText;
+			}
+			// Change if you need to
+			if (value !== newValue) {
+				el.text(newValue);
+			}
+		},
 	};
 	window.SPDUtils.init();
 }(window));

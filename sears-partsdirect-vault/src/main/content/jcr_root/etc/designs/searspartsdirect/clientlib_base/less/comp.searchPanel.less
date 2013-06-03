@@ -36,7 +36,7 @@
 #searchContainer {
 	height: auto;
 	text-align: left;
-	width: 700px;
+	min-width: 650px;
 	z-index: 75;
 }
 #searchTabs {
@@ -139,7 +139,8 @@
 		width: 50%;
 	}
 	.btn-group {
-		width: 25%;
+		margin-right: 8px;
+		width: 24%;
 
 		a {
 			background-color: #fff;
@@ -171,3 +172,36 @@
 }
 
 /* Breakpoints */
+@media (max-width: 1299px) {
+	#searchLeftShadow, #searchRightShadow {
+		width: 15%;
+	}
+}
+@media (max-width: 1038px) {
+	#searchLeftShadow, #searchRightShadow {
+		display: none;
+		visibility: hidden;
+	}
+}
+@media (max-width: 1000px) {
+	#searchContainer {
+		min-width: 729px;
+	}
+}
+@media (max-width: 767px) {
+	#searchContainer {
+		min-width: 100%;
+	}
+}
+@media (max-width: 680px) {
+	#searchContent {
+		span.large {
+			display: none;
+			visibility: hidden;
+		}
+		.text-input {
+			margin-right: 8px;
+			width: 35%;
+		}
+	}
+}
