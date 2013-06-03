@@ -2,11 +2,16 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.jcr.Node;
+import javax.jcr.PropertyType;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.api.resource.Resource;
@@ -15,14 +20,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.adobe.cq.social.commons.*;
+import com.day.cq.wcm.api.WCMMode;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
-// This component is being reworked, please hold any comments until rework is completed.
 @SuppressWarnings("serial")
 public class GuideNavigationTag extends CQBaseTag {
-	// We have our template provided parts, and we have our dynamically discovered parts
-	//private Map<String>
 	
 	protected static Logger log = LoggerFactory
 			.getLogger(GuideNavigationTag.class);
@@ -32,6 +35,8 @@ public class GuideNavigationTag extends CQBaseTag {
 		// output list containing lists [linktext,sectionlink]
 		List<List<String>> sections = new ArrayList<List<String>>();
 		// we can declare these as vars in the tld, usage here remains the same tho..
+		maybeSetupDefaultConfig();
+		Map<String,String> typesAndLabels = readTypesAndLabelsFromConfig();
 		
 		String jumpToString = Constants.GUIDE_NAV_DEF_JUMPTO_TEXT;
 		pageContext.setAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR,
@@ -39,30 +44,35 @@ public class GuideNavigationTag extends CQBaseTag {
 		
 		List<LinkGenerator> generators = new ArrayList<LinkGenerator>();
 		// check if doing parts link, check if label is different
-		generators.add(new FixedLabelTemplateLinkGenerator(Constants.PARTS_REQ_R_COMPONENT,Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK));
 		generators.add(new FixedLabelTemplateLinkGenerator(Constants.TOOLS_REQ_R_COMPONENT,Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK));
+		generators.add(new FixedLabelTemplateLinkGenerator(Constants.PARTS_REQ_R_COMPONENT,Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK));
 		
 		Resource parsysResource = currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME);
 		if (log.isDebugEnabled()) log.debug("parsysResource is "+parsysResource);
 		
-		Iterator<Resource> parsysChildren = parsysResource.listChildren();
-		ParsysLinkGeneratorFactory generatorFactory = new ParsysLinkGeneratorFactory(parsysResource);
-		while (parsysChildren.hasNext()) {
-			Resource parsysChild = parsysChildren.next();
-			if (log.isDebugEnabled()) {
-				log.debug("parsysChild is "+parsysChild);
-				log.debug("parsysChild.resourceType is "+parsysChild.getResourceType());
-				log.debug("parsysChild.resourceSuperType is "+parsysChild.getResourceSuperType());
+		if (parsysResource != null) {
+			Iterator<Resource> parsysChildren = parsysResource.listChildren();
+			ParsysLinkGeneratorFactory generatorFactory = new ParsysLinkGeneratorFactory(parsysResource);
+			while (parsysChildren.hasNext()) {
+				Resource parsysChild = parsysChildren.next();
+				if (log.isDebugEnabled()) {
+					log.debug("parsysChild is "+parsysChild);
+					log.debug("parsysChild.resourceType is "+parsysChild.getResourceType());
+					log.debug("parsysChild.resourceSuperType is "+parsysChild.getResourceSuperType());
+				}
+				ParsysLinkGenerator maybeGenerator = generatorFactory.getLinkGenerator(parsysChild);
+				if (maybeGenerator != null) {
+					generators.add(maybeGenerator);
+				}
 			}
-			ParsysLinkGenerator maybeGenerator = generatorFactory.getLinkGenerator(parsysChild);
-			if (maybeGenerator != null) {
-				generators.add(maybeGenerator);
-			}
+		} else {
+			log.info("parsysResource is null for some reason");
 		}
 		
 		generators.add(new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));
 		
 		for (LinkGenerator linkGen : generators) {
+			if (log.isDebugEnabled()) log.debug("generator is for "+linkGen.getComponentType());
 			List<String> newList = new ArrayList<String>();
 			newList.add(linkGen.generateLabel());
 			newList.add(linkGen.generateLink());
@@ -73,10 +83,50 @@ public class GuideNavigationTag extends CQBaseTag {
 		return SKIP_BODY;
 	}
 	
+	private void maybeSetupDefaultConfig() {
+		if (log.isDebugEnabled()) log.debug("Maybe doing 1st-time setup");
+		WCMMode wcmMode = WCMMode.fromRequest(slingRequest);
+		if (wcmMode != WCMMode.READ_ONLY) {
+			if (log.isDebugEnabled()) log.debug("Not read-only");
+			try {
+				Node pageNode = currentPage.getContentResource().adaptTo(Node.class);
+				if (pageNode == null) {
+					log.warn("Could not get the node to set up");
+					return;
+				}
+				if (log.isDebugEnabled()) log.debug("Found setup node");
+				if (!pageNode.hasProperty("sections") || pageNode.getProperty("sections").isNew()) {
+					Session jcr = pageNode.getSession();
+					Node setupNode = pageNode.addNode(Constants.GUIDE_NAV_PATH,Constants.UNSTRUCTURED);
+					setupNode.setProperty(Constants.SLINGTYPE, Constants.GUIDE_NAV_COMPONENT);
+					setupNode.setProperty("sections",
+						new String[]{
+							"{\"link\":\""+Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.PARTS_REQ_R_COMPONENT+"\"}",
+							"{\"link\":\""+Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.TOOLS_REQ_R_COMPONENT+"\"}",
+							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.COMMENTS_COMPONENT+"\"}",
+							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.SUBHEAD_COMPONENT+"\"}",
+						}
+						,PropertyType.STRING);
+					jcr.save();
+					if (log.isDebugEnabled()) log.debug("Performed setup");
+				} else {
+					if (log.isDebugEnabled()) log.debug("Is already set up");
+				}
+			} catch (RepositoryException re) {
+				log.warn("Got node but could not set defaults, ",re);
+			}
+		}
+	}
+	
+	private Map<String,String> readTypesAndLabelsFromConfig() {
+		Map<String,String> typesAndLabels = new HashMap<String,String>(); 
+		return typesAndLabels; //TODO UNSTUB
+	}
+	
 	private String constructCommentsPath() {
 		StringBuilder commentsPath = new StringBuilder(Constants.USERGEN_ROOT);
 		commentsPath.append(currentPage.getPath());
-		commentsPath.append(Constants.COMMENTS_PATH);
+		commentsPath.append(Constants.GUIDE_COMMENTS_PATH);
 		return commentsPath.toString();
 	}
 
@@ -155,8 +205,13 @@ public class GuideNavigationTag extends CQBaseTag {
 			
 			Resource thoseComments = rr.resolve(commentsPath);
 			if (thoseComments != null) {
-				CommentSystem thatCs = thoseComments
-						.adaptTo(CommentSystem.class);
+				CommentSystem thatCs = null;
+				try {
+					thatCs = thoseComments
+							.adaptTo(CommentSystem.class);
+				} catch (NullPointerException npe) {
+					thatCs = null;
+				}
 				if (log.isDebugEnabled()) {
 					log.debug("comments path is " + commentsPath);
 					log.debug("thoseComments is " + thoseComments);

@@ -18,7 +18,7 @@
 					<primary jcr:primaryType="cq:Widget"
 						fieldDescription="Click the '+' button to add a new recognized section"
 						fieldLabel="Sections"
-						fieldSubLabel="Add, remove, or customize recognized page sections. Component types chosen will have links generated - remove for no link. Leave link text blank to use default label, if available"
+						fieldSubLabel="Add, remove, or customize recognized page sections.&lt;br /&gt;Component types chosen will have links generated - remove for no link.&lt;br /&gt;Leave link text blank to use default label, if available"
 						name="./sections"
 						xtype="multifield">
 						<fieldConfig jcr:primaryType="cq:Widget"

@@ -11,6 +11,7 @@ public final class Constants {
 	public static final String ASSETS_IMAGE_PATH = ident("/jcr:content/image");
 	
 	// Originally for guide nav, but generally applicable
+	public static final String GUIDE_NAV_COMPONENT = ident("searspartsdirect/components/content/guideNavigation");
 	public static final String COMMENTS_COMPONENT = ident("searspartsdirect/components/content/comments");
 	public static final String SUBHEAD_COMPONENT = ident("searspartsdirect/components/content/subhead");
 	public static final String PARTS_REQ_R_COMPONENT = ident("searspartsdirect/components/content/partsRequiredRepair");
@@ -19,11 +20,14 @@ public final class Constants {
 	
 	public static final String USERGEN_ROOT = ident("/content/usergenerated");
 	
-	public static final String COMMENTS_PATH = ident("/jcr:content/comments");
+	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
+	public static final String GUIDE_NAV_PATH = ident("guideNavigation");
+	public static final String SLINGTYPE = ident("sling:resourceType");
+	public static final String UNSTRUCTURED = ident("nt:unstructured");
 	
 	// Constants specific to guide nav
 	public static final String PARTS_REQ_DEF_GUIDE_NAV_LINK = ident("Parts required");
-	public static final String TOOLS_REQ_DEF_GUIDE_NAV_LINK = ident("Tools required");
+	public static final String TOOLS_REQ_DEF_GUIDE_NAV_LINK = ident("Tools needed");
 	public static final String INSTRUCTIONS_DEF_GUIDE_NAV_LINK = ident("Instructions");
 	public static final String COMMENTS_GUIDE_NAV_LINK_PREFIX = ident("Comments");
 	// following MUST match attribute declaration in 
