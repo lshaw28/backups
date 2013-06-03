@@ -23,6 +23,13 @@
 			});
 		});
 		/**
+		 * Link help text listeners
+		 */
+		$('[data-texthelp]').each(function () {
+			// Perform initial check
+			window.SPDUtils.checkLink($(this));
+		});
+		/**
 		 * responsiveImage component setup
 		 */
 		$('.responsiveImage div[data-desktopimage]').each(function () {
