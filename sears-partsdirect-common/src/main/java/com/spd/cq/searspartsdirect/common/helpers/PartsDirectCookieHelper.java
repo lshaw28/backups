@@ -19,7 +19,7 @@ public class PartsDirectCookieHelper {
 		Cookie cookie = null;
 
 		for (int i = 0; i < cookies.length; i++) {
-			log.error(cookies[i].getName());
+			log.debug(cookies[i].getName());
 			if (cookies[i].getName().equals(cookieName)) {
 				cookie = cookies[i];
 				break;
