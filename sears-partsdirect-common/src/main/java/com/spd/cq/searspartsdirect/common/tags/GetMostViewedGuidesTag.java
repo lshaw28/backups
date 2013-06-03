@@ -1,13 +1,17 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.jcr.PathNotFoundException;
+import javax.jcr.NodeIterator;
 import javax.jcr.PropertyIterator;
 import javax.jcr.Property;
 import javax.jcr.RepositoryException;
+import javax.jcr.Node;
+
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.api.resource.Resource;
@@ -15,15 +19,9 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.Node;
-
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.WCMMode;
-import com.day.cq.wcm.core.stats.PageViewStatistics;
-import com.day.cq.wcm.core.stats.PageViewReport;
-import com.day.cq.statistics.StatisticsService;
 
-import com.spd.cq.searspartsdirect.common.helpers.PageStatistics;
+import com.spd.cq.searspartsdirect.common.model.PageStatistics;
 
 public class GetMostViewedGuidesTag extends CQBaseTag{
 	
@@ -35,7 +33,6 @@ public class GetMostViewedGuidesTag extends CQBaseTag{
 		List<PageStatistics> pageList = new ArrayList<PageStatistics>();
 		ResourceResolver resolverPage = slingRequest.getResourceResolver();
 		Resource resPage = resolverPage.getResource("/content/searspartsdirect/en/home");
-		
 		Page repairPages = resPage.adaptTo(Page.class);
 		pages = repairPages.listChildren();
 		while (pages.hasNext()){
@@ -45,27 +42,35 @@ public class GetMostViewedGuidesTag extends CQBaseTag{
 			pageStats.setPagePath(childPages.getPath());
 			
 			try {
-				Resource r = resolverPage.getResource("/var/statistics/pages/content/searspartsdirect/en/home" + childPages.getName() + "/.stats/2013");
+				Resource r = resolverPage.getResource("/var/statistics/pages/content/searspartsdirect/en/home" + childPages.getName() + "/.stats");
 				Node node = r.adaptTo(Node.class);
-				PropertyIterator properties = null;
-				properties = node.getProperties();
-
-				while (properties.hasNext()){
-					Property prop=properties.nextProperty();
-					if ("views".equalsIgnoreCase(prop.getName())){
-						pageStats.setViews(prop.getValue().getLong());
+//				log.debug("Node Name:" + node.getName());
+				NodeIterator childNodes = node.getNodes();
+//				log.debug("NO. OF Child nodes :" + String.valueOf(childNodes.getSize()));
+				while (childNodes.hasNext()){
+//					log.debug("COMES HERE");
+					Node chldNode = childNodes.nextNode();
+//					log.debug("CHILD NODE :" + chldNode.getName());
+					PropertyIterator properties = null;
+					properties = chldNode.getProperties();
+					while (properties.hasNext()){
+						Property prop=properties.nextProperty();
+						if ("views".equalsIgnoreCase(prop.getName())){
+							pageStats.setViews(prop.getValue().getLong());
+//							log.debug("Property: "  + String.valueOf(prop.getValue().getLong()));
+						}
 					}
 				}
 				
+				//Sorts the list based in the no. of views
+				Collections.sort(pageList, new PageStatistics());
 				} catch (RepositoryException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			pageList.add(pageStats);
-			
 		}
-		
-		
+	
 		return SKIP_BODY;
 	}
  
