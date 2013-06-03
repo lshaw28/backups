@@ -8,9 +8,11 @@
 	</div>
 	<div class="row-fluid">
 		<div class="span6">
+			<a name="template_toolsRequiredRepair" ></a>
 			<cq:include path="toolsRequiredRepair" resourceType="searspartsdirect/components/content/toolsRequiredRepair" />
 		</div>
 		<div class="span6">
+			<a name="template_partsRequiredRepair" ></a>
 			<cq:include path="partsRequiredRepair" resourceType="searspartsdirect/components/content/partsRequiredRepair" />
 		</div>
 	</div>
@@ -24,6 +26,7 @@
 	</div>
 	<div class="row-fluid">
 		<div class="span12">
+			<a name="template_comments" ></a>
 			<cq:include path="comments" resourceType="searspartsdirect/components/content/comments" />
 		</div>
 	</div>
