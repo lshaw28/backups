@@ -10,9 +10,7 @@
 			<div class="clear"></div>
 			<cq:include path="cartNav" resourceType="/apps/searspartsdirect/components/content/cartNav" />
 		</div>
-		<div class="mani_search_panel">
-			<cq:include path="searchPanel" resourceType="/apps/searspartsdirect/components/content/searchPanel" />
-		</div>	
+		<cq:include path="searchPanel" resourceType="/apps/searspartsdirect/components/content/searchPanel" />
 		<cq:include path="waterFilterPromo" resourceType="/apps/searspartsdirect/components/content/promo" />
 	</div>
 	<div class="clear"></div>
