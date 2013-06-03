@@ -1,44 +1,25 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.RepositoryException;
-import javax.jcr.Value;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.api.scripting.SlingBindings;
-import org.apache.sling.api.scripting.SlingScriptHelper;
-import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.adobe.cq.social.commons.*;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.day.cq.wcm.api.components.Component;
-import com.day.cq.wcm.api.components.ComponentContext;
-import com.day.cq.wcm.api.components.EditContext;
-import com.day.cq.wcm.api.designer.Design;
-import com.day.cq.wcm.api.designer.Designer;
-import com.day.cq.wcm.api.designer.Style;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 // This component is being reworked, please hold any comments until rework is completed.
+@SuppressWarnings("serial")
 public class GuideNavigationTag extends CQBaseTag {
 	// We have our template provided parts, and we have our dynamically discovered parts
 	//private Map<String>
@@ -49,8 +30,6 @@ public class GuideNavigationTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		// output list containing lists [linktext,sectionlink]
-		investigateBaseProvidedFields();
-		investigatePageContextAttributes(pageContext);
 		List<List<String>> sections = new ArrayList<List<String>>();
 		// we can declare these as vars in the tld, usage here remains the same tho..
 		
@@ -58,15 +37,32 @@ public class GuideNavigationTag extends CQBaseTag {
 		pageContext.setAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR,
 				jumpToString);
 		
-		LinkedHashMap<String,LinkGenerator> generators = new LinkedHashMap<String,LinkGenerator>();
+		List<LinkGenerator> generators = new ArrayList<LinkGenerator>();
 		// check if doing parts link, check if label is different
-		generators.put(Constants.PARTS_REQ_R_COMPONENT, new FixedLabelTemplateLinkGenerator(Constants.PARTS_REQ_R_COMPONENT,Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK));
-		generators.put(Constants.TOOLS_REQ_R_COMPONENT, new FixedLabelTemplateLinkGenerator(Constants.TOOLS_REQ_R_COMPONENT,Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK));
-		// find parsys and do dynamic components
-		//TODO Do that
-		generators.put(Constants.COMMENTS_COMPONENT, new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));
+		generators.add(new FixedLabelTemplateLinkGenerator(Constants.PARTS_REQ_R_COMPONENT,Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK));
+		generators.add(new FixedLabelTemplateLinkGenerator(Constants.TOOLS_REQ_R_COMPONENT,Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK));
 		
-		for (LinkGenerator linkGen : generators.values()) {
+		Resource parsysResource = currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME);
+		if (log.isDebugEnabled()) log.debug("parsysResource is "+parsysResource);
+		
+		Iterator<Resource> parsysChildren = parsysResource.listChildren();
+		ParsysLinkGeneratorFactory generatorFactory = new ParsysLinkGeneratorFactory(parsysResource);
+		while (parsysChildren.hasNext()) {
+			Resource parsysChild = parsysChildren.next();
+			if (log.isDebugEnabled()) {
+				log.debug("parsysChild is "+parsysChild);
+				log.debug("parsysChild.resourceType is "+parsysChild.getResourceType());
+				log.debug("parsysChild.resourceSuperType is "+parsysChild.getResourceSuperType());
+			}
+			ParsysLinkGenerator maybeGenerator = generatorFactory.getLinkGenerator(parsysChild);
+			if (maybeGenerator != null) {
+				generators.add(maybeGenerator);
+			}
+		}
+		
+		generators.add(new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));
+		
+		for (LinkGenerator linkGen : generators) {
 			List<String> newList = new ArrayList<String>();
 			newList.add(linkGen.generateLabel());
 			newList.add(linkGen.generateLink());
@@ -74,7 +70,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 		pageContext.setAttribute(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR, sections);
 		
-		return EVAL_BODY_INCLUDE;
+		return SKIP_BODY;
 	}
 	
 	private String constructCommentsPath() {
@@ -82,92 +78,6 @@ public class GuideNavigationTag extends CQBaseTag {
 		commentsPath.append(currentPage.getPath());
 		commentsPath.append(Constants.COMMENTS_PATH);
 		return commentsPath.toString();
-	}
-
-	private void investigateBaseProvidedFields() {
-		log.info("currentNode is " + currentNode);
-		log.info("sling is " + sling);
-		log.info("slingRequest is " + slingRequest);
-		log.info("currentPage is " + currentPage);
-		if (currentPage != null) {
-			log.info("currentPage.path is "+currentPage.getPath());
-		}
-
-		log.info("slingResponse is " + slingResponse);
-		log.info("bindings is " + bindings);
-		log.info("resource is " + resource);
-		if (resource != null) {
-			log.info("resource.path is "+resource.getPath());
-		}
-		log.info("resourceResolver is " + resourceResolver);
-		log.info("log is " + log);
-		log.info("componentContext is " + componentContext);
-		if (componentContext != null) {
-			Component component = componentContext.getComponent();
-			log.info("componentContext.component is "+component);
-			if (component != null) {
-				log.info("component.cellName is "+component.getCellName());
-				log.info("component.superComponent is "+component.getSuperComponent());
-				log.info("component.virtualComponents is "+component.getVirtualComponents());
-			}
-		}
-		log.info("editContext is " + editContext);
-		log.info("properties is " + properties);
-		log.info("pageManager is " + pageManager);
-		log.info("resourcePage is " + resourcePage);
-		if (resourcePage != null) {
-			log.info("resourcePage.path is "+resourcePage.getPath());
-		}
-
-		// TODO: figure this out....if we ever need it
-		// log.info("pageProperties is " + pageProperties);
-		log.info("component is " + component);
-		log.info("designer is " + designer);
-		log.info("currentDesign is " + currentDesign);
-		log.info("resourceDesign is " + resourceDesign);
-		log.info("currentStyle is " + currentStyle);
-		log.info("request is " + request);
-		log.info("contextPath is " + contextPath);
-	}
-
-	private void investigatePageContextAttributes(PageContext pageContext) {
-		log.info("in page scope");
-		try {
-			dumpEnumToInfo(pageContext
-					.getAttributeNamesInScope(PageContext.PAGE_SCOPE));
-		} catch (Exception e) {
-			log.info("Something wrong with page scope");
-		}
-		log.info("in request scope");
-		try {
-			dumpEnumToInfo(pageContext
-					.getAttributeNamesInScope(PageContext.REQUEST_SCOPE));
-		} catch (Exception e) {
-			log.info("Something wrong with request scope");
-		}
-		log.info("in session scope");
-		try {
-			dumpEnumToInfo(pageContext
-					.getAttributeNamesInScope(PageContext.SESSION_SCOPE));
-		} catch (Exception e) {
-			log.info("Something wrong with session scope");
-		}
-		log.info("in application scope");
-		try {
-			dumpEnumToInfo(pageContext
-					.getAttributeNamesInScope(PageContext.APPLICATION_SCOPE));
-		} catch (Exception e) {
-			log.info("Something wrong with application scope");
-		}
-	}
-
-	private void dumpEnumToInfo(Enumeration en) {
-		StringBuilder sb = new StringBuilder();
-		while (en.hasMoreElements()) {
-			sb.append(en.nextElement()).append(", ");
-		}
-		sb.setLength(sb.length() - 2);
-		log.info(sb.toString());
 	}
 
 	private static abstract class LinkGenerator {
@@ -203,7 +113,7 @@ public class GuideNavigationTag extends CQBaseTag {
 			if (componentName == null) {
 				String fullType = getComponentType();
 				if (log.isDebugEnabled()) log.debug("setting from fullType which is "+fullType);
-				componentName = fullType.substring(fullType.lastIndexOf("/") + 1);
+				setComponentName(fullType.substring(fullType.lastIndexOf("/") + 1));
 				if (log.isDebugEnabled()) log.debug("componentName is "+componentName);
 			}
 			return componentName;
@@ -227,53 +137,6 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 	}
 	
-	private static abstract class ParsysLinkGenerator extends LinkGenerator {
-		private String parsysName;
-
-		public String getParsysName() {
-			return parsysName;
-		}
-
-		public void setParsysName(String parsysName) {
-			this.parsysName = parsysName;
-		}
-		
-		private Node beingLinkedTo;
-
-		public Node getBeingLinkedTo() {
-			return beingLinkedTo;
-		}
-
-		public void setBeingLinkedTo(Node beingLinkedTo) {
-			this.beingLinkedTo = beingLinkedTo;
-		}
-
-		@Override
-		public String generateLink() {
-			String linkTarget = null;
-			try {
-				linkTarget = parsysName + "_" + beingLinkedTo.getName();
-			} catch (RepositoryException re) {
-				log.warn("constructing link target, ",re);
-			}
-			return linkTarget;
-		}
-	}
-	
-	private static class SubheadLinkGenerator extends ParsysLinkGenerator {
-		@Override
-		public String generateLabel() {
-			String label = Constants.EMPTY;
-			try {
-				label = getBeingLinkedTo().getProperty("textvalue")
-						.getString();
-			} catch (Exception e) {
-				log.error("retrieving subhead label: ", e);
-			}
-			return label;
-		}
-	}
-
 	private static class CommentsLinkGenerator extends TemplateLinkGenerator {
 		private final String commentsPath;
 		private final ResourceResolver rr;
@@ -285,7 +148,7 @@ public class GuideNavigationTag extends CQBaseTag {
 			this.rr = rr;
 		}
 
-		@Override // How'm I gonna find this node? It is not part of what I see.
+		@Override
 		public String generateLabel() {
 			StringBuilder label = new StringBuilder(
 					Constants.COMMENTS_GUIDE_NAV_LINK_PREFIX);
@@ -308,6 +171,130 @@ public class GuideNavigationTag extends CQBaseTag {
 				log.warn("Could not resolve "+commentsPath+" to a resource");
 			}
 			return label.toString();
+		}
+	}
+	
+	private static class ParsysLinkGeneratorFactory {
+		private final static Map<String,ParsysLinkGeneratorMaker> makers = initMakers();
+		private final static Map<String,ParsysLinkGeneratorMaker> initMakers() {
+			Map<String,ParsysLinkGeneratorMaker> makers = new HashMap<String,ParsysLinkGeneratorMaker>();
+			makers.put(Constants.SUBHEAD_COMPONENT, new SubheadLinkGeneratorMaker());
+			makers.put(Constants.INSTRUCTIONS_COMPONENT, new FixedLabelParsysLinkGeneratorMaker(Constants.INSTRUCTIONS_DEF_GUIDE_NAV_LINK));
+			return makers;
+		}
+		
+		private final Resource parsysResource;
+		
+		public ParsysLinkGeneratorFactory(final Resource parsysResource) {
+			this.parsysResource = parsysResource;
+		}
+		
+		public ParsysLinkGenerator getLinkGenerator(Resource maybeBeingLinkedTo) {
+			ParsysLinkGeneratorMaker maker = makers.get(maybeBeingLinkedTo.getResourceType());
+			ParsysLinkGenerator weMade = null;
+			if (maker != null) {
+				if (log.isDebugEnabled()) log.debug("Found maker for "+maybeBeingLinkedTo);
+				maker.setParsysName(parsysResource.getName());
+				weMade = maker.createGenerator(maybeBeingLinkedTo);
+			} else {
+				if (log.isDebugEnabled()) log.debug("No maker for "+maybeBeingLinkedTo);
+			}
+			return weMade;
+		}
+	}
+	
+	private static abstract class ParsysLinkGeneratorMaker {
+		private String parsysName;
+		
+		public void setParsysName(final String parsysName) {
+			this.parsysName = parsysName;
+		}
+		public String getParsysName() {
+			return parsysName;
+		}
+		public abstract ParsysLinkGenerator createGenerator(Resource parsysChild);
+	}
+	
+	private static class SubheadLinkGeneratorMaker extends ParsysLinkGeneratorMaker {
+		public ParsysLinkGenerator createGenerator(Resource subhead) {
+			return new SubheadLinkGenerator(getParsysName(),subhead);
+		}
+	}
+	
+	private static class FixedLabelParsysLinkGeneratorMaker extends ParsysLinkGeneratorMaker {
+		private final String label;
+		public FixedLabelParsysLinkGeneratorMaker(final String label) {
+			this.label = label;
+		}
+		public String getLabel() {
+			return label;
+		}
+		
+		public ParsysLinkGenerator createGenerator(Resource parsysChild) {
+			return new FixedLabelParsysLinkGenerator(getParsysName(), parsysChild, getLabel());
+		}
+	}
+	
+	private static abstract class ParsysLinkGenerator extends LinkGenerator {
+		private String parsysName;
+
+		public String getParsysName() {
+			return parsysName;
+		}
+
+		public void setParsysName(String parsysName) {
+			this.parsysName = parsysName;
+		}
+		
+		private Resource beingLinkedTo;
+
+		public Resource getBeingLinkedTo() {
+			return beingLinkedTo;
+		}
+
+		public void setBeingLinkedTo(Resource beingLinkedTo) {
+			this.beingLinkedTo = beingLinkedTo;
+		}
+
+		@Override
+		public String generateLink() {
+			String linkTarget = null;
+			linkTarget = getParsysName() + "_" + getBeingLinkedTo().getName();
+			return linkTarget;
+		}
+	}
+	
+	private static class FixedLabelParsysLinkGenerator extends ParsysLinkGenerator {
+		final String label;
+	
+		public FixedLabelParsysLinkGenerator(String parsysName, Resource beingLinkedTo, String label) {
+			setParsysName(parsysName);
+			setBeingLinkedTo(beingLinkedTo);
+			this.label = label;
+		}
+		
+		@Override
+		public String generateLabel() {
+			return label;
+		}
+	}
+	
+	private static class SubheadLinkGenerator extends ParsysLinkGenerator {
+		public SubheadLinkGenerator(String parsysName, Resource subheadBeingLinkedTo) {
+			setParsysName(parsysName);
+			setBeingLinkedTo(subheadBeingLinkedTo);
+		}
+		
+		@Override
+		public String generateLabel() {
+			String label = Constants.EMPTY;
+			try {
+				label = getBeingLinkedTo().adaptTo(Node.class).getProperty(Constants.GUIDE_SUBHEAD_LABEL_PROP)
+						.getString();
+			} catch (Exception e) {
+				log.error("retrieving subhead label: ", e);
+			}
+			return label;
 		}
 	}
 }

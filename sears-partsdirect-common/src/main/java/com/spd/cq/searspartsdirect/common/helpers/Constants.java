@@ -15,6 +15,7 @@ public final class Constants {
 	public static final String SUBHEAD_COMPONENT = ident("searspartsdirect/components/content/subhead");
 	public static final String PARTS_REQ_R_COMPONENT = ident("searspartsdirect/components/content/partsRequiredRepair");
 	public static final String TOOLS_REQ_R_COMPONENT = ident("searspartsdirect/components/content/toolsRequiredRepair");
+	public static final String INSTRUCTIONS_COMPONENT = ident("searspartsdirect/components/content/repairInstructions");
 	
 	public static final String USERGEN_ROOT = ident("/content/usergenerated");
 	
@@ -23,6 +24,7 @@ public final class Constants {
 	// Constants specific to guide nav
 	public static final String PARTS_REQ_DEF_GUIDE_NAV_LINK = ident("Parts required");
 	public static final String TOOLS_REQ_DEF_GUIDE_NAV_LINK = ident("Tools required");
+	public static final String INSTRUCTIONS_DEF_GUIDE_NAV_LINK = ident("Instructions");
 	public static final String COMMENTS_GUIDE_NAV_LINK_PREFIX = ident("Comments");
 	// following MUST match attribute declaration in 
 	// /apps/searspartsdirect/components/page/repairGuide/tab_page_properties.xml
@@ -31,6 +33,8 @@ public final class Constants {
 	// following MUST match attribute declaration in 
 	// /apps/searspartsdirect/components/page/repairGuide/tab_page_properties.xml
 	public static final String GUIDE_NAV_SECTIONS_PAGE_ATTR = ident("sections");
+	public static final String GUIDE_TOP_PARSYS_NAME = ident("parsys");
+	public static final String GUIDE_SUBHEAD_LABEL_PROP = ident("textvalue");
 	
 	public static final String RECENTLY_VIEWED_MODEL_COOKIE = "recentlyViewedModels";
 	public static final String RECENTLY_VIEWED_PART_COOKIE = "recentlyViewedParts";
