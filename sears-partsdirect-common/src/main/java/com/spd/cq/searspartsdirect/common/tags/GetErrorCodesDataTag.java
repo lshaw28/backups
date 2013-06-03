@@ -57,18 +57,18 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			//map.put("fulltext", categoryName) //need to figure out how to pass the input param 
 			 
 			QueryBuilder builder = resourceResolver.adaptTo(QueryBuilder.class);
-			/*log.error("build is "+ builder);
-			log.error("session is "+ session);*/
+			/*log.debug("build is "+ builder);
+			log.debug("session is "+ session);*/
 			Query query = builder.createQuery(PredicateGroup.create(map), session);
 			
 			SearchResult result = query.getResult();
-			log.error("total results found "+ result.getQueryStatement().toString());
+			log.debug("total results found "+ result.getQueryStatement().toString());
 			
 			// iterating over the results
 		    for (Hit hit : result.getHits()) {
 		        try {
 					/*String path = hit.getPath();
-					  log.error(path);*/
+					  log.debug(path);*/
 					ValueMap props = hit.getProperties();
 					if (props != null) {
 						ErrorCodeModel model = new ErrorCodeModel(props.get("jcr:title", String.class), props.get("jcr:description", String.class), null);
