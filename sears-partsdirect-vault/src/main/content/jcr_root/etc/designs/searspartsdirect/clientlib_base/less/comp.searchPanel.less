@@ -1,0 +1,173 @@
+@import "base.variables.less";
+@import "base.mixins.less";
+
+/* Component: Search Panel */
+.searchPanel {
+	height: auto;
+
+	padding: 50px 0 10px 0;
+	width: 100%;
+
+	form {
+		height: auto;
+		margin: 0;
+		text-align: center;
+		width: 100%;
+	}
+}
+#searchLeftShadow, #searchRightShadow, #searchContainer {
+	display: inline-block;
+}
+#searchLeftShadow, #searchRightShadow {
+	display: inline-block;
+	height: 25px;
+	margin: 0;
+	width: 216px;
+	z-index: 50;
+}
+#searchLeftShadow {
+	background: url(../img/headerLeftShadow.png) no-repeat 0 0;
+	margin-right: -4px;
+}
+#searchRightShadow {
+	background: url(../img/headerRightShadow.png) no-repeat 0 0;
+	margin-left: -3px;
+}
+#searchContainer {
+	height: auto;
+	text-align: left;
+	width: 700px;
+	z-index: 75;
+}
+#searchTabs {
+	height: 38px;
+	list-style: none;
+	margin: 0 0 -6px;
+	position: relative;
+	width: 100%;
+	z-index: 120;
+
+	li {
+		display: inline-block;
+
+		a {
+			border: 1px solid #446eb9;
+			.borderRadius(4px 4px 0 0);
+			color: @searchColor;
+			height: 27px;
+			line-height: 32px;
+			padding: 8px 10px;
+			text-decoration: none;
+		}
+	}
+	li.active {
+		a {
+			background-color: #446eb9;
+			border-width: 3px;
+			.borderRadius(4px 4px 0 0);
+			color: @bodyColor;
+			font-size: @paragraphSize;
+			height: 32px;
+			line-height: 32px;
+			padding: 10px;
+			text-align: center;
+		}
+	}
+	li:first-child {
+		a {
+			.borderRadius(4px 0 0 0);
+		}
+		&.active {
+			a {
+				.borderRadius(4px 4px 0 0);
+			}
+		}
+	}
+	li:last-child {
+		a {
+			.borderRadius(0 4px 0 0);
+		}
+		&.active {
+			a {
+				.borderRadius(4px 4px 0 0);
+			}
+		}
+	}
+}
+#searchContent {
+	.verticalGradient(#446eb9, #1c2e57);
+	border: inset 1px solid #b7c5de;
+	.boxShadow(0 8px 6px -6px #ccc);
+	height: auto;
+	line-height: 35px;
+	padding: 15px 15px 0;
+	z-index: 100;
+
+	input, span, div, a.btn-search {
+		display: inline-block;
+	}
+
+	p, span.large {
+		color: @bodyColor;
+		font-size: @smallLinkSize;
+		font-weight: 600;
+
+		a {
+			color: @bodyColor;
+			font-size: @smallLinkSize;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	span.large {
+		font-size: 26px;
+		padding: 0 8px;
+	}
+
+	.text-input {
+		background-color: #fff;
+		border: 0;
+		border-radius: 0;
+		color: #666;
+		font-size: 16px;
+		height: 35px;
+		margin: 0;
+		padding: 0 10px;
+		width: 50%;
+	}
+	.btn-group {
+		width: 25%;
+
+		a {
+			background-color: #fff;
+			border: 0;
+			border-radius: 0;
+			color: #666;
+			font: 16px/35px @standardFont;
+			padding: 0 10px;
+			text-decoration: none;
+		}
+		.btn-type {
+			background-color: @bodyColor;
+			background-image: none;
+			border: 1px solid #ccc;
+			.borderRadius(2px);
+			display: inline-block;
+			float: left;
+			padding-left: 8px;
+			padding-right: 8px;
+			text-align: left;
+			width: 85%;
+
+			.icon-chevron-sign-down {
+				float: right;
+				margin-top: 8px;
+			}
+		}
+	}
+}
+
+/* Breakpoints */

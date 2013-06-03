@@ -2,3 +2,23 @@
 @import "base.mixins.less";
 
 /* Core: Buttons */
+.btn-search {
+	background-color: @searchButtonColor;
+	background-image: none;
+	border: 0 solid @searchButtonColor;
+	.borderRadius(2px);
+	color: @bodyColor;
+	cursor: pointer;
+	font-size: @paragraphSize;
+	line-height: 35px;
+	padding: 0 22px;
+	text-decoration: none;
+	text-shadow: 1px 1px 0 @bodyCopyColor;
+
+	&:hover {
+		background-color: @searchButtonColor;
+		background-image: none;
+		color: @bodyColor;
+		text-decoration: underline;
+	}
+}
