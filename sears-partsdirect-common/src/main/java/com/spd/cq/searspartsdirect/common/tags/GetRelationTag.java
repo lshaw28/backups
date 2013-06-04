@@ -1,22 +1,18 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.regex.Pattern;
 
-import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.AssetType;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.helpers.TooManyRelatedObjectsException;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.HazardModel;
@@ -27,46 +23,34 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.TipModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.WarningModel;
 
 /**
- * Custom tag to draw out a list of SPDAsset objects based on filters
+ * Custom tag to draw out a list of Related Assets from a given page, filtered by Asset type
  * Defaults to current page
  * @author Joseph
  *
  */
-public class GetAssetsTag extends CQBaseTag {
-
-	protected static Logger log = LoggerFactory.getLogger(GetAssetsTag.class);
+public class GetRelationTag extends CQBaseTag {
+	private static final long serialVersionUID = 1L;
+	protected static Logger log = LoggerFactory.getLogger(GetRelationTag.class);
+	protected String pagepath;
 	protected String assetType;
-	protected String brandFilter;
-	protected String productCategoryFilter;
-	protected String tagFilter;
+	protected String single;
 	
 	@Override
 	public int doStartTag() throws JspException {
 		ArrayList<Object> result = new ArrayList<Object>();
 		
-		//ASSUME INPUTSTRING IS COMING FROM THE TAG ATTRIBUTE
 		AssetType assetTypeEnum = AssetType.valueOf(assetType.toUpperCase());
 		
-		QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
-		HashMap<String, String> props = new HashMap<String, String>();
-        props.put("type", "cq:Page");
-        props.put("path", Constants.ASSETS_PATH + "/" + assetType);
-        if (brandFilter != null) {
-        	props.put("1_property", "jcr:content/pages");
-        	props.put("1_property.value", brandFilter);
-        }
-        if (productCategoryFilter != null) {
-        	props.put("2_property", "jcr:content/pages");
-        	props.put("2_property.value", productCategoryFilter);
-        }
-        if (tagFilter != null) {
-        	props.put("3_property", "jcr:content/cq:tags");
-        	props.put("3_property.value", tagFilter);
-        }
-        List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
-		try {
-	        for (Hit hit: hits) {
-	        	Page p = pageManager.getPage(hit.getPath());
+		boolean isSingle = false;
+		if (single != null) {
+			isSingle = single.equals("true");
+		}
+		String[] empty = new String[0];
+		Page workingPage = pagepath != null ? pageManager.getPage(pagepath) : currentPage;
+		String[] relations = workingPage.getProperties().get("pages", empty);
+		for (int i = 0; i < relations.length; i++) {
+			if (Pattern.matches(Constants.ASSETS_PATH + "/" + assetType + "/[^/]+", relations[i])) {
+				Page p = pageManager.getPage(relations[i]);
 				ValueMap properties = p.getProperties();
 				String title = properties.get(Constants.ASSETS_TITLE_PATH,"");
 				String description = properties.get(Constants.ASSETS_DESCRIPTION_PATH,"");
@@ -120,11 +104,19 @@ public class GetAssetsTag extends CQBaseTag {
 				}
 			}
 		}
-		catch (Exception e) {
-			log.error("Error querying pages by tag: " + e.toString());
+		if (isSingle) {
+			if (result.size() > 1) {
+				//If the result is supposed to be single and is not, throw an exception
+				throw new TooManyRelatedObjectsException();
+			}
+			else {
+				pageContext.setAttribute(assetType + "Relation", result.get(0));
+			}
+		}
+		else {
+			pageContext.setAttribute(assetType + "RelationList", result);
 		}
 		
-		pageContext.setAttribute(assetType + "List", result);
 		return SKIP_BODY;
 	}
 	
@@ -133,19 +125,13 @@ public class GetAssetsTag extends CQBaseTag {
         return EVAL_PAGE;
     }
 	
+	public void setPagepath(String pagepath) {
+		this.pagepath = pagepath;
+	}
 	public void setAssetType(String assetType) {
 		this.assetType = assetType;
 	}
-	
-	public void setBrandFilter(String brandFilter) {
-		this.brandFilter = brandFilter;
-	}
-
-	public void setProductCategoryFilter(String productCategoryFilter) {
-		this.productCategoryFilter = productCategoryFilter;
-	}
-
-	public void setTagFilter(String tagFilter) {
-		this.tagFilter = tagFilter;
+	public void setSingle(String single) {
+		this.single = single;
 	}
 }

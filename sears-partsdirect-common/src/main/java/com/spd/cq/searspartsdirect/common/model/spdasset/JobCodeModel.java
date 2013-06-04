@@ -4,10 +4,12 @@ public class JobCodeModel {
 	
 	private String title;
 	private String description;
+	private String path;
 	
-	public JobCodeModel(String title, String description) {
+	public JobCodeModel(String path, String title, String description) {
 		this.title = title;
 		this.description = description;
+		this.path = path;
 	}
 	
 	public String getTitle() {
@@ -22,5 +24,12 @@ public class JobCodeModel {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
 	}
 }

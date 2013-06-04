@@ -4,10 +4,12 @@ public class WarningModel {
 	
 	private String title;
 	private String imagePath;
+	private String path;
 	
-	public WarningModel(String title, String imagePath) {
+	public WarningModel(String path, String title, String imagePath) {
 		this.title = title;
 		this.imagePath = imagePath;
+		this.path = path;
 	}
 	
 	public String getTitle() {
@@ -22,5 +24,12 @@ public class WarningModel {
 	}
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
 	}
 }

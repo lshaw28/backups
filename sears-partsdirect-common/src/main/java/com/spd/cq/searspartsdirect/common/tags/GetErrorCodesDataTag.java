@@ -35,40 +35,69 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 	private String subCategoryName;
 	private String brandName;
 	
+	Session session;
+	QueryBuilder builder;
+	Query query;
+	
 	protected static Logger log = LoggerFactory.getLogger(GetErrorCodesDataTag.class);
 	
 	@Override
 	public int doStartTag() throws JspException {
-		if (categoryName != null && subCategoryName != null && brandName != null) {
+		if (categoryName != null && brandName != null) {
+			log.debug("category and brand names:-"+categoryName +"   "+brandName);
 			//get the pages from scaffolding page by passing category, subcategory and brand and loop thru them to extract and store in
 			// errorCodeTable with error-code-type as a key and code, desc, condition, repair in the form of an object
-			Map<String, ArrayList<ErrorCodeModel>> errorCodeTable = new LinkedHashMap<String, ArrayList<ErrorCodeModel>>();
+			List<ErrorCodeModel> errorCodeModelList = new ArrayList<ErrorCodeModel>();
+			
+			session = slingRequest.getResourceResolver().adaptTo(Session.class);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("path", "/etc/spdAssets/scaffolding/errorCode/");
+			map.put("type", Constants.CQ_PAGE);
+			map.put("1_property", "jcr:content/pages");
+			map.put("1_property.value", categoryName);
+			map.put("2_property", "jcr:content/pages");
+			map.put("2_property.value", brandName);
+			builder = resourceResolver.adaptTo(QueryBuilder.class);
+			query = builder.createQuery(PredicateGroup.create(map), session);
+			SearchResult result = query.getResult();
+			log.debug("hits"+result.getHits());
+			 for (Hit hit : result.getHits()) {
+		        try {
+					ValueMap props = hit.getProperties();
+					if (props != null) {
+						ErrorCodeModel model = new ErrorCodeModel("",props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("repairLink", String.class));
+						errorCodeModelList.add(model);
+					}
+				} catch (RepositoryException e) {
+					e.printStackTrace();
+				}
+			 }
+			
+			/*Map<String, ArrayList<ErrorCodeModel>> errorCodeTable = new LinkedHashMap<String, ArrayList<ErrorCodeModel>>();
 			ArrayList<ErrorCodeModel> errorCodeModels = new ArrayList<ErrorCodeModel>();
-			ErrorCodeModel errorCodeModel1 = new ErrorCodeModel("101", "recalled by the manufacturer", null);
-			ErrorCodeModel errorCodeModel2 = new ErrorCodeModel("102","major issue with the engine", "call kenmore at 1-800-KENMORE");
+			ErrorCodeModel errorCodeModel1 = new ErrorCodeModel("","101", "recalled by the manufacturer", null);
+			ErrorCodeModel errorCodeModel2 = new ErrorCodeModel("","102","major issue with the engine", "call kenmore at 1-800-KENMORE");
 
 			errorCodeModels.add(errorCodeModel1);
 			errorCodeModels.add(errorCodeModel2);
 			
 			errorCodeTable.put("Error Code Type 1", errorCodeModels);
-			pageContext.setAttribute("errorCodeTable", errorCodeTable);
+			//pageContext.setAttribute("errorCodeTable", errorCodeTable);*/
+			pageContext.setAttribute("errorCodeTable", errorCodeModelList);
 		} else if (categoryName != null) {
 			
 			HashMap<BrandModel, List<ErrorCodeModel>> errorCodeList = new HashMap<BrandModel, List<ErrorCodeModel>>();
 			Map<BrandModel, List<ErrorCodeModel>> finalErrorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeModel>>();
 			
-			Session session = slingRequest.getResourceResolver().adaptTo(Session.class);
+			session = slingRequest.getResourceResolver().adaptTo(Session.class);
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("path", "/etc/spdAssets/scaffolding/errorCode/");
-			map.put("type", "cq:Page");
+			map.put("type", Constants.CQ_PAGE);
 			map.put("1_property", "jcr:content/pages");
-			map.put("1_property.value", Constants.ASSETS_PATH.concat("/productCategory/").concat("ranges"));
-			//map.put("1_property.value", Constants.ASSETS_PATH.concat("/productCategory/").concat(categoryName));
+			map.put("1_property.value", categoryName);
 			 
-			QueryBuilder builder = resourceResolver.adaptTo(QueryBuilder.class);
-			/*log.debug("build is "+ builder);
-			log.debug("session is "+ session);*/
-			Query query = builder.createQuery(PredicateGroup.create(map), session);
+			builder = resourceResolver.adaptTo(QueryBuilder.class);
+			query = builder.createQuery(PredicateGroup.create(map), session);
 			
 			SearchResult result = query.getResult();
 			log.debug("total results found "+ result.getQueryStatement().toString());
@@ -80,7 +109,7 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 					  log.debug(path);*/
 					ValueMap props = hit.getProperties();
 					if (props != null) {
-						ErrorCodeModel model = new ErrorCodeModel(props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("repairLink", String.class));
+						ErrorCodeModel model = new ErrorCodeModel("",props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("repairLink", String.class));
 						String[] pages = (String[]) props.get("pages", String[].class);
 						if (pages != null) {
 							log.debug("pages.length "+pages.length);
@@ -90,19 +119,17 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 									List<ErrorCodeModel> errorCodeModels = new ArrayList<ErrorCodeModel>();
 									Page brandPage = pageManager.getPage(pages[i]);
 									//log.debug("brandPage.getTitle()"+brandPage.getTitle() +"description "+ brandPage.getDescription());
-									BrandModel brandModel = new BrandModel(brandPage.getTitle(), brandPage.getDescription(), brandPage.getPath() + Constants.ASSETS_LOGO_PATH);
+									BrandModel brandModel = new BrandModel("",brandPage.getTitle(), brandPage.getDescription(), brandPage.getPath() + Constants.ASSETS_LOGO_PATH);
 									
 									//TODO - need to clean up the following messy code to have a better code option
 									if (!errorCodeList.containsKey(brandModel)) {
 										errorCodeModels.add(model);
 										errorCodeList.put(brandModel, errorCodeModels);
-										log.debug("in the if block");
 									} else {
 										List<ErrorCodeModel> newModel = errorCodeList.get(brandModel);
 										newModel.add(model);
 										errorCodeList.remove(brandModel);
 										errorCodeList.put(brandModel, newModel);
-										log.debug("in the else block");
 									}
 								}
 							}
@@ -138,7 +165,7 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 					Resource child = iter.next();
 					Page p = child.adaptTo(Page.class);
 					ValueMap properties = p.getProperties();
-					errorCodes.add(new ErrorCodeModel(properties.get("jcr:title",""), properties.get("jcr:description",""), null));
+					errorCodes.add(new ErrorCodeModel("",properties.get("jcr:title",""), properties.get("jcr:description",""), null));
 				}
 			}
 			pageContext.setAttribute("errorCodeList", errorCodes);
