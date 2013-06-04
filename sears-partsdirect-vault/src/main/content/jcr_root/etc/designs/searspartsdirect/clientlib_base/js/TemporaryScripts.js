@@ -59,7 +59,7 @@ function menuTrigger() {
 		trigger = $('.trigger'),
 		viewportWidth = $(window).width(),
 		viewportMove = viewportWidth - 44,
-		loginNav = $("#logNav"),
+		loginNav = $(".loginNav"),
 		menu = $(loginNav),
 		closeMask = $("li.home_menu_link a");
 

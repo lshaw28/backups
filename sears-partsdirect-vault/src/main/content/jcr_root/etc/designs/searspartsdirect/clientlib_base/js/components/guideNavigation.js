@@ -1,11 +1,8 @@
-/*global $:true, window:true, Class:true */
-(function (window) {
-	/**
-	 * @class guideNavigation
-	 * guideNavigation component - creates anchors and maintains sizing
-	 */
+/*global $:true, Class:true */
+var guideNavigation = Class.extend(function () {
 	"use strict";
-	window.guideNavigation = Class.extend({
+
+	return {
 		/**
 		 * Initializes guideNavigation class
 		 */
@@ -13,5 +10,5 @@
 			// Parameters
 			this.el = el;
 		}
-	});
-}(window));
+	};
+}());

@@ -4,11 +4,15 @@ public final class Constants {
 
 	public static final String EMPTY = "";
 	
+	//Asset Constants
 	public static final String ASSETS_PATH = ident("/etc/spdAssets/scaffolding");
 	public static final String ASSETS_TITLE_PATH = ident("jcr:title");
 	public static final String ASSETS_DESCRIPTION_PATH = ident("jcr:description");
 	public static final String ASSETS_LOGO_PATH = ident("/jcr:content/logo");
 	public static final String ASSETS_IMAGE_PATH = ident("/jcr:content/image");
+	
+	//Model Search Constants
+	public static final String MODEL_NOT_FOUND = ident("Not Found");
 	
 	// Originally for guide nav, but generally applicable
 	public static final String GUIDE_NAV_COMPONENT = ident("searspartsdirect/components/content/guideNavigation");

@@ -1,12 +1,8 @@
-/*global $:true, window:true, Class:true */
-(function (window) {
-	/**
-	 * @class responsiveImage
-	 * responsiveImage component, retrieves information and handles events
-	 * Can be extended with discreet functionality overrides
-	 */
+/*global window:true, $:true, Class:true */
+var responsiveImage = Class.extend(function () {
 	"use strict";
-	window.responsiveImage = Class.extend({
+
+	return {
 		/**
 		 * Initializes responsiveImage class
 		 * @param {object} el Target element
@@ -197,11 +193,7 @@
 			var self = this,
 				baseURL = self.desktopImage.split('?')[0];
 
-			return baseURL
-				+ '?wid=' + self.fw
-				+ '&hei=' + self.fh
-				+ '&op_sharpen=1'
-				+ '&qlt=' + self.iq;
+			return baseURL + '?wid=' + self.fw + '&hei=' + self.fh + '&op_sharpen=1' + '&qlt=' + self.iq;
 		},
 		/**
 		 * Bind the window resize event
@@ -211,6 +203,7 @@
 			var self = this;
 
 			// Window resize and orientation change
+			// @TODO: Use Matt's responsive helper to bind
 			$(window).resize(function () {
 				self.render();
 			})
@@ -220,5 +213,5 @@
 
 			self.isBound = true;
 		}
-	});
-}(window));
+	};
+}());

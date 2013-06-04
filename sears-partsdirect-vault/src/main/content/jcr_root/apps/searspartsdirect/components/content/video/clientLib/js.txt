@@ -1,0 +1,2 @@
+#base=/etc/designs/searspartsdirect/clientlib_base/js/components/.
+video.js
