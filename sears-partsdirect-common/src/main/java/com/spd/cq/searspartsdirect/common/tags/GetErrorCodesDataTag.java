@@ -2,9 +2,11 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.jcr.RepositoryException;
@@ -51,18 +53,17 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			errorCodeTable.put("Error Code Type 1", errorCodeModels);
 			pageContext.setAttribute("errorCodeTable", errorCodeTable);
 		} else if (categoryName != null) {
-			//using QueryBuilder
-			Map<String, ArrayList<ErrorCodeModel>> errorCodeList = new LinkedHashMap<String, ArrayList<ErrorCodeModel>>();
-			ArrayList<ErrorCodeModel> errorCodeModels = new ArrayList<ErrorCodeModel>();
-			HashMap<BrandModel, ArrayList<ErrorCodeModel>> finalErrorCodeList = new HashMap<BrandModel, ArrayList<ErrorCodeModel>>();
+			
+			HashMap<BrandModel, List<ErrorCodeModel>> errorCodeList = new HashMap<BrandModel, List<ErrorCodeModel>>();
+			Map<BrandModel, List<ErrorCodeModel>> finalErrorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeModel>>();
 			
 			Session session = slingRequest.getResourceResolver().adaptTo(Session.class);
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("path", "/etc/spdAssets/scaffolding/errorCode/");
 			map.put("type", "cq:Page");
 			map.put("1_property", "jcr:content/pages");
-			//map.put("1_property.value", Constants.ASSETS_PATH.concat("/productCategory/").concat("ranges"));
-			map.put("1_property.value", Constants.ASSETS_PATH.concat("/productCategory/").concat(categoryName));
+			map.put("1_property.value", Constants.ASSETS_PATH.concat("/productCategory/").concat("ranges"));
+			//map.put("1_property.value", Constants.ASSETS_PATH.concat("/productCategory/").concat(categoryName));
 			 
 			QueryBuilder builder = resourceResolver.adaptTo(QueryBuilder.class);
 			/*log.debug("build is "+ builder);
@@ -86,19 +87,22 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 							for(int i = 0; i< pages.length; i++) {
 								log.debug(pages[i]);
 								if (pages[i].indexOf(Constants.ASSETS_PATH.concat("/brand")) > -1) {
+									List<ErrorCodeModel> errorCodeModels = new ArrayList<ErrorCodeModel>();
 									Page brandPage = pageManager.getPage(pages[i]);
 									//log.debug("brandPage.getTitle()"+brandPage.getTitle() +"description "+ brandPage.getDescription());
 									BrandModel brandModel = new BrandModel(brandPage.getTitle(), brandPage.getDescription(), brandPage.getPath() + Constants.ASSETS_LOGO_PATH);
 									
 									//TODO - need to clean up the following messy code to have a better code option
-									if (!finalErrorCodeList.containsKey(brandModel)) {
+									if (!errorCodeList.containsKey(brandModel)) {
 										errorCodeModels.add(model);
-										finalErrorCodeList.put(brandModel, errorCodeModels);
+										errorCodeList.put(brandModel, errorCodeModels);
+										log.debug("in the if block");
 									} else {
-										ArrayList<ErrorCodeModel> newModel = finalErrorCodeList.get(brandModel);
+										List<ErrorCodeModel> newModel = errorCodeList.get(brandModel);
 										newModel.add(model);
-										finalErrorCodeList.remove(brandModel);
-										finalErrorCodeList.put(brandModel, newModel);
+										errorCodeList.remove(brandModel);
+										errorCodeList.put(brandModel, newModel);
+										log.debug("in the else block");
 									}
 								}
 							}
@@ -109,8 +113,20 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 					e.printStackTrace();
 				}
 		    }
-		    errorCodeList.put("HardCoded Type", errorCodeModels);
-			//pageContext.setAttribute("errorCodeList", errorCodeList);
+		    
+		    //need to sort the collection by brand name
+		    List<BrandModel> brandKeys = new ArrayList<BrandModel>();
+            brandKeys.addAll(errorCodeList.keySet());
+            Collections.sort(brandKeys, new Comparator<BrandModel>() {
+                public int compare(BrandModel o1, BrandModel o2) {
+                    return o1.getTitle().compareToIgnoreCase(o2.getTitle());
+                }
+            });
+            
+           for (BrandModel brandModel : brandKeys) {
+				finalErrorCodeList.put(brandModel, errorCodeList.get(brandModel));
+			}
+           
 			pageContext.setAttribute("finalErrorCodeList", finalErrorCodeList);
 		} else {
 			//using the resource resolver
