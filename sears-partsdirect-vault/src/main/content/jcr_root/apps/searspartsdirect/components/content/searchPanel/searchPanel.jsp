@@ -19,7 +19,7 @@
 					</li>
 				</ul>
 			</div><a class="btn btn-search" href="javascript:void(0);">Search</a>
-			<p>Can't locate your model number? <a href="javascript:void(0);" id="newFinderModel">Use our finder <i class="icon-chevron-sign-down">&nbsp;</i></a></p>
+			<p>Can't locate your model number? <a href="javascript:void(0);" id="newFinderModel">Use our finder <i class="icon-angle-down">&nbsp;</i></a></p>
 			<input name="pathTaken" id="pathTaken" value="partSearch" type="hidden"/>
 			<input name="prst" id="prst" value="0" type="hidden"/>
 			<input name="shdMod" id="shdMod" value="" type="hidden"/>
