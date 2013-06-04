@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:Dialog"
+		  title="Repair Step Label Formatting"
+		  xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<RepairStepLabel 	jcr:primaryType="cq:Widget"
+						xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<stepLabelPrefix jcr:primaryType="cq:Widget"
+					   fieldLabel="Step label prefix"
+					   fieldDescription="Displayed before the step number, ex. &quot;Step &quot;"
+					   allowBlank="{Boolean}true"
+					   name="./stepLabelPrefix"
+					   xtype="textfield"
+					   maxLength="28" />
+				<stepLabelSuffix jcr:primaryType="cq:Widget"
+					   fieldLabel="Step label suffix"
+					   fieldDescription="Displayed between the step number and the title, ex &quot;:&quot;"
+					   allowBlank="{Boolean}true"
+					   name="./stepLabelSuffix"
+					   xtype="textfield"
+					   maxLength="28" />
+			</items>
+		</RepairStepLabel>
+	</items>
+</jcr:root>
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:Dialog"
+		  title="Repair Instructions"
+		  xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<RepairInstructions 	jcr:primaryType="cq:Widget"
+						xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<instructionsTitle jcr:primaryType="cq:Widget"
+					   fieldLabel="Instructions Title"
+					   fieldDescription="Character limit is 28"
+					   allowBlank="{Boolean}false"
+					   name="./instructionsTitle"
+					   xtype="textfield"
+					   maxLength="28" />
+				<instructionsDescription jcr:primaryType="cq:Widget"
+					   fieldLabel="Instructions Title"
+					   fieldDescription="Character limit is 700"
+					   allowBlank="{Boolean}false"
+					   name="./instructionsDescription"
+					   xtype="richtext"
+					   maxLength="700" />
+			</items>
+		</RepairInstructions>
+	</items>
+</jcr:root>

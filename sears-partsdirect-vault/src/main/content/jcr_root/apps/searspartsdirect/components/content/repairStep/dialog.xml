@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:Dialog"
+		  title="Repair Instructions"
+		  xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<RepairStep 	jcr:primaryType="cq:Widget"
+						xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<stepTitle jcr:primaryType="cq:Widget"
+						fieldLabel="Step title"
+						fieldDescription="Displayed after the generated step label"
+						allowBlank="{Boolean}false"
+						name="./stepTitle"
+						xtype="textfield"
+						maxLength="160" />
+			</items>
+		</RepairStep>
+	</items>
+</jcr:root>
