@@ -1,11 +1,18 @@
 /* Components
  * Applies Author-only styling so components can be edited */
 /* Minimum Heights to Avoid Placeholders */
-.category101, .responsiveImage, .relatedGuides, .relatedArticles {
+.category101, .responsiveImage, .video, .relatedGuides, .relatedArticles {
 	min-height: 75px;
 }
 .responsiveImage {
 	div[data-desktopimage] {
 		min-height: 75px;
+	}
+}
+
+/* Padding To Provide Editable Space */
+.video {
+	iframe {
+		margin: 10px 0;
 	}
 }
