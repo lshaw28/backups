@@ -11,7 +11,7 @@
 			<cq:include path="cartNav" resourceType="/apps/searspartsdirect/components/content/cartNav" />
 		</div>
 		<cq:include path="searchPanel" resourceType="/apps/searspartsdirect/components/content/searchPanel" />
-		<cq:include path="waterFilterPromo" resourceType="/apps/searspartsdirect/components/content/promo" />
+		<cq:include path="headerPromo" resourceType="/apps/searspartsdirect/components/content/headerPromo" />
 	</div>
 	<div class="clear"></div>
 </div>
