@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:cloudservicename="sitecatalyst"
+        cq:designPath="/etc/designs/cloudservices/sitecatalyst"
+        cq:lastModified="{Date}2013-06-03T13:59:03.168-05:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/libs/cq/analytics/templates/sitecatalyst"
+        jcr:lastModified="{Date}2013-06-03T13:59:03.161-05:00"
+        jcr:lastModifiedBy="admin"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Sears PartsDirect"
+        sling:resourceType="cq/analytics/components/sitecatalystpage"
+        company="Sears"
+        connectedWhen="username"
+        password="\{65c61427cecb49b1f18dee86a9a99caa88ba13473eaf6b408523ed9956d11f9d}"
+        secret="\{536f5b2b294104fe70d3332e45aa982eb4bbf7e43f04f5d45cd1a96c52e5e5c9ddb952adc56664c8a7821ea1d12974946c34227ff1ba90e8b94059accf9c772d}"
+        server="https://api.omniture.com/admin/1.3/rest/"
+        username="rchilam"/>
+    <searspartsdirect/>
+</jcr:root>
