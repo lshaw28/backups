@@ -37,9 +37,12 @@
 		});
 		/**
 		 * video component setup
+		 * Verify class is loaded
 		 */
-		$('.video div[data-youtubeid]').each(function () {
-			var newVideo = new video($(this));
-		});
+		if (typeof video === 'function') {
+			$('.video div[data-youtubeid]').each(function () {
+				var newVideo = new video($(this));
+			});
+		}
 	});
 }(window));
