@@ -9,18 +9,11 @@
 			<items jcr:primaryType="cq:WidgetCollection">
 				<instructionsTitle jcr:primaryType="cq:Widget"
 					   fieldLabel="Instructions Title"
-					   fieldDescription="Character limit is 28"
-					   allowBlank="{Boolean}false"
+					   fieldDescription="Character limit is 28 - leave blank to use global default"
+					   allowBlank="{Boolean}true"
 					   name="./instructionsTitle"
 					   xtype="textfield"
 					   maxLength="28" />
-				<instructionsDescription jcr:primaryType="cq:Widget"
-					   fieldLabel="Instructions Title"
-					   fieldDescription="Character limit is 700"
-					   allowBlank="{Boolean}false"
-					   name="./instructionsDescription"
-					   xtype="richtext"
-					   maxLength="700" />
 			</items>
 		</RepairInstructions>
 	</items>
