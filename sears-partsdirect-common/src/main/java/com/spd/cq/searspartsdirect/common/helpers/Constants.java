@@ -35,10 +35,13 @@ public final class Constants {
 	public static final String GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR = ident("jumpToString");
 	public static final String GUIDE_NAV_DEF_JUMPTO_TEXT = ident("Jump to...");
 	// following MUST match attribute declaration in 
-	// /apps/searspartsdirect/components/page/repairGuide/tab_page_properties.xml
+	// /apps/searspartsdirect/components/content/guideNavigation/dialog.xml
 	public static final String GUIDE_NAV_SECTIONS_PAGE_ATTR = ident("sections");
 	public static final String GUIDE_TOP_PARSYS_NAME = ident("parsys");
 	public static final String GUIDE_SUBHEAD_LABEL_PROP = ident("textvalue");
+	
+	public static final String GUIDE_CFG_RESTYPE = ident("resType");
+	public static final String GUIDE_CFG_TEXT = ident("link");
 	
 	public static final String RECENTLY_VIEWED_MODEL_COOKIE = "recentlyViewedModels";
 	public static final String RECENTLY_VIEWED_PART_COOKIE = "recentlyViewedParts";

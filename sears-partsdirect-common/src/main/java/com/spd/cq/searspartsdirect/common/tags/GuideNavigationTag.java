@@ -9,13 +9,16 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.jcr.Node;
+import javax.jcr.Property;
 import javax.jcr.PropertyType;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.jcr.Value;
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,18 +38,38 @@ public class GuideNavigationTag extends CQBaseTag {
 		// output list containing lists [linktext,sectionlink]
 		List<List<String>> sections = new ArrayList<List<String>>();
 		// we can declare these as vars in the tld, usage here remains the same tho..
-		maybeSetupDefaultConfig();
-		Map<String,String> typesAndLabels = readTypesAndLabelsFromConfig();
+		Node pageNode = currentPage.getContentResource().adaptTo(Node.class);
+		maybeSetupDefaultConfig(pageNode);
+		
+		Map<String,String> typesAndLabels = readTypesAndLabelsFromConfig(pageNode);
+		if (log.isDebugEnabled()) log.debug("typesAndLabels is "+typesAndLabels);
 		
 		String jumpToString = Constants.GUIDE_NAV_DEF_JUMPTO_TEXT;
+		try {
+            jumpToString = pageNode.getProperty(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR).getString();
+	    } catch (RepositoryException re) {
+	            log.error("exception getting jump to text",re);
+	    }
 		pageContext.setAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR,
 				jumpToString);
 		
 		List<LinkGenerator> generators = new ArrayList<LinkGenerator>();
-		// check if doing parts link, check if label is different
-		generators.add(new FixedLabelTemplateLinkGenerator(Constants.TOOLS_REQ_R_COMPONENT,Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK));
-		generators.add(new FixedLabelTemplateLinkGenerator(Constants.PARTS_REQ_R_COMPONENT,Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK));
 		
+		if (typesAndLabels.containsKey(Constants.TOOLS_REQ_R_COMPONENT)) {
+			String labelFound = typesAndLabels.get(Constants.TOOLS_REQ_R_COMPONENT);
+			if (labelIsBlank(labelFound)) {
+				labelFound = Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK;
+			}
+			generators.add(new FixedLabelTemplateLinkGenerator(Constants.TOOLS_REQ_R_COMPONENT,labelFound));
+		}
+		if (typesAndLabels.containsKey(Constants.PARTS_REQ_R_COMPONENT)) {
+			String labelFound = typesAndLabels.get(Constants.PARTS_REQ_R_COMPONENT);
+			if (labelIsBlank(labelFound)) {
+				labelFound = Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK;
+			}
+			generators.add(new FixedLabelTemplateLinkGenerator(Constants.PARTS_REQ_R_COMPONENT,labelFound));
+		}
+			
 		Resource parsysResource = currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME);
 		if (log.isDebugEnabled()) log.debug("parsysResource is "+parsysResource);
 		
@@ -60,16 +83,22 @@ public class GuideNavigationTag extends CQBaseTag {
 					log.debug("parsysChild.resourceType is "+parsysChild.getResourceType());
 					log.debug("parsysChild.resourceSuperType is "+parsysChild.getResourceSuperType());
 				}
-				ParsysLinkGenerator maybeGenerator = generatorFactory.getLinkGenerator(parsysChild);
-				if (maybeGenerator != null) {
-					generators.add(maybeGenerator);
+				String childResourceType = parsysChild.getResourceType();
+				if(typesAndLabels.containsKey(childResourceType)) {
+					String label = typesAndLabels.get(childResourceType);
+					ParsysLinkGenerator maybeGenerator = generatorFactory.getLinkGenerator(parsysChild,label);
+					if (maybeGenerator != null) {
+						generators.add(maybeGenerator);
+					}
 				}
 			}
 		} else {
 			log.info("parsysResource is null for some reason");
 		}
 		
-		generators.add(new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));
+		if (typesAndLabels.containsKey(Constants.COMMENTS_COMPONENT)) {
+			generators.add(new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));
+		}
 		
 		for (LinkGenerator linkGen : generators) {
 			if (log.isDebugEnabled()) log.debug("generator is for "+linkGen.getComponentType());
@@ -83,13 +112,16 @@ public class GuideNavigationTag extends CQBaseTag {
 		return SKIP_BODY;
 	}
 	
-	private void maybeSetupDefaultConfig() {
+	private boolean labelIsBlank(String label) {
+		return label == null || label.matches(" *");
+	}
+	
+	private void maybeSetupDefaultConfig(Node pageNode) {
 		if (log.isDebugEnabled()) log.debug("Maybe doing 1st-time setup");
 		WCMMode wcmMode = WCMMode.fromRequest(slingRequest);
 		if (wcmMode != WCMMode.READ_ONLY) {
 			if (log.isDebugEnabled()) log.debug("Not read-only");
 			try {
-				Node pageNode = currentPage.getContentResource().adaptTo(Node.class);
 				if (pageNode == null) {
 					log.warn("Could not get the node to set up");
 					return;
@@ -103,6 +135,7 @@ public class GuideNavigationTag extends CQBaseTag {
 						new String[]{
 							"{\"link\":\""+Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.PARTS_REQ_R_COMPONENT+"\"}",
 							"{\"link\":\""+Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.TOOLS_REQ_R_COMPONENT+"\"}",
+							"{\"link\":\""+Constants.INSTRUCTIONS_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.INSTRUCTIONS_COMPONENT+"\"}",
 							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.COMMENTS_COMPONENT+"\"}",
 							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.SUBHEAD_COMPONENT+"\"}",
 						}
@@ -118,9 +151,38 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 	}
 	
-	private Map<String,String> readTypesAndLabelsFromConfig() {
-		Map<String,String> typesAndLabels = new HashMap<String,String>(); 
-		return typesAndLabels; //TODO UNSTUB
+	private Map<String, String> readTypesAndLabelsFromConfig(Node pageNode) {
+		Map<String, String> typesAndLabels = new HashMap<String, String>();
+		try {
+			Node configuredNode = pageNode.getNode(Constants.GUIDE_NAV_PATH);
+			if (configuredNode.hasProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR)) {
+				Property sectionsProp = configuredNode.getProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR);
+				if (sectionsProp.getDefinition().isMultiple() == true) {
+					Value[] menuItems = sectionsProp.getValues();
+
+					for (Value menuItem : menuItems) {
+						addTuplesFromJson(typesAndLabels,menuItem.getString());
+					}
+				} else {
+					String menuItem = sectionsProp.getString();
+					addTuplesFromJson(typesAndLabels,menuItem);
+				}
+			}
+		} catch (Exception e) {
+			log.error("Could not retrieve configuration", e);
+		}
+		return typesAndLabels; 
+	}
+	
+	private void addTuplesFromJson(Map<String,String> toAddTo, String jsonString) {
+		try {
+            JSONObject menuItemConfig = new JSONObject(jsonString);
+            toAddTo.put(
+            		menuItemConfig.getString(Constants.GUIDE_CFG_RESTYPE),
+            		menuItemConfig.getString(Constants.GUIDE_CFG_TEXT));
+	    } catch (Exception e) {
+	    	log.error("JSON error", e);
+	    }
 	}
 	
 	private String constructCommentsPath() {
@@ -234,7 +296,6 @@ public class GuideNavigationTag extends CQBaseTag {
 		private final static Map<String,ParsysLinkGeneratorMaker> initMakers() {
 			Map<String,ParsysLinkGeneratorMaker> makers = new HashMap<String,ParsysLinkGeneratorMaker>();
 			makers.put(Constants.SUBHEAD_COMPONENT, new SubheadLinkGeneratorMaker());
-			makers.put(Constants.INSTRUCTIONS_COMPONENT, new FixedLabelParsysLinkGeneratorMaker(Constants.INSTRUCTIONS_DEF_GUIDE_NAV_LINK));
 			return makers;
 		}
 		
@@ -244,7 +305,7 @@ public class GuideNavigationTag extends CQBaseTag {
 			this.parsysResource = parsysResource;
 		}
 		
-		public ParsysLinkGenerator getLinkGenerator(Resource maybeBeingLinkedTo) {
+		public ParsysLinkGenerator getLinkGenerator(Resource maybeBeingLinkedTo, String possiblyLabel) {
 			ParsysLinkGeneratorMaker maker = makers.get(maybeBeingLinkedTo.getResourceType());
 			ParsysLinkGenerator weMade = null;
 			if (maker != null) {
@@ -253,6 +314,7 @@ public class GuideNavigationTag extends CQBaseTag {
 				weMade = maker.createGenerator(maybeBeingLinkedTo);
 			} else {
 				if (log.isDebugEnabled()) log.debug("No maker for "+maybeBeingLinkedTo);
+				weMade = new FixedLabelParsysLinkGenerator(parsysResource.getName(), maybeBeingLinkedTo, possiblyLabel);
 			}
 			return weMade;
 		}
@@ -273,20 +335,6 @@ public class GuideNavigationTag extends CQBaseTag {
 	private static class SubheadLinkGeneratorMaker extends ParsysLinkGeneratorMaker {
 		public ParsysLinkGenerator createGenerator(Resource subhead) {
 			return new SubheadLinkGenerator(getParsysName(),subhead);
-		}
-	}
-	
-	private static class FixedLabelParsysLinkGeneratorMaker extends ParsysLinkGeneratorMaker {
-		private final String label;
-		public FixedLabelParsysLinkGeneratorMaker(final String label) {
-			this.label = label;
-		}
-		public String getLabel() {
-			return label;
-		}
-		
-		public ParsysLinkGenerator createGenerator(Resource parsysChild) {
-			return new FixedLabelParsysLinkGenerator(getParsysName(), parsysChild, getLabel());
 		}
 	}
 	
