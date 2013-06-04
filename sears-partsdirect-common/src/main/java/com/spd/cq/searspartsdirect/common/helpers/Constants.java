@@ -4,6 +4,9 @@ public final class Constants {
 
 	public static final String EMPTY = "";
 	
+	//CQ constants
+	public static final String CQ_PAGE = ident("cq:Page");
+	
 	//Asset Constants
 	public static final String ASSETS_PATH = ident("/etc/spdAssets/scaffolding");
 	public static final String ASSETS_TITLE_PATH = ident("jcr:title");

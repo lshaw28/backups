@@ -35,6 +35,10 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 	private String subCategoryName;
 	private String brandName;
 	
+	Session session;
+	QueryBuilder builder;
+	Query query;
+	
 	protected static Logger log = LoggerFactory.getLogger(GetErrorCodesDataTag.class);
 	
 	@Override
@@ -57,18 +61,18 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			HashMap<BrandModel, List<ErrorCodeModel>> errorCodeList = new HashMap<BrandModel, List<ErrorCodeModel>>();
 			Map<BrandModel, List<ErrorCodeModel>> finalErrorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeModel>>();
 			
-			Session session = slingRequest.getResourceResolver().adaptTo(Session.class);
+			session = slingRequest.getResourceResolver().adaptTo(Session.class);
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("path", "/etc/spdAssets/scaffolding/errorCode/");
-			map.put("type", "cq:Page");
+			map.put("type", Constants.CQ_PAGE);
 			map.put("1_property", "jcr:content/pages");
-			map.put("1_property.value", Constants.ASSETS_PATH.concat("/productCategory/").concat("ranges"));
+			map.put("1_property.value", categoryName);
 			//map.put("1_property.value", Constants.ASSETS_PATH.concat("/productCategory/").concat(categoryName));
 			 
-			QueryBuilder builder = resourceResolver.adaptTo(QueryBuilder.class);
+			builder = resourceResolver.adaptTo(QueryBuilder.class);
 			/*log.debug("build is "+ builder);
 			log.debug("session is "+ session);*/
-			Query query = builder.createQuery(PredicateGroup.create(map), session);
+			query = builder.createQuery(PredicateGroup.create(map), session);
 			
 			SearchResult result = query.getResult();
 			log.debug("total results found "+ result.getQueryStatement().toString());
@@ -96,13 +100,11 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 									if (!errorCodeList.containsKey(brandModel)) {
 										errorCodeModels.add(model);
 										errorCodeList.put(brandModel, errorCodeModels);
-										log.debug("in the if block");
 									} else {
 										List<ErrorCodeModel> newModel = errorCodeList.get(brandModel);
 										newModel.add(model);
 										errorCodeList.remove(brandModel);
 										errorCodeList.put(brandModel, newModel);
-										log.debug("in the else block");
 									}
 								}
 							}
