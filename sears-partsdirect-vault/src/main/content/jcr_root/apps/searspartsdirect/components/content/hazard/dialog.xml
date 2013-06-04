@@ -14,11 +14,7 @@
 					   name="./hazardTextEntered"
 					   xtype="textfield"
 					   maxLength="400" />
-				<hazardChosen jcr:primaryType="cq:Widget"
-						fieldLabel="Choose a hazard from a list"
-						allowBlank="{Boolean}true"
-						name="./hazardChosen"
-						xtype=""
+				<!-- better as combobox, possibly -->
 					
 			</items>
 		</Hazard>
