@@ -8,3 +8,4 @@ WindowResize.js
 TemporaryScripts.js
 #base=js/components/.
 responsiveImage.js
+video.js

@@ -35,5 +35,11 @@
 		$('.responsiveImage div[data-desktopimage]').each(function () {
 			var newResponsiveImage = new responsiveImage($(this));
 		});
+		/**
+		 * video component setup
+		 */
+		$('.video div[data-youtubeid]').each(function () {
+			var newVideo = new video($(this));
+		});
 	});
 }(window));
