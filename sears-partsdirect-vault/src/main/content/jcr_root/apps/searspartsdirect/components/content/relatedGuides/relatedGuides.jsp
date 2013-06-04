@@ -4,18 +4,16 @@
 
 <spd:getRelatedGuides />
 
-
-<cq:text property="itemsHeader"/><br />
-
-<c:forEach var="guide" items="${guides}">
+<c:if test="${not empty guides}">
+	<cq:text property="itemsHeader"/><br />
+	
+	<c:forEach var="guide" items="${guides}">
 		<a href="${guide.url}.html"><spd:displayImage path="${guide.imagePath}"/></a>
 		<a href="${guide.url}.html">${guide.title}</a>
 		<br /><br />
-</c:forEach>
-
-<c:if test="${fn:length(guides) eq 4}">
-	<a href="<cq:text property="viewAllItemsLink"/>.html"><cq:text property="viewAllItemsText"/></a>
-</c:if>
-
-<c:if test="${not empty guides}">
+	</c:forEach>
+	
+	<c:if test="${fn:length(guides) eq 4}">
+		<a href="<cq:text property="viewAllItemsLink"/>.html"><cq:text property="viewAllItemsText"/></a>
+	</c:if>
 </c:if>

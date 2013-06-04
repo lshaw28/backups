@@ -212,4 +212,44 @@
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetMostViewedGuidesTag</tag-class>
 		 <info>Gets the list of most viewed Repair Guides</info>
 	</tag>
+	<tag>
+	   <name>getRelation</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetRelationTag</tag-class>
+		 <info>Gets any Assets related to the current (or defined) page</info>
+ 		<attribute>
+			<name>pagepath</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+ 		<attribute>
+			<name>assetType</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+ 		<attribute>
+			<name>single</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+	   <name>getRelatedPages</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetRelatedPagesTag</tag-class>
+		 <info>Gets any Pages related to the given Asset</info>
+ 		<attribute>
+			<name>assetPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+ 		<attribute>
+			<name>rootPath</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>
