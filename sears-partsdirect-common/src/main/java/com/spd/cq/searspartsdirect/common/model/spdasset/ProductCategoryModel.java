@@ -5,11 +5,13 @@ public class ProductCategoryModel {
 	private String title;
 	private String description;
 	private String imagePath;
+	private String path;
 	
-	public ProductCategoryModel(String title, String description, String imagePath) {
+	public ProductCategoryModel(String path, String title, String description, String imagePath) {
 		this.title = title;
 		this.description = description;
 		this.imagePath = imagePath;
+		this.path = path;
 	}
 	
 	public String getTitle() {
@@ -31,5 +33,12 @@ public class ProductCategoryModel {
 	}
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
 	}
 }

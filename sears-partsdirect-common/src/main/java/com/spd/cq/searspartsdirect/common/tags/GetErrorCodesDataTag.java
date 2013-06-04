@@ -42,8 +42,8 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			// errorCodeTable with error-code-type as a key and code, desc, condition, repair in the form of an object
 			Map<String, ArrayList<ErrorCodeModel>> errorCodeTable = new LinkedHashMap<String, ArrayList<ErrorCodeModel>>();
 			ArrayList<ErrorCodeModel> errorCodeModels = new ArrayList<ErrorCodeModel>();
-			ErrorCodeModel errorCodeModel1 = new ErrorCodeModel("101", "recalled by the manufacturer", null);
-			ErrorCodeModel errorCodeModel2 = new ErrorCodeModel("102","major issue with the engine", "call kenmore at 1-800-KENMORE");
+			ErrorCodeModel errorCodeModel1 = new ErrorCodeModel("","101", "recalled by the manufacturer", null);
+			ErrorCodeModel errorCodeModel2 = new ErrorCodeModel("","102","major issue with the engine", "call kenmore at 1-800-KENMORE");
 
 			errorCodeModels.add(errorCodeModel1);
 			errorCodeModels.add(errorCodeModel2);
@@ -79,7 +79,7 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 					  log.debug(path);*/
 					ValueMap props = hit.getProperties();
 					if (props != null) {
-						ErrorCodeModel model = new ErrorCodeModel(props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("repairLink", String.class));
+						ErrorCodeModel model = new ErrorCodeModel("",props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("repairLink", String.class));
 						String[] pages = (String[]) props.get("pages", String[].class);
 						if (pages != null) {
 							log.debug("pages.length "+pages.length);
@@ -88,7 +88,7 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 								if (pages[i].indexOf(Constants.ASSETS_PATH.concat("/brand")) > -1) {
 									Page brandPage = pageManager.getPage(pages[i]);
 									//log.debug("brandPage.getTitle()"+brandPage.getTitle() +"description "+ brandPage.getDescription());
-									BrandModel brandModel = new BrandModel(brandPage.getTitle(), brandPage.getDescription(), brandPage.getPath() + Constants.ASSETS_LOGO_PATH);
+									BrandModel brandModel = new BrandModel("",brandPage.getTitle(), brandPage.getDescription(), brandPage.getPath() + Constants.ASSETS_LOGO_PATH);
 									
 									//TODO - need to clean up the following messy code to have a better code option
 									if (!finalErrorCodeList.containsKey(brandModel)) {
@@ -122,7 +122,7 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 					Resource child = iter.next();
 					Page p = child.adaptTo(Page.class);
 					ValueMap properties = p.getProperties();
-					errorCodes.add(new ErrorCodeModel(properties.get("jcr:title",""), properties.get("jcr:description",""), null));
+					errorCodes.add(new ErrorCodeModel("",properties.get("jcr:title",""), properties.get("jcr:description",""), null));
 				}
 			}
 			pageContext.setAttribute("errorCodeList", errorCodes);
