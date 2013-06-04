@@ -12,5 +12,12 @@
 			// Check in case the breakpoint is different
 			window.SPDUtils.checkInput($(this));
 		});
+		/**
+		 * Link help text listeners
+		 */
+		$('[data-texthelp]').each(function () {
+			// Check in case the breakpoint is different
+			window.SPDUtils.checkLink($(this));
+		});
 	});
 }(window));

@@ -39,6 +39,7 @@
 	<title><%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %></title>
 	<!-- Viewport and Styles -->
 	<cq:include script="headlibs.jsp"/>
+	<cq:include script="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp"/>
 	<!-- Head Scripts -->
 	<cq:include script="/libs/wcm/core/components/init/init.jsp"/>
 	<cq:include script="stats.jsp"/>

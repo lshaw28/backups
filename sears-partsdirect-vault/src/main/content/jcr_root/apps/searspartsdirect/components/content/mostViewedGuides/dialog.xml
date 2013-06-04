@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="cq:TabPanel"
+	activeTab="0"
+	xtype="panel">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<text1 jcr:primaryType="cq:Widget"
+			fieldLabel="Text before category name e.g. 'Most Viewed'"
+			name="./text1"
+			xtype="textfield"
+			allowBlank="{Boolean}false"
+			maxlength="70"/>
+		<text2 jcr:primaryType="cq:Widget"
+			fieldLabel="Text after category name e.g. 'Guides'"
+			name="./text2"
+			xtype="textfield"
+			allowBlank="{Boolean}false"
+			maxlength="42"/>
+		<optionalDescription jcr:primaryType="cq:Widget"
+			fieldLabel="View all Text"
+			name="./optionalDescription"
+			xtype="richtext"
+			maxlength="140"
+			allowBlank="{Boolean}true">
+			<listeners
+				jcr:primaryType="nt:unstructured"
+				loadcontent="function(field){window.SPDAuthorUtils.setRTEPlugins(field);}"/>
+		</optionalDescription>
+		<url jcr:primaryType="cq:Widget"
+			fieldLabel="View all link"
+			name="./url"
+			xtype="textfield"
+			allowBlank="{Boolean}true"
+			maxlength="70"/>
+	</items>
+</jcr:root>

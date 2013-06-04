@@ -15,19 +15,37 @@ public final class Constants {
 	public static final String MODEL_NOT_FOUND = ident("Not Found");
 	
 	// Originally for guide nav, but generally applicable
+	public static final String GUIDE_NAV_COMPONENT = ident("searspartsdirect/components/content/guideNavigation");
 	public static final String COMMENTS_COMPONENT = ident("searspartsdirect/components/content/comments");
 	public static final String SUBHEAD_COMPONENT = ident("searspartsdirect/components/content/subhead");
 	public static final String PARTS_REQ_R_COMPONENT = ident("searspartsdirect/components/content/partsRequiredRepair");
 	public static final String TOOLS_REQ_R_COMPONENT = ident("searspartsdirect/components/content/toolsRequiredRepair");
+	public static final String INSTRUCTIONS_COMPONENT = ident("searspartsdirect/components/content/repairInstructions");
+	
+	public static final String USERGEN_ROOT = ident("/content/usergenerated");
+	
+	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
+	public static final String GUIDE_NAV_PATH = ident("guideNavigation");
+	public static final String SLINGTYPE = ident("sling:resourceType");
+	public static final String UNSTRUCTURED = ident("nt:unstructured");
 	
 	// Constants specific to guide nav
 	public static final String PARTS_REQ_DEF_GUIDE_NAV_LINK = ident("Parts required");
-	public static final String TOOLS_REQ_DEF_GUIDE_NAV_LINK = ident("Tools required");
+	public static final String TOOLS_REQ_DEF_GUIDE_NAV_LINK = ident("Tools needed");
+	public static final String INSTRUCTIONS_DEF_GUIDE_NAV_LINK = ident("Instructions");
 	public static final String COMMENTS_GUIDE_NAV_LINK_PREFIX = ident("Comments");
 	// following MUST match attribute declaration in 
 	// /apps/searspartsdirect/components/page/repairGuide/tab_page_properties.xml
 	public static final String GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR = ident("jumpToString");
 	public static final String GUIDE_NAV_DEF_JUMPTO_TEXT = ident("Jump to...");
+	// following MUST match attribute declaration in 
+	// /apps/searspartsdirect/components/content/guideNavigation/dialog.xml
+	public static final String GUIDE_NAV_SECTIONS_PAGE_ATTR = ident("sections");
+	public static final String GUIDE_TOP_PARSYS_NAME = ident("parsys");
+	public static final String GUIDE_SUBHEAD_LABEL_PROP = ident("textvalue");
+	
+	public static final String GUIDE_CFG_RESTYPE = ident("resType");
+	public static final String GUIDE_CFG_TEXT = ident("link");
 	
 	public static final String RECENTLY_VIEWED_MODEL_COOKIE = "recentlyViewedModels";
 	public static final String RECENTLY_VIEWED_PART_COOKIE = "recentlyViewedParts";

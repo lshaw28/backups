@@ -10,3 +10,4 @@ build.xml
 *.settings
 *.DS_Store
 *.*~
+!/sears-partsdirect-vault/src/main/content/jcr_root/apps/searspartsdirect/components/content/backButton/analytics/.content.xml

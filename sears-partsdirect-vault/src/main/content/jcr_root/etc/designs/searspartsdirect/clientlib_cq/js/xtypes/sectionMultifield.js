@@ -27,6 +27,7 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
             layout: 'form'
         };
         config = CQ.Util.applyDefaults(config, defaults);
+        config.orderable = false;
         sectionMultifieldWidget.superclass.constructor.call(this, config);
     },
 

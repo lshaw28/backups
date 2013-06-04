@@ -29,7 +29,6 @@ if (viewportWidth <= 450) {
     $("#searchBarSelectArea input").val("Select");
     $("#searchBarField").val("Model or Part #");
     $("#changeText").val("");
-    $("#newFinderModel").val("Locate your model number with our finder");
     menuTrigger();
 } else if (viewportWidth <= 650) {
     menuTrigger();
@@ -37,20 +36,20 @@ if (viewportWidth <= 450) {
 
 var searchTabs = function () {
     // set the tab content and tab pane classes
-    $(".legacy_search").addClass("tab-content");
+    $("#headerSearchContent").addClass("tab-content");
     $("#search_input_tab").addClass("tab-pane");
     $("manuals_help_tab").addClass("tab-pane");
     // add click handlers to tabs
-    $('#phone_menu_tab_search a').click(function (e) {
+    $('#searchTab a').click(function (e) {
 		e.preventDefault();
 		$(this).tab('show');
 	});
-    $('#phone_menu_tab_manuals a').click(function (e) {
+    $('#headerManualTab a').click(function (e) {
 		e.preventDefault();
 		$(this).tab('show');
 	});
     // show the search tab by default
-    $('#phone_menu_tab_search a').tab('show');
+    $('#searchTab a').tab('show');
 }
 
 function menuTrigger() {

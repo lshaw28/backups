@@ -17,13 +17,13 @@ comp.brandcarousel.less
 comp.cartandmodels.less
 comp.errorcodes.less
 comp.findpartcategories.less
-comp.footer.less
+comp.globalFooter.less
 comp.globalHeader.less
 comp.maincarousel.less
 comp.manualshelp.less
 comp.modelfinder.less
 comp.mymodels.less
-comp.search.less
+comp.searchPanel.less
 comp.sidebarlinks.less
 resp.large.less
 resp.tablet.less
