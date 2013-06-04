@@ -20,6 +20,16 @@
 			var target = $('[data-desktopimage]', this.el.dom),
 				newResponsiveImage = new responsiveImage(target);
 
+		},
+		/**
+		 * Rerender video on edit
+		 * @param {object} el ExtJS caller
+		 */
+		onVideoEdit: function () {
+			this.refreshSelf();
+			var target = $('[data-youtubeid]', this.el.dom),
+				newVideo = new video(target);
+
 		}
 	};
 	window.SPDComponentEvents.init();

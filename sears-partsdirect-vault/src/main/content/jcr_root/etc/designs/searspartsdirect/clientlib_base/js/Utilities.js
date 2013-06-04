@@ -124,7 +124,7 @@
 			if (value !== newValue) {
 				el.text(newValue);
 			}
-		},
+		}
 	};
 	window.SPDUtils.init();
 }(window));

@@ -127,9 +127,16 @@ public class GuideNavigationTag extends CQBaseTag {
 					return;
 				}
 				if (log.isDebugEnabled()) log.debug("Found setup node");
-				if (!pageNode.hasProperty("sections") || pageNode.getProperty("sections").isNew()) {
-					Session jcr = pageNode.getSession();
-					Node setupNode = pageNode.addNode(Constants.GUIDE_NAV_PATH,Constants.UNSTRUCTURED);
+				Node setupNode;
+				Session jcr = pageNode.getSession();
+				boolean anyChanges = false;
+				if (!pageNode.hasNode(Constants.GUIDE_NAV_PATH)) {
+					setupNode = pageNode.addNode(Constants.GUIDE_NAV_PATH,Constants.UNSTRUCTURED);
+					anyChanges = true;
+				} else {
+					setupNode = pageNode.getNode(Constants.GUIDE_NAV_PATH);
+				}
+				if (!setupNode.hasProperty("sections") || setupNode.getProperty("sections").isNew()) {
 					setupNode.setProperty(Constants.SLINGTYPE, Constants.GUIDE_NAV_COMPONENT);
 					setupNode.setProperty("sections",
 						new String[]{
@@ -140,10 +147,13 @@ public class GuideNavigationTag extends CQBaseTag {
 							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.SUBHEAD_COMPONENT+"\"}",
 						}
 						,PropertyType.STRING);
-					jcr.save();
 					if (log.isDebugEnabled()) log.debug("Performed setup");
+					anyChanges = true;
 				} else {
 					if (log.isDebugEnabled()) log.debug("Is already set up");
+				}
+				if (anyChanges) {
+					jcr.save();
 				}
 			} catch (RepositoryException re) {
 				log.warn("Got node but could not set defaults, ",re);

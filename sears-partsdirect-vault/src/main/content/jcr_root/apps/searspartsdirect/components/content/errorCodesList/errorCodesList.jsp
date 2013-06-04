@@ -8,7 +8,7 @@
 
 <spd:getErrorCodesData categoryName="${productTag.title}" />
 <c:forEach var="item" items="${finalErrorCodeList}">
-	<p> ${item.key.title} ${item.key.description} <spd:displayImage path="${item.key.logoPath}"/></p>
+	<p> ${item.key.title} -- ${item.key.description} <spd:displayImage path="${item.key.logoPath}"/></p>
 	<c:forEach var="subCategory" items="${item.value}">
 		${subCategory.code} -- ${subCategory.condition}<br/>
 		<!-- <a href="${subCategory.repairPath}">Repair link</a>  -->
