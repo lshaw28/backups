@@ -74,8 +74,8 @@ var sectionMultifieldWidget = CQ.Ext.extend(CQ.form.CompositeField, {
         this.link = new CQ.Ext.form.TextField({
             cls: 'cls-link-1',
             fieldLabel: 'Link text',
-            maxLength: 40,
-            maxLengthText: 'A maximum of 40 characters is allowed for the Link Text.',
+            maxLength: 21,
+            maxLengthText: 'A maximum of 21 characters is allowed for the Link Text.',
             allowBlank: true,
             width: 350,
             listeners: {
