@@ -6,22 +6,13 @@
 
 <cq:text property="errorCodeDescription" placeholder=""/>
 
- 
-<%-- <spd:getErrorCodesData categoryName="${productTag.title}" /> --%>
-
-<!--  no category -->
-<%-- 
-<spd:getErrorCodesData />
-<c:forEach var="errorCode" items="${errorCodeList}">
-	<p> ${errorCode.code} ${errorCode.condition}</p>
-</c:forEach>
---%>
-
-<!--  with category -->
 <spd:getErrorCodesData categoryName="${productTag.title}" />
-<c:forEach var="errorCode" items="${errorCodeList}">
-	<p> ${errorCode.key}</p>
-	<c:forEach var="subCategory" items="${errorCode.value}">
+<c:forEach var="item" items="${finalErrorCodeList}">
+	<p> ${item.key.title} ${item.key.description} <spd:displayImage path="${item.key.logoPath}"/></p>
+	<c:forEach var="subCategory" items="${item.value}">
 		${subCategory.code} -- ${subCategory.condition}<br/>
+		<!-- <a href="${subCategory.repairPath}">Repair link</a>  -->
 	</c:forEach>
 </c:forEach>
+
+
