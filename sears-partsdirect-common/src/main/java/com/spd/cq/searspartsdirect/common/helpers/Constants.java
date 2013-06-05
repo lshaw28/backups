@@ -11,9 +11,11 @@ public final class Constants {
 	//Asset Constants
 	public static final String ASSETS_PATH = ident("/etc/spdAssets/scaffolding");
 	public static final String ASSETS_TITLE_PATH = ident("jcr:title");
+	public static final String ASSETS_TITLE_REL_PATH = ident("jcr:content/jcr:title");
 	public static final String ASSETS_DESCRIPTION_PATH = ident("jcr:description");
 	public static final String ASSETS_LOGO_PATH = ident("/jcr:content/logo");
 	public static final String ASSETS_IMAGE_PATH = ident("/jcr:content/image");
+	public static final String ASSETS_IMAGE_REL_PATH = ident("jcr:content/image");
 	
 	//Model Search Constants
 	public static final String MODEL_NOT_FOUND = ident("Not Found");
@@ -50,6 +52,8 @@ public final class Constants {
 	
 	public static final String GUIDE_CFG_RESTYPE = ident("resType");
 	public static final String GUIDE_CFG_TEXT = ident("link");
+	
+	public static final String JCR_CONTENT_ROOT = ident("jcr:content/");
 	
 	public static final String RECENTLY_VIEWED_MODEL_COOKIE = "recentlyViewedModels";
 	public static final String RECENTLY_VIEWED_PART_COOKIE = "recentlyViewedParts";
