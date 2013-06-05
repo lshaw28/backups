@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0"
+		xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		jcr:primaryType="cq:TabPanel"
+		title="Guide Description"
+		xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<tabpanel jcr:primaryType="cq:TabPanel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<tab1   jcr:primaryType="cq:Widget"
+						allowBlank="{Boolean}false"
+						cropParameter="./image/imageCrop"
+						ddGroups="[media]" 
+						fileNameParameter="./image/fileName"
+						fileReferenceParameter="./image/fileReference" 
+						name="./image/file"
+						requestSuffix="/image.img.png" 
+						rotateParameter="./image/imageRotate"
+						title="Image" 
+						uploadUrl="/tmp/upload/*" 
+						xtype="smartimage" />
+		
+				 <tab2 jcr:primaryType="cq:Widget" 
+					   title="Information"
+					   xtype="panel">
+					  
+					<items jcr:primaryType="cq:WidgetCollection">
+						<text jcr:primaryType="cq:Widget" 
+								fieldLabel="Long Description"
+								name="./longDescription" 
+								maxLength="560"
+								allowBlank="{Boolean}false"
+								xtype="textarea" />
+								
+						<difficulty 
+								jcr:primaryType="cq:Widget" 
+								fieldLabel="Difficulty Level"
+								name="./difficultyLevel"
+								maxLength="1"
+								maxValue="{Long}5"
+								fieldDescription="Choose a number from 1-5"
+								xtype="numberfield"/>
+		
+						<time   jcr:primaryType="cq:Widget" 
+								fieldLabel="Time Required"
+								name="./timeRequired" 
+								xtype="textfield" />
+								
+						<resType
+							jcr:primaryType="cq:Widget"
+							ignoreData="{Boolean}true"
+							name="./image/sling:resourceType"
+							value="foundation/components/image"
+							xtype="hidden" />
+					</items>
+				</tab2>
+			</items>
+		</tabpanel>
+	</items>
+</jcr:root>
