@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2013-06-05T13:51:23.706-05:00"
+        cq:lastModifiedBy="admin"
+        cq:scaffolding="/etc/scaffolding/symptom"
+        jcr:description="sometimes gives shock desc"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="sometimes gives shock"
+        sling:resourceType="searspartsdirect/components/scaffolding/genericScaffolding"
+        id="203"
+        pages="[/etc/spdAssets/scaffolding/productCategory/ranges]">
+        <dialog/>
+    </jcr:content>
+</jcr:root>
