@@ -66,7 +66,7 @@ public class GetRelationTag extends CQBaseTag {
 						result.add(new ErrorCodeModel(p.getPath(),
 								title,
 								description,
-								""));
+								properties.get("repairPath","")));
 						break;
 					case HAZARD:
 						result.add(new HazardModel(p.getPath(),
@@ -104,7 +104,7 @@ public class GetRelationTag extends CQBaseTag {
 						result.add(new SymptomModel(p.getPath(),
 								title,
 								description,
-								""));
+								properties.get("id","")));
 					default:
 						break;
 				}
