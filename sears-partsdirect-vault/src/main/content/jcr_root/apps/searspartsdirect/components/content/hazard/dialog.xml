@@ -14,8 +14,13 @@
 					   name="./hazardTextEntered"
 					   xtype="textfield"
 					   maxLength="400" />
-				<!-- better as combobox, possibly -->
-					
+				<hazardChosen jcr:primaryType="cq:Widget"
+						fieldLabel="Choose a hazard"
+						allowBlank="{Boolean}true"
+						editable="false"
+						name="./hazardChosen"
+						xtype="pathfield"
+						rootPath="/etc/spdAssets/scaffolding/hazard" />
 			</items>
 		</Hazard>
 	</items>
