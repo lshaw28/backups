@@ -66,6 +66,10 @@ public class ResolveHazardTipWarningTag extends CQBaseTag {
 		public void setImage(String image) {
 			this.image = image;
 		}
+		@Override
+		public String toString() {
+			return "text="+text+", image="+image;
+		}
 	}
 	
 	private ChosenSettings maybeRetrieveChosenSettings() {
@@ -89,10 +93,11 @@ public class ResolveHazardTipWarningTag extends CQBaseTag {
 					if (chosenNode.hasProperty(Constants.ASSETS_TITLE_REL_PATH)) {
 						settings.setText(chosenNode.getProperty(Constants.ASSETS_TITLE_REL_PATH).getString());
 					}
-					if (chosenNode.hasProperty(Constants.ASSETS_IMAGE_REL_PATH)) {
-						settings.setImage(chosenNode.getProperty(Constants.ASSETS_IMAGE_REL_PATH).getString());
+					// restore Constants.ASSETS_IMAGE_REL_PATH or alt.
+					if (chosenNode.hasNode("image")) {
+						settings.setImage(chosenNode.getPath()+"/image"); // +Constants.ASSETS_IMAGE_PATH
 					} else {
-						if (log.isDebugEnabled()) log.debug("No such property as "+Constants.ASSETS_IMAGE_REL_PATH+" on "+chosenNode);
+						if (log.isDebugEnabled()) log.debug("No such child as "+"image"+" under "+chosenNode);
 					}
 				} catch (RepositoryException re) {
 					log.warn("Could not retrieve title, ",re);
@@ -102,7 +107,7 @@ public class ResolveHazardTipWarningTag extends CQBaseTag {
 				log.warn("Could not resolve "+chosenPath);
 			}
 		}
-		
+		if (log.isDebugEnabled()) log.debug("at end, settings is "+settings);
 		return settings;
 	}
 	
