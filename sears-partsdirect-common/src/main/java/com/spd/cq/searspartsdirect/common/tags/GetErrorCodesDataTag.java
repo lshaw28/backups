@@ -45,10 +45,7 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		if (categoryPath != null && brandPath != null) {
 			log.debug("category and brand names:-"+categoryPath +"   "+brandPath + "subcat="+subCategoryPath);
-			//get the pages from scaffolding page by passing category, subcategory and brand and loop thru them to extract and store in
-			// errorCodeTable with error-code-type as a key and code, desc, condition, repair in the form of an object
 			List<ErrorCodeModel> errorCodeModelList = new ArrayList<ErrorCodeModel>();
-			
 			session = slingRequest.getResourceResolver().adaptTo(Session.class);
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("path", "/etc/spdAssets/scaffolding/errorCode/");
@@ -57,10 +54,11 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			map.put("2_property.value", categoryPath);
 			map.put("3_property", "jcr:content/pages");
 			map.put("3_property.value", brandPath);
-			/*
-			if (subCategoryPath != null) {
-				map.put("4_path", subCategoryPath);
-				map.put("4_type", Constants.CQ_TAG);
+			
+			//need to check the following
+			/*if (subCategoryPath != null) {
+				map.put("4_property", "jcr:content/cq:tags");
+				map.put("4_property.value", subCategoryPath);
 			}*/
 			
 			builder = resourceResolver.adaptTo(QueryBuilder.class);
@@ -78,17 +76,6 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 					e.printStackTrace();
 				}
 			 }
-			
-			/*Map<String, ArrayList<ErrorCodeModel>> errorCodeTable = new LinkedHashMap<String, ArrayList<ErrorCodeModel>>();
-			ArrayList<ErrorCodeModel> errorCodeModels = new ArrayList<ErrorCodeModel>();
-			ErrorCodeModel errorCodeModel1 = new ErrorCodeModel("","101", "recalled by the manufacturer", null);
-			ErrorCodeModel errorCodeModel2 = new ErrorCodeModel("","102","major issue with the engine", "call kenmore at 1-800-KENMORE");
-
-			errorCodeModels.add(errorCodeModel1);
-			errorCodeModels.add(errorCodeModel2);
-			
-			errorCodeTable.put("Error Code Type 1", errorCodeModels);
-			//pageContext.setAttribute("errorCodeTable", errorCodeTable);*/
 			pageContext.setAttribute("errorCodeTable", errorCodeModelList);
 		} else if (categoryPath != null) {
 			
@@ -108,11 +95,8 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			SearchResult result = query.getResult();
 			log.debug("total results found "+ result.getQueryStatement().toString());
 			
-			// iterating over the results
 		    for (Hit hit : result.getHits()) {
 		        try {
-					/*String path = hit.getPath();
-					  log.debug(path);*/
 					ValueMap props = hit.getProperties();
 					if (props != null) {
 						ErrorCodeModel model = new ErrorCodeModel("",props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("repairLink", String.class));
@@ -184,27 +168,29 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 		return EVAL_PAGE;
 	}
 
-	public String getCategoryName() {
+	public String getCategoryPath() {
 		return categoryPath;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryPath = categoryName;
+	public void setCategoryPath(String categoryPath) {
+		this.categoryPath = categoryPath;
 	}
 
-	public String getSubCategoryName() {
+	public String getSubCategoryPath() {
 		return subCategoryPath;
 	}
 
-	public void setSubCategoryName(String subCategoryName) {
-		this.subCategoryPath = subCategoryName;
+	public void setSubCategoryPath(String subCategoryPath) {
+		this.subCategoryPath = subCategoryPath;
 	}
 
-	public String getBrandName() {
+	public String getBrandPath() {
 		return brandPath;
 	}
 
-	public void setBrandName(String brandName) {
-		this.brandPath = brandName;
+	public void setBrandPath(String brandPath) {
+		this.brandPath = brandPath;
 	}
+
+	
 }
