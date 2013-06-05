@@ -31,9 +31,9 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
 public class GetErrorCodesDataTag extends CQBaseTag {
 	
 	private static final long serialVersionUID = 1L;
-	private String categoryName;
-	private String subCategoryName;
-	private String brandName;
+	private String categoryPath;
+	private String subCategoryPath;
+	private String brandPath;
 	
 	Session session;
 	QueryBuilder builder;
@@ -43,8 +43,8 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 	
 	@Override
 	public int doStartTag() throws JspException {
-		if (categoryName != null && brandName != null) {
-			log.debug("category and brand names:-"+categoryName +"   "+brandName);
+		if (categoryPath != null && brandPath != null) {
+			log.debug("category and brand names:-"+categoryPath +"   "+brandPath + "subcat="+subCategoryPath);
 			//get the pages from scaffolding page by passing category, subcategory and brand and loop thru them to extract and store in
 			// errorCodeTable with error-code-type as a key and code, desc, condition, repair in the form of an object
 			List<ErrorCodeModel> errorCodeModelList = new ArrayList<ErrorCodeModel>();
@@ -53,10 +53,16 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("path", "/etc/spdAssets/scaffolding/errorCode/");
 			map.put("type", Constants.CQ_PAGE);
-			map.put("1_property", "jcr:content/pages");
-			map.put("1_property.value", categoryName);
 			map.put("2_property", "jcr:content/pages");
-			map.put("2_property.value", brandName);
+			map.put("2_property.value", categoryPath);
+			map.put("3_property", "jcr:content/pages");
+			map.put("3_property.value", brandPath);
+			/*
+			if (subCategoryPath != null) {
+				map.put("4_path", subCategoryPath);
+				map.put("4_type", Constants.CQ_TAG);
+			}*/
+			
 			builder = resourceResolver.adaptTo(QueryBuilder.class);
 			query = builder.createQuery(PredicateGroup.create(map), session);
 			SearchResult result = query.getResult();
@@ -84,7 +90,7 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			errorCodeTable.put("Error Code Type 1", errorCodeModels);
 			//pageContext.setAttribute("errorCodeTable", errorCodeTable);*/
 			pageContext.setAttribute("errorCodeTable", errorCodeModelList);
-		} else if (categoryName != null) {
+		} else if (categoryPath != null) {
 			
 			HashMap<BrandModel, List<ErrorCodeModel>> errorCodeList = new HashMap<BrandModel, List<ErrorCodeModel>>();
 			Map<BrandModel, List<ErrorCodeModel>> finalErrorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeModel>>();
@@ -94,7 +100,7 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			map.put("path", "/etc/spdAssets/scaffolding/errorCode/");
 			map.put("type", Constants.CQ_PAGE);
 			map.put("1_property", "jcr:content/pages");
-			map.put("1_property.value", categoryName);
+			map.put("1_property.value", categoryPath);
 			 
 			builder = resourceResolver.adaptTo(QueryBuilder.class);
 			query = builder.createQuery(PredicateGroup.create(map), session);
@@ -179,26 +185,26 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 	}
 
 	public String getCategoryName() {
-		return categoryName;
+		return categoryPath;
 	}
 
 	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+		this.categoryPath = categoryName;
 	}
 
 	public String getSubCategoryName() {
-		return subCategoryName;
+		return subCategoryPath;
 	}
 
 	public void setSubCategoryName(String subCategoryName) {
-		this.subCategoryName = subCategoryName;
+		this.subCategoryPath = subCategoryName;
 	}
 
 	public String getBrandName() {
-		return brandName;
+		return brandPath;
 	}
 
 	public void setBrandName(String brandName) {
-		this.brandName = brandName;
+		this.brandPath = brandName;
 	}
 }

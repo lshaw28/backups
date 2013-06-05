@@ -2,29 +2,48 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		  jcr:primaryType="cq:Dialog"
 		  title="Video"
-		  xtype="dialog">
+		  xtype="tabpanel">
 	<items jcr:primaryType="cq:WidgetCollection">
-        <Video
+        <videoTab
             jcr:primaryType="cq:Widget"
+			title="Video Information"
             xtype="panel">
             <items jcr:primaryType="cq:WidgetCollection">
-                <caption 
-                	jcr:primaryType="cq:Widget" 
-                	fieldLabel="Video Caption:" 
+                <caption
+                	jcr:primaryType="cq:Widget"
+                	fieldLabel="Video Caption:"
                 	maxLength="200"
-                	name="./caption" 
+                	name="./caption"
                 	xtype="textfield" />
-        
                 <youTubeLink
                     jcr:primaryType="cq:Widget"
                     fieldDescription="Enter a valid YouTube Link"
                     fieldLabel="Youtube Link"
                     name="./youTubeLink"
-                    allowBlank="{Boolean}false" 
+                    allowBlank="{Boolean}false"
           			blankText="Link field is required"
                     regex="/^(http|https)\:\\/\\/www\\.youtube\\.com\\/watch\\?(.*&amp;)?v=([^\\?&amp;&quot;'>]+){11}/"
                     xtype="textfield"/>
             </items>
-        </Video>
+        </videoTab>
+		<videoDimensionsTab
+			jcr:primaryType="cq:Widget"
+			title="Video Dimensions"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<displayWidth
+                    jcr:primaryType="cq:Widget"
+                    fieldDescription="Set a specific display width for the video."
+                    fieldLabel="Display Width"
+                    name="./displayWidth"
+                    xtype="textfield"/>
+				<displayHeight
+                    jcr:primaryType="cq:Widget"
+                    fieldDescription="Set a specific display height for the video."
+                    fieldLabel="Display Height"
+                    name="./displayHeight"
+                    xtype="textfield"/>
+			</items>
+		</videoDimensionsTab>
     </items>
 </jcr:root>

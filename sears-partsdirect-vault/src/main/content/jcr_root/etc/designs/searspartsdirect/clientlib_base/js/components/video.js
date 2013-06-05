@@ -8,7 +8,7 @@ var video = Class.extend(function () {
 		 * @param {object} el Target element
 		 * @param {number} fw Optional forced width for consistent display
 		 */
-		init: function (el, fw) {
+		init: function (el, fw, fh) {
 			// Parameters
 			this.el = $(el);
 			// Properties
@@ -19,7 +19,7 @@ var video = Class.extend(function () {
 			this.useParentDims = true;
 			this.isBound = false;
 			// Retrieve data
-			this.setProperties(fw);
+			this.setProperties(fw, fh);
 			// Render if a YouTube ID is present
 			if (this.youtubeId !== '') {
 				this.render();
@@ -31,7 +31,7 @@ var video = Class.extend(function () {
 		 * @param {number} fh Optional forced height for consistent display
 		 * @return {void}
 		 */
-		setProperties: function (fw, fh, iq) {
+		setProperties: function (fw, fh) {
 			var self = this,
 				su = window.SPDUtils;
 
@@ -51,8 +51,19 @@ var video = Class.extend(function () {
 				// Set the flag so re-renders do not reacquire parent dimensions
 				self.useParentDims = false;
 			}
-			// Set height based on 16:10 aspect ratio
-			self.fh = (parseInt(self.fw, 10) / 16) * 10;
+			// Override height
+			if (su.validNumber(self.el.data('height')) > 0) {
+				self.fh = parseInt(self.el.data('height'), 10);
+				// Set the flag so re-renders do not reacquire parent dimensions
+				self.useParentDims = false;
+			} else if (su.validNumber(fh) > 0) {
+				self.fh = parseInt(fh, 10);
+				// Set the flag so re-renders do not reacquire parent dimensions
+				self.useParentDims = false;
+			} else {
+				// Set height based on 16:10 aspect ratio
+				self.fh = (parseInt(self.fw, 10) / 16) * 10;
+			}
 		},
 		/**
 		 * Sets dimension values to parent dimensions
@@ -97,7 +108,7 @@ var video = Class.extend(function () {
 			}
 
 			// Bind event
-			if (self.isBound === false) {
+			if (self.isBound === false && self.useParentDims === true) {
 				self.bindEvent();
 			}
 		},
