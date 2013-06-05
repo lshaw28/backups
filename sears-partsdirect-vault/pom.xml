@@ -26,10 +26,10 @@
 					<failOnError>true</failOnError>
 					<filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
 					<builtContentDirectory>src/main/content/jcr_root</builtContentDirectory>
-
 					<packageFile>target/${project.artifactId}.zip</packageFile>
 					<targetURL>${crx_url}/crx/packmgr/service.jsp</targetURL>
-
+					<user>${crx_user}</user>
+					<password>${crx_password}</password>
 					<verbose>true</verbose>
 				</configuration>
 				<executions>
