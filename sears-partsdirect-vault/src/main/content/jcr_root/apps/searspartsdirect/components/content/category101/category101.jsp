@@ -1,5 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <spd:tagsByPage tagType="parent_categories" />
@@ -7,7 +6,7 @@
 
 <c:if test="${not empty categories}">
 	<c:choose>
-		<c:when test="${fn:length(parent_categoriesList[0].title) < 38 }">
+		<c:when test="${fn:length(parent_categoriesList[0].title) lt 38 }">
 			<cq:text property="header" placeholder="${parent_categoriesList[0].title} 101" />
 		</c:when>
 		<c:otherwise>

@@ -19,6 +19,7 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.HazardModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.TipModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.WarningModel;
 
@@ -65,7 +66,7 @@ public class GetRelationTag extends CQBaseTag {
 						result.add(new ErrorCodeModel(p.getPath(),
 								title,
 								description,
-								""));
+								properties.get("repairPath","")));
 						break;
 					case HAZARD:
 						result.add(new HazardModel(p.getPath(),
@@ -99,6 +100,11 @@ public class GetRelationTag extends CQBaseTag {
 								title,
 								p.getPath() + Constants.ASSETS_IMAGE_PATH));
 						break;
+					case SYMPTOM:
+						result.add(new SymptomModel(p.getPath(),
+								title,
+								description,
+								properties.get("id","")));
 					default:
 						break;
 				}
@@ -109,7 +115,7 @@ public class GetRelationTag extends CQBaseTag {
 				//If the result is supposed to be single and is not, throw an exception
 				throw new TooManyRelatedObjectsException();
 			}
-			else {
+			else if (result.size() > 0) {
 				pageContext.setAttribute(assetType + "Relation", result.get(0));
 			}
 		}

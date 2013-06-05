@@ -6,7 +6,7 @@
 
 <cq:text property="errorCodeDescription" placeholder=""/>
 
-<spd:getErrorCodesData categoryName="${productCategoryRelation.path}" />
+<spd:getErrorCodesData categoryPath="${productCategoryRelation.path}" />
 <c:forEach var="item" items="${finalErrorCodeList}">
 	<p> ${item.key.title} -- ${item.key.description} <spd:displayImage path="${item.key.logoPath}"/></p>
 	<c:forEach var="subCategory" items="${item.value}">
