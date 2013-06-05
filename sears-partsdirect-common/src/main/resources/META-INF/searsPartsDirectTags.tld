@@ -118,11 +118,23 @@
 		<name>getRelatedGuides</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetRelatedGuidesTag</tag-class>
 		<info>Sets page context information required for Related Guides component</info>
+	   	<attribute>
+			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>		
 	</tag>
 	<tag>
 		<name>getRelatedArticles</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetRelatedArticlesTag</tag-class>
 		<info>Sets page context information required for Related Articles component</info>
+		<attribute>
+			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>	
 	<tag>
 	   <name>getBrandCategoryModelNo</name>
