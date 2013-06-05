@@ -6,6 +6,7 @@ public final class Constants {
 	
 	//CQ constants
 	public static final String CQ_PAGE = ident("cq:Page");
+	public static final String CQ_TAG = ident("cq:Tag");
 	
 	//Asset Constants
 	public static final String ASSETS_PATH = ident("/etc/spdAssets/scaffolding");
