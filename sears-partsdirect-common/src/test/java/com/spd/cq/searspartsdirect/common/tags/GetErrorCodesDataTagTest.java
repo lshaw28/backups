@@ -69,7 +69,7 @@ public class GetErrorCodesDataTagTest extends TestCase {
 		//Mockito.when(query.getResult()).thenReturn(result);
 		
 		tag.setPageContext(pageContext);
-		tag.setCategoryName("dummayCategory");
+		tag.setCategoryPath("dummyCategory");
 		//tag.doStartTag();
 		Assert.assertTrue(true);
 	}
