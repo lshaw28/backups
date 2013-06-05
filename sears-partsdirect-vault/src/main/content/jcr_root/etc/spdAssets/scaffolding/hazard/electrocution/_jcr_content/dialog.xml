@@ -23,7 +23,7 @@
             jcr:primaryType="cq:Panel"
             title="Image">
             <items jcr:primaryType="cq:WidgetCollection">
-                <!-- <image
+                <image
                     jcr:primaryType="cq:Widget"
                     cropParameter="./jcr:content/image/imageCrop"
                     ddGroups="[media]"
@@ -34,7 +34,7 @@
                     name="./jcr:content/image/file"
                     requestSuffix="/jcr:content/image.img.png"
                     rotateParameter="./jcr:content/image/imageRotate"
-                    xtype="html5smartimage"/>  -->
+                    xtype="html5smartimage"/>
             </items>
         </tab2>
     </items>

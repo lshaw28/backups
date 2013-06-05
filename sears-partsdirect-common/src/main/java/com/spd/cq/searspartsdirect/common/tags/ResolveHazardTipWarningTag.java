@@ -94,10 +94,10 @@ public class ResolveHazardTipWarningTag extends CQBaseTag {
 						settings.setText(chosenNode.getProperty(Constants.ASSETS_TITLE_REL_PATH).getString());
 					}
 					// restore Constants.ASSETS_IMAGE_REL_PATH or alt.
-					if (chosenNode.hasNode("image")) {
-						settings.setImage(chosenNode.getPath()+"/image"); // +Constants.ASSETS_IMAGE_PATH
+					if (chosenNode.hasNode(Constants.ASSETS_IMAGE_REL_PATH)) {
+						settings.setImage(chosenNode.getPath()+Constants.ASSETS_IMAGE_PATH); // +Constants.ASSETS_IMAGE_PATH
 					} else {
-						if (log.isDebugEnabled()) log.debug("No such child as "+"image"+" under "+chosenNode);
+						if (log.isDebugEnabled()) log.debug("No such child as "+Constants.ASSETS_IMAGE_REL_PATH+" under "+chosenNode);
 					}
 				} catch (RepositoryException re) {
 					log.warn("Could not retrieve title, ",re);
