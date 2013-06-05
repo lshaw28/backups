@@ -2,14 +2,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<spd:getRelatedGuides />
+<spd:getRelation single="true" assetType="productCategory" />
+<spd:getRelatedGuides categoryPath="${productCategoryRelation.path}" />
 
 <c:if test="${not empty guides}">
 	<cq:text property="itemsHeader"/><br />
 	
 	<c:forEach var="guide" items="${guides}">
-		<a href="${guide.url}.html"><spd:displayImage path="${guide.imagePath}"/></a>
-		<a href="${guide.url}.html">${guide.title}</a>
+		<a href="${guide.url}"><spd:displayImage path="${guide.imagePath}"/></a>
+		<a href="${guide.url}">${guide.title}</a>
 		<br /><br />
 	</c:forEach>
 	
