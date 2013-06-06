@@ -287,4 +287,9 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>errorCodeTable</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.ErrorCodeTableTag</tag-class>
+		<info>gets the error code table data</info>
+	</tag>
 </taglib>
