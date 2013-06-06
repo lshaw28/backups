@@ -1,26 +1,16 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
-
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.jcr.Node;
 import javax.jcr.Property;
 import javax.jcr.RepositoryException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.PageContext;
 
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
 import com.spd.cq.searspartsdirect.common.fixture.ResolveHtwFixture;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
-import junit.framework.TestCase;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
@@ -50,12 +40,12 @@ public class ResolveHazardTipWarningTagTest extends MocksTag {
 		super.setUp();
 		fixture = new ResolveHtwFixture();
 		
-		adhocProperty = Mockito.mock(Property.class);
-		choiceProperty = Mockito.mock(Property.class);
-		choiceResource = Mockito.mock(Resource.class);
-		choiceNode = Mockito.mock(Node.class);
-		choiceTitleProperty = Mockito.mock(Property.class);
-		choiceImageNode = Mockito.mock(Node.class);
+		adhocProperty = mock(Property.class);
+		choiceProperty = mock(Property.class);
+		choiceResource = mock(Resource.class);
+		choiceNode = mock(Node.class);
+		choiceTitleProperty = mock(Property.class);
+		choiceImageNode = mock(Node.class);
 		
 		resolveHtwTag = new ResolveHazardTipWarningTag();
 	}

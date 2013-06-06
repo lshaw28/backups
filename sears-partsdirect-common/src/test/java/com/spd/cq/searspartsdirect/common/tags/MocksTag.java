@@ -2,8 +2,7 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,10 +11,13 @@ import javax.jcr.Node;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.mockito.Mockito;
+
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+
+import com.day.cq.wcm.api.Page;
 
 import junit.framework.TestCase;
 
@@ -30,10 +32,12 @@ public class MocksTag extends TestCase {
 	protected PageContext pageContext;
 	protected Node currentNode;
 	protected ResourceResolver resourceResolver;
+	protected Page currentPage;
+	protected SlingHttpServletRequest slingRequest;
 	
 	@Override
 	protected void setUp() throws Exception {
-		pageContext = Mockito.mock(PageContext.class);
+		pageContext = mock(PageContext.class);
 		final Map<String, Object> contextMap = new HashMap<String, Object>();
 		// mock for method persist
 		doAnswer(new Answer<Void>() {
@@ -61,11 +65,15 @@ public class MocksTag extends TestCase {
 		        return null;
 		    }
 		});
-		request = Mockito.mock(HttpServletRequest.class);
+		request = mock(HttpServletRequest.class);
 		when(pageContext.getRequest()).thenReturn(request);
-		currentNode = Mockito.mock(Node.class);
+		currentNode = mock(Node.class);
 		when(pageContext.findAttribute("currentNode")).thenReturn(currentNode);
-		resourceResolver = Mockito.mock(ResourceResolver.class);
+		resourceResolver = mock(ResourceResolver.class);
 		when(pageContext.findAttribute("resourceResolver")).thenReturn(resourceResolver);
+		currentPage = mock(Page.class);
+		when(pageContext.findAttribute("currentPage")).thenReturn(currentPage);
+		slingRequest = mock(SlingHttpServletRequest.class);
+		when(pageContext.findAttribute("slingRequest")).thenReturn(slingRequest);
 	}
 }
