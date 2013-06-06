@@ -8,8 +8,8 @@
 						xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
 				<tipPrefix jcr:primaryType="cq:Widget"
-						fieldLabel="Global tip prefix"
-						fieldDescription="Displayed on all Tips components"
+						fieldLabel="Global tips prefix"
+						fieldDescription="Displayed on all Tip components"
 						allowBlank="{Boolean}false"
 						name="./tipPrefix"
 						xtype="textfield"

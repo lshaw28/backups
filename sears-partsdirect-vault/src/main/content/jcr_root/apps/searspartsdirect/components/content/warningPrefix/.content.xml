@@ -4,8 +4,7 @@
 	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Component"
-	jcr:title="Warning"
-	jcr:description="A warning relevant during a repair"
-	cq:isContainer="true"
-	componentGroup="SearsPartsDirect" />
+	jcr:title="Global warnings prefix"
+	jcr:description="Global prefix for Warning components"
+	componentGroup=".hidden" />
 	

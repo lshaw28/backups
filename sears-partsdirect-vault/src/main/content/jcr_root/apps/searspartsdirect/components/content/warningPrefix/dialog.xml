@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		  jcr:primaryType="cq:Dialog"
-		  title="Global Hazards Configuration"
+		  title="Global Warning Configuration"
 		  xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<GlobalHazardPrefix 	jcr:primaryType="cq:Widget"
+		<GlobalWarningPrefix 	jcr:primaryType="cq:Widget"
 						xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-				<hazardPrefix jcr:primaryType="cq:Widget"
-						fieldLabel="Global hazards prefix"
-						fieldDescription="Displayed on all Hazard components"
+				<tipPrefix jcr:primaryType="cq:Widget"
+						fieldLabel="Global warnings prefix"
+						fieldDescription="Displayed on all Warning components"
 						allowBlank="{Boolean}false"
-						name="./hazardPrefix"
+						name="./warningPrefix"
 						xtype="textfield"
 						maxLength="28" />
 			</items>
-		</GlobalHazardPrefix>
+		</GlobalWarningPrefix>
 	</items>
 </jcr:root>
