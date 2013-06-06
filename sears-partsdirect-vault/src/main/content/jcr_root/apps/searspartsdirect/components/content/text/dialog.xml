@@ -14,9 +14,10 @@
 					fieldLabel="Text"
 					name="./text"
 					xtype="richtext">
-					<listeners
+					<rtePlugins
 						jcr:primaryType="nt:unstructured"
-						loadcontent="function(field){window.SPDAuthorUtils.setRTEPlugins(field);}"/>
+						path="/apps/searspartsdirect/components/content/text/limitedConfig.infinity.json"
+						xtype="cqinclude"/>
 				</text>
 				<richFlag
 					jcr:primaryType="cq:Widget"
