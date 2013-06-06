@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		  jcr:primaryType="cq:Dialog"
-		  title="Hazard"
+		  title="Tip"
 		  xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<Hazard	jcr:primaryType="cq:Widget"
+		<Tip	jcr:primaryType="cq:Widget"
 						xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-				<hazardTextEntered jcr:primaryType="cq:Widget"
-					   fieldLabel="Enter an ad-hoc hazard"
+				<tipTextEntered jcr:primaryType="cq:Widget"
+					   fieldLabel="Enter an ad-hoc tip"
 					   fieldDescription="Character limit is 400"
 					   allowBlank="{Boolean}true"
-					   name="./hazardTextEntered"
+					   name="./tipTextEntered"
 					   xtype="textfield"
 					   maxLength="400" />
-				<hazardChosen jcr:primaryType="cq:Widget"
-						fieldLabel="Choose a hazard"
+				<tipChosen jcr:primaryType="cq:Widget"
+						fieldLabel="Choose a tip"
 						allowBlank="{Boolean}true"
 						editable="false"
-						name="./hazardChosen"
+						name="./tipChosen"
 						xtype="pathfield"
-						rootPath="/etc/spdAssets/scaffolding/hazard" />
+						rootPath="/etc/spdAssets/scaffolding/tip" />
 			</items>
-		</Hazard>
+		</Tip>
 	</items>
 </jcr:root>

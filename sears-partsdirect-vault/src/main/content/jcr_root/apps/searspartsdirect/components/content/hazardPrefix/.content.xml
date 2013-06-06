@@ -5,6 +5,6 @@
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Component"
 	jcr:title="Global hazards prefix"
-	jcr:description="Global prefix for Hazards components"
+	jcr:description="Global prefix for Hazard components"
 	componentGroup=".hidden" />
 	

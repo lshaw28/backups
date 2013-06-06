@@ -3,9 +3,8 @@
 	xmlns:cq="http://www.day.com/jcr/cq/1.0" 
 	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
-	jcr:primaryType="cq:Component"
-	jcr:title="Tip"
-	jcr:description="A tip useful during a repair"
-	cq:isContainer="true"
-	componentGroup="SearsPartsDirect" />
+	jcr:primaryType="nt:unstructured"
+	jcr:title="Global Tip prefix configuration"
+	jcr:description="Global level prefix configuration for the Tip component"
+	tipPrefix="Tip: " />
 	
