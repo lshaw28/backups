@@ -6,10 +6,10 @@
 		</div>
 	</div>
 	<div class="row-fluid">
-		<div class="span9">
+		<div class="span10">
 			<cq:include path="parsys_left" resourceType="foundation/components/parsys" />
 		</div>
-		<div class="span3">
+		<div class="span2">
 			<cq:include path="parsys_right" resourceType="foundation/components/parsys" />
 		</div>
 	</div>
