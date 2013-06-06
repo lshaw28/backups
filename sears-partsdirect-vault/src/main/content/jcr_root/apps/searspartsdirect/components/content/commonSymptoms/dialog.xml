@@ -20,9 +20,10 @@
 			xtype="richtext"
 			maxlength="500"
 			allowBlank="{Boolean}true">
-			<listeners
+			<rtePlugins
 				jcr:primaryType="nt:unstructured"
-				loadcontent="function(field){window.SPDAuthorUtils.setRTEPlugins(field);}"/>
+				path="/apps/searspartsdirect/components/content/text/limitedConfig.infinity.json"
+				xtype="cqinclude"/>
 			</optionalDescription>
 	</items>
 </jcr:root>

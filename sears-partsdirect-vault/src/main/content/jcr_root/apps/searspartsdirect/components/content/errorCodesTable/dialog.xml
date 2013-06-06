@@ -14,9 +14,10 @@
 			name="./errorCodeDesc"
 			xtype="richtext"
 			maxLength="500">
-		<listeners
-			jcr:primaryType="nt:unstructured"
-			loadcontent="function(field){window.SPDAuthorUtils.setRTEPlugins(field);}"/>
+			<rtePlugins
+				jcr:primaryType="nt:unstructured"
+				path="/apps/searspartsdirect/components/content/text/limitedConfig.infinity.json"
+				xtype="cqinclude"/>
 		</errorCodeDesc>			
 	</items>
 </jcr:root>
