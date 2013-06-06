@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
+@SuppressWarnings("serial")
 public class ResolveHazardTipWarningTag extends CQBaseTag {
 	protected static Logger log = LoggerFactory
 			.getLogger(ResolveHazardTipWarningTag.class);
@@ -27,20 +28,19 @@ public class ResolveHazardTipWarningTag extends CQBaseTag {
 		String resultText = placeholder;
 		String resultImage = "";
 		
+		ChosenSettings chosen = maybeRetrieveChosenSettings();
+		String chosenText = chosen.getText();
+		if (!isTextBlank(chosenText)) {
+			resultText = chosenText;
+		}
+		String chosenImage = chosen.getImage();
+		if (!isTextBlank(chosenImage)) {
+			resultImage = chosenImage;
+		}
+			
 		String adhocText = maybeRetrieveAdhocText();
-		
 		if (!isTextBlank(adhocText)) {
 			resultText = adhocText;
-		} else {
-			ChosenSettings chosen = maybeRetrieveChosenSettings();
-			String chosenText = chosen.getText();
-			if (!isTextBlank(chosenText)) {
-				resultText = chosenText;
-			}
-			String chosenImage = chosen.getImage();
-			if (!isTextBlank(chosenImage)) {
-				resultImage = chosenImage;
-			}
 		}
 		
 		pageContext.setAttribute("htwText", resultText);

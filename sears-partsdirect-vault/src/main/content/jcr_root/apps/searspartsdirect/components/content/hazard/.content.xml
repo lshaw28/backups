@@ -6,5 +6,6 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Hazard"
 	jcr:description="A hazard to avoid during a repair"
+	cq:isContainer="true"
 	componentGroup="SearsPartsDirect" />
 	
