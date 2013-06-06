@@ -18,7 +18,7 @@ $('#accordion2').on('show', function () {
 });
 
 //Set icons classes
-$(".shipping_cont a").hover(function () {
+$(".footerPromoContent a").hover(function () {
 	$(this).closest(".fast_shipping_content").prev(".column_two_icons").addClass("column_two_icons_hover");
 }, function () {
 	$(".column_two_icons").removeClass("column_two_icons_hover");
