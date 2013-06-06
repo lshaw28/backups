@@ -12,6 +12,7 @@ import javax.jcr.Node;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;
 
+import org.apache.sling.api.resource.ResourceResolver;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -24,16 +25,12 @@ public class MocksTag extends TestCase {
 	protected HttpServletRequest request;
 	protected PageContext pageContext;
 	protected Node currentNode;
+	protected ResourceResolver resourceResolver;
 	
 	@Override
 	protected void setUp() throws Exception {
-		request = Mockito.mock(HttpServletRequest.class);
 		pageContext = Mockito.mock(PageContext.class);
-		currentNode = Mockito.mock(Node.class);
-		when(pageContext.getRequest()).thenReturn(request);
-		when(pageContext.findAttribute("currentNode")).thenReturn(currentNode);
 		final Map<String, Object> contextMap = new HashMap<String, Object>();
-
 		// mock for method persist
 		doAnswer(new Answer<Void>() {
 		    //@Override
@@ -60,5 +57,11 @@ public class MocksTag extends TestCase {
 		        return null;
 		    }
 		});
+		request = Mockito.mock(HttpServletRequest.class);
+		when(pageContext.getRequest()).thenReturn(request);
+		currentNode = Mockito.mock(Node.class);
+		when(pageContext.findAttribute("currentNode")).thenReturn(currentNode);
+		resourceResolver = Mockito.mock(ResourceResolver.class);
+		when(pageContext.findAttribute("resourceResolver")).thenReturn(resourceResolver);
 	}
 }
