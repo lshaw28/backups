@@ -14,9 +14,10 @@
 			name="./errorCodeDescription"
 			xtype="richtext"
 			maxlength="500">
-			<listeners
+			<rtePlugins
 				jcr:primaryType="nt:unstructured"
-				loadcontent="function(field){window.SPDAuthorUtils.setRTEPlugins(field);}"/>
+				path="/apps/searspartsdirect/components/content/text/limitedConfig.infinity.json"
+				xtype="cqinclude"/>
 		</errorCodeDescription>
 	</items>
 </jcr:root>

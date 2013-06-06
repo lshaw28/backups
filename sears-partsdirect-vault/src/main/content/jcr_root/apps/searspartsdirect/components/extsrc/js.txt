@@ -1,2 +1,5 @@
 PageMapper.js
 ScaffoldingPageMapper.js
+
+#base=rte
+Compatibility.js
