@@ -20,7 +20,11 @@ import org.mockito.stubbing.Answer;
 import junit.framework.TestCase;
 
 
-
+/**
+ * Provides common objects needed when mocking for testing CQ custom tags
+ * @author bzethmayr
+ *
+ */
 public class MocksTag extends TestCase {
 	protected HttpServletRequest request;
 	protected PageContext pageContext;
