@@ -8,4 +8,38 @@
 	<justify
 		jcr:primaryType="nt:unstructured"
 		features="-" />
+	<paraformat
+		jcr:primaryType="nt:unstructured"
+		features="*">
+		<formats jcr:primaryType="cq:WidgetCollection">
+			<p
+				jcr:primaryType="nt:unstructured"
+				tag="p"
+				description="Paragraph" />
+			<h1
+				jcr:primaryType="nt:unstructured"
+				tag="h1"
+				description="Header 1" />
+			<h2
+				jcr:primaryType="nt:unstructured"
+				tag="h2"
+				description="Header 2" />
+			<h3
+				jcr:primaryType="nt:unstructured"
+				tag="h3"
+				description="Header 3" />
+			<h4
+				jcr:primaryType="nt:unstructured"
+				tag="h4"
+				description="Header 4" />
+			<h5
+				jcr:primaryType="nt:unstructured"
+				tag="h5"
+				description="Header 5" />
+			<h6
+				jcr:primaryType="nt:unstructured"
+				tag="h6"
+				description="Header 6" />
+		</formats>
+	</paraformat>
 </jcr:root>

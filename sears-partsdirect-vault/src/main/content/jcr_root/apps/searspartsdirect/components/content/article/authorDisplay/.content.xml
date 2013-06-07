@@ -4,6 +4,6 @@
 	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Component"
-	jcr:title="Category 101"
-	jcr:description="List of category articles"
+	jcr:title="Article - Author Display"
 	componentGroup="SearsPartsDirect" />
+	

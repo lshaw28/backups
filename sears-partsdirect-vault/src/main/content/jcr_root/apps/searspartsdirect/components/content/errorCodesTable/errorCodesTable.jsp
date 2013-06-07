@@ -10,26 +10,9 @@
 	 		${subcategoriesList[0].title} 
 	 		<c:set var="subCatUrl" value="${subcategoriesList[0].tagID}"/>
 	 </c:if>
-	<cq:include path="errorCodeText" resourceType="foundation/components/text" />
+	 <cq:text property="errorCodeText" placeholder=""/>
 </h3>
-<cq:include path="errorCodeDesc" resourceType="/apps/searspartsdirect/components/content/text" />
-
-<%-- 
-<spd:getErrorCodesData categoryPath="${productCategoryRelation.path}" subCategoryPath="${subCatUrl}" brandPath="${brandRelation.path}" />
-	<table>
-		<th>Error Code</th>
-		<th>condition</th>
-		<th>check/repair</th>
-		<th>shop parts</th>
-		<c:forEach var="errorCode" items="${errorCodeTable}">
-			<tr>
-				<td>${errorCode.code}</td>
-				<td>${errorCode.condition}</td>
-				<td><a href="${errorCode.repairPath}">click here</a></td>
-			</tr>	
-		</c:forEach>
-	</table>
---%>
+<cq:text property="errorCodeDesc" placeholder=""/>
 
 <spd:errorCodeTable/>
 <table border="1">
@@ -45,7 +28,14 @@
 			<tr>
 				<td>${model.code}</td>
 			 	<td>${model.condition}</td>
-			 	<td>${model.repairPath}</td>
+			 	<c:choose>
+			 		<c:when test='${fn:contains(model.repairPath, "/")}'>
+			 			<td><a href="${model.repairPath}.html">Repair or Installation guide link</a></td>
+			 		</c:when>	
+			 		<c:otherwise>
+			 			<td>${model.repairPath}</a></td>
+			 		</c:otherwise>
+			 	</c:choose>
 			 	<td>no parts</td>
 			 </tr>
 		</c:forEach>

@@ -353,6 +353,21 @@
 		margin: 20px 37px;
 		width: 92.5%;
 	}
+	#footerColumn2 {
+		.footerPromo {
+			.footerPromoContent {
+				p {
+					font-size: @smallLinkSize;
+					line-height: 150%;
+
+					a {
+						font-size: @loginNavigationSize;
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
 }
 /* Exception: Desktop and portrait tablet */
 @media (max-width: 1000px) {
@@ -364,6 +379,21 @@
 			}
 			.footerPromoContent {
 				padding: 10px 20px;
+
+				h3 {
+					font-size: @header3Size;
+					font-weight: normal;
+					color: #304295;
+				}
+				p {
+					color: @bodyCopyColor;
+					font-size: @smallLinkSize;
+
+					a {
+						font-size: @paragraphSize;
+						font-weight: normal;
+					}
+				}
 			}
 		}
 	}
@@ -521,6 +551,15 @@
 				}
 				.footerIconHelp {
 					display: none;
+				}
+			}
+		}
+	}
+	#footerColumn2 {
+		.footerPromo {
+			.footerPromoContent {
+				p {
+					font-size: @paragraphSize;
 				}
 			}
 		}
