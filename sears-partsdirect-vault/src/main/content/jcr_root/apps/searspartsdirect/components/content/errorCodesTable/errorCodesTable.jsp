@@ -28,7 +28,14 @@
 			<tr>
 				<td>${model.code}</td>
 			 	<td>${model.condition}</td>
-			 	<td>${model.repairPath}</td>
+			 	<c:choose>
+			 		<c:when test='${fn:contains(model.repairPath, "/")}'>
+			 			<td><a href="${model.repairPath}.html">Repair or Installation guide link</a></td>
+			 		</c:when>	
+			 		<c:otherwise>
+			 			<td>${model.repairPath}</a></td>
+			 		</c:otherwise>
+			 	</c:choose>
 			 	<td>no parts</td>
 			 </tr>
 		</c:forEach>

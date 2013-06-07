@@ -62,7 +62,8 @@
 						                        jcr:primaryType="cq:Widget"
 						                        fieldLabel="Check/Repair"
 						                        name="checkRepairLink"
-						                        xtype="pathfield"/>          
+						                        xtype="pathfield"
+						                        rootPath="/content/searspartsdirect/en" /><!-- need to replace with the repair guide path -->          
 						                </items>
 					            </fieldConfig>
 					        </multi>
