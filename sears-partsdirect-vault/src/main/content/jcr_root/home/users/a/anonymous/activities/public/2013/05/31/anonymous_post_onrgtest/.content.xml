@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:created="{Date}2013-05-31T09:31:51.725-05:00"
+    jcr:createdBy="anonymous"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="anonymous POST on rg test"
+    sling:resourceType="granite/activitystreams/components/activity"
+    verb="POST">
+    <object
+        jcr:description="Test comment"
+        jcr:primaryType="nt:unstructured"
+        id="/content/usergenerated/content/searspartsdirect/en/rgtest/jcr:content/comments/1Bucket/sd3m-test_comment"
+        objectType="comment"
+        subType="social/commons/components/comments/comment"/>
+    <target
+        jcr:primaryType="nt:unstructured"
+        displayName="rg test"
+        id="/content/searspartsdirect/en/rgtest"
+        objectType="searspartsdirect/components/page/repairGuide"/>
+</jcr:root>

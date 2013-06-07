@@ -3,11 +3,9 @@
 <div id="footerContent">
 	<div id="footerColumn1">
 		<div class="footerIcon" id="lpchatbutton4"></div>
-
 		<div class="footerIcon" id="lpvoicebutton4"></div>
-
 		<p>
-			<a href="${mainSitePath}/partsdirect/faq.pd?pop=flush?pop=flush&commercialUI=false">
+			<a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false">
 				<span class="icon-stack">
 					<i class="icon-circle icon-stack-base"></i>
 					<i class="icon-question icon-light"></i>
@@ -16,7 +14,6 @@
 				<span class="footerIconHelp hidden-mobile">Check out the most frequently asked questions</span>
 			</a>
 		</p>
-
 		<p>
 			<a href="${mainSitePath}/partsdirect/contactus.pd">
 				<span class="icon-stack">
@@ -27,7 +24,6 @@
 				<span class="footerIconHelp hidden-mobile">We'll reply within 24 hours</span>
 			</a>
 		</p>
-
 		<p>
 			<a href="${mainSitePath}/partsdirect/how-to-use-this-site/">
 				<span class="icon-stack">
@@ -40,26 +36,31 @@
 		</p>
 	</div>
 	<div id="footerColumn2">
-		<div class="fast_shipping">
-			<div class="icon_bg_curves"></div>
-			<div id="car_icon" class="column_two_icons"></div>
-			<div class="fast_shipping_content">
-				<div class="shipping_cont">
-					<h3><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush?pop=flush?pop=flush&commercialUI=false#returnsFAQ">fast shipping</a> </h3>
-					<p>Sears PartsDirect ships from regionally-located warehouses for timely delivery.</p>
-					<div class="clear"></div>
-					<a href="${mainSitePath}/partsdirect/faq.pd?pop=flush?pop=flush?pop=flush&commercialUI=false#returnsFAQ">Learn More<span></span></a> </div>
+		<div class="footerPromo">
+			<div class="footerPromoIcon">
+				<span class="icon-stack">
+					<i class="icon-circle icon-stack-base"></i>
+					<i class="icon-truck icon-light"></i>
+				</span>
+			</div>
+			<div class="footerPromoContent">
+				<h3><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">fast shipping</a></h3>
+				<p>Sears PartsDirect ships from regionally-located warehouses for timely delivery.</p>
+				<p><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">Learn More</a></p>
 			</div>
 		</div>
-		<div class="fast_shipping bg_position">
-			<div class="icon_bg_curves"></div>
-			<div id="right_icon" class="column_two_icons"></div>
-			<div class="fast_shipping_content">
-				<div class="shipping_cont">
-					<h3><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush?pop=flush?pop=flush&commercialUI=false#returnsFAQ">guaranteed fit </a></h3>
-					<p>All parts are manufacturer-approved, to ensure proper fit and to keep appliances running for years to come.</p>
-					<div class="clear"></div>
-					<a href="${mainSitePath}/partsdirect/faq.pd?pop=flush?pop=flush?pop=flush&commercialUI=false#returnsFAQ">Learn More<span></span></a> </div>
+
+		<div class="footerPromo">
+			<div class="footerPromoIcon">
+				<span class="icon-stack">
+					<i class="icon-circle icon-stack-base"></i>
+					<i class="icon-check-sign icon-light"></i>
+				</span>
+			</div>
+			<div class="footerPromoContent">
+				<h3><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush?pop=flush?pop=flush&amp;commercialUI=false#returnsFAQ">guaranteed fit</a></h3>
+				<p>All parts are manufacturer-approved, to ensure proper fit and to keep appliances running for years to come.</p>
+				<p><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">Learn More</a></p>
 			</div>
 		</div>
 	</div>
@@ -89,16 +90,17 @@
 	</div>
 </div>
 <div id="footerLegal">
-	<div class="glow_div"></div>
+	<div class="footerGlow"></div>
 	<div class="copyright">PartsDirect&#8482; &copy; 2013</div>
-	<div class="footer_a_div">
+	<div class="footerLegalLinks">
 		<a href="${mainSitePath}/partsdirect/privacyPolicy.pd" class="popupTrigger">Privacy policy</a>
 		<a target="_blank" href="${mainSitePath}/partsdirect/caliPrivacyPolicy.pd" class="popupTrigger">California privacy policy</a>
 		<a target="_blank" href="http://www.searsholdings.com/careers/">Careers</a>
 		<a href="http://www.sears.com/shc/s/nb_10153_12608_NB_CSrecalls" target="_blank" title="Product recalls">Product recalls</a>
 		<a href="${mainSitePath}/partsdirect/termsOfUse.pd" class="popupTrigger">Terms of use</a>
 	</div>
-	<div class="otherLogos">
-		<a href="javascript:;"><img src="http://c.searspartsdirect.com/cons-148/assets/img/home_images/veriSign.jpg" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;"><img src="http://c.searspartsdirect.com/cons-148/assets/img/home_images/bbb.jpg" /></a>
+	<div class="footerLogos">
+		<a href="javascript:;"><img src="http://c.searspartsdirect.com/cons-148/assets/img/home_images/veriSign.jpg" /></a>
+		<a href="javascript:;"><img src="http://c.searspartsdirect.com/cons-148/assets/img/home_images/bbb.jpg" /></a>
 	</div>
 </div>

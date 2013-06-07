@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="rep:User"
+    jcr:uuid="13ffd480-9c46-353f-bc16-e3fde8814291"
+    rep:password="\{SHA-256}2b8f5b62dd0b20fa-1000-e5f70597371aad9b11aef794b4826f79bb84584cc456895afdc57b8ce2aa7980"
+    rep:principalName="approver-1">
+    <profile
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="cq/security/components/profile"
+        familyName="Approver"/>
+</jcr:root>

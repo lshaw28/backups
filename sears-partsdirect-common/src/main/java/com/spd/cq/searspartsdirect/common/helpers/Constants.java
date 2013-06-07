@@ -20,6 +20,10 @@ public final class Constants {
 	//Model Search Constants
 	public static final String MODEL_NOT_FOUND = ident("Not Found");
 	
+	//DAM Sub-directory Constants
+	public static final String DAM_APPROVED_PATH = ident("/content/dam/searspartsdirect");
+	public static final String DAM_PENDING_APPROVAL_PATH = ident("/content/dam/assetspendingapproval");
+	
 	// Originally for guide nav, but generally applicable
 	public static final String GUIDE_NAV_COMPONENT = ident("searspartsdirect/components/content/guideNavigation");
 	public static final String COMMENTS_COMPONENT = ident("searspartsdirect/components/content/comments");

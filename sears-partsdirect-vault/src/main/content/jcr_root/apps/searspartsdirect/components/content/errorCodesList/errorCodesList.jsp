@@ -10,7 +10,8 @@
 <c:forEach var="item" items="${finalErrorCodeList}">
 	<p> ${item.key.title} -- ${item.key.description} <spd:displayImage path="${item.key.logoPath}"/></p>
 	<c:forEach var="subCategory" items="${item.value}">
-		<a href="errorCodeTablePageUrl">${subCategory.code} -- ${subCategory.condition}</a><br/>
+		<a href="errorCodeTablePageUrl">error code table page</a><br/>
+		<%-- <a href="errorCodeTablePageUrl">${subCategory.code} -- ${subCategory.condition}</a><br/>--%>
 	</c:forEach>
 </c:forEach>
 

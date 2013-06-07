@@ -25,6 +25,8 @@ comp.modelfinder.less
 comp.mymodels.less
 comp.searchPanel.less
 comp.sidebarlinks.less
+components/authorDisplay/authorDisplay.less
+components/socialBar/socialBar.less
 resp.large.less
 resp.tablet.less
 resp.mobile.less

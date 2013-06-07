@@ -10,10 +10,11 @@
 	 		${subcategoriesList[0].title} 
 	 		<c:set var="subCatUrl" value="${subcategoriesList[0].tagID}"/>
 	 </c:if>
-	 <cq:text property="errorCodeText"  placeholder=""/>
+	<cq:include path="errorCodeText" resourceType="foundation/components/text" />
 </h3>
-<cq:text property="errorCodeDesc"  placeholder=""/>
+<cq:include path="errorCodeDesc" resourceType="/apps/searspartsdirect/components/content/text" />
 
+<%-- 
 <spd:getErrorCodesData categoryPath="${productCategoryRelation.path}" subCategoryPath="${subCatUrl}" brandPath="${brandRelation.path}" />
 	<table>
 		<th>Error Code</th>
@@ -28,3 +29,25 @@
 			</tr>	
 		</c:forEach>
 	</table>
+--%>
+
+<spd:errorCodeTable/>
+<table border="1">
+	<tr>
+		<th>Error Code</th>
+		<th>condition</th>
+		<th>check/repair</th>
+		<th>shop parts</th>
+	</tr>
+	<c:forEach var="item" items="${errorCodeTableData}">
+		<tr><td colspan="4"><b>${item.key}</b></td></tr>
+		<c:forEach var="model" items="${item.value}">
+			<tr>
+				<td>${model.code}</td>
+			 	<td>${model.condition}</td>
+			 	<td>${model.repairPath}</td>
+			 	<td>no parts</td>
+			 </tr>
+		</c:forEach>
+	</c:forEach>
+</table>

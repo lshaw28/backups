@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Dialog"
+    title="Tools Required Repair"
+    xtype="dialog">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <deny
+            jcr:primaryType="cq:Widget"
+            defaultValue="{Boolean}false"
+            fieldLabel="Deny Asset?"
+            name="./jcr:content/deleteAsset"
+            xtype="checkbox"/>
+        <text
+            jcr:primaryType="cq:Widget"
+            defaultValue="{Boolean}false"
+            fieldLabel="Technical Approval Required?"
+            name="./jcr:content/technicalApproval"
+            xtype="checkbox"/>
+    </items>
+</jcr:root>
