@@ -2,7 +2,11 @@
 <spd:getRelation single="true" assetType="productCategory"/>
 
 <p>error code list</p>
-<h3><c:if test="${productCategoryRelation != null}">${productCategoryRelation.title}</c:if> <cq:text property="errorCodeTitle" placeholder=""/></h3>
+<h3>
+<c:if test="${productCategoryRelation != null}">
+	${productCategoryRelation.title}
+</c:if>&nbsp;
+<cq:text property="errorCodeTitle" placeholder=""/></h3>
 
 <cq:text property="errorCodeDescription" placeholder=""/>
 
@@ -10,8 +14,7 @@
 <c:forEach var="item" items="${finalErrorCodeList}">
 	<p> ${item.key.title} -- ${item.key.description} <spd:displayImage path="${item.key.logoPath}"/></p>
 	<c:forEach var="subCategory" items="${item.value}">
-		<a href="errorCodeTablePageUrl">error code table page</a><br/>
-		<%-- <a href="errorCodeTablePageUrl">${subCategory.code} -- ${subCategory.condition}</a><br/>--%>
+		<a href="${subCategory.path}.html">${subCategory.code}</a><br/>
 	</c:forEach>
 </c:forEach>
 

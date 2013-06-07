@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,6 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +23,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.model.ErrorCodeListModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
 
@@ -79,12 +78,12 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			pageContext.setAttribute("errorCodeTable", errorCodeModelList);
 		} else if (categoryPath != null) {
 			
-			HashMap<BrandModel, List<ErrorCodeModel>> errorCodeList = new HashMap<BrandModel, List<ErrorCodeModel>>();
-			Map<BrandModel, List<ErrorCodeModel>> finalErrorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeModel>>();
+			HashMap<BrandModel, List<ErrorCodeListModel>> errorCodeList = new HashMap<BrandModel, List<ErrorCodeListModel>>();
+			Map<BrandModel, List<ErrorCodeListModel>> finalErrorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeListModel>>();
 			
 			session = slingRequest.getResourceResolver().adaptTo(Session.class);
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("path", "/content/searspartsdirect");
+			map.put("path", "/content/searspartsdirect/en/error-tables");
 			map.put("type", Constants.CQ_PAGE);
 			map.put("1_property", "jcr:content/pages");
 			map.put("1_property.value", categoryPath);
@@ -98,29 +97,17 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 		    for (Hit hit : result.getHits()) {
 		        try {
 					ValueMap props = hit.getProperties();
+					Page p = pageManager.getPage(hit.getPath());
 					if (props != null) {
-						ErrorCodeModel model = new ErrorCodeModel("",props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("repairLink", String.class));
+						ErrorCodeListModel model = new ErrorCodeListModel(props.get("jcr:title", String.class), p.getPath());
 						String[] pages = (String[]) props.get("pages", String[].class);
-						String[] errorCodeTable = (String[]) props.get("errorCodeTable", String[].class);
-						
-						if (errorCodeTable != null) {
-							for(int i=0; i< errorCodeTable.length; i++) {
-								log.debug("errorcodetable "+ errorCodeTable[i].toString());
-							}
-						}
-						
-						log.debug("prop keys" + props.keySet().toString());
-						log.debug("prop values" + props.values());
 						
 						if (pages != null) {
-							for (String string : pages) {
-								log.debug("string" + string);
-							}
 							log.debug("pages.length "+pages.length);
 							for(int i = 0; i< pages.length; i++) {
 								log.debug(pages[i]);
 								if (pages[i].indexOf(Constants.ASSETS_PATH.concat("/brand")) > -1) {
-									List<ErrorCodeModel> errorCodeModels = new ArrayList<ErrorCodeModel>();
+									List<ErrorCodeListModel> errorCodeModels = new ArrayList<ErrorCodeListModel>();
 									Page brandPage = pageManager.getPage(pages[i]);
 									//log.debug("brandPage.getTitle()"+brandPage.getTitle() +"description "+ brandPage.getDescription());
 									BrandModel brandModel = new BrandModel("",brandPage.getTitle(), brandPage.getDescription(), brandPage.getPath() + Constants.ASSETS_LOGO_PATH);
@@ -130,7 +117,7 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 										errorCodeModels.add(model);
 										errorCodeList.put(brandModel, errorCodeModels);
 									} else {
-										List<ErrorCodeModel> newModel = errorCodeList.get(brandModel);
+										List<ErrorCodeListModel> newModel = errorCodeList.get(brandModel);
 										newModel.add(model);
 										errorCodeList.remove(brandModel);
 										errorCodeList.put(brandModel, newModel);
