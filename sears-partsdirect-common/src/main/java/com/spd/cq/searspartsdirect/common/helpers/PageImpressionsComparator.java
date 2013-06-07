@@ -14,19 +14,33 @@ import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 
+/**
+ * Compares pages based on their all-time total views.
+ * @author bzethmayr
+ *
+ */
 public class PageImpressionsComparator implements Comparator<Page> {
-
-	private final static boolean INITIAL_DEBUG = false;
 
 	private final static Logger log = LoggerFactory.getLogger(PageImpressionsComparator.class);
 	
 	private final Map<Page,Long> memoImpressions = new IdentityHashMap<Page,Long>();
 	private final ResourceResolver resourceResolver;
 	
+	/**
+	 * Creates a new comparator
+	 * @param resourceResolver Needed in order to look up page views.
+	 */
 	public PageImpressionsComparator(final ResourceResolver resourceResolver) {
 		this.resourceResolver = resourceResolver;
 	}
 	
+	/**
+	 * Compares pages based on views. This meets the standard compare contract, so for
+	 * most viewed first, use like: 
+	 * <code>Collections.sort(yourList,Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)))<code>
+	 * 
+	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+	 */
 	public int compare(Page pageA, Page pageB) {
 		long impressionsA, impressionsB;
 		if (!memoImpressions.containsKey(pageA)) {
@@ -44,6 +58,9 @@ public class PageImpressionsComparator implements Comparator<Page> {
 		return Long.signum(impressionsA - impressionsB);
 	}
 	
+	/*
+	 * This is relatively expensive so we memoize the results.
+	 */
 	private long getAllImpressions(Page tempChild) {
         long numberOfImpressions = 0;
         try {
@@ -55,7 +72,6 @@ public class PageImpressionsComparator implements Comparator<Page> {
 			Node allYearsNode = allYearsResource.adaptTo(Node.class);
 			NodeIterator allYears = allYearsNode.getNodes();
 			while (allYears.hasNext()) {
-				if (INITIAL_DEBUG && log.isDebugEnabled()) log.debug("adding a year");
 				numberOfImpressions += allYears.nextNode().getProperty("views").getLong();
 			}
         } catch (Exception ex) {

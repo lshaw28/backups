@@ -12,6 +12,7 @@ public final class Constants {
 	public static final String ASSETS_PATH = ident("/etc/spdAssets/scaffolding");
 	public static final String ASSETS_TITLE_PATH = ident("jcr:title");
 	public static final String ASSETS_TITLE_REL_PATH = ident("jcr:content/jcr:title");
+	public static final String ASSETS_PAGES_REL_PATH = ident("jcr:content/pages");
 	public static final String ASSETS_DESCRIPTION_PATH = ident("jcr:description");
 	public static final String ASSETS_LOGO_PATH = ident("/jcr:content/logo");
 	public static final String ASSETS_IMAGE_PATH = ident("/jcr:content/image");
@@ -33,6 +34,7 @@ public final class Constants {
 	public static final String INSTRUCTIONS_COMPONENT = ident("searspartsdirect/components/content/repairInstructions");
 	
 	public static final String USERGEN_ROOT = ident("/content/usergenerated");
+	public static final String ARTICLES_ROOT = ident("/content/searspartsdirect/en/articles");
 	
 	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
 	public static final String GUIDE_NAV_PATH = ident("guideNavigation");

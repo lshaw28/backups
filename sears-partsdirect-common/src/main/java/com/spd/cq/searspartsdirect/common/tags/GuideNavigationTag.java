@@ -37,10 +37,13 @@ public class GuideNavigationTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		// output list containing lists [linktext,sectionlink]
 		List<List<String>> sections = new ArrayList<List<String>>();
+		
 		// in a template, currentNode is not populated - so we find the page content node
 		Node pageNode = currentPage.getContentResource().adaptTo(Node.class);
+		
 		// we may need to set up configuration
 		maybeSetupDefaultConfig(pageNode);
+		
 		// we read our configuration into a map
 		Map<String,String> typesAndLabels = readTypesAndLabelsFromConfig(pageNode);
 		if (log.isDebugEnabled()) log.debug("typesAndLabels is "+typesAndLabels);

@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.jcr.Node;
-import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
@@ -37,10 +35,10 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 
 			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
 			Map<String, String> props = new HashMap<String, String>();
-	        props.put("type", "cq:Page");
-	        props.put("path", "/content/searspartsdirect/en/articles");
-	        props.put("property", "jcr:content/pages");
-	        props.put("property.value", categoryPath); //?!?! suspect...
+	        props.put("type", Constants.CQ_PAGE);
+	        props.put("path", Constants.ARTICLES_ROOT);
+	        props.put("property", Constants.ASSETS_PAGES_REL_PATH);
+	        props.put("property.value", categoryPath);
 	        
 	        List<Hit> hits = qb.createQuery(
 	        			PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)
