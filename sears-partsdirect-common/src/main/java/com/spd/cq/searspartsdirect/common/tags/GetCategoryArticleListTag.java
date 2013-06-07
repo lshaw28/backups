@@ -1,10 +1,13 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
@@ -16,6 +19,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
 import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
 
 public class GetCategoryArticleListTag extends CQBaseTag {
@@ -36,17 +40,26 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	        props.put("type", "cq:Page");
 	        props.put("path", "/content/searspartsdirect/en/articles");
 	        props.put("property", "jcr:content/pages");
-	        props.put("property.value", "categoryPath"); //?!?! suspect...
+	        props.put("property.value", categoryPath); //?!?! suspect...
 	        
-	        List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
+	        List<Hit> hits = qb.createQuery(
+	        			PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)
+	        		).getResult().getHits();
 
 	        for (Hit hit: hits) {
 	        	result.add(pageManager.getPage(hit.getPath()));
 	        }
+	        
+	        Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
 	          
 	        for(Page page: result){
 	        	if (!page.equals(currentPage)) { // we exclude ourself from results
-	        		articles.add(new RelatedArticleModel(page.getPath() + ".html", page.getPath() + Constants.ASSETS_IMAGE_PATH, page.getTitle(), page.getPath() + Constants.ASSETS_DESCRIPTION_PATH));
+	        		articles.add(new RelatedArticleModel(
+		        				page.getPath() + ".html", 
+		        				page.getPath() + Constants.ASSETS_IMAGE_PATH, 
+		        				page.getTitle(), 
+		        				page.getDescription())
+	        				);
 	        	}
 	        }	        	
 

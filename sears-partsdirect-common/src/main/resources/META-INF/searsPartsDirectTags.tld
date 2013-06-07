@@ -135,6 +135,17 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+	</tag>
+	<tag>
+		<name>GetCategoryArticleList</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCategoryArticleListTag</tag-class>
+		<info>Retrieves articles in a given category for the Category Article List component</info>
+		<attribute>
+			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>	
 	<tag>
 	   <name>getBrandCategoryModelNo</name>

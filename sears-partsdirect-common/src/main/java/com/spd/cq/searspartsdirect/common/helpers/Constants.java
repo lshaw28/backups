@@ -59,6 +59,9 @@ public final class Constants {
 	
 	public static final String JCR_CONTENT_ROOT = ident("jcr:content/");
 	
+	public static final String STATS_PAGE_PREFIX = ident("/var/statistics/pages");
+    public static final String STATS_PAGE_SUFFIX = ident("/.stats");
+	
 	public static final String RECENTLY_VIEWED_MODEL_COOKIE = "recentlyViewedModels";
 	public static final String RECENTLY_VIEWED_PART_COOKIE = "recentlyViewedParts";
 
