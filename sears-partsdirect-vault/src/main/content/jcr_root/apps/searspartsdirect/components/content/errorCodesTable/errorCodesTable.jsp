@@ -14,7 +14,7 @@
 </h3>
 <cq:text property="errorCodeDesc" placeholder=""/>
 
-<spd:errorCodeTable/>
+<spd:ErrorCodeTable/>
 <table border="1">
 	<tr>
 		<th>Error Code</th>
