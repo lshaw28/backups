@@ -153,23 +153,11 @@
 		</attribute>
 	</tag>
 	<tag>
-	   <name>getErrorCodesData</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetErrorCodesDataTag</tag-class>
-	   <info>This tag will get the list of pages by tags</info>
+	   <name>GetErrorCodesList</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetErrorCodesListTag</tag-class>
+	   <info>This tag will get all error code table group by brand</info>
 	   <attribute>
 	   		<name>categoryPath</name>
-	   		<type>java.lang.String</type>
-	   		<required>false</required>
-	   		<rtexprvalue>true</rtexprvalue>
-	   	</attribute>
-	   	<attribute>
-	   		<name>subCategoryPath</name>
-	   		<type>java.lang.String</type>
-	   		<required>false</required>
-	   		<rtexprvalue>true</rtexprvalue>
-	   	</attribute>
-	   	<attribute>
-	   		<name>brandPath</name>
 	   		<type>java.lang.String</type>
 	   		<required>false</required>
 	   		<rtexprvalue>true</rtexprvalue>

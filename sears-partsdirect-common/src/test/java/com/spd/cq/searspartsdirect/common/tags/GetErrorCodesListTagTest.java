@@ -23,11 +23,11 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.SearchResult;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
-public class GetErrorCodesDataTagTest extends TestCase {
+public class GetErrorCodesListTagTest extends TestCase {
 	
 	HttpServletRequest request;
 	PageContext pageContext;
-	GetErrorCodesDataTag tag;
+	GetErrorCodesListTag tag;
 	ResourceResolver resourceResolver;
 	Resource resource;
 	SlingHttpServletRequest slingRequest;
@@ -47,7 +47,7 @@ public class GetErrorCodesDataTagTest extends TestCase {
 		builder = Mockito.mock(QueryBuilder.class);
 		query = Mockito.mock(Query.class);
 		result = Mockito.mock(SearchResult.class);
-		tag = new GetErrorCodesDataTag();
+		tag = new GetErrorCodesListTag();
 	}
 	
 	@Test
