@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:created="{Date}2013-05-29T14:42:25.960-05:00"
+    jcr:createdBy="anonymous"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="anonymous POST on Test with tags"
+    sling:resourceType="granite/activitystreams/components/activity"
+    verb="POST">
+    <object
+        jcr:description="this is a comment&#xd;&#xa;"
+        jcr:primaryType="nt:unstructured"
+        id="/content/usergenerated/content/searspartsdirect/en/TestTags/jcr:content/comments/1Bucket/lxkf-this_is_a_comment"
+        objectType="comment"
+        subType="social/commons/components/comments/comment"/>
+    <target
+        jcr:primaryType="nt:unstructured"
+        displayName="Test with tags"
+        id="/content/searspartsdirect/en/TestTags"
+        objectType="searspartsdirect/components/page/repairHelpHome"/>
+</jcr:root>

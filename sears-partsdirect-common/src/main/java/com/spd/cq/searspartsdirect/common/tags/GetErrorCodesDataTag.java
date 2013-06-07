@@ -84,7 +84,7 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			
 			session = slingRequest.getResourceResolver().adaptTo(Session.class);
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("path", "/etc/spdAssets/scaffolding/errorCode/");
+			map.put("path", "/content/searspartsdirect");
 			map.put("type", Constants.CQ_PAGE);
 			map.put("1_property", "jcr:content/pages");
 			map.put("1_property.value", categoryPath);
@@ -101,7 +101,21 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 					if (props != null) {
 						ErrorCodeModel model = new ErrorCodeModel("",props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("repairLink", String.class));
 						String[] pages = (String[]) props.get("pages", String[].class);
+						String[] errorCodeTable = (String[]) props.get("errorCodeTable", String[].class);
+						
+						if (errorCodeTable != null) {
+							for(int i=0; i< errorCodeTable.length; i++) {
+								log.debug("errorcodetable "+ errorCodeTable[i].toString());
+							}
+						}
+						
+						log.debug("prop keys" + props.keySet().toString());
+						log.debug("prop values" + props.values());
+						
 						if (pages != null) {
+							for (String string : pages) {
+								log.debug("string" + string);
+							}
 							log.debug("pages.length "+pages.length);
 							for(int i = 0; i< pages.length; i++) {
 								log.debug(pages[i]);
@@ -145,21 +159,7 @@ public class GetErrorCodesDataTag extends CQBaseTag {
 			}
            
 			pageContext.setAttribute("finalErrorCodeList", finalErrorCodeList);
-		} else {
-			//using the resource resolver
-			ArrayList<ErrorCodeModel> errorCodes = new ArrayList<ErrorCodeModel>();
-			Resource r = resourceResolver.getResource("/etc/spdAssets/scaffolding/errorCode");
-			if (r != null) {
-				Iterator<Resource> iter = r.listChildren();
-				while (iter.hasNext()) {
-					Resource child = iter.next();
-					Page p = child.adaptTo(Page.class);
-					ValueMap properties = p.getProperties();
-					errorCodes.add(new ErrorCodeModel("",properties.get("jcr:title",""), properties.get("jcr:description",""), null));
-				}
-			}
-			pageContext.setAttribute("errorCodeList", errorCodes);
-		}
+		} 
 		return SKIP_BODY;
 	}
 	
