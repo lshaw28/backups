@@ -181,14 +181,9 @@
 		 <info>Provides the path of an image</info>
 	</tag>
 	<tag>
-	   <name>guideNavigation</name>
+	   <name>GuideNavigation</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GuideNavigationTag</tag-class>
 		 <info>Provides information to the guideNavigation component</info>
-	</tag>
-	<tag>
-		<name>setupGuideNavigationDefaults</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.SetupGuideNavigationDefaultsTag</tag-class>
-		<info>author only, writes default setup for the guideNavigation component</info>
 	</tag>
 	<tag>
 		<name>getAssets</name>
@@ -265,7 +260,7 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>resolveHtw</name>
+		<name>ResolveHazardTipWarning</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ResolveHazardTipWarningTag</tag-class>
 		<info>Resolves hazard, tip, or warning configuration to display text (or placeholder)</info>
 		<attribute>

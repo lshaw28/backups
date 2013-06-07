@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<spd:resolveHtw adhocField="hazardTextEntered" choiceField="hazardChosen" placeholder="NO HAZARD FOUND."/>
+<spd:ResolveHazardTipWarning adhocField="hazardTextEntered" choiceField="hazardChosen" placeholder="NO HAZARD FOUND."/>
 <c:choose>
 	<c:when test="${empty htwImage}">
 		<%-- displayImage tag never acts against other than the current resource.

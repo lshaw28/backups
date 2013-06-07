@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<spd:guideNavigation />
+<spd:GuideNavigation />
 <div class="sticky-wrapper">
 	<nav id="sticky">
 		<c:choose>
