@@ -6,5 +6,6 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Tip"
 	jcr:description="A tip useful during a repair"
+	cq:isContainer="true"
 	componentGroup="SearsPartsDirect" />
 	

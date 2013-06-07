@@ -2,7 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<spd:getRelatedArticles />
+<spd:getRelation single="true" assetType="productCategory" />
+<spd:getRelatedArticles categoryPath="${productCategoryRelation.path}" />
 
 <c:if test="${not empty articles}">
 	<cq:text property="itemsHeader"/><br />

@@ -4,19 +4,37 @@
 	activeTab="0"
 	xtype="panel">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<errorCodeText jcr:primaryType="cq:Widget"
-			fieldLabel="Text Value"
-			name="./errorCodeText"
-			xtype="textfield"
-			maxLength="140"/>
-		<errorCodeDesc jcr:primaryType="cq:Widget"
-			fieldLabel="Optional Description"
-			name="./errorCodeDesc"
-			xtype="richtext"
-			maxLength="500">
-		<listeners
-			jcr:primaryType="nt:unstructured"
-			loadcontent="function(field){window.SPDAuthorUtils.setRTEPlugins(field);}"/>
-		</errorCodeDesc>			
+		<multi
+            jcr:primaryType="cq:Widget"
+            fieldLabel="Error Code Table"
+            name="./errorCodeTable"
+            xtype="multifield">
+            <fieldConfig
+                jcr:primaryType="cq:Widget"
+                xtype="multicustom">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <codeType
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Error Code Type"
+                        name="codeType"
+                        xtype="textfield"/>
+                     <code
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Error Code"
+                        name="code"
+                        xtype="textfield"/>
+                     <condition
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Condition"
+                        name="condition"
+                        xtype="textfield"/>
+                      <checkRepairLink
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Check/Repair"
+                        name="checkRepairLink"
+                        xtype="pathfield"/>          
+                </items>
+            </fieldConfig>
+        </multi>
 	</items>
 </jcr:root>

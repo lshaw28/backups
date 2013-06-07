@@ -118,11 +118,23 @@
 		<name>getRelatedGuides</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetRelatedGuidesTag</tag-class>
 		<info>Sets page context information required for Related Guides component</info>
+	   	<attribute>
+			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>		
 	</tag>
 	<tag>
 		<name>getRelatedArticles</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetRelatedArticlesTag</tag-class>
 		<info>Sets page context information required for Related Articles component</info>
+		<attribute>
+			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>	
 	<tag>
 	   <name>getBrandCategoryModelNo</name>
@@ -251,5 +263,33 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+	</tag>
+	<tag>
+		<name>resolveHtw</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.ResolveHazardTipWarningTag</tag-class>
+		<info>Resolves hazard, tip, or warning configuration to display text (or placeholder)</info>
+		<attribute>
+			<name>adhocField</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>choiceField</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>placeholder</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>errorCodeTable</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.ErrorCodeTableTag</tag-class>
+		<info>gets the error code table data</info>
 	</tag>
 </taglib>

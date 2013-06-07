@@ -92,7 +92,8 @@ var video = Class.extend(function () {
 				self.iframe = $('<iframe />');
 				self.iframe.attr('src', 'http://www.youtube.com/embed/' + self.youtubeId)
 					.attr('allowfullscreen', 'true')
-					.attr('frameborder', '0');
+					.attr('frameborder', '0')
+					.addClass('videoIframe');
 				self.el.append(self.iframe);
 			} else {
 				// Get the iframe's current size
