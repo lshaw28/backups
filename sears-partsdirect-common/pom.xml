@@ -137,5 +137,10 @@
 			<artifactId>mockito-all</artifactId>
 			<version>1.8.4</version>
 		</dependency>
+		<dependency>
+			<groupId>com.adobe.granite</groupId>
+			<artifactId>com.adobe.granite.workflow.api</artifactId>
+			<version>1.0.2</version>
+		</dependency>
 	</dependencies>
 </project>

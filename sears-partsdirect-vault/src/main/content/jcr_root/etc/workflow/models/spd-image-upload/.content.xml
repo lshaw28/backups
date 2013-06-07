@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/etc/designs/default"
+        cq:lastModified="{Date}2013-06-07T09:43:50.830-05:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/libs/cq/workflow/templates/model"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="SearsPartsDirect Image Upload"
+        sling:resourceType="cq/workflow/components/pages/model">
+        <flow
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <dialog
+                jcr:created="{Date}2013-06-06T18:29:41.620-05:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2013-06-07T09:25:59.254-05:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Screener Approve Asset"
+                sling:resourceType="cq/workflow/components/model/participant">
+                <metaData
+                    jcr:lastModified="{Date}2013-06-06T18:29:59.922-05:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    DIALOG_PATH="/etc/workflow/dialogs/imageUpload/dialog"
+                    PARTICIPANT="/home/groups/s/screeners"/>
+            </dialog>
+            <goto_0
+                jcr:created="{Date}2013-06-07T09:16:59.082-05:00"
+                jcr:createdBy="admin"
+                jcr:description="Goto Step"
+                jcr:lastModified="{Date}2013-06-07T09:36:04.383-05:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Process Screener Input"
+                sling:resourceType="cq/workflow/components/model/goto"
+                PROCESS="com.adobe.granite.workflow.core.process.GotoProcess"
+                PROCESS_AUTO_ADVANCE="false">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="com.adobe.granite.workflow.core.process.GotoProcess"
+                    PROCESS_AUTO_ADVANCE="false"
+                    script="function check() {&#xa;var p = workflowData.getPayload().toString();&#xa;var n = workflowSession.getSession().getItem(p);&#xa;return (!(n.getNode(&quot;jcr:content&quot;).hasProperty(&quot;deleteAsset&quot;)));&#xa;}"
+                    TARGET_NODE_PATH="/etc/workflow/models/spd-image-upload/jcr:content/flow/goto"/>
+            </goto_0>
+            <deletenodeprocess
+                jcr:created="{Date}2013-06-07T09:43:46.197-05:00"
+                jcr:createdBy="admin"
+                jcr:description="A process to delete the given payload node"
+                jcr:lastModified="{Date}2013-06-07T09:43:46.197-05:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Delete Node"
+                sling:resourceType="cq/workflow/components/workflow/deletenodeprocess">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="/etc/workflow/scripts/delete.ecma"
+                    PROCESS_AUTO_ADVANCE="true"/>
+            </deletenodeprocess>
+            <goto_1
+                jcr:created="{Date}2013-06-07T09:21:08.998-05:00"
+                jcr:createdBy="admin"
+                jcr:description="Go to the last step after deletion"
+                jcr:lastModified="{Date}2013-06-07T09:38:38.772-05:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Goto Step"
+                sling:resourceType="cq/workflow/components/model/goto"
+                PROCESS="com.adobe.granite.workflow.core.process.GotoProcess"
+                PROCESS_AUTO_ADVANCE="false">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="com.adobe.granite.workflow.core.process.GotoProcess"
+                    PROCESS_AUTO_ADVANCE="false"
+                    script="function check() {&#xa;return true;&#xa;}"
+                    TARGET_NODE_PATH="/etc/workflow/models/spd-image-upload/jcr:content/flow/noopprocess"/>
+            </goto_1>
+            <goto
+                jcr:created="{Date}2013-06-06T19:24:37.426-05:00"
+                jcr:createdBy="admin"
+                jcr:description="Goto Step"
+                jcr:lastModified="{Date}2013-06-07T09:27:23.080-05:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Technical Review Check"
+                sling:resourceType="cq/workflow/components/model/goto"
+                PROCESS="com.adobe.granite.workflow.core.process.GotoProcess"
+                PROCESS_AUTO_ADVANCE="false">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="com.adobe.granite.workflow.core.process.GotoProcess"
+                    PROCESS_AUTO_ADVANCE="false"
+                    script="function check() {&#xa;var p = workflowData.getPayload().toString();&#xa;var n = workflowSession.getSession().getItem(p);&#xa;return (!(n.getNode(&quot;jcr:content&quot;).hasProperty(&quot;technicalApproval&quot;)));&#xa;}"
+                    TARGET_NODE_PATH="/etc/workflow/models/spd-image-upload/jcr:content/flow/process"/>
+            </goto>
+            <participant
+                jcr:created="{Date}2013-06-06T19:25:50.415-05:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2013-06-07T09:26:06.844-05:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Technical Reviewer Approve Asset"
+                sling:resourceType="cq/workflow/components/model/participant">
+                <metaData
+                    jcr:lastModified="{Date}2013-06-06T19:26:11.914-05:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    PARTICIPANT="/home/groups/t/technical-reviewers"/>
+            </participant>
+            <process
+                jcr:created="{Date}2013-06-06T15:03:05.337-05:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2013-06-07T09:27:15.144-05:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Process Image"
+                sling:resourceType="cq/workflow/components/model/process">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="com.spd.cq.searspartsdirect.common.foundation.ImageApprovalWorkflowProcess"
+                    PROCESS_AUTO_ADVANCE="true"/>
+            </process>
+            <noopprocess
+                jcr:created="{Date}2013-06-07T09:21:35.962-05:00"
+                jcr:createdBy="admin"
+                jcr:description="A no operation process"
+                jcr:lastModified="{Date}2013-06-07T09:21:44.519-05:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Flow End Marker"
+                sling:resourceType="cq/workflow/components/workflow/noopprocess"
+                PROCESS="/etc/workflow/scripts/noop.ecma"
+                PROCESS_AUTO_ADVANCE="true">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="/etc/workflow/scripts/noop.ecma"
+                    PROCESS_AUTO_ADVANCE="true"/>
+            </noopprocess>
+        </flow>
+        <end
+            jcr:lastModified="{Date}2013-06-06T14:17:22.211-05:00"
+            jcr:lastModifiedBy="admin"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="cq/flow/components/step/end"/>
+        <model/>
+    </jcr:content>
+</jcr:root>
