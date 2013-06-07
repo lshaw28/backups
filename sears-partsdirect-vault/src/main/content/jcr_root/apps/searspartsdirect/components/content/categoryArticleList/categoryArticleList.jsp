@@ -10,7 +10,7 @@
 	<c:when test="${not empty articles}">
 	<div>
 		<c:forEach var="article" items="${articles}">
-		${article.url} ${article.imagePath} ${article.title} ${article.description}
+		<%-- ${article.url} ${article.imagePath} ${article.title} ${article.description} --%>
 		<div>
 			<a href="${article.url}.html"><spd:displayImage path="${article.imagePath}"/></a>
 			<a href="${article.url}.html">${article.title}</a>
