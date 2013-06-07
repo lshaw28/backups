@@ -30,20 +30,18 @@ public class PageImpressionsComparator implements Comparator<Page> {
 	public int compare(Page pageA, Page pageB) {
 		long impressionsA, impressionsB;
 		if (!memoImpressions.containsKey(pageA)) {
-			memoImpressions.put(pageA, impressionsA = getAllImpressions(pageA));
-			if (INITIAL_DEBUG && log.isDebugEnabled()) log.debug("remembering "+impressionsA);
+			impressionsA = getAllImpressions(pageA);
+			memoImpressions.put(pageA, impressionsA);
 		} else {
 			impressionsA = memoImpressions.get(pageA);
-			if (INITIAL_DEBUG && log.isDebugEnabled()) log.debug("remembered "+impressionsA);
 		}
 		if (!memoImpressions.containsKey(pageB)) {
-			memoImpressions.put(pageB, impressionsB = getAllImpressions(pageB));
-			if (INITIAL_DEBUG && log.isDebugEnabled()) log.debug("remembering "+impressionsB);
+			impressionsB = getAllImpressions(pageB);
+			memoImpressions.put(pageB, impressionsB);
 		} else {
 			impressionsB = memoImpressions.get(pageB);
-			if (INITIAL_DEBUG && log.isDebugEnabled()) log.debug("remembered "+impressionsB);
 		}
-		return impressionsA > impressionsB ? 1 : impressionsA < impressionsB ? -1 : 0;
+		return Long.signum(impressionsA - impressionsB);
 	}
 	
 	private long getAllImpressions(Page tempChild) {
