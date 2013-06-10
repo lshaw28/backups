@@ -1,8 +1,6 @@
-@import "base.variables.less";
-@import "base.mixins.less";
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
 
-/* Component: Footer */
-/* Main Layout */
 .globalFooter {
 	background-color: @bodyColor;
 	border-top: 2px solid @bodyColor;
@@ -25,7 +23,6 @@
 	width: 100%;
 }
 
-/* Columns */
 #footerColumn1, #footerColumn2, #footerColumn3 {
 	clear: none;
 	float: left;
@@ -33,7 +30,7 @@
 	padding: 20px 0 57px 2%;
 	width: 30%;
 }
-/* 1: Icon List */
+
 #footerColumn1 {
 	.footerIcon {
 		a {
@@ -98,7 +95,6 @@
 	}
 }
 
-/* 2. Promos */
 #footerColumn2 {
 	.footerPromo {
 		position: relative;
@@ -161,7 +157,6 @@
 	}
 }
 
-/* 3. Links and Help */
 #footerColumn3 {
 	h3 {
 		color: @bodyCopyColor;
@@ -239,7 +234,6 @@
 	}
 }
 
-/* Legal Text */
 #footerLegal {
 	background-color: @bodyColor;
 	background-position: bottom left;
@@ -288,7 +282,6 @@
 	}
 }
 
-/* Footer Icons */
 #lpchatbutton4, #lpvoicebutton4 {
 	a {
 		background-image: url('../img/lp_btn_sprite.png');
@@ -322,258 +315,5 @@
 	}
 }
 
-/* Breakpoints */
-/* Exception large desktop */
-@media (max-width: 1299px) {
-	#footerColumn1 {
-		padding: 20px 0 16px 25px;
-		width: 32%;
-	}
-	#footerColumn2 {
-		width: 27%;
-	}
-	#footerColumn3 {
-		h3 {
-			padding: 0 28px 1px 0;
-		}
-		form {
-			input {
-				width: 55%;
-			}
-		}
-	}
-}
-
-/* Large desktop */
-@media (min-width: 1200px) {
-}
-
-/* Exception: Landscape tablet and small desktop */
-@media (max-width: 1024px) {
-	.globalFooter {
-		margin: 20px 37px;
-		width: 92.5%;
-	}
-	#footerColumn2 {
-		.footerPromo {
-			.footerPromoContent {
-				p {
-					font-size: @smallLinkSize;
-					line-height: 150%;
-
-					a {
-						font-size: @loginNavigationSize;
-						font-weight: bold;
-					}
-				}
-			}
-		}
-	}
-}
-/* Exception: Desktop and portrait tablet */
-@media (max-width: 1000px) {
-	#footerColumn2 {
-		.footerPromo {
-			.footerPromoIcon {
-				display: none;
-				visibility: hidden;
-			}
-			.footerPromoContent {
-				padding: 10px 20px;
-
-				h3 {
-					font-size: @header3Size;
-					font-weight: normal;
-					color: #304295;
-				}
-				p {
-					color: @bodyCopyColor;
-					font-size: @smallLinkSize;
-
-					a {
-						font-size: @paragraphSize;
-						font-weight: normal;
-					}
-				}
-			}
-		}
-	}
-	#footerLegal {
-		.footerLegalLinks {
-			a {
-				color: @bodyCopyColor;
-				float: left;
-				font-size: @loginNavigationSize;
-				margin: 12px 6px 0 6px;
-				text-decoration: none;
-			}
-		}
-	}
-}
-
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) {
-}
-
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) {
-	.globalFooter {
-		margin: 20px 3px;
-		width: 99.5%;
-	}
-	#footerColumn1 {
-		p {
-			a {
-				font-size: @footerColumnSize;
-			}
-		}
-	}
-	#footerColumn2 {
-		font-size: @paragraphSize;
-
-		.footerPromo {
-			.footerPromoContent {
-				h3 {
-					a {
-						font-size: @header4Size;
-						line-height: 25px;
-					}
-				}
-				p {
-					font-size: @paragraphSize;
-				}
-			}
-		}
-	}
-	#footerColumn3 {
-		p {
-			margin: 0 0 4px 0;
-		}
-		ul {
-			li {
-				a {
-					font-size: @paragraphSize;
-				}
-			}
-		}
-		form {
-			padding: 0 20px 20px 0;
-			float: left;
-		}
-	}
-	#footerLegal {
-		.copyright {
-			font-size: @loginNavigationSize;
-			width: 110px;
-		}
-		.footerLegalLinks {
-			a {
-				font-size: @loginNavigationSize;
-			}
-		}
-	}
-}
-
-/* Exception: landscape phones */
-@media (max-width: 650px) {
-	#footerColumn1, #footerColumn2, #footerColumn3 {
-		clear: both;
-		margin: 0;
-		padding: 20px 5% 0 5%;
-		width: 90%;
-	}
-	#footerColumn1 {
-		p {
-			a {
-				.icon-stack {
-					margin: -10px 10px 0 0;
-				}
-			}
-		}
-	}
-	#footerColumn2 {
-		.footerPromo:last-child {
-			.footerPromoContent {
-				margin: 0;
-			}
-		}
-	}
-	#footerLegal {
-		.footerLegalLinks {
-			clear: both;
-			float: none;
-			margin: 0 auto;
-			text-align: center;
-			width: 81%;
-		}
-		.footerLegalLinks {
-			a {
-				color: @bodyCopyColor;
-				float: none;
-				font-size: @loginNavigationSize;
-				margin: 12px 13px 0 13px;
-				text-decoration: none;
-			}
-		}
-		.copyright {
-			font-size: @smallLinkSize;
-			text-align: center;
-			width: 100%;
-		}
-		.footerLogos {
-			clear: both;
-			float: none;
-			margin: 8px 0 0 0;
-			text-align: center;
-			width: 100%;
-		}
-	}
-}
-
-/* Landscape phones and down */
-@media (max-width: 480px) {
-	#footerColumn1 {
-		.footerIcon, p {
-			display: block;
-			margin: 0 15px 0 15px;
-			width: auto;
-		}
-		p {
-			clear: none;
-			font-size: @paragraphSize;
-			text-align: center;
-			width: 46px;
-
-			a {
-				text-align: center;
-
-				.icon-stack {
-					clear: both;
-				}
-				.footerIconHelp {
-					display: none;
-				}
-			}
-		}
-	}
-	#footerColumn2 {
-		.footerPromo {
-			.footerPromoContent {
-				p {
-					font-size: @paragraphSize;
-				}
-			}
-		}
-	}
-	#footerLegal {
-		.footerLegalLinks {
-			a {
-				color: @bodyCopyColor;
-				float: none;
-				font-size: @loginNavigationSize;
-				margin: 12px 5px 0 2px;
-				text-decoration: none;
-			}
-		}
-	}
-}
+@import 'globalFooter.tablet.less';
+@import 'globalFooter.mobile.less';

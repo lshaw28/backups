@@ -17,7 +17,6 @@ comp.brandcarousel.less
 comp.cartandmodels.less
 comp.errorcodes.less
 comp.findpartcategories.less
-comp.globalFooter.less
 comp.globalHeader.less
 comp.maincarousel.less
 comp.manualshelp.less
@@ -30,6 +29,8 @@ resp.tablet.less
 resp.mobile.less
 #base=less/components/authorDisplay/.
 authorDisplay.less
+#base=less/components/globalFooter/.
+globalFooter.less
 #base=less/components/modelNumberSearch/.
 modelNumberSearch.less
 #base=less/components/skyscraperAd/.
