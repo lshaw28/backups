@@ -6,19 +6,19 @@
 	<items jcr:primaryType="cq:WidgetCollection">
 		<text1 jcr:primaryType="cq:Widget"
 			fieldLabel="Text before category name e.g. 'Most Viewed'"
-			name="./text1"
+			name="./guidePreText"
 			xtype="textfield"
 			allowBlank="{Boolean}false"
 			maxlength="70"/>
 		<text2 jcr:primaryType="cq:Widget"
 			fieldLabel="Text after category name e.g. 'Guides'"
-			name="./text2"
+			name="./guidePostText"
 			xtype="textfield"
 			allowBlank="{Boolean}false"
 			maxlength="42"/>
 		<optionalDescription jcr:primaryType="cq:Widget"
 			fieldLabel="View all Text"
-			name="./optionalDescription"
+			name="./viewAllItemsText"
 			xtype="richtext"
 			maxlength="140"
 			allowBlank="{Boolean}true">
@@ -29,7 +29,7 @@
 		</optionalDescription>
 		<url jcr:primaryType="cq:Widget"
 			fieldLabel="View all link"
-			name="./url"
+			name="./viewAllItemsLink"
 			xtype="textfield"
 			allowBlank="{Boolean}true"
 			maxlength="70"/>
