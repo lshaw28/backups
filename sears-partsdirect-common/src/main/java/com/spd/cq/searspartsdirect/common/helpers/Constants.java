@@ -23,6 +23,7 @@ public final class Constants {
 	
 	//DAM Sub-directory Constants
 	public static final String DAM_APPROVED_PATH = ident("/content/dam/searspartsdirect");
+	public static final String DAM_DENIED_PATH = ident("/content/dam/assetsdenied");
 	public static final String DAM_PENDING_APPROVAL_PATH = ident("/content/dam/assetspendingapproval");
 	
 	// Originally for guide nav, but generally applicable
