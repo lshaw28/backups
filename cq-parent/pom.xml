@@ -80,7 +80,11 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	
+	<properties>
+		<spring.version>2.0.8</spring.version>
+	</properties>
+	
 	<dependencies>
 		<!-- CQ Dependencies -->
 		<dependency>
@@ -154,6 +158,8 @@
 		  <artifactId>cq-wcm-core</artifactId>
 		  <version>5.4.28</version>
 		</dependency>
+	
+		
 	</dependencies>
 
 	<profiles>
