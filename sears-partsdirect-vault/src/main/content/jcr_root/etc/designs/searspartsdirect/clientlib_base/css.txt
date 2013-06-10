@@ -25,8 +25,14 @@ comp.modelfinder.less
 comp.mymodels.less
 comp.searchPanel.less
 comp.sidebarlinks.less
-components/authorDisplay/authorDisplay.less
-components/socialBar/socialBar.less
 resp.large.less
 resp.tablet.less
 resp.mobile.less
+#base=less/components/authorDisplay/.
+authorDisplay.less
+#base=less/components/modelNumberSearch/.
+modelNumberSearch.less
+#base=less/components/skyscraperAd/.
+skyscraperAd.less
+#base=less/components/socialBar/.
+socialBar.less
