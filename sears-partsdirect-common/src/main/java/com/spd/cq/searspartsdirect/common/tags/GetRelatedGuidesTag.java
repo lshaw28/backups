@@ -34,7 +34,7 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 	        props.put("type", "cq:Page");
 	        props.put("path", "/content/searspartsdirect/en/guides");
 	        props.put("property", "jcr:content/pages");
-	        props.put("property.value", "categoryPath");
+	        props.put("property.value", categoryPath);
 	        
 	        List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
 
