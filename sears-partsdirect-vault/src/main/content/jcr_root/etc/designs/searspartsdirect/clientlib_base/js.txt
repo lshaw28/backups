@@ -6,6 +6,7 @@ Utilities.js
 DocumentReady.js
 WindowResize.js
 TemporaryScripts.js
+
 #base=js/components/.
 guideNavigation.js
 responsiveImage.js
