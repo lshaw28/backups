@@ -94,17 +94,6 @@
 		<info>Sets page context information required for clientlibs</info>
 	</tag>
 	<tag>
-		<name>getCommonSymptoms</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.CommonSymptomsTag</tag-class>
-	   	<info>Get common symptoms for the category</info>
-	   	<attribute>
-			<name>categoryName</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-	<tag>
 		<name>requiredTools</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.RequiredToolsTag</tag-class>
 		<info>Sets page context information required for Tools Required for Repair</info>
@@ -164,23 +153,11 @@
 		</attribute>
 	</tag>
 	<tag>
-	   <name>getErrorCodesData</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetErrorCodesDataTag</tag-class>
-	   <info>This tag will get the list of pages by tags</info>
+	   <name>GetErrorCodesList</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetErrorCodesListTag</tag-class>
+	   <info>This tag will get all error code table group by brand</info>
 	   <attribute>
 	   		<name>categoryPath</name>
-	   		<type>java.lang.String</type>
-	   		<required>false</required>
-	   		<rtexprvalue>true</rtexprvalue>
-	   	</attribute>
-	   	<attribute>
-	   		<name>subCategoryPath</name>
-	   		<type>java.lang.String</type>
-	   		<required>false</required>
-	   		<rtexprvalue>true</rtexprvalue>
-	   	</attribute>
-	   	<attribute>
-	   		<name>brandPath</name>
 	   		<type>java.lang.String</type>
 	   		<required>false</required>
 	   		<rtexprvalue>true</rtexprvalue>
@@ -294,7 +271,7 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>errorCodeTable</name>
+		<name>ErrorCodeTable</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ErrorCodeTableTag</tag-class>
 		<info>gets the error code table data</info>
 	</tag>
