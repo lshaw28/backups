@@ -1,5 +1,0 @@
-#base=/etc/designs/searspartsdirect/clientlib_base/less/.
-base.variables.less
-base.mixins.less
-#base=/etc/designs/searspartsdirect/clientlib_base/less/components/.
-comp.skyscraperAd.less

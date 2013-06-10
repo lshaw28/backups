@@ -10,43 +10,32 @@
 	 		${subcategoriesList[0].title} 
 	 		<c:set var="subCatUrl" value="${subcategoriesList[0].tagID}"/>
 	 </c:if>
-	 <cq:text property="errorCodeText"  placeholder=""/>
+	 <cq:text property="errorCodeText" placeholder=""/>
 </h3>
-<cq:text property="errorCodeDesc"  placeholder=""/>
+<cq:text property="errorCodeDesc" placeholder=""/>
 
-
-<%-- 
-<spd:getErrorCodesData categoryPath="${productCategoryRelation.path}" subCategoryPath="${subCatUrl}" brandPath="${brandRelation.path}" />
-	<table>
+<spd:ErrorCodeTable/>
+<table border="1">
+	<tr>
 		<th>Error Code</th>
 		<th>condition</th>
 		<th>check/repair</th>
 		<th>shop parts</th>
-		<c:forEach var="errorCode" items="${errorCodeTable}">
-			<tr>
-				<td>${errorCode.code}</td>
-				<td>${errorCode.condition}</td>
-				<td><a href="${errorCode.repairPath}">click here</a></td>
-			</tr>	
-		</c:forEach>
-	</table>
---%>
-
-<spd:errorCodeTable/>
-<table>
-	<tr>
-		<td>Error Code</td>
-		<td>condition</td>
-		<td>check/repair</td>
-		<td>shop parts</td>
 	</tr>
 	<c:forEach var="item" items="${errorCodeTableData}">
-		<tr><td><b>${item.key}</b></td></tr>
+		<tr><td colspan="4"><b>${item.key}</b></td></tr>
 		<c:forEach var="model" items="${item.value}">
 			<tr>
 				<td>${model.code}</td>
 			 	<td>${model.condition}</td>
-			 	<td>${model.repairPath}</td>
+			 	<c:choose>
+			 		<c:when test='${fn:contains(model.repairPath, "/")}'>
+			 			<td><a href="${model.repairPath}.html">Repair or Installation guide link</a></td>
+			 		</c:when>	
+			 		<c:otherwise>
+			 			<td>${model.repairPath}</a></td>
+			 		</c:otherwise>
+			 	</c:choose>
 			 	<td>no parts</td>
 			 </tr>
 		</c:forEach>

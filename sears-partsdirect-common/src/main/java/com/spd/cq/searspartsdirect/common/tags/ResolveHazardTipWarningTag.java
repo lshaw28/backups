@@ -45,7 +45,6 @@ public class ResolveHazardTipWarningTag extends CQBaseTag {
 		
 		pageContext.setAttribute("htwText", resultText);
 		pageContext.setAttribute("htwImage",resultImage);
-		// We might also need to retrieve the image.. scope from nowhere?
 		
 		return SKIP_BODY;
 	}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:Dialog"
+		  title="Category Article List"
+		  xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<CategoryArticleList 	jcr:primaryType="cq:Widget"
+						xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<indexTitle jcr:primaryType="cq:Widget"
+					   fieldLabel="Index Title"
+					   fieldDescription="Character limit is 42"
+					   allowBlank="{Boolean}false"
+					   name="./indexTitle"
+					   xtype="textfield"
+					   maxLength="42" />
+			</items>
+		</CategoryArticleList>
+	</items>
+</jcr:root>

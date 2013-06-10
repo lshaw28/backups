@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="rep:User"
+    jcr:uuid="160c4487-e431-35a7-a28d-0421243f63f0"
+    rep:password="\{SHA-256}0cd53c779ca2a1dc-1000-a1141c2f8ff8bc5c07237bdd92055971b151b6d695953e4f0347ffce9ba6450d"
+    rep:principalName="assigner-1">
+    <preferences
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="cq:Preferences"/>
+    <profile
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="cq/security/components/profile"
+        familyName="Assigner"/>
+</jcr:root>

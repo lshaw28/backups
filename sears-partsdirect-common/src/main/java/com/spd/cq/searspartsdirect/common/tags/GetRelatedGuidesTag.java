@@ -34,7 +34,7 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 	        props.put("type", "cq:Page");
 	        props.put("path", "/content/searspartsdirect/en/guides");
 	        props.put("property", "jcr:content/pages");
-	        props.put("property.value", "categoryPath");
+	        props.put("property.value", categoryPath);
 	        
 	        List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
 
@@ -55,21 +55,10 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 	        	}
 	        }
 
-	        /* dummy data
-			RelatedGuideModel guide1 = new RelatedGuideModel("url1.html", "imagePath1", "title1");
-			RelatedGuideModel guide2 = new RelatedGuideModel("url2.html", "imagePath2", "title2");
-			RelatedGuideModel guide3 = new RelatedGuideModel("url3.html", "imagePath3", "title3");
-			RelatedGuideModel guide4 = new RelatedGuideModel("url4.html", "imagePath4", "title4");
-
-			guides.add(guide1);
-			guides.add(guide2);				
-			guides.add(guide3);			
-			guides.add(guide4); */
-	        
 			pageContext.setAttribute("guides", guides);
 		}
 		catch (Exception e) {
-			
+			log.error("Error finding related guides: " + e.toString());
 		}
         return SKIP_BODY;
 	}

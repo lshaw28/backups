@@ -49,7 +49,7 @@
 		        	jcr:primaryType="cq:Widget"
 		        	ignoreData="{Boolean}true"
 		        	xtype="hidden"
-		        	name="./image1/sling:resourceType"
+		        	name="./image/sling:resourceType"
 		        	value="foundation/components/image"/>
 			</items>
         </subcontainer2>

@@ -3,6 +3,8 @@ package com.spd.cq.searspartsdirect.common.tags;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 
+import org.apache.sling.api.resource.Resource;
+
 import com.day.cq.commons.Doctype;
 import com.day.cq.wcm.api.components.DropTarget;
 import com.day.cq.wcm.foundation.Image;
@@ -20,7 +22,12 @@ public class DisplayImageTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		JspWriter out = pageContext.getOut();
-		Image image = path == null ? new Image(resource) : new Image(resource,path);
+		Resource imgResource = resource;
+		if (path.startsWith("/")) {
+			imgResource = resourceResolver.resolve(path);
+			path = null;
+		}
+		Image image = path == null ? new Image(imgResource) : new Image(imgResource,path);
 		
 	    //drop target css class = dd prefix + name of the drop target in the edit config
 	    image.addCssClass(DropTarget.CSS_CLASS_PREFIX + "image");
@@ -31,7 +38,7 @@ public class DisplayImageTag extends CQBaseTag {
 	    if (!currentDesign.equals(resourceDesign)) {
 	        image.setSuffix(currentDesign.getId());
 	    }
-	    String divId = "cq-image-jsp-" + resource.getPath();
+	    String divId = "cq-image-jsp-" + imgResource.getPath();
 	    try {
 	    	out.write("<div id=\"" + divId + "\">");
 	    	image.draw(out);

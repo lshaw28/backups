@@ -35,7 +35,7 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 	        props.put("type", "cq:Page");
 	        props.put("path", "/content/searspartsdirect/en/articles");
 	        props.put("property", "jcr:content/pages");
-	        props.put("property.value", "categoryPath");
+	        props.put("property.value", categoryPath);
 	        
 	        List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
 
@@ -56,18 +56,11 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 	        	}
 	        }
 
-			 /* dummy data
-				RelatedArticleModel article = new RelatedArticleModel("url", "imagePath", "title", "description");
-				RelatedArticleModel article2 = new RelatedArticleModel("url2", "imagePath2", "title2", "description2");
-
-				articles.add(article);
-				articles.add(article2); */
-
 				pageContext.setAttribute("articles", articles);
 		}
 		catch (Exception e) {
-			
-		}
+			log.error("Error finding related articles: " + e.toString());
+			}
         return SKIP_BODY;
 	}
 	

@@ -37,13 +37,18 @@ public class GuideNavigationTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		// output list containing lists [linktext,sectionlink]
 		List<List<String>> sections = new ArrayList<List<String>>();
-		// we can declare these as vars in the tld, usage here remains the same tho..
+		
+		// in a template, currentNode is not populated - so we find the page content node
 		Node pageNode = currentPage.getContentResource().adaptTo(Node.class);
+		
+		// we may need to set up configuration
 		maybeSetupDefaultConfig(pageNode);
 		
+		// we read our configuration into a map
 		Map<String,String> typesAndLabels = readTypesAndLabelsFromConfig(pageNode);
 		if (log.isDebugEnabled()) log.debug("typesAndLabels is "+typesAndLabels);
 		
+		// We find the jump-to text for the select and place it in context
 		String jumpToString = Constants.GUIDE_NAV_DEF_JUMPTO_TEXT;
 		try {
             jumpToString = pageNode.getProperty(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR).getString();
@@ -53,8 +58,11 @@ public class GuideNavigationTag extends CQBaseTag {
 		pageContext.setAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR,
 				jumpToString);
 		
+		// we populate this with ways of creating links
 		List<LinkGenerator> generators = new ArrayList<LinkGenerator>();
 		
+		// We create our template components that precede the parsys.
+		// We do this explicitly to avoid needing to look at the template at publish time
 		if (typesAndLabels.containsKey(Constants.TOOLS_REQ_R_COMPONENT)) {
 			String labelFound = typesAndLabels.get(Constants.TOOLS_REQ_R_COMPONENT);
 			if (labelIsBlank(labelFound)) {
@@ -69,11 +77,13 @@ public class GuideNavigationTag extends CQBaseTag {
 			}
 			generators.add(new FixedLabelTemplateLinkGenerator(Constants.PARTS_REQ_R_COMPONENT,labelFound));
 		}
-			
+		
+		// We find the parsys indicated by the template
 		Resource parsysResource = currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME);
 		if (log.isDebugEnabled()) log.debug("parsysResource is "+parsysResource);
 		
 		if (parsysResource != null) {
+			// We iterate the parsys and see what we want to generate links for
 			Iterator<Resource> parsysChildren = parsysResource.listChildren();
 			ParsysLinkGeneratorFactory generatorFactory = new ParsysLinkGeneratorFactory(parsysResource);
 			while (parsysChildren.hasNext()) {
@@ -84,6 +94,7 @@ public class GuideNavigationTag extends CQBaseTag {
 					log.debug("parsysChild.resourceSuperType is "+parsysChild.getResourceSuperType());
 				}
 				String childResourceType = parsysChild.getResourceType();
+				// when we find a resource type we recognize, we create a generator for a link to it
 				if(typesAndLabels.containsKey(childResourceType)) {
 					String label = typesAndLabels.get(childResourceType);
 					ParsysLinkGenerator maybeGenerator = generatorFactory.getLinkGenerator(parsysChild,label);
@@ -96,10 +107,12 @@ public class GuideNavigationTag extends CQBaseTag {
 			log.info("parsysResource is null for some reason");
 		}
 		
+		// We create generators for template components thqt are after the parsys
 		if (typesAndLabels.containsKey(Constants.COMMENTS_COMPONENT)) {
 			generators.add(new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));
 		}
 		
+		// We iterate over our generators and create our output
 		for (LinkGenerator linkGen : generators) {
 			if (log.isDebugEnabled()) log.debug("generator is for "+linkGen.getComponentType());
 			List<String> newList = new ArrayList<String>();
@@ -202,6 +215,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		return commentsPath.toString();
 	}
 
+	// All the ways we have of generating links, generate a label and an href
 	private static abstract class LinkGenerator {
 		private String componentType;
 		public void setComponentType(String componentType) {
@@ -214,6 +228,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		public abstract String generateLink();
 	}
 
+	// Template links won't have a resource associated when they are built
 	private static abstract class TemplateLinkGenerator extends LinkGenerator {
 		private String componentName;
 		
@@ -246,6 +261,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 	}
 	
+	// Some template components always have the same label
 	private static class FixedLabelTemplateLinkGenerator extends TemplateLinkGenerator {
 		final String label;
 		public FixedLabelTemplateLinkGenerator(final String componentType, final String label) {
@@ -259,6 +275,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 	}
 	
+	// But comments have a dynamically generated label
 	private static class CommentsLinkGenerator extends TemplateLinkGenerator {
 		private final String commentsPath;
 		private final ResourceResolver rr;
@@ -301,6 +318,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 	}
 	
+	// Parsys links are generated based on a resource node. Some have specific logic.
 	private static class ParsysLinkGeneratorFactory {
 		private final static Map<String,ParsysLinkGeneratorMaker> makers = initMakers();
 		private final static Map<String,ParsysLinkGeneratorMaker> initMakers() {
@@ -330,6 +348,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 	}
 	
+	// We have this so that we can explicitly declare what generator to create for a given resource type
 	private static abstract class ParsysLinkGeneratorMaker {
 		private String parsysName;
 		

@@ -12,6 +12,7 @@ public final class Constants {
 	public static final String ASSETS_PATH = ident("/etc/spdAssets/scaffolding");
 	public static final String ASSETS_TITLE_PATH = ident("jcr:title");
 	public static final String ASSETS_TITLE_REL_PATH = ident("jcr:content/jcr:title");
+	public static final String ASSETS_PAGES_REL_PATH = ident("jcr:content/pages");
 	public static final String ASSETS_DESCRIPTION_PATH = ident("jcr:description");
 	public static final String ASSETS_LOGO_PATH = ident("/jcr:content/logo");
 	public static final String ASSETS_IMAGE_PATH = ident("/jcr:content/image");
@@ -19,6 +20,11 @@ public final class Constants {
 	
 	//Model Search Constants
 	public static final String MODEL_NOT_FOUND = ident("Not Found");
+	
+	//DAM Sub-directory Constants
+	public static final String DAM_APPROVED_PATH = ident("/content/dam/searspartsdirect");
+	public static final String DAM_DENIED_PATH = ident("/content/dam/assetsdenied");
+	public static final String DAM_PENDING_APPROVAL_PATH = ident("/content/dam/assetspendingapproval");
 	
 	// Originally for guide nav, but generally applicable
 	public static final String GUIDE_NAV_COMPONENT = ident("searspartsdirect/components/content/guideNavigation");
@@ -29,6 +35,7 @@ public final class Constants {
 	public static final String INSTRUCTIONS_COMPONENT = ident("searspartsdirect/components/content/repairInstructions");
 	
 	public static final String USERGEN_ROOT = ident("/content/usergenerated");
+	public static final String ARTICLES_ROOT = ident("/content/searspartsdirect/en/articles");
 	
 	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
 	public static final String GUIDE_NAV_PATH = ident("guideNavigation");
@@ -55,29 +62,12 @@ public final class Constants {
 	
 	public static final String JCR_CONTENT_ROOT = ident("jcr:content/");
 	
+	public static final String STATS_PAGE_PREFIX = ident("/var/statistics/pages");
+    public static final String STATS_PAGE_SUFFIX = ident("/.stats");
+	
 	public static final String RECENTLY_VIEWED_MODEL_COOKIE = "recentlyViewedModels";
 	public static final String RECENTLY_VIEWED_PART_COOKIE = "recentlyViewedParts";
-	
-	public static final String SSO_CAS_LOGIN_URL = "https://sso.shld.net/shccas/shcLogin";
-	public static final String GATEWAY_FIELD = "gateway";
-	public static final String SERVICE_FIELD = "service";
-	public static final String SSO_SERVICE_FIELD = "https://localhost:4502/partsdirect/j_acegi_cas_security_check";
 
-	 public static final String CAS_VISITED_PARAM = "casVisited";
-	 public static final String CAS_AUTOLOGIN_STARTED_PARAM = "casAutologinStarted";
-	 public static final String CAS_NOFAIL_PARAMETER = "ssonofail";
-	 public static final String AUTHENTICATION_SUCCESS_URL = "AUTHENTICATION_SUCCESS_URL";
-	 public static final String AUTHENTICATION_FAILURE_URL = "AUTHENTICATION_FAILURE_URL";
-	 public static final String CAS_ERROR_CODE_FIELD = "casErrorCode";
-	 public static final String ERROR_CODE_FIELD = "errorCode";
-	 public static final String LOGIN_ID_FIELD = "loginId";
-	 public static final String LOGON_PASSWORD_FIELD = "logonPassword";
-	 public static final String ERROR_COUNT_FIELD = "errorCount";
-	 
-	 public static final String FIRST_TIME_LOGON_RESET_PASSWORD_STATE_CODE = "500.112";
-
-
-	    
 	/**
 	 * This method returns its argument - this is to keep what would otherwise be literals
 	 * from being compiled into client code. If you want to be able to change a constant here
