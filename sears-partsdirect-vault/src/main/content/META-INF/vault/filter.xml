@@ -14,4 +14,5 @@
 	<filter root="/home/users">
 		<exclude pattern="/home/users/a/admin"/>
 	</filter>
+	<filter root="/apps/sling/" />
 </workspaceFilter>

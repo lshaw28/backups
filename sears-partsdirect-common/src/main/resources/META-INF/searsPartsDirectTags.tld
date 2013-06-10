@@ -275,4 +275,17 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ErrorCodeTableTag</tag-class>
 		<info>gets the error code table data</info>
 	</tag>
+	<tag>
+		<name>Four04</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.Four04Tag</tag-class>
+		<body-content>empty</body-content>
+		<variable>
+			<name-given>mustRedirect</name-given>
+			<scope>AT_BEGIN</scope>
+		</variable>
+		<variable>
+			<name-given>mustInclude</name-given>
+			<scope>AT_BEGIN</scope>
+		</variable>
+	</tag>
 </taglib>
