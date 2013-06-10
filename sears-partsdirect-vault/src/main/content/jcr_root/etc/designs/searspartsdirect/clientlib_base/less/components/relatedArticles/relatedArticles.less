@@ -1,0 +1,28 @@
+@import '../../base.variables.less';
+
+.relatedArticles {
+	.title {
+		display: block;
+		padding-bottom: 9px;
+	}
+
+	[class*="-item"] {
+		text-align: center;
+
+		img {
+			display: block;
+			margin: 0 auto 15px auto;
+			min-width: 100%;
+		}
+	}
+
+	.view-all a {
+		display: inline-block;
+		padding: 13px 18px;
+		border: solid 1px @color-border-secondary-a;
+		border-radius: 4px;
+	}
+}
+
+@import 'relatedArticles.tablet.less';
+@import 'relatedArticles.mobile.less';
