@@ -30,6 +30,7 @@ resp.mobile.less
 #base=less/components/.
 authorDisplay/authorDisplay.less
 brandBar/brandBar.less
+categoryArticleList/categoryArticleList.less
 globalFooter/globalFooter.less
 modelNumberSearch/modelNumberSearch.less
 skyscraperAd/skyscraperAd.less

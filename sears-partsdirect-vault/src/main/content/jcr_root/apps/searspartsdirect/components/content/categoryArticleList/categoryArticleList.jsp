@@ -4,22 +4,19 @@
 
 <spd:getRelation single="true" assetType="productCategory" />
 <spd:GetCategoryArticleList categoryPath="${productCategoryRelation.path}" />
-<h1><cq:text property="./indexTitle" placeholder="Needs title" /></h1>
 <h2>${productCategoryRelation.title}</h2>
 <c:choose>
 	<c:when test="${not empty articles}">
-	<div>
+	<div class="categoryArticles">
 		<c:forEach var="article" items="${articles}">
-		<%-- ${article.url} ${article.imagePath} ${article.title} ${article.description} --%>
-		<div>
-			<a href="${article.url}.html"><spd:displayImage path="${article.imagePath}"/></a>
-			<a href="${article.url}.html">${article.title}</a>
+		<div class="categoryArticle">
+			<p><a href="${article.url}.html"><spd:displayImage path="${article.imagePath}"/></a><a href="${article.url}.html">${article.title}</a></p>
 			<p>${article.description}</p>
 		</div>
 		</c:forEach>
 	</div>
 	</c:when>
 	<c:otherwise>
-		No articles found
+		<p>No articles found.</p>
 	</c:otherwise>
 </c:choose>
