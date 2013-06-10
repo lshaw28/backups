@@ -80,7 +80,11 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	
+	<properties>
+		<spring.version>2.0.8</spring.version>
+	</properties>
+	
 	<dependencies>
 		<!-- CQ Dependencies -->
 		<dependency>
@@ -155,13 +159,7 @@
 		  <version>5.4.28</version>
 		</dependency>
 	
-		<dependency>
-			<groupId>org.acegisecurity</groupId>
-			<artifactId>acegi-security</artifactId>
-			<version>1.0.7</version>
-		</dependency>
-
-
+		
 	</dependencies>
 
 	<profiles>

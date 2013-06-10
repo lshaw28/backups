@@ -220,9 +220,15 @@
 		</attribute>
 	</tag>
 	<tag>
-	   <name>getMostViewedGuidesTag</name>
+	   <name>getMostViewedGuides</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetMostViewedGuidesTag</tag-class>
 		 <info>Gets the list of most viewed Repair Guides</info>
+		 	<attribute>
+			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	<tag>
 	   <name>getRelation</name>
