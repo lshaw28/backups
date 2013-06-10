@@ -34,3 +34,4 @@ globalFooter/globalFooter.less
 modelNumberSearch/modelNumberSearch.less
 skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less
+relatedArticles/relatedArticles.less
