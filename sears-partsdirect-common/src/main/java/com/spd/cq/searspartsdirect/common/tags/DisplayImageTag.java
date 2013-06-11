@@ -18,6 +18,7 @@ import com.day.cq.wcm.foundation.Image;
 public class DisplayImageTag extends CQBaseTag {
 	
 	protected String path;
+	protected boolean decorated = true;
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -40,9 +41,9 @@ public class DisplayImageTag extends CQBaseTag {
 	    }
 	    String divId = "cq-image-jsp-" + imgResource.getPath();
 	    try {
-	    	out.write("<div id=\"" + divId + "\">");
+	    	if (decorated) out.write("<div id=\"" + divId + "\">");
 	    	image.draw(out);
-	    	out.write("</div>");
+	    	if (decorated) out.write("</div>");
 	    }
 	    catch (Exception e) {
 	    }
@@ -56,5 +57,9 @@ public class DisplayImageTag extends CQBaseTag {
 	
 	public void setPath(String path) {
 		this.path = path;
+	}
+	
+	public void setDecorated(boolean decorated) {
+		this.decorated = decorated;
 	}
 }

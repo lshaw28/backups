@@ -10,7 +10,7 @@
 	<div class="categoryArticles">
 		<c:forEach var="article" items="${articles}">
 		<div class="categoryArticle">
-			<p><a href="${article.url}.html"><spd:displayImage path="${article.imagePath}"/></a><a href="${article.url}.html">${article.title}</a></p>
+			<p><a href="${article.url}.html"><spd:displayImage path="${article.imagePath}" decorated="false" /></a><a href="${article.url}.html">${article.title}</a></p>
 			<p>${article.description}</p>
 		</div>
 		</c:forEach>
