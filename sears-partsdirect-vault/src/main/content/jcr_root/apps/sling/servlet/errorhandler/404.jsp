@@ -1,0 +1,13 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%--
+--%><%@taglib prefix="cq" uri="http://www.day.com/taglibs/cq/1.0" %><%--
+--%><%@taglib prefix="spd" uri="http://cms.testsears.com/bundles/cq/tags" %><%--
+--%><cq:defineObjects/><%--
+--%><spd:Four04 /><%--
+--%><c:choose><%--
+	--%><c:when test="${!empty mustRedirect}" ><%--
+		--%><c:redirect url="${mustRedirect}" /><%--
+	--%></c:when><%--
+	--%><c:when test="${!empty mustInclude}"><%--
+		--%><%@include file="/libs/sling/servlet/errorhandler/default.jsp"%><%--
+	--%></c:when><%--
+--%></c:choose>

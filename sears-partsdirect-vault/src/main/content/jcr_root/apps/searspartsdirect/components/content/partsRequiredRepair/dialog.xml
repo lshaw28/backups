@@ -4,17 +4,24 @@
 		  title="Parts Required for Repair"
 		  xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<GenericHeader 	jcr:primaryType="cq:Widget"
+		<Panel 	jcr:primaryType="cq:Widget"
 						xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-				<textvalue jcr:primaryType="cq:Widget"
+			
+				<title jcr:primaryType="cq:Widget"
 					   fieldLabel="Parts Required Title"
 					   fieldDescription="Character limit is 50"
 					   allowBlank="{Boolean}false"
 					   name="./partsRequiredTitle"
 					   xtype="textfield"
 					   maxLength="50" />
+					   
+				<list  jcr:primaryType="cq:Widget"
+					   fieldLabel="Parts Required List"
+					   name="./partsRequired"
+					   xtype="textfield" />
+					   
 			</items>
-		</GenericHeader>
+		</Panel>
 	</items>
 </jcr:root>
