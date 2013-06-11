@@ -15,4 +15,5 @@
 		<exclude pattern="/home/users/a/admin"/>
 	</filter>
 	<filter root="/apps/sling/" />
+	<filter root="/robots.txt" />
 </workspaceFilter>
