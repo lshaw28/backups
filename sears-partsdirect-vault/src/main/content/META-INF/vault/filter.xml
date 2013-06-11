@@ -7,13 +7,6 @@
 	<filter root="/etc/tags/searspartsdirect" />
 	<filter root="/etc/scaffolding" />
 	<filter root="/etc/spdAssets" />
-	<filter root="/etc/workflow" />
-	<filter root="/home/groups">
-		<exclude pattern="/home/groups/a/administrators"/>
-	</filter>
-	<filter root="/home/users">
-		<exclude pattern="/home/users/a/admin"/>
-	</filter>
 	<filter root="/apps/sling/" />
 	<filter root="/robots.txt" />
 </workspaceFilter>
