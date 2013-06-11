@@ -54,11 +54,6 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ParentPageTag</tag-class>
 		<info>Creates path to parent url</info>
 	</tag>
-		<tag>
-		<name>getPartsRequired</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.PartsRequiredTag</tag-class>
-		<info>Creates list of parts required</info>
-	</tag>
 	<tag>
 	   	<name>getProductCategoryName</name>
 	   	<tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
@@ -299,5 +294,16 @@
 			<name-given>mustInclude</name-given>
 			<scope>AT_BEGIN</scope>
 		</variable>
+	</tag>
+	<tag>
+	   <name>getAuthorArticles</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetAuthorArticlesTag</tag-class>
+		 <info>Gets the list of author articles </info>
+		 	<attribute>
+			<name>authorPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 </taglib>

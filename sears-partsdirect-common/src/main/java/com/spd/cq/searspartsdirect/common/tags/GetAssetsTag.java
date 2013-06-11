@@ -17,6 +17,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.AssetType;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.model.spdasset.AuthorModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.HazardModel;
@@ -40,6 +41,7 @@ public class GetAssetsTag extends CQBaseTag {
 	protected String brandFilter;
 	protected String productCategoryFilter;
 	protected String tagFilter;
+	protected String authorFilter;
 	
 	@Override
 	public int doStartTag() throws JspException {
@@ -63,6 +65,10 @@ public class GetAssetsTag extends CQBaseTag {
         if (tagFilter != null) {
         	props.put("3_property", "jcr:content/cq:tags");
         	props.put("3_property.value", tagFilter);
+        }
+        if (authorFilter != null) {
+        	props.put("4_property", "jcr:content/cq:tags");
+        	props.put("4_property.value", authorFilter);
         }
         List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
 		try {
@@ -121,6 +127,12 @@ public class GetAssetsTag extends CQBaseTag {
 								title,
 								description,
 								properties.get("id","")));
+						break;
+					case AUTHOR:
+						result.add(new AuthorModel(p.getPath(),
+								title,
+								description,
+								p.getPath() + Constants.ASSETS_IMAGE_PATH));
 						break;
 					default:
 						break;

@@ -13,6 +13,7 @@ import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.AssetType;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.TooManyRelatedObjectsException;
+import com.spd.cq.searspartsdirect.common.model.spdasset.AuthorModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.HazardModel;
@@ -105,6 +106,12 @@ public class GetRelationTag extends CQBaseTag {
 								title,
 								description,
 								properties.get("id","")));
+					case AUTHOR:
+						result.add(new AuthorModel(p.getPath(),
+								title,
+								description,
+								properties.get("id","")));
+								
 					default:
 						break;
 				}
