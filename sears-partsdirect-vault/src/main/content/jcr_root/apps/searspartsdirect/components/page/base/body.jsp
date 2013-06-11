@@ -11,4 +11,6 @@
 		</div>
 	</div>
 	<cq:include path="cloudservices" resourceType="cq/cloudserviceconfigs/components/servicecomponents" />
+	<cq:include path="loginModal" resourceType="searspartsdirect/components/content/loginModal" />
+	<cq:include path="registerModal" resourceType="searspartsdirect/components/content/registerModal" />
 </body>

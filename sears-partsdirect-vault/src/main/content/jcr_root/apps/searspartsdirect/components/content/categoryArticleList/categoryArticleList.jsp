@@ -7,14 +7,23 @@
 <h2>${productCategoryRelation.title}</h2>
 <c:choose>
 	<c:when test="${not empty articles}">
-	<div class="categoryArticles">
-		<c:forEach var="article" items="${articles}">
-		<div class="categoryArticle">
-			<p><a href="${article.url}"><spd:displayImage path="${article.imagePath}" decorated="false" /></a><a href="${article.url}">${article.title}</a></p>
-			<p>${article.description}</p>
-		</div>
+		<c:forEach var="article" items="${articles}" varStatus="currentItem">
+			<c:choose>
+				<c:when test="${currentItem.count % 2 eq 1}">
+					<div class="row-fluid">
+				</c:when>
+			</c:choose>
+						<div class="span6">
+							<a href="${article.url}"><spd:displayImage path="${article.imagePath}" decorated="false" /></a>
+							<p><a href="${article.url}">${article.title}</a></p>
+							<p>${article.description}</p>
+						</div>
+			<c:choose>
+				<c:when test="${currentItem.count % 2 eq 0 or currentItem.last}">
+					</div>
+				</c:when>
+			</c:choose>
 		</c:forEach>
-	</div>
 	</c:when>
 	<c:otherwise>
 		<p>No articles found.</p>

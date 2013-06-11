@@ -9,6 +9,7 @@
 	.borderRadius(2px);
 	color: @bodyColor;
 	cursor: pointer;
+	display: inline-block;
 	font-size: @paragraphSize;
 	line-height: 35px;
 	padding: 0 22px;
@@ -18,7 +19,31 @@
 	&:hover {
 		background-color: @searchButtonColor;
 		background-image: none;
+		border: 0 solid @searchButtonColor;
 		color: @bodyColor;
-		text-decoration: underline;
+		text-decoration: none;
+	}
+}
+
+.btn-modal-cancel {
+	background-color: @bodyColor;
+	background-image: none;
+	border: 0 solid #b5cde4;
+	.borderRadius(2px);
+	color: #4577a3;
+	cursor: pointer;
+	display: inline-block;
+	font-size: @paragraphSize;
+	line-height: 35px;
+	padding: 0 22px;
+	text-decoration: none;
+	text-shadow: 1px 1px 0 @bodyCopyColor;
+
+	&:hover {
+		background-color: @bodyColor;
+		background-image: none;
+		border: 0 solid #b5cde4;
+		color: #4577a3;
+		text-decoration: none;
 	}
 }
