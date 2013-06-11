@@ -48,11 +48,6 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ParentPageTag</tag-class>
 		<info>Creates path to parent url</info>
 	</tag>
-		<tag>
-		<name>getPartsRequired</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.PartsRequiredTag</tag-class>
-		<info>Creates list of parts required</info>
-	</tag>
 	<tag>
 	   	<name>getProductCategoryName</name>
 	   	<tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
