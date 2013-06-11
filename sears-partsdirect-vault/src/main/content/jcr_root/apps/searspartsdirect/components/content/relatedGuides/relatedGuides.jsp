@@ -2,19 +2,33 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<%-- 
+Make sure h1 and footer link are configurable!
+Carousel Shows at max 5 items, component spec sets max to display at 4
+--%>
+
 <spd:getRelation single="true" assetType="productCategory" />
 <spd:getRelatedGuides categoryPath="${productCategoryRelation.path}" />
 
 <c:if test="${not empty guides}">
-	<cq:text property="itemsHeader"/><br />
+	<h2>
+		<cq:text property="itemsHeader" />
+	</h2>
 	
-	<c:forEach var="guide" items="${guides}">
-		<a href="${guide.url}"><spd:displayImage path="${guide.imagePath}"/></a>
-		<a href="${guide.url}">${guide.title}</a>
-		<br /><br />
-	</c:forEach>
-	
+	<div class="carousel-mobile-only">
+		<div class="carousel-wrapper row-fluid">
+			<c:forEach var="guide" items="${guides}">
+				<div class="carousel-mobile-item span3">
+					<a href="${guide.url}.html"><spd:displayImage path="${guide.imagePath}" /></a>
+					<a href="${guide.url}.html">${guide.title}</a>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+
 	<c:if test="${fn:length(guides) eq 4}">
-		<a href="<cq:text property="viewAllItemsLink"/>.html"><cq:text property="viewAllItemsText"/></a>
+		<div class="view-all">
+			<a href="<cq:text property="viewAllItemsLink"/>.html" placeholder="View all Articles"><cq:text property="viewAllItemsText" /></a>
+		</div>
 	</c:if>
 </c:if>

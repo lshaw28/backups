@@ -4,11 +4,26 @@
 		  title="Related Articles"
 		  xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<panel
-			jcr:primaryType="cq:Widget"
-			xtype="panel">
+		<panel  jcr:primaryType="cq:Widget"
+				xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-
+			
+				<itemsHeader jcr:primaryType="cq:Widget"
+							 fieldLabel="Header"
+							 name="./itemsHeader"
+							 xtype="textfield" />
+			
+			    <viewAllLink jcr:primaryType="cq:Widget"
+			             	 defaultValue=""
+				             fieldLabel="link to View all Items"
+				             name="./viewAllItemsLink"
+				             xtype="pathfield"/>
+			        
+			    <viewAllText jcr:primaryType="cq:Widget"
+			                defaultValue=""
+			             	fieldLabel="Description to View All Link"
+			            	 name="./viewAllItemsText"
+			          		xtype="textfield"/>
 			</items>
 		</panel>
 	</items>
