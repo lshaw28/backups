@@ -32,6 +32,7 @@ authorDisplay/authorDisplay.less
 brandBar/brandBar.less
 categoryArticleList/categoryArticleList.less
 globalFooter/globalFooter.less
+modal/modal.less
 modelNumberSearch/modelNumberSearch.less
 skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less
