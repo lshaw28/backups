@@ -9,4 +9,5 @@
 	<filter root="/etc/spdAssets" />
 	<filter root="/apps/sling/" />
 	<filter root="/robots.txt" />
+	<filter root="/sitemap" />
 </workspaceFilter>

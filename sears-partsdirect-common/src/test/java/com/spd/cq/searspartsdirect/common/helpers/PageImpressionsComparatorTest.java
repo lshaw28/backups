@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,11 +13,9 @@ import com.spd.cq.searspartsdirect.common.fixture.PageImpressionsComparatorFixtu
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
 import com.spd.cq.searspartsdirect.common.tags.MocksTag;
 
-import junit.framework.TestCase;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-//import static org.mockito.Mockito.*;
+//import static org.mockito.Mockito.*; // We deliberately leave this out to force us to write the fixture correctly.
 
 public class PageImpressionsComparatorTest extends MocksTag {
 

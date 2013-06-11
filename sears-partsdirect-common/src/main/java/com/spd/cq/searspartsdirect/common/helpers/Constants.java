@@ -68,6 +68,23 @@ public final class Constants {
 	public static final String RECENTLY_VIEWED_MODEL_COOKIE = "recentlyViewedModels";
 	public static final String RECENTLY_VIEWED_PART_COOKIE = "recentlyViewedParts";
 
+	public static final String XML_DECLARATION = ident("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+	public static final String SITEMAP_OPEN_URLSET = ident("<urlset ");
+	public static final String XML_XSD_NS = ident(" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ");
+	public static final String SITEMAP_XML_XSD = ident(" xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\" ");
+	public static final String SITEMAP_XML_NS = ident(" xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" ");
+	public static final String XML_CLOSE_TAG = ident(">");
+	public static final String SITEMAP_CLOSE_URLSET = ident("</urlset>");
+	public static final String SITEMAP_OPEN_URL = ident("<url>");
+	public static final String SITEMAP_CLOSE_URL = ident("</url>");
+	public static final String SITEMAP_OPEN_LOC = ident("<loc>");
+	public static final String SITEMAP_CLOSE_LOC = ident("</loc>");
+	public static final String SITEMAP_OPEN_LM = ident("<lastmod>");
+	public static final String SITEMAP_CLOSE_LM = ident("</lastmod>");
+	public static final String SITEMAP_OPEN_PRIORITY = ident("<priority>");
+	public static final String SITEMAP_CLOSE_PRIORITY = ident("</priority>");
+
+	
 	/**
 	 * This method returns its argument - this is to keep what would otherwise be literals
 	 * from being compiled into client code. If you want to be able to change a constant here

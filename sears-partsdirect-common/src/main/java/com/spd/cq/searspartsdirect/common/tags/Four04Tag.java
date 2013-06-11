@@ -13,10 +13,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.WCMMode;
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
+import com.spd.cq.searspartsdirect.common.helpers.PathStringUtils;
 
 @SuppressWarnings("serial")
 public class Four04Tag extends CQBaseTag {
 	protected static Logger log = LoggerFactory.getLogger(Four04Tag.class);
+	protected static PathStringUtils psu = new PathStringUtils();
 	/* //<%--
 	  Copyright 1997-2008 Day Management AG
 	  Barfuesserplatz 6, 4001 Basel, Switzerland
@@ -154,25 +156,6 @@ public class Four04Tag extends CQBaseTag {
 		if (log.isDebugEnabled()) log.debug("doEndTag called, returning "+endResult);
 		return endResult;
 	}
-
-    public boolean hasAnyParentIn(final Set<String> roots, String path) {
-    	boolean hasParent = false;
-    	// StringBuilder, would be an allocation for each set check but no realloc for truncation, and calls
-    	// String, would be no alloc for set check and alloc for truncation, calls implicit.
-    	// String wins on readability. Alt, would be, StringBuilders as the set type. 
-    	// See CharSequence docs (in particular, as regards equals and hashCode contracts) for why we don't use it.
-    	while (path.length() > 0) {
-    		// Considered the logger to be a separable concern here. These will be removed.
-    		if (log.isDebugEnabled()) log.debug("Trying "+path);
-    		if (roots.contains(path)) {
-    			hasParent = true;
-    			break;
-    		}
-    		int slashIdx = path.lastIndexOf("/");
-    		path = path.substring(0,slashIdx > 0?slashIdx:0);
-    	}
-    	return hasParent;
-    }
     
     private boolean isAnonymousUser(HttpServletRequest request) {
         return request.getAuthType() == null
@@ -203,7 +186,7 @@ public class Four04Tag extends CQBaseTag {
     private boolean needsAuthentication(HttpServletRequest request) {
     	final String requestUri = request.getRequestURI();
     	if (log.isDebugEnabled()) log.debug("they requested "+requestUri);
-    	boolean requiresAuth = hasAnyParentIn(authenticatedRequestRoots,requestUri);
+    	boolean requiresAuth = psu.hasAnyParentIn(authenticatedRequestRoots,requestUri);
     	if (log.isDebugEnabled()) log.debug("we are saying it "+(requiresAuth?"does":"doesn't")+" want authentication");
     	return requiresAuth;
     }
