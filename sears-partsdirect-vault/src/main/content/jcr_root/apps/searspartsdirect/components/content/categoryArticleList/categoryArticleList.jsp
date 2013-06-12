@@ -15,7 +15,7 @@
 			</c:choose>
 						<div class="span6">
 							<a href="${article.url}"><spd:displayImage path="${article.imagePath}" decorated="false" /></a>
-							<p><a href="${article.url}">${article.title}</a></p>
+							<h4><a href="${article.url}">${article.title}</a></h4>
 							<p>${article.description}</p>
 						</div>
 			<c:choose>
