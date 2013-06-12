@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.helpers.ExternalLinks;
 import com.spd.cq.searspartsdirect.common.helpers.NavigablePageFilter;
 import com.spd.cq.searspartsdirect.common.helpers.PathStringUtils;
 
@@ -55,15 +56,13 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 		Rules rules = new Rules(
 				readConfiguredStartPaths(),
 				readConfiguredStopPaths(),
-				readConfiguredRemovedPrefixes(),
-				readConfiguredAddedPrefix(),
-				readConfiguredAddedSuffix()
+				slingRequest
 			);
 		try {
 			out = slingResponse.getWriter();
 			writeXmlDeclaration(out);
 			writeStartUrlset(out);
-			writeAllUrls(rules,slingRequest.getResourceResolver(),out);
+			writeAllUrls(rules,out);
 			writeEndUrlset(out);
 		} catch (Exception gettingWriter) {
 			log.error("Getting writer, ",gettingWriter);
@@ -74,10 +73,10 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 		if (log.isDebugEnabled()) log.debug("servlet ended");
 	}
 	
-	void writeAllUrls(final Rules rules, final ResourceResolver rr, final PrintWriter out) {
+	void writeAllUrls(final Rules rules, final PrintWriter out) {
 		Set<String> startPaths = rules.getStartPaths();
 		for (String startPath : startPaths) {
-			Page aPage = rr.getResource(startPath).adaptTo(Page.class);
+			Page aPage = rules.getResourceResolver().getResource(startPath).adaptTo(Page.class);
 			if (aPage != null) {
 				writeUrlsUnder(rules,aPage,out);
 			} else {
@@ -111,17 +110,8 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 	
 	String getExternalUrl(final Rules rules, final Page aPage) {
 		String pagePath = aPage.getPath();
-		Set<String> removedPrefixes = rules.getRemovedPrefixes();
-		for (String prefix : removedPrefixes) {
-			if (pagePath.startsWith(prefix)) {
-				pagePath = pagePath.substring(prefix.length());
-				if (pagePath.length() == 0) {
-					pagePath = "/index";
-				}
-			}
-		}
-		// Consider humoring vanity here.
-		return rules.getAddedPrefix() + pagePath + rules.getAddedSuffix();
+		// Removed "removed prefixes" notion in favor of resourceResolver map method
+		return rules.getExternalLinks().getExternalUrlForPage(pagePath);
 	}
 	
 	String getFormattedLastModified(Rules rules, final Page aPage) {
@@ -134,18 +124,6 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 	
 	Set<String> readConfiguredStopPaths() {
 		return psu.pathsSetFromCsv(EnvironmentSettings.getSitemapStopPaths());
-	}
-	
-	Set<String> readConfiguredRemovedPrefixes() {
-		return psu.pathsSetFromCsv(EnvironmentSettings.getSitemapRemovedPrefixes());
-	}
-	
-	String readConfiguredAddedPrefix() {
-		return EnvironmentSettings.getSitemapAddedPrefix();
-	}
-	
-	String readConfiguredAddedSuffix() {
-		return EnvironmentSettings.getSitemapAddedSuffix();
 	}
 	
 	void writeXmlDeclaration(final PrintWriter out) {
@@ -167,21 +145,17 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 	private static final class Rules {
 		private final Set<String> startPaths;
 		private final Set<String> stopPaths;
-		private final Set<String> removedPrefixes;
-		private final String addedPrefix;
-		private final String addedSuffix;
+		private final ExternalLinks externalLinks;
+		private final ResourceResolver resourceResolver;
 		private final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		
 		public Rules(final Set<String> startPaths, 
 				final Set<String> stopPaths, 
-				final Set<String> removedPrefixes, 
-				final String addedPrefix, 
-				final String addedSuffix) {
+				final SlingHttpServletRequest currentRequest) {
 			this.startPaths = startPaths;
 			this.stopPaths = stopPaths;
-			this.removedPrefixes = removedPrefixes;
-			this.addedPrefix = addedPrefix;
-			this.addedSuffix = addedSuffix;
+			this.resourceResolver = currentRequest.getResourceResolver();
+			this.externalLinks = new ExternalLinks(currentRequest);
 		}
 		
 		public Set<String> getStartPaths() {
@@ -192,16 +166,12 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 			return stopPaths;
 		}
 		
-		public Set<String> getRemovedPrefixes() {
-			return removedPrefixes;
+		public ExternalLinks getExternalLinks() {
+			return externalLinks;
 		}
 		
-		public String getAddedPrefix() {
-			return addedPrefix;
-		}
-		
-		public String getAddedSuffix() {
-			return addedSuffix;
+		public ResourceResolver getResourceResolver() {
+			return resourceResolver;
 		}
 		
 		public DateFormat getDateFormatter() {

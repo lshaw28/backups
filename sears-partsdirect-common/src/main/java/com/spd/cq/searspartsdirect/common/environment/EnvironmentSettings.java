@@ -49,31 +49,22 @@ public class EnvironmentSettings {
     	return getProperty(SITEMAP_STOP_PATHS,"");
     }
     
-    @Property(label = "Sitemap Removed Prefixes", 
-    		description = "Path prefixes to remove from sitemap urls",
-    		value = "/content/searspartsdirect/")
-    private static final String SITEMAP_REMOVED_PREFIXES = "searspartsdirect.sitemap.removed.prefixes";
+    @Property(label = "External Url Added Prefix", 
+    		description = "Prefix to prepend to external page URLs",
+    		value = "http://www.searspartsdirect.com")
+    private static final String EXTERNAL_ADDED_PREFIX = "searspartsdirect.external.added.prefix";
     
-    public static String getSitemapRemovedPrefixes() {
-    	return getProperty(SITEMAP_REMOVED_PREFIXES,"");
+    public static String getExternalAddedPrefix() {
+    	return getProperty(EXTERNAL_ADDED_PREFIX,"");
     }
     
-    @Property(label = "Sitemap Added Prefix", 
-    		description = "URL prefix to prepend to sitemap urls",
-    		value = "http://www.searspartsdirect.com/")
-    private static final String SITEMAP_ADDED_PREFIX = "searspartsdirect.sitemap.added.prefix";
-    
-    public static String getSitemapAddedPrefix() {
-    	return getProperty(SITEMAP_ADDED_PREFIX,"");
-    }
-    
-    @Property(label = "Sitemap Added Suffix", 
-    		description = "URL suffix to append to sitemap urls",
+    @Property(label = "External Url Added Suffix", 
+    		description = "Suffix to append to external page URLs",
     		value = ".html")
-    private static final String SITEMAP_ADDED_SUFFIX = "searspartsdirect.sitemap.added.suffix";
+    private static final String EXTERNAL_ADDED_SUFFIX = "searspartsdirect.external.added.suffix";
     
-    public static String getSitemapAddedSuffix() {
-    	return getProperty(SITEMAP_ADDED_SUFFIX,"");
+    public static String getExternalAddedSuffix() {
+    	return getProperty(EXTERNAL_ADDED_SUFFIX,"");
     }
         
     // ----< SCR Integration >--------------------------------------------------
