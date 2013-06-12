@@ -11,7 +11,6 @@ core.buttons.less
 core.forms.less
 core.tables.less
 comp.accordion.less
-comp.boxlinks.less
 comp.brandcarousel.less
 comp.cartandmodels.less
 comp.errorcodes.less
@@ -21,7 +20,6 @@ comp.maincarousel.less
 comp.manualshelp.less
 comp.modelfinder.less
 comp.mymodels.less
-comp.searchPanel.less
 comp.sidebarlinks.less
 resp.large.less
 resp.tablet.less
@@ -34,6 +32,7 @@ categoryArticleList/categoryArticleList.less
 globalFooter/globalFooter.less
 modal/modal.less
 modelNumberSearch/modelNumberSearch.less
+searchPanel/searchPanel.less
 skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less
 relatedArticles/relatedArticles.less

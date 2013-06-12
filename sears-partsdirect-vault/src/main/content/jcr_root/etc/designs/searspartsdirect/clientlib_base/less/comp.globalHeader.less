@@ -1,7 +1,6 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-/* Component: Global Header */
 .home_header {
 	margin: 0 20px;
 	background-color: @bodyColor;
@@ -66,15 +65,14 @@
 	margin: 0 15px 0 0;
 	padding: 0;
 	color: #304295;
-	font-size: @loginNavigationSize;
+	font-size: @smallestPSize;
 	list-style-type: none;
 }
 .loginNav ul li a {
-	cursor: pointer;
 	float: left;
 	margin: 0;
 	padding: 0;
-	font-size: @loginNavigationSize;
+	font-size: @smallestPSize;
 	text-decoration: underline;
 }
 
@@ -113,7 +111,7 @@
 	line-height: 34px;
 	margin: 0;
 	padding: 0 8px 0 7px;
-	font-size: @loginNavigationSize;
+	font-size: @smallestPSize;
 	text-decoration: none;
 	border-right: 1px solid #c3c3c3;
 }
@@ -140,12 +138,12 @@
 	display: inline;
 }
 .cartNav ul li:hover a {
-	background: #304e88;
+	background: @linkHoverColor;
 	color: @bodyColor;
 	border-right: 1px solid #304295;
 }
 .cartNav ul li.itemsInCart a {
-	background: #304e88;
+	background: @linkHoverColor;
 	color: @bodyColor;
 	border-right: 1px solid #304295;
 }
@@ -186,31 +184,29 @@
 	display: inline-block;
 }
 div#currentCart .itemInCart .partNumber {
-	color: #067bb5;
+	color: @linkColor;
 	padding: 0;
 	margin: 0 0 -8px 0;
 }
 div#currentCart .itemInCart .partNumber:hover {
-	color: #304e88;
+	color: @linkHoverColor;
 	text-decoration: underline;
 }
 div#currentCart p.ghostCart_addedItem {
 	color: @bodyCopyColor;
 }
 #showCart h3 {
-	font-size: @paragraphSize;
+	font-size: @pSize;
 	color: @bodyCopyColor;
 	text-align: center;
 }
 #ItemsCarts div#currentCart #editLink a.arrow_blue_link {
-	color: #067bb5;
+	color: @linkColor;
 	font-size: 13px;
 }
-/*Recently View Drop down */
+// # Recently Viewed Dropdown
 #RecentlyViewedDiv img, #MyModelsDiv img, #ItemsCartsDiv img {
 	background: transparent;
-	/*-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)";
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF, endColorstr=#00FFFFFF);*/
 	zoom: 1;
 }
 #RecentlyViewedDiv, #ItemsCartsDiv {
@@ -328,21 +324,21 @@ div#currentCart p.ghostCart_addedItem {
 .view_row a {
 	float: none;
 	padding: 0 0 0 0;
-	color: #067bb5;
+	color: @linkColor;
 	line-height: normal;
 	border: none;
 	background: none;
 	text-decoration: none;
 	word-wrap: break-word;
-	font-size: @smallLinkSize;
+	font-size: @smallPSize;
 }
 .view_row a:hover {
-	color: #304e88;
+	color: @linkHoverColor;
 	text-decoration: underline;
 }
 .view_row .row_col1 {
 	float: left;
-	font-size: @smallLinkSize;
+	font-size: @smallPSize;
 }
 .view_row .row_col1 span {
 	float: left;
@@ -352,7 +348,7 @@ div#currentCart p.ghostCart_addedItem {
 .view_row .row_col2 {
 	float: left;
 	padding: 0 10px 0 0;
-	font-size: @smallLinkSize;
+	font-size: @smallPSize;
 }
 .view_row .row_col2 img {
 	width: 60px;
@@ -370,7 +366,7 @@ div#currentCart p.ghostCart_addedItem {
 	float: left;
 	margin: 0;
 	padding: 0;
-	font-size: @smallLinkSize;
+	font-size: @smallPSize;
 }
 .home_logo {
 	position: absolute;
@@ -404,10 +400,10 @@ div#currentCart p.ghostCart_addedItem {
 	background: transparent url('../img/content_shadow2.png') no-repeat top left;
 }
 .headerPromo {
-	color: #304e88;
+	color: @linkHoverColor;
 	width: 100%;
 	text-align: center;
-	font-size: @paragraphSize;
+	font-size: @pSize;
 	padding: 10px 0 10px 0;
 	clear: both;
 }
@@ -420,7 +416,7 @@ div#currentCart p.ghostCart_addedItem {
 	background-size: 4%;
 }
 .headerPromo p .btn {
-	font-size: @loginNavigationSize;
+	font-size: @smallestPSize;
 	color: #4577a3;
 	background: none;
 	border: 1px solid #b5cde4;

@@ -49,10 +49,9 @@
 		width: 100%;
 
 		a {
-			color: #067bb5;
-			cursor: pointer;
+			color: @linkColor;
 			font-family: @bodyFont;
-			font-size: 18px;
+			font-size: @h4Size;
 			font-weight: bold;
 			text-decoration: none;
 
@@ -62,7 +61,7 @@
 			}
 			.icon-stack {
 				float: left;
-				font-size: 24px;
+				font-size: @h2Size;
 				margin: 0 8px 0 0;
 			}
 			.icon-circle {
@@ -74,7 +73,7 @@
 			.footerIconHelp {
 				color: @headerColor;
 				font-family: @standardFont;
-				font-size: 12px;
+				font-size: @smallPSize;
 			}
 
 			&:hover {
@@ -122,19 +121,17 @@
 
 			h3 {
 				color: #304295;
-				font-size: @header3Size;
 				font-weight: normal;
 				margin: 0 0 3px 0;
 				padding: 0;
 				width: 100%;
 
 				a {
-					color: #067bb5;
-					font-size: @header3Size;
+					color: @linkColor;
 					text-decoration: none;
 
 					&:hover {
-						color: #304e88;
+						color: @linkHoverColor;
 						text-decoration: underline;
 					}
 				}
@@ -143,7 +140,7 @@
 				a {
 					border: 1px solid #b5cde4;
 					display: inline-block;
-					font-size: 14px;
+					font-size: @pSize;
 					font-weight: bold;
 					padding: 7px 14px;
 					text-decoration: none;
@@ -160,7 +157,6 @@
 #footerColumn3 {
 	h3 {
 		color: @bodyCopyColor;
-		font-size: @header3Size;
 		font-weight: normal;
 		line-height: 30px;
 		margin: 0 0 10px 0;
@@ -173,7 +169,7 @@
 	}
 	p {
 		float: left;
-		font-size: @footerColumnSize;
+		font-size: @h5Size;
 		margin: 0 0 3px 0;
 		padding: 0;
 		width: 100%;
@@ -191,7 +187,7 @@
 			padding: 0 0 6px 0;
 
 			a {
-				font-size: @paragraphSize;
+				font-size: @pSize;
 				text-decoration: none;
 
 				&:hover {
@@ -207,11 +203,11 @@
 		p {
 			color: @bodyCopyColor;
 			font-family: @standardFont;
-			font-size: @paragraphSize;
+			font-size: @pSize;
 			margin: 0 0 5px 0;
 		}
 		input {
-			border: 1px solid #cccccc;
+			border: 1px solid #ccc;
 			.borderRadius(0);
 			float: left;
 			margin: 0 5px 0 0;
@@ -224,7 +220,7 @@
 			.borderRadius(2px);
 			color: #4577a3;
 			float: left;
-			font-size: @smallLinkSize;
+			font-size: @smallPSize;
 			font-weight: bold;
 			margin: 0 0 0 3px;
 			padding: 10px 27px;
@@ -243,7 +239,7 @@
 	width: 100%;
 
 	.footerGlow {
-		background-color: #304e88;
+		background-color: @linkHoverColor;
 		height: 6px;
 		margin: 0 auto;
 		width: 100%;
@@ -255,7 +251,7 @@
 		a {
 			color: @bodyCopyColor;
 			float: left;
-			font-size: @loginNavigationSize;
+			font-size: @smallestPSize;
 			margin: 12px 13px 0 13px;
 			text-decoration: none;
 
@@ -267,7 +263,7 @@
 	.copyright {
 		color: @bodyCopyColor;
 		float: left;
-		font-size: @smallLinkSize;
+		font-size: @smallPSize;
 		padding: 12px 0 0 0;
 		width: 130px;
 	}

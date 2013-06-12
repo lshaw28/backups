@@ -1,7 +1,6 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-/* Component: Brand Carousel */
 #brandsContainerSection {
 	float: left;
 	clear: both;
@@ -27,7 +26,7 @@
 	background-repeat: no-repeat;
 	background-position: top left;
 	color: #304295;
-	font-size: @smallLinkSize;
+	font-size: @smallPSize;
 }
 #everyProdPop {
 	position: relative;
@@ -35,7 +34,7 @@
 	left: 473px;
 	float: left;
 	width: 200px;
-	color: #067bb5;
+	color: @linkColor;
 }
 #everyBrandPop {
 	position: relative;
@@ -43,7 +42,7 @@
 	left: 365px;
 	float: left;
 	width: 200px;
-	color: #067bb5;
+	color: @linkColor;
 }
 #brandCarousel {
 	float: left;
@@ -201,9 +200,6 @@
 	text-align: center;
 	padding-top: 10px;
 }
-/*===================================
-					Hover Styles for Brands
-			 	=====================================*/
 .brandsContainerList1 #kenmore a:hover {
 	width: 44px;
 	height: 45px;

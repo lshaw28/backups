@@ -1,15 +1,11 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-/* Core: Standard Tags */
-/* 1. Document */
 article {
 	margin: 0 20px;
 	background: @bodyColor;
 	padding: 0 20px;
 }
-
-/* 2. Text and Images */
 h1, h2, h3, h4 {
 	margin: 10px 0;
 	font-weight: normal;
@@ -17,23 +13,27 @@ h1, h2, h3, h4 {
 	color: @bodyCopyColor;
 }
 h1 {
-	font-size: @header1Size;
+	font-size: @h1Size;
 }
 h2 {
-	font-size: @header2Size;
+	font-size: @h2Size;
 }
 h3 {
-	font-size: @header3Size;
-}
-h4 {
-	font-size: @header4Size;
+	font-size: @h3Size;
 
 	a {
-		font-size: @header4Size;
+		font-size: @h3Size;
+	}
+}
+h4 {
+	font-size: @h4Size;
+
+	a {
+		font-size: @h4Size;
 	}
 }
 p {
-	font-size: @paragraphSize;
+	font-size: @pSize;
 }
 pre {
 	font-size: 100%;
@@ -44,4 +44,7 @@ pre {
 	outline: 0;
 	border: 0 none;
 	padding: 0;
+}
+a[href], a[onclick], a[data-target], button {
+	cursor: pointer;
 }

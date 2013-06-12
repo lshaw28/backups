@@ -1,7 +1,6 @@
 @import "../../base.variables.less";
 @import "../../base.mixins.less";
 
-/* Exception: landscape phones */
 @media (max-width: 650px) {
 	#footerColumn1, #footerColumn2, #footerColumn3 {
 		clear: both;
@@ -37,13 +36,13 @@
 			a {
 				color: @bodyCopyColor;
 				float: none;
-				font-size: @loginNavigationSize;
+				font-size: @smallestPSize;
 				margin: 12px 13px 0 13px;
 				text-decoration: none;
 			}
 		}
 		.copyright {
-			font-size: @smallLinkSize;
+			font-size: @smallPSize;
 			text-align: center;
 			width: 100%;
 		}
@@ -57,7 +56,6 @@
 	}
 }
 
-/* Landscape phones and down */
 @media (max-width: 480px) {
 	#footerColumn1 {
 		.footerIcon, p {
@@ -67,7 +65,7 @@
 		}
 		p {
 			clear: none;
-			font-size: @paragraphSize;
+			font-size: @pSize;
 			text-align: center;
 			width: 46px;
 
@@ -87,7 +85,7 @@
 		.footerPromo {
 			.footerPromoContent {
 				p {
-					font-size: @paragraphSize;
+					font-size: @pSize;
 				}
 			}
 		}
@@ -97,7 +95,7 @@
 			a {
 				color: @bodyCopyColor;
 				float: none;
-				font-size: @loginNavigationSize;
+				font-size: @smallestPSize;
 				margin: 12px 5px 0 2px;
 				text-decoration: none;
 			}

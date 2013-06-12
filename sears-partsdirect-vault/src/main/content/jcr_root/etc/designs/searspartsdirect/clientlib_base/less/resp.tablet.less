@@ -1,10 +1,8 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-/* Responsive: Tablet Breakpoints */
-/* 1024px Max Width */
 @media (max-width: 1024px) {
-	/* From Style Guide */
+	//
 	.header_right_panel {
 		top: 20px;
 	}
@@ -15,7 +13,7 @@
 		float: left;
 		margin: 0;
 		padding: 0;
-		font-size: @loginNavigationSize;
+		font-size: @smallestPSize;
 		font-weight: 600;
 	}
 	.home_logo {
@@ -34,7 +32,7 @@
 	#footerColumn3 h3 {
 		line-height: 22px;
 		padding: 0 48px 1px 0;
-		font-size: @header4Size;
+		font-size: @h4Size;
 	}
 	#footerColumn3 h3 span {
 		font-weight: 600;
@@ -43,7 +41,7 @@
 		float: left;
 		width: 100%;
 		padding: 0 0 0 0;
-		font-size: @paragraphSize;
+		font-size: @pSize;
 		margin: 0 0 3px 0;
 	}
 	#footerColumn3 ul li {
@@ -52,7 +50,7 @@
 		padding: 0 0 2px 0;
 	}
 	#footerColumn3 ul li a {
-		font-size: @smallLinkSize;
+		font-size: @smallPSize;
 	}
 	#footerColumn3 form input {
 		padding: 6px 0 6px 12px;
@@ -62,7 +60,7 @@
 		padding: 6px 22px;
 	}
 
-	/* Components */
+	//
 	.row-fluid {
 		.span2 {
 			&.ad-span {
@@ -72,7 +70,7 @@
 		}
 	}
 }
-/* 1000px Max Width */
+
 @media (max-width: 1000px) {
 	#footerColumn3 form {
 		padding: 5px 20px 0 0;
@@ -89,7 +87,7 @@
 	#footerColumn3 form button {
 		float: left;
 		width: 69px;
-		font-size: @smallLinkSize;
+		font-size: @smallPSize;
 		margin: 0;
 		padding: 9px 3px 9px 5px;
 		border: 1px solid #b5cde4;

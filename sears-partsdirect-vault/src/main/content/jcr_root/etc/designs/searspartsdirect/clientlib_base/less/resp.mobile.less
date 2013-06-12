@@ -1,11 +1,6 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-/* Responsive: Mobile Breakpoints */
-/* 800px Max Width */
-@media (max-width: 800px) {
-}
-/* 767px Max Width */
 @media (max-width: 767px) {
 	body {
 		padding: 0 20px;
@@ -29,12 +24,12 @@
 		border-bottom: none;
 		text-align: left;
 		padding: 14px 0 0 35px;
-		font-size: @paragraphSize;
-		color: #304e88;
+		font-size: @pSize;
+		color: @linkHoverColor;
 		background-position: left 13px;
 	}
 	.headerPromo p .btn {
-		font-size: @loginNavigationSize;
+		font-size: @smallestPSize;
 		background: none;
 		text-shadow: none;
 		font-weight: bold;
@@ -47,7 +42,7 @@
 
 
 }
-/* 650px Max Width */
+
 @media (max-width: 650px) {
 	body {
 		padding: 0;
@@ -80,8 +75,8 @@
 		float: left;
 		width: 100%;
 		padding: 20px 0 20px 10px;
-		color: #067bb5;
-		font-size: @footerColumnSize;
+		color: @linkColor;
+		font-size: @h5Size;
 	}
 	body.menu-open .loginNav {
 		overflow: auto;
@@ -162,21 +157,21 @@
 	}
 	.cartNav ul li a {
 		padding: 5px 7px 5px 7px;
-		font-size: @smallLinkSize;
+		font-size: @smallPSize;
 		border-left: 1px solid #c3c3c3;
 		border-right: none;
 	}
 	.headerPromo {
 		padding: 0;
 		height: 57px;
-		border-bottom: 1px solid #cccccc;
+		border-bottom: 1px solid #ccc;
 		background: none;
 	}
 	.headerPromo p {
 		width: 83%;
 		background: url('../img/waterfiltercup.png') no-repeat top left;
 		padding: 5px 0 5px 80px;
-		font-size: @smallLinkSize;
+		font-size: @smallPSize;
 	}
 	.headerPromo p .btn {
 		background: none;
@@ -184,7 +179,7 @@
 		font-weight: bold;
 		padding: 0;
 		border: 0;
-		font-size: @smallLinkSize;
+		font-size: @smallPSize;
 	}
 	article {
 		padding: 15px 10px;
@@ -196,7 +191,7 @@
 		margin: 0;
 	}
 }
-/* 480px Max Width */
+
 @media (max-width: 480px) {
 	.brandBar {
 		display: none;
@@ -236,8 +231,8 @@
 		float: left;
 		width: 100%;
 		padding: 20px 0 20px 10px;
-		color: #067bb5;
-		font-size: @footerColumnSize;
+		color: @linkColor;
+		font-size: @h5Size;
 	}
 
 	#footerColumn3 form {
@@ -247,7 +242,7 @@
 		margin: 7px 0 0 0;
 	}
 }
-/* 320px Max Width */
+
 @media (max-width: 320px) {
 	.brandBar {
 		display: none;

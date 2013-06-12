@@ -1,7 +1,6 @@
-@import "base.variables.less";
-@import "base.mixins.less";
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
 
-/* Component: Search Panel */
 .searchPanel {
 	height: auto;
 
@@ -30,7 +29,7 @@
 	margin-right: -4px;
 }
 #searchRightShadow {
-	background: url(../img/headerRightShadow.png) no-repeat 0 0;
+	background: url(../img/headerLeftShadow.png) no-repeat 0 0;
 	margin-left: -3px;
 }
 #searchContainer {
@@ -67,7 +66,7 @@
 			border-width: 3px;
 			.borderRadius(4px 4px 0 0);
 			color: @bodyColor;
-			font-size: @paragraphSize;
+			font-size: @pSize;
 			height: 32px;
 			line-height: 32px;
 			padding: 10px;
@@ -110,12 +109,12 @@
 
 	p, span.large {
 		color: @bodyColor;
-		font-size: @smallLinkSize;
+		font-size: @smallPSize;
 		font-weight: 600;
 
 		a {
 			color: @bodyColor;
-			font-size: @smallLinkSize;
+			font-size: @smallPSize;
 			text-decoration: none;
 
 			&:hover {
@@ -130,11 +129,11 @@
 	}
 
 	.text-input {
-		background-color: #fff;
+		background-color: @bodyColor;
 		border: 0;
-		border-radius: 0;
-		color: #666;
-		font-size: 16px;
+		.borderRadius(0);
+		color: @headerColor;
+		font-size: @h5Size;
 		height: 35px;
 		margin: 0;
 		padding: 0 10px;
@@ -145,10 +144,10 @@
 		width: 24%;
 
 		a {
-			background-color: #fff;
+			background-color: @bodyColor;
 			border: 0;
-			border-radius: 0;
-			color: #666;
+			.borderRadius(0);
+			color: @headerColor;
 			font: 16px/35px @standardFont;
 			padding: 0 10px;
 			text-decoration: none;
@@ -173,41 +172,5 @@
 	}
 }
 
-/* Exception: Small Desktop */
-@media (max-width: 1038px) {
-	#searchLeftShadow, #searchRightShadow {
-		display: none;
-		visibility: hidden;
-	}
-}
-
-/* Exception: Landscape Tablets to Small Desktop */
-@media (max-width: 1000px) {
-	#searchContainer {
-		min-width: 729px;
-	}
-}
-
-/* TBS: Landscape phone to portrait tablet */
-@media (max-width: 767px) {
-	#searchContainer {
-		min-width: 100%;
-	}
-}
-
-/* Exception: Smaller tablets portrait and larger phones landscape */
-@media (max-width: 680px) {
-	#searchContent {
-		span.large {
-			display: none;
-			visibility: hidden;
-		}
-		.text-input {
-			margin-right: 8px;
-			width: 35%;
-		}
-		.btn-group {
-			margin-right: 10px;
-		}
-	}
-}
+@import "searchPanel.tablet.less";
+@import "searchPanel.mobile.less";

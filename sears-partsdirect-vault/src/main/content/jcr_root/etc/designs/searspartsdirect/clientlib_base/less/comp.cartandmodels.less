@@ -1,7 +1,6 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-/* Component: Cart and Models */
 #ItemsCarts #ghost_cart {
 	right: -67px;
 	top: 0;
@@ -19,14 +18,14 @@
 .ViewContent h3.blue {
 	color: rgb(34, 72, 150);
 	float: none;
-	font-size: @loginNavigationSize;
+	font-size: @smallestPSize;
 	font-weight: bold;
 	margin: 5px 0 0;
 	text-align: center;
 }
 .ViewContent p.ghostCart_noItems {
 	color: rgb(51, 51, 51);
-	font-size: @paragraphSize;
+	font-size: @pSize;
 	margin: 20px 0;
 	text-align: center;
 }
@@ -46,7 +45,7 @@
 	padding: 8px 15px 8px 10px;
 	text-align: center;
 	background: none;
-	background-color: #ff6600;
+	background-color: @searchButtonColor;
 	.borderRadius(2px);
 	text-shadow: 1px 0 1px @bodyCopyColor;
 }
@@ -72,8 +71,8 @@ div#currentCart .itemInCart .partNumber, #ItemsCarts div#currentCart #editLink a
 	padding: 7px 5px;
 }
 .cartNav ul li #modelCount {
-	color: #067bb5;
-	font-size: @loginNavigationSize;
+	color: @linkColor;
+	font-size: @smallestPSize;
 	display: inline;
 }
 .cartNav ul li:hover #modelCount {
@@ -91,7 +90,7 @@ div#currentCart .itemInCart .partNumber, #ItemsCarts div#currentCart #editLink a
 #MyModelsDiv #modelFlyOut .items_list ul li a, #MyModelsDiv #modelFlyOut .items_list ul li {
 	background: @bodyColor;
 	border: none;
-	color: #067bb5;
+	color: @linkColor;
 	line-height: normal;
 	width: 100%;
 }

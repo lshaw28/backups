@@ -1,24 +1,24 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-/* Core: Error Codes */
 dl.error-codes {
-}
-dl.error-codes dt {
-	padding: 20px 40px;
-	background: #f0f0f0 url('../img/logosSmall.png') no-repeat 95% 50%;
-	background: none, url('../img/logosSmall.svg') no-repeat 95% 50%;
-	background-size: 3% 100%;
-	background-color: #f0f0f0;
-	font-size: @header4Size;
-	font-weight: normal;
-	color: @bodyCopyColor;
-}
-dl.error-codes dd {
-	border-top: 1px solid #cccccc;
-	margin-left: 40px;
-}
-dl.error-codes dd a {
-	padding: 15px 0 15px 0;
-	display: block;
+	dt {
+		padding: 20px 40px;
+		background: #f0f0f0 url('../img/logosSmall.png') no-repeat 95% 50%;
+		background: none, url('../img/logosSmall.svg') no-repeat 95% 50%;
+		background-size: 3% 100%;
+		background-color: #f0f0f0;
+		font-size: @h4Size;
+		font-weight: normal;
+		color: @bodyCopyColor;
+	}
+	dd {
+		border-top: 1px solid #ccc;
+		margin-left: 40px;
+
+		a {
+			padding: 15px 0 15px 0;
+			display: block;
+		}
+	}
 }
