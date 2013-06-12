@@ -24,11 +24,13 @@
 
 --%><%@include file="/libs/foundation/global.jsp" %><%
 %><%@ page import="com.day.cq.commons.Doctype,
-				   org.apache.commons.lang3.StringEscapeUtils" %><%
+				   org.apache.commons.lang3.StringEscapeUtils,
+				   com.spd.cq.searspartsdirect.common.helpers.ExternalLinks" %><%
 	String favIcon = currentDesign.getPath() + "/favicon.ico";
 	if (resourceResolver.getResource(favIcon) == null) {
 		favIcon = null;
 	}
+	ExternalLinks externalLinks = new ExternalLinks(slingRequest);
 %><head>
 	<!-- Metadata -->
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -36,6 +38,7 @@
 	<meta name="keywords" content="<%= StringEscapeUtils.escapeHtml4(WCMUtils.getKeywords(currentPage, false)) %>" />
 	<meta description="description" content="<%= StringEscapeUtils.escapeHtml4(properties.get("jcr:description", "")) %>" />
 	<meta name="robots" content="index, follow" />
+	<link rel="canonical" href="<%=externalLinks.getExternalUrlForPage(currentPage.getPath()) %>" />
 	<title><%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %></title>
 	<!-- Viewport and Styles -->
 	<cq:include script="headlibs.jsp"/>
