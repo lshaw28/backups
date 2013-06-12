@@ -1,5 +1,7 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,13 +35,15 @@ public class PartsDirectValidator {
 	public boolean isNoLongerThan(String str, int limit){
 		return (str.length() <= limit);
 	}
-	
+
 	/*
 	 * Verify if String parameter contains no SQL words, ignoring case (based on ANSI SQL 2003 SQL reserved words)
 	 */
-	public boolean conatinsNoSqlWords(String str){
-		for(SqlReservedWord word: SqlReservedWord.values()){
-			if(str.toLowerCase().contains(word.toString().toLowerCase())){
+	public boolean containsNoSqlWords(String str){
+		Set<String> reservedWords = SqlReservedWord.getWords();
+		String[] wordsPerWhitespace = str.split("[^A-Za-z_]+");
+		for (int i = 0 ; i < wordsPerWhitespace.length; i++) {
+			if (reservedWords.contains(wordsPerWhitespace[i].toUpperCase())) {
 				return false;
 			}
 		}
