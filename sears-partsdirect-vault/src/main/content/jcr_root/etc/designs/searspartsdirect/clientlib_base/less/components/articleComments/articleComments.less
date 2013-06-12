@@ -1,0 +1,43 @@
+@import "../../base.variables.less";
+
+@articleCommentsLeftSpacing: 25px;
+
+.articleComments {
+	padding-bottom: 15px;
+}
+
+.articleComments-item {
+	padding: 20px 0 0 @articleCommentsLeftSpacing;
+
+	.item-header {
+		overflow: hidden;
+	}
+
+	.name {
+		display: inline-block;
+		padding-bottom: 3px;
+		text-decoration: none;
+	}
+
+	.avatar {
+		float: left;
+		width: 52px;
+		height: 52px;
+		padding-right: 10px;
+
+		img {
+			border-radius: 25px;
+			border: solid 1px @color-border-primary-a;
+		}
+	}
+}
+
+.articleComments-form {
+	padding: 15px 0 0 @articleCommentsLeftSpacing;
+}
+
+.articleComments-loader {
+	display: none;
+}
+
+@import "articleComments.mobile.less";
