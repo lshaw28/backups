@@ -1,0 +1,32 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.loginNav {
+	float: right;
+	margin: 0 0 15px 0;
+
+	ul {
+		margin: 0 5px 0 0;
+		padding: 0;
+		list-style-type: none;
+
+		li {
+			color: #304295;
+			float: left;
+			list-style-type: none;
+			margin: 0 15px 0 0;
+			padding: 0;
+
+			a {
+				float: left;
+				font-size: @smallPSize;
+				margin: 0;
+				padding: 0;
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+@import "loginNav.tablet.less";
+@import "loginNav.mobile.less";
