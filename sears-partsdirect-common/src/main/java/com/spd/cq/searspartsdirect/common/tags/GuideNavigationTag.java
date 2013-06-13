@@ -156,7 +156,6 @@ public class GuideNavigationTag extends CQBaseTag {
 							"{\"link\":\""+Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.TOOLS_REQ_R_COMPONENT+"\"}",
 							"{\"link\":\""+Constants.INSTRUCTIONS_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.INSTRUCTIONS_COMPONENT+"\"}",
 							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.COMMENTS_COMPONENT+"\"}",
-							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.SUBHEAD_COMPONENT+"\"}",
 						}
 						,PropertyType.STRING);
 					if (log.isDebugEnabled()) log.debug("Performed setup");
@@ -322,7 +321,8 @@ public class GuideNavigationTag extends CQBaseTag {
 		private final static Map<String,ParsysLinkGeneratorMaker> makers = initMakers();
 		private final static Map<String,ParsysLinkGeneratorMaker> initMakers() {
 			Map<String,ParsysLinkGeneratorMaker> makers = new HashMap<String,ParsysLinkGeneratorMaker>();
-			makers.put(Constants.SUBHEAD_COMPONENT, new SubheadLinkGeneratorMaker());
+			// Since subhead was removed, there are currently no specific generator makers.
+			// However, retaining this mechanism since we may need it to support future requirements.
 			return makers;
 		}
 		
@@ -358,12 +358,6 @@ public class GuideNavigationTag extends CQBaseTag {
 			return parsysName;
 		}
 		public abstract ParsysLinkGenerator createGenerator(Resource parsysChild);
-	}
-	
-	private static class SubheadLinkGeneratorMaker extends ParsysLinkGeneratorMaker {
-		public ParsysLinkGenerator createGenerator(Resource subhead) {
-			return new SubheadLinkGenerator(getParsysName(),subhead);
-		}
 	}
 	
 	private static abstract class ParsysLinkGenerator extends LinkGenerator {
@@ -406,25 +400,6 @@ public class GuideNavigationTag extends CQBaseTag {
 		
 		@Override
 		public String generateLabel() {
-			return label;
-		}
-	}
-	
-	private static class SubheadLinkGenerator extends ParsysLinkGenerator {
-		public SubheadLinkGenerator(String parsysName, Resource subheadBeingLinkedTo) {
-			setParsysName(parsysName);
-			setBeingLinkedTo(subheadBeingLinkedTo);
-		}
-		
-		@Override
-		public String generateLabel() {
-			String label = Constants.EMPTY;
-			try {
-				label = getBeingLinkedTo().adaptTo(Node.class).getProperty(Constants.GUIDE_SUBHEAD_LABEL_PROP)
-						.getString();
-			} catch (Exception e) {
-				log.error("retrieving subhead label: ", e);
-			}
 			return label;
 		}
 	}
