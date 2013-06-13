@@ -1,0 +1,37 @@
+@media (max-width: 650px) {
+	.loginNav {
+		display: none;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100%;
+
+		ul {
+			float: left;
+			width: 100%;
+
+			li {
+				clear: left;
+				float: left;
+				width: 100%;
+
+				a {
+					border-bottom: 1px solid #c3c3c3;
+					color: @linkColor;
+					display: block;
+					float: left;
+					font-size: @h5Size;
+					padding: 20px 0 20px 10px;
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	body.menu-open {
+		.loginNav {
+			overflow: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+	}
+}

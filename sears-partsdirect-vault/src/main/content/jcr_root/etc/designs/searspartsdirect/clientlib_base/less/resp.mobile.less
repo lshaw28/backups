@@ -5,13 +5,6 @@
 	body {
 		padding: 0 20px;
 	}
-	.brandBar {
-		display: none;
-	}
-	.home_header {
-		margin: 0;
-		background-color: @bodyColor;
-	}
 	.headerPromo {
 		padding: 0;
 		height: 57px;
@@ -47,40 +40,8 @@
 	body {
 		padding: 0;
 	}
-	.brandBar {
-		display: none;
-	}
 	#viewport {
 		background: @tableHoverColor url('../img/menu_shadow.png') repeat-y 577px 0;
-	}
-	.loginNav {
-		position: fixed;
-		width: 100%;
-		top: 0;
-		left: 0;
-		display: none;
-	}
-	.loginNav ul {
-		float: left;
-		width: 100%;
-	}
-	.loginNav ul li {
-		float: left;
-		clear: left;
-		width: 100%;
-	}
-	.loginNav ul li a {
-		border-bottom: 1px solid #c3c3c3;
-		display: block;
-		float: left;
-		width: 100%;
-		padding: 20px 0 20px 10px;
-		color: @linkColor;
-		font-size: @h5Size;
-	}
-	body.menu-open .loginNav {
-		overflow: auto;
-		-webkit-overflow-scrolling: touch;
 	}
 	.container-fluid {
 		-webkit-transition-property: -webkit-transform;
@@ -93,12 +54,6 @@
 	body.menu-moving .container-fluid {
 		-webkit-tap-highlight-color: rgba(0,0,0,0);
 		-webkit-user-select: none;
-	}
-	.home_header {
-		margin: 0;
-	}
-	.loginNav {
-		display: none;
 	}
 	.trigger {
 		position: absolute;
@@ -122,18 +77,7 @@
 	.body_shadow_right {
 		display: none;
 	}
-	.home_logo {
-		position: absolute;
-		left: 8px;
-		top: 52px;
-		width: 217px;
-		height: 60px;
-		background: url('../img/sears_logo_new.png') no-repeat 0 0;
-		background: none url('../img/sears_logo_mob.png') no-repeat 0 0;
-		background: none, url('../img/sears_logo_mob.svg') no-repeat 0 0;
-		z-index: 999;
-	}
-	.header_right_panel {
+	#headerNavigation {
 		position: absolute;
 		left: -0px;
 		top: 0;
@@ -193,18 +137,8 @@
 }
 
 @media (max-width: 480px) {
-	.brandBar {
-		display: none;
-	}
 	.tab-content {
 		overflow: hidden;
-	}
-	.home_logo {
-		position: absolute;
-		left: 8px;
-		top: 52px;
-		width: 217px;
-		height: 27px;
 	}
 	.loginNav {
 		display: none;
@@ -240,11 +174,5 @@
 	}
 	#footerColumn3 .first_helpful_link_set {
 		margin: 7px 0 0 0;
-	}
-}
-
-@media (max-width: 320px) {
-	.brandBar {
-		display: none;
 	}
 }

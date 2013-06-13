@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import junit.framework.TestCase;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -12,17 +11,14 @@ import com.spd.cq.searspartsdirect.common.model.RelatedGuideModel;
 
 public class GetRelatedGuidesTagTest extends TestCase {
 	
-	String categoryPathAttribute;
-	GetRelatedArticlesTag tag;
+	GetRelatedGuidesTag tag;
 	ArrayList<RelatedGuideModel> guides;
-
 	PageContext pageContext;
-	ResourceResolver resourceResolver;
 	
 	@Override
 	protected void setUp() {
 		pageContext = Mockito.mock(PageContext.class);
-		tag = new GetRelatedArticlesTag();
+		tag = new GetRelatedGuidesTag();
 		guides = new ArrayList<RelatedGuideModel>();
 
 	    // dummy data
@@ -40,7 +36,7 @@ public class GetRelatedGuidesTagTest extends TestCase {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testRelatedArticles() throws JspException {
+	public void testRelatedGuides() throws JspException {
 		ArrayList<RelatedGuideModel> guidesCheck;
 		Mockito.when(pageContext.getAttribute("guides")).thenReturn(guides);
 		tag.doStartTag();

@@ -1,16 +1,6 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-.home_header {
-	margin: 0 20px;
-	background-color: @bodyColor;
-}
-.home_header .inner_header {
-	position: relative;
-	padding: 60px 0 0 0;
-	z-index: 9;
-	background: @bodyColor;
-}
 .body_shadow_left {
 	width: 6px;
 	height: 188px;
@@ -25,186 +15,14 @@
 	right: -6px;
 	top: 0;
 }
-.home_logo {
-	position: absolute;
-	left: 20px;
-	top: 20px;
-	width: 146px;
-	height: 60px;
-	background: url('../img/sears_logo_new.png') no-repeat 0 0;
-	z-index: 999;
-}
-.home_logo a:link,  .home_logo a:visited {
-	float: left;
-	width: 148px;
-	height: 69px;
-}
-.home_logo a:active,  .home_logo a:hover {
-	outline: none;
-}
-.home_logo a span {
-	display: none;
-}
-.header_right_panel {
+#headerNavigation {
 	position: absolute;
 	right: -5px;
 	top: 20px;
 	z-index: 998;
 }
-.header_right_panel .loginNav {
-	float: right;
-	margin: 0 0 15px 0;
-}
-.loginNav ul {
-	margin: 0 5px 0 0;
-	padding: 0;
-	list-style-type: none;
-}
-.loginNav ul li {
-	float: left;
-	margin: 0 15px 0 0;
-	padding: 0;
-	color: #304295;
-	font-size: @smallestPSize;
-	list-style-type: none;
-}
-.loginNav ul li a {
-	float: left;
-	margin: 0;
-	padding: 0;
-	font-size: @smallestPSize;
-	text-decoration: underline;
-}
 
 
-.header_right_panel .cartNav {
-	float: right;
-	height: 40px;
-}
-.cartNav ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	height: 40px;
-	position: relative;
-}
-.cartNav ul .li_shadow_curve {
-	background-position: 2px -12px;
-	background-repeat: no-repeat;
-	bottom: 0;
-	height: 7px;
-	position: absolute;
-	right: 0;
-	width: 7px;
-	background-image: url(../img/home_sprite.png);
-}
-.cartNav ul li {
-	float: left;
-	background: @tableHoverColor;
-	line-height: 34px;
-	padding: 0;
-	margin: 0;
-	list-style-type: none;
-}
-.cartNav ul li a {
-	float: left;
-	line-height: 34px;
-	margin: 0;
-	padding: 0 8px 0 7px;
-	font-size: @smallestPSize;
-	text-decoration: none;
-	border-right: 1px solid #c3c3c3;
-}
-.cartNav ul li a span {
-	background-position: 0 0;
-	background-repeat: no-repeat;
-	display: inline-block;
-	height: 7px;
-	width: 10px;
-	background-image: url(../img/home_sprite.png);
-}
-.cartNav ul li a span.cart {
-	background-position: 0 -21px;
-	background-repeat: no-repeat;
-	display: inline-block;
-	height: 20px;
-	width: 20px;
-	position: relative;
-	top: 5px;
-	background-image: url(../img/home_sprite.png);
-}
-.cartNav ul li a #scCartItemCountHeader {
-	background: none;
-	display: inline;
-}
-.cartNav ul li:hover a {
-	background: @linkHoverColor;
-	color: @bodyColor;
-	border-right: 1px solid #304295;
-}
-.cartNav ul li.itemsInCart a {
-	background: @linkHoverColor;
-	color: @bodyColor;
-	border-right: 1px solid #304295;
-}
-.cartNav ul li.itemsInCart a span {
-	background-position: -16px 0;
-	background-repeat: no-repeat;
-	display: inline-block;
-}
-.cartNav ul li.itemsInCart a span.cart {
-	background-position: -19px -21px;
-	background-repeat: no-repeat;
-	display: inline-block;
-	background-image: url(../img/home_sprite.png);
-}
-.cartNav ul li:hover a span {
-	background-position: -16px 0;
-	background-repeat: no-repeat;
-	display: inline-block;
-}
-.cartNav ul li:hover a span.cart {
-	background-position: -19px -21px;
-	background-repeat: no-repeat;
-	display: inline-block;
-}
-.cartNav ul li.currentClass a {
-	background: #304295;
-	color: @bodyColor;
-	border-right: 1px solid #304295;
-}
-.cartNav ul li.currentClass a span {
-	background-position: -16px 0;
-	background-repeat: no-repeat;
-	display: inline-block;
-}
-.cartNav ul li.currentClass a span.cart {
-	background-position: -19px -21px;
-	background-repeat: no-repeat;
-	display: inline-block;
-}
-div#currentCart .itemInCart .partNumber {
-	color: @linkColor;
-	padding: 0;
-	margin: 0 0 -8px 0;
-}
-div#currentCart .itemInCart .partNumber:hover {
-	color: @linkHoverColor;
-	text-decoration: underline;
-}
-div#currentCart p.ghostCart_addedItem {
-	color: @bodyCopyColor;
-}
-#showCart h3 {
-	font-size: @pSize;
-	color: @bodyCopyColor;
-	text-align: center;
-}
-#ItemsCarts div#currentCart #editLink a.arrow_blue_link {
-	color: @linkColor;
-	font-size: 13px;
-}
-// # Recently Viewed Dropdown
 #RecentlyViewedDiv img, #MyModelsDiv img, #ItemsCartsDiv img {
 	background: transparent;
 	zoom: 1;
@@ -361,23 +179,6 @@ div#currentCart p.ghostCart_addedItem {
 
 .left_pos {
 	left: 205px;
-}
-.loginNav ul li a {
-	float: left;
-	margin: 0;
-	padding: 0;
-	font-size: @smallPSize;
-}
-.home_logo {
-	position: absolute;
-	left: 20px;
-	top: 20px;
-	width: 14%;
-	height: 28%;
-	background: url('../img/sears_logo_new.png') no-repeat 0 0;
-	background: none, url('../img/sears_logo_new.svg') no-repeat 0 0;
-	z-index: 999;
-	background-size: 100%;
 }
 
 .manuals_help_list {
