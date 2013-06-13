@@ -38,3 +38,4 @@ relatedArticles/relatedArticles.less
 boxed-callout/boxed-callout.less
 topAccessories/topAccessories.less
 articleComments/articleComments.less
+accordionItem/accordionItem.less
