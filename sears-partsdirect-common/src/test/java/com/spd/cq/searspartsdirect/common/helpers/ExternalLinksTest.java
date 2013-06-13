@@ -46,7 +46,7 @@ public class ExternalLinksTest extends TestCase {
 		String external = generator.getExternalUrlForPage("/content/searspartsdirect/en");
 		assertThat(external,is(instanceOf(String.class)));
 		assertThat(external,Matchers.startsWith(generator.getAddedPrefix()));
-		assertThat(external,Matchers.startsWith(generator.getAddedSuffix()));
+		assertThat(external,Matchers.endsWith(generator.getAddedSuffix()));
 	}
 	
 	@Test

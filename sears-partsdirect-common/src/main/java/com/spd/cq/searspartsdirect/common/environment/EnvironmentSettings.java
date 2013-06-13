@@ -24,7 +24,7 @@ public class EnvironmentSettings {
     		description = "Page that will be redirected to when a page is not found",
     		value = "/content/searspartsdirect/en/404.html"
     	)
-    private static final String HANDLE_404_URL = "searspartsdirect.error.404.url";
+    public static final String HANDLE_404_URL = "searspartsdirect.error.404.url";
     
     public static String get404HandlerURL() {
     	return getProperty(HANDLE_404_URL,"");
@@ -34,7 +34,7 @@ public class EnvironmentSettings {
     		description = "Paths to start generating the sitemap from",
     		value = "/content/searspartsdirect/en"
     	)
-    private static final String SITEMAP_START_PATHS = "searspartsdirect.sitemap.paths.start";
+    public static final String SITEMAP_START_PATHS = "searspartsdirect.sitemap.paths.start";
     
     public static String getSitemapStartPaths() {
     	return getProperty(SITEMAP_START_PATHS,"");
@@ -43,7 +43,7 @@ public class EnvironmentSettings {
     @Property(label = "Sitemap Stop Paths", 
     		description = "Paths to stop generating the sitemap at",
     		value = "")
-    private static final String SITEMAP_STOP_PATHS = "searspartsdirect.sitemap.paths.stop";
+    public static final String SITEMAP_STOP_PATHS = "searspartsdirect.sitemap.paths.stop";
     
     public static String getSitemapStopPaths() {
     	return getProperty(SITEMAP_STOP_PATHS,"");
@@ -52,7 +52,7 @@ public class EnvironmentSettings {
     @Property(label = "External Url Added Prefix", 
     		description = "Prefix to prepend to external page URLs",
     		value = "http://www.searspartsdirect.com")
-    private static final String EXTERNAL_ADDED_PREFIX = "searspartsdirect.external.added.prefix";
+    public static final String EXTERNAL_ADDED_PREFIX = "searspartsdirect.external.added.prefix";
     
     public static String getExternalAddedPrefix() {
     	return getProperty(EXTERNAL_ADDED_PREFIX,"");
@@ -61,7 +61,7 @@ public class EnvironmentSettings {
     @Property(label = "External Url Added Suffix", 
     		description = "Suffix to append to external page URLs",
     		value = ".html")
-    private static final String EXTERNAL_ADDED_SUFFIX = "searspartsdirect.external.added.suffix";
+    public static final String EXTERNAL_ADDED_SUFFIX = "searspartsdirect.external.added.suffix";
     
     public static String getExternalAddedSuffix() {
     	return getProperty(EXTERNAL_ADDED_SUFFIX,"");
