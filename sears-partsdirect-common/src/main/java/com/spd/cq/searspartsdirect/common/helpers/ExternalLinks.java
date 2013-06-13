@@ -9,14 +9,14 @@ public class ExternalLinks {
 	
 	private final ResourceResolver resourceResolver;
 	private final SlingHttpServletRequest slingRequest;
-	private final String addedPrefix;
-	private final String addedSuffix;
+	private String addedPrefix;
+	private String addedSuffix;
 	
 	public ExternalLinks(final SlingHttpServletRequest slingRequest) {
 		this.slingRequest = slingRequest;
 		this.resourceResolver = slingRequest.getResourceResolver();
-		addedPrefix = readConfiguredAddedPrefix();
-		addedSuffix = readConfiguredAddedSuffix();
+		setAddedPrefix(readConfiguredAddedPrefix());
+		setAddedSuffix(readConfiguredAddedSuffix());
 	}
 	
 	
@@ -34,11 +34,31 @@ public class ExternalLinks {
 		return sb.toString();
 	}
 	
-	String readConfiguredAddedPrefix() {
+	private String readConfiguredAddedPrefix() {
 		return EnvironmentSettings.getExternalAddedPrefix();
 	}
 	
-	String readConfiguredAddedSuffix() {
+	private String readConfiguredAddedSuffix() {
 		return EnvironmentSettings.getExternalAddedSuffix();
+	}
+
+
+	public final String getAddedPrefix() {
+		return addedPrefix;
+	}
+
+
+	public final void setAddedPrefix(String addedPrefix) {
+		this.addedPrefix = addedPrefix;
+	}
+
+
+	public final String getAddedSuffix() {
+		return addedSuffix;
+	}
+
+
+	public final void setAddedSuffix(String addedSuffix) {
+		this.addedSuffix = addedSuffix;
 	}
 }
