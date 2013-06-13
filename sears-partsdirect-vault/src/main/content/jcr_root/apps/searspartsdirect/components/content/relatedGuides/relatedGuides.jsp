@@ -28,7 +28,8 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 
 	<c:if test="${fn:length(guides) eq 4}">
 		<div class="view-all">
-			<a href="<cq:text property="viewAllItemsLink"/>.html" placeholder="View all Articles"><cq:text property="viewAllItemsText" /></a>
+			<a href="<cq:text property="viewAllItemsLink"/>.html" ><cq:text property="viewAllItemsText" placeholder="View all Guides" /></a>
 		</div>
 	</c:if>
+	
 </c:if>
