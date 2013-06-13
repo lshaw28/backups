@@ -2,11 +2,9 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.jcr.Node;
 import javax.jcr.Property;
@@ -149,9 +147,10 @@ public class GuideNavigationTag extends CQBaseTag {
 				} else {
 					setupNode = pageNode.getNode(Constants.GUIDE_NAV_PATH);
 				}
-				if (!setupNode.hasProperty("sections") || setupNode.getProperty("sections").isNew()) {
+				if (!setupNode.hasProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR) 
+						|| setupNode.getProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR).isNew()) {
 					setupNode.setProperty(Constants.SLINGTYPE, Constants.GUIDE_NAV_COMPONENT);
-					setupNode.setProperty("sections",
+					setupNode.setProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR,
 						new String[]{
 							"{\"link\":\""+Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.PARTS_REQ_R_COMPONENT+"\"}",
 							"{\"link\":\""+Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.TOOLS_REQ_R_COMPONENT+"\"}",

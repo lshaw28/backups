@@ -18,6 +18,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 
 import junit.framework.TestCase;
 
@@ -33,6 +34,7 @@ public class MocksTag extends TestCase {
 	protected ResourceResolver resourceResolver;
 	protected Page currentPage;
 	protected SlingHttpServletRequest slingRequest;
+	protected PageManager pageManager;
 	
 	@Override
 	protected void setUp() throws Exception {
@@ -74,5 +76,7 @@ public class MocksTag extends TestCase {
 		when(pageContext.findAttribute("currentPage")).thenReturn(currentPage);
 		slingRequest = mock(SlingHttpServletRequest.class);
 		when(pageContext.findAttribute("slingRequest")).thenReturn(slingRequest);
+		pageManager = mock(PageManager.class);
+		when(pageContext.findAttribute("pageManager")).thenReturn(pageManager);
 	}
 }
