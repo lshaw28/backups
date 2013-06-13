@@ -10,7 +10,6 @@ core.grid.less
 core.buttons.less
 core.forms.less
 core.tables.less
-comp.accordion.less
 comp.brandcarousel.less
 comp.cartandmodels.less
 comp.errorcodes.less
@@ -26,6 +25,7 @@ resp.tablet.less
 resp.mobile.less
 
 #base=less/components/.
+accordionItem/accordionItem.less
 articleComments/articleComments.less
 authorDisplay/authorDisplay.less
 boxed-callout/boxed-callout.less
