@@ -20,7 +20,6 @@ comp.manualshelp.less
 comp.modelfinder.less
 comp.mymodels.less
 comp.sidebarlinks.less
-resp.large.less
 resp.tablet.less
 resp.mobile.less
 
