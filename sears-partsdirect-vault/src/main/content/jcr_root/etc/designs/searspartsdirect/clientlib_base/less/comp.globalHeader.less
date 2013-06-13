@@ -1,16 +1,6 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-.home_header {
-	margin: 0 20px;
-	background-color: @bodyColor;
-}
-.home_header .inner_header {
-	position: relative;
-	padding: 60px 0 0 0;
-	z-index: 9;
-	background: @bodyColor;
-}
 .body_shadow_left {
 	width: 6px;
 	height: 188px;
@@ -25,33 +15,13 @@
 	right: -6px;
 	top: 0;
 }
-.home_logo {
-	position: absolute;
-	left: 20px;
-	top: 20px;
-	width: 146px;
-	height: 60px;
-	background: url('../img/sears_logo_new.png') no-repeat 0 0;
-	z-index: 999;
-}
-.home_logo a:link,  .home_logo a:visited {
-	float: left;
-	width: 148px;
-	height: 69px;
-}
-.home_logo a:active,  .home_logo a:hover {
-	outline: none;
-}
-.home_logo a span {
-	display: none;
-}
-.header_right_panel {
+#headerNavigation {
 	position: absolute;
 	right: -5px;
 	top: 20px;
 	z-index: 998;
 }
-.header_right_panel .loginNav {
+#headerNavigation .loginNav {
 	float: right;
 	margin: 0 0 15px 0;
 }
@@ -77,7 +47,7 @@
 }
 
 
-.header_right_panel .cartNav {
+#headerNavigation .cartNav {
 	float: right;
 	height: 40px;
 }
@@ -367,17 +337,6 @@ div#currentCart p.ghostCart_addedItem {
 	margin: 0;
 	padding: 0;
 	font-size: @smallPSize;
-}
-.home_logo {
-	position: absolute;
-	left: 20px;
-	top: 20px;
-	width: 14%;
-	height: 28%;
-	background: url('../img/sears_logo_new.png') no-repeat 0 0;
-	background: none, url('../img/sears_logo_new.svg') no-repeat 0 0;
-	z-index: 999;
-	background-size: 100%;
 }
 
 .manuals_help_list {

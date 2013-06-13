@@ -5,13 +5,6 @@
 	body {
 		padding: 0 20px;
 	}
-	.brandBar {
-		display: none;
-	}
-	.home_header {
-		margin: 0;
-		background-color: @bodyColor;
-	}
 	.headerPromo {
 		padding: 0;
 		height: 57px;
@@ -46,9 +39,6 @@
 @media (max-width: 650px) {
 	body {
 		padding: 0;
-	}
-	.brandBar {
-		display: none;
 	}
 	#viewport {
 		background: @tableHoverColor url('../img/menu_shadow.png') repeat-y 577px 0;
@@ -94,9 +84,6 @@
 		-webkit-tap-highlight-color: rgba(0,0,0,0);
 		-webkit-user-select: none;
 	}
-	.home_header {
-		margin: 0;
-	}
 	.loginNav {
 		display: none;
 	}
@@ -122,18 +109,7 @@
 	.body_shadow_right {
 		display: none;
 	}
-	.home_logo {
-		position: absolute;
-		left: 8px;
-		top: 52px;
-		width: 217px;
-		height: 60px;
-		background: url('../img/sears_logo_new.png') no-repeat 0 0;
-		background: none url('../img/sears_logo_mob.png') no-repeat 0 0;
-		background: none, url('../img/sears_logo_mob.svg') no-repeat 0 0;
-		z-index: 999;
-	}
-	.header_right_panel {
+	#headerNavigation {
 		position: absolute;
 		left: -0px;
 		top: 0;
@@ -193,18 +169,8 @@
 }
 
 @media (max-width: 480px) {
-	.brandBar {
-		display: none;
-	}
 	.tab-content {
 		overflow: hidden;
-	}
-	.home_logo {
-		position: absolute;
-		left: 8px;
-		top: 52px;
-		width: 217px;
-		height: 27px;
 	}
 	.loginNav {
 		display: none;
@@ -240,11 +206,5 @@
 	}
 	#footerColumn3 .first_helpful_link_set {
 		margin: 7px 0 0 0;
-	}
-}
-
-@media (max-width: 320px) {
-	.brandBar {
-		display: none;
 	}
 }

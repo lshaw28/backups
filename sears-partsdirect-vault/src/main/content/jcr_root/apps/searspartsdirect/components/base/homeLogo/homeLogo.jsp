@@ -1,1 +1,1 @@
-<div class="home_logo"></div>
+<a href="../">&nbsp;</a>
