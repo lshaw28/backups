@@ -61,7 +61,7 @@ function menuTrigger() {
 		viewportMove = viewportWidth - 44,
 		loginNav = $(".loginNav"),
 		menu = $(loginNav),
-		closeMask = $("li.home_menu_link a");
+		closeMask = $("li.loginNavHome a");
 
 	htmlBody.prepend(loginNav);
 
