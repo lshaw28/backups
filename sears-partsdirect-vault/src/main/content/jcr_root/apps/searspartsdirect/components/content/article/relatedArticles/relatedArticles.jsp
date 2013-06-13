@@ -8,7 +8,7 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 <spd:getRelation single="true" assetType="productCategory" />
 <spd:getRelatedArticles categoryPath="${productCategoryRelation.path}" />
 
-<c:if test="${not empty articles}">
+<c:if test="${not empty articles && not empty productCategoryRelation}">
 	<h2>
 		<cq:text property="itemsHeader" />
 	</h2>
@@ -24,21 +24,11 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 			</c:forEach>
 		</div>
 	</div>
-
+	
 	<c:if test="${fn:length(articles) eq 4}">
-		<div class="primary-btn">
-			<a href="<cq:text property="viewAllItemsLink"/>.html" placeholder="View all Articles"><cq:text property="viewAllItemsText" /></a>
+		<br />
+		<div class="view-all">
+			<a href="<cq:text property="viewAllItemsLink"/>.html"><cq:text property="viewAllItemsText"  placeholder="View all Articles" /></a>
 		</div>
 	</c:if>
 </c:if>
-
-
-
-
-
-
-
-
-
-
-

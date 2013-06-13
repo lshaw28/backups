@@ -45,14 +45,25 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 	        
 	        // populate only up to four elements of "guides" return ArrayList, as per specifications
 	        // May need to update this code in order to accommodate Guide selection preference
+	        String description = "";
 	        if (result.size() <= 4){
 		        for(Page page: result){
-		        	articles.add(new RelatedArticleModel(page.getPath() + ".html", page.getPath() + Constants.ASSETS_IMAGE_PATH, page.getTitle(), page.getPath() + Constants.ASSETS_DESCRIPTION_PATH));
+		        	if(page.getProperties().containsKey("abstracttext")){
+		        		description = page.getProperties().get("abstracttext").toString();
+		        	} else {
+		        		description = "";
+		        	}
+		        	articles.add(new RelatedArticleModel(page.getPath() + ".html", page.getPath() + Constants.ASSETS_IMAGE_PATH, page.getTitle(), description));
 		        }	        	
 	        }
 	        else {
 	        	for (int i=0; i < 4; i++){
-	        		articles.add(new RelatedArticleModel(result.get(i).getPath() + ".html", result.get(i).getPath() + Constants.ASSETS_IMAGE_PATH, result.get(i).getTitle(), result.get(i).getPath() + Constants.ASSETS_DESCRIPTION_PATH));
+		        	if(result.get(i).getProperties().containsKey("abstracttext")){
+		        		description = result.get(i).getProperties().get("abstracttext").toString();
+		        	} else {
+		        		description = "";
+		        	}
+	        		articles.add(new RelatedArticleModel(result.get(i).getPath() + ".html", result.get(i).getPath() + Constants.ASSETS_IMAGE_PATH, result.get(i).getTitle(), description));
 	        	}
 	        }
 
