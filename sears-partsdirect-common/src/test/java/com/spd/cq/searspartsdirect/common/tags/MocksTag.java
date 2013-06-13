@@ -21,7 +21,6 @@ import com.day.cq.wcm.api.Page;
 
 import junit.framework.TestCase;
 
-
 /**
  * Provides common objects needed when mocking for testing CQ custom tags
  * @author bzethmayr
@@ -39,7 +38,7 @@ public class MocksTag extends TestCase {
 	protected void setUp() throws Exception {
 		pageContext = mock(PageContext.class);
 		final Map<String, Object> contextMap = new HashMap<String, Object>();
-		// mock for method persist
+		// mock for method setAttribute
 		doAnswer(new Answer<Void>() {
 		    //@Override
 		    public Void answer(InvocationOnMock invocation) throws Throwable {
@@ -51,7 +50,7 @@ public class MocksTag extends TestCase {
 		    }
 		}).when(pageContext).setAttribute(anyString(),anyObject());
 
-		// mock for method findByName
+		// mock for method getAttribute
 		when(pageContext.getAttribute(anyString())).thenAnswer(new Answer<Object>() {
 		    //@Override
 		    public Object answer(InvocationOnMock invocation) throws Throwable {

@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.Property;
+import javax.jcr.RepositoryException;
+
+import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,22 +41,92 @@ public class PageImpressionsComparatorTest extends MocksTag {
 	}
 	
 	@Test
+	public void testTheIncrediblyComplexMock() {
+		try {
+			Page newPage = fixture.createTestPage("/quux",69);
+			assertThat(newPage,is(instanceOf(Page.class)));
+			assertThat(newPage.getPath(),is("/quux"));
+			assertThat(fixture.getTestPage("/quux"),is(newPage));
+			assertThat(fixture.getTestPage("/quux").getPath(),is("/quux"));
+			String statsPath = Constants.STATS_PAGE_PREFIX + newPage.getPath() + Constants.STATS_PAGE_SUFFIX;
+			Resource statsResource = resourceResolver.getResource(statsPath);
+			// We've shown that we can find our mock stats resource
+			assertThat(statsResource,is(instanceOf(Resource.class)));
+			Node statsNode = statsResource.adaptTo(Node.class);
+			assertThat(statsNode,is(instanceOf(Node.class)));
+			
+			NodeIterator yearsIterator = statsNode.getNodes();
+			assertThat(yearsIterator,is(instanceOf(NodeIterator.class)));
+			// We've shown that we're able to get our mock iterator over stats years
+			assertThat(yearsIterator.hasNext(),is(true));
+			Node year1 = yearsIterator.nextNode();
+			assertThat(year1,is(instanceOf(Node.class)));
+			assertThat(yearsIterator.hasNext(),is(true));
+			Node year2 = yearsIterator.nextNode();
+			assertThat(year2,is(instanceOf(Node.class)));
+			assertThat(yearsIterator.hasNext(),is(false));
+			// We've shown that our mock iterator iterates correctly. Let's see if it resets
+			yearsIterator = statsNode.getNodes();
+			assertThat(yearsIterator,is(instanceOf(NodeIterator.class)));
+			// We've shown that we're able to get our mock iterator over stats years, again
+			assertThat(yearsIterator.hasNext(),is(true));
+			year1 = yearsIterator.nextNode();
+			assertThat(year1,is(instanceOf(Node.class)));
+			assertThat(yearsIterator.hasNext(),is(true));
+			year2 = yearsIterator.nextNode();
+			assertThat(year2,is(instanceOf(Node.class)));
+			assertThat(yearsIterator.hasNext(),is(false));
+			// We've shown that a fresh mock iterator is returned each time getNodes is called on the stats node mock
+			
+			Property year1ViewsProp = year1.getProperty("views");
+			assertThat(year1ViewsProp,is(instanceOf(Property.class)));
+			Property year2ViewsProp = year2.getProperty("views");
+			assertThat(year2ViewsProp,is(instanceOf(Property.class)));
+			// We've shown that we can retrieve the mock property wrappers
+			long year1Views = year1ViewsProp.getLong();
+			long year2Views = year2ViewsProp.getLong();
+			assertEquals(69,year1Views + year2Views);
+			// We've shown that the sum of counts in mock years is equal to the expected amount.
+			// BUT the test itself was still failing.
+			// because I had mocked resolve() instead of getResource().
+		} catch (RepositoryException re) {
+			fail("Mock threw unexpected exception");
+		}
+	}
+	
+	@Test
+	public void testSimpleComparison() {
+		Page page1 = null;
+		Page page2 = null;
+		try {
+			page1 = fixture.createTestPage("/up", 12);
+			page2 = fixture.createTestPage("/dn", 21);
+		} catch (RepositoryException re) {
+			fail("Mock threw unexpected exception");
+		}
+		assertThat(page1,is(not(page2)));
+		assertThat(fixture.getTestPage("/up"),is(page1));
+		PageImpressionsComparator pic = new PageImpressionsComparator(resourceResolver);
+		assertThat(pic.compare(page1, page2),is(not(0)));
+		assertThat(pic.compare(page1, page2),is(-1));
+		assertThat(pic.compare(page2, page1),is(1));
+	}
+	
+	@Test
 	public void testThreeShuffled() {
 		List<Page> pages = new ArrayList<Page>();
-		pages.add(fixture.createTestPage("/foo",20));
-		pages.add(fixture.createTestPage("/bar",30));
-		pages.add(fixture.createTestPage("/baz",50));
-		//Collections.shuffle(pages);
-		/*
-		 * This test is temporarily stubbed, by removing the shuffle. To advance it,
-		 * need to make a mock for the NodeIterator used to retrieve yearly stats,
-		 * in PageImpressionsComparatorFixture. Currently this succeeds because
-		 * all compares are 0:0 and sort is stable.
-		 */
+		try {
+			pages.add(fixture.createTestPage("/foo",20));
+			pages.add(fixture.createTestPage("/bar",30));
+			pages.add(fixture.createTestPage("/baz",50));
+		} catch (RepositoryException re) {
+			fail("Mock threw unexpected exception");
+		}
+		Collections.shuffle(pages);
 		Collections.sort(pages,new PageImpressionsComparator(resourceResolver));
-		assertThat(pages.get(0),is(fixture.getTestPage("/foo")));
-		assertThat(pages.get(1),is(fixture.getTestPage("/bar")));
-		assertThat(pages.get(2),is(fixture.getTestPage("/baz")));
+		assertThat(pages.get(0).getPath(),is("/foo"));
+		assertThat(pages.get(1).getPath(),is("/bar"));
+		assertThat(pages.get(2).getPath(),is("/baz"));
+		assertThat(Collections.max(pages,new PageImpressionsComparator(resourceResolver)),is(fixture.getTestPage("/baz")));
 	}
-
 }
