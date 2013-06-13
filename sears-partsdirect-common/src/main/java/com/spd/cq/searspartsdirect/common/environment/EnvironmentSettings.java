@@ -66,6 +66,11 @@ public class EnvironmentSettings {
     public static String getExternalAddedSuffix() {
     	return getProperty(EXTERNAL_ADDED_SUFFIX,"");
     }
+    
+    // ---- for testing ----
+    public void externalActivateForTesting(final ComponentContext context) throws Exception {
+    	activate(context);
+    }
         
     // ----< SCR Integration >--------------------------------------------------
     protected void activate( final ComponentContext context ) throws Exception {
