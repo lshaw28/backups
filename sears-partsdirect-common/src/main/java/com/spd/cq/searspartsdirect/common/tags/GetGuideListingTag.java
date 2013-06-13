@@ -1,6 +1,7 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,8 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
@@ -52,10 +55,18 @@ public class GetGuideListingTag extends CQBaseTag{
 	        }
 	        
 	        Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
-	        
+
 	        for(Page page: result){
 	        	if (!page.equals(currentPage)) { // we exclude ourself from results
 	        		//page.getProperties().containsKey(
+	        		Tag[] tagsArr = page.getTags();
+	        		log.debug("Tags" + page.getTags().toString());
+	        		/*List <Tag>  tags = Arrays.asList(tagsArr);
+	        		if (tags.contains("searspartsdirect:subcategories")) {
+	        			
+	        		}*/
+	        		
+
 	        		guides.add(new RelatedArticleModel(
 		        				page.getPath() + ".html", 
 		        				page.getPath() + Constants.ASSETS_IMAGE_PATH, 
