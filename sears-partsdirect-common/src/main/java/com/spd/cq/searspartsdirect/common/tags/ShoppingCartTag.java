@@ -28,13 +28,13 @@ public class ShoppingCartTag extends CQBaseTag {
 					} else {
 						pageContext.setAttribute("cartItemCount", "0");
 					}
-				}
+				} 
 				
 				//now read the shopping cart cookie and make the API call for guest user
 				if (cartItemCookie != null && cartItemCookie.getValue() != null) {
 					//make the PD API call
 				}
-			}
+			} 
 		return SKIP_BODY;
 	}
 	
