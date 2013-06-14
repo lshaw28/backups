@@ -83,6 +83,13 @@ public final class Constants {
 	public static final String SITEMAP_CLOSE_LM = ident("</lastmod>");
 	public static final String SITEMAP_OPEN_PRIORITY = ident("<priority>");
 	public static final String SITEMAP_CLOSE_PRIORITY = ident("</priority>");
+	
+	// Constants relating login
+    public static final String LOGIN_SERVICE = ident("");
+    public static final String LOGOUT_SERVICE = ident("");
+    public static final String REGISTER = ident("");
+	
+	public static final String SUBCATEGORY_TAG = "searspartsdirect:subcategories";
 
 	
 	/**

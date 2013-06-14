@@ -46,15 +46,21 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 	        // May need to update this code in order to accommodate Guide selection preference
 	        if (result.size() <= 4){
 		        for(Page page: result){
-		        	guides.add(new RelatedGuideModel(page.getPath() + ".html", page.getPath() + Constants.ASSETS_IMAGE_PATH, page.getTitle()));
+		        	guides.add(new RelatedGuideModel(
+		        			page.getPath() + ".html", 
+		        			page.getPath() + Constants.ASSETS_IMAGE_PATH, 
+		        			page.getTitle()));
 		        }	        	
 	        }
 	        else {
 	        	for (int i=0; i < 4; i++){
-	        		guides.add(new RelatedGuideModel(result.get(i).getTitle(), result.get(i).getPath() + ".html", result.get(i).getPath() + Constants.ASSETS_IMAGE_PATH));
+	        		guides.add(new RelatedGuideModel(
+	        				result.get(i).getPath() + ".html", 
+	        				result.get(i).getPath() + Constants.ASSETS_IMAGE_PATH, 
+	        				result.get(i).getTitle()));
 	        	}
 	        }
-
+			
 			pageContext.setAttribute("guides", guides);
 		}
 		catch (Exception e) {

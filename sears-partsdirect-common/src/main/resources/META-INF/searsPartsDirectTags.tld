@@ -306,4 +306,15 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+	   <name>getGuideListing</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetGuideListingTag</tag-class>
+		 <info>Gets the list of Guides for a category</info>
+		 	<attribute>
+			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>

@@ -1,6 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%-- 
 Make sure h1 and footer link are configurable!
@@ -10,7 +8,7 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 <spd:getRelation single="true" assetType="productCategory" />
 <spd:getRelatedGuides categoryPath="${productCategoryRelation.path}" />
 
-<c:if test="${not empty guides}">
+<c:if test="${not empty guides && not empty productCategoryRelation}">
 	<h2>
 		<cq:text property="itemsHeader" />
 	</h2>
@@ -27,8 +25,9 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 	</div>
 
 	<c:if test="${fn:length(guides) eq 4}">
-		<div class="view-all">
-			<a href="<cq:text property="viewAllItemsLink"/>.html" placeholder="View all Articles"><cq:text property="viewAllItemsText" /></a>
+	<br />
+	<div class="primary-btn">
+			<a href="<cq:text property="viewAllItemsLink"/>.html" ><cq:text property="viewAllItemsText" placeholder="View all Guides" /></a>
 		</div>
 	</c:if>
 </c:if>
