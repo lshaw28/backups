@@ -1,6 +1,8 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import java.util.List;
+
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.junit.Before;
@@ -20,7 +22,7 @@ public class GetAssetsTagTest extends MocksTag {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetAssetsTagFixture(resourceResolver);
+		fixture = new GetAssetsTagFixture(resourceResolver,pageManager);
 		tag = new GetAssetsTag();
 	}
 
@@ -37,6 +39,10 @@ public class GetAssetsTagTest extends MocksTag {
 				assertThat(startResult,is(TagSupport.SKIP_BODY));
 				int endResult = tag.doEndTag();
 				assertThat(endResult,is(TagSupport.EVAL_PAGE));
+				@SuppressWarnings("unchecked")
+				List<Object> result = (List<Object>)pageContext.getAttribute(type.toString()+"List");
+				assertThat(result,isA(List.class));
+				assertThat(result,hasSize(3));
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);

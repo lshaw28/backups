@@ -7,24 +7,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 public class GetAssetsTagFixture {
-	/*{	// snippets from GetAssetsTag, so that I can mock them more conveniently..
-		Map props = new HashMap();
-		ResourceResolver resourceResolver = mock(ResourceResolver.class);
-		QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
-		List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
-	}*/
-	public GetAssetsTagFixture(ResourceResolver rr) {
+	
+	private PageManager pageManager;
+	
+	public GetAssetsTagFixture(ResourceResolver rr, PageManager pageManager) throws RepositoryException {
+		this.pageManager = pageManager;
 		QueryBuilder qb = mock(QueryBuilder.class);
 		when(rr.adaptTo(QueryBuilder.class)).thenReturn(qb);
 		Session s = mock(Session.class);
@@ -35,13 +38,21 @@ public class GetAssetsTagFixture {
 		when(q.getResult()).thenReturn(sr);
 		List<Hit> hits = new ArrayList<Hit>();
 		for (int i = 0; i < 3; i++) {
-			hits.add(mth(i));
+			hits.add(makeTestHitPage(i));
 		}
 		when(sr.getHits()).thenReturn(hits);
 	}
 	
-	Hit mth(int i) {
+	Hit makeTestHitPage(int i) throws RepositoryException {
 		Hit hit = mock(Hit.class);
+		Page page = mock(Page.class);
+		String hitPath = "/hit"+i;
+		when(hit.getPath()).thenReturn(hitPath);
+		when(page.getPath()).thenReturn(hitPath);
+		ValueMap properties = mock(ValueMap.class);
+		when(page.getProperties()).thenReturn(properties);
+		when(properties.get(Constants.ASSETS_TITLE_PATH,"")).thenReturn(hitPath+" title");
+		when(pageManager.getPage(hitPath)).thenReturn(page);
 		return hit;
 	}
 }
