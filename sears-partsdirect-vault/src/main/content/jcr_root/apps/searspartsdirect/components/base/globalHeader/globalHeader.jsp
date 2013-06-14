@@ -12,4 +12,3 @@
 	<cq:include path="searchPanel" resourceType="/apps/searspartsdirect/components/base/searchPanel" />
 	<cq:include path="headerPromo" resourceType="/apps/searspartsdirect/components/base/headerPromo" />
 </div>
-<div class="clear"></div>
