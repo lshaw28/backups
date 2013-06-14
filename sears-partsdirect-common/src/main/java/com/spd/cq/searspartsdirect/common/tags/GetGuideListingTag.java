@@ -1,21 +1,13 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.Property;
-import javax.jcr.PropertyIterator;
-import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,12 +15,12 @@ import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.tagging.Tag;
-import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
-import com.spd.cq.searspartsdirect.common.model.PageStatistics;
 import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
+
+import org.apache.commons.lang.StringUtils;
 
 public class GetGuideListingTag extends CQBaseTag{
 	
@@ -39,7 +31,7 @@ public class GetGuideListingTag extends CQBaseTag{
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			List<RelatedArticleModel> guides = new ArrayList<RelatedArticleModel>();
+			HashMap<String, List<RelatedArticleModel>> guides = new HashMap<String, List<RelatedArticleModel>>();
 			ArrayList<Page> result = new ArrayList<Page>();
 			//Get the guides based on the category
 			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
@@ -55,40 +47,38 @@ public class GetGuideListingTag extends CQBaseTag{
 	        }
 	        
 	        Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
-
 	        for(Page page: result){
-	        	if (!page.equals(currentPage)) { // we exclude ourself from results
-	        		//page.getProperties().containsKey(
+	        	String subcategoryName = null;
+	        	if (!page.equals(currentPage)) { 
 	        		Tag[] tagsArr = page.getTags();
-	        		log.debug("Tags" + page.getTags().toString());
-	        		/*List <Tag>  tags = Arrays.asList(tagsArr);
-	        		if (tags.contains("searspartsdirect:subcategories")) {
-	        			
-	        		}*/
-	        		
-
-	        		guides.add(new RelatedArticleModel(
-		        				page.getPath() + ".html", 
-		        				page.getPath() + Constants.ASSETS_IMAGE_PATH, 
-		        				page.getTitle(), 
-		        				page.getDescription())
-	        				);
+	        		for(int i=0; i<=tagsArr.length-1 ; i++){
+	        			if (StringUtils.contains(tagsArr[i].getTagID(), Constants.SUBCATEGORY_TAG)){
+	        				subcategoryName = tagsArr[i].getName();
+	        				break;
+	        			}
+	        		}
 	        	}
-	        }	     
-	        // dummy data
-		/*	PageStatistics guide1 = new PageStatistics("Title1","url1.html", "imagePath1", 4L);
-			PageStatistics guide2 = new PageStatistics("title2","url2.html", "imagePath2", 5L);
-			PageStatistics guide3 = new PageStatistics("title3","url3.html", "imagePath3", 3L);
-			PageStatistics guide4 = new PageStatistics("title4","url4.html", "imagePath4", 2L);
-
-			pageList.add(guide1);
-			pageList.add(guide2);				
-			pageList.add(guide3);			
-			pageList.add(guide4); */
-	        
+	        	
+	        	if (!(guides.isEmpty()) && guides.containsKey(subcategoryName)){
+	        		List<RelatedArticleModel> tmp = guides.get(subcategoryName);
+	        		tmp.add( new RelatedArticleModel(
+	        				page.getPath() + ".html", 
+	        				page.getPath() + Constants.ASSETS_IMAGE_PATH, 
+	        				page.getTitle(), 
+	        				page.getDescription()));
+	        	}else{
+	        		List<RelatedArticleModel> tmpGuides = new ArrayList<RelatedArticleModel>();
+		        	tmpGuides.add( new RelatedArticleModel(
+	        				page.getPath() + ".html", 
+	        				page.getPath() + Constants.ASSETS_IMAGE_PATH, 
+	        				page.getTitle(), 
+	        				page.getDescription()));
+		        		//Add the guides to the list 
+		        	guides.put(subcategoryName, tmpGuides);
+	        	}
+        	}
 	   
-		pageContext.setAttribute("guides", guides.get(0));
-		pageContext.setAttribute("viewAllGuides", guides);
+		pageContext.setAttribute("guides", guides);
 	        
 		}
 		catch (Exception e) {

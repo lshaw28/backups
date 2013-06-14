@@ -4,16 +4,48 @@
 <spd:tagsByPage tagType="subcategories"/>
 
 <cq:text property="title"/> <br />
-<c:set var="popularGuide">"${guides}"</c:set>
-<a href="${popularGuide.pagePath}"><spd:displayImage path="${popularGuide.imagePath}"/></a>
-		<a href="${popularGuide.pagePath}">${guide.title}</a>
+
+<c:forEach items="${guides}" var="entry" varStatus="mainStatus">
+	
+	<c:forEach items="${entry.value}" var="popularGuide" varStatus="status">
+		<c:if test="${mainStatus.index == 0 && status.index == 0}">
+			<a href="${popularGuide.url}"><spd:displayImage path="${popularGuide.imagePath}"/></a>
+			<a href="${popularGuide.url}">${popularGuide.title}</a>
+			<cq:text property="difficultyLevel"/> <br/>
+			<cq:text property="timeRequired"/><br/>		
+			<a href="${popularGuide.url}.html"><cq:text property="viewAllText"/> </a> <br/>
+		</c:if>
+	</c:forEach>
+</c:forEach>
+<%-- <a href="${popularGuide[0].url}"><spd:displayImage path="${popularGuide[0].imagePath}"/></a>
+<a href="${popularGuide[0].url}">${popularGuide[0].title}</a>
 <cq:text property="difficultyLevel"/> <br/>
 <cq:text property="timeRequired"/><br/>		
-<a href="${popularGuide.pagePath}.html"><cq:text property="viewAllText"/> </a> <br/>
-
+<a href="${popularGuide[0].url}.html"><cq:text property="viewAllText"/> </a> <br/> 
+ --%>
 <cq:text property="allGuidestitle"/> <br/>
 <cq:text property="subTitle"/> <br/>
-<c:if test="${not empty viewAllGuides}">
+	
+
+
+<c:forEach items="${guides}" var="row">
+    SubCategory:  ${row.key}<br/>
+ 	<c:forEach var="guide" items="${row.value}">
+		<a href="${guide.url}"><spd:displayImage path="${guide.imagePath}"/></a>
+		<a href="${guide.url}">${guide.title}</a> <br/>
+	</c:forEach>
+</c:forEach>
+ 
+<%-- <c:set var="popularGuide">${guides}</c:set>
+<c:if test="${not empty popularGuide}">
+	<a href="${popularGuide[0].pagePath}"><spd:displayImage path="${popularGuide.imagePath}"/></a>
+	<a href="${popularGuide.pagePath}">${guide.title}</a>
+	<cq:text property="difficultyLevel"/> <br/>
+	<cq:text property="timeRequired"/><br/>		
+	<a href="${popularGuide.pagePath}.html"><cq:text property="viewAllText"/> </a> <br/>
+
+	<cq:text property="allGuidestitle"/> <br/>
+	<cq:text property="subTitle"/> <br/>
 	
 	<c:forEach var="guide" items="${guides}">
 		<a href="${guide.pagePath}"><spd:displayImage path="${guide.imagePath}"/></a>
@@ -21,4 +53,4 @@
 		<br /><br />
 	</c:forEach>
 
-</c:if>
+</c:if>  --%>

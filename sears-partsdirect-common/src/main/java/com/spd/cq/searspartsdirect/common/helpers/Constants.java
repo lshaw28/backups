@@ -88,6 +88,8 @@ public final class Constants {
     public static final String LOGIN_SERVICE = ident("");
     public static final String LOGOUT_SERVICE = ident("");
     public static final String REGISTER = ident("");
+	
+	public static final String SUBCATEGORY_TAG = "searspartsdirect:subcategories";
 
 	
 	/**
