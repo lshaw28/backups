@@ -46,7 +46,7 @@
 			<div class="footerPromoContent">
 				<h3><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">fast shipping</a></h3>
 				<p>Sears PartsDirect ships from regionally-located warehouses for timely delivery.</p>
-				<p><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">Learn More</a></p>
+				<p><a class="new-btn-small new-btn-square" href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">Learn More</a></p>
 			</div>
 		</div>
 
@@ -60,7 +60,7 @@
 			<div class="footerPromoContent">
 				<h3><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush?pop=flush?pop=flush&amp;commercialUI=false#returnsFAQ">guaranteed fit</a></h3>
 				<p>All parts are manufacturer-approved, to ensure proper fit and to keep appliances running for years to come.</p>
-				<p><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">Learn More</a></p>
+				<p><a class="new-btn-small new-btn-square" href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">Learn More</a></p>
 			</div>
 		</div>
 	</div>
@@ -69,7 +69,7 @@
 		<p>M-F&nbsp;&nbsp;6:30 a.m. - 10:30 p.m. CT</p>
 		<p>Sat&nbsp;&nbsp;&nbsp;7:00 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
 		<p>Sun&nbsp;&nbsp;7:30 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
-		<ul class="first_helpful_link_set">
+		<ul id="footerAboutLinks">
 			<li><a href="${mainSitePath}/partsdirect/aboutUs.pd">About Us</a></li>
 			<li><a href="${mainSitePath}/partsdirect/contactus.pd">Contact Us</a></li>
 			<li><a href="${mainSitePath}/partsdirect/topPart.pd">Top Parts</a></li>
@@ -84,8 +84,7 @@
 		</ul>
 		<form>
 			<p>Join our email list for updates and exclusive offers.</p>
-			<input type="text" type="email" placeholder="enter email address" >
-			<button type="submit" class="new-btn-small">Submit</button>
+			<p><input type="text" class="new-input-small" data-inputhelp="Enter email address" data-inputhelpmobile="Email" ><button type="submit" class="new-btn-small new-btn-square">Submit</button></p>
 		</form>
 	</div>
 </div>
