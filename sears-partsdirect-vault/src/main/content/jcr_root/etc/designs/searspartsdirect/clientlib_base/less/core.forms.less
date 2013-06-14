@@ -1,6 +1,30 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-input[type="text"] {
+label {
+	color: @caretColor;
+	font-family: @bodyFont;
+	font-size: @h5Size;
+	font-weight: 600;
 
+	span {
+		color: @headerColor;
+		font-size: @smallPSize;
+		font-weight: normal;
+	}
+}
+
+input[type="text"], input[type="password"], select, textarea {
+	background: @bodyColor;
+	border: 1px solid #dadada;
+	.borderRadius(0);
+	color: @headerColor;
+	display: inline-block;
+	font-size: @pSize;
+	padding: 14px;
+	width: 100%;
+
+	&.new-input-small {
+		padding: 7px;
+	}
 }

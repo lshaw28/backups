@@ -59,5 +59,5 @@
 
 <div class="articleComments-loader">
 	<h2>3 Article Comments</h2>
-	<a href="" class="primary-btn">Load Comments</a>
+	<a href="" class="new-btn">Load Comments</a>
 </div>

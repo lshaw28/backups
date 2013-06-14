@@ -1,58 +1,34 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-.btn {
-
-}
-
-.btn-search {
-	background-color: @searchButtonColor;
-	background-image: none;
-	border: 0 solid @searchButtonColor;
-	.borderRadius(2px);
-	color: @bodyColor;
-	display: inline-block;
-	font-size: @pSize;
-	line-height: 35px;
-	padding: 0 22px;
-	text-decoration: none;
-	text-shadow: 1px 1px 0 @bodyCopyColor;
-
-	&:hover {
-		background-color: @searchButtonColor;
-		background-image: none;
-		border: 0 solid @searchButtonColor;
-		color: @bodyColor;
-		text-decoration: none;
-	}
-}
-
-.btn-modal-cancel {
+.new-btn, .new-btn-small, .new-btn-smallest {
 	background-color: @bodyColor;
-	background-image: none;
-	border: 0 solid #b5cde4;
-	.borderRadius(2px);
+	.borderRadius(4px);
+	border: 1px solid #c4d7e8;
 	color: #4577a3;
 	display: inline-block;
-	font-size: @pSize;
-	line-height: 35px;
-	padding: 0 22px;
+	font: normal @pSize @bodyFont;
+
 	text-decoration: none;
-	text-shadow: 1px 1px 0 @bodyCopyColor;
 
 	&:hover {
-		background-color: @bodyColor;
-		background-image: none;
-		border: 0 solid #b5cde4;
-		color: #4577a3;
 		text-decoration: none;
 	}
-}
 
-.primary-btn {
-	display: inline-block;
-	padding: 13px 18px;
-	border: solid 1px @color-border-secondary-a;
-	border-radius: 4px;
-	text-decoration: none;
+	&.new-btn-search {
+		background-color: #f3762c;
+		border: 1px solid #f3762c;
+		color: @bodyColor;
+		text-shadow: 1px 1px 1px #000;
+	}
+}
+.new-btn {
+	padding: 15px 19px;
+}
+.new-btn-small {
+	padding: 6px 19px;
+}
+.new-btn-smallest {
+	font-size: @smallestPSize;
+	padding: 1px 12px;
 }
