@@ -53,7 +53,6 @@
 			font-family: @bodyFont;
 			font-size: @h4Size;
 			font-weight: bold;
-			text-decoration: none;
 
 			span {
 				font-weight: normal;
@@ -77,10 +76,11 @@
 			}
 
 			&:hover {
-				text-decoration: hover;
-
 				span {
 					font-weight: normal;
+					text-decoration: none;
+				}
+				.footerIconHelp {
 					text-decoration: none;
 				}
 				.icon-circle {
@@ -128,25 +128,9 @@
 
 				a {
 					color: @linkColor;
-					text-decoration: none;
 
 					&:hover {
 						color: @linkHoverColor;
-						text-decoration: underline;
-					}
-				}
-			}
-			p {
-				a {
-					border: 1px solid #b5cde4;
-					display: inline-block;
-					font-size: @pSize;
-					font-weight: bold;
-					padding: 7px 14px;
-					text-decoration: none;
-
-					&:hover {
-						text-decoration: underline;
 					}
 				}
 			}
@@ -188,11 +172,6 @@
 
 			a {
 				font-size: @pSize;
-				text-decoration: none;
-
-				&:hover {
-					text-decoration: underline;
-				}
 			}
 		}
 	}
@@ -205,27 +184,11 @@
 			font-family: @standardFont;
 			font-size: @pSize;
 			margin: 0 0 5px 0;
-		}
-		input {
-			border: 1px solid #ccc;
-			.borderRadius(0);
-			float: left;
-			margin: 0 5px 0 0;
-			padding: 10px 0 10px 12px;
-		}
-		button {
-			background-image: none;
-			background-color: @bodyColor;
-			border: 1px solid #b5cde4;
-			.borderRadius(2px);
-			color: #4577a3;
-			float: left;
-			font-size: @smallPSize;
-			font-weight: bold;
-			margin: 0 0 0 3px;
-			padding: 10px 27px;
-			position: relative;
-			text-align: center;
+
+			input {
+				margin: 0 5px 0 0;
+				width: 60%;
+			}
 		}
 	}
 }
@@ -253,11 +216,6 @@
 			float: left;
 			font-size: @smallestPSize;
 			margin: 12px 13px 0 13px;
-			text-decoration: none;
-
-			&:hover {
-				text-decoration: underline;
-			}
 		}
 	}
 	.copyright {

@@ -47,4 +47,16 @@ pre {
 }
 a[href], a[onclick], a[data-target], a[data-toggle], button {
 	cursor: pointer;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+
+		.no-hover {
+			text-decoration: none;
+		}
+	}
+}
+[class^="icon-"],[class*=" icon-"] {
+	text-decoration: none !important;
 }
