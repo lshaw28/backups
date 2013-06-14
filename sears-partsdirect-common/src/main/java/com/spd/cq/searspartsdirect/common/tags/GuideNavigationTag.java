@@ -130,7 +130,7 @@ public class GuideNavigationTag extends CQBaseTag {
 	private void maybeSetupDefaultConfig(Node pageNode) {
 		if (log.isDebugEnabled()) log.debug("Maybe doing 1st-time setup");
 		WCMMode wcmMode = WCMMode.fromRequest(slingRequest);
-		if (wcmMode != WCMMode.READ_ONLY) {
+		if (wcmMode != WCMMode.READ_ONLY && wcmMode != WCMMode.DISABLED) {
 			if (log.isDebugEnabled()) log.debug("Not read-only");
 			try {
 				if (pageNode == null) {
