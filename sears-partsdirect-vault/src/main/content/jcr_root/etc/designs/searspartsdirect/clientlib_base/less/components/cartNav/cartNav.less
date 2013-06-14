@@ -4,10 +4,12 @@
 .cartNav {
 	float: right;
 	height: 40px;
+	position: relative;
+	z-index: 999;
 
-	ul {
+	ul.cartNavItems {
 		height: 40px;
-		list-style-type: none;
+		list-style: none;
 		margin: 0;
 		overflow: visible;
 		padding: 0;
@@ -24,7 +26,7 @@
 			width: 7px;
 		}
 
-		li {
+		li.cartNavItem {
 			background: @tableHoverColor;
 			float: left;
 			line-height: 34px;
@@ -46,6 +48,7 @@
 				font-size: @smallerPSize;
 				line-height: 40px;
 				margin: 0;
+				outline-style: none;
 				padding: 0 8px 0 7px;
 				text-decoration: none;
 
@@ -58,6 +61,38 @@
 					color: @caretColor;
 					font-size: @smallestPSize;
 					font-weight: 600;
+				}
+			}
+
+			.dropdown-menu {
+				.borderRadius(0);
+				left: auto;
+				margin-top: 5px;
+				min-width: 200px;
+				padding: 10px;
+				right: 5px;
+
+				&:before, &:after {
+					content: ' ';
+					height: 0;
+					position: absolute;
+					top: 0;
+					weight: 0;
+				}
+				&:before {
+					border: 15px solid;
+					border-color: transparent transparent #cbcbcb transparent;
+					margin-top: -30px;
+					right: 10px;
+				}
+				&:after {
+					border: 14px solid;
+					border-color: transparent transparent @bodyColor transparent;
+					margin-top: -28px;
+					right: 11px;
+				}
+				li {
+					font-size: @smallerPSize;
 				}
 			}
 

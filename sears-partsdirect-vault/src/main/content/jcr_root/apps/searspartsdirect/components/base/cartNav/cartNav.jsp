@@ -1,10 +1,10 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<ul>
+<ul class="cartNavItems">
 	<div class="cartNavShadow"></div>
-	<li>
+	<li class="cartNavItem">
 		<div class="btn-group">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
-			<ul>
+			<a data-toggle="dropdown" href="#">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
+			<ul class="dropdown-menu">
 				<li>Dummy item one</li>
 				<li>Dummy item two</li>
 				<spd:getRecentlyViewed />
@@ -31,19 +31,19 @@
 			</ul>
 		</div>
 	</li>
-	<li>
+	<li class="cartNavItem">
 		<div class="btn-group">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">My Models (0) <i class="icon-caret-down">&nbsp;</i></a>
-			<ul>
+			<a data-toggle="dropdown" href="#">My Models (0) <i class="icon-caret-down">&nbsp;</i></a>
+			<ul class="dropdown-menu">
 				<li>Dummy item one</li>
 				<li>Dummy item two</li>
 			</ul>
 		</div>
 	</li>
-	<li>
+	<li class="cartNavItem">
 		<div class="btn-group">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart <i class="icon-caret-down">&nbsp;</i></a>
-			<ul>
+			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart <i class="icon-caret-down">&nbsp;</i></a>
+			<ul class="dropdown-menu">
 				<li>Dummy item one</li>
 				<li>Dummy item two</li>
 			</ul>
