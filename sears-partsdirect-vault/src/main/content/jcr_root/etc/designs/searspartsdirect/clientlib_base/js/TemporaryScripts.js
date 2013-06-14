@@ -7,16 +7,6 @@
  * - Moving code into our own DocumentReady and WindowResize files
  * - Removing unnecessary code and debug statements
  */
-$('#accordion2').on('hide', function () {
-	var plusSign = $(this).find(".accordion-toggle span");
-	plusSign.addClass("findPartClosed").removeClass("findPartOpen").html("+");
-});
-
-$('#accordion2').on('show', function () {
-	var minusSign = $(this).find(".accordion-toggle span");
-	minusSign.addClass("findPartOpen").removeClass("findPartClosed").html("-");
-});
-
 //Set icons classes
 $(".shipping_cont a").hover(function () {
 	$(this).closest(".fast_shipping_content").prev(".column_two_icons").addClass("column_two_icons_hover");
@@ -25,12 +15,7 @@ $(".shipping_cont a").hover(function () {
 });
 
 var viewportWidth = $(window).width();
-if (viewportWidth <= 450) {
-    $("#searchBarSelectArea input").val("Select");
-    $("#searchBarField").val("Model or Part #");
-    $("#changeText").val("");
-    menuTrigger();
-} else if (viewportWidth <= 650) {
+if (viewportWidth <= 650) {
     menuTrigger();
 }
 

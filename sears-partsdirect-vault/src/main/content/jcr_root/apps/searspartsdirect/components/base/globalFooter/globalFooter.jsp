@@ -85,7 +85,7 @@
 		<form>
 			<p>Join our email list for updates and exclusive offers.</p>
 			<input type="text" type="email" placeholder="enter email address" >
-			<button type="submit" class="btn">Submit</button>
+			<button type="submit" class="new-btn-small">Submit</button>
 		</form>
 	</div>
 </div>

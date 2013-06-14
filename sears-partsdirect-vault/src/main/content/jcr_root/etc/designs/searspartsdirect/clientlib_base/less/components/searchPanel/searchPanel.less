@@ -103,7 +103,7 @@
 	padding: 15px 15px 0;
 	z-index: 100;
 
-	input, span, div, a.btn-search {
+	input, span, div {
 		display: inline-block;
 	}
 
@@ -128,15 +128,9 @@
 		padding: 0 8px;
 	}
 
-	.text-input {
-		background-color: @bodyColor;
-		border: 0;
-		.borderRadius(0);
-		color: @headerColor;
+	.new-input-small {
 		font-size: @h5Size;
-		height: 35px;
 		margin: 0;
-		padding: 0 10px;
 		width: 50%;
 	}
 	.btn-group {
@@ -168,6 +162,15 @@
 				float: right;
 				margin-top: 8px;
 			}
+		}
+		.dropdown-menu {
+			.borderRadius(0);
+			border: 1% solid #cbcbcb !important;
+			border-top: 0;
+			margin-top: 0;
+			min-width: 50px;
+			padding: 4%;
+			width: 90%;
 		}
 	}
 }
