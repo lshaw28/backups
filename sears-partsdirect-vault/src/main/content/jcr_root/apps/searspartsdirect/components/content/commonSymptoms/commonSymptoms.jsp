@@ -39,8 +39,3 @@
 		<p>No items are available.</p>
 	</c:otherwise>
 </c:choose>
-
-
-
-
-
