@@ -34,3 +34,37 @@ input[type="text"], input[type="password"], select, textarea {
 		padding: 6px;
 	}
 }
+
+.input-append {
+	width: 100%;
+
+	input {
+		border-right: 0;
+		outline-style: none;
+		padding: 4% 2% 4% 4%;
+		width: 78%;
+	}
+	.add-on {
+		background-color: @bodyColor;
+		border: 1px solid #dadada;
+		border-left: 0;
+		.borderRadius(0);
+		color: @headerColor;
+		padding: 4% 4% 4% 2%;
+		text-align: right;
+		width: auto;
+
+		button {
+			background-color: transparent;
+			border: 0;
+			color: @headerColor;
+			font-size: @pSize;
+			padding: 0;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+}

@@ -13,6 +13,7 @@ import javax.servlet.jsp.PageContext;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.scripting.SlingBindings;
 
 import org.mockito.invocation.InvocationOnMock;
@@ -37,6 +38,7 @@ public class MocksTag extends TestCase {
 	protected SlingHttpServletRequest slingRequest;
 	protected PageManager pageManager;
 	protected SlingBindings bindings;
+	protected ValueMap properties;
 	
 	@Override
 	protected void setUp() throws Exception {
@@ -82,5 +84,7 @@ public class MocksTag extends TestCase {
 		when(pageContext.findAttribute("pageManager")).thenReturn(pageManager);
 		bindings = mock(SlingBindings.class);
 		when(pageContext.findAttribute("bindings")).thenReturn(bindings);
+		properties = mock(ValueMap.class);
+		when(pageContext.findAttribute("properties")).thenReturn(properties);
 	}
 }

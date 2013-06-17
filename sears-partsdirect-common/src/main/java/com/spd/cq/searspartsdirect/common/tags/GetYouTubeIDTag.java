@@ -3,6 +3,7 @@ package com.spd.cq.searspartsdirect.common.tags;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.management.RuntimeErrorException;
 import javax.servlet.jsp.JspException;
 
 import org.slf4j.Logger;
@@ -29,6 +30,7 @@ public class GetYouTubeIDTag extends CQBaseTag {
 
 		catch (Exception e) {
 			log.error(e.toString());
+			// throw new RuntimeException(e);
 		}
 		pageContext.setAttribute("youTubeID", youTubeID);
 		return SKIP_BODY;
