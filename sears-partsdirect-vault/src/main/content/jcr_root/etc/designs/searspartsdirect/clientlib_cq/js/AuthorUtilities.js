@@ -1,7 +1,8 @@
 /*global $:true, window:true, Class:true */
-(function (window) {
+var SPDAuthorUtils = (function () {
 	"use strict";
-	window.SPDAuthorUtils = {
+
+	return {
 		/**
 		 * @namespace SPDAuthorUtils
 		 * Global utilities and helper methods for Author environment
@@ -10,7 +11,15 @@
 		 */
 		init: function () {
 			console.log('SPDAuthorUtils available');
+			var self = this;
+
+			$(window).resize(function () {
+				console.log('Window width', $(window).width());
+			}).bind('onorientationchange', function () {
+				console.log('Window width', $(window).width());
+			});
 		}
 	};
-	window.SPDAuthorUtils.init();
-}(window));
+}());
+
+SPDAuthorUtils.init();
