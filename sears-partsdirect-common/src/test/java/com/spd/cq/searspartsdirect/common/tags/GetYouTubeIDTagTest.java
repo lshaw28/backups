@@ -10,77 +10,53 @@ import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetYouTubeIDTagFixture;
 
-
 public class GetYouTubeIDTagTest extends MocksTag {
-	
+
 	private GetYouTubeIDTagFixture fixture;
 	private GetYouTubeIDTag tag;
 
-	
-
-	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
 		fixture = new GetYouTubeIDTagFixture(properties);
 		tag = new GetYouTubeIDTag();
 	}
-	
+
 	@Test
-	public void testWithValidID(){
+	public void testWithValidID() {
 		try {
 			fixture.setupValidID();
 			tag.setPageContext(pageContext);
 			int startResult = tag.doStartTag();
-			assertThat(startResult,is(TagSupport.SKIP_BODY));
+			assertThat(startResult, is(TagSupport.SKIP_BODY));
 			int endResult = tag.doEndTag();
-			assertThat(endResult,is(TagSupport.EVAL_PAGE));
+			assertThat(endResult, is(TagSupport.EVAL_PAGE));
 			String youTubeID = (String) pageContext.getAttribute("youTubeID");
 			assertThat(youTubeID, is(not("")));
-			
-			
-			
-			
+
 		} catch (Exception e) {
 			throw new RuntimeException(e);
-		} 
-		
-		
+		}
+
 	}
-	
+
 	@Test
-	public void testWithInvalidID(){
-		try{
-		fixture.setupInvalidID();
+	public void testWithInvalidID() {
+		try {
+			fixture.setupInvalidID();
 
-		tag.setPageContext(pageContext);
-		int startResult = tag.doStartTag();
-		assertThat(startResult,is(TagSupport.SKIP_BODY));
-		int endResult = tag.doEndTag();
-		assertThat(endResult,is(TagSupport.EVAL_PAGE));
-		String youTubeID = (String) pageContext.getAttribute("youTubeID");
-		assertThat(youTubeID, is(""));
-		
-		
-	} catch (Exception e) {
-		throw new RuntimeException(e);
-	} 
-	
-	
+			tag.setPageContext(pageContext);
+			int startResult = tag.doStartTag();
+			assertThat(startResult, is(TagSupport.SKIP_BODY));
+			int endResult = tag.doEndTag();
+			assertThat(endResult, is(TagSupport.EVAL_PAGE));
+			String youTubeID = (String) pageContext.getAttribute("youTubeID");
+			assertThat(youTubeID, is(""));
+
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
 	}
-	
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
