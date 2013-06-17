@@ -38,7 +38,7 @@ public class GetErrorCodesListTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		if (categoryPath != null) {
-			HashMap<BrandModel, List<ErrorCodeListModel>> tempErrorCodeList = new HashMap<BrandModel, List<ErrorCodeListModel>>();
+			Map<BrandModel, List<ErrorCodeListModel>> tempErrorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeListModel>>();
 			Map<BrandModel, List<ErrorCodeListModel>> errorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeListModel>>();
 			
 			session = slingRequest.getResourceResolver().adaptTo(Session.class);
