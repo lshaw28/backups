@@ -2,13 +2,11 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.LinkedList;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -16,20 +14,26 @@ import com.spd.cq.searspartsdirect.common.fixture.RecentlyViewedFixture;
 import com.spd.cq.searspartsdirect.common.model.ModelCookieModel;
 import com.spd.cq.searspartsdirect.common.model.PartCookieModel;
 
-public class RecentlyViewedTagTest extends TestCase {
+public class RecentlyViewedTagTest extends MocksTag {
 	RecentlyViewedFixture recentlyViewedFixture;
-	HttpServletRequest request;
-	PageContext pageContext;
 	RecentlyViewedTag recentlyViewedTag;
 
-	@Override
-	protected void setUp() {
+	@Before
+	protected void setUp()  throws Exception {
+		super.setUp();
 		recentlyViewedFixture = new RecentlyViewedFixture();
-		request = Mockito.mock(HttpServletRequest.class);
-		pageContext = Mockito.mock(PageContext.class);
 		recentlyViewedTag = new RecentlyViewedTag();
 	}
 
+	@Test
+	public void testWithNoCookie() throws JspException {
+		Mockito.when(pageContext.getRequest()).thenReturn(request);
+		Mockito.when(request.getCookies()).thenReturn(null);
+
+		recentlyViewedTag.setPageContext(pageContext);
+		recentlyViewedTag.doStartTag();
+	}
+	
 	@Test
 	public void testWithNoMatchingCookie() throws JspException {
 		Mockito.when(pageContext.getRequest()).thenReturn(request);
