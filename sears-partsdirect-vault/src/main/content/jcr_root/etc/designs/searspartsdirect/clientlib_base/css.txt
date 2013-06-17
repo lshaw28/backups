@@ -36,6 +36,7 @@ loginNav/loginNav.less
 modal/modal.less
 modelNumberSearch/modelNumberSearch.less
 relatedArticles/relatedArticles.less
+repairStep/repairStep.less
 searchPanel/searchPanel.less
 skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less

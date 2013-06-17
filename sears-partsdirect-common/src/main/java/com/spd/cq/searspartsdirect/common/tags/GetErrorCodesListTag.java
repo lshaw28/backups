@@ -52,7 +52,7 @@ public class GetErrorCodesListTag extends CQBaseTag {
 			query = builder.createQuery(PredicateGroup.create(map), session);
 			
 			SearchResult result = query.getResult();
-			log.debug("total results found "+ result.getQueryStatement().toString());
+			//log.debug("total results found "+ result.getQueryStatement().toString());
 			
 		    for (Hit hit : result.getHits()) {
 		        try {
