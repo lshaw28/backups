@@ -30,7 +30,7 @@ public class GuideNavigationTagTest extends MocksTag {
 		try {
 			guideNavigationTag.setPageContext(pageContext);
 			guideNavigationTag.doStartTag();
-			assertThat((String)pageContext.getAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR),is("Jump to..."));
+			assertThat((String)pageContext.getAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR),is(fixture.getJumpToValue()));
 			assertThat((List<List<String>>)pageContext.getAttribute(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR),instanceOf(List.class));
 		} catch (Exception e) {
 			throw new RuntimeException(e);

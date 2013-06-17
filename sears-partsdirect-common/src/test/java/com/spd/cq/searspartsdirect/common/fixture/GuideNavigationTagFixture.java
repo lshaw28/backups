@@ -20,6 +20,9 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import static org.mockito.Mockito.*;
 
 public class GuideNavigationTagFixture {
+	
+	private final static String jumpToValue = "Jump to...";
+	
 	private Resource pageContentResource;
 	private Node pageNode;
 	private Node setupNode;
@@ -75,12 +78,16 @@ public class GuideNavigationTagFixture {
 		when(pageNode.getNode(Constants.GUIDE_NAV_PATH)).thenReturn(setupNode);
 		jumpProperty = mock(Property.class);
 		when(pageNode.getProperty(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR)).thenReturn(jumpProperty);
-		when(jumpProperty.getString()).thenReturn("Jump to...");
+		when(jumpProperty.getString()).thenReturn(getJumpToValue());
 		
 		Resource parsysResource = mock(Resource.class);
 		when(currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME)).thenReturn(parsysResource);
 		@SuppressWarnings("unchecked")
 		Iterator<Resource> parsysChildren = mock(Iterator.class);
 		when(parsysResource.listChildren()).thenReturn(parsysChildren);
+	}
+	
+	public String getJumpToValue() {
+		return jumpToValue;
 	}
 }
