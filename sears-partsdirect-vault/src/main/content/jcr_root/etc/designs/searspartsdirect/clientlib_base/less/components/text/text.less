@@ -1,0 +1,55 @@
+@import "../../base.variables.less";
+
+#CQrte, body#CQrte, #CQrte body, #CQrte td {
+	h1, h2, h3, h4, h5, p, ul, ol, dl {
+		font-family: @bodyFont
+	}
+	p, ul, ol, dl {
+		color: @bodyCopyColor;
+		font-size: @pSize;
+	}
+	h1, h2, h3, h4, h5 {
+		color: @headerColor;
+		font-weight: bold;
+	}
+	h1 {
+		font-size: @h1Size;
+	}
+	h2 {
+		font-size: @h2Size;
+	}
+	h3 {
+		font-size: @h3Size;
+	}
+	h4 {
+		font-size: @h4Size;
+	}
+	h5 {
+		font-size: @h5Size;
+	}
+	a {
+		color: @linkColor;
+		text-decoration: none;
+
+		&:hover {
+			color: @linkHoverColor;
+			text-decoration: underline;
+		}
+	}
+	ul, ol, dl {
+		display: block;
+
+		li {
+			display: list-item;
+		}
+		dt, dd {
+			display: block;
+		}
+	}
+	ul {
+		list-style-type: disc;
+	}
+	ol {
+		list-style-type: decimal;
+	}
+}
