@@ -26,6 +26,7 @@ articleComments/articleComments.less
 authorDisplay/authorDisplay.less
 boxed-callout/boxed-callout.less
 brandBar/brandBar.less
+breadcrumbNavigation/breadcrumbNavigation.less
 cartNav/cartNav.less
 categoryArticleList/categoryArticleList.less
 globalHeader/globalHeader.less
