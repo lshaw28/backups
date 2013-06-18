@@ -1,9 +1,8 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <spd:requiredTools/>
-
-<p>Tools Required:</p>
+<h3>Tools Required:</h3>
 <ul>
 <c:forEach var="tool" items="${tools}">
-	<li>${tool.text} (${tool.id})</li>
+	<li data-toolid="${tool.id}">${tool.text}</li>
 </c:forEach>
 </ul>
