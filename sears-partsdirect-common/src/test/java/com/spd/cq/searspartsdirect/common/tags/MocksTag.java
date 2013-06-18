@@ -2,7 +2,9 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,18 +13,18 @@ import javax.jcr.Node;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;
 
+import junit.framework.TestCase;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.scripting.SlingBindings;
-
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-
-import junit.framework.TestCase;
+import com.day.cq.wcm.api.designer.Design;
 
 /**
  * Provides common objects needed when mocking for testing CQ custom tags
@@ -39,6 +41,8 @@ public class MocksTag extends TestCase {
 	protected PageManager pageManager;
 	protected SlingBindings bindings;
 	protected ValueMap properties;
+	protected Design currentDesign;
+	protected Design resourceDesign;
 	
 	@Override
 	protected void setUp() throws Exception {
@@ -86,5 +90,9 @@ public class MocksTag extends TestCase {
 		when(pageContext.findAttribute("bindings")).thenReturn(bindings);
 		properties = mock(ValueMap.class);
 		when(pageContext.findAttribute("properties")).thenReturn(properties);
+		currentDesign = mock(Design.class);
+		when(pageContext.findAttribute("currentDesign")).thenReturn(currentDesign);
+		resourceDesign = mock(Design.class);
+		when(pageContext.findAttribute("resourceDesign")).thenReturn(resourceDesign);
 	}
 }
