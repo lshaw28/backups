@@ -1,4 +1,4 @@
-package com.spd.cq.searspartsdirect.common.model;
+package com.spd.cq.searspartsdirect.common.model.spdasset;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -7,7 +7,9 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ToolModelTest  extends TestCase {
+import com.spd.cq.searspartsdirect.common.model.ToolModel;
+
+public class BrandModelTest  extends TestCase {
 	private ToolModel toolModel; // toolModel
 	private String text = "text";
 	private String id = "id";
