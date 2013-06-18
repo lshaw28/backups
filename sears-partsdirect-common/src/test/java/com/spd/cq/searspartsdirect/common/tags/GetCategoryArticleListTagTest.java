@@ -23,14 +23,15 @@ public class GetCategoryArticleListTagTest extends MocksTag {
 		super.setUp();
 		fixture = new GetCategoryArticleListFixture(pageContext,resourceResolver,pageManager);
 		tag = new GetCategoryArticleListTag();
-		tag.setPageContext(pageContext);
 	}
 
 	@Test
 	public void testDoStartTag() {
 		try {
+			tag.setPageContext(pageContext);
 			tag.setCategoryPath("/category");
 			tag.doStartTag();
+			tag.doEndTag();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

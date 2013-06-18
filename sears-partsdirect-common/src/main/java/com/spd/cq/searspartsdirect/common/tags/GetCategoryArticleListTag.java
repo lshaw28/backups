@@ -6,9 +6,11 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.jcr.Node;
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
+import org.apache.sling.api.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,9 +54,22 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	          
 	        for(Page page: result){
 	        	if (!page.equals(currentPage)) { // we exclude ourself from results
+	        		// We need to resolve the image path, and hand out a blank for image if the image does not exist
+	        		String imagePath = page.getPath() + Constants.ASSETS_IMAGE_PATH;
+	        		Resource imageResource = resourceResolver.getResource(imagePath);
+	        		if (imageResource == null) {
+	        			// If we cannot resolve to an image, we return a blank string
+	        			imagePath = Constants.EMPTY;
+	        		} else {
+	        			Node imageNode = imageResource.adaptTo(Node.class);
+	        			if (!(imageNode.hasProperty("fileReference") || imageNode.hasNode("file"))) {
+	        				// If the image is not set up one way or another, we return a blank string
+	        				imagePath = Constants.EMPTY;
+	        			}
+	        		}
 	        		articles.add(new RelatedArticleModel(
 		        				page.getPath() + ".html", 
-		        				page.getPath() + Constants.ASSETS_IMAGE_PATH, 
+		        				imagePath, 
 		        				page.getTitle(), 
 		        				page.getDescription())
 	        				);

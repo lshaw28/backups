@@ -1,7 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <spd:getRelation single="true" assetType="productCategory" />
 <spd:GetCategoryArticleList categoryPath="${productCategoryRelation.path}" />
 <h2>${productCategoryRelation.title}</h2>
@@ -14,7 +13,9 @@
 				</c:when>
 			</c:choose>
 						<div class="span6">
-							<a href="${article.url}"><spd:displayImage path="${article.imagePath}" decorated="false" /></a>
+							<c:if test="${not empty article.imagePath}">
+								<a href="${article.url}"><spd:displayImage path="${article.imagePath}" decorated="false" /></a>
+							</c:if>
 							<h4><a href="${article.url}">${article.title}</a></h4>
 							<p>${article.description}</p>
 						</div>
