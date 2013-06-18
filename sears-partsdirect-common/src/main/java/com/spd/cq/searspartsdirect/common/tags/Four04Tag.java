@@ -11,12 +11,16 @@ import org.apache.sling.api.auth.Authenticator;
 import org.apache.sling.api.auth.NoAuthenticationHandlerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.day.cq.wcm.api.WCMMode;
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PathStringUtils;
 
 @SuppressWarnings("serial")
 public class Four04Tag extends CQBaseTag {
+	
+	public static final String INCLUDE_VAR = Constants.ident("mustInclude");
+	public static final String REDIRECT_VAR = Constants.ident("mustRedirect");
+	
 	protected static Logger log = LoggerFactory.getLogger(Four04Tag.class);
 	protected static PathStringUtils psu = new PathStringUtils();
 	/* //<%--
@@ -63,7 +67,6 @@ public class Four04Tag extends CQBaseTag {
 	
 	@Override
 	public void setPageContext(PageContext pageContext) {
-		if (log.isDebugEnabled()) log.debug("Setting context for 404");
 		super.setPageContext(pageContext);
 		jspRequest = (HttpServletRequest) pageContext.getRequest();
 		jspResponse = (HttpServletResponse) pageContext.getResponse();
@@ -71,8 +74,6 @@ public class Four04Tag extends CQBaseTag {
 	
 	@Override  
 	public int doStartTag() {
-		if (log.isDebugEnabled()) log.debug("doStartTag called");
-
 		Integer scObject = (Integer) jspRequest.getAttribute("javax.servlet.error.status_code");
 	    
 	    int statusCode = (scObject != null)
@@ -80,20 +81,8 @@ public class Four04Tag extends CQBaseTag {
 	            : HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 	    ((HttpServletResponse) pageContext.getResponse()).setStatus(statusCode);
 	    if (log.isDebugEnabled()) log.debug("statusCode is "+statusCode);
-		
-		//Default value limits action to paths in our content tree
-	    /*
-		String errorActionRoot = EnvironmentSettings.getErrorActionRoot();
-		if (errorActionRoot == null || errorActionRoot.matches(" *")) {
-			errorActionRoot = "/content/gecapitalbank/";
-			if (contextPath != null && !"".equals(contextPath)) {
-		    	errorActionRoot = contextPath + errorActionRoot;
-		 	}
-		}
-		*/
-		//log.debug("errorActionRoot is "+errorActionRoot);
 	    if (log.isDebugEnabled()) log.debug("request path is "+jspRequest.getRequestURI());
-	    // decide whether to redirect to the (wcm) login page, or to send a plain 404
+	    // decide whether to redirect to the (wcm) login page, or to continue as 404
 	    if (needsAuthentication(jspRequest) 
 	    		&& isBrowserRequest(jspRequest)
 	    		&& isAnonymousUser(jspRequest)
@@ -105,14 +94,13 @@ public class Four04Tag extends CQBaseTag {
 	        if (auth != null) {
 	            try {
 	                //auth.login(request, response);
-	            	pageContext.setAttribute("mustRedirect", "");
-		            pageContext.setAttribute("mustInclude","");
+	            	pageContext.setAttribute(REDIRECT_VAR,Constants.EMPTY);
+		            pageContext.setAttribute(INCLUDE_VAR,Constants.EMPTY);
 	                auth.login(jspRequest, jspResponse);
 	               
 	                // login has been requested, nothing more to do
 	                //return; // when converting this logic to tag, will need to account for this.
 	                endResult = SKIP_PAGE;
-	                if (log.isDebugEnabled()) log.debug("auth attempted");
 	                return SKIP_BODY;
 	                
 	            } catch (NoAuthenticationHandlerException nahe) {
@@ -137,13 +125,12 @@ public class Four04Tag extends CQBaseTag {
 	    		|| jspRequest.getRequestURI().endsWith(pageName)
 	    		) {  
 	    	//%><%@include file="/libs/sling/servlet/errorhandler/default.jsp"%><%
-	    	pageContext.setAttribute("mustRedirect","");
-	    	pageContext.setAttribute("mustInclude", "/libs/sling/servlet/errorhandler/default.jsp");
-	
+	    	pageContext.setAttribute(REDIRECT_VAR,Constants.EMPTY);
+	    	pageContext.setAttribute(INCLUDE_VAR, Constants.CQ_DEFAULT_ERROR_PAGE);
 	    } else {
 //	        response.sendRedirect(error404PageUrl);
-	    	pageContext.setAttribute("mustInclude","");
-	    	pageContext.setAttribute("mustRedirect", error404PageUrl);
+	    	pageContext.setAttribute(INCLUDE_VAR,Constants.EMPTY);
+	    	pageContext.setAttribute(REDIRECT_VAR, error404PageUrl);
 	    }
 	    
 	//%>
@@ -153,7 +140,6 @@ public class Four04Tag extends CQBaseTag {
 	
 	@Override
 	public int doEndTag() {
-		if (log.isDebugEnabled()) log.debug("doEndTag called, returning "+endResult);
 		return endResult;
 	}
     
@@ -163,7 +149,7 @@ public class Four04Tag extends CQBaseTag {
     }
     
     private boolean isBrowserRequest(HttpServletRequest request) {
-        // check if user agent contains "Mozilla" or "Opera"
+        // check if user agent contains "Mozilla" or "Opera" or is the Maven SCR plugin
         final String userAgent = request.getHeader("User-Agent");
         if (log.isDebugEnabled()) log.debug("userAgent is "+userAgent);
         return userAgent != null
@@ -175,7 +161,7 @@ public class Four04Tag extends CQBaseTag {
     private final Set<String> authenticatedRequestRoots = initAuthenticatedRoots();
     private final static Set<String> initAuthenticatedRoots() {
     	Set<String> authRoots = new HashSet<String>();
-    	// We will just determine this via testing..
+    	// If insufficient refactor to OSGI config load via psu
     	authRoots.add("/libs/sling/install");
     	authRoots.add("/welcome");
     	authRoots.add("/system");
@@ -187,7 +173,6 @@ public class Four04Tag extends CQBaseTag {
     	final String requestUri = request.getRequestURI();
     	if (log.isDebugEnabled()) log.debug("they requested "+requestUri);
     	boolean requiresAuth = psu.hasAnyParentIn(authenticatedRequestRoots,requestUri);
-    	if (log.isDebugEnabled()) log.debug("we are saying it "+(requiresAuth?"does":"doesn't")+" want authentication");
     	return requiresAuth;
     }
 }
