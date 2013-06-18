@@ -7,11 +7,11 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BrandModelTest  extends TestCase {
-	private BrandModel model; // toolModel
+public class AuthorModelTest  extends TestCase {
+	private AuthorModel model; // toolModel
 	
 	private final static String DESCRIPTION = "description";
-	private final static String LOGO_PATH = "logoPath";
+	private final static String IMAGE_PATH = "ImagePath";
 	private final static String PATH = "path";
 	private final static String TITLE = "title";
 	
@@ -20,24 +20,24 @@ public class BrandModelTest  extends TestCase {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		model = new BrandModel(PATH, TITLE, DESCRIPTION, LOGO_PATH);
+		model = new AuthorModel(PATH, TITLE, DESCRIPTION, IMAGE_PATH);
 	}
 	
 	@Test
 	public void testModel() {
 		try {
 			assertThat(model.getDescription(),is(DESCRIPTION));
-			assertThat(model.getLogoPath(),is(LOGO_PATH));
+			assertThat(model.getImagePath(),is(IMAGE_PATH));
 			assertThat(model.getPath(),is(PATH));
 			assertThat(model.getTitle(),is(TITLE));
 			model.setDescription(NEW_+DESCRIPTION);
-			model.setLogoPath(NEW_+LOGO_PATH);
+			model.setImagePath(NEW_+IMAGE_PATH);
 			model.setPath(NEW_+PATH);
 			model.setTitle(NEW_+TITLE);
 			assertThat(model.getPath(),is(NEW_+PATH));
 			assertThat(model.getDescription(),is(NEW_+DESCRIPTION));
 			assertThat(model.getTitle(),is(NEW_+TITLE));
-			assertThat(model.getLogoPath(),is(NEW_+LOGO_PATH));
+			assertThat(model.getImagePath(),is(NEW_+IMAGE_PATH));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
