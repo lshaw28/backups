@@ -14,13 +14,31 @@
 					   allowBlank="{Boolean}false"
 					   name="./partsRequiredTitle"
 					   xtype="textfield"
-					   maxLength="50" />
-					   
-				<list  jcr:primaryType="cq:Widget"
-					   fieldLabel="Parts Required List"
-					   name="./partsRequired"
-					   xtype="textfield" />
-					   
+					   maxLength="50" /> 
+				
+				<multi
+		            jcr:primaryType="cq:Widget"
+		            fieldLabel="Parts"
+		            name="./multipart"
+		            xtype="multifield">
+			            <fieldConfig
+			                jcr:primaryType="cq:Widget"
+			                xtype="multicustom">
+			                <items jcr:primaryType="cq:WidgetCollection">
+			                    <text
+			                        jcr:primaryType="cq:Widget"
+			                        fieldLabel="Part Name"
+			                        name="text"
+			                        xtype="textfield"/>
+			                    <id
+			                        jcr:primaryType="cq:Widget"
+			                        fieldLabel="ID"
+			                        name="id"
+			                        xtype="textfield"/>
+			                </items>
+			            </fieldConfig>
+			    </multi>
+				
 			</items>
 		</Panel>
 	</items>
