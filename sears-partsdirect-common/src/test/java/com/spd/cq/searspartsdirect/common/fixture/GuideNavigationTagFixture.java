@@ -14,7 +14,6 @@ import javax.jcr.nodetype.PropertyDefinition;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.hamcrest.Matcher;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -90,16 +89,7 @@ public class GuideNavigationTagFixture {
 		jumpProperty = mock(Property.class);
 		when(pageNode.getProperty(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR)).thenReturn(jumpProperty);
 		when(jumpProperty.getString()).thenReturn(getJumpToValue());
-		/* // included as example. will remove on next commit.
-		when(slingRequest.getAttribute(any(String.class))).thenAnswer(new Answer<Void>() {
-
-			public Void answer(InvocationOnMock invocation) throws Throwable {
-				// TODO Auto-generated method stub
-				throw new RuntimeException((String)invocation.getArguments()[0]);
-			}
-			
-		});
-		*/
+		// following is what WCMMode.fromRequest looks at
 		when(slingRequest.getAttribute("com.day.cq.wcm.api.WCMMode")).thenReturn(WCMMode.EDIT);
 		Resource parsysResource = mock(Resource.class);
 		when(currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME)).thenReturn(parsysResource);
