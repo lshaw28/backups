@@ -105,12 +105,13 @@ public class GetRelationTag extends CQBaseTag {
 								title,
 								description,
 								properties.get("id","")));
+						break;
 					case AUTHOR:
 						result.add(new AuthorModel(p.getPath(),
 								title,
 								description,
 								properties.get("id","")));
-								
+						break;	
 					default:
 						break;
 				}

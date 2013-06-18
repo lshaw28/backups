@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.jcr.Node;
 import javax.jcr.Property;
@@ -67,14 +69,14 @@ public class GuideNavigationTag extends CQBaseTag {
 				labelFound = Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK;
 			}
 			generators.add(new FixedLabelTemplateLinkGenerator(Constants.TOOLS_REQ_R_COMPONENT,labelFound));
-		}
+		} 
 		if (typesAndLabels.containsKey(Constants.PARTS_REQ_R_COMPONENT)) {
 			String labelFound = typesAndLabels.get(Constants.PARTS_REQ_R_COMPONENT);
 			if (labelIsBlank(labelFound)) {
 				labelFound = Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK;
 			}
 			generators.add(new FixedLabelTemplateLinkGenerator(Constants.PARTS_REQ_R_COMPONENT,labelFound));
-		}
+		} 
 		
 		// We find the parsys indicated by the template
 		Resource parsysResource = currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME);
@@ -154,6 +156,7 @@ public class GuideNavigationTag extends CQBaseTag {
 						new String[]{
 							"{\"link\":\""+Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.PARTS_REQ_R_COMPONENT+"\"}",
 							"{\"link\":\""+Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.TOOLS_REQ_R_COMPONENT+"\"}",
+							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.TEXT_COMPONENT+"\"}",
 							"{\"link\":\""+Constants.INSTRUCTIONS_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.INSTRUCTIONS_COMPONENT+"\"}",
 							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.COMMENTS_COMPONENT+"\"}",
 						}
@@ -269,7 +272,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 		@Override
 		public final String generateLabel() {
-			return label;
+			return label;	
 		}
 	}
 	
@@ -289,7 +292,6 @@ public class GuideNavigationTag extends CQBaseTag {
 		public String generateLabel() {
 			StringBuilder label = new StringBuilder(
 					Constants.COMMENTS_GUIDE_NAV_LINK_PREFIX);
-			
 			Resource thoseComments = rr.resolve(commentsPath);
 			if (thoseComments != null) {
 				CommentSystem thatCs = null;
@@ -323,6 +325,8 @@ public class GuideNavigationTag extends CQBaseTag {
 			Map<String,ParsysLinkGeneratorMaker> makers = new HashMap<String,ParsysLinkGeneratorMaker>();
 			// Since subhead was removed, there are currently no specific generator makers.
 			// However, retaining this mechanism since we may need it to support future requirements.
+			// Restoring this mechanism - extracting h elements from text.
+			makers.put(Constants.TEXT_COMPONENT, new TextLinkGeneratorMaker());
 			return makers;
 		}
 		
@@ -360,9 +364,19 @@ public class GuideNavigationTag extends CQBaseTag {
 		public abstract ParsysLinkGenerator createGenerator(Resource parsysChild);
 	}
 	
+	private static class TextLinkGeneratorMaker extends ParsysLinkGeneratorMaker {
+
+		@Override
+		public ParsysLinkGenerator createGenerator(Resource textResource) {
+			return new TextParsysLinkGenerator(getParsysName(),textResource);
+		}
+		
+	}
+	
 	private static abstract class ParsysLinkGenerator extends LinkGenerator {
 		private String parsysName;
-
+		private Resource beingLinkedTo;
+		
 		public String getParsysName() {
 			return parsysName;
 		}
@@ -371,8 +385,6 @@ public class GuideNavigationTag extends CQBaseTag {
 			this.parsysName = parsysName;
 		}
 		
-		private Resource beingLinkedTo;
-
 		public Resource getBeingLinkedTo() {
 			return beingLinkedTo;
 		}
@@ -402,5 +414,36 @@ public class GuideNavigationTag extends CQBaseTag {
 		public String generateLabel() {
 			return label;
 		}
+	}
+	
+	private static class TextParsysLinkGenerator extends ParsysLinkGenerator {
+		
+		private static final Pattern headerPattern = initHeaderPattern();
+		private static final Pattern initHeaderPattern() {
+			return Pattern.compile("<h([1-6])[^>]*>(.+?)</h\\1>",  Pattern.CASE_INSENSITIVE|Pattern.DOTALL);
+		}
+		
+		public TextParsysLinkGenerator(String parsysName, Resource textResource) {
+			setParsysName(parsysName);
+			setBeingLinkedTo(textResource);
+		}
+
+		@Override
+		public String generateLabel() {
+			StringBuffer hContents = new StringBuffer();
+			Resource textResource = getBeingLinkedTo();
+			try {
+				String html = textResource.adaptTo(Node.class).getProperty(Constants.GUIDE_TEXT_LABEL_PROP).getString();
+				if (log.isDebugEnabled()) log.debug("html is "+html);
+				Matcher pageMatcher = headerPattern.matcher(html);
+				while(pageMatcher.find()){
+				    hContents.append(pageMatcher.group(2));
+				}
+			} catch (Exception e) {
+                log.error("retrieving text label: ", e);
+			}
+			return hContents.toString();
+		}
+		
 	}
 }

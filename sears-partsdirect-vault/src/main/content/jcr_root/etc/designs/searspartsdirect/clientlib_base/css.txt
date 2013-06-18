@@ -26,12 +26,14 @@ articleComments/articleComments.less
 authorDisplay/authorDisplay.less
 boxed-callout/boxed-callout.less
 brandBar/brandBar.less
+breadcrumbNavigation/breadcrumbNavigation.less
 cartNav/cartNav.less
 categoryArticleList/categoryArticleList.less
 globalHeader/globalHeader.less
 globalFooter/globalFooter.less
 headerPromo/headerPromo.less
 homeLogo/homeLogo.less
+informationBanner/informationBanner.less
 loginNav/loginNav.less
 modal/modal.less
 modelNumberSearch/modelNumberSearch.less
@@ -40,4 +42,5 @@ repairStep/repairStep.less
 searchPanel/searchPanel.less
 skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less
+text/text.less
 topAccessories/topAccessories.less

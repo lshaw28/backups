@@ -5,7 +5,6 @@ import javax.servlet.jsp.JspWriter;
 
 import org.apache.sling.api.resource.Resource;
 
-import com.day.cq.commons.Doctype;
 import com.day.cq.wcm.api.components.DropTarget;
 import com.day.cq.wcm.foundation.Image;
 
@@ -19,7 +18,7 @@ public class DisplayImageTag extends CQBaseTag {
 	
 	protected String path;
 	protected boolean decorated = true;
-
+	
 	@Override
 	public int doStartTag() throws JspException {
 		JspWriter out = pageContext.getOut();
@@ -34,7 +33,7 @@ public class DisplayImageTag extends CQBaseTag {
 	    image.addCssClass(DropTarget.CSS_CLASS_PREFIX + "image");
 	    image.loadStyleData(currentStyle);
 	    image.setSelector(".img"); // use image script
-	    image.setDoctype(Doctype.fromRequest(request));
+	    //image.setDoctype(Doctype.fromRequest(request));
 	    // add design information if not default (i.e. for reference paras)
 	    if (!currentDesign.equals(resourceDesign)) {
 	        image.setSuffix(currentDesign.getId());

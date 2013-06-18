@@ -1,5 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <article id="content">
+	<cq:include path="/content/searspartsdirect/en/jcr:content/breadcrumbNavigation" resourceType="/apps/searspartsdirect/components/base/breadcrumbNavigation" />
 	<cq:include path="guideNavigation" resourceType="searspartsdirect/components/content/guideNavigation" />
 	<div class="row-fluid">
 		<div class="span12">

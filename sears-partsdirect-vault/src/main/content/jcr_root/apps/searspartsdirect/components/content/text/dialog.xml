@@ -12,6 +12,7 @@
 				<text
 					jcr:primaryType="cq:Widget"
 					fieldLabel="Text"
+					externalStyleSheets="[/etc/designs/searspartsdirect/clientlib_base/less/components/text/generated/text.css]"
 					name="./text"
 					xtype="richtext">
 					<rtePlugins

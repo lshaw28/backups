@@ -7,6 +7,7 @@ public final class Constants {
 	//CQ constants
 	public static final String CQ_PAGE = ident("cq:Page");
 	public static final String CQ_TAG = ident("cq:Tag");
+	public static final String CQ_DEFAULT_ERROR_PAGE = ident("/libs/sling/servlet/errorhandler/default.jsp");
 	
 	//Asset Constants
 	public static final String ASSETS_PATH = ident("/etc/spdAssets/scaffolding");
@@ -33,6 +34,7 @@ public final class Constants {
 	public static final String PARTS_REQ_R_COMPONENT = ident("searspartsdirect/components/content/partsRequiredRepair");
 	public static final String TOOLS_REQ_R_COMPONENT = ident("searspartsdirect/components/content/toolsRequiredRepair");
 	public static final String INSTRUCTIONS_COMPONENT = ident("searspartsdirect/components/content/repairInstructions");
+	public static final String TEXT_COMPONENT = ident("searspartsdirect/components/content/text");
 	
 	public static final String USERGEN_ROOT = ident("/content/usergenerated");
 	public static final String ARTICLES_ROOT = ident("/content/searspartsdirect/en/articles");
@@ -56,6 +58,7 @@ public final class Constants {
 	public static final String GUIDE_NAV_SECTIONS_PAGE_ATTR = ident("sections");
 	public static final String GUIDE_TOP_PARSYS_NAME = ident("parsys");
 	public static final String GUIDE_SUBHEAD_LABEL_PROP = ident("textvalue");
+	public static final String GUIDE_TEXT_LABEL_PROP = ident("text");
 	
 	public static final String GUIDE_CFG_RESTYPE = ident("resType");
 	public static final String GUIDE_CFG_TEXT = ident("link");
@@ -101,7 +104,7 @@ public final class Constants {
 	 * @param t
 	 * @return t
 	 */
-	private final static <T> T ident(T t) {
+	public final static <T> T ident(T t) {
 		return t;
 	}
 }

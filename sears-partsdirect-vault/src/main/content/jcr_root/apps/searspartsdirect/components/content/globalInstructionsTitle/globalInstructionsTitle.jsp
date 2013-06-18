@@ -1,2 +1,2 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<cq:text property="./titleText" placeholder="Instructions" />
+<h1><cq:text property="./titleText" placeholder="Instructions" /></h1>
