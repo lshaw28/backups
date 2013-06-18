@@ -23,7 +23,7 @@ public class Four04Tag extends CQBaseTag {
 	
 	protected static Logger log = LoggerFactory.getLogger(Four04Tag.class);
 	protected static PathStringUtils psu = new PathStringUtils();
-	/* //<%--
+	/* 
 	  Copyright 1997-2008 Day Management AG
 	  Barfuesserplatz 6, 4001 Basel, Switzerland
 	  All Rights Reserved.
@@ -46,19 +46,7 @@ public class Four04Tag extends CQBaseTag {
 	  denied ("401", eg. for non-logged in, anonymous users) and really-not-existing
 	  scenarios ("404", eg. logged in, but does not exist in repository).
 	  
-	*///--%><%
-	/*%><%@ page session="false" %><%
-	%><%@ page import="
-		java.util.Set,
-		java.util.HashSet,
-	    java.net.URLEncoder,
-	    org.slf4j.Logger,
-	    org.slf4j.LoggerFactory,
-	    org.apache.sling.api.scripting.SlingBindings,
-	    org.apache.sling.engine.auth.Authenticator,
-	    org.apache.sling.engine.auth.NoAuthenticationHandlerException,
-	    com.day.cq.wcm.api.WCMMode,
-	    com.ge.cq.gecapitalbank.common.environment.EnvironmentSettings" %><%!*/
+	*/
 
 	private HttpServletRequest jspRequest = null;
 	private HttpServletResponse jspResponse = null;
@@ -88,18 +76,17 @@ public class Four04Tag extends CQBaseTag {
 	    		&& isAnonymousUser(jspRequest)
 	    		) {
 	        
-	        //SlingBindings bindings = (SlingBindings) request.getAttribute("org.apache.sling.api.scripting.SlingBindings");
 	    	if (log.isDebugEnabled()) log.debug("attempting authentication");
 	        Authenticator auth = bindings.getSling().getService(Authenticator.class);
 	        if (auth != null) {
 	            try {
-	                //auth.login(request, response);
+	                // per JSP auth.login(request, response);
 	            	pageContext.setAttribute(REDIRECT_VAR,Constants.EMPTY);
 		            pageContext.setAttribute(INCLUDE_VAR,Constants.EMPTY);
 	                auth.login(jspRequest, jspResponse);
 	               
 	                // login has been requested, nothing more to do
-	                //return; // when converting this logic to tag, will need to account for this.
+	                // per JSP, return, so we specify skipping entire remainder
 	                endResult = SKIP_PAGE;
 	                return SKIP_BODY;
 	                
@@ -124,16 +111,15 @@ public class Four04Tag extends CQBaseTag {
 	    if (needsAuthentication(jspRequest) 
 	    		|| jspRequest.getRequestURI().endsWith(pageName)
 	    		) {  
-	    	//%><%@include file="/libs/sling/servlet/errorhandler/default.jsp"%><%
+	    	// per JSP <%@include file="/libs/sling/servlet/errorhandler/default.jsp"%><%
 	    	pageContext.setAttribute(REDIRECT_VAR,Constants.EMPTY);
 	    	pageContext.setAttribute(INCLUDE_VAR, Constants.CQ_DEFAULT_ERROR_PAGE);
 	    } else {
-//	        response.sendRedirect(error404PageUrl);
+	    	// per JSP response.sendRedirect(error404PageUrl);
 	    	pageContext.setAttribute(INCLUDE_VAR,Constants.EMPTY);
 	    	pageContext.setAttribute(REDIRECT_VAR, error404PageUrl);
 	    }
 	    
-	//%>
 	    endResult = EVAL_PAGE;
 	    return SKIP_BODY;
 	}
