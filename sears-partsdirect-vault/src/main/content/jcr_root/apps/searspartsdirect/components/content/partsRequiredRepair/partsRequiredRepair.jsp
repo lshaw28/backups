@@ -8,5 +8,4 @@
 	<li data-partid="${part.id}">${part.text}</li>
 </c:forEach>
 </ul>
-
 <cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />

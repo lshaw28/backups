@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<spd:ResolveHazardTipWarning adhocField="hazardTextEntered" choiceField="hazardChosen" placeholder="NO HAZARD FOUND."/>
+<spd:ResolveHazardTipWarning adhocField="hazardTextEntered" choiceField="hazardChosen" placeholder=""/>
 <c:choose>
 	<c:when test="${empty htwImage}">
 		<%-- displayImage tag never acts against other than the current resource.
@@ -13,6 +13,5 @@
 		<cq:include path="${htwImage}" resourceType="foundation/components/image" />
 	</c:otherwise>
 </c:choose>
-<cq:include path="/etc/spdAssets/globalConfig/hazardPrefix" 
-			resourceType="searspartsdirect/components/content/hazardPrefix" />
-${htwText}
+<cq:include path="/etc/spdAssets/globalConfig/hazardPrefix"
+	resourceType="searspartsdirect/components/content/hazardPrefix" /> ${htwText}

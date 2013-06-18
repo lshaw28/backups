@@ -8,6 +8,7 @@ public final class Constants {
 	public static final String CQ_PAGE = ident("cq:Page");
 	public static final String CQ_TAG = ident("cq:Tag");
 	public static final String CQ_DEFAULT_ERROR_PAGE = ident("/libs/sling/servlet/errorhandler/default.jsp");
+	public static final String CQ_WCMMODE_REQ_ATTR = ident("com.day.cq.wcm.api.WCMMode");
 	
 	//Asset Constants
 	public static final String ASSETS_PATH = ident("/etc/spdAssets/scaffolding");
