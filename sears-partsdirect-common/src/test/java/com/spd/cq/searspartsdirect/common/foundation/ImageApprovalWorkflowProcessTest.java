@@ -8,7 +8,6 @@ import org.junit.Test;
 import com.spd.cq.searspartsdirect.common.fixture.ImageApprovalWorkflowProcessFixture;
 
 public class ImageApprovalWorkflowProcessTest extends TestCase {
-	
 	private ImageApprovalWorkflowProcess process;
 	private ImageApprovalWorkflowProcessFixture fixture;
 	
@@ -22,9 +21,29 @@ public class ImageApprovalWorkflowProcessTest extends TestCase {
 	@Test
 	public void testExecute() {
 		try {
-			process.execute(fixture.getItem(), fixture.getSession(), fixture.getArgs());
+			fixture.setUpFullTest();
+			process.execute(fixture.getTestItem(), fixture.getTestSession(), fixture.getArgs());
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
-		catch (Exception e) {
+	}
+	
+	@Test
+	public void testWrongPayloadType() {
+		try {
+			fixture.setUpWrongPayloadType();
+			process.execute(fixture.getTestItem(), fixture.getTestSession(), fixture.getArgs());
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testNoSuchNode() {
+		try {
+			fixture.setUpNoSuchNode();
+			process.execute(fixture.getTestItem(), fixture.getTestSession(), fixture.getArgs());
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
