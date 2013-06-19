@@ -281,7 +281,7 @@ public class GuideNavigationTag extends CQBaseTag {
 			StringBuilder label = new StringBuilder(
 					Constants.COMMENTS_GUIDE_NAV_LINK_PREFIX);
 			Resource thoseComments = rr.resolve(commentsPath);
-			if (thoseComments != null) {
+			if (thoseComments != null && !thoseComments.isResourceType(Resource.RESOURCE_TYPE_NON_EXISTING)) {
 				CommentSystem thatCs = null;
 				thatCs = thoseComments.adaptTo(CommentSystem.class);
 				if (thatCs != null) {
