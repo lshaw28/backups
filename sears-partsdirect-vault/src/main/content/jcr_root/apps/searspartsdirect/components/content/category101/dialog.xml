@@ -17,7 +17,7 @@
 				<multi
 		            jcr:primaryType="cq:Widget"
 		            fieldLabel="Categories"
-		            name="./multicat"
+		            name="./multipaths"
 		            xtype="multifield">
 			            <fieldConfig
 			                jcr:primaryType="cq:Widget"
@@ -28,14 +28,6 @@
 			                        fieldLabel="Category"
 			                        name="url"
 			                        xtype="pathfield"/>
-			                        
-			                    <title
-			                        jcr:primaryType="cq:Widget"
-			                        fieldLabel="Article Title"
-			                        name="title"
-			                        maxLength="56"
-			                        fieldDescription="Character limit is 56"
-			                        xtype="textfield"/>
 			                </items>
 			            </fieldConfig>
 			    </multi>
@@ -46,7 +38,6 @@
 							            fieldLabel="link to Articles Index page"
 							            name="./viewAllLink"
 							            xtype="pathfield"/>	
-			    
 			</items>
 		</Panel>
 	</items>
