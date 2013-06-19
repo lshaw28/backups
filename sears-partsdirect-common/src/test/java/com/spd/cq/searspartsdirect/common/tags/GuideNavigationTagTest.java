@@ -2,6 +2,7 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.List;
 
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.junit.Before;
@@ -26,16 +27,12 @@ public class GuideNavigationTagTest extends MocksTag {
 		guideNavigationTag = new GuideNavigationTag();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
 	public void testDoStartTag() {
 		try {
-			guideNavigationTag.setPageContext(pageContext);
-			int startResult = guideNavigationTag.doStartTag();
-			assertThat(startResult,is(TagSupport.SKIP_BODY));
-			int endResult = guideNavigationTag.doEndTag();
-			assertThat(endResult,is(TagSupport.EVAL_PAGE));
+			runTagSkipsBodyEvalsPage();
 			assertThat((String)pageContext.getAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR),is(fixture.getJumpToValue()));
+			@SuppressWarnings("unchecked")
 			List<List<String>> result = (List<List<String>>)pageContext.getAttribute(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR);
 			assertThat(result,instanceOf(List.class));
 			assertThat(result,hasSize(5));
@@ -56,5 +53,84 @@ public class GuideNavigationTagTest extends MocksTag {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	@Test
+	public void testJumpTextIsBroken() {
+		try {
+			fixture.breakJumpText();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testWithNoSetupProperty() {
+		try {
+			fixture.setupNoSetupProperty();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testWithNoSetupNode() {
+		try {
+			fixture.setupNoSetupNode();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testMissingMiscellany() {
+		try {
+			fixture.setupNoPageNode();
+			fixture.setupNoParsys();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testCannotSetupDisabled() {
+		try {
+			fixture.setupCannotSetupDisabled();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testCannotSetupReadonly() {
+		try {
+			fixture.setupCannotSetupReadonly();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testAlreadySetUp() {
+		try {
+			fixture.setupAlreadySetUp();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private void runTagSkipsBodyEvalsPage() throws JspException {
+		guideNavigationTag.setPageContext(pageContext);
+		int startResult = guideNavigationTag.doStartTag();
+		assertThat(startResult,is(TagSupport.SKIP_BODY));
+		int endResult = guideNavigationTag.doEndTag();
+		assertThat(endResult,is(TagSupport.EVAL_PAGE));
 	}
 }
