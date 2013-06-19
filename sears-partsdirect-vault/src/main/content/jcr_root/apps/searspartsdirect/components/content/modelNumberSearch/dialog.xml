@@ -40,7 +40,7 @@
 				<tab2	jcr:primaryType="cq:Widget"
 						title="Optional"
 						xtype="panel">
-						
+						<items jcr:primaryType="cq:WidgetCollection">
 						<QuestionText
 								jcr:primaryType="cq:Widget"
 							   	fieldLabel="Search Instructions"
@@ -55,7 +55,7 @@
 							   	name="./linkText2"
 							   	xtype="textfield" 
 							   	maxLength="42" />
-						
+						</items>
 				</tab2>
 				
 			</items>

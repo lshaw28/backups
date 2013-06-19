@@ -99,6 +99,11 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.RequiredToolsTag</tag-class>
 		<info>Sets page context information required for Tools Required for Repair</info>
 	</tag>
+		<tag>
+		<name>requiredParts</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.RequiredPartsTag</tag-class>
+		<info>Sets page context information required for Parts Required for Repair</info>
+	</tag>
 	<tag>
 		<name>getMultifieldCategories</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMultifieldCategoriesTag</tag-class>
