@@ -53,7 +53,11 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 		        	} else {
 		        		description = "";
 		        	}
-		        	articles.add(new RelatedArticleModel(page.getPath() + ".html", page.getPath() + Constants.ASSETS_IMAGE_PATH, page.getTitle(), description));
+		        	articles.add(new RelatedArticleModel(
+		        			page.getPath() + ".html", 
+		        			page.getPath() + Constants.ASSETS_IMAGE_PATH, 
+		        			page.getTitle(),
+		        			description));
 		        }	        	
 	        }
 	        else {
@@ -63,7 +67,11 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 		        	} else {
 		        		description = "";
 		        	}
-	        		articles.add(new RelatedArticleModel(result.get(i).getPath() + ".html", result.get(i).getPath() + Constants.ASSETS_IMAGE_PATH, result.get(i).getTitle(), description));
+	        		articles.add(new RelatedArticleModel(
+	        				result.get(i).getPath() + ".html", 
+	        				result.get(i).getPath() + Constants.ASSETS_IMAGE_PATH, 
+	        				result.get(i).getTitle(),
+	        				description));
 	        	}
 	        }
 

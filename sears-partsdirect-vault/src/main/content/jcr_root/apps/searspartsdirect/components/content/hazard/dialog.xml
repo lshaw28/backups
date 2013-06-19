@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-		  jcr:primaryType="cq:Dialog"
-		  title="Hazard"
-		  xtype="dialog">
+	jcr:primaryType="cq:Dialog"
+	title="Notice"
+	xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<Hazard	jcr:primaryType="cq:Widget"
-						xtype="panel">
+		<tabs jcr:primaryType="cq:TabPanel">
 			<items jcr:primaryType="cq:WidgetCollection">
-				<hazardTextEntered jcr:primaryType="cq:Widget"
-					   fieldLabel="Enter an ad-hoc hazard"
-					   fieldDescription="Character limit is 400"
-					   allowBlank="{Boolean}true"
-					   name="./hazardTextEntered"
-					   xtype="textfield"
-					   maxLength="400" />
-				<hazardChosen jcr:primaryType="cq:Widget"
-						fieldLabel="Choose a hazard"
-						allowBlank="{Boolean}true"
-						editable="false"
-						name="./hazardChosen"
-						xtype="pathfield"
-						rootPath="/etc/spdAssets/scaffolding/hazard" />
+				<noticeInformation
+					jcr:primaryType="cq:Widget"
+					path="/apps/searspartsdirect/components/content/notice/tab_notice_information.infinity.json"
+					xtype="cqinclude"/>
+				<noticeSelection
+					jcr:primaryType="cq:Widget"
+					path="/apps/searspartsdirect/components/content/hazard/tab_hazard_select.infinity.json"
+					xtype="cqinclude"/>
 			</items>
-		</Hazard>
+		</tabs>
 	</items>
 </jcr:root>
