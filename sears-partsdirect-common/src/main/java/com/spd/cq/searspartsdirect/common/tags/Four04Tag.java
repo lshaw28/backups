@@ -68,15 +68,12 @@ public class Four04Tag extends CQBaseTag {
 	            ? scObject.intValue()
 	            : HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 	    ((HttpServletResponse) pageContext.getResponse()).setStatus(statusCode);
-	    if (log.isDebugEnabled()) log.debug("statusCode is "+statusCode);
-	    if (log.isDebugEnabled()) log.debug("request path is "+jspRequest.getRequestURI());
 	    // decide whether to redirect to the (wcm) login page, or to continue as 404
 	    if (needsAuthentication(jspRequest) 
 	    		&& isBrowserRequest(jspRequest)
 	    		&& isAnonymousUser(jspRequest)
 	    		) {
 	        
-	    	if (log.isDebugEnabled()) log.debug("attempting authentication");
 	        Authenticator auth = bindings.getSling().getService(Authenticator.class);
 	        if (auth != null) {
 	            try {
@@ -137,7 +134,6 @@ public class Four04Tag extends CQBaseTag {
     private boolean isBrowserRequest(HttpServletRequest request) {
         // check if user agent contains "Mozilla" or "Opera" or is the Maven SCR plugin
         final String userAgent = request.getHeader("User-Agent");
-        if (log.isDebugEnabled()) log.debug("userAgent is "+userAgent);
         return userAgent != null
             && (userAgent.indexOf("Mozilla") > -1
                 || userAgent.indexOf("Opera") > -1
@@ -157,7 +153,6 @@ public class Four04Tag extends CQBaseTag {
     
     private boolean needsAuthentication(HttpServletRequest request) {
     	final String requestUri = request.getRequestURI();
-    	if (log.isDebugEnabled()) log.debug("they requested "+requestUri);
     	boolean requiresAuth = psu.hasAnyParentIn(authenticatedRequestRoots,requestUri);
     	return requiresAuth;
     }

@@ -65,7 +65,6 @@ public class Four04TagTest extends MocksTag {
 		int startOut = tag.doStartTag();
 		assertThat(startOut,is(TagSupport.SKIP_BODY));
 		int endOut = tag.doEndTag();
-		// auth.login(jspRequest, jspResponse) will not have been called - and auth is null, so no verify
 		assertThat(endOut,is(TagSupport.EVAL_PAGE));
 		assertThat((String)pageContext.getAttribute(Four04Tag.REDIRECT_VAR),anyOf(nullValue(),is(Constants.EMPTY)));
 		assertThat((String)pageContext.getAttribute(Four04Tag.INCLUDE_VAR),anyOf(nullValue(),is(Constants.CQ_DEFAULT_ERROR_PAGE)));
@@ -80,7 +79,6 @@ public class Four04TagTest extends MocksTag {
 		int startOut = tag.doStartTag();
 		assertThat(startOut,is(TagSupport.SKIP_BODY));
 		int endOut = tag.doEndTag();
-		// auth.login(jspRequest, jspResponse) will not have been called - and auth is null, so no verify
 		assertThat(endOut,is(TagSupport.EVAL_PAGE));
 		assertThat((String)pageContext.getAttribute(Four04Tag.REDIRECT_VAR),anyOf(nullValue(),is(Constants.EMPTY)));
 		assertThat((String)pageContext.getAttribute(Four04Tag.INCLUDE_VAR),anyOf(nullValue(),is(Constants.CQ_DEFAULT_ERROR_PAGE)));
