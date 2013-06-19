@@ -414,7 +414,7 @@ public class GuideNavigationTag extends CQBaseTag {
 				String html = textResource.adaptTo(Node.class).getProperty(Constants.GUIDE_TEXT_LABEL_PROP).getString();
 				if (log.isDebugEnabled()) log.debug("html is "+html);
 				Matcher pageMatcher = headerPattern.matcher(html);
-				while(pageMatcher.find()){
+				if (pageMatcher.find()){
 				    hContents.append(pageMatcher.group(2));
 				}
 			} catch (Exception e) {
