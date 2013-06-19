@@ -72,11 +72,7 @@ public class ImageApprovalWorkflowProcessFixture {
 	
 	public void setUpException() throws PathNotFoundException, RepositoryException {
 		setUpMinConditions();
-		when(jcrSession.getItem(PATH)).thenAnswer(new Answer<Item>() {
-			public Item answer(InvocationOnMock invocation) throws Throwable {
-				throw new RepositoryException();
-			}
-		});
+		when(jcrSession.getItem(PATH)).thenThrow(new RepositoryException());
 	}
 	
 	public WorkItem getTestItem() {
