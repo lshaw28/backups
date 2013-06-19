@@ -59,9 +59,18 @@ public class Four04TagFixture {
 		env.externalActivateForTesting(osgiContext);
 	}
 	
+	public void setup404ErrorCode() {
+		//Integer scObject = (Integer) jspRequest.getAttribute("javax.servlet.error.status_code");
+		when(request.getAttribute("javax.servlet.error.status_code")).thenReturn(404);
+	}
+	
 	public void setupToRequireAuthorization() {
 		when(request.getRequestURI()).thenReturn("/system/console/bundles");
 		when(request.getHeader("User-Agent")).thenReturn("MMMozillaaaa");
+	}
+	
+	public void setupNotBrowser() {
+		when(request.getHeader("User-Agent")).thenReturn("GGGodzillaaa");
 	}
 	
 	public void setupToDoUsualRedirect() {
@@ -78,5 +87,14 @@ public class Four04TagFixture {
 				throw new NoAuthenticationHandlerException();
 			}
 		}).when(authenticator).login(request, response);
+	}
+	
+	public void setupAlreadyLoggedIn() {
+		when(request.getAuthType()).thenReturn("Divine fiat");
+		when(request.getRemoteUser()).thenReturn("ESR");
+	}
+
+	public void setupRequested404Page() {
+		when(request.getRequestURI()).thenReturn(EnvironmentSettings.get404HandlerURL());
 	}
 }
