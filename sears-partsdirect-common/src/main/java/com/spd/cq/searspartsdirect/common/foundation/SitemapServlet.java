@@ -14,6 +14,7 @@ import javax.servlet.Servlet;
 import org.apache.felix.scr.annotations.*;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.slf4j.Logger;
@@ -50,7 +51,6 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 	
 	@Override
 	public void doGet(SlingHttpServletRequest slingRequest, SlingHttpServletResponse slingResponse) {
-		if (log.isDebugEnabled()) log.debug("servlet called");
 		slingResponse.setContentType("application/xml; charset=UTF-8");
 		PrintWriter out = null;
 		Rules rules = new Rules(
@@ -67,16 +67,21 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 		} catch (Exception gettingWriter) {
 			log.error("Getting writer, ",gettingWriter);
 		} finally {
-			out.flush();
-			out.close();
+			if (out != null) {
+				out.flush();
+				out.close();
+			}
 		}
-		if (log.isDebugEnabled()) log.debug("servlet ended");
 	}
 	
 	void writeAllUrls(final Rules rules, final PrintWriter out) {
 		Set<String> startPaths = rules.getStartPaths();
 		for (String startPath : startPaths) {
-			Page aPage = rules.getResourceResolver().getResource(startPath).adaptTo(Page.class);
+			Page aPage = null;
+			Resource aResource = rules.getResourceResolver().getResource(startPath);
+			if (aResource != null) {
+				aPage = aResource.adaptTo(Page.class);
+			}
 			if (aPage != null) {
 				writeUrlsUnder(rules,aPage,out);
 			} else {
@@ -87,7 +92,6 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 	
 	void writeUrlsUnder(final Rules rules, final Page startPage, final PrintWriter out) {
 		if (psu.hasAnyParentIn(rules.getStopPaths(),startPage.getPath())) {
-			if (log.isDebugEnabled()) log.debug("hit a stop");
 			return;
 		}
 		writeUrlForPage(rules,startPage,out);
