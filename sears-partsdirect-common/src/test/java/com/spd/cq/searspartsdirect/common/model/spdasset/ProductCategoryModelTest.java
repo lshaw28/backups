@@ -1,4 +1,4 @@
-package com.spd.cq.searspartsdirect.common.model;
+package com.spd.cq.searspartsdirect.common.model.spdasset;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
