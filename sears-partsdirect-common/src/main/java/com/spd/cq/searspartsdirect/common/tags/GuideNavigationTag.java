@@ -52,8 +52,8 @@ public class GuideNavigationTag extends CQBaseTag {
 		String jumpToString = Constants.GUIDE_NAV_DEF_JUMPTO_TEXT;
 		try {
             jumpToString = pageNode.getProperty(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR).getString();
-	    } catch (RepositoryException re) {
-	            log.error("exception getting jump to text",re);
+	    } catch (Exception e) {
+	            log.error("exception getting jump to text",e);
 	    }
 		pageContext.setAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR,
 				jumpToString);
@@ -80,7 +80,6 @@ public class GuideNavigationTag extends CQBaseTag {
 		
 		// We find the parsys indicated by the template
 		Resource parsysResource = currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME);
-		if (log.isDebugEnabled()) log.debug("parsysResource is "+parsysResource);
 		
 		if (parsysResource != null) {
 			// We iterate the parsys and see what we want to generate links for
@@ -88,11 +87,6 @@ public class GuideNavigationTag extends CQBaseTag {
 			ParsysLinkGeneratorFactory generatorFactory = new ParsysLinkGeneratorFactory(parsysResource);
 			while (parsysChildren.hasNext()) {
 				Resource parsysChild = parsysChildren.next();
-				if (log.isDebugEnabled()) {
-					log.debug("parsysChild is "+parsysChild);
-					log.debug("parsysChild.resourceType is "+parsysChild.getResourceType());
-					log.debug("parsysChild.resourceSuperType is "+parsysChild.getResourceSuperType());
-				}
 				String childResourceType = parsysChild.getResourceType();
 				// when we find a resource type we recognize, we create a generator for a link to it
 				if(typesAndLabels.containsKey(childResourceType)) {
@@ -114,7 +108,6 @@ public class GuideNavigationTag extends CQBaseTag {
 		
 		// We iterate over our generators and create our output
 		for (LinkGenerator linkGen : generators) {
-			if (log.isDebugEnabled()) log.debug("generator is for "+linkGen.getComponentType());
 			List<String> newList = new ArrayList<String>();
 			newList.add(linkGen.generateLabel());
 			newList.add(linkGen.generateLink());
@@ -130,16 +123,13 @@ public class GuideNavigationTag extends CQBaseTag {
 	}
 	
 	private void maybeSetupDefaultConfig(Node pageNode) {
-		if (log.isDebugEnabled()) log.debug("Maybe doing 1st-time setup");
 		WCMMode wcmMode = WCMMode.fromRequest(slingRequest);
 		if (wcmMode != WCMMode.READ_ONLY && wcmMode != WCMMode.DISABLED) {
-			if (log.isDebugEnabled()) log.debug("Not read-only");
 			try {
 				if (pageNode == null) {
 					log.warn("Could not get the node to set up");
 					return;
 				}
-				if (log.isDebugEnabled()) log.debug("Found setup node");
 				Node setupNode;
 				Session jcr = pageNode.getSession();
 				boolean anyChanges = false;
@@ -250,9 +240,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		public String getComponentName() {
 			if (componentName == null) {
 				String fullType = getComponentType();
-				if (log.isDebugEnabled()) log.debug("setting from fullType which is "+fullType);
 				setComponentName(fullType.substring(fullType.lastIndexOf("/") + 1));
-				if (log.isDebugEnabled()) log.debug("componentName is "+componentName);
 			}
 			return componentName;
 		}
@@ -295,17 +283,7 @@ public class GuideNavigationTag extends CQBaseTag {
 			Resource thoseComments = rr.resolve(commentsPath);
 			if (thoseComments != null) {
 				CommentSystem thatCs = null;
-				try {
-					thatCs = thoseComments
-							.adaptTo(CommentSystem.class);
-				} catch (NullPointerException npe) {
-					thatCs = null;
-				}
-				if (log.isDebugEnabled()) {
-					log.debug("comments path is " + commentsPath);
-					log.debug("thoseComments is " + thoseComments);
-					log.debug("thatCs is " + thatCs);
-				}
+				thatCs = thoseComments.adaptTo(CommentSystem.class);
 				if (thatCs != null) {
 					label.append(" (").append(thatCs.countComments()).append(")");
 				} else {

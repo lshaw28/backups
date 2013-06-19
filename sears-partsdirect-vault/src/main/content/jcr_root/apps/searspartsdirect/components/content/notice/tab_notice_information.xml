@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="cq:Panel"
+	title="Notice Information"
+	width="500">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<noticeIcon
+			jcr:primaryType="cq:Widget"
+			fieldLabel="Notice Icon"
+			name="./noticeIcon"
+			type="select"
+			xtype="selection">
+			<options
+				jcr:primaryType="cq:WidgetCollection">
+				<r1
+					jcr:primaryType="nt:unstructured"
+					text="Hazard"
+					value="icon-ban-circle" />
+				<r2
+					jcr:primaryType="nt:unstructured"
+					text="Tip"
+					value="icon-info" />
+				<r3
+					jcr:primaryType="nt:unstructured"
+					text="Warning"
+					value="icon-warning-sign" />
+			</options>
+		</noticeIcon>
+		<noticeText
+			jcr:primaryType="cq:Widget"
+			fieldLabel="Manual Notice Text"
+			fieldDescription="Character limit is 400"
+			allowBlank="{Boolean}true"
+			name="./noticeText"
+			xtype="textfield"
+			maxLength="400" />
+	</items>
+</jcr:root>

@@ -5,10 +5,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.jcr.Node;
+import javax.jcr.PathNotFoundException;
 import javax.jcr.Property;
 import javax.jcr.PropertyType;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.Value;
+import javax.jcr.ValueFormatException;
 import javax.jcr.nodetype.PropertyDefinition;
 
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -30,8 +33,11 @@ public class GuideNavigationTagFixture {
 	private final static String jumpToValue = "Jump to...";
 	private final static String testPagePath = "/content/searspartsdirect/en/test";
 	private final static String h2Contents = "Before you begin";
-	private Resource pageContentResource;
 	
+	private Page currentPage;
+	private SlingHttpServletRequest slingRequest;
+	
+	private Resource pageContentResource;
 	private Node pageNode;
 	private Node setupNode;
 	private Property sectionsProperty;
@@ -39,6 +45,8 @@ public class GuideNavigationTagFixture {
 	
 	
 	public GuideNavigationTagFixture(Page currentPage, SlingHttpServletRequest slingRequest, ResourceResolver resourceResolver) throws Exception {
+		this.currentPage = currentPage;
+		this.slingRequest = slingRequest;
 		pageContentResource = mock(Resource.class);
 		when(currentPage.getContentResource()).thenReturn(pageContentResource);
 		when(currentPage.getPath()).thenReturn(getCurrentPagePath());
@@ -48,6 +56,7 @@ public class GuideNavigationTagFixture {
 		Session jcrSession = mock(Session.class);
 		when(pageNode.getSession()).thenReturn(jcrSession);
 		when(pageNode.hasNode(Constants.GUIDE_NAV_PATH)).thenReturn(true);
+		
 		setupNode = mock(Node.class);
 		when(setupNode.hasProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR)).thenReturn(true);
 		sectionsProperty = mock(Property.class);
@@ -91,12 +100,14 @@ public class GuideNavigationTagFixture {
 		when(jumpProperty.getString()).thenReturn(getJumpToValue());
 		// following is what WCMMode.fromRequest looks at
 		when(slingRequest.getAttribute("com.day.cq.wcm.api.WCMMode")).thenReturn(WCMMode.EDIT);
+		
 		Resource parsysResource = mock(Resource.class);
 		when(currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME)).thenReturn(parsysResource);
 		final List<Resource> parsysChildren = new ArrayList<Resource>();
 		Resource instructionsComponent = mock(Resource.class);
 		when(instructionsComponent.getResourceType()).thenReturn(Constants.INSTRUCTIONS_COMPONENT);
 		parsysChildren.add(instructionsComponent);
+		
 		Resource textResource = mock(Resource.class);
 		when(textResource.getResourceType()).thenReturn(Constants.TEXT_COMPONENT);
 		Node textNode = mock(Node.class);
@@ -120,6 +131,39 @@ public class GuideNavigationTagFixture {
 		when(commentSystem.countComments()).thenReturn(getCommentCount());
 	}
 	
+	public void breakJumpText() throws ValueFormatException, RepositoryException {
+		when(jumpProperty.getString()).thenThrow(new RepositoryException());
+	}
+	
+	public void setupNoSetupProperty() throws RepositoryException {
+		when(setupNode.hasProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR)).thenReturn(false);
+	}
+	
+	public void setupNoSetupNode() throws PathNotFoundException, RepositoryException {
+		when(pageNode.hasNode(Constants.GUIDE_NAV_PATH)).thenReturn(false);
+		when(pageNode.addNode(Constants.GUIDE_NAV_PATH,Constants.UNSTRUCTURED)).thenReturn(setupNode);
+	}
+	
+	public void setupCannotSetupDisabled() {
+		when(slingRequest.getAttribute("com.day.cq.wcm.api.WCMMode")).thenReturn(WCMMode.DISABLED);
+	}
+	
+	public void setupCannotSetupReadonly() {
+		when(slingRequest.getAttribute("com.day.cq.wcm.api.WCMMode")).thenReturn(WCMMode.READ_ONLY);
+	}
+	
+	public void setupAlreadySetUp() {
+		when(sectionsProperty.isNew()).thenReturn(false);
+	}
+	
+	public void setupNoPageNode() {
+		when(pageContentResource.adaptTo(Node.class)).thenReturn(null);
+	}
+	
+	public void setupNoParsys() {
+		when(currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME)).thenReturn(null);
+	}
+	
 	public String getCurrentPagePath() {
 		return testPagePath;
 	}
@@ -133,7 +177,16 @@ public class GuideNavigationTagFixture {
 	}
 
 	public int getCommentCount() {
-		// TODO Auto-generated method stub
 		return 301;
 	}
+
+	
+
+	
+
+	
+
+	
+
+	
 }

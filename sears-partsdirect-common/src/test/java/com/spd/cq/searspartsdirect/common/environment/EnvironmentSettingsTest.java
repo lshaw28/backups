@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.osgi.service.component.ComponentContext;
 
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
+
 import junit.framework.TestCase;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -36,6 +38,11 @@ public class EnvironmentSettingsTest extends TestCase {
 	@Test
 	public void testAllMethods() {
 		EnvironmentSettings hook = new EnvironmentSettings();
+		assertThat(EnvironmentSettings.get404HandlerURL(),is(Constants.EMPTY));
+		assertThat(EnvironmentSettings.getSitemapStartPaths(),is(Constants.EMPTY));
+		assertThat(EnvironmentSettings.getSitemapStopPaths(),is(Constants.EMPTY));
+		assertThat(EnvironmentSettings.getExternalAddedPrefix(),is(Constants.EMPTY));
+		assertThat(EnvironmentSettings.getExternalAddedSuffix(),is(Constants.EMPTY));
 		try {
 			hook.activate(componentContext);
 		} catch (Exception e) {

@@ -1,12 +1,31 @@
 @import "../../base.mixins.less";
 @import "../../base.variables.less";
 
-.tip, .hazard, .warning {
-	padding: 0 20px;
+.notice {
+	padding: 0 20px 10px;
 
-	.icon {
-		background-size: 100% 100%;
-		height: 31px;
-		width: 31px;
+	em {
+		font-weight: 600;
+	}
+
+	[class*="icon-"] {
+		font-size: @largeSize;
+
+		&:before {
+			text-align: center;
+			width: @largeSize + 5;
+		}
+	}
+
+	.icon-ban-circle {
+		color: #dc0b00;
+	}
+	.icon-info {
+		color: #067bb5;
+	}
+	.icon-warning-sign {
+		color: #ffcc00;
 	}
 }
+
+@import "notice.mobile.less";
