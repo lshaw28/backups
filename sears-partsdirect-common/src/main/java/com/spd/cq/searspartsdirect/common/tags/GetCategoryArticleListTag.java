@@ -67,20 +67,22 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	        				imagePath = Constants.EMPTY;
 	        			}
 	        		}
+	        		
 	        		articles.add(new RelatedArticleModel(
 		        				page.getPath() + ".html", 
 		        				imagePath, 
 		        				page.getTitle(), 
-		        				page.getDescription())
+		        				page.getProperties().get("abstracttext",Constants.EMPTY).toString())
 	        				);
 	        	}
 	        }	        	
 
-			pageContext.setAttribute("articles", articles);
+			
 		}
 		catch (Exception e) {
-			log.error("Failed to build article list, ",e);
+			log.error("Failure building article list, ",e);
 		}
+		pageContext.setAttribute("articles", articles);
         return SKIP_BODY;
 	}
 	
