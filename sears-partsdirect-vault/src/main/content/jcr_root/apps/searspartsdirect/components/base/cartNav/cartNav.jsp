@@ -42,10 +42,29 @@
 	</li>
 	<li class="cartNavItem">
 		<div class="btn-group">
-			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart <i class="icon-caret-down">&nbsp;</i></a>
+			<spd:GetUserData/>
+			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart 
+			<c:choose>
+				<c:when test="${fn:length(shoppingCart) gt 0}">
+					${fn:length(shoppingCart)}
+				</c:when>
+				<c:otherwise>
+						0
+				</c:otherwise>
+			</c:choose><i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
-				<li>Dummy item one</li>
-				<li>Dummy item two</li>
+				<c:choose>
+					<c:when test="${fn:length(shoppingCart) gt 0}">
+						<c:forEach var="cartLine" items="${shoppingCart}">
+								<li>Parts  -- Quantity</li>
+								<li>${cartLine.part.partNumber} --  ${cartLine.quantity}</li>
+							</c:forEach>
+						
+					</c:when>
+					<c:otherwise>
+							<li>Your shopping cart is empty</li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 	</li>
