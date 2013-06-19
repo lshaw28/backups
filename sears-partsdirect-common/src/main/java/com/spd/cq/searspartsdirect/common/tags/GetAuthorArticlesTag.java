@@ -48,16 +48,6 @@ public class GetAuthorArticlesTag extends CQBaseTag {
 	        	articles.add(new RelatedArticleModel(page.getPath() + ".html", page.getPath() + Constants.ASSETS_IMAGE_PATH, page.getTitle(), page.getPath() + Constants.ASSETS_DESCRIPTION_PATH));
 	        }	        	
 	      
-	        // dummy data
-	        RelatedArticleModel guide1 = new RelatedArticleModel("url1.html", "imagePath1","Title1","description1");
-	        RelatedArticleModel guide2 = new RelatedArticleModel("url2.html", "imagePath2", "title2","description2");
-	        RelatedArticleModel guide3 = new RelatedArticleModel("url3.html", "imagePath3","title3","description3");
-	        RelatedArticleModel guide4 = new RelatedArticleModel("url4.html", "imagePath4","title4","description4");
-
-				articles.add(guide1);
-				articles.add(guide2);				
-				articles.add(guide3);			
-				articles.add(guide4); 
 			pageContext.setAttribute("articles", articles);
 		}
 		catch (Exception e) {
