@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectCookieHelper;
 import com.spd.cq.searspartsdirect.common.model.CartLineModel;
+import com.spd.cq.searspartsdirect.common.model.MyProfileModel;
 import com.spd.cq.searspartsdirect.common.model.Part;
 import com.spd.cq.searspartsdirect.common.model.PartModel;
 
@@ -33,56 +34,80 @@ public class UserDataTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		Cookie[] cookies = request.getCookies();
-		//hardcoded for now, need to be read from the properties file
-		StringBuilder apiUrl = new StringBuilder("http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive");
+		// hardcoded for now, need to be read from the properties file
+		String apiUrl = "http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username=";
 		Cookie userNameCookie = null;
-		
+		Cookie myModelsCookie = null;
+		Cookie shoppingCartCookie = null;
+
 		if (cookies != null) {
-			log.error("cookies are found");
-			userNameCookie = PartsDirectCookieHelper.getCookieInfo(cookies, Constants.USER_NAME_COOKIE);
-			
+			userNameCookie = PartsDirectCookieHelper.getCookieInfo(cookies,
+					Constants.USER_NAME_COOKIE);
+
 			if (userNameCookie != null && userNameCookie.getValue() != null) {
-				log.debug("username cookie is not null "+ userNameCookie.getValue());
-				apiUrl = apiUrl.append("?username=").append(userNameCookie.getValue());
-				log.debug("api url is "+ apiUrl.toString());
-				}
+				apiUrl = apiUrl + userNameCookie.getValue();
 			} else {
-				log.error("username cookie not found");
+				myModelsCookie = PartsDirectCookieHelper.getCookieInfo(cookies,
+						Constants.MY_MODEL_COOKIE);
+				if (myModelsCookie != null && myModelsCookie.getValue() != null) {
+					apiUrl = apiUrl + "&profileid="+myModelsCookie.getValue();
+				}
+
+				shoppingCartCookie = PartsDirectCookieHelper.getCookieInfo(
+						cookies, Constants.SHOPPING_CART_COOKIE);
+				if (shoppingCartCookie != null && shoppingCartCookie.getValue() != null) {
+					apiUrl = apiUrl + "&cartid="+ shoppingCartCookie.getValue();
+				}
 			}
+		}	
 		
 		List<PartModel> parts = new ArrayList<PartModel>();
-		List<CartLineModel> lstCartLines = new ArrayList<CartLineModel>(); 
+		List<CartLineModel> lstCartLines = new ArrayList<CartLineModel>();
 		JSONObject json;
 		try {
-			json = readJsonFromUrl(apiUrl.toString());
-			//log.debug(json.toString());
-			// System.out.println(json.get(""));
+			json = readJsonFromUrl("API URl =" + apiUrl.toString());
+			log.debug("json.toString() "+json.toString());
 			JSONObject cart = json.getJSONObject("cart");
-			//log.debug(cart.toString());
 			JSONArray cartLinesArray = cart.getJSONArray("cartLines");
 			for (int i = 0; i < cartLinesArray.length(); i++) {
 				JSONObject cartLineObj = cartLinesArray.getJSONObject(i);
-				//log.debug(cartLineObj.toString());
 				JSONObject partObj = cartLineObj.getJSONObject("part");
 				int qty = cartLineObj.getInt("quantity");
 				Part part = new Part(partObj.getString("partNumber"),
 						partObj.getString("productGroupId"),
 						partObj.getString("supplierId"));
 				CartLineModel cartLines = new CartLineModel(part, qty);
-				//log.error("cartLines2.toString() "+ cartLines.toString());
-				//parts.add(part);
+				log.debug("cartLines2.toString() "+ cartLines.toString());
 				lstCartLines.add(cartLines);
 			}
-			pageContext.setAttribute("shoppingCart",lstCartLines);
+			pageContext.setAttribute("shoppingCart", lstCartLines);
+
+			//my profile models
+			List<MyProfileModel> myProfileModels = new ArrayList<MyProfileModel>();
+			JSONObject ownedModel = json.getJSONObject("ownedModels");
+			log.debug("ownedModel ="+ownedModel.toString());
+			JSONArray modelArray = ownedModel.getJSONArray("profileModelsList");
+			
+			for (int i = 0; i < modelArray.length(); i++) {
+				JSONObject modelObj = modelArray.getJSONObject(i);
+				MyProfileModel myProfileModel = new MyProfileModel(
+						modelObj.getString("brandName"),
+						modelObj.getString("categoryName"),
+						modelObj.getString("modelNumber"),
+						modelObj.getString("itemURL"));
+
+				myProfileModels.add(myProfileModel);
+				log.debug("myProfileModels " + myProfileModels.toString());
+			}
+			pageContext.setAttribute("myProfileModels", myProfileModels);
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		log.error(parts.toString());
+		log.debug(parts.toString());
 		return SKIP_BODY;
 	}
 
@@ -100,9 +125,10 @@ public class UserDataTag extends CQBaseTag {
 		return sb.toString();
 	}
 
-	private JSONObject readJsonFromUrl(String url) throws IOException,
+	private JSONObject readJsonFromUrl(String urlStr) throws IOException,
 			JSONException {
-		InputStream is = new URL(url).openStream();
+		//urlStr="http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username=&profileid=c4ccbcf4-3b71-4071-83dc-d88c75aded8c&cartid=8a6bc7483f5ba81b013f5dd11c360013"
+		InputStream is = new URL(urlStr).openStream();
 		try {
 			BufferedReader rd = new BufferedReader(new InputStreamReader(is,
 					Charset.forName("UTF-8")));
