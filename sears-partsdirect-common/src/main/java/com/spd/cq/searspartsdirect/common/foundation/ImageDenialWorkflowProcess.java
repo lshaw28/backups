@@ -36,7 +36,7 @@ public class ImageDenialWorkflowProcess implements WorkflowProcess {
     static final String LABEL="process.label";
  
  
-    private static final String TYPE_JCR_PATH = "JCR_PATH";
+    public static final String TYPE_JCR_PATH = "JCR_PATH";
 
     public void execute(WorkItem item, WorkflowSession session, MetaDataMap args) throws WorkflowException {
     	WorkflowData workflowData = item.getWorkflowData();
