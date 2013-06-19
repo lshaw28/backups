@@ -34,7 +34,7 @@ public class ImageApprovalWorkflowProcessTest extends TestCase {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	@Test
 	public void testWrongPayloadType() {
 		try {
@@ -44,7 +44,7 @@ public class ImageApprovalWorkflowProcessTest extends TestCase {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	@Test
 	public void testNoSuchNode() {
 		try {
