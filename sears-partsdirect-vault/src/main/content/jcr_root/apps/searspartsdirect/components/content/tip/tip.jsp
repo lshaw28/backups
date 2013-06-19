@@ -1,5 +1,10 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <spd:ResolveHazardTipWarning adhocField="noticeText" choiceField="tipChosen" placeholder=""/>
-<c:set var="noticeIcon"><cq:text property="noticeIcon" placeholder="notice-icon-tip"/></c:set>
+<c:set var="noticeIcon"><cq:text property="noticeIcon" placeholder="icon-info"/></c:set>
+<cq:include path="/etc/spdAssets/globalConfig/tipPrefix" resourceType="searspartsdirect/components/content/tipPrefix" />
 
-<div class="${noticeIcon}">&nbsp;</div><cq:include path="/etc/spdAssets/globalConfig/tipPrefix" resourceType="searspartsdirect/components/content/tipPrefix" /> ${htwText}
+<div class="row-fluid">
+	<div class="span12">
+		<p><i class="${noticeIcon} pull-left">&nbsp;</i>${tipPrefix} ${htwText}</p>
+	</div>
+</div>

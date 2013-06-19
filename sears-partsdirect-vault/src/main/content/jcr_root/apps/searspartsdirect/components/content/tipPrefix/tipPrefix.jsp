@@ -1,2 +1,2 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<cq:text property="./tipPrefix" placeholder="Tip: " />
+<c:set var="tipPrefix"><cq:text property="./tipPrefix" placeholder="Tip: " /></c:set>

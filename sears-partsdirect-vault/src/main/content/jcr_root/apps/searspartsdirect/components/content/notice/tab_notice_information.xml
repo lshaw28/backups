@@ -15,15 +15,15 @@
 				<r1
 					jcr:primaryType="nt:unstructured"
 					text="Hazard"
-					value="notice-icon-hazard" />
+					value="icon-ban-circle" />
 				<r2
 					jcr:primaryType="nt:unstructured"
 					text="Tip"
-					value="notice-icon-tip" />
+					value="icon-info" />
 				<r3
 					jcr:primaryType="nt:unstructured"
 					text="Warning"
-					value="notice-icon-warning" />
+					value="icon-warning-sign" />
 			</options>
 		</noticeIcon>
 		<noticeText
