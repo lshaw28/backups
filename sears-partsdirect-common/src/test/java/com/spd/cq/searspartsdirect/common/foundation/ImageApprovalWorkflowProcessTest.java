@@ -1,13 +1,20 @@
 package com.spd.cq.searspartsdirect.common.foundation;
 
-import junit.framework.TestCase;
+
+import javax.jcr.RepositoryException;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.adobe.granite.workflow.WorkflowException;
 import com.spd.cq.searspartsdirect.common.fixture.ImageApprovalWorkflowProcessFixture;
 
+import junit.framework.TestCase;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ImageApprovalWorkflowProcessTest extends TestCase {
+
 	private ImageApprovalWorkflowProcess process;
 	private ImageApprovalWorkflowProcessFixture fixture;
 	
@@ -47,4 +54,22 @@ public class ImageApprovalWorkflowProcessTest extends TestCase {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	@Test
+	public void testExceptionMoving() {
+		try {
+			fixture.setUpException();
+			WorkflowException we = null;
+			try {
+				process.execute(fixture.getTestItem(), fixture.getTestSession(), fixture.getArgs());
+			} catch (WorkflowException w) {
+				we = w;
+			}
+			assertThat(we,is(not(nullValue())));
+			assertThat((RepositoryException)we.getCause(),isA(RepositoryException.class));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 }
