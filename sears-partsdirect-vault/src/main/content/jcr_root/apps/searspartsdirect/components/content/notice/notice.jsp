@@ -5,6 +5,6 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<p><i class="${noticeIcon} pull-left">&nbsp;</i>${warningPrefix} ${htwText}</p>
+		<p><i class="${noticeIcon} pull-left">&nbsp;</i><em>${warningPrefix}</em> ${htwText}</p>
 	</div>
 </div>
