@@ -18,5 +18,5 @@
 			<li><a href="${category.url}.html">${category.title}</a></li>
 		</c:forEach>
 	</ul>
-	<a href="<cq:text property="viewAllLink"/>.html">Articles Index Page</a>
+	<a href="<cq:text property="viewAllLink"/>.html">View All Categories</a>
 </c:if>

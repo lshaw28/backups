@@ -22,7 +22,11 @@ public class GetMultifieldCategoriesTag extends CQBaseTag {
 			String[]  multiJsons = properties.get("multicat",new String[0]);
 			for (String json : multiJsons) {
 				JSONObject jsob = new JSONObject(json);
-				CategoryModel category = new CategoryModel(jsob.getString("url"), jsob.getString("title"));
+				CategoryModel category = new CategoryModel(
+						jsob.getString("url"),
+						"imagePath",
+						jsob.getString("title"),
+						"description");
 				categories.add(category);
 			}
 			pageContext.setAttribute("categories", categories);

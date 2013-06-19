@@ -1,22 +1,26 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
-import junit.framework.TestCase;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.spd.cq.searspartsdirect.common.model.RelatedGuideModel;
 
-public class GetRelatedGuidesTagTest extends TestCase {
+public class GetRelatedGuidesTagTest {
 	
 	GetRelatedGuidesTag tag;
 	ArrayList<RelatedGuideModel> guides;
 	PageContext pageContext;
 	
-	@Override
-	protected void setUp() {
+	@Before
+	public void setUp() {
 		pageContext = Mockito.mock(PageContext.class);
 		tag = new GetRelatedGuidesTag();
 		guides = new ArrayList<RelatedGuideModel>();
