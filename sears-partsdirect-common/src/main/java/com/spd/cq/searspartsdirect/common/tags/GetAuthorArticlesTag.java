@@ -48,6 +48,17 @@ public class GetAuthorArticlesTag extends CQBaseTag {
 	        	articles.add(new RelatedArticleModel(page.getPath() + ".html", page.getPath() + Constants.ASSETS_IMAGE_PATH, page.getTitle(), page.getPath() + Constants.ASSETS_DESCRIPTION_PATH));
 	        }	        	
 	      
+	        // dummy data
+	        RelatedArticleModel guide1 = new RelatedArticleModel("url1.html", "/content/dam/geometrixx-outdoors/products/helmet/Tacna.jpg","Title1","description1");
+	        RelatedArticleModel guide2 = new RelatedArticleModel("url2.html", "/content/dam/geometrixx-outdoors/products/helmet/Kawartha.jpg", "title2","description2");
+	        RelatedArticleModel guide3 = new RelatedArticleModel("url3.html", "/content/dam/geometrixx-outdoors/products/helmet/Tacna.jpg","title3","description3");
+	        RelatedArticleModel guide4 = new RelatedArticleModel("url4.html", "/content/dam/geometrixx-outdoors/products/scarf/Halifax.jpg","title4","description4");
+
+			articles.add(guide1);
+			articles.add(guide2);				
+			articles.add(guide3);			
+			articles.add(guide4); 
+	        
 			pageContext.setAttribute("articles", articles);
 		}
 		catch (Exception e) {
