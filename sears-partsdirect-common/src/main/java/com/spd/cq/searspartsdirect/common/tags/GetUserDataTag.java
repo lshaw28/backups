@@ -23,6 +23,7 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectCookieHelper;
 import com.spd.cq.searspartsdirect.common.model.CartLineModel;
 import com.spd.cq.searspartsdirect.common.model.MyProfileModel;
+import com.spd.cq.searspartsdirect.common.model.PDUserDataModel;
 import com.spd.cq.searspartsdirect.common.model.Part;
 import com.spd.cq.searspartsdirect.common.model.PartModel;
 
@@ -40,13 +41,14 @@ public class GetUserDataTag extends CQBaseTag {
 		Cookie userNameCookie = null;
 		Cookie myModelsCookie = null;
 		Cookie shoppingCartCookie = null;
+		PDUserDataModel pdUserDataModel = new PDUserDataModel();
 
 		if (cookies != null) {
 			userNameCookie = PartsDirectCookieHelper.getCookieInfo(cookies,
 					Constants.USER_NAME_COOKIE);
-
 			if (userNameCookie != null && userNameCookie.getValue() != null) {
 				apiUrl = apiUrl + userNameCookie.getValue();
+				pdUserDataModel.setLoggedIn(true);
 			} else {
 				myModelsCookie = PartsDirectCookieHelper.getCookieInfo(cookies,
 						Constants.MY_MODEL_COOKIE);
@@ -68,44 +70,59 @@ public class GetUserDataTag extends CQBaseTag {
 		try {
 			json = readJsonFromUrl(apiUrl);
 			log.debug("json.toString() "+json.toString());
-			JSONObject cart = json.getJSONObject("cart");
-			JSONArray cartLinesArray = cart.getJSONArray("cartLines");
-			for (int i = 0; i < cartLinesArray.length(); i++) {
-				JSONObject cartLineObj = cartLinesArray.getJSONObject(i);
-				JSONObject partObj = cartLineObj.getJSONObject("part");
-				int qty = cartLineObj.getInt("quantity");
-				Part part = new Part(partObj.getString("partNumber"),
-						partObj.getString("productGroupId"),
-						partObj.getString("supplierId"));
-				CartLineModel cartLines = new CartLineModel(part, qty);
-				log.debug("cartLines2.toString() "+ cartLines.toString());
-				lstCartLines.add(cartLines);
+			if (json.has("cart")) {
+				JSONObject cart = json.getJSONObject("cart");
+				JSONArray cartLinesArray = cart.getJSONArray("cartLines");
+				for (int i = 0; i < cartLinesArray.length(); i++) {
+					JSONObject cartLineObj = cartLinesArray.getJSONObject(i);
+					JSONObject partObj = cartLineObj.getJSONObject("part");
+					int qty = cartLineObj.getInt("quantity");
+					Part part = new Part(partObj.getString("partNumber"),
+							partObj.getString("productGroupId"),
+							partObj.getString("supplierId"));
+					CartLineModel cartLines = new CartLineModel(part, qty);
+					log.debug("cartLines2.toString() "+ cartLines.toString());
+					lstCartLines.add(cartLines);
+				}
+				pdUserDataModel.setShoppingCart(lstCartLines);
 			}
-			pageContext.setAttribute("shoppingCart", lstCartLines);
 
 			//my profile models
 			List<MyProfileModel> myProfileModels = new ArrayList<MyProfileModel>();
 			JSONObject ownedModel = json.getJSONObject("ownedModels");
 			log.debug("ownedModel ="+ownedModel.toString());
-			JSONArray modelArray = ownedModel.getJSONArray("profileModelsList");
 			
-			for (int i = 0; i < modelArray.length(); i++) {
-				JSONObject modelObj = modelArray.getJSONObject(i);
-				MyProfileModel myProfileModel = new MyProfileModel(
-						modelObj.getString("brandName"),
-						modelObj.getString("categoryName"),
-						modelObj.getString("modelNumber"),
-						modelObj.getString("itemURL"));
-
-				myProfileModels.add(myProfileModel);
-				log.debug("myProfileModels " + myProfileModels.toString());
+			if (ownedModel.has("profileModelsList")) {
+				JSONArray modelArray = ownedModel.getJSONArray("profileModelsList");
+				for (int i = 0; i < modelArray.length(); i++) {
+					JSONObject modelObj = modelArray.getJSONObject(i);
+					MyProfileModel myProfileModel = new MyProfileModel(
+							modelObj.getString("brandName"),
+							modelObj.getString("categoryName"),
+							modelObj.getString("modelNumber"),
+							modelObj.getString("itemURL"));
+	
+					myProfileModels.add(myProfileModel);
+					log.debug("myProfileModels " + myProfileModels.toString());
+				}
+				pdUserDataModel.setMyProfileModels(myProfileModels);
 			}
-			pageContext.setAttribute("myProfileModels", myProfileModels);
+			
+			
+			if (json.has("firstName")) {
+				pdUserDataModel.setFirstName("firstName");
+			}
+			
+			if (json.has("lastName")) {
+				pdUserDataModel.setLastName("lastName");
+			}
+			
+			pageContext.setAttribute("userData", pdUserDataModel);
 
 		} catch (IOException e) {
-			log.error("i/o issue reading from api, ",e);
+			log.error("I/O Exception while getting data from PD API ", e);
 		} catch (JSONException e) {
-			log.error("json issue reading from api, ",e);
+			log.error("JSON Exception while getting data from PD API ", e);
 		}
 
 		log.debug(parts.toString());

@@ -5,8 +5,6 @@
 		<div class="btn-group">
 			<a data-toggle="dropdown" href="#">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
-				<li>Dummy item one</li>
-				<li>Dummy item two</li>
 				<spd:getRecentlyViewed />
 				<!-- Model List -->
 				<c:forEach var="model" items="${rvModelList}">
@@ -32,7 +30,6 @@
 		</div>
 	</li>
 	<li class="cartNavItem">
-	<spd:GetUserData/>
 		<div class="btn-group">
 			<a data-toggle="dropdown" href="#">My Models 
 			<c:choose>
@@ -48,21 +45,20 @@
 				<c:choose>
 					<c:when test="${fn:length(myProfileModels) gt 0}">
 						<c:forEach var="model" items="${myProfileModels}">
-								<li><a href="http://www.searspartsdirect.com${model.url}">${model.brand} ${model.category} model #${model.modelNumber}</a></li>
-							</c:forEach>
+								<li><a href="${mainSitePath}${model.url}">${model.brand} ${model.category} model #${model.modelNumber}</a></li>
+						</c:forEach>
+						<a href="">Edit List</a>
 					</c:when>
 					<c:otherwise>
 							<li>You can find parts to your models faster by adding models you own to this list.</li>
+							<a href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a>
 					</c:otherwise>
 				</c:choose>
-				<li>Dummy item one</li>
-				<li>Dummy item two</li>
 			</ul>
 		</div>
 	</li>
 	<li class="cartNavItem">
 		<div class="btn-group">
-			
 			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart 
 			<c:choose>
 				<c:when test="${fn:length(shoppingCart) gt 0}">
@@ -73,16 +69,21 @@
 				</c:otherwise>
 			</c:choose><i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
+				<h3>Your shopping Cart</h3>
+				
+				<li>Parts  -- Quantity</li>
 				<c:choose>
 					<c:when test="${fn:length(shoppingCart) gt 0}">
+						<p><a href="${mainSitePath}/partsdirect/showCart.pd">checkout Now</</a></p>
 						<c:forEach var="cartLine" items="${shoppingCart}">
-								<li>Parts  -- Quantity</li>
-								<li>${cartLine.part.partNumber} --  ${cartLine.quantity}</li>
+								<li><a href="${mainSitePath}/partsdirect/part-number/${cartLine.part.partNumber}/${cartLine.part.productGroupId}/${cartLine.part.supplierId}">${cartLine.part.partNumber} --  ${cartLine.quantity}</a></li>
 							</c:forEach>
-						
+						<p><b>Total items: ${fn:length(shoppingCart)}</b></p>	
+						<p><a href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</</a></p>	
 					</c:when>
 					<c:otherwise>
 							<li>Your shopping cart is empty</li>
+							<p><b>Total items: ${fn:length(shoppingCart)}</b></p>
 					</c:otherwise>
 				</c:choose>
 			</ul>
