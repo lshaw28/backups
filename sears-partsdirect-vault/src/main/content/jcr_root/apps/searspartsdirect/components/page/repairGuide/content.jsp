@@ -24,6 +24,7 @@
 			<cq:include path="beforeYouBegin" resourceType="searspartsdirect/components/content/text" />
 		</div>
 		<div class="span10">
+			<a name="template_repairInstructions"></a>
 			<cq:include path="repairInstructions" resourceType="searspartsdirect/components/content/repairInstructions" />
 		</div>
 		<div class="span10">

@@ -46,6 +46,7 @@
 	<!-- Head Scripts -->
 	<cq:include script="/libs/wcm/core/components/init/init.jsp"/>
 	<cq:include script="stats.jsp"/>
+	<cq:include script="/libs/wcm/mobile/components/simulator/simulator.jsp"/>
 	<!-- Favorite Icons -->
 	<% if (favIcon != null) { %>
 	<% // @TODO: Implement all favourite icon types %>
