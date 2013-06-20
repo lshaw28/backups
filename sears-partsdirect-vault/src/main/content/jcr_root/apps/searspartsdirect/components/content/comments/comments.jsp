@@ -89,7 +89,8 @@
         %><p><%=i18n.get("You are not allowed to post here, please sign in or join")%></p><%
     }
 
-%><cq:include script="header.jsp" /><%
+%><div class="articleComments-wrapper">
+	<h2>Comments</h2><%
 
     if (cs.hasComments(WCMMode.fromRequest(request))) {
 
@@ -119,7 +120,7 @@
 
     }
 
-%></div><script>
+%></div></div><script>
 $CQ(function(){
     var refreshCommentCount = function (target, count) {
         if (count === 1) {
@@ -166,7 +167,7 @@ $CQ(function(){
 
 <%-- Make sure everything is configurable! --%>
 
-<div class="articleComments-wrapper">
+<%--<div class="articleComments-wrapper">
 	
 	<h2>Comments</h2>
 	
@@ -209,7 +210,7 @@ $CQ(function(){
 		</div>
 	</div>
 	
-</div>
+</div>--%>
 
 <div class="articleComments-form">
 	<h2>Item</h2>
