@@ -36,6 +36,7 @@ public class UserDataTag extends CQBaseTag {
 		Cookie[] cookies = request.getCookies();
 		// hardcoded for now, need to be read from the properties file
 		String apiUrl = "http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username=";
+		
 		Cookie userNameCookie = null;
 		Cookie myModelsCookie = null;
 		Cookie shoppingCartCookie = null;
@@ -65,7 +66,7 @@ public class UserDataTag extends CQBaseTag {
 		List<CartLineModel> lstCartLines = new ArrayList<CartLineModel>();
 		JSONObject json;
 		try {
-			json = readJsonFromUrl("API URl =" + apiUrl.toString());
+			json = readJsonFromUrl(apiUrl);
 			log.debug("json.toString() "+json.toString());
 			JSONObject cart = json.getJSONObject("cart");
 			JSONArray cartLinesArray = cart.getJSONArray("cartLines");
@@ -127,6 +128,7 @@ public class UserDataTag extends CQBaseTag {
 
 	private JSONObject readJsonFromUrl(String urlStr) throws IOException,
 			JSONException {
+		log.debug("PD API url String is="+urlStr);
 		//urlStr="http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username=&profileid=c4ccbcf4-3b71-4071-83dc-d88c75aded8c&cartid=8a6bc7483f5ba81b013f5dd11c360013"
 		InputStream is = new URL(urlStr).openStream();
 		try {
