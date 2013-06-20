@@ -7,10 +7,8 @@
 		</div>
 	</div>
 	<div class="row-fluid">
-		<div class="span1">
+		<div class="span9">
 			<cq:include path="overviewImage" resourceType="searspartsdirect/components/content/responsiveImage" />
-		</div>
-		<div class="span8">
 			<cq:include path="overview" resourceType="searspartsdirect/components/content/text" />
 		</div>
 		<div class="span3">

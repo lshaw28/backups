@@ -38,6 +38,7 @@ loginNav/loginNav.less
 modal/modal.less
 modelNumberSearch/modelNumberSearch.less
 notice/notice.less
+overviewImage/overviewImage.less
 partsRequiredRepair/partsRequiredRepair.less
 relatedArticles/relatedArticles.less
 repairStep/repairStep.less
