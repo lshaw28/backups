@@ -38,7 +38,8 @@ public class ExternalLinksTest extends TestCase {
 	public void testGetExternalUrlForPage() {
 		fixture.setUpIdentityResolver();
 		String external = generator.getExternalUrlForPage(fixture.getTestPath());
-		checkResult(external);
+		assertThat(external,is(instanceOf(String.class)));
+		assertThat(external,is(not(nullValue())));
 	}
 	
 	@Test
@@ -63,8 +64,6 @@ public class ExternalLinksTest extends TestCase {
 	}
 	
 	private void checkResult(String external) {
-		assertThat(external,is(instanceOf(String.class)));
-		assertThat(external,is(not(nullValue())));
 		assertThat(external,Matchers.startsWith(generator.getAddedPrefix()));
 		assertThat(external,Matchers.startsWith(fixture.getTestPrefix()));
 		assertThat(external,Matchers.endsWith(generator.getAddedSuffix()));
