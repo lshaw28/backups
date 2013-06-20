@@ -147,6 +147,7 @@ public class GuideNavigationTagFixture {
 	}
 	
 	public void setupBlankLabels() throws ValueFormatException, IllegalStateException, RepositoryException {
+		setupAlreadySetUp();
 		sectionsHolder.held = new String[]{
 				"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.PARTS_REQ_R_COMPONENT+"\"}",
 				"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.TOOLS_REQ_R_COMPONENT+"\"}",
