@@ -6,18 +6,23 @@ import javax.servlet.jsp.PageContext;
 
 import com.day.cq.wcm.api.Page;
 
-public class GetProductCategoryNameTagFixture {
+public class GetCurrentPageTitleTagsFixture {
 	
-	private String title;
 	private Page currentPage;
 	private PageContext pageContext;
 
-	public GetProductCategoryNameTagFixture(PageContext pageContext){
+	public GetCurrentPageTitleTagsFixture(PageContext pageContext){
 		this.pageContext = pageContext;
-		title = "some title";
 		currentPage = mock(Page.class);
 		when((Page) pageContext.findAttribute("currentPage")).thenReturn(currentPage);
-		when(currentPage.getTitle()).thenReturn(title);
+	}
+	
+	public void setProductTitle(){
+		when(currentPage.getTitle()).thenReturn("productTitle");
+	}
+	
+	public void setBrandTitle(){
+		when(currentPage.getTitle()).thenReturn("brandTitle");
 	}
 	
 }
