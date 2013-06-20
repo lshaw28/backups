@@ -8,6 +8,7 @@
 	<filter root="/etc/scaffolding" />
 	<filter root="/etc/spdAssets" />
 	<filter root="/apps/sling/" />
+	<filter root="/apps/social/commons" />
 	<filter root="/robots.txt" />
 	<filter root="/sitemap" />
 </workspaceFilter>

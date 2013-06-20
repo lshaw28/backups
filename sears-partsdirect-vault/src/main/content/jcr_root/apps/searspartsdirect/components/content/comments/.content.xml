@@ -6,5 +6,5 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Comments"
 	jcr:description="Stub of comments component, currently directly inherits ootb"
-	sling:resourceSuperType="social/commons/components/comments"
+	sling:resourceSuperType="/libs/social/commons/components/comments"
 	componentGroup="SearsPartsDirect" />
