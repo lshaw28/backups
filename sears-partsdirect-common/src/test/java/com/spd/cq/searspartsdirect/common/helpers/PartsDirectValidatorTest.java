@@ -1,14 +1,9 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.spd.cq.searspartsdirect.common.model.CategoryModel;
-
 import junit.framework.TestCase;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import org.junit.Before;
+import org.junit.Test;
 
 public class PartsDirectValidatorTest  extends TestCase {
 	
@@ -46,52 +41,7 @@ public class PartsDirectValidatorTest  extends TestCase {
 		
 		assertTrue(model.containsNoneOf(IS_NOT_NUMERIC, "1", "2", "3"));
 		assertFalse(model.containsNoneOf(IS_ALPHANUMERIC, "one", "two", "three"));
-		
-		
-//		assertThat(model.getUrl(),is(URL));
-//		assertThat(model.getImagePath(),is(IMAGE_PATH));
-//		assertThat(model.getTitle(),is(TITLE));
-//		assertThat(model.getDescription(),is(DESCRIPTION));
-//
-//		model.setUrl(ANOTHER+URL);
-//		model.setImagePath(ANOTHER+IMAGE_PATH);
-//		model.setTitle(ANOTHER+TITLE);
-//		model.setDescription(ANOTHER+DESCRIPTION);
-//		
-//		assertThat(model.getUrl(),is(ANOTHER+URL));
-//		assertThat(model.getImagePath(),is(ANOTHER+IMAGE_PATH)); // note - this concatenation happens at compile time
-//		assertThat(model.getTitle(),is(ANOTHER+TITLE));
-//		assertThat(model.getDescription(),is(ANOTHER+DESCRIPTION));
 	}
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

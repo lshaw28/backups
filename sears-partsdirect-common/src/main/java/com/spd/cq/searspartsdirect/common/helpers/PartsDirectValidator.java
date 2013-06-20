@@ -61,7 +61,5 @@ public class PartsDirectValidator {
 		}
 		return true;
 	}
-	
-	// add more? ...
-	
+		
 }
