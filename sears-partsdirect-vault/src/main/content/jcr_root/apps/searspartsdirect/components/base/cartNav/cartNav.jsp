@@ -5,8 +5,6 @@
 		<div class="btn-group">
 			<a data-toggle="dropdown" href="#">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
-				<li>Dummy item one</li>
-				<li>Dummy item two</li>
 				<spd:getRecentlyViewed />
 				<!-- Model List -->
 				<c:forEach var="model" items="${rvModelList}">
@@ -49,9 +47,11 @@
 						<c:forEach var="model" items="${myProfileModels}">
 								<li><a href="${mainSitePath}${model.url}">${model.brand} ${model.category} model #${model.modelNumber}</a></li>
 						</c:forEach>
+						<a href="">Edit List</a>
 					</c:when>
 					<c:otherwise>
 							<li>You can find parts to your models faster by adding models you own to this list.</li>
+							<a href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -59,7 +59,6 @@
 	</li>
 	<li class="cartNavItem">
 		<div class="btn-group">
-			
 			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart 
 			<c:choose>
 				<c:when test="${fn:length(shoppingCart) gt 0}">
@@ -75,12 +74,12 @@
 				<li>Parts  -- Quantity</li>
 				<c:choose>
 					<c:when test="${fn:length(shoppingCart) gt 0}">
-						<p><a href="${mainSitePath}/partsdirect/showCart.pd?blt=04">checkout Now</</a></p>
+						<p><a href="${mainSitePath}/partsdirect/showCart.pd">checkout Now</</a></p>
 						<c:forEach var="cartLine" items="${shoppingCart}">
 								<li><a href="${mainSitePath}/partsdirect/part-number/${cartLine.part.partNumber}/${cartLine.part.productGroupId}/${cartLine.part.supplierId}">${cartLine.part.partNumber} --  ${cartLine.quantity}</a></li>
 							</c:forEach>
 						<p><b>Total items: ${fn:length(shoppingCart)}</b></p>	
-						<p><a href="${mainSitePath}/partsdirect/showCart.pd?blt=04">View Entire Cart</</a></p>	
+						<p><a href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</</a></p>	
 					</c:when>
 					<c:otherwise>
 							<li>Your shopping cart is empty</li>
