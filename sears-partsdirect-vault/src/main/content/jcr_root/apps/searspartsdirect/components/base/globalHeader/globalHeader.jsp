@@ -7,7 +7,8 @@
 	<c:set var="shoppingCart" scope="request" value="${userData.shoppingCart}"/>
 	<c:set var="myProfileModels" scope="request" value="${userData.myProfileModels}"/>
 	
-	<c:if test="${userData.loggedIn eq true}">
+	<c:if test="${userData.loggedIn}">
+		<c:set var="loggedIn" scope="request" value="${userData.loggedIn}"/>
 		<c:set var="firstName" scope="request" value="${userData.firstName}"/>
 		<c:set var="lastName" scope="request" value="${userData.lastName}"/>
 	</c:if>

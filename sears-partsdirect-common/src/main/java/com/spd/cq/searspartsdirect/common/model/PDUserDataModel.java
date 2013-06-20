@@ -40,4 +40,11 @@ public class PDUserDataModel {
 	public void setLoggedIn(boolean loggedIn) {
 		this.loggedIn = loggedIn;
 	}
+	@Override
+	public String toString() {
+		return "PDUserDataModel [firstName=" + firstName + ", lastName="
+				+ lastName + ", myProfileModels=" + myProfileModels
+				+ ", shoppingCart=" + shoppingCart + ", loggedIn=" + loggedIn
+				+ "]";
+	}
 }

@@ -3,8 +3,9 @@
 	<li class="loginNavHome"><a href="#">Home</a>
 	<li>
 		<c:choose>
-			<c:when test="${not empty firstName}">
-				Hello, ${firstName}
+			<c:when test="${loggedIn}">
+				Hello, ${firstName} &nbsp;
+				<a href="${mainSitePath}/partsdirect/myprofile/logout.action">Logout</a>
 			</c:when>
 			<c:otherwise>
 				<a data-toggle="modal" data-target="#loginModal">Login</a>
@@ -13,8 +14,8 @@
 	</li>
 	<li>
 		<c:choose>
-			<c:when test="${not empty firstName}">
-				<a href="http://www.searspartsdirect.com/partsdirect/myProfile.pd">My Profile</a>
+			<c:when test="${loggedIn}">
+				<a href="${mainSitePath}/partsdirect/myProfile.pd">My Profile</a>
 			</c:when>
 			<c:otherwise>
 				<a data-toggle="modal" data-target="#registerModal">Register</a>
