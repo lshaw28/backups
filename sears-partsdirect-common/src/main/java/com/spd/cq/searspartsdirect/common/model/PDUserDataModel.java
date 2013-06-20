@@ -4,9 +4,10 @@ import java.util.List;
 
 public class PDUserDataModel {
 	private String firstName;
-	private String lastname;
+	private String lastName;
 	private List<MyProfileModel> myProfileModels;
 	private List<CartLineModel> shoppingCart;
+	private boolean loggedIn;
 	
 	public String getFirstName() {
 		return firstName;
@@ -14,11 +15,11 @@ public class PDUserDataModel {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	
 	public List<MyProfileModel> getMyProfileModels() {
@@ -32,5 +33,11 @@ public class PDUserDataModel {
 	}
 	public void setShoppingCart(List<CartLineModel> shoppingCart) {
 		this.shoppingCart = shoppingCart;
+	}
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
 	}
 }
