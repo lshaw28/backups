@@ -1,11 +1,12 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
 import static org.mockito.Mockito.*;
-
 import javax.servlet.jsp.PageContext;
-
 import com.day.cq.wcm.api.Page;
 
+/**
+ * Fixture class for GetProductCategoryNameTag and GetBrandCategoryModelNoTag test cases
+ */
 public class GetCurrentPageTitleTagsFixture {
 	
 	private Page currentPage;

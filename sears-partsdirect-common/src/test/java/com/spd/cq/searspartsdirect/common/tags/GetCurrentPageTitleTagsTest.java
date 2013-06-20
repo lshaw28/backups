@@ -2,14 +2,15 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-
 import javax.servlet.jsp.tagext.TagSupport;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetCurrentPageTitleTagsFixture;
 
+/**
+ * test cases for GetProductCategoryNameTag and GetBrandCategoryModelNoTag
+ */
 public class GetCurrentPageTitleTagsTest extends MocksTag{
 	
 	private GetCurrentPageTitleTagsFixture fixture;
@@ -42,7 +43,6 @@ public class GetCurrentPageTitleTagsTest extends MocksTag{
 		}
 	}
 	
-	
 	@Test
 	public void GetBrandCategoryModelNoTag() {
 		fixture.setBrandTitle();
@@ -58,6 +58,5 @@ public class GetCurrentPageTitleTagsTest extends MocksTag{
 			throw new RuntimeException(e);
 		}
 	}
-	
 	
 }

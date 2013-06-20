@@ -11,7 +11,7 @@
 
 	 	<spd:getRelatedPages assetPath="${category.path}" rootPath="/content/searspartsdirect/en/categories" />
 		<a href="${relatedPages[0].path}.html"><spd:displayImage path="${relatedPages[0].path}/jcr:content/image"/></a>
-		<a href="${relatedPages[0].path}.html">${category.title}</a>
+		<a href="${relatedPages[0].path}.html">${relatedPages[0].title}</a>
 		<br /><br />
 	 </c:forEach>
 </c:forEach>
