@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>build</actionName>
+            <goals>
+                <goal>clean</goal>
+                <goal>package</goal>
+                <goal>content-package:install</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>clean</actionName>
+            <goals>
+                <goal>clean</goal>
+                <goal>package</goal>
+                <goal>content-package:uninstall</goal>
+                <goal>content-package:install</goal>
+            </goals>
+        </action>
+    </actions>

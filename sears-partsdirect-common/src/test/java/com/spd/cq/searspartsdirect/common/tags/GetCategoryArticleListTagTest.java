@@ -3,6 +3,8 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.List;
 
+import javax.servlet.jsp.tagext.TagSupport;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,22 +29,40 @@ public class GetCategoryArticleListTagTest extends MocksTag {
 
 	@Test
 	public void testDoStartTag() {
-		try {
-			tag.setPageContext(pageContext);
-			tag.setCategoryPath("/category");
-			tag.doStartTag();
-			tag.doEndTag();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		runTheTag();
 		@SuppressWarnings("unchecked")
 		List<RelatedArticleModel> articles = (List<RelatedArticleModel>)pageContext.getAttribute("articles");
 		assertThat(articles,is(instanceOf(List.class)));
-		assertThat(articles,hasSize(3));
+		assertThat(articles,hasSize(4));
 		RelatedArticleModel first = articles.get(0);
 		assertThat(first.getUrl(),is("/baz.html"));
-		RelatedArticleModel last = articles.get(2);
+		RelatedArticleModel last = articles.get(3);
 		assertThat(last.getUrl(),is("/foo.html"));
+	}
+	
+	@Test
+	public void testEncountersException() {
+		fixture.setUpToThrow();
+		runTheTag();
+		@SuppressWarnings("unchecked")
+		List<RelatedArticleModel> articles = (List<RelatedArticleModel>)pageContext.getAttribute("articles");
+		assertThat(articles,is(instanceOf(List.class)));
+		assertThat(articles,hasSize(0));
+	}
+	
+	private void runTheTag() {
+		int startResult = Integer.MIN_VALUE;
+		int endResult = Integer.MIN_VALUE;
+		try {
+			tag.setPageContext(pageContext);
+			tag.setCategoryPath("/category");
+			startResult = tag.doStartTag();
+			endResult = tag.doEndTag();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		assertThat(startResult,is(TagSupport.SKIP_BODY));
+		assertThat(endResult,is(TagSupport.EVAL_PAGE));
 	}
 
 }

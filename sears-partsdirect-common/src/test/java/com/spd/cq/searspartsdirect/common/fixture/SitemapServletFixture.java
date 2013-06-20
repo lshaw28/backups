@@ -2,6 +2,7 @@ package com.spd.cq.searspartsdirect.common.fixture;
 
 import static org.mockito.Mockito.*;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -31,12 +32,16 @@ public class SitemapServletFixture {
 	public SitemapServletFixture() throws Exception {
 		slingRequest = mock(SlingHttpServletRequest.class);
 		slingResponse = mock(SlingHttpServletResponse.class);
+		
 		snoop = new StringWriter();
 		PrintWriter snoopedOut = new PrintWriter(snoop);
 		when(slingResponse.getWriter()).thenReturn(snoopedOut);
+		
 		ResourceResolver resourceResolver = mock(ResourceResolver.class);
 		when(slingRequest.getResourceResolver()).thenReturn(resourceResolver);
+		
 		configureTestEnvironment();
+		
 		Resource foo = mock(Resource.class);
 		when(resourceResolver.getResource("/foo")).thenReturn(foo);
 		when(resourceResolver.map(slingRequest,"/foo")).thenReturn("/foo");
@@ -44,28 +49,31 @@ public class SitemapServletFixture {
 		when(foo.adaptTo(Page.class)).thenReturn(fooPage);
 		when(fooPage.getPath()).thenReturn("/foo");
 		when(fooPage.getLastModified()).thenReturn(Calendar.getInstance());
-		final List<Page> children1 = new ArrayList<Page>();
+		
+		final List<Page> fooChildren = new ArrayList<Page>();
 		Page barPage = mock(Page.class);
 		when(barPage.getPath()).thenReturn("/foo/bar");
 		when(resourceResolver.map(slingRequest,"/foo/bar")).thenReturn("/foo/bar");
 		// we could reduce the above and the similar to above above above to an Answer - but why..
 		when(barPage.getLastModified()).thenReturn(Calendar.getInstance());
 		when(barPage.isValid()).thenReturn(true);
-		children1.add(barPage);
+		
+		fooChildren.add(barPage);
 		when(fooPage.listChildren(any(NavigablePageFilter.class))).thenAnswer(new Answer<Iterator<Page>>() {
-			public Iterator<Page> answer(InvocationOnMock invocation)
-					throws Throwable {
-				return children1.iterator();
+			public Iterator<Page> answer(InvocationOnMock invocation) {
+				return fooChildren.iterator();
 			}
 		});
-		final List<Page> children2 = new ArrayList<Page>();
+		
+		final List<Page> barChildren = new ArrayList<Page>();
 		Page bazPage = mock(Page.class);
 		when(bazPage.getPath()).thenReturn("/foo/bar/baz");
 		when(resourceResolver.map(slingRequest,"/foo/bar/baz")).thenReturn("/foo/bar/baz");
+		
+		barChildren.add(bazPage);
 		when(barPage.listChildren(any(NavigablePageFilter.class))).thenAnswer(new Answer<Iterator<Page>>() {
-			public Iterator<Page> answer(InvocationOnMock invocation)
-					throws Throwable {
-				return children2.iterator();
+			public Iterator<Page> answer(InvocationOnMock invocation) {
+				return barChildren.iterator();
 			}
 		});
 	}
@@ -74,13 +82,17 @@ public class SitemapServletFixture {
 	void configureTestEnvironment() throws Exception {
 		ComponentContext osgiContext = mock(ComponentContext.class);
 		Dictionary d = new Hashtable();
-		d.put(EnvironmentSettings.SITEMAP_START_PATHS, "/foo");
+		d.put(EnvironmentSettings.SITEMAP_START_PATHS, "/foo /dog");
 		d.put(EnvironmentSettings.SITEMAP_STOP_PATHS, "/foo/bar/baz");
 		d.put(EnvironmentSettings.EXTERNAL_ADDED_PREFIX, "http://www.searspartsdirect.com");
 		d.put(EnvironmentSettings.EXTERNAL_ADDED_SUFFIX, ".html");
 		when(osgiContext.getProperties()).thenReturn(d);
 		EnvironmentSettings env = new EnvironmentSettings();
 		env.externalActivateForTesting(osgiContext);
+	}
+	
+	public void breakTheWriter() throws IOException {
+		when(slingResponse.getWriter()).thenThrow(new IOException("Cannot commit after response has been forwarded"));
 	}
 	
 	public SlingHttpServletRequest getRequest() {

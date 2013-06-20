@@ -322,4 +322,9 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>GetUserData</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetUserDataTag</tag-class>
+		<info>this is the API call to PD to get user data</info>
+	</tag>
 </taglib>

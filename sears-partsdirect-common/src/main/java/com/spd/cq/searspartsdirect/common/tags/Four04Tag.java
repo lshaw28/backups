@@ -151,7 +151,7 @@ public class Four04Tag extends CQBaseTag {
     	return authRoots;
     }
     
-    private boolean needsAuthentication(HttpServletRequest request) {
+    public boolean needsAuthentication(HttpServletRequest request) {
     	final String requestUri = request.getRequestURI();
     	boolean requiresAuth = psu.hasAnyParentIn(authenticatedRequestRoots,requestUri);
     	return requiresAuth;

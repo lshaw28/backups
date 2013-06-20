@@ -32,8 +32,9 @@
                      java.util.ResourceBundle,
                      org.apache.sling.api.resource.ResourceUtil" %><%
 %><%@taglib uri="http://www.day.com/taglibs/cq/personalization/1.0" prefix="personalization" %><%
-%><%@include file="/libs/social/commons/commons.jsp"%><%
-    
+%><%@include file="/libs/social/commons/commons.jsp"%>
+	<c:set var="firstNameLastInitial" value="Jon S"/>
+	<%
     final String targetResourceType = resourceResolver.resolve(resource.getPath()).getResourceType();
     CommentSystem cs = resource.adaptTo(CommentSystem.class);
     // @Todo - find out how to do this without a request attribute.
@@ -168,7 +169,7 @@
             <div class="<%= commentBlockClass %>" id="<%= nameId %>-comment-block" >
                 <span class="comment-error" id="<%= nameId %>-displayName-error"></span>
                 <label for="<%= nameId %>" class="comment-text-label"><%= i18n.get("Name", "Label for commenter's name") %></label>
-                <personalization:contextProfileHtmlInput id="<%= nameId %>" clazz="comment-text" type="text" name="<%= CollabUser.PROP_NAME %>" propertyName="authorizableId"/>
+                <input id="comments-userIdentifier" class="comment-text" type="text" name="userIdentifier" value="${firstNameLastInitial}"/>
             </div>
             <div class="<%= commentBlockClass %>" id="<%= mailId %>-comment-block" >
                 <span class="comment-error" id="<%= mailId %>-email-error"></span>
@@ -183,14 +184,8 @@
             <div class="submit-block">
                 <input type="hidden" name="_charset_" value="<%= response.getCharacterEncoding() %>"/>
                 <input class="submit" type="submit" name="submit" id="<%= id %>-submit" value="<%= i18n.get("Post Comment", "Form submit action button") %>"
-            onclick="recordPostCommentEvent('<%= commentResource.getPath() %>','<%= authorizableId %>','social/commons/components/composer' , 'forum')"/>
+            onclick="recordPostCommentEvent('<%= commentResource.getPath() %>','${firstNameLastInitial}','social/commons/components/composer' , 'forum')"/>
             </div>
         </div>
     </div>
 </form>
-
-<script type="text/javascript">
-    $CQ(function(){
-        CQ.soco.commons.fillInputFromClientContext($CQ("<%=formId%> #XSS-userIdentifier"), "<%= CollabUser.PROP_NAME %>");
-    });
-</script>

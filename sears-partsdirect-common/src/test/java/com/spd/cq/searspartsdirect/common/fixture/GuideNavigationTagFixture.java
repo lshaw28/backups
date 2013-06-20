@@ -5,10 +5,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.jcr.Node;
+import javax.jcr.PathNotFoundException;
 import javax.jcr.Property;
 import javax.jcr.PropertyType;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.Value;
+import javax.jcr.ValueFormatException;
 import javax.jcr.nodetype.PropertyDefinition;
 
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -22,6 +25,7 @@ import com.adobe.cq.social.commons.CommentSystem;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMMode;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.tags.GuideNavigationTag;
 
 import static org.mockito.Mockito.*;
 
@@ -30,15 +34,21 @@ public class GuideNavigationTagFixture {
 	private final static String jumpToValue = "Jump to...";
 	private final static String testPagePath = "/content/searspartsdirect/en/test";
 	private final static String h2Contents = "Before you begin";
-	private Resource pageContentResource;
 	
+	private Page currentPage;
+	private SlingHttpServletRequest slingRequest;
+	
+	private Resource pageContentResource;
 	private Node pageNode;
 	private Node setupNode;
 	private Property sectionsProperty;
 	private Property jumpProperty;
+	private OneStringArrayHolder sectionsHolder;
 	
 	
 	public GuideNavigationTagFixture(Page currentPage, SlingHttpServletRequest slingRequest, ResourceResolver resourceResolver) throws Exception {
+		this.currentPage = currentPage;
+		this.slingRequest = slingRequest;
 		pageContentResource = mock(Resource.class);
 		when(currentPage.getContentResource()).thenReturn(pageContentResource);
 		when(currentPage.getPath()).thenReturn(getCurrentPagePath());
@@ -48,6 +58,7 @@ public class GuideNavigationTagFixture {
 		Session jcrSession = mock(Session.class);
 		when(pageNode.getSession()).thenReturn(jcrSession);
 		when(pageNode.hasNode(Constants.GUIDE_NAV_PATH)).thenReturn(true);
+		
 		setupNode = mock(Node.class);
 		when(setupNode.hasProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR)).thenReturn(true);
 		sectionsProperty = mock(Property.class);
@@ -58,10 +69,8 @@ public class GuideNavigationTagFixture {
 		when(sectionsProperty.getDefinition()).thenReturn(sectionsPropDefinition);
 		// We need to give the sectionsProperty mock some memory.
 		// Saying isNew above means the tag will try to write initial setup here
-		class OneStringArrayHolder {
-			public String[] held = null;
-		}
-		final OneStringArrayHolder sectionsHolder = new OneStringArrayHolder();
+		
+		sectionsHolder = new OneStringArrayHolder();
 		when(setupNode.setProperty(
 					eq(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR),
 					Mockito.any(String[].class),
@@ -75,13 +84,7 @@ public class GuideNavigationTagFixture {
 		});
 		when(sectionsProperty.getValues()).thenAnswer(new Answer<Value[]>(){
 			public Value[] answer(InvocationOnMock invocation) throws Throwable {
-				Value[] derValues = new Value[sectionsHolder.held.length];
-				for (int i = 0; i < sectionsHolder.held.length; i++) {
-					Value wrapper = mock(Value.class); 
-					when(wrapper.getString()).thenReturn(sectionsHolder.held[i]);
-					derValues[i] = wrapper;
-				}
-				return derValues;
+				return valuesFromStringArray(sectionsHolder.held);
 			}
 		});
 		
@@ -91,33 +94,71 @@ public class GuideNavigationTagFixture {
 		when(jumpProperty.getString()).thenReturn(getJumpToValue());
 		// following is what WCMMode.fromRequest looks at
 		when(slingRequest.getAttribute("com.day.cq.wcm.api.WCMMode")).thenReturn(WCMMode.EDIT);
-		Resource parsysResource = mock(Resource.class);
-		when(currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME)).thenReturn(parsysResource);
-		final List<Resource> parsysChildren = new ArrayList<Resource>();
-		Resource instructionsComponent = mock(Resource.class);
-		when(instructionsComponent.getResourceType()).thenReturn(Constants.INSTRUCTIONS_COMPONENT);
-		parsysChildren.add(instructionsComponent);
+		
 		Resource textResource = mock(Resource.class);
+		when(currentPage.getContentResource(GuideNavigationTag.BEFORE_YOU_BEGIN)).thenReturn(textResource);
 		when(textResource.getResourceType()).thenReturn(Constants.TEXT_COMPONENT);
 		Node textNode = mock(Node.class);
 		when(textResource.adaptTo(Node.class)).thenReturn(textNode);
 		Property textProperty = mock(Property.class);
 		when(textNode.getProperty(Constants.GUIDE_TEXT_LABEL_PROP)).thenReturn(textProperty);
 		when(textProperty.getString()).thenReturn("<h2>"+getTextHeader()+"</h2><p>Read the source code</p>");
-		parsysChildren.add(textResource);
-		when(parsysResource.listChildren()).thenAnswer(new Answer<Iterator<Resource>>() {
-
-			public Iterator<Resource> answer(InvocationOnMock invocation)
-					throws Throwable {
-				return parsysChildren.iterator();
-			}
-			
-		});
+		
 		Resource commentsResource = mock(Resource.class);
 		when(resourceResolver.resolve(Constants.USERGEN_ROOT+getCurrentPagePath()+Constants.GUIDE_COMMENTS_PATH)).thenReturn(commentsResource);
 		CommentSystem commentSystem = mock(CommentSystem.class);
 		when(commentsResource.adaptTo(CommentSystem.class)).thenReturn(commentSystem);
 		when(commentSystem.countComments()).thenReturn(getCommentCount());
+	}
+	
+	public Resource getExistingResource() {
+		return mock(Resource.class);
+	}
+
+	public Resource getNonExistingResource() {
+		Resource nonexistent = getExistingResource();
+		when(nonexistent.isResourceType(Resource.RESOURCE_TYPE_NON_EXISTING)).thenReturn(true);
+		return nonexistent;
+	}
+	
+	public void breakJumpText() throws ValueFormatException, RepositoryException {
+		when(jumpProperty.getString()).thenThrow(new RepositoryException());
+	}
+	
+	public void setupNoSetupProperty() throws RepositoryException {
+		when(setupNode.hasProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR)).thenReturn(false);
+	}
+	
+	public void setupNoSetupNode() throws PathNotFoundException, RepositoryException {
+		when(pageNode.hasNode(Constants.GUIDE_NAV_PATH)).thenReturn(false);
+		when(pageNode.addNode(Constants.GUIDE_NAV_PATH,Constants.UNSTRUCTURED)).thenReturn(setupNode);
+	}
+	
+	public void setupCannotSetupDisabled() {
+		when(slingRequest.getAttribute("com.day.cq.wcm.api.WCMMode")).thenReturn(WCMMode.DISABLED);
+	}
+	
+	public void setupCannotSetupReadonly() {
+		when(slingRequest.getAttribute("com.day.cq.wcm.api.WCMMode")).thenReturn(WCMMode.READ_ONLY);
+	}
+	
+	public void setupAlreadySetUp() {
+		when(sectionsProperty.isNew()).thenReturn(false);
+	}
+	
+	public void setupBlankLabels() throws ValueFormatException, IllegalStateException, RepositoryException {
+		setupAlreadySetUp();
+		sectionsHolder.held = new String[]{
+				"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.PARTS_REQ_R_COMPONENT+"\"}",
+				"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.TOOLS_REQ_R_COMPONENT+"\"}",
+				"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.TEXT_COMPONENT+"\"}",
+				"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.INSTRUCTIONS_COMPONENT+"\"}",
+				"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.COMMENTS_COMPONENT+"\"}",
+			};
+	}
+	
+	public void setupNoPageNode() {
+		when(pageContentResource.adaptTo(Node.class)).thenReturn(null);
 	}
 	
 	public String getCurrentPagePath() {
@@ -133,7 +174,20 @@ public class GuideNavigationTagFixture {
 	}
 
 	public int getCommentCount() {
-		// TODO Auto-generated method stub
 		return 301;
+	}
+
+	private static Value[] valuesFromStringArray(String[] strings) throws ValueFormatException, IllegalStateException, RepositoryException {
+		Value[] derValues = new Value[strings.length];
+		for (int i = 0; i < strings.length; i++) {
+			Value wrapper = mock(Value.class); 
+			when(wrapper.getString()).thenReturn(strings[i]);
+			derValues[i] = wrapper;
+		}
+		return derValues;
+	}
+	
+	private static class OneStringArrayHolder {
+		public String[] held = null;
 	}
 }

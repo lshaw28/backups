@@ -1,6 +1,7 @@
 package com.spd.cq.searspartsdirect.common.foundation;
 
 
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -46,11 +47,21 @@ public class SitemapServletTest extends TestCase {
 		try {
 			parser.parse(source); // We attempt to parse the sitemap created, any problem will cause a test failure.
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException(snoopedOut,e);
 		}
 		assertThat(snoopedOut,containsString("/foo.html"));
 		assertThat(snoopedOut,containsString("/foo/bar.html"));
 		assertThat(snoopedOut,not(containsString("baz")));
+	}
+	
+	@Test
+	public void testBrokenWriter() {
+		try {
+			fixture.breakTheWriter();
+			servlet.doGet(fixture.getRequest(), fixture.getResponse());
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }

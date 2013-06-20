@@ -79,7 +79,7 @@
     if (WCMMode.fromRequest(request) == WCMMode.EDIT) {
           %><cq:includeClientLib categories="cq.social.author"/><%
     }
-%><div id="<%= cs.getId() %>" style="display:none;">
+%><div id="<%= cs.getId() %>">
     <div class="comment-signed-in-text" id="<%= cs.getId() %>-signed-in-text"><%= signedInText %><span class="comment-signed-in-user" id="<%= cs.getId() %>-signed-in-user"><%= StringEscapeUtils.escapeHtml4(formattedName) %></span></div>
     <%
     if (!cs.isClosed() && CollabUtil.canAddNode(resourceResolver.adaptTo(Session.class), cs.getRootPath())) {
