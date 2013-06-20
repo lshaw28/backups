@@ -1,2 +1,2 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<c:set var="warningPrefix" scope="application"><cq:text property="./warningPrefix" placeholder="Warning: " /></c:set>
+<c:set var="warningPrefix" scope="request"><cq:text property="./warningPrefix" placeholder="Warning: " /></c:set>
