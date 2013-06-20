@@ -29,11 +29,19 @@ public class CategoryModelTest extends TestCase {
 	public void testCategoryModel() {
 		model = new CategoryModel(URL, IMAGE_PATH, TITLE, DESCRIPTION);
 		assertThat(model.getUrl(),is(URL));
+		assertThat(model.getImagePath(),is(IMAGE_PATH));
 		assertThat(model.getTitle(),is(TITLE));
+		assertThat(model.getDescription(),is(DESCRIPTION));
+
 		model.setUrl(ANOTHER+URL);
+		model.setImagePath(ANOTHER+IMAGE_PATH);
 		model.setTitle(ANOTHER+TITLE);
+		model.setDescription(ANOTHER+DESCRIPTION);
+		
 		assertThat(model.getUrl(),is(ANOTHER+URL));
-		assertThat(model.getTitle(),is(ANOTHER+TITLE)); // note - this concatenation happens at compile time
+		assertThat(model.getImagePath(),is(ANOTHER+IMAGE_PATH)); // note - this concatenation happens at compile time
+		assertThat(model.getTitle(),is(ANOTHER+TITLE));
+		assertThat(model.getDescription(),is(ANOTHER+DESCRIPTION));
 	}
 
 }

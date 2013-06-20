@@ -32,9 +32,29 @@
 		</div>
 	</li>
 	<li class="cartNavItem">
+	<spd:GetUserData/>
 		<div class="btn-group">
-			<a data-toggle="dropdown" href="#">My Models (0) <i class="icon-caret-down">&nbsp;</i></a>
+			<a data-toggle="dropdown" href="#">My Models 
+			<c:choose>
+				<c:when test="${fn:length(myProfileModels) gt 0}">
+					(${fn:length(myProfileModels)})
+				</c:when>
+				<c:otherwise>
+						(0)
+				</c:otherwise>
+			</c:choose>
+				<i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
+				<c:choose>
+					<c:when test="${fn:length(myProfileModels) gt 0}">
+						<c:forEach var="model" items="${myProfileModels}">
+								<li><a href="http://www.searspartsdirect.com${model.url}">${model.brand} ${model.category} model #${model.modelNumber}</a></li>
+							</c:forEach>
+					</c:when>
+					<c:otherwise>
+							<li>You can find parts to your models faster by adding models you own to this list.</li>
+					</c:otherwise>
+				</c:choose>
 				<li>Dummy item one</li>
 				<li>Dummy item two</li>
 			</ul>
@@ -42,7 +62,7 @@
 	</li>
 	<li class="cartNavItem">
 		<div class="btn-group">
-			<spd:GetUserData/>
+			
 			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart 
 			<c:choose>
 				<c:when test="${fn:length(shoppingCart) gt 0}">
