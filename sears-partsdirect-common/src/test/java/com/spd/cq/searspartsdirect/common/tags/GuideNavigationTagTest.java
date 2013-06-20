@@ -22,13 +22,12 @@ public class GuideNavigationTagTest extends MocksTag {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		
 		fixture = new GuideNavigationTagFixture(currentPage,slingRequest,resourceResolver);
 		guideNavigationTag = new GuideNavigationTag();
 	}
 
 	@Test
-	public void testDoStartTag() {
+	public void testPopulatedForDefaultSetup() {
 		try {
 			runTagSkipsBodyEvalsPage();
 			assertThat((String)pageContext.getAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR),is(fixture.getJumpToValue()));
@@ -47,8 +46,8 @@ public class GuideNavigationTagTest extends MocksTag {
 			}
 			assertThat(result.get(0).get(0),is(Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK));
 			assertThat(result.get(1).get(0),is(Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK));
-			assertThat(result.get(2).get(0),is(Constants.INSTRUCTIONS_DEF_GUIDE_NAV_LINK));
-			assertThat(result.get(3).get(0),is(fixture.getTextHeader()));
+			assertThat(result.get(2).get(0),is(fixture.getTextHeader()));
+			assertThat(result.get(3).get(0),is(Constants.INSTRUCTIONS_DEF_GUIDE_NAV_LINK));
 			assertThat(result.get(4).get(0),is(Constants.COMMENTS_GUIDE_NAV_LINK_PREFIX+" ("+fixture.getCommentCount()+")"));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -89,7 +88,6 @@ public class GuideNavigationTagTest extends MocksTag {
 	public void testMissingMiscellany() {
 		try {
 			fixture.setupNoPageNode();
-			fixture.setupNoParsys();
 			runTagSkipsBodyEvalsPage();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -124,6 +122,30 @@ public class GuideNavigationTagTest extends MocksTag {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	@Test
+	public void testBlankLabels() {
+		try {
+			fixture.setupBlankLabels();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testLabelIsBlank() {
+		assertThat(GuideNavigationTag.labelIsBlank(null),is(true));
+		assertThat(GuideNavigationTag.labelIsBlank(""),is(true));
+		assertThat(GuideNavigationTag.labelIsBlank(" "),is(true));
+		assertThat(GuideNavigationTag.labelIsBlank(" a"),is(false));
+	}
+	
+	public void testResourceExists() {
+		assertThat(GuideNavigationTag.resourceExists(null),is(false));
+		assertThat(GuideNavigationTag.resourceExists(fixture.getExistingResource()),is(true));
+		assertThat(GuideNavigationTag.resourceExists(fixture.getNonExistingResource()),is(false));
 	}
 	
 	private void runTagSkipsBodyEvalsPage() throws JspException {

@@ -30,8 +30,9 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 @SuppressWarnings("serial")
 public class GuideNavigationTag extends CQBaseTag {
 	
-	protected static Logger log = LoggerFactory
-			.getLogger(GuideNavigationTag.class);
+	public final static String BEFORE_YOU_BEGIN = Constants.ident("beforeYouBegin");
+	
+	protected static Logger log = LoggerFactory.getLogger(GuideNavigationTag.class);
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -78,48 +79,52 @@ public class GuideNavigationTag extends CQBaseTag {
 			generators.add(new FixedLabelTemplateLinkGenerator(Constants.PARTS_REQ_R_COMPONENT,labelFound));
 		} 
 		
-		// We find the parsys indicated by the template
-		Resource parsysResource = currentPage.getContentResource(Constants.GUIDE_TOP_PARSYS_NAME);
+		// We no longer have any actual dynamic content here.
+		// All elements linked to are now part of the template
 		
-		if (parsysResource != null) {
-			// We iterate the parsys and see what we want to generate links for
-			Iterator<Resource> parsysChildren = parsysResource.listChildren();
-			ParsysLinkGeneratorFactory generatorFactory = new ParsysLinkGeneratorFactory(parsysResource);
-			while (parsysChildren.hasNext()) {
-				Resource parsysChild = parsysChildren.next();
-				String childResourceType = parsysChild.getResourceType();
-				// when we find a resource type we recognize, we create a generator for a link to it
-				if(typesAndLabels.containsKey(childResourceType)) {
-					String label = typesAndLabels.get(childResourceType);
-					ParsysLinkGenerator maybeGenerator = generatorFactory.getLinkGenerator(parsysChild,label);
-					if (maybeGenerator != null) {
-						generators.add(maybeGenerator);
-					}
-				}
+		// We only want to generate a link to Before you begin if we find a header there.
+		if (typesAndLabels.containsKey(Constants.TEXT_COMPONENT)) {
+			Resource beforeYouBegin = currentPage.getContentResource(BEFORE_YOU_BEGIN);
+			if (resourceExists(beforeYouBegin)) {
+				TextHeaderLinkGenerator beforeYouBeginGenerator = new TextHeaderLinkGenerator(beforeYouBegin);
+				beforeYouBeginGenerator.setComponentName(BEFORE_YOU_BEGIN);
+				generators.add(beforeYouBeginGenerator);
 			}
-		} else {
-			log.info("parsysResource is null for some reason");
 		}
 		
-		// We create generators for template components thqt are after the parsys
+		if (typesAndLabels.containsKey(Constants.INSTRUCTIONS_COMPONENT)) {
+			String labelFound = typesAndLabels.get(Constants.INSTRUCTIONS_COMPONENT);
+			if (labelIsBlank(labelFound)) {
+				labelFound = Constants.INSTRUCTIONS_DEF_GUIDE_NAV_LINK;
+			}
+			generators.add(new FixedLabelTemplateLinkGenerator(Constants.INSTRUCTIONS_COMPONENT,labelFound));
+		}
+		
 		if (typesAndLabels.containsKey(Constants.COMMENTS_COMPONENT)) {
 			generators.add(new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));
 		}
 		
 		// We iterate over our generators and create our output
 		for (LinkGenerator linkGen : generators) {
-			List<String> newList = new ArrayList<String>();
-			newList.add(linkGen.generateLabel());
-			newList.add(linkGen.generateLink());
-			sections.add(newList);
+			String label = linkGen.generateLabel();
+			if (!labelIsBlank(label)) {
+				List<String> newList = new ArrayList<String>();
+				newList.add(linkGen.generateLabel());
+				newList.add(linkGen.generateLink());
+				sections.add(newList);
+			}
 		}
 		pageContext.setAttribute(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR, sections);
 		
 		return SKIP_BODY;
 	}
 	
-	private boolean labelIsBlank(String label) {
+	public static boolean labelIsBlank(String label) {
 		return label == null || label.matches(" *");
+	}
+	
+	public static boolean resourceExists(Resource resource) {
+		return resource != null && !resource.isResourceType(Resource.RESOURCE_TYPE_NON_EXISTING);
 	}
 	
 	private void maybeSetupDefaultConfig(Node pageNode) {
@@ -151,11 +156,8 @@ public class GuideNavigationTag extends CQBaseTag {
 							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.COMMENTS_COMPONENT+"\"}",
 						}
 						,PropertyType.STRING);
-					if (log.isDebugEnabled()) log.debug("Performed setup");
 					anyChanges = true;
-				} else {
-					if (log.isDebugEnabled()) log.debug("Is already set up");
-				}
+				} 
 				if (anyChanges) {
 					jcr.save();
 				}
@@ -219,24 +221,14 @@ public class GuideNavigationTag extends CQBaseTag {
 		public abstract String generateLink();
 	}
 
-	// Template links won't have a resource associated when they are built
+	// Template links won't usually have a resource associated when they are built
 	private static abstract class TemplateLinkGenerator extends LinkGenerator {
 		private String componentName;
 		
-		/**
-		 * Sets the name (usually the same as the last path-component of the type name) of
-		 * the template component linked to.
-		 * @return
-		 */
 		public void setComponentName(String componentName) {
 			this.componentName = componentName;
 		}
 		
-		/**
-		 * Gets the name of the template component linked to. If no name has been set,
-		 * uses the last path-component of the component type.
-		 * @return
-		 */
 		public String getComponentName() {
 			if (componentName == null) {
 				String fullType = getComponentType();
@@ -281,7 +273,7 @@ public class GuideNavigationTag extends CQBaseTag {
 			StringBuilder label = new StringBuilder(
 					Constants.COMMENTS_GUIDE_NAV_LINK_PREFIX);
 			Resource thoseComments = rr.resolve(commentsPath);
-			if (thoseComments != null && !thoseComments.isResourceType(Resource.RESOURCE_TYPE_NON_EXISTING)) {
+			if (resourceExists(thoseComments)) {
 				CommentSystem thatCs = null;
 				thatCs = thoseComments.adaptTo(CommentSystem.class);
 				if (thatCs != null) {
@@ -296,113 +288,28 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 	}
 	
-	// Parsys links are generated based on a resource node. Some have specific logic.
-	private static class ParsysLinkGeneratorFactory {
-		private final static Map<String,ParsysLinkGeneratorMaker> makers = initMakers();
-		private final static Map<String,ParsysLinkGeneratorMaker> initMakers() {
-			Map<String,ParsysLinkGeneratorMaker> makers = new HashMap<String,ParsysLinkGeneratorMaker>();
-			// Since subhead was removed, there are currently no specific generator makers.
-			// However, retaining this mechanism since we may need it to support future requirements.
-			// Restoring this mechanism - extracting h elements from text.
-			makers.put(Constants.TEXT_COMPONENT, new TextLinkGeneratorMaker());
-			return makers;
-		}
-		
-		private final Resource parsysResource;
-		
-		public ParsysLinkGeneratorFactory(final Resource parsysResource) {
-			this.parsysResource = parsysResource;
-		}
-		
-		public ParsysLinkGenerator getLinkGenerator(Resource maybeBeingLinkedTo, String possiblyLabel) {
-			ParsysLinkGeneratorMaker maker = makers.get(maybeBeingLinkedTo.getResourceType());
-			ParsysLinkGenerator weMade = null;
-			if (maker != null) {
-				if (log.isDebugEnabled()) log.debug("Found maker for "+maybeBeingLinkedTo);
-				maker.setParsysName(parsysResource.getName());
-				weMade = maker.createGenerator(maybeBeingLinkedTo);
-			} else {
-				if (log.isDebugEnabled()) log.debug("No maker for "+maybeBeingLinkedTo);
-				weMade = new FixedLabelParsysLinkGenerator(parsysResource.getName(), maybeBeingLinkedTo, possiblyLabel);
-			}
-			return weMade;
-		}
-	}
-	
-	// We have this so that we can explicitly declare what generator to create for a given resource type
-	private static abstract class ParsysLinkGeneratorMaker {
-		private String parsysName;
-		
-		public void setParsysName(final String parsysName) {
-			this.parsysName = parsysName;
-		}
-		public String getParsysName() {
-			return parsysName;
-		}
-		public abstract ParsysLinkGenerator createGenerator(Resource parsysChild);
-	}
-	
-	private static class TextLinkGeneratorMaker extends ParsysLinkGeneratorMaker {
-
-		@Override
-		public ParsysLinkGenerator createGenerator(Resource textResource) {
-			return new TextParsysLinkGenerator(getParsysName(),textResource);
-		}
-		
-	}
-	
-	private static abstract class ParsysLinkGenerator extends LinkGenerator {
-		private String parsysName;
+	// Some template links are based on actual resources
+	private static abstract class ResourceTemplateLinkGenerator extends TemplateLinkGenerator {
 		private Resource beingLinkedTo;
-		
-		public String getParsysName() {
-			return parsysName;
-		}
 
-		public void setParsysName(String parsysName) {
-			this.parsysName = parsysName;
-		}
-		
-		public Resource getBeingLinkedTo() {
-			return beingLinkedTo;
-		}
-
-		public void setBeingLinkedTo(Resource beingLinkedTo) {
+		protected void setBeingLinkedTo(Resource beingLinkedTo) {
 			this.beingLinkedTo = beingLinkedTo;
 		}
-
-		@Override
-		public String generateLink() {
-			String linkTarget = null;
-			linkTarget = getParsysName() + "_" + getBeingLinkedTo().getName();
-			return linkTarget;
-		}
-	}
-	
-	private static class FixedLabelParsysLinkGenerator extends ParsysLinkGenerator {
-		final String label;
-	
-		public FixedLabelParsysLinkGenerator(String parsysName, Resource beingLinkedTo, String label) {
-			setParsysName(parsysName);
-			setBeingLinkedTo(beingLinkedTo);
-			this.label = label;
+		
+		protected Resource getBeingLinkedTo() {
+			return beingLinkedTo;
 		}
 		
-		@Override
-		public String generateLabel() {
-			return label;
-		}
 	}
 	
-	private static class TextParsysLinkGenerator extends ParsysLinkGenerator {
+	private static class TextHeaderLinkGenerator extends ResourceTemplateLinkGenerator {
 		
 		private static final Pattern headerPattern = initHeaderPattern();
 		private static final Pattern initHeaderPattern() {
 			return Pattern.compile("<h([1-6])[^>]*>(.+?)</h\\1>",  Pattern.CASE_INSENSITIVE|Pattern.DOTALL);
 		}
 		
-		public TextParsysLinkGenerator(String parsysName, Resource textResource) {
-			setParsysName(parsysName);
+		public TextHeaderLinkGenerator(Resource textResource) {
 			setBeingLinkedTo(textResource);
 		}
 
@@ -412,16 +319,14 @@ public class GuideNavigationTag extends CQBaseTag {
 			Resource textResource = getBeingLinkedTo();
 			try {
 				String html = textResource.adaptTo(Node.class).getProperty(Constants.GUIDE_TEXT_LABEL_PROP).getString();
-				if (log.isDebugEnabled()) log.debug("html is "+html);
 				Matcher pageMatcher = headerPattern.matcher(html);
 				if (pageMatcher.find()){
 				    hContents.append(pageMatcher.group(2));
 				}
 			} catch (Exception e) {
-                log.error("retrieving text label: ", e);
+				log.error("retrieving text label: ", e);
 			}
 			return hContents.toString();
 		}
-		
 	}
 }
