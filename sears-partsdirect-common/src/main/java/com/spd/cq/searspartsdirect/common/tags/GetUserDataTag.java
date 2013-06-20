@@ -26,10 +26,10 @@ import com.spd.cq.searspartsdirect.common.model.MyProfileModel;
 import com.spd.cq.searspartsdirect.common.model.Part;
 import com.spd.cq.searspartsdirect.common.model.PartModel;
 
-public class UserDataTag extends CQBaseTag {
+public class GetUserDataTag extends CQBaseTag {
 
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = LoggerFactory.getLogger(UserDataTag.class);
+	protected static Logger log = LoggerFactory.getLogger(GetUserDataTag.class);
 
 	@Override
 	public int doStartTag() throws JspException {
