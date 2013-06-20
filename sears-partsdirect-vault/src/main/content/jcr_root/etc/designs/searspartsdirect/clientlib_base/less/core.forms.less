@@ -41,8 +41,8 @@ input[type="text"], input[type="password"], select, textarea {
 	input {
 		border-right: 0;
 		outline-style: none;
-		padding: 4% 2% 4% 4%;
-		width: 78%;
+		padding: 12px 0 12px 12px;
+		width: 75%;
 	}
 	.add-on {
 		background-color: @bodyColor;
@@ -50,7 +50,7 @@ input[type="text"], input[type="password"], select, textarea {
 		border-left: 0;
 		.borderRadius(0);
 		color: @headerColor;
-		padding: 4% 4% 4% 2%;
+		padding: 12px 6px 12px 12px;
 		text-align: right;
 		width: auto;
 
@@ -58,7 +58,8 @@ input[type="text"], input[type="password"], select, textarea {
 			background-color: transparent;
 			border: 0;
 			color: @headerColor;
-			font-size: @pSize;
+			font-size: @h3Size;
+			line-height: @pSize;
 			padding: 0;
 			text-decoration: none;
 
@@ -68,3 +69,5 @@ input[type="text"], input[type="password"], select, textarea {
 		}
 	}
 }
+
+@import "core.forms.tablet.less";
