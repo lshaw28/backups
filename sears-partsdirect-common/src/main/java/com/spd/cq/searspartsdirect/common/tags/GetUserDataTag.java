@@ -103,9 +103,9 @@ public class GetUserDataTag extends CQBaseTag {
 			pageContext.setAttribute("myProfileModels", myProfileModels);
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("i/o issue reading from api, ",e);
 		} catch (JSONException e) {
-			e.printStackTrace();
+			log.error("json issue reading from api, ",e);
 		}
 
 		log.debug(parts.toString());
