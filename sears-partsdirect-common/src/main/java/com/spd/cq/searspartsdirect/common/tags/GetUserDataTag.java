@@ -23,6 +23,7 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectCookieHelper;
 import com.spd.cq.searspartsdirect.common.model.CartLineModel;
 import com.spd.cq.searspartsdirect.common.model.MyProfileModel;
+import com.spd.cq.searspartsdirect.common.model.PDUserDataModel;
 import com.spd.cq.searspartsdirect.common.model.Part;
 import com.spd.cq.searspartsdirect.common.model.PartModel;
 
@@ -40,6 +41,7 @@ public class GetUserDataTag extends CQBaseTag {
 		Cookie userNameCookie = null;
 		Cookie myModelsCookie = null;
 		Cookie shoppingCartCookie = null;
+		PDUserDataModel pdUserDataModel = new PDUserDataModel();
 
 		if (cookies != null) {
 			userNameCookie = PartsDirectCookieHelper.getCookieInfo(cookies,
@@ -81,7 +83,7 @@ public class GetUserDataTag extends CQBaseTag {
 				log.debug("cartLines2.toString() "+ cartLines.toString());
 				lstCartLines.add(cartLines);
 			}
-			pageContext.setAttribute("shoppingCart", lstCartLines);
+			pdUserDataModel.setShoppingCart(lstCartLines);
 
 			//my profile models
 			List<MyProfileModel> myProfileModels = new ArrayList<MyProfileModel>();
@@ -100,12 +102,14 @@ public class GetUserDataTag extends CQBaseTag {
 				myProfileModels.add(myProfileModel);
 				log.debug("myProfileModels " + myProfileModels.toString());
 			}
-			pageContext.setAttribute("myProfileModels", myProfileModels);
+			pdUserDataModel.setMyProfileModels(myProfileModels);
+			
+			pageContext.setAttribute("PDUserData", pdUserDataModel);
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("IP Exception while getting data from PD API ", e);
 		} catch (JSONException e) {
-			e.printStackTrace();
+			log.error("JSON Exception while getting data from PD API ", e);
 		}
 
 		log.debug(parts.toString());

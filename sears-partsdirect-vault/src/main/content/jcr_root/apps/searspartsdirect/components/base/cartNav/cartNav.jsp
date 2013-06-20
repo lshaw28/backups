@@ -36,8 +36,8 @@
 		<div class="btn-group">
 			<a data-toggle="dropdown" href="#">My Models 
 			<c:choose>
-				<c:when test="${fn:length(myProfileModels) gt 0}">
-					(${fn:length(myProfileModels)})
+				<c:when test="${fn:length(PDUserData.myProfileModels) gt 0}">
+					(${fn:length(PDUserData.myProfileModels)})
 				</c:when>
 				<c:otherwise>
 						(0)
@@ -46,8 +46,8 @@
 				<i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
 				<c:choose>
-					<c:when test="${fn:length(myProfileModels) gt 0}">
-						<c:forEach var="model" items="${myProfileModels}">
+					<c:when test="${fn:length(PDUserData.myProfileModels) gt 0}">
+						<c:forEach var="model" items="${PDUserData.myProfileModels}">
 								<li><a href="http://www.searspartsdirect.com${model.url}">${model.brand} ${model.category} model #${model.modelNumber}</a></li>
 							</c:forEach>
 					</c:when>
@@ -65,8 +65,8 @@
 			
 			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart 
 			<c:choose>
-				<c:when test="${fn:length(shoppingCart) gt 0}">
-					${fn:length(shoppingCart)}
+				<c:when test="${fn:length(PDUserData.shoppingCart) gt 0}">
+					${fn:length(PDUserData.shoppingCart)}
 				</c:when>
 				<c:otherwise>
 						0
@@ -74,8 +74,8 @@
 			</c:choose><i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
 				<c:choose>
-					<c:when test="${fn:length(shoppingCart) gt 0}">
-						<c:forEach var="cartLine" items="${shoppingCart}">
+					<c:when test="${fn:length(PDUserData.shoppingCart) gt 0}">
+						<c:forEach var="cartLine" items="${PDUserData.shoppingCart}">
 								<li>Parts  -- Quantity</li>
 								<li>${cartLine.part.partNumber} --  ${cartLine.quantity}</li>
 							</c:forEach>
