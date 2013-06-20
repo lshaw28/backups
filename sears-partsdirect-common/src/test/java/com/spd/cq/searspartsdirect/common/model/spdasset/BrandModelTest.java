@@ -1,14 +1,15 @@
 package com.spd.cq.searspartsdirect.common.model.spdasset;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class BrandModelTest  extends TestCase {
-	private BrandModel model; // toolModel
+	private BrandModel model;
+	private BrandModel modelPrime;
 	
 	private final static String DESCRIPTION = "description";
 	private final static String LOGO_PATH = "logoPath";
@@ -20,12 +21,14 @@ public class BrandModelTest  extends TestCase {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		model = new BrandModel(PATH, TITLE, DESCRIPTION, LOGO_PATH);
+		model = null;
+		modelPrime = null;
 	}
 	
 	@Test
 	public void testModel() {
 		try {
+			model = new BrandModel(PATH, TITLE, DESCRIPTION, LOGO_PATH);
 			assertThat(model.getDescription(),is(DESCRIPTION));
 			assertThat(model.getLogoPath(),is(LOGO_PATH));
 			assertThat(model.getPath(),is(PATH));
@@ -41,5 +44,56 @@ public class BrandModelTest  extends TestCase {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	@Test
+	public void testEqualsAndHashcode() {
+		model = new BrandModel(null,null,null,null);
+		assertThat(model.equals(null),is(false));
+		assertThat(model.equals(this),is(false));
+		assertThat(model.equals(model),is(true));
+		modelPrime = new BrandModel(null,null,null,null);
+		bothAreEqual();
+		
+		model.setDescription(DESCRIPTION);
+		neitherAreEqual();
+		modelPrime.setDescription(NEW_+DESCRIPTION);
+		neitherAreEqual();
+		modelPrime.setDescription(DESCRIPTION);
+		bothAreEqual();
+		
+		model.setLogoPath(LOGO_PATH);
+		neitherAreEqual();
+		modelPrime.setLogoPath(NEW_+LOGO_PATH);
+		neitherAreEqual();
+		modelPrime.setLogoPath(LOGO_PATH);
+		bothAreEqual();
+		
+		model.setPath(PATH);
+		neitherAreEqual();
+		modelPrime.setPath(NEW_+PATH);
+		neitherAreEqual();
+		modelPrime.setPath(PATH);
+		bothAreEqual();
+		
+		model.setTitle(TITLE);
+		neitherAreEqual();
+		modelPrime.setTitle(NEW_+TITLE);
+		neitherAreEqual();
+		modelPrime.setTitle(TITLE);
+		bothAreEqual();
+	}
+	
+	void neitherAreEqual() {
+		assertThat(model.equals(modelPrime),is(false));
+		assertThat(modelPrime.equals(model),is(false));
+		assertThat(modelPrime.hashCode(),isA(Integer.class));
+		assertThat(model.hashCode(),isA(Integer.class));
+	}
+	
+	void bothAreEqual() {
+		assertThat(model.equals(modelPrime),is(true));
+		assertThat(modelPrime.equals(model),is(true));
+		assertTrue(modelPrime.hashCode() == model.hashCode());
 	}
 }
