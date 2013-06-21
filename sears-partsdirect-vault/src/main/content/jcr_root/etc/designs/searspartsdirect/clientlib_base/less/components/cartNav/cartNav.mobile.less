@@ -12,12 +12,17 @@
 			}
 
 			li.cartNavItem {
-				a {
+				a[data-toggle] {
 					padding: 5px 7px 5px 7px;
 					font-size: @smallPSize;
 					border-left: 1px solid #c3c3c3;
 					border-right: none;
 					line-height: 34px;
+
+					&:hover {
+						border-left: 1px solid #304295;
+						border-right: none;
+					}
 				}
 
 				.dropdown-menu {

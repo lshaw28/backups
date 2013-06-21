@@ -31,7 +31,7 @@
 	</li>
 	<li class="cartNavItem">
 		<div class="btn-group">
-			<a data-toggle="dropdown" href="#">My Models 
+			<a data-toggle="dropdown" href="#">My Models
 			<c:choose>
 				<c:when test="${fn:length(myProfileModels) gt 0}">
 					(${fn:length(myProfileModels)})
@@ -50,8 +50,7 @@
 						<a href="">Edit List</a>
 					</c:when>
 					<c:otherwise>
-							<li>You can find parts to your models faster by adding models you own to this list.</li>
-							<a href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a>
+							<li>You can find parts to your models faster by adding models you own to this list.<br /><a class="new-btn-small" href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -59,31 +58,29 @@
 	</li>
 	<li class="cartNavItem">
 		<div class="btn-group">
-			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart 
+			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart
 			<c:choose>
 				<c:when test="${fn:length(shoppingCart) gt 0}">
 					${fn:length(shoppingCart)}
 				</c:when>
 				<c:otherwise>
-						0
+					0
 				</c:otherwise>
 			</c:choose><i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
-				<h3>Your shopping Cart</h3>
-				
-				<li>Parts  -- Quantity</li>
+				<li class="cart-title"><strong>Your Shopping Cart</strong></li>
 				<c:choose>
 					<c:when test="${fn:length(shoppingCart) gt 0}">
-						<p><a href="${mainSitePath}/partsdirect/showCart.pd">checkout Now</</a></p>
+						<li>Parts -- Quantity</li>
+						<li><a class="new-btn-small" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
 						<c:forEach var="cartLine" items="${shoppingCart}">
-								<li><a href="${mainSitePath}/partsdirect/part-number/${cartLine.part.partNumber}/${cartLine.part.productGroupId}/${cartLine.part.supplierId}">${cartLine.part.partNumber} --  ${cartLine.quantity}</a></li>
-							</c:forEach>
-						<p><b>Total items: ${fn:length(shoppingCart)}</b></p>	
-						<p><a href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</</a></p>	
+							<li class="cart-item"><a href="${mainSitePath}/partsdirect/part-number/${cartLine.part.partNumber}/${cartLine.part.productGroupId}/${cartLine.part.supplierId}">${cartLine.part.partNumber} -- ${cartLine.quantity}</a></li>
+						</c:forEach>
+						<li><strong>Total items: ${fn:length(shoppingCart)}</strong></li>
+						<li><a class="new-btn-small" href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</a></li>
 					</c:when>
 					<c:otherwise>
-							<li>Your shopping cart is empty</li>
-							<p><b>Total items: ${fn:length(shoppingCart)}</b></p>
+						<li>Your shopping cart is empty</li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

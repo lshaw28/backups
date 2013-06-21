@@ -39,7 +39,7 @@
 				}
 			}
 
-			a {
+			a[data-toggle] {
 				border: 0 solid #c3c3c3;
 				border-right-width: 1px;
 				color: @linkColor;
@@ -68,9 +68,10 @@
 				.borderRadius(0);
 				left: auto;
 				margin-top: 5px;
-				min-width: 200px;
 				padding: 10px;
 				right: 5px;
+				white-space: normal;
+				width: 250px;
 
 				&:before, &:after {
 					content: ' ';
@@ -93,6 +94,15 @@
 				}
 				li {
 					font-size: @smallerPSize;
+					padding: 10px 0 0 0;
+
+					&:first-child {
+						padding: 0;
+					}
+
+					.new-btn-small {
+						margin: 0 5px;
+					}
 				}
 			}
 

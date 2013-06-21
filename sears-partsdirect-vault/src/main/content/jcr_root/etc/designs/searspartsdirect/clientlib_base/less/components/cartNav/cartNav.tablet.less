@@ -5,8 +5,12 @@
 	.cartNav {
 		ul.cartNavItems {
 			li.cartNavItem {
-				a {
+				a[data-toggle] {
 					font-weight: 600;
+
+					&:hover {
+						font-weight: 600;
+					}
 				}
 			}
 		}
