@@ -44,7 +44,7 @@ public class GetCurrentPageTitleTagsTest extends MocksTag{
 	}
 	
 	@Test
-	public void GetBrandCategoryModelNoTag() {
+	public void testGetBrandCategoryModelNoTag() {
 		fixture.setBrandTitle();
 		try {
 			int startResult = brandTag.doStartTag();
