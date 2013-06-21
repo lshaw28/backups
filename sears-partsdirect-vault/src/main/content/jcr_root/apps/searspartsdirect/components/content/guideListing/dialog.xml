@@ -26,6 +26,7 @@
 								name="./difficultyLevel"
 								maxLength="1"
 								maxValue="{Long}5"
+								minValue="{Long}1"
 								fieldDescription="Choose a number from 1-5"
 								allowBlank="{Boolean}false"
 								xtype="numberfield"/>
