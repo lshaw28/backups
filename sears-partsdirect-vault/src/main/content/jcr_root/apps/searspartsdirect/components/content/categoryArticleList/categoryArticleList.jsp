@@ -14,9 +14,9 @@
 			</c:choose>
 						<div class="span6">
 							<c:if test="${not empty article.imagePath}">
-								<a href="${article.url}"><spd:displayImage path="${article.imagePath}" decorated="false" /></a>
+								<a href="${article.url}.html"><spd:displayImage path="${article.imagePath}" decorated="false" /></a>
 							</c:if>
-							<h4><a href="${article.url}">${article.title}</a></h4>
+							<h4><a href="${article.url}.html">${article.title}</a></h4>
 							<p>${article.description}</p>
 						</div>
 			<c:choose>
