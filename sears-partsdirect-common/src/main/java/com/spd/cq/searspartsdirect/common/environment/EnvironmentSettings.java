@@ -67,6 +67,15 @@ public class EnvironmentSettings {
     	return getProperty(EXTERNAL_ADDED_SUFFIX,"");
     }
     
+    @Property(label = "PartsDirect User Data API", 
+    		description = "API will get PD user shopping cart, profile models and logged in state",
+    		value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username=")
+    public static final String PD_USERDATA_API = "searspartsdirect.pd.userdata.api";
+    
+    public static String getPDUserDataApiUrl() {
+    	return getProperty(PD_USERDATA_API,"");
+    }
+    
     // ---- for testing ----
     public void externalActivateForTesting(final ComponentContext context) throws Exception {
     	activate(context);
