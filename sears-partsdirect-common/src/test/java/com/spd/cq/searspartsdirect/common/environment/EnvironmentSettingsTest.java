@@ -38,11 +38,11 @@ public class EnvironmentSettingsTest extends TestCase {
 	@Test
 	public void testAllMethods() {
 		EnvironmentSettings hook = new EnvironmentSettings();
-		assertThat(EnvironmentSettings.get404HandlerURL(),is(Constants.EMPTY));
-		assertThat(EnvironmentSettings.getSitemapStartPaths(),is(Constants.EMPTY));
-		assertThat(EnvironmentSettings.getSitemapStopPaths(),is(Constants.EMPTY));
-		assertThat(EnvironmentSettings.getExternalAddedPrefix(),is(Constants.EMPTY));
-		assertThat(EnvironmentSettings.getExternalAddedSuffix(),is(Constants.EMPTY));
+		assertThat(EnvironmentSettings.get404HandlerURL(),is(instanceOf(String.class)));
+		assertThat(EnvironmentSettings.getSitemapStartPaths(),is(instanceOf(String.class)));
+		assertThat(EnvironmentSettings.getSitemapStopPaths(),is(instanceOf(String.class)));
+		assertThat(EnvironmentSettings.getExternalAddedPrefix(),is(instanceOf(String.class)));
+		assertThat(EnvironmentSettings.getExternalAddedSuffix(),is(instanceOf(String.class)));
 		try {
 			hook.activate(componentContext);
 		} catch (Exception e) {

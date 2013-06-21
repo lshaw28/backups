@@ -167,4 +167,8 @@ public class GetAssetsTag extends CQBaseTag {
 	public void setTagFilter(String tagFilter) {
 		this.tagFilter = tagFilter;
 	}
+	
+	public void setAuthorFilter(String authorFilter) {
+		this.authorFilter = authorFilter;
+	}
 }
