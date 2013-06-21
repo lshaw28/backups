@@ -15,17 +15,17 @@ import org.junit.Test;
 
 import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
-import com.spd.cq.searspartsdirect.common.fixture.GetRelatedArticlesTagFixture;
+import com.spd.cq.searspartsdirect.common.fixture.GetRelatedItemsFixture;
 
 public class GetRelatedArticlesTagTest extends MocksTag {
 
-	private GetRelatedArticlesTagFixture fixture;
+	private GetRelatedItemsFixture fixture;
 	private GetRelatedArticlesTag tag;
 	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetRelatedArticlesTagFixture(pageManager);
+		fixture = new GetRelatedItemsFixture(pageManager);
 		tag = new GetRelatedArticlesTag();
 	}
 
@@ -41,8 +41,9 @@ public class GetRelatedArticlesTagTest extends MocksTag {
 				int endResult = tag.doEndTag();
 				assertThat(endResult,is(TagSupport.EVAL_PAGE));
 				
-				List<Object> result = (List<Object>)pageContext.getAttribute("taggedPages");
-				assertNull(result);
+				List<Object> result = (List<Object>)pageContext.getAttribute("articles");
+				assertThat(result,isA(List.class));
+				assertThat(result,is(empty()));
 				
 		} catch (Exception e) {
 			throw new RuntimeException(e);

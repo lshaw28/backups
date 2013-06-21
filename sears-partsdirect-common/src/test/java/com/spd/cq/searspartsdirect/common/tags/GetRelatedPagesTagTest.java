@@ -10,24 +10,24 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.day.cq.wcm.api.Page;
-import com.spd.cq.searspartsdirect.common.fixture.GetRelatedPagesTagFixture;
-import com.spd.cq.searspartsdirect.common.helpers.AssetType;
+import com.spd.cq.searspartsdirect.common.fixture.GetRelatedItemsFixture;
 
 public class GetRelatedPagesTagTest extends MocksTag {
 	
-	private GetRelatedPagesTagFixture fixture;
+	private GetRelatedItemsFixture fixture;
 	private GetRelatedPagesTag tag;
 	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetRelatedPagesTagFixture(resourceResolver, pageManager);
+		fixture = new GetRelatedItemsFixture(pageManager);
 		tag = new GetRelatedPagesTag();
 	}
 	
 	@Test
-	public void testGetRelatedPagesTag() {
+	public void testRelatedPagesTag() {
 		try {
+				fixture.makeNHits(3, resourceResolver);
 				tag.setPageContext(pageContext);
 				tag.setAssetPath("/etc/spdAssets/scaffolding/commonasset");
 				tag.setRootPath("/content/searspartsdirect/en/somepage");
@@ -46,6 +46,4 @@ public class GetRelatedPagesTagTest extends MocksTag {
 			throw new RuntimeException(e);
 		}
 	}
-
-
 }
