@@ -100,9 +100,8 @@ public class GuideNavigationTag extends CQBaseTag {
 			generators.add(new FixedLabelTemplateLinkGenerator(Constants.INSTRUCTIONS_COMPONENT,labelFound));
 		}
 		
-		if (typesAndLabels.containsKey(Constants.COMMENTS_COMPONENT)) {
-			generators.add(new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));
-		}
+		// Comments link is unconditional
+		generators.add(new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));
 		
 		// We iterate over our generators and create our output
 		for (LinkGenerator linkGen : generators) {
@@ -153,7 +152,6 @@ public class GuideNavigationTag extends CQBaseTag {
 							"{\"link\":\""+Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.TOOLS_REQ_R_COMPONENT+"\"}",
 							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.TEXT_COMPONENT+"\"}",
 							"{\"link\":\""+Constants.INSTRUCTIONS_DEF_GUIDE_NAV_LINK+"\",\"resType\":\""+Constants.INSTRUCTIONS_COMPONENT+"\"}",
-							"{\"link\":\""+Constants.EMPTY+"\",\"resType\":\""+Constants.COMMENTS_COMPONENT+"\"}",
 						}
 						,PropertyType.STRING);
 					anyChanges = true;
