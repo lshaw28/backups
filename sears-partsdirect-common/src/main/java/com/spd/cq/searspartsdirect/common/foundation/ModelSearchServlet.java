@@ -35,9 +35,9 @@ public class ModelSearchServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException
     {
-    	boolean found = false;
     	ResourceResolver resourceResolver = request.getResourceResolver();
     	String query = request.getParameter("query");
+    	boolean found = Boolean.valueOf(request.getParameter("found"));
     	
 		Writer out = response.getWriter();
 		
