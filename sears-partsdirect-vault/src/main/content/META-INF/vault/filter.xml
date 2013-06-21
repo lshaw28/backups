@@ -11,4 +11,7 @@
 	<filter root="/apps/social/commons" />
 	<filter root="/robots.txt" />
 	<filter root="/sitemap" />
+	<filter root="/etc/workflow/launcher/config/665047955" />
+	<filter root="/etc/workflow/models/request_for_activation" />
+	<filter root="/etc/workflow/models/spd-image-upload" />
 </workspaceFilter>
