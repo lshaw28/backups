@@ -31,6 +31,7 @@ cartNav/cartNav.less
 categoryArticleList/categoryArticleList.less
 globalHeader/globalHeader.less
 globalFooter/globalFooter.less
+guideNavigation/guideNavigation.less
 headerPromo/headerPromo.less
 homeLogo/homeLogo.less
 informationBanner/informationBanner.less

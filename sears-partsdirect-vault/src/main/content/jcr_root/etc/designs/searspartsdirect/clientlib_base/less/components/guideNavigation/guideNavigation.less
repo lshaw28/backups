@@ -1,0 +1,35 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.guideNavigation {
+    background-color: #fff;
+    padding-bottom: 10px;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 10000;
+    width: 90%;
+    
+    
+    select {
+        display: none;
+    }
+    li {
+        float: left;
+        padding: 0 10px;
+        list-style-type: none;
+    }
+        
+ 
+    
+}
+
+.gn-sticky {
+    position: fixed;
+    box-shadow: 0 10px 5px -5px rgba(0,0,0,0.1);
+    top: 0;
+}
+.gn-unsticky {
+    position: absolute;
+    z-index: 0;
+}
+

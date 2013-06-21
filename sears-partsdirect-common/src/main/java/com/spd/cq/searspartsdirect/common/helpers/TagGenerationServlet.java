@@ -73,9 +73,7 @@ public class TagGenerationServlet extends SlingAllMethodsServlet {
         
         while (rows.hasNext()) {
             String [] row = rows.next();
-            if (row.length > 0) {
-        		generateTags(resourceResolver, row);
-            }
+    		generateTags(resourceResolver, row);
         }
         
         csv.close();
