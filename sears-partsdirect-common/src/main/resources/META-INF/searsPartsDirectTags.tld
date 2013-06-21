@@ -70,11 +70,6 @@
 	   <info>Get user's model information</info>
 	</tag>
 	<tag>
-	   <name>getShoppingCart</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.ShoppingCartTag</tag-class>
-	   <info>Get shopping cart information</info>
-	</tag>
-	<tag>
 	   <name>getYouTubeID</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetYouTubeIDTag</tag-class>
 	   <info>Return the ID from a YouTube URL</info>
