@@ -29,10 +29,26 @@ public class TagGenerationServletTest extends TestCase {
 			throw new RuntimeException(e);
 		}
 	}
+	
 	@Test
 	public void testWithNulls() {
 		try {
 			fixture.setUpNullNamespace();
+			servlet.doPost(fixture.getRequest(), fixture.getResponse());
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testExceptions() {
+		try {
+			fixture.setUpExceptionOne();
+			servlet.doPost(fixture.getRequest(), fixture.getResponse());
+			fixture.setUpExceptionTwo();
+			servlet.doPost(fixture.getRequest(), fixture.getResponse());
+			fixture.setUpExceptionThree();
 			servlet.doPost(fixture.getRequest(), fixture.getResponse());
 		}
 		catch (Exception e) {
