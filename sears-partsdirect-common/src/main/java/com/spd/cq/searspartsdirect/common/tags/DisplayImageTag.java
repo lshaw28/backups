@@ -23,7 +23,7 @@ public class DisplayImageTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		JspWriter out = pageContext.getOut();
 		Resource imgResource = resource;
-		if (path.startsWith("/")) {
+		if (path != null && path.startsWith("/")) {
 			imgResource = resourceResolver.resolve(path);
 			path = null;
 		}

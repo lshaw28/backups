@@ -16,6 +16,7 @@ import javax.servlet.jsp.PageContext;
 import junit.framework.TestCase;
 
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.scripting.SlingBindings;
@@ -43,6 +44,7 @@ public class MocksTag extends TestCase {
 	protected ValueMap properties;
 	protected Design currentDesign;
 	protected Design resourceDesign;
+	protected Resource resource;
 	
 	@Override
 	protected void setUp() throws Exception {
@@ -94,5 +96,7 @@ public class MocksTag extends TestCase {
 		when(pageContext.findAttribute("currentDesign")).thenReturn(currentDesign);
 		resourceDesign = mock(Design.class);
 		when(pageContext.findAttribute("resourceDesign")).thenReturn(resourceDesign);
+		resource = mock(Resource.class);
+		when(pageContext.findAttribute("resource")).thenReturn(resource);
 	}
 }
