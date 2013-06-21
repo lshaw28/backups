@@ -43,6 +43,22 @@
 			$('.video div[data-youtubeid]').each(function () {
 				var newVideo = new video($(this));
 			});
-		}
+		};
+                /**
+		 * guideNavigation component setup
+		 */
+                $('.guideNavigation').each(function() {
+                    var newGuideNavigation = new guideNavigation($(this));
+                    newGuideNavigation.setBreakPoint($(this).offset()['top']);
+                    newGuideNavigation.setClassToggles('gn-sticky', 'gn-unsticky');
+                    
+                    return $(window).scroll(function() {
+                        var scrollDist;
+                        scrollDist = $(window).scrollTop();
+                        newGuideNavigation.checkState(scrollDist);
+                    });
+                    
+                });
+                
 	});
 }(window));
