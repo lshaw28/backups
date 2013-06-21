@@ -16,7 +16,7 @@
 				title="Sections">
 				<items jcr:primaryType="cq:WidgetCollection">
 					<primary jcr:primaryType="cq:Widget"
-						fieldDescription="Click the '+' button to add a new recognized section"
+						fieldDescription="Click the '+' button to add a new recognized section. Comments link is always displayed."
 						fieldLabel="Sections"
 						fieldSubLabel="Add, remove, or customize recognized page sections.&lt;br /&gt;&lt;br /&gt;Component types chosen will have links generated - remove (-) for no link.&lt;br /&gt;&lt;br /&gt;Leave link text blank to use default label, if available."
 						name="./sections"

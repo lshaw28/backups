@@ -8,6 +8,7 @@
 	</div>
 	<div class="row-fluid">
 		<div class="span9">
+			<cq:include path="overviewImage" resourceType="searspartsdirect/components/content/responsiveImage" />
 			<cq:include path="overview" resourceType="searspartsdirect/components/content/text" />
 		</div>
 		<div class="span3">
@@ -16,6 +17,7 @@
 	</div>
 	<div class="row-fluid">
 		<div class="span12">
+			<cq:include path="categoryListing" resourceType="searspartsdirect/components/content/categoryListing" />
 			<cq:include path="parsys" resourceType="foundation/components/parsys" />
 		</div>
 	</div>

@@ -13,8 +13,6 @@
 					   name="./componentHeader"
 					   maxLength="60"
 					   xtype="textfield" />
-					   
-			    <checkBox  />	
 			    
 			</items>
 		</Panel>

@@ -1,30 +1,45 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.TagSupport;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.fixture.RequiredToolsTagFixture;
+import com.spd.cq.searspartsdirect.common.fixture.RequiredToolsPartsTagFixture;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 public class RequiredToolsTagTest extends MocksTag {
 
-	private RequiredToolsTagFixture fixture;
+	private RequiredToolsPartsTagFixture fixture;
 	private RequiredToolsTag tag;
 	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new RequiredToolsTagFixture();
+		fixture = new RequiredToolsPartsTagFixture(properties);
 		tag = new RequiredToolsTag();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
-	public void testRequiredTools() {
-		try {
-			
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	public void testRequiredTools() throws JspException {
+		runsSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testRequiredToolsWithTools() throws JspException {
+		fixture.setUpSomeTools();
+		runsSkipsBodyEvalsPage();
+	}
+	
+	private void runsSkipsBodyEvalsPage() throws JspException {
+		tag.setPageContext(pageContext);
+		int startResult = tag.doStartTag();
+		int endResult = tag.doEndTag();
+		assertThat(startResult,is(TagSupport.SKIP_BODY));
+		assertThat(endResult,is(TagSupport.EVAL_PAGE));
 	}
 }

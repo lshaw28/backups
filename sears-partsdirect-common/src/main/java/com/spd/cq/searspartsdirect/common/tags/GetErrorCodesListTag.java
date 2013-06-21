@@ -86,8 +86,7 @@ public class GetErrorCodesListTag extends CQBaseTag {
 						}
 					}
 				} catch (RepositoryException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error("Failure building results, ",e);
 				}
 		    }
 		    

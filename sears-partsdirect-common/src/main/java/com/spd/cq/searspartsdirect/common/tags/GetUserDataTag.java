@@ -120,7 +120,7 @@ public class GetUserDataTag extends CQBaseTag {
 			pageContext.setAttribute("userData", pdUserDataModel);
 
 		} catch (IOException e) {
-			log.error("IP Exception while getting data from PD API ", e);
+			log.error("I/O Exception while getting data from PD API ", e);
 		} catch (JSONException e) {
 			log.error("JSON Exception while getting data from PD API ", e);
 		}

@@ -60,16 +60,6 @@
 		<info>Provides the product category name</info>
 	</tag>
 	<tag>
-	   <name>getLoginStatus</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetLoginStatusTag</tag-class>
-	   <info>Checks if the user is logged in or not</info>
-	</tag>
-	<tag>
-	   <name>getRegisterStatus</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetRegisterStatusTag</tag-class>
-	   <info>Checks if the user is registered or not</info>
-	</tag>
-	<tag>
 	   <name>getRecentlyViewed</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.RecentlyViewedTag</tag-class>
 	   <info>Get the recently viewed model and parts</info>
