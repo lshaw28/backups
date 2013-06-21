@@ -12,26 +12,26 @@ import com.spd.cq.searspartsdirect.common.fixture.RequiredToolsPartsTagFixture;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class RequiredToolsTagTest extends MocksTag {
+public class RequiredPartsTagTest extends MocksTag {
 
 	private RequiredToolsPartsTagFixture fixture;
-	private RequiredToolsTag tag;
+	private RequiredPartsTag tag;
 	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
 		fixture = new RequiredToolsPartsTagFixture(properties);
-		tag = new RequiredToolsTag();
+		tag = new RequiredPartsTag();
 	}
 
 	@Test
-	public void testRequiredTools() throws JspException {
+	public void testRequiredParts() throws JspException {
 		runsSkipsBodyEvalsPage();
 	}
 	
 	@Test
-	public void testRequiredToolsWithTools() throws JspException {
-		fixture.setUpSomeTools();
+	public void testRequiredPartsWithParts() throws JspException {
+		fixture.setUpSomeParts();
 		runsSkipsBodyEvalsPage();
 	}
 	
