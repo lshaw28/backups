@@ -19,11 +19,11 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
-public class GetRelatedArticlesTagFixture {
+public class GetRelatedItemsFixture {
 	
 	private PageManager pageManager;
 
-	public GetRelatedArticlesTagFixture(PageManager pageManager) throws RepositoryException {
+	public GetRelatedItemsFixture(PageManager pageManager) throws RepositoryException {
 		this.pageManager = pageManager;	
 	}
 	
