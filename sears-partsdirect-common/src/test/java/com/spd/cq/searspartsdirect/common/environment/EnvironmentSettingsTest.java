@@ -32,6 +32,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		ourHash.put(EnvironmentSettings.SITEMAP_STOP_PATHS, EnvironmentSettings.SITEMAP_STOP_PATHS);
 		ourHash.put(EnvironmentSettings.EXTERNAL_ADDED_PREFIX, EnvironmentSettings.EXTERNAL_ADDED_PREFIX);
 		ourHash.put(EnvironmentSettings.EXTERNAL_ADDED_SUFFIX, EnvironmentSettings.EXTERNAL_ADDED_SUFFIX);
+		ourHash.put(EnvironmentSettings.PD_USERDATA_API, EnvironmentSettings.PD_USERDATA_API);
 		when(componentContext.getProperties()).thenReturn(ourHash);
 	}
 	
@@ -43,6 +44,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getSitemapStopPaths(),is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getExternalAddedPrefix(),is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getExternalAddedSuffix(),is(instanceOf(String.class)));
+		assertThat(EnvironmentSettings.getPDUserDataApiUrl(), is(instanceOf(String.class)));
 		try {
 			hook.activate(componentContext);
 		} catch (Exception e) {
@@ -53,6 +55,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getSitemapStopPaths(),is(EnvironmentSettings.SITEMAP_STOP_PATHS));
 		assertThat(EnvironmentSettings.getExternalAddedPrefix(),is(EnvironmentSettings.EXTERNAL_ADDED_PREFIX));
 		assertThat(EnvironmentSettings.getExternalAddedSuffix(),is(EnvironmentSettings.EXTERNAL_ADDED_SUFFIX));
+		assertThat(EnvironmentSettings.getPDUserDataApiUrl(), is (EnvironmentSettings.PD_USERDATA_API));
 		try {
 			hook.deactivate(componentContext);
 		} catch (Exception e) {
