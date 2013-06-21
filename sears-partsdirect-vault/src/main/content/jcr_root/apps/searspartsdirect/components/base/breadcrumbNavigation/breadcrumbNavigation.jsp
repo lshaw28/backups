@@ -1,7 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <ul class="breadcrumb">
+	<li class="hidden-phone visible-tablet visible-desktop"><a href="http://www.searspartsdirect.com/">Home</a></li>
 <%
-	// @TODO: Speak to Dale
     // get starting point of trail
     long level = currentStyle.get("absParent", 3L); // 2nd arg here is absolute depth to start at
     long endLevel = currentStyle.get("relParent", 0L); // 2nd arg here is relative height to end at
@@ -9,7 +9,7 @@
 	delimStr = "<span class=\"divider\">" + delimStr + "</span>";
     String trailStr = currentStyle.get("trail", "");
     int currentLevel = currentPage.getDepth();
-    String delim = "";
+    String delim = ">";
 	String linkClass = "hidden-phone visible-tablet visible-desktop";
     while (level < currentLevel - endLevel) {
         Page trail = currentPage.getAbsoluteParent((int) level);
