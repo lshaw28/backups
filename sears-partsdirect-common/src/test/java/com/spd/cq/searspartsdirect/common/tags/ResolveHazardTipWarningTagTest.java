@@ -1,10 +1,9 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
-import javax.jcr.Node;
-import javax.jcr.Property;
+import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
+import javax.jcr.ValueFormatException;
 
-import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +12,6 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
 
 /**
  * @author bzethmayr
@@ -22,14 +20,6 @@ import static org.mockito.Mockito.*;
 public class ResolveHazardTipWarningTagTest extends MocksTag {
 	
 	private ResolveHtwFixture fixture;
-	
-	private Property adhocProperty;
-	private Property choiceProperty;
-	private Resource choiceResource;
-	private Node choiceNode;
-	private Property choiceTitleProperty;
-	private Node choiceImageNode;
-	
 	private ResolveHazardTipWarningTag resolveHtwTag;
 	
 	/* (non-Javadoc)
@@ -38,55 +28,97 @@ public class ResolveHazardTipWarningTagTest extends MocksTag {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new ResolveHtwFixture();
-		
-		adhocProperty = mock(Property.class);
-		choiceProperty = mock(Property.class);
-		choiceResource = mock(Resource.class);
-		choiceNode = mock(Node.class);
-		choiceTitleProperty = mock(Property.class);
-		choiceImageNode = mock(Node.class);
-		
+		fixture = new ResolveHtwFixture(resourceResolver,currentNode);
 		resolveHtwTag = new ResolveHazardTipWarningTag();
 	}
 
 	/**
 	 * Test method for {@link com.spd.cq.searspartsdirect.common.tags.ResolveHazardTipWarningTag#doStartTag()}.
+	 * @throws RepositoryException 
+	 * @throws PathNotFoundException 
 	 */
 	@Test
-	public void testDoStartTagAdhocInvalidHazard() {
-		setupAdhocExists();
-		setupAdhocValue();
+	public void testDoStartTagAdhocInvalidHazard() throws PathNotFoundException, RepositoryException {
+		fixture.setupAdhocExists();
+		fixture.setupAdhocValue();
 		setupForHazardTest();
 		resolveHtwTag.doStartTag();
 		assertThat((String)pageContext.getAttribute("htwText"),is(fixture.getAdhocHazardText()));
-		assertThat((String)pageContext.getAttribute("htwImage"),is(""));
+		assertThat((String)pageContext.getAttribute("htwImage"),is(Constants.EMPTY));
+	}
+	
+	@Test
+	public void testDoStartTagAdhocEmptyHazard() throws PathNotFoundException, RepositoryException {
+		fixture.setupAdhocExists();
+		fixture.setupAdhocEmpty();
+		setupForHazardTest();
+		resolveHtwTag.doStartTag();
+		assertThat((String)pageContext.getAttribute("htwText"),is(fixture.getHazardPlaceholder()));
+		assertThat((String)pageContext.getAttribute("htwImage"),is(Constants.EMPTY));
+	}
+	
+	@Test
+	public void testDoStartTagAdhocExplodingHazard() throws PathNotFoundException, RepositoryException {
+		fixture.setupAdhocExists();
+		fixture.setupAdhocExplodes();
+		setupForHazardTest();
+		resolveHtwTag.doStartTag();
+		assertThat((String)pageContext.getAttribute("htwText"),is(fixture.getHazardPlaceholder()));
+		assertThat((String)pageContext.getAttribute("htwImage"),is(Constants.EMPTY));
 	}
 	
 	/**
 	 * Test method for {@link com.spd.cq.searspartsdirect.common.tags.ResolveHazardTipWarningTag#doStartTag()}.
+	 * @throws RepositoryException 
 	 */
 	@Test
-	public void testDoStartTagAdhocValidHazard() {
-		setupAdhocExists();
-		setupAdhocValue();
-		setupChoiceExists();
-		setupChoiceValue();
-		setupChoiceValueContents();
+	public void testDoStartTagAdhocValidHazard() throws RepositoryException {
+		fixture.setupAdhocExists();
+		fixture.setupAdhocValue();
+		fixture.setupChoiceExists();
+		fixture.setupChoiceValue();
+		fixture.setupChoiceValueContents();
 		setupForHazardTest();
 		resolveHtwTag.doStartTag();
 		assertThat((String)pageContext.getAttribute("htwText"),is(fixture.getAdhocHazardText()));
 		assertThat((String)pageContext.getAttribute("htwImage"),is(fixture.getChoiceHazardImage()));
 	}
 	
+	@Test
+	public void testDoStartTagAdhocValidEmptyHazard() throws RepositoryException {
+		fixture.setupAdhocExists();
+		fixture.setupAdhocValue();
+		fixture.setupChoiceExists();
+		fixture.setupChoiceValue();
+		fixture.setupChoiceValueEmpty();
+		setupForHazardTest();
+		resolveHtwTag.doStartTag();
+		assertThat((String)pageContext.getAttribute("htwText"),is(fixture.getAdhocHazardText()));
+		assertThat((String)pageContext.getAttribute("htwImage"),is(Constants.EMPTY));
+	}
+	
+	@Test
+	public void testDoStartTagAdhocValidExplodingHazard() throws RepositoryException {
+		fixture.setupAdhocExists();
+		fixture.setupAdhocValue();
+		fixture.setupChoiceExists();
+		fixture.setupChoiceExplodes();
+		setupForHazardTest();
+		resolveHtwTag.doStartTag();
+		assertThat((String)pageContext.getAttribute("htwText"),is(fixture.getAdhocHazardText()));
+		assertThat((String)pageContext.getAttribute("htwImage"),is(Constants.EMPTY));
+	}
+	
 	/**
 	 * Test method for {@link com.spd.cq.searspartsdirect.common.tags.ResolveHazardTipWarningTag#doStartTag()}.
+	 * @throws RepositoryException 
+	 * @throws ValueFormatException 
 	 */
 	@Test
-	public void testDoStartTagInvalidHazard() {
-		setupAdhocExists();
-		setupChoiceExists();
-		setupChoiceValue();
+	public void testDoStartTagInvalidHazard() throws ValueFormatException, RepositoryException {
+		fixture.setupAdhocExists();
+		fixture.setupChoiceExists();
+		fixture.setupChoiceValue();
 		setupForHazardTest();
 		resolveHtwTag.doStartTag();
 		assertThat((String)pageContext.getAttribute("htwText"),is(fixture.getHazardPlaceholder()));
@@ -95,13 +127,14 @@ public class ResolveHazardTipWarningTagTest extends MocksTag {
 	
 	/**
 	 * Test method for {@link com.spd.cq.searspartsdirect.common.tags.ResolveHazardTipWarningTag#doStartTag()}.
+	 * @throws RepositoryException 
 	 */
 	@Test
-	public void testDoStartTagValidHazard() {
-		setupAdhocExists();
-		setupChoiceExists();
-		setupChoiceValue();
-		setupChoiceValueContents();
+	public void testDoStartTagValidHazard() throws RepositoryException {
+		fixture.setupAdhocExists();
+		fixture.setupChoiceExists();
+		fixture.setupChoiceValue();
+		fixture.setupChoiceValueContents();
 		setupForHazardTest();
 		resolveHtwTag.doStartTag();
 		assertThat((String)pageContext.getAttribute("htwText"),is(fixture.getChoiceHazardText()));
@@ -165,59 +198,11 @@ public class ResolveHazardTipWarningTagTest extends MocksTag {
 		assertThat(resolveHtwTag.getPlaceholder(),is("6"));
 	}
 
-	private void setupAdhocExists() {
-		try {
-			when(currentNode.getProperty(fixture.getHazardAdhocField())).thenReturn(adhocProperty);
-			when(currentNode.hasProperty(fixture.getHazardAdhocField())).thenReturn(true);
-		} catch (RepositoryException re) {
-			fail("Mock threw unexpected exception");
-		}
-	}
-	
-	private void setupChoiceExists() {
-		try {
-			when(currentNode.getProperty(fixture.getHazardChoiceField())).thenReturn(choiceProperty);
-			when(currentNode.hasProperty(fixture.getHazardChoiceField())).thenReturn(true);
-		} catch (RepositoryException re) {
-			fail("Mock threw unexpected exception");
-		}
-	}
-	
 	private void setupForHazardTest() {
 		resolveHtwTag.setAdhocField(fixture.getHazardAdhocField());
 		resolveHtwTag.setChoiceField(fixture.getHazardChoiceField());
 		resolveHtwTag.setPlaceholder(fixture.getHazardPlaceholder());
 		resolveHtwTag.setPageContext(pageContext);
 	}
-	
-	private void setupAdhocValue() {
-		try {
-			when(adhocProperty.getString()).thenReturn(fixture.getAdhocHazardText());
-		} catch (RepositoryException re) {
-			fail("Mock threw unexpected exception");
-		}
-	}
-	
-	private void setupChoiceValue() {
-		try {
-			when(choiceProperty.getString()).thenReturn(fixture.getChoiceValue());
-		} catch (RepositoryException re) {
-			fail("Mock threw unexpected exception");
-		}
-	}
-	
-	private void setupChoiceValueContents() {
-		when(resourceResolver.resolve(fixture.getChoiceValue())).thenReturn(choiceResource);
-		when(choiceResource.adaptTo(Node.class)).thenReturn(choiceNode);
-		try {
-			when(choiceNode.getPath()).thenReturn(fixture.getChoiceValue());
-			when(choiceNode.hasProperty(Constants.ASSETS_TITLE_REL_PATH)).thenReturn(true);
-			when(choiceNode.getProperty(Constants.ASSETS_TITLE_REL_PATH)).thenReturn(choiceTitleProperty);
-			when(choiceTitleProperty.getString()).thenReturn(fixture.getChoiceHazardText());
-			when(choiceNode.hasNode(Constants.ASSETS_IMAGE_REL_PATH)).thenReturn(true);
-			when(choiceNode.getNode(Constants.ASSETS_IMAGE_REL_PATH)).thenReturn(choiceImageNode);
-		} catch (RepositoryException re) {
-			fail("Mock threw unexpected exception.");
-		}
-	}
+
 }
