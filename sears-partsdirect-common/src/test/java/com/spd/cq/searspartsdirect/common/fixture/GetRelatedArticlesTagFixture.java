@@ -1,5 +1,4 @@
 package com.spd.cq.searspartsdirect.common.fixture;
-
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -20,12 +19,16 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
-public class GetRelatedPagesTagFixture {
+public class GetRelatedArticlesTagFixture {
 	
 	private PageManager pageManager;
 
-	public GetRelatedPagesTagFixture(ResourceResolver rr, PageManager pageManager) throws RepositoryException {
-		this.pageManager = pageManager;
+	public GetRelatedArticlesTagFixture(PageManager pageManager) throws RepositoryException {
+		this.pageManager = pageManager;	
+	}
+	
+	public void makeNHits(int hitTotal, ResourceResolver rr) throws RepositoryException{
+		
 		QueryBuilder qb = mock(QueryBuilder.class);
 		when(rr.adaptTo(QueryBuilder.class)).thenReturn(qb);
 		Session s = mock(Session.class);
@@ -35,21 +38,21 @@ public class GetRelatedPagesTagFixture {
 		SearchResult sr = mock(SearchResult.class);
 		when(q.getResult()).thenReturn(sr);
 		List<Hit> hits = new ArrayList<Hit>();
-		for (int i = 0; i < 3; i++) {
-			hits.add(makeTestHitPage(i));
+		
+		for (int i = 0; i < hitTotal; i++) {
+			
+			Hit hit = mock(Hit.class);
+			Page page = mock(Page.class);
+			String hitPath = "/hit"+i;
+			when(hit.getPath()).thenReturn(hitPath);
+			when(page.getPath()).thenReturn(hitPath);
+			ValueMap properties = mock(ValueMap.class);
+			when(page.getProperties()).thenReturn(properties);
+			when(pageManager.getPage(hitPath)).thenReturn(page);
+			
+			hits.add(hit);
 		}
 		when(sr.getHits()).thenReturn(hits);
 	}
 	
-	Hit makeTestHitPage(int i) throws RepositoryException {
-		Hit hit = mock(Hit.class);
-		Page page = mock(Page.class);
-		String hitPath = "/hit"+i;
-		when(hit.getPath()).thenReturn(hitPath);
-		when(page.getPath()).thenReturn(hitPath);
-		ValueMap properties = mock(ValueMap.class);
-		when(page.getProperties()).thenReturn(properties);
-		when(pageManager.getPage(hitPath)).thenReturn(page);
-		return hit;
-	}
 }

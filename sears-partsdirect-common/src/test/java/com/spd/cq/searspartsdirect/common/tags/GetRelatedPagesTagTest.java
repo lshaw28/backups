@@ -26,7 +26,7 @@ public class GetRelatedPagesTagTest extends MocksTag {
 	}
 	
 	@Test
-	public void testAllAssetTypesAllFilters() {
+	public void testGetRelatedPagesTag() {
 		try {
 				tag.setPageContext(pageContext);
 				tag.setAssetPath("/etc/spdAssets/scaffolding/commonasset");
