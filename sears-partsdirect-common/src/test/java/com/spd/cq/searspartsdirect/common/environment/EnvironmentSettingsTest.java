@@ -33,6 +33,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		ourHash.put(EnvironmentSettings.EXTERNAL_ADDED_PREFIX, EnvironmentSettings.EXTERNAL_ADDED_PREFIX);
 		ourHash.put(EnvironmentSettings.EXTERNAL_ADDED_SUFFIX, EnvironmentSettings.EXTERNAL_ADDED_SUFFIX);
 		ourHash.put(EnvironmentSettings.PD_USERDATA_API, EnvironmentSettings.PD_USERDATA_API);
+		ourHash.put(EnvironmentSettings.PD_URL, EnvironmentSettings.PD_URL);
 		when(componentContext.getProperties()).thenReturn(ourHash);
 	}
 	
@@ -45,6 +46,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getExternalAddedPrefix(),is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getExternalAddedSuffix(),is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getPDUserDataApiUrl(), is(instanceOf(String.class)));
+		assertThat(EnvironmentSettings.getPDUrl(), is(instanceOf(String.class)));
 		try {
 			hook.activate(componentContext);
 		} catch (Exception e) {
@@ -56,6 +58,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getExternalAddedPrefix(),is(EnvironmentSettings.EXTERNAL_ADDED_PREFIX));
 		assertThat(EnvironmentSettings.getExternalAddedSuffix(),is(EnvironmentSettings.EXTERNAL_ADDED_SUFFIX));
 		assertThat(EnvironmentSettings.getPDUserDataApiUrl(), is (EnvironmentSettings.PD_USERDATA_API));
+		assertThat(EnvironmentSettings.getPDUrl(), is (EnvironmentSettings.PD_URL));
 		try {
 			hook.deactivate(componentContext);
 		} catch (Exception e) {

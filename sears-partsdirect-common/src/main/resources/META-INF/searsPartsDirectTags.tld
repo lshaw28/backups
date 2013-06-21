@@ -307,4 +307,9 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetUserDataTag</tag-class>
 		<info>this is the API call to PD to get user data</info>
 	</tag>
+	<tag>
+		<name>GetPDUrl</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetPartsDirectUrl</tag-class>
+		<info>this tag will fetch the PD (QA, Stress, Production) url</info>
+	</tag>
 </taglib>

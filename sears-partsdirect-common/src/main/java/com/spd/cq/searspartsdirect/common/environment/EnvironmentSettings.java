@@ -76,6 +76,15 @@ public class EnvironmentSettings {
     	return getProperty(PD_USERDATA_API,"");
     }
     
+    
+    @Property(label = "PartsDirect URL", 
+    		description = "Configurable PartsDirect Url for QA, Stress and production env",
+    		value = "http://www.searspartsdirect.com")
+    public static final String PD_URL = "searspartsdirect.url";
+    public static String getPDUrl() {
+    	return getProperty(PD_URL,"");
+    }
+    
     // ---- for testing ----
     public void externalActivateForTesting(final ComponentContext context) throws Exception {
     	activate(context);

@@ -3,4 +3,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page import="java.util.LinkedList" %>
 <spd:DefineObjects />
-<c:set var="mainSitePath">http://www.searspartsdirect.com</c:set>
+<spd:GetPDUrl />
+<c:set var="mainSitePath" scope="request">${PDUrl}</c:set>
