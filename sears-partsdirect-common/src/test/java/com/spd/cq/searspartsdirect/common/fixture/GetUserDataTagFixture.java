@@ -11,15 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 public class GetUserDataTagFixture {
+	
+	private EnvironmentSettingsFixture envFixture;
+	private EnvironmentSettings env;
 	
 	private HttpServletRequest request;
 	private List<Cookie> cookies;
 	private final static Cookie[] emptyCookies = new Cookie[]{};
 
-	public GetUserDataTagFixture(HttpServletRequest request) {
+	public GetUserDataTagFixture(HttpServletRequest request) throws Exception {
+		envFixture = new EnvironmentSettingsFixture();
+		env = new EnvironmentSettings();
+		envFixture.setUpRealDefaults(env);
 		this.request = request;
 	}
 	
