@@ -34,6 +34,7 @@ var guideNavigation = Class.extend(function () {
                       } else if (val <= self.breakPoint && !self.el.hasClass(self.classOff)) {
                         self.el.removeClass(self.classOn).addClass(self.classOff);
                       }
+                      
                       /*
                       if (typeof self.callback === 'function') {
                         self.callback();
@@ -95,7 +96,7 @@ var guideNavigation = Class.extend(function () {
                  /**
 		 * specifies an optional callback fn
                  * @param {string} callback Optional function to call on window scroll
-		 */
+                 */
                 setCallback: function (callback) {
                     var self = this;
                     if (callback === null) {

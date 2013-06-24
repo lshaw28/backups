@@ -1,7 +1,10 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import com.spd.cq.searspartsdirect.common.fixture.AssetTypeFixture;
+import com.spd.cq.searspartsdirect.common.fixture.ExternalLinksFixture;
 import com.spd.cq.searspartsdirect.common.model.spdasset.*;
 
 import junit.framework.TestCase;
@@ -12,13 +15,22 @@ import static org.hamcrest.Matchers.*;
 /**
  * Verifies that the attributes on the AssetType enum are set up correctly. Current
  * as of 17-June-2013 with 10 members.
+ * 
+ * Added asserts for AssetType.ACCESSORY, adding tests for abstract methods.
  */
 public class AssetTypeTest extends TestCase {
 
-	// We do not need a setUp for this test.
+	private AssetTypeFixture fixture;
+	
+	@Before
+	protected void setUp() throws Exception {
+		super.setUp();
+		fixture = new AssetTypeFixture();
+	}
 
 	@Test
 	public void testGetMixedCaseName() {
+		assertThat(AssetType.ACCESSORY.getMixedCaseName(),is("accessory"));
 		assertThat(AssetType.AUTHOR.getMixedCaseName(),is("author"));
 		assertThat(AssetType.BRAND.getMixedCaseName(),is("brand"));
 		assertThat(AssetType.ERRORCODE.getMixedCaseName(),is("errorCode"));
@@ -34,6 +46,7 @@ public class AssetTypeTest extends TestCase {
 	@Test
 	public void testGetModelClass() {
 		// we use olde-style assertEquals here since hamcrest gives special treatment to Class for "is"
+		assertEquals(AssetType.ACCESSORY.getModelClass(),AccessoryModel.class);
 		assertEquals(AssetType.AUTHOR.getModelClass(),AuthorModel.class);
 		assertEquals(AssetType.BRAND.getModelClass(),BrandModel.class);
 		assertEquals(AssetType.ERRORCODE.getModelClass(),ErrorCodeModel.class);
@@ -46,4 +59,23 @@ public class AssetTypeTest extends TestCase {
 		assertEquals(AssetType.WARNING.getModelClass(),WarningModel.class);
 	}
 
+	@Test
+	public void testResolvedCreate() {
+		for (AssetType aType : AssetType.values()) {
+			Object modelInstance;
+			modelInstance = aType.createModelInstance(fixture.getPage(), fixture.getProperties());
+			assertThat(modelInstance,is(not(nullValue())));
+			assertTrue(modelInstance.getClass().equals(aType.getModelClass()));
+		}
+	}
+	
+	@Test
+	public void testUnresolvedCreate() {
+		for (AssetType aType : AssetType.values()) {
+			Object modelInstance;
+			modelInstance = aType.createModelInstance(fixture.getPagePath(), fixture.getResourceResolver());
+			assertThat(modelInstance,is(not(nullValue())));
+			assertTrue(modelInstance.getClass().equals(aType.getModelClass()));
+		}
+	}
 }

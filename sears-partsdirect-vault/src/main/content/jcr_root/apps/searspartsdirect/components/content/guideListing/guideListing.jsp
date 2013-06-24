@@ -9,11 +9,12 @@
 	
 	<c:forEach items="${entry.value}" var="popularGuide" varStatus="status">
 		<c:if test="${mainStatus.index == 0 && status.index == 0}">
-			<a href="${popularGuide.url}"><spd:displayImage path="${popularGuide.imagePath}"/></a>
-			<a href="${popularGuide.url}">${popularGuide.title}</a>
+			<spd:LinkResolver value="${popularGuide.url}" />
+			<a href="${url}"><spd:displayImage path="${popularGuide.imagePath}"/></a>
+			<a href="${url}">${popularGuide.title}</a>
 			<cq:text property="difficultyLevel"/> <br/>
 			<cq:text property="timeRequired"/><br/>		
-			<a href="${popularGuide.url}.html"><cq:text property="viewAllText"/> </a> <br/>
+			<a href="${url}"><cq:text property="viewAllText"/> </a> <br/>
 		</c:if>
 	</c:forEach>
 </c:forEach>
@@ -25,14 +26,13 @@
  --%>
 <cq:text property="allGuidestitle"/> <br/>
 <cq:text property="subTitle"/> <br/>
-	
-
 
 <c:forEach items="${guides}" var="row">
     SubCategory:  ${row.key}<br/>
  	<c:forEach var="guide" items="${row.value}">
-		<a href="${guide.url}"><spd:displayImage path="${guide.imagePath}"/></a>
-		<a href="${guide.url}">${guide.title}</a> <br/>
+ 		<spd:LinkResolver value="${guide.url}" />
+		<a href="${url}"><spd:displayImage path="${guide.imagePath}"/></a>
+		<a href="${url}">${guide.title}</a> <br/>
 	</c:forEach>
 </c:forEach>
  

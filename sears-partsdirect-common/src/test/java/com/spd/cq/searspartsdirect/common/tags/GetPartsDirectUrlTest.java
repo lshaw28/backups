@@ -13,6 +13,7 @@ public class GetPartsDirectUrlTest  extends MocksTag{
 		GetPartsDirectUrl getPartsDirectUrl = new GetPartsDirectUrl();
 		getPartsDirectUrl.setPageContext(pageContext);
 		getPartsDirectUrl.doStartTag();
+		getPartsDirectUrl.doEndTag();
 		Assert.assertNotNull(pageContext.getAttribute("PDUrl"));
 	}
 

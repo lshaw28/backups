@@ -15,8 +15,11 @@
 	</c:choose>
 	<ul>
 		<c:forEach var="category" items="${categories}">
-			<li><a href="${category.url}.html">${category.title}</a></li>
+			<spd:LinkResolver value="${category.url}" />
+			<li><a href="${url}">${category.title}</a></li>
 		</c:forEach>
 	</ul>
-	<a href="<cq:text property="viewAllLink"/>.html">View All Categories</a>
+	<c:set var="viewAllLink"><cq:text property='viewAllLink'/></c:set>
+	<spd:LinkResolver value="${viewAllLink}" />
+	<a href="${url}">View All Categories</a>
 </c:if>
