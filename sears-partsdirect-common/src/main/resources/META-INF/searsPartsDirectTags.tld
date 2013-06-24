@@ -327,5 +327,11 @@
 		<name>GetSymptomFrequency</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetSymptomFrequency</tag-class>
 		<info>this tag will fetch symptom frequencies from PD using symptom id</info>
+		<attribute>
+			<name>symptomList</name>
+			<type>java.util.List</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 </taglib>
