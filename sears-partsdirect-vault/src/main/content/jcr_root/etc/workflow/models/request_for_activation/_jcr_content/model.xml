@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-    jcr:isCheckedOut="{Boolean}false"
     jcr:primaryType="cq:WorkflowModel"
-    jcr:uuid="a5f66ca9-550d-4852-8a92-468f418d1823"
     sling:resourceType="cq/workflow/components/model"
     description="This is the default request for activation workflow"
     title="Request for Activation">
     <metaData
-        cq:lastModified="{Long}1370538472259"
-        cq:lastModifiedBy="admin"
         jcr:primaryType="nt:unstructured"
         tags="wcm"/>
     <nodes jcr:primaryType="nt:unstructured">
