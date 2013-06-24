@@ -18,7 +18,7 @@
 								name="./title" 
 								maxLength="70"
 								allowBlank="{Boolean}false"
-								xtype="textarea" />
+								xtype="text" />
 								
 						<difficulty 
 								jcr:primaryType="cq:Widget" 
@@ -42,7 +42,7 @@
 								name="./viewAllText" 
 								maxLength="35"
 								allowBlank="{Boolean}false"
-								xtype="textarea" />
+								xtype="text" />
 						
 					</items>
 				</tab1>
@@ -56,14 +56,8 @@
 								name="./allGuidestitle" 
 								maxLength="42"
 								allowBlank="{Boolean}true"
-								xtype="textarea" />
-						<subTitle jcr:primaryType="cq:Widget" 
-								fieldLabel="Sub Category Title"
-								name="./subTitle" 
-								maxLength="70"
-								allowBlank="{Boolean}true"
-								xtype="textarea" />
-	
+								xtype="text" />
+
 					</items>
 				</tab2>
 			</items>
