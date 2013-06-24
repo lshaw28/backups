@@ -312,4 +312,9 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetPartsDirectUrl</tag-class>
 		<info>this tag will fetch the PD (QA, Stress, Production) url</info>
 	</tag>
+	<tag>
+		<name>GetSymptomFrequency</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetSymptomFrequency</tag-class>
+		<info>this tag will fetch symptom frequencies from PD using symptom id</info>
+	</tag>
 </taglib>

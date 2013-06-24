@@ -10,9 +10,9 @@
 					xtype="textfield"
 					maxlength="42"/>
 
-		<errorCodesRichtext jcr:primaryType="cq:Widget"
+		<optionalDescription jcr:primaryType="cq:Widget"
 					fieldLabel="Description"
-					name="./errorCodesRichtext"
+					name="./optionalDescription"
 					xtype="richtext"
 					maxlength="500"
 					allowBlank="{Boolean}true"/>
