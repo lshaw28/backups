@@ -2,13 +2,12 @@
 <c:set var="stepCounter" scope="request">0</c:set>
 <c:set var="localTitle"><cq:text property="./instructionsTitle" placeholder="" /></c:set>
 
-<c:choose>
+<h3><c:choose>
 	<c:when test="${empty localTitle}">
-		<cq:include path="/etc/spdAssets/globalConfig/instructionsTitle"
-				resourceType="searspartsdirect/components/content/globalInstructionsTitle" />
+		<cq:include path="/etc/spdAssets/globalConfig/instructionsTitle" resourceType="searspartsdirect/components/content/globalInstructionsTitle" />
 	</c:when>
-	<c:otherwise><h3>${localTitle}</h3></c:otherwise>
-</c:choose>
+	<c:otherwise>${localTitle}</c:otherwise>
+</c:choose></h3>
 
 <div class="row-fluid">
 	<div class="span12 offset-small">
