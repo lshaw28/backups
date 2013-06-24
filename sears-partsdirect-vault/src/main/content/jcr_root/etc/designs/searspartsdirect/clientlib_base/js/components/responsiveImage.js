@@ -211,10 +211,6 @@ var responsiveImage = Class.extend(function () {
 				self.render();
 			});
 
-			$('#viewport').change(function () {
-				self.render();
-			});
-
 			self.isBound = true;
 		}
 	};

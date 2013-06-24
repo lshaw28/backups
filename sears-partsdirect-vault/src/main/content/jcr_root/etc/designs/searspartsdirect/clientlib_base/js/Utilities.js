@@ -55,8 +55,7 @@
 		 * @return {Boolean} Check result
 		 */
 		isMobileBreakpoint: function () {
-			var self = this,
-				currentWidth = self.getCurrentWidth();
+			var currentWidth = parseInt($(window).width(), 10);
 
 			if (currentWidth < 768) {
 				return true;
@@ -69,23 +68,13 @@
 		 * @return {Boolean} Check result
 		 */
 		isTabletBreakpoint: function () {
-			var self = this,
-				currentWidth = self.getCurrentWidth();
+			var currentWidth = parseInt($(window).width(), 10);
 
 			if (currentWidth > 767 && currentWidth < 1025) {
 				return true;
 			} else {
 				return false;
 			}
-		},
-		/**
-		 * Obfuscation of width detection to handle the simulator
-		 * @return {number} Current width of checked viewport
-		 */
-		getCurrentWidth: function () {
-			var width = $('#viewport').width();
-
-			return parseInt(width, 10);
 		},
 		/**
 		 * Handles responsive input help text
