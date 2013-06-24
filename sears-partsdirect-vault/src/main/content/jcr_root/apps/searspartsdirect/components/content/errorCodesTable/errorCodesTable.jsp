@@ -30,7 +30,8 @@
 			 	<td>${model.condition}</td>
 			 	<c:choose>
 			 		<c:when test='${fn:contains(model.repairPath, "/")}'>
-			 			<td><a href="${model.repairPath}.html">Repair or Installation guide link</a></td>
+			 			<spd:LinkResolver value="${model.repairPath}" />
+			 			<td><a href="${url}">Repair or Installation guide link</a></td>
 			 		</c:when>	
 			 		<c:otherwise>
 			 			<td>${model.repairPath}</a></td>
