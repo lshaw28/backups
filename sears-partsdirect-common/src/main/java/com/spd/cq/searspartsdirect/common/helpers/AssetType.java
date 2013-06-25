@@ -118,8 +118,8 @@ public enum AssetType {
 			return new AccessoryModel(p.getPath(),
 					title,
 					description,
-					properties.get("partNumber",""),
 					p.getPath() + Constants.ASSETS_IMAGE_PATH,
+					properties.get("partNumber",""),
 					properties.get("linkUrl",""));
 		}
 	};
