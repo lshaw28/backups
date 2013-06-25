@@ -103,11 +103,11 @@ public class GetUserDataTag extends CQBaseTag {
 			}
 			
 			if (json.has("firstName")) {
-				pdUserDataModel.setFirstName("firstName");
+				pdUserDataModel.setFirstName(json.getString("firstName"));
 			}
 			
 			if (json.has("lastName")) {
-				pdUserDataModel.setLastName("lastName");
+				pdUserDataModel.setLastName(json.getString("lastName"));
 			}
 			
 			pageContext.setAttribute("userData", pdUserDataModel);
