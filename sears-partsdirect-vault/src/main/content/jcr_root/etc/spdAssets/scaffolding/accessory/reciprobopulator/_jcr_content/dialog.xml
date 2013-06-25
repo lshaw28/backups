@@ -11,11 +11,6 @@
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title"
                     name="./jcr:content/jcr:title"/>
-                <description
-                    jcr:primaryType="cq:Widget"
-                    fieldLabel="Description"
-                    name="./jcr:content/jcr:description"
-                    xtype="textarea"/>
                 <resType
                     jcr:primaryType="cq:Widget"
                     ignoreData="{Boolean}true"
@@ -42,23 +37,5 @@
                     xtype="html5smartimage"/>
             </items>
         </tab2>
-        <tab3
-        	jcr:primaryType="cq:Panel"
-        	title="Related Assets">
-        	<items jcr:primaryType="cq:WidgetCollection">
-        		<tags
-        			jcr:primaryType="cq:Widget"
-        			name="./jcr:content/cq:tags"
-        			fieldLabel="Tag Associations"
-        			xtype="tags"/>
-				<pages
-        			jcr:primaryType="cq:Widget"
-        			name="./jcr:content/pages"
-					treeRootPath="/etc/spdAssets/scaffolding"
-        			hideLabel="{Boolean}false"
-        			fieldLabel="Page Associations"
-        			xtype="scaffoldingpagemapper"/>
-        	</items>
-       	</tab3>
     </items>
 </jcr:root>

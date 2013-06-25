@@ -26,20 +26,31 @@
                     fieldLabel="Link Destination"
                     xtype="pathfield"
                     name="./jcr:content/linkUrl"/>
+                <resType
+                    jcr:primaryType="cq:Widget"
+                    ignoreData="{Boolean}true"
+                    name="./jcr:content/image/sling:resourceType"
+                    value="foundation/components/image"
+                    xtype="hidden"/>
             </items>
         </tab1>
         <tab2
-        	jcr:primaryType="cq:Panel"
-        	title="Related Assets">
-        	<items jcr:primaryType="cq:WidgetCollection">
-        		<pages
-        			jcr:primaryType="cq:Widget"
-        			name="./jcr:content/pages"
-					treeRootPath="/etc/spdAssets/scaffolding"
-        			hideLabel="{Boolean}false"
-        			fieldLabel="Page Associations"
-        			xtype="scaffoldingpagemapper"/>
-        	</items>
-       	</tab2>
+            jcr:primaryType="cq:Panel"
+            title="Image">
+            <items jcr:primaryType="cq:WidgetCollection">
+	 		    <image
+		            jcr:primaryType="cq:Widget"
+		            cropParameter="./jcr:content/image/imageCrop"
+		            ddGroups="[media]"
+		            fileNameParameter="./jcr:content/image/fileName"
+		            fileReferenceParameter="./jcr:content/image/fileReference"
+		            mapParameter="./jcr:content/image/imageMap"
+		            name="./jcr:content/image/file"
+		            requestSuffix="/jcr:content/image.img.png"
+		            rotateParameter="./jcr:content/image/imageRotate"
+		            height="400"
+		            xtype="html5smartimage"/>
+            </items>
+        </tab2>
     </items>
 </jcr:root>
