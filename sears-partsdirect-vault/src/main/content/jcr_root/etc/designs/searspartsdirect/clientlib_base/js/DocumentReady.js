@@ -47,13 +47,10 @@
 		});
 		/**
 		 * video component setup
-		 * Verify class is loaded
 		 */
-		if (typeof video === 'function') {
-			$('.video div[data-youtubeid]').each(function () {
-				var newVideo = new video($(this));
-			});
-		};
+		$('.video div[data-youtubeid]').each(function () {
+			var newVideo = new video($(this));
+		});
         /**
 		 * guideNavigation component setup
 		 */
