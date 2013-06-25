@@ -3,6 +3,7 @@
 <h3><cq:text property="toolsRequiredTitle" placeholder="Tools Required:" /></h3>
 <ul class="offset-small">
 <c:forEach var="tool" items="${tools}">
-	<li data-toolid="${tool.id}">${tool.text}</li>
+	<spd:LinkResolver value="${tool.url}" />
+	<li data-toolid="${tool.id}"><a href="${url}">${tool.text}</a></li>
 </c:forEach>
 </ul>

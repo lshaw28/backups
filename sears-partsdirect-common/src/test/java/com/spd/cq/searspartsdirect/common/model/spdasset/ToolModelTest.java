@@ -19,7 +19,7 @@ public class ToolModelTest  extends TestCase {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		toolModel = new ToolModel(text,id);
+		toolModel = new ToolModel(text,id, "");
 	}
 	
 	@Test
