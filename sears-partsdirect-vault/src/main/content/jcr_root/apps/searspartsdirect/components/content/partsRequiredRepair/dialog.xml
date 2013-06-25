@@ -17,7 +17,7 @@
 				<multi
 					jcr:primaryType="cq:Widget"
 					fieldLabel="Parts"
-					name="./multipart"
+					name="./multiParts"
 					xtype="multifield">
 					<fieldConfig
 						jcr:primaryType="cq:Widget"
@@ -33,6 +33,12 @@
 								fieldLabel="ID"
 								name="id"
 								xtype="textfield"/>
+							<url
+		                        jcr:primaryType="cq:Widget"
+		                        fieldLabel="Link"
+		                        name="url"
+		                        width="{Long}130"
+		                        xtype="pathfield"/>								
 						</items>
 					</fieldConfig>
 				</multi>
