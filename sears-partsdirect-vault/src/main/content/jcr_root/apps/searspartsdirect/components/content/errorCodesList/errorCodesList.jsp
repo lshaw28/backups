@@ -13,7 +13,8 @@
 	<table border="1">
 		<tr><td>${item.key.title} <!-- ${item.key.description}--></td><td><spd:displayImage path="${item.key.logoPath}"/></td>
 		<c:forEach var="errorCodeTable" items="${item.value}">
-			<tr><td colspan="2"><a href="${errorCodeTable.path}.html">${errorCodeTable.title}</a></td></tr>
+			<spd:LinkResolver value="${errorCodeTable.path}" />
+			<tr><td colspan="2"><a href="${url}">${errorCodeTable.title}</a></td></tr>
 		</c:forEach>
 	</table>
 </c:forEach>

@@ -17,6 +17,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.AssetType;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.model.spdasset.AccessoryModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.AuthorModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
@@ -75,68 +76,7 @@ public class GetAssetsTag extends CQBaseTag {
 	        for (Hit hit: hits) {
 	        	Page p = pageManager.getPage(hit.getPath());
 				ValueMap properties = p.getProperties();
-				String title = properties.get(Constants.ASSETS_TITLE_PATH,"");
-				String description = properties.get(Constants.ASSETS_DESCRIPTION_PATH,"");
-				switch (assetTypeEnum) {
-					case BRAND: 
-						result.add(new BrandModel(p.getPath(),
-								title,
-								description,
-								p.getPath() + Constants.ASSETS_LOGO_PATH));
-						break;
-					case ERRORCODE: 
-						result.add(new ErrorCodeModel(p.getPath(),
-								title,
-								description,
-								properties.get("repairPath","")));
-						break;
-					case HAZARD:
-						result.add(new HazardModel(p.getPath(),
-								title,
-								p.getPath() + Constants.ASSETS_IMAGE_PATH));
-						break;
-					case JOBCODE:
-						result.add(new JobCodeModel(p.getPath(),
-								title,
-								description));
-						break;
-					case PARTTYPE:
-						result.add(new PartTypeModel(p.getPath(),
-								title,
-								description,
-								p.getPath() + Constants.ASSETS_IMAGE_PATH));
-						break;
-					case PRODUCTCATEGORY:
-						result.add(new ProductCategoryModel(p.getPath(),
-								title,
-								description,
-								p.getPath() + Constants.ASSETS_IMAGE_PATH));
-						break;
-					case TIP:
-						result.add(new TipModel(p.getPath(),
-								title,
-								p.getPath() + Constants.ASSETS_IMAGE_PATH));
-						break;
-					case WARNING:
-						result.add(new WarningModel(p.getPath(),
-								title,
-								p.getPath() + Constants.ASSETS_IMAGE_PATH));
-						break;
-					case SYMPTOM:
-						result.add(new SymptomModel(p.getPath(),
-								title,
-								description,
-								properties.get("id","")));
-						break;
-					case AUTHOR:
-						result.add(new AuthorModel(p.getPath(),
-								title,
-								description,
-								p.getPath() + Constants.ASSETS_IMAGE_PATH));
-						break;
-					default:
-						break;
-				}
+				result.add(assetTypeEnum.createModelInstance(p, properties));
 			}
 		}
 		catch (Exception e) {

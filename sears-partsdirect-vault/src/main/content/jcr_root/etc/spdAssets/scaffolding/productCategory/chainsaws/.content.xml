@@ -9,7 +9,8 @@
         jcr:description="Chainsaw description"
         jcr:primaryType="cq:PageContent"
         jcr:title="Chainsaws"
-        sling:resourceType="searspartsdirect/components/scaffolding/genericScaffolding">
+        sling:resourceType="searspartsdirect/components/scaffolding/genericScaffolding"
+        pages="[/etc/spdAssets/scaffolding/accessory/chainTool,/etc/spdAssets/scaffolding/accessory/sharpening_kit,/etc/spdAssets/scaffolding/accessory/splashGuard,/etc/spdAssets/scaffolding/accessory/reciprobopulator]">
         <dialog/>
         <image
             jcr:lastModified="{Date}2013-05-29T11:15:31.774-04:00"

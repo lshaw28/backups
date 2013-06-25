@@ -4,6 +4,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 
 import org.apache.sling.api.resource.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.components.DropTarget;
 import com.day.cq.wcm.foundation.Image;
@@ -15,9 +17,11 @@ import com.day.cq.wcm.foundation.Image;
  *
  */
 public class DisplayImageTag extends CQBaseTag {
+	protected final static Logger log = LoggerFactory.getLogger(DisplayImageTag.class);
 	
 	protected String path;
 	protected boolean decorated = true;
+	protected String altText;
 	
 	@Override
 	public int doStartTag() throws JspException {
@@ -38,6 +42,9 @@ public class DisplayImageTag extends CQBaseTag {
 	    if (!currentDesign.equals(resourceDesign)) {
 	        image.setSuffix(currentDesign.getId());
 	    }
+	    if (altText != null) {
+	    	image.setAlt(altText);
+	    }
 	    String divId = "cq-image-jsp-" + imgResource.getPath();
 	    try {
 	    	if (decorated) out.write("<div id=\"" + divId + "\">");
@@ -45,6 +52,7 @@ public class DisplayImageTag extends CQBaseTag {
 	    	if (decorated) out.write("</div>");
 	    }
 	    catch (Exception e) {
+	    	log.error("drawing image, ",e);
 	    }
         return SKIP_BODY;
 	}
@@ -60,5 +68,9 @@ public class DisplayImageTag extends CQBaseTag {
 	
 	public void setDecorated(boolean decorated) {
 		this.decorated = decorated;
+	}
+	
+	public void setAltText(String altText) {
+		this.altText = altText;
 	}
 }

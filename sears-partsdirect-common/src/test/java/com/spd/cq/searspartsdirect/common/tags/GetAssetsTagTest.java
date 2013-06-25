@@ -35,6 +35,27 @@ public class GetAssetsTagTest extends MocksTag {
 				tag.setBrandFilter("Acme");
 				tag.setProductCategoryFilter("Portable holes");
 				tag.setTagFilter("Freeze");
+				tag.setAuthorFilter("Staff");
+				int startResult = tag.doStartTag();
+				assertThat(startResult,is(TagSupport.SKIP_BODY));
+				int endResult = tag.doEndTag();
+				assertThat(endResult,is(TagSupport.EVAL_PAGE));
+				@SuppressWarnings("unchecked")
+				List<Object> result = (List<Object>)pageContext.getAttribute(type.toString()+"List");
+				assertThat(result,isA(List.class));
+				assertThat(result,hasSize(3));
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testAllAssetTypesNoFilters() {
+		try {
+			for (AssetType type : AssetType.values()) {
+				tag.setPageContext(pageContext);
+				tag.setAssetType(type.toString());
 				int startResult = tag.doStartTag();
 				assertThat(startResult,is(TagSupport.SKIP_BODY));
 				int endResult = tag.doEndTag();

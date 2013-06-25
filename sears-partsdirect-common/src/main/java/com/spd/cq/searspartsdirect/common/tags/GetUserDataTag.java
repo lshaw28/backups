@@ -42,7 +42,6 @@ public class GetUserDataTag extends CQBaseTag {
 					Constants.USER_NAME_COOKIE);
 			if (userNameCookie != null && userNameCookie.getValue() != null) {
 				apiUrl.append(userNameCookie.getValue());
-				pdUserDataModel.setLoggedIn(true);
 			} else {
 				myModelsCookie = PartsDirectCookieHelper.getCookieInfo(cookies,
 						Constants.MY_MODEL_COOKIE);
@@ -65,20 +64,38 @@ public class GetUserDataTag extends CQBaseTag {
 			json = apiHelper.readJsonFromUrl(apiUrl.toString());
 			log.debug("json.toString() "+json.toString());
 			if (json.has("cart")) {
-				JSONObject cart = json.getJSONObject("cart");
-				JSONArray cartLinesArray = cart.getJSONArray("cartLines");
-				for (int i = 0; i < cartLinesArray.length(); i++) {
-					JSONObject cartLineObj = cartLinesArray.getJSONObject(i);
-					JSONObject partObj = cartLineObj.getJSONObject("part");
-					int qty = cartLineObj.getInt("quantity");
-					Part part = new Part(partObj.getString("partNumber"),
-							partObj.getString("productGroupId"),
-							partObj.getString("supplierId"));
-					CartLineModel cartLines = new CartLineModel(part, qty);
-					log.debug("cartLines2.toString() "+ cartLines.toString());
-					lstCartLines.add(cartLines);
+				Object cartObj = json.get("cart");
+					if (cartObj != null && cartObj instanceof JSONObject) {
+					JSONObject cart = json.getJSONObject("cart");
+					if (cart != null) {
+						Object cartLinesObj = cart.get("cartLines");
+						if (cartLinesObj instanceof JSONArray) {
+							JSONArray cartLinesArray = cart.getJSONArray("cartLines");
+							for (int i = 0; i < cartLinesArray.length(); i++) {
+								JSONObject cartLineObj = cartLinesArray.getJSONObject(i);
+								JSONObject partObj = cartLineObj.getJSONObject("part");
+								int qty = cartLineObj.getInt("quantity");
+								Part part = new Part(partObj.getString("partNumber"),
+										partObj.getString("productGroupId"),
+										partObj.getString("supplierId"), partObj.getString("description"));
+								CartLineModel cartLines = new CartLineModel(part, qty);
+								log.debug("cartLines2.toString() "+ cartLines.toString());
+								lstCartLines.add(cartLines);
+							}
+						} else if (cartLinesObj instanceof JSONObject) {
+							JSONObject cartLines = cart.getJSONObject("cartLines");
+							JSONObject partObject = cartLines.getJSONObject("part");
+							int qty = cartLines.getInt("quantity");
+							Part part = new Part(partObject.getString("partNumber"),
+									partObject.getString("productGroupId"),
+									partObject.getString("supplierId"), partObject.getString("description"));
+							CartLineModel model = new CartLineModel(part, qty);
+							lstCartLines.add(model);
+							log.debug("lstCartLines.toString() "+ lstCartLines.toString());
+						}
+					}	
+					pdUserDataModel.setShoppingCart(lstCartLines);
 				}
-				pdUserDataModel.setShoppingCart(lstCartLines);
 			}
 
 			//my profile models
@@ -103,11 +120,15 @@ public class GetUserDataTag extends CQBaseTag {
 			}
 			
 			if (json.has("firstName")) {
-				pdUserDataModel.setFirstName("firstName");
+				pdUserDataModel.setFirstName(json.getString("firstName"));
 			}
 			
 			if (json.has("lastName")) {
-				pdUserDataModel.setLastName("lastName");
+				pdUserDataModel.setLastName(json.getString("lastName"));
+			}
+			
+			if (json.has("username")) {
+				pdUserDataModel.setLoggedIn(true);
 			}
 			
 			pageContext.setAttribute("userData", pdUserDataModel);

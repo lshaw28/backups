@@ -18,10 +18,10 @@ public class RequiredPartsTag  extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		ArrayList<PartModel> parts = new ArrayList<PartModel>();
 		try {
-			String[]  multiJsons = properties.get("multipart",new String[0]);
+			String[]  multiJsons = properties.get("multiParts",new String[0]);
 			for (String json : multiJsons) {
 				JSONObject jsob = new JSONObject(json);
-				PartModel part = new PartModel(jsob.getString("text"),jsob.getString("id"));
+				PartModel part = new PartModel(jsob.getString("text"),jsob.getString("id"),jsob.getString("url"));
 				parts.add(part);
 			}
 			pageContext.setAttribute("parts", parts);

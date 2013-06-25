@@ -48,6 +48,12 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+		<attribute>
+			<name>altText</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	<tag>
 		<name>getParentPage</name>
@@ -308,6 +314,11 @@
 		<info>this is the API call to PD to get user data</info>
 	</tag>
 	<tag>
+		<name>uniqueID</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.UniqueIDTag</tag-class>
+		<info>Generates a unique ID based on the page</info>
+	</tag>
+	<tag>
 		<name>LinkResolver</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.LinkResolverTag</tag-class>
 		<info>appends ".html" to url in order to resolve external vs internal links</info>
@@ -322,5 +333,16 @@
 		<name>GetPDUrl</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetPartsDirectUrl</tag-class>
 		<info>this tag will fetch the PD (QA, Stress, Production) url</info>
+	</tag>
+	<tag>
+		<name>GetSymptomFrequency</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetSymptomFrequency</tag-class>
+		<info>this tag will fetch symptom frequencies from PD using symptom id</info>
+		<attribute>
+			<name>symptomList</name>
+			<type>java.util.List</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 </taglib>
