@@ -7,3 +7,7 @@
 <c:set var="linkTarget"><cq:text property="linkTarget" placeholder=""/></c:set>
 <c:set var="imageCaption"><cq:text property="imageCaption" placeholder=""/></c:set>
 <div data-desktopimage="${desktopImage}" data-tabletimage="${tabletImage}" data-mobileimage="${mobileImage}" data-width="${displayWidth}" data-height="${displayHeight}" data-linkalt="${linkAlt}" data-linkurl="${linkURL}" data-linktarget="${linkTarget}"></div>
+
+<c:if test="${imageCaption ne ''}">
+	<p>${imageCaption}</p>
+</c:if>
