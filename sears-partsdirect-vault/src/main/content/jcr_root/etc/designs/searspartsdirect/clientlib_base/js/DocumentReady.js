@@ -10,6 +10,12 @@
 		 */
 		var mainSearchPanel = new searchPanel();
 		/**
+		 * Login Navigation
+		 */
+		$('.loginNav').each(function () {
+			var newLoginNav = new loginNav($(this));
+		});
+		/**
 		 * Input help text listeners
 		 */
 		$('[data-inputhelp]').each(function () {
