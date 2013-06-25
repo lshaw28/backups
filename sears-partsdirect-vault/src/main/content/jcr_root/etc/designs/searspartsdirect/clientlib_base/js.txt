@@ -21,7 +21,6 @@ main.js
 
 #base=js/components/.
 guideNavigation.js
-loginNav.js
 responsiveImage.js
 searchPanel.js
 video.js

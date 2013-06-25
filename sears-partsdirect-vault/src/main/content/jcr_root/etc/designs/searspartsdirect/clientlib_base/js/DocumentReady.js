@@ -12,8 +12,8 @@
 		/**
 		 * Login Navigation
 		 */
-		$('.loginNav').each(function () {
-			var newLoginNav = new loginNav($(this));
+		$('.trigger').bind('click', function () {
+			$('.loginNav').toggleClass('active');
 		});
 		/**
 		 * Input help text listeners
