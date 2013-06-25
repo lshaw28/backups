@@ -17,11 +17,11 @@ public class DisplayModelHeaderTagFixture {
 	private JspWriter out;
 
 	public DisplayModelHeaderTagFixture(SlingHttpServletRequest slingRequest, PageContext pageContext) {
-		out = mock(JspWriter.class);
+		/*out = mock(JspWriter.class);
 		when(pageContext.getOut()).thenReturn(out);
 		RequestPathInfo rpi = mock(RequestPathInfo.class);
 		when(slingRequest.getRequestPathInfo()).thenReturn(rpi);
-		when(rpi.getSelectors()).thenReturn(selectors);
+		when(rpi.getSelectors()).thenReturn(selectors);*/
 	}
 	
 	public void setUpWithSelectors() {
