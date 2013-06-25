@@ -1,88 +1,34 @@
-NS('shc.pd.base.util').ViewChange = (function () {
+NS('shc.pd.base.util');
+
+/**
+ * @type {String} Engine type
+ */
+shc.pd.base.util.VIEWCHANGE_ENGINE_TYPE = 'default';
+
+/**
+ * @class ViewChange
+ */
+shc.pd.base.util.ViewChange = (function () {
 	'use strict';
 	
 	return {
+		instance: null,
 		/**
-		 * @property {Object} callbacks Stores all callbacks
-		 */
-		callbacks: {
-			resize: [],
-			orientation: []
-		},
-		/**
-		 * @property {boolean} eventBinded events binded yet
-		 */
-		eventBinded: false,
-		/**
-		 * Add callback on orientation change
-		 * @param {Function} callback
+		 * Helper function for quick window detection impls
 		 * @return {undefined}
 		 */
-		onResize: function (callback) {
-			this.callbacks.resize.push(callback);
-		},
-		/**
-		 * Add callback on orientation change
-		 * @param {Function} callback
-		 * @return {undefined}
-		 */
-		onOrientationChange: function (callback) {
-			this.initEventBindings();
-			this.callbacks.orientation.push(callback);
-		},
-		/**
-		 * Add callback to both events
-		 * @param {Function} callback
-		 * @return {undefined}
-		 */
-		onWindowChange: function (callback) {
-			this.initEventBindings();
-			this.onResize(callback);
-			this.onOrientationChange(callback);
-		},
-		/**
-		 * Check if events are binded
-		 * @return {undefined}
-		 */
-		initEventBindings: function () {
-			if (this.eventBinded === false) {
-				this.bindEvents();
-				// update property
-				this.eventBinded = true;
+		getInstance: function () {
+			if (this.instance === null) {
+				// which engine type to use
+				switch (shc.pd.base.util.VIEWCHANGE_ENGINE_TYPE) {
+					case 'simulator':
+					default: 
+						this.instance = new shc.pd.base.render.DefaultResponsiveEngine();
+					break;
+				}
 			}
-		},
-		/**
-		 * Bind events
-		 * @return {undefined}
-		 */
-		bindEvents: function () {
-			var _this = this,
-				browser = $(window);
 			
-			// resize event
-			browser.resize(function () {
-				// give resize
-				_this.fire('resize', [$(this).width()]);
-			});
-			
-			// orientation change event
-			browser.bind('orientationchange', function () {
-				// if `orientation` property is undefined, default to 0
-				_this.fire('orientation', [$(this).width(), window.orientation || 0]);
-			});
-		},
-		/**
-		 * Fire specified event
-		 * @param {string} event Callback property name
-		 * @param {array} args Passed variable
-		 * @return {undefined}
-		 */
-		fire: function (event, args) {
-			var i = 0;
-			// iterate over callback type list
-			for (i = 0; i < this.callbacks[event].length; ++i) {
-				this.callbacks[event][i](args);
-			}
+			return this.instance;
 		}
 	};
 }());
