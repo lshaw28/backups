@@ -59,6 +59,12 @@ NS('shc.pd.base.render').DefaultResponsiveEngine = shc.pd.base.render.Responsive
 				// if `orientation` property is undefined, default to 0
 				_this.fire('orientation', [$(this).width(), window.orientation || 0]);
 			});
+		},
+		/**
+		 * @return {Number}
+		 */
+		getWidth: function () {
+			return $(window).width();
 		}
 	};
 }());

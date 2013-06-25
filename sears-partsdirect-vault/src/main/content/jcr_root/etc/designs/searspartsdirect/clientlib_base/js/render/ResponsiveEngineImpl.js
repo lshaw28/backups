@@ -25,8 +25,8 @@ NS('shc.pd.base.render').ResponsiveEngineImpl = Class.extend(function () {
 					this.callbacks[event][i](args);
 				}
 			} catch (e) {
-				console.log(e.stack);
 				console.log(e, e.message);
+				console.log(e.stack);
 			}
 		},
 		/**
@@ -55,6 +55,11 @@ NS('shc.pd.base.render').ResponsiveEngineImpl = Class.extend(function () {
 		 * Bind events stub
 		 * @return {undefined}
 		 */
-		bindEvents: function () {}
+		bindEvents: function () {},
+		/**
+		 * Stub to be overrided
+		 * @return {Number}
+		 */
+		getWidth: function () {}
 	};
 }());

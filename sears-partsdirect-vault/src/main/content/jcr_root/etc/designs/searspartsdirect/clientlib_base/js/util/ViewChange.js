@@ -29,6 +29,12 @@ shc.pd.base.util.ViewChange = (function () {
 			}
 			
 			return this.instance;
+		},
+		/**
+		 * @return {Number}
+		 */
+		getWidth: function () {
+			return this.getInstance().getWidth();
 		}
 	};
 }());
