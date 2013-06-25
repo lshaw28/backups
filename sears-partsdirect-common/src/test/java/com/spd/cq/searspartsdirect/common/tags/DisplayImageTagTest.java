@@ -24,9 +24,10 @@ public class DisplayImageTagTest extends MocksTag {
 	}
 	
 	@Test
-	public void testWithAbsolutePath() throws JspException {
+	public void testWithAbsolutePathAndAlt() throws JspException {
 		fixture.setUpForAbsolutePath();
 		tag.setPath(fixture.getAbsoluteTestPath());
+		tag.setAltText("Alternate alternate");
 		tag.setDecorated(true);
 		runTagShouldSkipBodyEvalPage();
 	}

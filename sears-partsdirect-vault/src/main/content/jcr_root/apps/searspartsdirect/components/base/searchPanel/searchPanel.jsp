@@ -1,6 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<form id="searchBarForm" method="post" action="http://www.searspartsdirect.com/partsdirect/index.action">
-	<div id="searchLeftShadow"></div>
+<form id="searchBarForm" method="post">
+	<div id="searchLeftShadow" class="search-shadow"></div>
 	<div id="searchContainer">
 		<ul id="searchTabs">
 			<li id="searchTab" class="header-search-tab"> <a href="#search_input_tab"><i class="icon-search">&nbsp;</i> Search</a></li>
@@ -12,19 +12,19 @@
 				<a class="btn btn-type" href="#" data-toggle="dropdown"><span data-texthelp="Select Type" data-texthelpmobile="Type">Select Type</span> <i class="icon-chevron-sign-down">&nbsp;</i></a>
 				<ul class="dropdown-menu">
 					<li class="selected">
-						<a href="#">Model #</a>
+						<a data-postpath="part-model" data-pathtaken="modelSearch">Model #</a>
 					</li>
 					<li>
-						<a href="#">Part #</a>
+						<a data-postpath="part-number" data-pathtaken="partSearch">Part #</a>
 					</li>
 				</ul>
-			</div><a class="new-btn-small new-btn-search" href="javascript:void(0);">Search</a>
+			</div><button id="searchModelsParts" class="new-btn-small new-btn-search">Search</button>
 			<p>Can't locate your model number? <a href="javascript:void(0);" id="newFinderModel">Use our finder <i class="icon-angle-down">&nbsp;</i></a></p>
-			<input name="pathTaken" id="pathTaken" value="partSearch" type="hidden"/>
-			<input name="prst" id="prst" value="0" type="hidden"/>
-			<input name="shdMod" id="shdMod" value="" type="hidden"/>
-			<input name="shdPart" id="shdPart" value="" type="hidden"/>
+			<input name="pathTaken" id="pathTaken" type="hidden"/>
+			<input name="prst" id="prst" type="hidden"/>
+			<input name="shdMod" id="shdMod" type="hidden"/>
+			<input name="shdPart" id="shdPart" type="hidden"/>
 		</div>
 	</div>
-	<div id="searchRightShadow"></div>
+	<div id="searchRightShadow" class="search-shadow"></div>
 </form>

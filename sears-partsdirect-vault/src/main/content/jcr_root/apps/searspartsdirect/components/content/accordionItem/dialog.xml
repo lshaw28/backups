@@ -8,7 +8,17 @@
 			jcr:primaryType="cq:Widget"
 			xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-
+			
+			<header jcr:primaryType="cq:Widget"
+					fieldLabel="Accordion Title"
+					name="./accordionHeader"
+					xtype="textfield" />
+			
+			<body
+					jcr:primaryType="cq:Widget"
+					path="/apps/searspartsdirect/components/content/text/dialog.infinity.json"
+					xtype="cqinclude"/>
+			
 			</items>
 		</panel>
 	</items>

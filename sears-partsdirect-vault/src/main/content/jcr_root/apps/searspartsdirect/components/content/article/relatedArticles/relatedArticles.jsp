@@ -17,8 +17,9 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 		<div class="carousel-wrapper row-fluid">
 			<c:forEach var="article" items="${articles}">
 				<div class="carousel-mobile-item span3">
-					<a href="${article.url}.html"><spd:displayImage path="${article.imagePath}" /></a>
-					<a href="${article.url}.html">${article.title}</a>
+					<spd:LinkResolver value="${article.url}" />
+					<a href="${url}"><spd:displayImage path="${article.imagePath}" /></a>
+					<a href="${url}">${article.title}</a>
 					<p>${article.description}</p>
 				</div>
 			</c:forEach>
@@ -28,7 +29,9 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 	<c:if test="${fn:length(articles) eq 4}">
 		<br />
 		<div class="view-all">
-			<a href="<cq:text property="viewAllItemsLink"/>.html"><cq:text property="viewAllItemsText"  placeholder="View all Articles" /></a>
+			<c:set var="viewAllItemsLink"><cq:text property='viewAllItemsLink'/></c:set>
+			<spd:LinkResolver value="${viewAllItemsLink}" />
+			<a href="${url}"><cq:text property="viewAllItemsText"  placeholder="View all Articles" /></a>
 		</div>
 	</c:if>
 </c:if>

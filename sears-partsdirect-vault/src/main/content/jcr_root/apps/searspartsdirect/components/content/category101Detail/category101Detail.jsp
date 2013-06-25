@@ -25,8 +25,8 @@
 			</c:when>
 		</c:choose>
 		<div class="span6">
+			<spd:LinkResolver value="${category.url}" />
 			<c:if test="${not empty category.imagePath}">
-				<spd:LinkResolver value="${category.url}" />
 				<a href="${url}" ><spd:displayImage path="${category.imagePath}" decorated="false" /></a>
 			</c:if>
 			<h4>
@@ -41,6 +41,8 @@
 		</c:choose>
 	</c:forEach>
 	<p>
-		<a class="new-btn-small" href="<cq:text property="viewAllLink"/>.html">View All Categories</a>
+		<c:set var="viewAllLink"><cq:text property='viewAllLink'/></c:set>
+		<spd:LinkResolver value="${viewAllLink}" />
+		<a class="new-btn-small" href="${url}">View All Categories</a>
 	</p>
 </c:if>

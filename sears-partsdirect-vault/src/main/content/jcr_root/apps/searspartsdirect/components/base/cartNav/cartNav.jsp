@@ -50,7 +50,7 @@
 						<a href="">Edit List</a>
 					</c:when>
 					<c:otherwise>
-							<li>You can find parts to your models faster by adding models you own to this list.<br /><a class="new-btn-small" href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a></li>
+							<li>You can find parts to your models faster by adding models you own to this list.<br /><br /><a class="new-btn-small" href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -74,7 +74,19 @@
 						<li>Parts -- Quantity</li>
 						<li><a class="new-btn-small" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
 						<c:forEach var="cartLine" items="${shoppingCart}">
-							<li class="cart-item"><a href="${mainSitePath}/partsdirect/part-number/${cartLine.part.partNumber}/${cartLine.part.productGroupId}/${cartLine.part.supplierId}">${cartLine.part.partNumber} -- ${cartLine.quantity}</a></li>
+							<li class="cart-item">
+								<a href="${mainSitePath}/partsdirect/part-number/${cartLine.part.partNumber}/${cartLine.part.productGroupId}/${cartLine.part.supplierId}">
+									${cartLine.part.partNumber} -- 
+									<c:choose>
+										<c:when test="${fn:length(cartLine.part.description) > 17}">
+											${fn:substring(cartLine.part.description, 0, 17)}...
+										</c:when>
+										<c:otherwise>
+											${cartLine.part.description}
+										</c:otherwise>
+									</c:choose> -- ${cartLine.quantity}
+								</a>
+							</li>
 						</c:forEach>
 						<li><strong>Total items: ${fn:length(shoppingCart)}</strong></li>
 						<li><a class="new-btn-small" href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</a></li>

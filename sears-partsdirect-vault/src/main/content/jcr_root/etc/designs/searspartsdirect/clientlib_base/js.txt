@@ -6,6 +6,19 @@ Utilities.js
 DocumentReady.js
 WindowResize.js
 TemporaryScripts.js
+core/Namespace.js
+fx/Easing.js
+fx/Translate3d.js
+fx/Translate3dResolver.js
+util/Enums.js
+util/Timer.js
+util/ViewChange.js
+render/Breakpoint.js
+render/BreakpointConfig.js
+render/ResponsiveEngineImpl.js
+render/DefaultResponsiveEngine.js
+render/WidgetBreakpointRegistry.js
+main.js
 
 #base=js/components/.
 guideNavigation.js

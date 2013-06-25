@@ -24,10 +24,10 @@ public class RequiredToolsTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		ArrayList<ToolModel> tools = new ArrayList<ToolModel>();
 		try {
-			String[]  multiJsons = properties.get("multi",new String[0]);
+			String[]  multiJsons = properties.get("multiTools",new String[0]);
 			for (String json : multiJsons) {
 				JSONObject jsob = new JSONObject(json);
-				ToolModel tool = new ToolModel(jsob.getString("text"),jsob.getString("id"));
+				ToolModel tool = new ToolModel(jsob.getString("text"),jsob.getString("id"),jsob.getString("url"));
 				tools.add(tool);
 			}
 			pageContext.setAttribute("tools", tools);

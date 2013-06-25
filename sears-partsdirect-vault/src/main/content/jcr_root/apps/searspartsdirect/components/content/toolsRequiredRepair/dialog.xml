@@ -2,7 +2,7 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		  jcr:primaryType="cq:Dialog"
 		  title="Tools Required Repair"
-		  xtype="panel">
+		  xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
 		<Panel jcr:primaryType="cq:Widget"
 			xtype="panel">
@@ -17,7 +17,7 @@
 				<multi
 					jcr:primaryType="cq:Widget"
 					fieldLabel="Tools"
-					name="./multi"
+					name="./multiTools"
 					xtype="multifield">
 					<fieldConfig
 						jcr:primaryType="cq:Widget"
@@ -33,6 +33,12 @@
 								fieldLabel="ID"
 								name="id"
 								xtype="textfield"/>
+							<url
+		                        jcr:primaryType="cq:Widget"
+		                        fieldLabel="Link"
+		                        name="url"
+		                        width="{Long}130"
+		                        xtype="pathfield"/>
 						</items>
 					</fieldConfig>
 				</multi>
