@@ -7,34 +7,10 @@
  * - Moving code into our own DocumentReady and WindowResize files
  * - Removing unnecessary code and debug statements
  */
-//Set icons classes
-$(".shipping_cont a").hover(function () {
-	$(this).closest(".fast_shipping_content").prev(".column_two_icons").addClass("column_two_icons_hover");
-}, function () {
-	$(".column_two_icons").removeClass("column_two_icons_hover");
-});
 
 var viewportWidth = $(window).width();
 if (viewportWidth <= 650) {
     menuTrigger();
-}
-
-var searchTabs = function () {
-    // set the tab content and tab pane classes
-    $("#headerSearchContent").addClass("tab-content");
-    $("#search_input_tab").addClass("tab-pane");
-    $("manuals_help_tab").addClass("tab-pane");
-    // add click handlers to tabs
-    $('#searchTab a').click(function (e) {
-		e.preventDefault();
-		$(this).tab('show');
-	});
-    $('#headerManualTab a').click(function (e) {
-		e.preventDefault();
-		$(this).tab('show');
-	});
-    // show the search tab by default
-    $('#searchTab a').tab('show');
 }
 
 function menuTrigger() {
@@ -181,7 +157,3 @@ function menuTrigger() {
 		}
 	}
 }
-
-$(document).ready(function () {
-	searchTabs();
-});

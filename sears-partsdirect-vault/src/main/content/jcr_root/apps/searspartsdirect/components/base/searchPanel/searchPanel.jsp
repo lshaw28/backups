@@ -3,11 +3,11 @@
 	<div id="searchLeftShadow" class="search-shadow"></div>
 	<div id="searchContainer">
 		<ul id="searchTabs">
-			<li id="searchTab" class="header-search-tab"> <a data-toggle="tab" data-target="#searchContent"><i class="icon-search">&nbsp;</i> Search</a></li>
+			<li id="searchTab" class="header-search-tab active"> <a data-toggle="tab" data-target="#searchContent"><i class="icon-search">&nbsp;</i> Search</a></li>
 			<li id="headerManualTab" class="header-search-tab"><a data-toggle="tab" data-target="#manualContent">Manuals & Repair Help</a></li>
 		</ul>
 
-		<div id="searchContent" class="search-content-pane">
+		<div id="searchContent" class="search-content-pane active">
 			<input id="searchBarField" class="new-input-small" type="text" maxlength="100" tabindex="1" data-inputhelp="Enter model or part number" data-inputhelpmobile="Model/Part #" name="searchModPar"><span class="large">in</span><div class="btn-group ">
 				<a class="btn btn-type" href="#" data-toggle="dropdown"><span data-texthelp="Select Type" data-texthelpmobile="Type">Select Type</span> <i class="icon-chevron-sign-down">&nbsp;</i></a>
 				<ul class="dropdown-menu">
