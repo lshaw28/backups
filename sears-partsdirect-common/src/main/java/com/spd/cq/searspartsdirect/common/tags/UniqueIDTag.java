@@ -5,23 +5,21 @@ import javax.servlet.jsp.JspException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.jcr.JcrConstants;
-
 public class UniqueIDTag  extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(UniqueIDTag.class);
 
 	@Override
 	public int doStartTag() throws JspException {
-
+		String pagePath = currentPage.getPath();
+		String pageResPath = currentPage.getContentResource().getPath();
 		String path = resource.getPath();
-		try {
-			path = path.substring(path.indexOf(JcrConstants.JCR_CONTENT) + JcrConstants.JCR_CONTENT.length() + 1);
+		if (path.startsWith(pageResPath)) {
+			path = path.substring(pageResPath.length()+1);
+		} else {
+			path = path.substring(pagePath.length()+1);
 		}
-		catch (Exception e) {
-
-		}
-		pageContext.setAttribute("uniqueId", path.replace("/", "_").replace(":", "_"));
+		pageContext.setAttribute("uniqueId", path.replaceAll("[^A-Za-z0-9_]", "_"));
 		return SKIP_BODY;
 	}
 
