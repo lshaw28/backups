@@ -23,7 +23,7 @@
 								<img src="/assets/img/images/no_part_100x100.gif" alt="No part image available" />
 							</c:otherwise>
 						</c:choose>
-						${part.itemName}<br /> ${part.itemDescription}</a>
+						${part.itemName}<br />${part.itemDescription}</a>
 					</li>
 				</c:forEach>
 			</ul>
@@ -76,7 +76,7 @@
 						<c:forEach var="cartLine" items="${shoppingCart}">
 							<li class="cart-item">
 								<a href="${mainSitePath}/partsdirect/part-number/${cartLine.part.partNumber}/${cartLine.part.productGroupId}/${cartLine.part.supplierId}">
-									${cartLine.part.partNumber} -- 
+									${cartLine.part.partNumber} --
 									<c:choose>
 										<c:when test="${fn:length(cartLine.part.description) > 17}">
 											${fn:substring(cartLine.part.description, 0, 17)}...
