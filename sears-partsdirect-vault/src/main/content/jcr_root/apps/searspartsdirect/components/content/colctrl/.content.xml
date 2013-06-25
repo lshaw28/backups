@@ -6,4 +6,5 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Column Control"
 	jcr:description=""
+	sling:resourceSuperType="foundation/components/parsys/colctrl"
 	componentGroup="SearsPartsDirect" />

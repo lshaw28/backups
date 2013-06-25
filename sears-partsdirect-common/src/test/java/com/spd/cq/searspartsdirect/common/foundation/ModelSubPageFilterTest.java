@@ -37,8 +37,8 @@ public class ModelSubPageFilterTest extends TestCase {
 	
 	@Test
 	public void testFilterQuoteRightUnquotePath() throws ServletException, IOException {
-		fixture.setUpPathAndExt("/fake/url/fake/page", ".ext");
-		fixture.setUpDispatcher("/fake/page");
+		fixture.setUpPathAndExt("/model/1234/guide/page.html", ".html");
+		fixture.setUpDispatcher("/page.1234.html");
 		filter.init(fixture.getFilterConfig());
 		filter.doFilter(fixture.getRequest(), fixture.getResponse(), fixture.getFilterChain());
 		filter.destroy();

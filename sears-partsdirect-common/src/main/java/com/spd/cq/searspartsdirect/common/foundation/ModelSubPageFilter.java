@@ -52,11 +52,12 @@ public class ModelSubPageFilter implements Filter {
         RequestPathInfo rpi = request.getRequestPathInfo();      
         String ext = rpi.getExtension(), resPath = rpi.getResourcePath();        
         Resource res = resourceResolver.getResource(resPath);
-        Pattern p = Pattern.compile("(/fake/url)(.*)");
+        Pattern p = Pattern.compile("/model/(.*)/guide(.*)");
         Matcher m = p.matcher(resPath);
-        if (m.find() && m.groupCount() >= 2) {
-        	//response.sendRedirect(m.group(2));
-        	request.getRequestDispatcher(m.group(2)).forward(request, response);
+        if (m.find()) {
+        	//String forwardUrl = m.group(2) + "?model=" + m.group(1);
+        	String forwardUrl = m.group(2).replace(".html","." + m.group(1) + ".html");
+        	request.getRequestDispatcher(forwardUrl).forward(request, response);
         	return;
         }
         
