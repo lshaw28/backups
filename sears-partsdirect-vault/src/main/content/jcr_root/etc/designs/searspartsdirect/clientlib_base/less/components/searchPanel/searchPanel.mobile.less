@@ -2,7 +2,7 @@
 @import "../../base.mixins.less";
 
 @media (max-width: 680px) {
-	#searchContent {
+	.search-content-pane {
 		span.large {
 			display: none;
 			visibility: hidden;
@@ -14,6 +14,30 @@
 		}
 		.btn-group {
 			margin-right: 10px;
+		}
+	}
+}
+
+@media (max-width: 650px) {
+	#manualContent {
+		ul {
+			li {
+				.icon-stack {
+					font-size: @pSize;
+				}
+
+				h4 {
+					font-size: @h5Size;
+
+					a {
+						font-size: @h5Size;
+
+						span {
+							font-size: @smallestPSize;
+						}
+					}
+				}
+			}
 		}
 	}
 }

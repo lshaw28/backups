@@ -14,11 +14,10 @@
 		width: 100%;
 	}
 }
-#searchLeftShadow, #searchRightShadow, #searchContainer {
+.search-shadow, #searchContainer {
 	display: inline-block;
 }
 .search-shadow {
-	display: inline-block;
 	height: 25px;
 	margin: 0;
 	width: 15%;
@@ -93,12 +92,14 @@
 		}
 	}
 }
-#searchContent {
+.search-content-pane {
 	.verticalGradient(#446eb9, #1c2e57);
 	border: inset 1px solid #b7c5de;
 	.boxShadow(0 8px 6px -6px #ccc);
+	display: none;
 	height: auto;
 	line-height: 35px;
+	min-height: 60px;
 	padding: 15px 15px 0;
 	z-index: 100;
 
@@ -164,6 +165,60 @@
 			min-width: 50px;
 			padding: 4%;
 			width: 90%;
+
+			li.selected {
+				a {
+					font-weight: bold;
+				}
+			}
+		}
+	}
+	&.active {
+		display: block;
+	}
+}
+
+#manualContent {
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		li {
+			color: @bodyColor;
+			display: inline-block;
+			margin: 0 0 10px;
+			padding: 0;
+			width: 32%;
+
+			.icon-stack {
+				font-size: @h3Size;
+
+				.icon-stack-base {
+					color: @bodyColor;
+				}
+				.icon-light {
+					color: #1c2e57;
+				}
+			}
+
+			h4 {
+				color: @bodyColor;
+				margin: 0;
+				padding: 0;
+
+				a {
+					color: @bodyColor;
+
+					&:hover {
+						color: @bodyColor;
+					}
+
+					span {
+						font-size: @smallPSize;
+					}
+				}
+			}
 		}
 	}
 }
