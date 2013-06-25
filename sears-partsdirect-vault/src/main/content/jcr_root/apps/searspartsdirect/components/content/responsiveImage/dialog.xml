@@ -125,5 +125,16 @@
 					xtype="hidden" />
 			</items>
 		</imageDimensionsTab>
+		<CaptionTab
+			jcr:primaryType="cq:Widget"
+			title="Caption"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<caption jcr:primaryType="cq:Widget" 
+					fieldLabel="Caption"
+					name="./imageCaption" 
+					xtype="textfield" />
+			</items>
+		</CaptionTab>
 	</items>
 </jcr:root>

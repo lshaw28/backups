@@ -50,7 +50,7 @@
 						<a href="">Edit List</a>
 					</c:when>
 					<c:otherwise>
-							<li>You can find parts to your models faster by adding models you own to this list.<br /><a class="new-btn-small" href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a></li>
+							<li>You can find parts to your models faster by adding models you own to this list.<br /><br /><a class="new-btn-small" href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

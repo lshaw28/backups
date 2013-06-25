@@ -308,6 +308,11 @@
 		<info>this is the API call to PD to get user data</info>
 	</tag>
 	<tag>
+		<name>uniqueID</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.UniqueIDTag</tag-class>
+		<info>Generates a unique ID based on the page</info>
+	</tag>
+	<tag>
 		<name>LinkResolver</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.LinkResolverTag</tag-class>
 		<info>appends ".html" to url in order to resolve external vs internal links</info>
