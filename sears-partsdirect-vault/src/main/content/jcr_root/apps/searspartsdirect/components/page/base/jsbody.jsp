@@ -9,3 +9,6 @@
 	<!-- Author Mode JavaScript -->
 	<cq:includeClientLib js="apps.searspartsdirect.cq.edit" />
 </c:if>
+<script type="text/javascript" language="javascript">
+	var mainSitePath = '${mainSitePath}';
+</script>
