@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
 	<filter root="/apps/searspartsdirect" />
-	<filter root="/etc/designs/searspartsdirect">
-	    <exclude pattern="/etc/designs/searspartsdirect/jcr:content/base(/.*)?"/>
-	</filter>
+	<filter root="/etc/designs/searspartsdirect" />
 	<filter root="/etc/tags/searspartsdirect" />
 	<filter root="/etc/scaffolding" />
 	<filter root="/etc/spdAssets" />
 	<filter root="/apps/sling/" />
 	<filter root="/apps/social/commons" />
+	<filter root="/apps/foundation" />
 	<filter root="/robots.txt" />
 	<filter root="/sitemap" />
 	<filter root="/etc/workflow/launcher/config/665047955" />

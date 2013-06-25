@@ -19,6 +19,9 @@
                 drawAnchors="true"
                 components="[group:SearsPartsDirect]">
                 <section jcr:primaryType="nt:unstructured"/>
+                <colctrl jcr:primaryType="nt:unstructured"
+                	layouts="2;row-fluid&#x9;2 Columns (50% each)&#xa;3;row-fluid&#x9;3 Columns (33% each)&#xa;4;row-fluid2&#x9;4 Columns (25% each)"
+					sling:resourceType="foundation/components/parsys/colctrl"/>
             </parsys>
        	</base>
 		<category jcr:primaryType="nt:unstructured">
