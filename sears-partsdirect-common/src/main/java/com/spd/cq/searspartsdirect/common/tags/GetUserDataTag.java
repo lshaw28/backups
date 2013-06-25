@@ -42,7 +42,6 @@ public class GetUserDataTag extends CQBaseTag {
 					Constants.USER_NAME_COOKIE);
 			if (userNameCookie != null && userNameCookie.getValue() != null) {
 				apiUrl.append(userNameCookie.getValue());
-				pdUserDataModel.setLoggedIn(true);
 			} else {
 				myModelsCookie = PartsDirectCookieHelper.getCookieInfo(cookies,
 						Constants.MY_MODEL_COOKIE);
@@ -78,7 +77,7 @@ public class GetUserDataTag extends CQBaseTag {
 								int qty = cartLineObj.getInt("quantity");
 								Part part = new Part(partObj.getString("partNumber"),
 										partObj.getString("productGroupId"),
-										partObj.getString("supplierId"));
+										partObj.getString("supplierId"), partObj.getString("description"));
 								CartLineModel cartLines = new CartLineModel(part, qty);
 								log.debug("cartLines2.toString() "+ cartLines.toString());
 								lstCartLines.add(cartLines);
@@ -89,7 +88,7 @@ public class GetUserDataTag extends CQBaseTag {
 							int qty = cartLines.getInt("quantity");
 							Part part = new Part(partObject.getString("partNumber"),
 									partObject.getString("productGroupId"),
-									partObject.getString("supplierId"));
+									partObject.getString("supplierId"), partObject.getString("description"));
 							CartLineModel model = new CartLineModel(part, qty);
 							lstCartLines.add(model);
 							log.debug("lstCartLines.toString() "+ lstCartLines.toString());
@@ -126,6 +125,10 @@ public class GetUserDataTag extends CQBaseTag {
 			
 			if (json.has("lastName")) {
 				pdUserDataModel.setLastName(json.getString("lastName"));
+			}
+			
+			if (json.has("username")) {
+				pdUserDataModel.setLoggedIn(true);
 			}
 			
 			pageContext.setAttribute("userData", pdUserDataModel);

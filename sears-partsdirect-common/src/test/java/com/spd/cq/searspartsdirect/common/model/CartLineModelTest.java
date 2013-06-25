@@ -20,8 +20,8 @@ public class CartLineModelTest extends TestCase {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		part = new Part("somePart", "someGroupID", "someSupplierID");
-		part2 = new Part("someOtherPart", "someOtherGroupID", "someOtherSupplierID");
+		part = new Part("somePart", "someGroupID", "someSupplierID", "someDescription");
+		part2 = new Part("someOtherPart", "someOtherGroupID", "someOtherSupplierID",  "someDescription");
 		quantity = 5;
 		quantity2 = 10;
 	}
