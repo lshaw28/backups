@@ -350,4 +350,15 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>FixSingularTitle</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.FixSingularTitleTag</tag-class>
+		<info>given a ProductCategoryModel, calculates and adds (by mutating the model given) the singular title if not present</info>
+		<attribute>
+			<name>modelInstance</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>
