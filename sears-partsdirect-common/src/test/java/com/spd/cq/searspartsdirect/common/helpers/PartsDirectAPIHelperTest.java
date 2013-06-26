@@ -5,7 +5,6 @@ import java.net.UnknownHostException;
 
 import junit.framework.Assert;
 
-import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.junit.Test;
 

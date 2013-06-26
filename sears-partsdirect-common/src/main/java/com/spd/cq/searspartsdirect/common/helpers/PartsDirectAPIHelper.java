@@ -45,5 +45,28 @@ public class PartsDirectAPIHelper {
 			is.close();
 		}
 	}
+	
+	public String readJsonString(String apiUrl) throws IOException, JSONException {
+		log.error("PD API url String is="+apiUrl);
+		String jsonText = null;
+		//apiUrl="http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username=&profileid=c4ccbcf4-3b71-4071-83dc-d88c75aded8c&cartid=8a6bc7483f5ba81b013f5dd11c360013"
+		URL url = new URL(apiUrl);
+		URLConnection urlConnection = url.openConnection();
+		//urlConnection.setConnectTimeout(3000);
+		//urlConnection.setReadTimeout(3000);
+		InputStream is = urlConnection.getInputStream();
+		try {
+			BufferedReader rd = new BufferedReader(new InputStreamReader(is,
+					Charset.forName("UTF-8")));
+			jsonText = readAll(rd);
+			
+		} finally {
+			is.close();
+		}
+		
+		//jsonText= "{'cart':{'cartLines':[{'part':{'description':'REFRIGERATOR WATER FILTER  9010','partNumber':'9010','productGroupId':'0046','supplierId':'046'},'quantity':'1'},{'part':{'description':'REFRIGERATOR WATER FILTER 9030','partNumber':'9030','productGroupId':'0046','supplierId':'046'},'quantity':'1'}]},'firstName':'Vivek','id':'28061','lastName':'Sharma','ownedModels':{'profileNumber':'0'},'password':'e38ad214943daad1d64c102faec29de4afe9da3d','roles':['ROLE_USER','ROLE_SUPERADMIN'],'username':'viveks_19@yahoo.com'}";
+		log.debug("json string is "+jsonText);
+		return jsonText;
+	}
 
 }

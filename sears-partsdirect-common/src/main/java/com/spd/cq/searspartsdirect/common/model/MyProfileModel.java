@@ -2,10 +2,14 @@ package com.spd.cq.searspartsdirect.common.model;
 
 public class MyProfileModel {
 	
+	
 	private String brand;
 	private String category;
 	private String modelNumber;
 	private String url;
+	
+	public MyProfileModel() {
+	}
 	
 	public MyProfileModel(String brand, String category, String modelNumber,
 			String url) {
