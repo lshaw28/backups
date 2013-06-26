@@ -26,6 +26,7 @@ import com.adobe.cq.social.commons.*;
 import com.day.cq.wcm.api.WCMMode;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.model.AnchorLinkModel;
 
 @SuppressWarnings("serial")
 public class GuideNavigationTag extends CQBaseTag {
@@ -37,7 +38,7 @@ public class GuideNavigationTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		// output list containing lists [linktext,sectionlink]
-		List<List<String>> sections = new ArrayList<List<String>>();
+		List<AnchorLinkModel> sections = new ArrayList<AnchorLinkModel>();
 		
 		// in a template, currentNode is not populated - so we find the page content node
 		Node pageNode = currentPage.getContentResource().adaptTo(Node.class);
@@ -107,10 +108,8 @@ public class GuideNavigationTag extends CQBaseTag {
 		for (LinkGenerator linkGen : generators) {
 			String label = linkGen.generateLabel();
 			if (!labelIsBlank(label)) {
-				List<String> newList = new ArrayList<String>();
-				newList.add(linkGen.generateLabel());
-				newList.add(linkGen.generateLink());
-				sections.add(newList);
+				AnchorLinkModel newLink = new AnchorLinkModel(linkGen.generateLink(),linkGen.generateLabel());
+				sections.add(newLink);
 			}
 		}
 		pageContext.setAttribute(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR, sections);

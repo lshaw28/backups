@@ -361,4 +361,10 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>GetMaintenanceTopicJump</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMaintenanceTopicJumpTag</tag-class>
+		<info>If more than one topic is present, outputs anchor links information in jumpTopics</info>
+		<body-content>empty</body-content>
+	</tag>
 </taglib>

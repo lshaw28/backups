@@ -5,10 +5,5 @@
 	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
 	xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:EditConfig"
-    cq:layout="rollover"
-    cq:disableTargeting="true"
-    cq:actions="[text:Global maintenance index title suffix,-,edit]" >
-    <cq:listeners
-        jcr:primaryType="cq:EditListenersConfig"
-		afteredit="REFRESH_PAGE" />
+    cq:disableTargeting="true" >
  </jcr:root>
