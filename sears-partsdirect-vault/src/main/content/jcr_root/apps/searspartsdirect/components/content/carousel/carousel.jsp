@@ -5,19 +5,21 @@
 
 <div class="hide-onload desktop-carousel touch-carousel desktop-carousel-enabled">
 	<div class="carousel-wrapper">
-		<div class="carousel-item">
-			<img src="" />
-			<p>Sample Text</p>
+		<div class="carousel-list-wrapper">
+			<div class="carousel-item">
+				<img src="" />
+				<p>Sample Text</p>
+			</div>
+
+			<div class="carousel-item">
+				<img src="" />
+				<p>Sample Text</p>
+			</div>
+
+			<div class="carousel-item">
+				<img src="" />
+				<p>Sample Text</p>
+			</div>		
 		</div>
-		
-		<div class="carousel-item">
-			<img src="" />
-			<p>Sample Text</p>
-		</div>
-		
-		<div class="carousel-item">
-			<img src="" />
-			<p>Sample Text</p>
-		</div>		
 	</div>
 </div>
