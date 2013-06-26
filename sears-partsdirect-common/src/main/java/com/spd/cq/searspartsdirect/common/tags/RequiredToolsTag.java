@@ -33,7 +33,7 @@ public class RequiredToolsTag extends CQBaseTag {
 			pageContext.setAttribute("tools", tools);
 		}
 		catch (Exception e) {
-			
+			log.error("Failed to fetch tools: ", e);
 		}
         return SKIP_BODY;
 	}

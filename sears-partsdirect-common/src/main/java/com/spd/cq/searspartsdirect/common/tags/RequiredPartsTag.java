@@ -27,7 +27,7 @@ public class RequiredPartsTag  extends CQBaseTag {
 			pageContext.setAttribute("parts", parts);
 		}
 		catch (Exception e) {
-			
+			log.error("Failed to fetch parts: ", e);
 		}
         return SKIP_BODY;
 	}
