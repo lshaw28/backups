@@ -18,7 +18,7 @@
 								name="./title" 
 								maxLength="70"
 								allowBlank="{Boolean}false"
-								xtype="text" />
+								xtype="textfield" />
 								
 						<difficulty 
 								jcr:primaryType="cq:Widget" 
@@ -42,7 +42,7 @@
 								name="./viewAllText" 
 								maxLength="35"
 								allowBlank="{Boolean}false"
-								xtype="text" />
+								xtype="textfield" />
 						
 					</items>
 				</tab1>
@@ -56,7 +56,7 @@
 								name="./allGuidestitle" 
 								maxLength="42"
 								allowBlank="{Boolean}true"
-								xtype="text" />
+								xtype="textfield" />
 
 					</items>
 				</tab2>
