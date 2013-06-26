@@ -82,10 +82,6 @@
 			<li><a href="${mainSitePath}/partsdirect/brands/">All Brands</a></li>
 			<li><a href="${mainSitePath}/partsdirect/product-types/">All Categories</a></li>
 		</ul>
-		<form>
-			<p>Join our email list for updates and exclusive offers.</p>
-			<p><input type="text" class="new-input-small" data-inputhelp="Enter email address" data-inputhelpmobile="Email" ><button type="submit" class="new-btn-small new-btn-square">Submit</button></p>
-		</form>
 	</div>
 </div>
 <div id="footerLegal">

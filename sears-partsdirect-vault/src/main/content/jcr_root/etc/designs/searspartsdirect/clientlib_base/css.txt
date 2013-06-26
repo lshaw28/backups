@@ -35,6 +35,7 @@ guideNavigation/guideNavigation.less
 headerPromo/headerPromo.less
 homeLogo/homeLogo.less
 informationBanner/informationBanner.less
+legalCopy/legalCopy.less
 loginNav/loginNav.less
 modal/modal.less
 modelNumberSearch/modelNumberSearch.less
