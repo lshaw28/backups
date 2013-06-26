@@ -5,7 +5,6 @@ Class.js
 Utilities.js
 DocumentReady.js
 WindowResize.js
-TemporaryScripts.js
 core/Namespace.js
 fx/Easing.js
 fx/Translate3d.js

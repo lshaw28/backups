@@ -10,6 +10,12 @@
 		 */
 		var mainSearchPanel = new searchPanel();
 		/**
+		 * Login Navigation
+		 */
+		$('.trigger').bind('click', function () {
+			$('.loginNav').toggleClass('active');
+		});
+		/**
 		 * Input help text listeners
 		 */
 		$('[data-inputhelp]').each(function () {
@@ -41,13 +47,10 @@
 		});
 		/**
 		 * video component setup
-		 * Verify class is loaded
 		 */
-		if (typeof video === 'function') {
-			$('.video div[data-youtubeid]').each(function () {
-				var newVideo = new video($(this));
-			});
-		};
+		$('.video div[data-youtubeid]').each(function () {
+			var newVideo = new video($(this));
+		});
         /**
 		 * guideNavigation component setup
 		 */

@@ -1,10 +1,12 @@
 @media (max-width: 650px) {
 	.loginNav {
+		background-color: @bodyColor;
 		display: none;
 		left: 0;
-		position: fixed;
-		top: 0;
+		position: absolute;
+		top: 44px;
 		width: 100%;
+		z-index: 999;
 
 		ul {
 			float: left;
@@ -13,6 +15,7 @@
 			li {
 				clear: left;
 				float: left;
+				font-size: @h5Size;
 				width: 100%;
 
 				a {
@@ -26,6 +29,12 @@
 				}
 			}
 		}
+
+		&.active {
+			display: block;
+			overflow: auto;
+			-webkit-overflow-scrolling: touch;
+		}
 	}
 
 	.trigger {
@@ -37,12 +46,5 @@
 		top: 0;
 		width: 44px;
 		z-index: 2;
-	}
-
-	body.menu-open {
-		.loginNav {
-			overflow: auto;
-			-webkit-overflow-scrolling: touch;
-		}
 	}
 }
