@@ -20,7 +20,7 @@ public class PartsDirectAPIHelperTest {
 		PartsDirectAPIHelper helper = new PartsDirectAPIHelper();
 		//Mockito.when(helper.readJsonFromUrl(Mockito.any(String.class))).thenReturn(Mockito.any(JSONObject.class));
 		try {
-			JSONObject json = helper.readJsonFromUrl(EnvironmentSettings.getPDUserDataApiUrl()+"&profileid=c4ccbcf4-3b71-4071-83dc-d88c75aded8c&cartid=8a6bc7483f5ba81b013f5dd11c360013");
+			JSONObject json = helper.readJsonFromUrl(EnvironmentSettings.getPDUserDataApiUrl()+"spdtest123@test.com");
 			Assert.assertNotNull(json);
 		}  catch (UnknownHostException uhe) {
 			Assert.assertTrue("API is not reachable, this is not our problem.",true);
