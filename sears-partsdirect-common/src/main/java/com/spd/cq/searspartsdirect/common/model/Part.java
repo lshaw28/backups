@@ -1,10 +1,14 @@
 package com.spd.cq.searspartsdirect.common.model;
 
 public class Part {
+	
 	private String partNumber;
 	private String productGroupId;
 	private String supplierId;
 	private String description;
+	
+	public Part() {
+	}
 
 	public Part(String partNumber, String productGroupId, String supplierId,
 			String description) {
@@ -45,5 +49,12 @@ public class Part {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "Part [partNumber=" + partNumber + ", productGroupId="
+				+ productGroupId + ", supplierId=" + supplierId
+				+ ", description=" + description + "]";
 	}
 }

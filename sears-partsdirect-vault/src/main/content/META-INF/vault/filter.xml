@@ -6,6 +6,7 @@
 	<filter root="/etc/scaffolding" />
 	<filter root="/etc/spdAssets" />
 	<filter root="/apps/sling/" />
+	<filter root="/apps/install/" />
 	<filter root="/apps/social/commons" />
 	<filter root="/apps/foundation" />
 	<filter root="/robots.txt" />

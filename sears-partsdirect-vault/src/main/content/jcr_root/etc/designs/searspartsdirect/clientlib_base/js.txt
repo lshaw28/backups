@@ -17,6 +17,10 @@ render/BreakpointConfig.js
 render/ResponsiveEngineImpl.js
 render/DefaultResponsiveEngine.js
 render/WidgetBreakpointRegistry.js
+src/IndexController.js
+src/Carousel.js
+widgets/DesktopCarousel.js
+widgets/TouchCarousel.js
 main.js
 
 #base=js/components/.
