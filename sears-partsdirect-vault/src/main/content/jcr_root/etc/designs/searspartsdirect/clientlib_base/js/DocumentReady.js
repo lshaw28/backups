@@ -10,6 +10,12 @@
 		 */
 		var mainSearchPanel = new searchPanel();
 		/**
+		 * revealPanel class setup
+		 */
+		$('[data-toggle="reveal"]').each(function () {
+			var newRevealPanel = new revealPanel($(this));
+		});
+		/**
 		 * Login Navigation
 		 */
 		$('.trigger').bind('click', function () {

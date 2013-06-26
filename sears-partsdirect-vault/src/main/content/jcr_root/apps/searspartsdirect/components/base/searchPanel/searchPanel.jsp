@@ -19,11 +19,15 @@
 					</li>
 				</ul>
 			</div><button id="searchModelsParts" class="new-btn-small new-btn-search">Search</button>
-			<p>Can't locate your model number? <a href="javascript:void(0);" id="newFinderModel">Use our finder <i class="icon-angle-down">&nbsp;</i></a></p>
+			<p>Can't locate your model number? <a data-toggle="reveal" data-target="#findMyModel" id="newFinderModel">Use our finder <i class="icon-angle-down">&nbsp;</i></a></p>
 			<input name="pathTaken" id="pathTaken" type="hidden"/>
 			<input name="prst" id="prst" type="hidden"/>
 			<input name="shdMod" id="shdMod" type="hidden"/>
 			<input name="shdPart" id="shdPart" type="hidden"/>
+
+			<div id="findMyModel">
+				<p>This is the Find My Model area.</p>
+			</div>
 		</div>
 		<div id="manualContent" class="search-content-pane">
 			<ul>
@@ -46,7 +50,7 @@
 						<i class="icon-circle icon-stack-base"></i>
 						<i class="icon-file-alt icon-light"></i>
 					</span>
-					<h4><a href="${mainSitePath}/partsdirect/category/appliances">Ask An Expert<br /><span>Have Questions?</span></h4>
+					<h4><a href="${mainSitePath}/partsdirect/category/appliances">Ask An Expert<br /><span>Have Questions?</span></a></h4>
 				</li>
 			</ul>
 		</div>

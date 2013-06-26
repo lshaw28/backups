@@ -223,5 +223,18 @@
 	}
 }
 
+#findMyModel {
+	background-color: @bodyColor;
+	border: 1% solid @headerColor;
+	display: none;
+	margin: 0 0 10px;
+	padding: 4%;
+	width: 90%;
+
+	&.active {
+		display: inline-block;
+	}
+}
+
 @import "searchPanel.tablet.less";
 @import "searchPanel.mobile.less";
