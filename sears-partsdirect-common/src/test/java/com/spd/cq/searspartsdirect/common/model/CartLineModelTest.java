@@ -15,7 +15,7 @@ public class CartLineModelTest extends TestCase {
 	private Part part2;
 	private int quantity2;
 	
-	private CartLineModel model;
+	private CartLinesModel model;
 	
 	@Before
 	protected void setUp() throws Exception {
@@ -28,7 +28,7 @@ public class CartLineModelTest extends TestCase {
 
 	@Test
 	public void testCartLineModel() {
-		model = new CartLineModel(part, quantity);
+		model = new CartLinesModel(part, quantity);
 		assertThat(model.getPart(),is(part));
 		assertThat(model.getQuantity(),is(quantity));
 
