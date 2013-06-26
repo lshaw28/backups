@@ -32,7 +32,7 @@
 	<li class="cartNavItem">
 		<div class="btn-group">
 			<a data-toggle="dropdown" href="#">My Models
-			<%-- <c:choose>
+			<c:choose>
 				<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 0}">
 					(${fn:length(myProfileModels)})
 				</c:when>
@@ -45,14 +45,14 @@
 				<c:choose>
 					<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 0}">
 						<c:forEach var="model" items="${myProfileModels}">
-								<li><a href="${mainSitePath}${model.url}">${model.brand} ${model.category} model #${model.modelNumber}</a></li>
+								<li><a href="${mainSitePath}${model.itemURL}">${model.brandName} ${model.categoryName} model #${model.modelNumber}</a></li>
 						</c:forEach>
 						<a href="">Edit List</a>
 					</c:when>
 					<c:otherwise>
 							<li>You can find parts to your models faster by adding models you own to this list.<br /><br /><a class="new-btn-small" href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a></li>
 					</c:otherwise>
-				</c:choose> --%>
+				</c:choose>
 			</ul>
 		</div>
 	</li>

@@ -5,7 +5,7 @@
 	<cq:include path="homeLogo" resourceType="/apps/searspartsdirect/components/base/homeLogo" />
 	<spd:GetUserData/>
 	<c:set var="shoppingCart" scope="request" value="${userData.cart.cartLines}"/>
-	<c:set var="myProfileModels" scope="request" value="${userData.myProfileModels}"/>
+	<c:set var="myProfileModels" scope="request" value="${userData.myProfileModels.profileModelsList}"/>
 	<c:if test="${userData.loggedIn}">
 		<c:set var="loggedIn" scope="request" value="${userData.loggedIn}"/>
 		<c:set var="firstName" scope="request" value="${userData.firstName}"/>
