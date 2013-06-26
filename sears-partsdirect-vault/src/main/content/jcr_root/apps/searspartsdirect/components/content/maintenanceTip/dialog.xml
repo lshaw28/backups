@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:Dialog"
+		  title="Maintenance Tip"
+		  xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<MaintenanceTip 	jcr:primaryType="cq:Widget"
+						xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<tipTitle jcr:primaryType="cq:Widget"
+					   fieldLabel="Tip Question"
+					   fieldDescription="Character limit is 113"
+					   allowBlank="{Boolean}false"
+					   name="./tipTitle"
+					   xtype="textfield"
+					   maxLength="113" />
+				<tipText
+					jcr:primaryType="cq:Widget"
+					fieldLabel="Tip Answer"
+					path="/apps/searspartsdirect/components/content/text/dialog.infinity.json"
+					xtype="cqinclude"/>
+			</items>
+		</MaintenanceTip>
+	</items>
+</jcr:root>
