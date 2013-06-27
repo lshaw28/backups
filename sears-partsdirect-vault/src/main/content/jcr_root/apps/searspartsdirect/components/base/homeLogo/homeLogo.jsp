@@ -1,1 +1,1 @@
-<a href="../">&nbsp;</a>
+<a href="${mainSitePath}">&nbsp;</a>
