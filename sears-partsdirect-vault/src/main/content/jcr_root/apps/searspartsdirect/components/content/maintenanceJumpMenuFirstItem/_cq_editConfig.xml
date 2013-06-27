@@ -8,4 +8,7 @@
     cq:layout="rollover"
     cq:disableTargeting="true"
     cq:actions="[text:Global jump menu first item,-,edit]" >
+    <cq:listeners
+        jcr:primaryType="cq:EditListenersConfig"
+		afteredit="REFRESH_PARENT" />
  </jcr:root>
