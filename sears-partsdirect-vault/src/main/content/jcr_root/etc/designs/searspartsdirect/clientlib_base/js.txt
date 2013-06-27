@@ -1,7 +1,7 @@
 #base=js/.
 Compatibility.js
 bootstrap.min.js
-Modernizr.js
+modernizr.custom.50282-2.6.2.min.js
 Class.js
 Utilities.js
 DocumentReady.js
@@ -25,6 +25,7 @@ widgets/TouchCarousel.js
 main.js
 
 #base=js/components/.
+cartNav.js
 category101.js
 guideNavigation.js
 responsiveImage.js

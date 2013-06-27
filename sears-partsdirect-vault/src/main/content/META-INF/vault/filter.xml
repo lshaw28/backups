@@ -5,6 +5,7 @@
 	<filter root="/etc/tags/searspartsdirect" />
 	<filter root="/etc/scaffolding" />
 	<filter root="/etc/spdAssets" />
+	<filter root="/etc/map.publish" />
 	<filter root="/apps/sling/" />
 	<filter root="/apps/install/" />
 	<filter root="/apps/social/commons" />

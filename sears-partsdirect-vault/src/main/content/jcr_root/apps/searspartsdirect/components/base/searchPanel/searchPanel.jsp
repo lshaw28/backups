@@ -36,21 +36,21 @@
 						<i class="icon-circle icon-stack-base"></i>
 						<i class="icon-file-alt icon-light"></i>
 					</span>
-					<h4><a href="${mainSitePath}/partsdirect/user-manuals">Get Manuals<br /><span>Find &amp; Download</span></h4>
+					<h4><a href="${mainSitePath}/partsdirect/user-manuals">Get Manuals<br /><span class="hidden-phone">Find &amp; Download</span></h4>
 				</li>
 				<li>
 					<span class="icon-stack pull-left">
 						<i class="icon-circle icon-stack-base"></i>
 						<i class="icon-file-alt icon-light"></i>
 					</span>
-					<h4><a href="${mainSitePath}/partsdirect/lawn-garden-guides">Lawn &amp; Garden<br /><span>Repair &amp; Care Tips</span></h4>
+					<h4><a href="${mainSitePath}/partsdirect/lawn-garden-guides">Lawn &amp; Garden<br /><span class="hidden-phone">Repair &amp; Care Tips</span></h4>
 				</li>
 				<li>
 					<span class="icon-stack pull-left">
 						<i class="icon-circle icon-stack-base"></i>
 						<i class="icon-file-alt icon-light"></i>
 					</span>
-					<h4><a href="${mainSitePath}/partsdirect/category/appliances">Ask An Expert<br /><span>Have Questions?</span></a></h4>
+					<h4><a href="${mainSitePath}/partsdirect/category/appliances">Ask An Expert<br /><span class="hidden-phone">Have Questions?</span></a></h4>
 				</li>
 			</ul>
 		</div>

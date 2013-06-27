@@ -3,7 +3,6 @@
 
 .searchPanel {
 	height: auto;
-
 	padding: 50px 0 10px 0;
 	width: 100%;
 
@@ -56,6 +55,11 @@
 			height: 27px;
 			line-height: 32px;
 			padding: 8px 10px;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: none;
+			}
 		}
 	}
 	li.active {
@@ -97,7 +101,7 @@
 	border: inset 1px solid #b7c5de;
 	.boxShadow(0 8px 6px -6px #ccc);
 	display: none;
-	height: auto;
+	height: 80px;
 	line-height: 35px;
 	min-height: 60px;
 	padding: 15px 15px 0;
@@ -188,7 +192,7 @@
 			color: @bodyColor;
 			display: inline-block;
 			margin: 0 0 10px;
-			padding: 0;
+			padding: 10px 0;
 			width: 32%;
 
 			.icon-stack {
