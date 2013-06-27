@@ -56,7 +56,7 @@
 			</ul>
 		</div>
 	</li>
-	<li class="cartNavItem">
+	<li id="cartShop" class="cartNavItem">
 		<div class="btn-group">
 			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart
 			<c:choose>

@@ -22,6 +22,13 @@
 			$('body').toggleClass('loginNav-open');
 		});
 		/**
+		 * Cart Navigation
+		 */
+		var newCartNav = new cartNav();
+		$('#cartShop [data-toggle]').bind('click', function () {
+			$('body').toggleClass('cartNav-open');
+		});
+		/**
 		 * Input help text listeners
 		 */
 		$('[data-inputhelp]').each(function () {
