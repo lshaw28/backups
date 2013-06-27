@@ -1,4 +1,5 @@
 #base=js/.
+Compatibility.js
 bootstrap.min.js
 Modernizr.js
 Class.js
