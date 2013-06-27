@@ -49,9 +49,17 @@
 		display: block;
 		top: 159px;
 		z-index: 2;
+		color: #a7a7a7;
+		text-align: center;
 
 		&:hover {
 			background: #66a7eb;
+			color: #fff;
+		}
+
+		i {
+			line-height: 50px;
+			font-size: 60px;
 		}
 	}
 
@@ -62,28 +70,28 @@
 	.carousel-trigger-right {
 		right: 0;
 	}
+}
 
-	.carousel-master-control {
-		position: absolute;
-		bottom: 5px;
-		width: 100%;
-		left: 0;
+.carousel-master-control {
+	position: absolute;
+	bottom: 5px;
+	width: 100%;
+	left: 0;
 
-		.cmc-wrapper {
-			text-align: center;
+	.cmc-wrapper {
+		text-align: center;
 
-			> a {
-				display: inline-block;
-				width: 14px;
-				height: 14px;
-				border-radius: 7px;
-				background: @color-primary-b;
-				cursor: pointer;
-				margin: 0 7px;
+		> a {
+			display: inline-block;
+			width: 14px;
+			height: 14px;
+			border-radius: 7px;
+			background: @color-primary-b;
+			cursor: pointer;
+			margin: 0 7px;
 
-				&.active {
-					background: @color-secondary-b;
-				}
+			&.active {
+				background: @color-secondary-b;
 			}
 		}
 	}

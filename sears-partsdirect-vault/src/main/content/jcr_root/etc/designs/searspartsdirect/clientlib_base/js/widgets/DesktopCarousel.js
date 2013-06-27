@@ -78,6 +78,10 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 			});
 			
 			right.prependTo(this.parent);
+			
+			// add icons
+			left.html('<i class="icon-angle-left"></i>');
+			right.html('<i class="icon-angle-right"></i>');
 		},
 		/**
 		 * Generate master controller
