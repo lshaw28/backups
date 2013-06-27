@@ -18,7 +18,8 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 				this.parent = parent;
 				
 				// get sample item width
-				this.movementPx = items.eq(0).width();
+				//this.movementPx = items.eq(0).width();
+				this.movementPx = 550;
 				
 				// init carousel object
 				this.carousel = new shc.pd.base.src.Carousel(parent, items.length, this.movementPx);
@@ -111,7 +112,6 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 			// controller clicks
 			items.click(function (e) {
 				e.preventDefault();
-				console.log($(this).index());
 				_this.carousel.setIndex($(this).index());
 			});
 			
