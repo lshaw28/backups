@@ -20,6 +20,7 @@ render/WidgetBreakpointRegistry.js
 main.js
 
 #base=js/components/.
+category101.js
 guideNavigation.js
 responsiveImage.js
 searchPanel.js

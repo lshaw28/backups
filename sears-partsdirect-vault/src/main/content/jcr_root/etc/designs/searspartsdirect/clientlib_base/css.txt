@@ -28,7 +28,9 @@ boxed-callout/boxed-callout.less
 brandBar/brandBar.less
 breadcrumbNavigation/breadcrumbNavigation.less
 cartNav/cartNav.less
+category101/category101.less
 categoryArticleList/categoryArticleList.less
+categoryListing/categoryListing.less
 globalHeader/globalHeader.less
 globalFooter/globalFooter.less
 guideNavigation/guideNavigation.less
