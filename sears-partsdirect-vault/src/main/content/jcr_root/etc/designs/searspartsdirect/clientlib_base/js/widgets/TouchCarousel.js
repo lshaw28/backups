@@ -1,17 +1,21 @@
 NS('shc.pd.base.widgets').TouchCarousel = shc.pd.base.render.Breakpoint.extend(function () {
+	'use strict';
+	
+	var enablerClassName = 'touch-carousel-enabled';
+	
 	return {
 		/**
 		 * @constructor
 		 * @param {jQuery} parent {HTMLElement}
 		 */
 		init: function (parent) {
-			
+			this.parent = parent;
 		},
-		activation: function () {
-			
+		activate: function () {
+			this.parent.addClass(enablerClassName);
 		},
-		deactivation: function () {
-			
+		deactivate: function () {
+			this.parent.removeClass(enablerClassName);
 		}
 	};
 }());

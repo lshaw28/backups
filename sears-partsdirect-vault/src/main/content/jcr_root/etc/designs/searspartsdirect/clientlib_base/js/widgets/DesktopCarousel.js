@@ -1,4 +1,5 @@
 NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend(function () {
+	'use strict';
 	
 	var enablerClassName = 'desktop-carousel-enabled';
 	
