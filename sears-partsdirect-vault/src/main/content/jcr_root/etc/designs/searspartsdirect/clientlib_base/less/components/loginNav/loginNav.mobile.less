@@ -1,12 +1,11 @@
 @media (max-width: 650px) {
 	.loginNav {
-		background-color: @bodyColor;
-		display: none;
-		left: 0;
+		background-color: transparent;
+		left: -276px;
 		position: absolute;
-		top: 44px;
-		width: 100%;
-		z-index: 999;
+		top: 0;
+		width: 276px;
+		z-index: 0;
 
 		ul {
 			float: left;
@@ -16,6 +15,7 @@
 				clear: left;
 				float: left;
 				font-size: @h5Size;
+				margin: 0;
 				width: 100%;
 
 				a {
@@ -24,16 +24,17 @@
 					display: block;
 					float: left;
 					font-size: @h5Size;
-					padding: 20px 0 20px 10px;
-					width: 100%;
+					padding: 20px 0 20px 5%;
+					width: 95%;
+
+					.icon-home {
+						display: inline-block;
+					}
+					.text-home {
+						display: none;
+					}
 				}
 			}
-		}
-
-		&.active {
-			display: block;
-			overflow: auto;
-			-webkit-overflow-scrolling: touch;
 		}
 	}
 

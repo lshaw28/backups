@@ -52,4 +52,4 @@ socialBar/socialBar.less
 text/text.less
 topAccessories/topAccessories.less
 carousel/desktopImageCarousel/desktopImageCarousel.less
-carousel/desktopImageCarousel/touchImageCarousel.less
+carousel/touchImageCarousel/touchImageCarousel.less

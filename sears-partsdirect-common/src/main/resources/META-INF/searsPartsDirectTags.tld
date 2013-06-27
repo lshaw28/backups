@@ -344,4 +344,9 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>RepairModelHelp</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.RepairModelHelpTag</tag-class>
+		<info>this tag gets the data on the repair model help page</info>
+	</tag>
 </taglib>
