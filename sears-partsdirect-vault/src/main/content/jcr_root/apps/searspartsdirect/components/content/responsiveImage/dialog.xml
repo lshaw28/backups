@@ -88,9 +88,9 @@
 				</linkTarget>
 			</items>
 		</linkTab>
-		<imageDimensionsTab
+		<imageDetails
 			jcr:primaryType="cq:Widget"
-			title="Image Dimensions"
+			title="Image Details"
 			xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
 				<displayWidth
@@ -123,29 +123,15 @@
 					name="./mobileImage/sling:resourceType"
 					value="foundation/components/image"
 					xtype="hidden" />
-			</items>
-		</imageDimensionsTab>
-		<CaptionTab
-			jcr:primaryType="cq:Widget"
-			title="Caption"
-			xtype="panel">
-			<items jcr:primaryType="cq:WidgetCollection">
 				<caption jcr:primaryType="cq:Widget" 
 					fieldLabel="Caption"
 					name="./imageCaption" 
 					xtype="textfield" />
-			</items>
-		</CaptionTab>
-		<PhotoCredit
-			jcr:primaryType="cq:Widget"
-			title="Photo Credit"
-			xtype="panel">
-			<items jcr:primaryType="cq:WidgetCollection">
-				<caption jcr:primaryType="cq:Widget" 
+				<credit jcr:primaryType="cq:Widget" 
 					fieldLabel="Photo Credit"
 					name="./photoCredit" 
 					xtype="textfield" />
 			</items>
-		</PhotoCredit>
+		</imageDetails>
 	</items>
 </jcr:root>
