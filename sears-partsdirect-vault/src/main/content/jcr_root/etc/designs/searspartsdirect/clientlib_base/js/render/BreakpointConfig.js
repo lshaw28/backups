@@ -1,6 +1,7 @@
 /**
  * @class BreakpointConfig
  * Config and wrapper for breakpoints. Used for {WidgetBreakpointRegistry}
+ * @TODO add min/max checking
  */
 NS('shc.pd.base.render').BreakpointConfig = Class.extend(function () {
 	return {

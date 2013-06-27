@@ -1,6 +1,6 @@
 #base=js/.
 bootstrap.min.js
-Modernizr.js
+modernizr.custom.50282-2.6.2.min.js
 Class.js
 Utilities.js
 DocumentReady.js

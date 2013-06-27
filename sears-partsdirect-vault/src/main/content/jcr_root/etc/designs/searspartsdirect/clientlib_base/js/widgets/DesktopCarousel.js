@@ -1,4 +1,7 @@
 NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend(function () {
+	
+	var enablerClassName = 'desktop-carousel-enabled';
+	
 	return {
 		/**
 		 * @constructor
@@ -22,18 +25,39 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 				
 				// trigger bindings
 				this.bindSideTriggers();
-				
-				window.testing = this.carousel;
+				this.bindMasterController();
 			} catch (e) {
 				console.error(e.message);
 			}
 		},
+		/**
+		 * Activation event
+		 * @return {undefined}
+		 */
 		activate: function () {
-			
+			this.parent.addClass(enablerClassName);
+			this.carousel.enableAction();
 		},
+		/**
+		 * Deactivation event
+		 * @return {undefined}
+		 */
 		deactivate: function () {
+			this.parent.removeClass(enablerClassName);
 			
+			// disable animation
+			this.carousel.disableAction();
+			
+			// reset index
+			this.carousel.setIndex(0);
+			
+			// remove all styling
+			$('.carousel-list-wrapper', this.parent).removeAttr('style');
 		},
+		/**
+		 * Generate left/right triggers
+		 * @return {undefined}
+		 */
 		bindSideTriggers: function () {
 			var left = $('<a />'),
 				right = $('<a />'),
@@ -55,11 +79,45 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 			
 			right.prependTo(this.parent);
 		},
+		/**
+		 * Generate master controller
+		 * @return {undefined}
+		 */
 		bindMasterController: function () {
-			
-			
-			this.carousel.setOnIndexChange(function () {
+			var container = $('<div />'),
+				itemWrapper = $('<div />'),
+				i,
+				items = null,
+				_this = this;
 				
+			for (i = 0; i <= this.carousel.getMaxIndex(); ++i) {
+				itemWrapper.append($('<a />'));
+			}
+			
+			container.addClass('carousel-master-control');
+			itemWrapper.addClass('cmc-wrapper');
+			
+			// append to container, and append to document
+			itemWrapper.appendTo(container);
+			container.appendTo(this.parent);
+			
+			// get all div as jQuery reference
+			items = $('a', itemWrapper);
+			
+			// controller clicks
+			items.click(function (e) {
+				e.preventDefault();
+				console.log($(this).index());
+				_this.carousel.setIndex($(this).index());
+			});
+			
+			// set current
+			items.eq(this.carousel.getIndex()).addClass('active');
+			
+			// event callback
+			this.carousel.setOnIndexChange(function (index) {
+				items.removeClass('active');
+				items.eq(index).addClass('active');
 			});
 		}
 	};
