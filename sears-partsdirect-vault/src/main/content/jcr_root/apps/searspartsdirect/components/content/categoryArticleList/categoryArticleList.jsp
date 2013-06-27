@@ -1,8 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <spd:getRelation single="true" assetType="productCategory" />
 <spd:GetCategoryArticleList categoryPath="${productCategoryRelation.path}" />
+
 <h2>${productCategoryRelation.title}</h2>
 <c:choose>
 	<c:when test="${not empty articles}">

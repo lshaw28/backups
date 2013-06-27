@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:Dialog"
+		  title="Global Maintenance Index Title Configuration"
+		  xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<GlobalMaintenanceIndexConfig 	jcr:primaryType="cq:Widget"
+						xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<maintenanceIndexTitleSuffix jcr:primaryType="cq:Widget"
+						fieldLabel="Global maintenance index title suffix"
+						fieldDescription="Displayed after category name in all Maintenance Index titles"
+						allowBlank="{Boolean}false"
+						name="./maintenanceIndexTitleSuffix"
+						xtype="textfield"
+						maxLength="28" />
+			</items>
+		</GlobalMaintenanceIndexConfig>
+	</items>
+</jcr:root>

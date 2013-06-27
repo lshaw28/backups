@@ -13,17 +13,19 @@ public class ProductCategoryModelTest extends TestCase {
 	private ProductCategoryModel productCategoryModel;
 	private String path = "path";
 	private String title = "title";
+	private String singular = "singular";
 	private String description = "description";
 	private String imagePath = "imagePath";
 	private String path2 = "path2";
 	private String title2 = "title2";
+	private String singular2 = "singular2";
 	private String description2 = "description2";
 	private String imagePath2 = "imagePath2";
 	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		productCategoryModel = new ProductCategoryModel(path,title,description,imagePath);
+		productCategoryModel = new ProductCategoryModel(path,title,singular,description,imagePath);
 	}
 	
 	@Test
@@ -31,14 +33,17 @@ public class ProductCategoryModelTest extends TestCase {
 		try {
 			assertThat(productCategoryModel.getPath(),is(path));
 			assertThat(productCategoryModel.getTitle(),is(title));
+			assertThat(productCategoryModel.getSingularTitle(),is(singular));
 			assertThat(productCategoryModel.getDescription(),is(description));
 			assertThat(productCategoryModel.getImagePath(),is(imagePath));
 			productCategoryModel.setPath(path2);
 			productCategoryModel.setTitle(title2);
+			productCategoryModel.setSingularTitle(singular2);
 			productCategoryModel.setDescription(description2);
 			productCategoryModel.setImagePath(imagePath2);
 			assertThat(productCategoryModel.getPath(),is(path2));
 			assertThat(productCategoryModel.getTitle(),is(title2));
+			assertThat(productCategoryModel.getSingularTitle(),is(singular2));
 			assertThat(productCategoryModel.getDescription(),is(description2));
 			assertThat(productCategoryModel.getImagePath(),is(imagePath2));
 		} catch (Exception e) {

@@ -33,7 +33,7 @@
                      org.apache.sling.api.resource.ResourceUtil" %><%
 %><%@taglib uri="http://www.day.com/taglibs/cq/personalization/1.0" prefix="personalization" %><%
 %><%@include file="/libs/social/commons/commons.jsp"%>
-	<c:set var="firstNameLastInitial" value="Jon S"/>
+	<c:set var="firstNameLastInitial">${firstName} ${fn:substring(lastName,0,1)}.</c:set>
 	<%
     final String targetResourceType = resourceResolver.resolve(resource.getPath()).getResourceType();
     CommentSystem cs = resource.adaptTo(CommentSystem.class);

@@ -49,7 +49,6 @@ public class GetGuideListingTag extends CQBaseTag{
 	        Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
 	        for(Page page: result){
 	        	String subcategoryName = null;
-	        	log.debug("Executes this ");
 	        	if (!page.equals(currentPage)) { 
 	        		Tag[] tagsArr = page.getTags();
 	        		if (tagsArr != null){

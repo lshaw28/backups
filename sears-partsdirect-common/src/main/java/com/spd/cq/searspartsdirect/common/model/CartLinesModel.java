@@ -1,8 +1,10 @@
 package com.spd.cq.searspartsdirect.common.model;
 
-
-public class CartLineModel {
+public class CartLinesModel {
 	
+	public CartLinesModel() {
+	}
+
 	private Part part;
 	
 	private int quantity;
@@ -15,7 +17,7 @@ public class CartLineModel {
 		this.part = part;
 	}
 
-	public CartLineModel(Part part, int quantity) {
+	public CartLinesModel(Part part, int quantity) {
 		super();
 		this.part = part;
 		this.quantity = quantity;

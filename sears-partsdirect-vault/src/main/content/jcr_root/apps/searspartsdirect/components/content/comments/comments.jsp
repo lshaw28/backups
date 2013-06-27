@@ -90,37 +90,11 @@
     }
 
 %><div class="articleComments-wrapper">
-	<h2>Comments</h2><%
-
-    if (cs.hasComments(WCMMode.fromRequest(request))) {
-
-        out.flush();
-        LinkCheckerSettings.fromRequest(slingRequest).setIgnoreExternals(true);
-
-        for (Comment comment: cs.getComments(0, cs.countComments())) {
-            if (cs.isModerated() && !comment.isApproved() &&
-                    WCMMode.fromRequest(request) != WCMMode.EDIT) {
-                continue;
-            }
-
-            if (comment.isSpam() && WCMMode.fromRequest(request) != WCMMode.EDIT) {
-                continue;
-            }
-
-            if (editContext != null) {
-                editContext.setAttribute("currentResource", comment.getResource());
-            }
-            // include comment
-            IncludeOptions.getOptions(request, true).getCssClassNames().add("comment");
-            %><sling:include resource="<%= comment.getResource() %>" replaceSelectors="listitem-template"/><%
-        }
-
-        out.flush();
-        LinkCheckerSettings.fromRequest(slingRequest).setIgnoreExternals(false);
-
-    }
-
-%></div></div><script>
+	<h2>Comments</h2>
+	
+	<div class="comments-target">Loading...</div></div></div>
+	
+<script>	
 $CQ(function(){
     var refreshCommentCount = function (target, count) {
         if (count === 1) {
@@ -165,60 +139,13 @@ $CQ(function(){
 
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-<%-- Make sure everything is configurable! --%>
-
-<%--<div class="articleComments-wrapper">
-	
-	<h2>Comments</h2>
-	
-	<div class="articleComments-item">
-		<div class="item-header">
-			<div class="avatar">
-				<img src="/content/dam/searspartsdirect/avatar-sample.jpg" alt="" />
-			</div>
-			<a href="" class="name">Test Name</a><br />
-			10:10 am on April 10, 1010
-		</div>
-		<div class="item-body">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mi sem. Nam posuere, lorem vel tincidunt iaculis, risus sapien tempor nisl, gravida vulputate augue augue ac quam. Duis varius nulla id lacus feugiat volutpat. Vestibulum nec neque at nisl sagittis hendrerit at ut est. Pellentesque sit amet ornare arcu, eget malesuada erat.
-		</div>
-	</div>
-	
-	<div class="articleComments-item">
-		<div class="item-header">
-			<div class="avatar">
-				<img src="/content/dam/searspartsdirect/avatar-sample.jpg" alt="" />
-			</div>
-			<a href="" class="name">Test Name</a><br />
-			10:10 am on April 10, 1010
-		</div>
-		<div class="item-body">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mi sem. Nam posuere, lorem vel tincidunt iaculis, risus sapien tempor nisl, gravida vulputate augue augue ac quam. Duis varius nulla id lacus feugiat volutpat. Vestibulum nec neque at nisl sagittis hendrerit at ut est. Pellentesque sit amet ornare arcu, eget malesuada erat.
-		</div>
-	</div>
-	
-	<div class="articleComments-item">
-		<div class="item-header">
-			<div class="avatar">
-				<img src="/content/dam/searspartsdirect/avatar-sample.jpg" alt="" />
-			</div>
-			<a href="" class="name">Test Name</a><br />
-			10:10 am on April 10, 1010
-		</div>
-		<div class="item-body">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mi sem. Nam posuere, lorem vel tincidunt iaculis, risus sapien tempor nisl, gravida vulputate augue augue ac quam. Duis varius nulla id lacus feugiat volutpat. Vestibulum nec neque at nisl sagittis hendrerit at ut est. Pellentesque sit amet ornare arcu, eget malesuada erat.
-		</div>
-	</div>
-	
-</div>--%>
-
 <div class="articleComments-form">
 	<h2>Item</h2>
 	<p>
 		Got Something to Say?
 	</p>
 	<p>
-		<a href="">Sign in with your Sears ID</a>
+		<a data-toggle="modal" data-target="#loginModal">Sign in with your Sears ID</a>
 	</p>
 </div>
 
