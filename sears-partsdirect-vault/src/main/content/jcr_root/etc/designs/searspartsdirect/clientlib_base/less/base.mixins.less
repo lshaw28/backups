@@ -27,7 +27,6 @@
 	-moz-border-radius-bottomright: @v;
 	border-bottom-right-radius: @v;
 }
-
 .opacity(@o: 0.5) {
 	-moz-opacity: @o;
 	-khtml-opacity: @o;
@@ -38,6 +37,7 @@
 	@ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{oP})";
 	-ms-filter: "@{ms-filter}";
 }
+
 .verticalGradient(@s: #fff, @e: #000) {
 	background: @s;
 	background: -moz-linear-gradient(top, @s 0%, @e 100%);
@@ -48,7 +48,6 @@
 	background: linear-gradient(to bottom, @s 0%,@e 100%);
 	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{s}', endColorstr='@{e}', GradientType=0)";
 }
-
 .horizontalGradient(@s: #fff, @e: #000) {
 	background: @s;
 	background: -moz-linear-gradient(left, @s 0%, @e 100%);
@@ -65,4 +64,10 @@
 	-o-box-shadow: @v;
 	-ms-box-shadow: @v;
 	box-shadow: @v;
+}
+.transition(@v: all 1s ease-out) {
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
 }
