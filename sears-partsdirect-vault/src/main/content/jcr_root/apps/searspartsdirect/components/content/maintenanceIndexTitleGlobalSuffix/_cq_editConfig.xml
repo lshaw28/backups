@@ -8,7 +8,4 @@
     cq:layout="rollover"
     cq:disableTargeting="true"
     cq:actions="[text:Global maintenance index title suffix,-,edit]" >
-    <cq:listeners
-        jcr:primaryType="cq:EditListenersConfig"
-		afteredit="REFRESH_PAGE" />
  </jcr:root>
