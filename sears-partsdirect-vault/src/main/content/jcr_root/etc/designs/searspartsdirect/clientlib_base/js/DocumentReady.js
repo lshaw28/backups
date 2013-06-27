@@ -19,7 +19,7 @@
 		 * Login Navigation
 		 */
 		$('.trigger').bind('click', function () {
-			$('.loginNav').toggleClass('active');
+			$('body').toggleClass('loginNav-open');
 		});
 		/**
 		 * Input help text listeners

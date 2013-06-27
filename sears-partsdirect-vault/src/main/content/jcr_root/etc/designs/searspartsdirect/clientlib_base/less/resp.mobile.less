@@ -14,10 +14,32 @@
 
 @media (max-width: 650px) {
 	body {
+		overflow-x: hidden;
 		padding: 0;
+		width: 100%;
+
+		&.loginNav-open {
+			background-color: #ebebeb;
+			background-image: none;
+
+			#viewport {
+				left: 276px;
+				position: absolute;
+			}
+		}
+		&.cart-open {
+			background-color: @bodyColor;
+			background-image: none;
+
+			#viewport {
+				left: -276px;
+				position: absolute;
+			}
+		}
 	}
 	#viewport {
 		background: @tableHoverColor url('../img/menu_shadow.png') repeat-y 577px 0;
+		.boxShadow(0 0 5px 5px #c3c3c3);
 	}
 	.container-fluid {
 		-webkit-transition-property: -webkit-transform;
