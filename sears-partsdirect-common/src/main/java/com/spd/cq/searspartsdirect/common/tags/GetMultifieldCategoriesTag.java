@@ -62,6 +62,7 @@ public class GetMultifieldCategoriesTag extends CQBaseTag {
 			pageContext.setAttribute("categories", categories);
 		}
 		catch (Exception e) {
+			log.error("Error creating multifield categories", e);
 		}
         return SKIP_BODY;
 	}
