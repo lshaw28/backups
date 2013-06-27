@@ -12,5 +12,8 @@
 		jcr:primaryType="cq:PageContent"
 		sling:resourceType="searspartsdirect/components/page/repairGuide"
 		cq:designPath="/etc/designs/searspartsdirect">
+		<comments
+			jcr:primaryType="nt:unstructured" 
+			sling:resourceType="searspartsdirect/components/content/comments"/>
 	</jcr:content>
 </jcr:root>

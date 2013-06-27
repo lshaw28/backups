@@ -76,80 +76,32 @@
 
     String signedInText = cs.getProperty("signedInText", i18n.get("You are signed in as:"));
 
-    if (WCMMode.fromRequest(request) == WCMMode.EDIT) {
-          %><cq:includeClientLib categories="cq.social.author"/><%
-    }
-%><div id="<%= cs.getId() %>">
-    <div class="comment-signed-in-text" id="<%= cs.getId() %>-signed-in-text"><%= signedInText %><span class="comment-signed-in-user" id="<%= cs.getId() %>-signed-in-user"><%= StringEscapeUtils.escapeHtml4(formattedName) %></span></div>
-    <%
-    if (!cs.isClosed() && CollabUtil.canAddNode(resourceResolver.adaptTo(Session.class), cs.getRootPath())) {
-    %><sling:include resourceType="searspartsdirect/components/content/composer" replaceSelectors="simple-template"/><%
-    }
-    if(!CollabUtil.canAddNode(resourceResolver.adaptTo(Session.class), cs.getRootPath())) {
-        %><p><%=i18n.get("You are not allowed to post here, please sign in or join")%></p><%
-    }
+    if (cs.hasComments(WCMMode.fromRequest(request))) {
 
-%><div class="articleComments-wrapper">
-	<h2>Comments</h2>
-	
-	<div class="comments-target">Loading...</div></div></div>
-	
-<script>	
-$CQ(function(){
-    var refreshCommentCount = function (target, count) {
-        if (count === 1) {
-            target.text(CQ.I18n.getMessage("{0} comment", count));
-        } else if (count === 0) {
-            target.text(CQ.I18n.getMessage("No comments yet", count));
-        } else {
-            target.text(CQ.I18n.getMessage("{0} comments", count));
+        out.flush();
+        LinkCheckerSettings.fromRequest(slingRequest).setIgnoreExternals(true);
+
+        for (Comment comment: cs.getComments(0, cs.countComments())) {
+            if (cs.isModerated() && !comment.isApproved() &&
+                    WCMMode.fromRequest(request) != WCMMode.EDIT) {
+                continue;
+            }
+
+            if (comment.isSpam() && WCMMode.fromRequest(request) != WCMMode.EDIT) {
+                continue;
+            }
+
+            if (editContext != null) {
+                editContext.setAttribute("currentResource", comment.getResource());
+            }
+            // include comment
+            IncludeOptions.getOptions(request, true).getCssClassNames().add("comment");
+            %><sling:include resource="<%= comment.getResource() %>" replaceSelectors="listitem-template"/><%
         }
-    };
 
-    var commentCount = <%=cs.countComments(WCMMode.fromRequest(request))%>;
-    <%if( isRTEenabled) {%>
-    CQ.soco.commons.activateRTE($CQ("#<%=cs.getId()%>").find("form").first());
-    <%}%>
-    CQ.soco.comments.attachToComposer($CQ("#<%=cs.getId()%>").find("form").first(), $CQ("#<%=cs.getId()%>"), "comment");
-    $CQ("#<%=cs.getId()%>").bind(CQ.soco.comments.events.ADDED, function(event){
-            CQ_Analytics.record({event: 'postComment',
-                    values: {commenterName: '<%=loggedInUserID%>',
-                            componentPath: '<%=resource.getResourceType()%>'
-                            }
-            });
-            commentCount += 1;
-            refreshCommentCount($CQ("#<%=cs.getId()%>-count"), commentCount);
-    });
-    $CQ("#<%=cs.getId()%>").bind(CQ.soco.comments.events.DELETE, function(event) {
-        $CQ.post($CQ(event.target).closest("form").attr("action"), function(data, textStatus, jqXHR) {
-            var parentComment = $CQ(event.target).closest(".comment").parent();
-            var numReplies = +(parentComment.data("numreplies") || 0);
-            parentComment.data("numreplies", (numReplies - 1));
-            commentCount -= 1;
-            refreshCommentCount($CQ("#<%=cs.getId()%>-count"), commentCount);
-            $CQ(event.target).closest(".comment").remove();
-        });
-       });
+        out.flush();
+        LinkCheckerSettings.fromRequest(slingRequest).setIgnoreExternals(false);
 
-    CQ.soco.comments.bindOnAdded($CQ("#<%=cs.getId()%>"));
-    $CQ(".comment").bind(CQ.soco.comments.events.DELETE, CQ.soco.comments.removeHandler);
-    $CQ(".comment").bind(CQ.soco.comments.events.ADDED, CQ.soco.comments.addHandler);
-});
-</script>
+    }
 
-<%@ include file="/apps/searspartsdirect/global.jsp" %>
-
-<div class="articleComments-form">
-	<h2>Item</h2>
-	<p>
-		Got Something to Say?
-	</p>
-	<p>
-		<a data-toggle="modal" data-target="#loginModal">Sign in with your Sears ID</a>
-	</p>
-</div>
-
-<div class="articleComments-loader">
-	<h2>3 Article Comments</h2>
-	<a href="" class="primary-btn">Load Comments</a>
-</div>
+%>
