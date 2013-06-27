@@ -136,5 +136,16 @@
 					xtype="textfield" />
 			</items>
 		</CaptionTab>
+		<PhotoCredit
+			jcr:primaryType="cq:Widget"
+			title="Photo Credit"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<caption jcr:primaryType="cq:Widget" 
+					fieldLabel="Photo Credit"
+					name="./photoCredit" 
+					xtype="textfield" />
+			</items>
+		</PhotoCredit>
 	</items>
 </jcr:root>
