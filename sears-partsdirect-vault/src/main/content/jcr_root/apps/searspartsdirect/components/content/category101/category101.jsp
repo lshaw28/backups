@@ -1,5 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <spd:tagsByPage tagType="parent_categories" />
 <spd:getMultifieldCategories />
@@ -19,7 +18,9 @@
 			<li><a href="${url}">${category.title}</a></li>
 		</c:forEach>
 	</ul>
+	<%--
 	<c:set var="viewAllLink"><cq:text property='viewAllLink'/></c:set>
 	<spd:LinkResolver value="${viewAllLink}" />
-	<a href="${url}">View All Categories</a>
+	<a href="${url}">This will be authorable</a>
+	 --%>
 </c:if>

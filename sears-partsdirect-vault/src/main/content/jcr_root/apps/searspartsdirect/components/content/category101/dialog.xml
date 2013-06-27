@@ -16,17 +16,19 @@
 					   
 				<multi
 		            jcr:primaryType="cq:Widget"
-		            fieldLabel="Categories"
+		            fieldLabel="Articles"
 		            name="./multipaths"
-		            xtype="multifield">
+		            xtype="multifieldlimit"
+		            limit="6" >
 			            <fieldConfig
 			                jcr:primaryType="cq:Widget"
 			                xtype="multicustom">
 			                <items jcr:primaryType="cq:WidgetCollection">
 			                    <url
 			                        jcr:primaryType="cq:Widget"
-			                        fieldLabel="Category"
+			                        fieldLabel="Article"
 			                        name="url"
+			                        rootPath="/content/searspartsdirect/en/articles"
 			                        xtype="pathfield"/>
 			                </items>
 			            </fieldConfig>
