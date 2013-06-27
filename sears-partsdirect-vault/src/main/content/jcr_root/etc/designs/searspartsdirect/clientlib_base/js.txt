@@ -25,6 +25,7 @@ widgets/TouchCarousel.js
 main.js
 
 #base=js/components/.
+cartNav.js
 category101.js
 guideNavigation.js
 responsiveImage.js
