@@ -3,7 +3,7 @@
 <%-- Make `<h2 />` configurable --%>
 <h2>Photo/Gallery</h2>
 
-<div class="hide-onload desktop-carousel touch-carousel desktop-carousel-enabled">
+<div class="hide-onload desktop-carousel touch-carousel">
 	<div class="carousel-wrapper">
 		<div class="carousel-list-wrapper">
 			<div class="carousel-item">

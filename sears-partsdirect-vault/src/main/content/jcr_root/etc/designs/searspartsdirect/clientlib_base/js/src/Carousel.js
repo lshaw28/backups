@@ -23,6 +23,7 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 			}
 			
 			this.callback = function () {};
+			this.hasAction = true;
 			
 			// item wrapper that we move
 			this.itemWrapper = $('.carousel-list-wrapper', parent);
@@ -41,7 +42,9 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 		 * @return {undefined}
 		 */
 		action: function () {
-			this.moveFx.animateX(this.movementPx * this.index * -1, 'px', ANIMATION_SPEED, this.callback);
+			if (this.hasAction === true) {
+				this.moveFx.animateX(this.movementPx * this.index * -1, 'px', ANIMATION_SPEED, this.callback);
+			}
 		},
 		/**
 		 * @return {Number}
@@ -62,6 +65,18 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 		 */
 		onFxComplete: function (callback) {
 			this.callback = callback;
+		},
+		/**
+		 * @return {undefined}
+		 */
+		enableAction: function () {
+			this.hasAction = true;
+		},
+		/**
+		 * @return {undefined}
+		 */
+		disableAction: function () {
+			this.hasAction = false;
 		}
 	};
 }());

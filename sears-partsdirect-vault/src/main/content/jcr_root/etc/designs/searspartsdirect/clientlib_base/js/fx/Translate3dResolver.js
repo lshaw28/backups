@@ -49,6 +49,9 @@ NS('shc.pd.base.fx').Translate3dResolver = Class.extend(function () {
 			if (Modernizr.csstransforms3d === true) {
 				// redefine animation instance
 				this.animateX = function (x, unit, duration, callback) {
+					
+					this.animator3d.stop(true);
+					
 					// translate3d animation
 					this.animator3d.animateX(x, unit, duration, callback || function () {});
 				};
@@ -57,6 +60,9 @@ NS('shc.pd.base.fx').Translate3dResolver = Class.extend(function () {
 				this.animateX = function (x, unit, duration, callback) {
 					var css = {};
 					css[this.fallbackType] = x + unit;
+					
+					this.node.stop(true, true);
+					
 					// jQuery animation
 					this.node.animate(css, duration, callback || function () {});
 				};
