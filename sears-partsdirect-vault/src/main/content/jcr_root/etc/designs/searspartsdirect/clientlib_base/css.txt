@@ -37,6 +37,7 @@ guideNavigation/guideNavigation.less
 headerPromo/headerPromo.less
 homeLogo/homeLogo.less
 informationBanner/informationBanner.less
+legalCopy/legalCopy.less
 loginNav/loginNav.less
 modal/modal.less
 modelNumberSearch/modelNumberSearch.less
@@ -50,3 +51,5 @@ skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less
 text/text.less
 topAccessories/topAccessories.less
+carousel/desktopImageCarousel/desktopImageCarousel.less
+carousel/desktopImageCarousel/touchImageCarousel.less

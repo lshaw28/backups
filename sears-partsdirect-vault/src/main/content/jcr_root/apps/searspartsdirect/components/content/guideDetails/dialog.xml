@@ -19,11 +19,9 @@
 						title="Image" 
 						uploadUrl="/tmp/upload/*" 
 						xtype="smartimage" />
-		
 				 <tab2 jcr:primaryType="cq:Widget" 
 					   title="Information"
 					   xtype="panel">
-					  
 					<items jcr:primaryType="cq:WidgetCollection">
 						<text jcr:primaryType="cq:Widget" 
 								fieldLabel="Long Description"
@@ -31,7 +29,6 @@
 								maxLength="560"
 								allowBlank="{Boolean}false"
 								xtype="textarea" />
-								
 						<difficulty 
 								jcr:primaryType="cq:Widget" 
 								fieldLabel="Difficulty Level"
@@ -41,12 +38,39 @@
 								minValue="{Long}1"
 								fieldDescription="Choose a number from 1-5"
 								xtype="numberfield"/>
-		
-						<time   jcr:primaryType="cq:Widget" 
-								fieldLabel="Time Required"
-								name="./timeRequired" 
-								xtype="textfield" />
-								
+						<timeRequired
+				            jcr:primaryType="nt:unstructured"
+				            fieldLabel="Time Required"
+				            name="./timeRequired"
+				            type="select"
+				            xtype="selection">
+				            <options jcr:primaryType="cq:WidgetCollection">
+				                <fifteen
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 15 min."
+				                    value="Less than 15 min."/>
+				                <thirty
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 30 min."
+				                    value="Less than 30 min."/>
+				                <fortyFive
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 45 min."
+				                    value="Less than 45 min."/>
+				                <sixty
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 60 min."
+				                    value="Less than 60 min."/>
+				                <ninety
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 90 min."
+				                    value="Less than 90 min."/>
+				                <hundredTwenty
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 120 min."
+				                    value="Less than 120 min."/>
+				            </options>
+				        </timeRequired>
 						<resType
 							jcr:primaryType="cq:Widget"
 							ignoreData="{Boolean}true"

@@ -6,33 +6,27 @@
 	-ms-border-radius: @v;
 	-o-border-radius: @v;
 	border-radius: @v;
-	behavior: url('http://@{pie_path}');
 }
 .borderTopLeftRadius(@v: 0) {
 	-webkit-border-top-left-radius: @v;
 	-moz-border-radius-topleft: @v;
 	border-top-left-radius: @v;
-	behavior: url('http://@{pie_path}');
 }
 .borderTopRightRadius(@v: 0) {
 	-webkit-border-top-right-radius: @v;
 	-moz-border-radius-topright: @v;
 	border-top-right-radius: @v;
-	behavior: url('http://@{pie_path}');
 }
 .borderBottomLeftRadius(@v: 0) {
 	-webkit-border-bottom-left-radius: @v;
 	-moz-border-radius-bottomleft: @v;
 	border-bottom-left-radius: @v;
-	behavior: url('http://@{pie_path}');
 }
 .borderBottomRightRadius(@v: 0) {
 	-webkit-border-bottom-right-radius: @v;
 	-moz-border-radius-bottomright: @v;
 	border-bottom-right-radius: @v;
-	behavior: url('http://@{pie_path}');
 }
-
 .opacity(@o: 0.5) {
 	-moz-opacity: @o;
 	-khtml-opacity: @o;
@@ -43,6 +37,7 @@
 	@ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{oP})";
 	-ms-filter: "@{ms-filter}";
 }
+
 .verticalGradient(@s: #fff, @e: #000) {
 	background: @s;
 	background: -moz-linear-gradient(top, @s 0%, @e 100%);
@@ -53,7 +48,6 @@
 	background: linear-gradient(to bottom, @s 0%,@e 100%);
 	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{s}', endColorstr='@{e}', GradientType=0)";
 }
-
 .horizontalGradient(@s: #fff, @e: #000) {
 	background: @s;
 	background: -moz-linear-gradient(left, @s 0%, @e 100%);
@@ -70,5 +64,10 @@
 	-o-box-shadow: @v;
 	-ms-box-shadow: @v;
 	box-shadow: @v;
-	behavior: url('http://@{pie_path}');
+}
+.transition(@v: all 1s ease-out) {
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
 }

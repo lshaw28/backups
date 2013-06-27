@@ -9,14 +9,14 @@
 			<c:otherwise>
 				<ul class="hidden-phone">
 					<c:forEach items="${sections}" var="current" varStatus="item">
-						<li><a class="scroll-to" href="#${current[1]}">${current[0]}</a></li>
+						<li><a class="scroll-to" href="#${current.anchorName}">${current.linkText}</a></li>
 					</c:forEach>
 				</ul>
                                 <!-- TODO: Make sure global drop-down mobile styling is applied -->
 				<select class="visible-phone">
 					<option value="" selected="selected">${jumpToString}</option>
 					<c:forEach items="${sections}" var="current" varStatus="item">
-						<option value="#${current[1]}">${current[0]}</option>
+						<option value="#${current.anchorName}">${current.linkText}</option>
 					</c:forEach>
 				</select>
 			</c:otherwise>

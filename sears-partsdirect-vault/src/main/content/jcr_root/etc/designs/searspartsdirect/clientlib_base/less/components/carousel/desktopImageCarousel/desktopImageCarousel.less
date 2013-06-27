@@ -1,0 +1,62 @@
+.desktop-carousel-enabled {
+	@carouselWidth: 550px;
+
+	padding: 0 25px 28px 25px; // creates spacing for master control list
+	margin: 0 auto;
+	width: @carouselWidth;
+	overflow: hidden;
+	position: relative;
+
+	[class*="item"] {
+		float: left;
+
+		img, p {
+			width: @carouselWidth;
+		}
+
+		img {
+			height: 370px;
+			background: #aaa;
+		}
+
+		p {
+			font-size: 11px;
+			line-height: 13px;
+			padding: 6px 0;
+			text-align: center;
+		}
+	}
+
+	.carousel-wrapper {
+		overflow: hidden;
+	}
+
+	.carousel-list-wrapper {
+		width: 99999px;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+
+	[class*="carousel-trigger"] { 
+		width: 50px;
+		height: 50px;
+		background: #dedede; // non rba compliant browsers
+		background: rgba(222, 222, 222, .8);
+		border: solid 1px #dedede;
+		position: absolute;
+		display: block;
+		top: 159px;
+
+		&:hover {
+			background: #66a7eb;
+		}
+	}
+
+	.carousel-trigger-left {
+		left: 0;
+	}
+
+	.carousel-trigger-right {
+		right: 0;
+	}
+}

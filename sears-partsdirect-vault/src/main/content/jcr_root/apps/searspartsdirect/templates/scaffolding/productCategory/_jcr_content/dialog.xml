@@ -11,6 +11,10 @@
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title"
                     name="./jcr:content/jcr:title"/>
+                <titleSingular
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Title Singular Form"
+                    name="./jcr:content/titleSingular"/>
                 <description
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Description"

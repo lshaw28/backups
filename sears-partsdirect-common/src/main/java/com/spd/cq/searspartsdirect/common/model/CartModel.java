@@ -1,22 +1,30 @@
 package com.spd.cq.searspartsdirect.common.model;
 
-import java.util.Arrays;
+import java.util.List;
+
+import com.google.gson.annotations.SerializedName;
 
 
 public class CartModel {
 	
-	private CartLineModel[] cartLine;
+	@SerializedName("cartLines")
+	private List<CartLinesModel> cartLines;
 
-	public CartLineModel[] getCartLine() {
-		return cartLine;
-	}
-
-	public void setCartLine(CartLineModel[] cartLine) {
-		this.cartLine = cartLine;
+	public CartModel() {
 	}
 
 	@Override
 	public String toString() {
-		return "CartModel [cartLine=" + Arrays.toString(cartLine) + "]";
+		return "Cart [cartLine=" + cartLines + "]";
 	}
+
+	public List<CartLinesModel> getCartLines() {
+		return cartLines;
+	}
+
+	public void setCartLines(List<CartLinesModel> cartLines) {
+		this.cartLines = cartLines;
+	}
+
+	
 }

@@ -17,8 +17,8 @@
 				
 				<pages
 	        			jcr:primaryType="cq:Widget"
-	        			name="./pages"
-						treeRootPath="/etc/spdAssets/scaffolding"
+	        			name="./authors"
+						treeRootPath="/content/searspartsdirect/en/authors"
 	        			hideLabel="{Boolean}false"
 	        			fieldLabel="Select Author Page"
 	        			xtype="pagemapper"/>

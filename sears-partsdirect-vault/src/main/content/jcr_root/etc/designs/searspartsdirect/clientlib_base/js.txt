@@ -1,4 +1,5 @@
 #base=js/.
+Compatibility.js
 bootstrap.min.js
 Modernizr.js
 Class.js
@@ -17,11 +18,16 @@ render/BreakpointConfig.js
 render/ResponsiveEngineImpl.js
 render/DefaultResponsiveEngine.js
 render/WidgetBreakpointRegistry.js
+src/IndexController.js
+src/Carousel.js
+widgets/DesktopCarousel.js
+widgets/TouchCarousel.js
 main.js
 
 #base=js/components/.
 category101.js
 guideNavigation.js
 responsiveImage.js
+revealPanel.js
 searchPanel.js
 video.js

@@ -66,6 +66,7 @@ public enum AssetType {
 			String description = properties.get(Constants.ASSETS_DESCRIPTION_PATH,"");
 			return new ProductCategoryModel(p.getPath(),
 					title,
+					properties.get("titleSingular",""),
 					description,
 					p.getPath() + Constants.ASSETS_IMAGE_PATH);
 		}

@@ -22,6 +22,11 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>getAuthorPages</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAuthorPagesTag</tag-class>
+		<info>returns a pages array corresponding to the pagemapper string array output</info>
+	</tag>
+	<tag>
 		<name>pagesByTag</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.PagesByTagTag</tag-class>
 		<info>Generates a list of Pages represented by a specific Tag</info>

@@ -3,12 +3,14 @@ package com.spd.cq.searspartsdirect.common.model.spdasset;
 public class ProductCategoryModel {
 	
 	private String title;
+	private String singularTitle;
 	private String description;
 	private String imagePath;
 	private String path;
 	
-	public ProductCategoryModel(String path, String title, String description, String imagePath) {
+	public ProductCategoryModel(String path, String title, String singularTitle, String description, String imagePath) {
 		this.title = title;
+		this.singularTitle = singularTitle;
 		this.description = description;
 		this.imagePath = imagePath;
 		this.path = path;
@@ -19,6 +21,13 @@ public class ProductCategoryModel {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public String getSingularTitle() {
+		return singularTitle;
+	}
+	public void setSingularTitle(String singularTitle) {
+		this.singularTitle = singularTitle;
 	}
 	
 	public String getDescription() {
