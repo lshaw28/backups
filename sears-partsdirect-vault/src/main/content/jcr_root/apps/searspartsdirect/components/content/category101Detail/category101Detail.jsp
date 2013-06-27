@@ -1,7 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
 <spd:tagsByPage tagType="parent_categories" />
 <spd:getMultifieldCategories />
 
@@ -18,7 +15,6 @@
 	</h2>
 
 	<c:forEach var="category" items="${categories}" varStatus="currentItem">
-
 		<c:choose>
 			<c:when test="${currentItem.count % 2 eq 1}">
 				<div class="row-fluid">
