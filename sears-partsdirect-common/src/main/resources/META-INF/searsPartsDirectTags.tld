@@ -109,7 +109,13 @@
 			<type>java.lang.String</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
-		</attribute>		
+		</attribute>
+		<attribute>
+			<name>maxOutput</name>
+			<type>java.lang.Integer</type>
+			<required>false</required><!-- defaulted to 4 -->
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>	
 	</tag>
 	<tag>
 		<name>getRelatedArticles</name>

@@ -39,6 +39,7 @@ public final class Constants {
 	
 	public static final String USERGEN_ROOT = ident("/content/usergenerated");
 	public static final String ARTICLES_ROOT = ident("/content/searspartsdirect/en/articles");
+	public static final String GUIDES_ROOT = ident("/content/searspartsdirect/en/guides");
 	
 	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
 	public static final String GUIDE_NAV_PATH = ident("guideNavigation");
