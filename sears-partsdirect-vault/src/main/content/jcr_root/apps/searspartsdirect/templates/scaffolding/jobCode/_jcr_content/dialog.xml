@@ -18,5 +18,23 @@
                     name="./jcr:content/jcr:description"/>
             </items>
         </tab1>
+        <tab2
+        	jcr:primaryType="cq:Panel"
+        	title="Related Assets">
+        	<items jcr:primaryType="cq:WidgetCollection">
+        		<partType
+        			jcr:primaryType="cq:Widget"
+        			name="./jcr:content/partType"
+        			rootPath="/etc/spdAssets/scaffolding/partType"
+        			fieldLabel="Part Type"
+        			xtype="pathfield"/>
+        		<guide
+        			jcr:primaryType="cq:Widget"
+        			name="./jcr:content/guide"
+					rootPath="/content/searspartsdirect/en/repair-guide"
+        			fieldLabel="Guide"
+        			xtype="pathfield"/>
+        	</items>
+       	</tab2>
     </items>
 </jcr:root>

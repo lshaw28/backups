@@ -31,6 +31,12 @@
                     name="./jcr:content/image/sling:resourceType"
                     value="foundation/components/image"
                     xtype="hidden"/>
+                <articleIndexCopy
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Article Index Copy"
+                    fieldLabelDescription="Description for Article Index page"
+                    name="./jcr:content/articleIndexCopy"
+                    xtype="textarea"/>
             </items>
         </tab1>
         <tab2
