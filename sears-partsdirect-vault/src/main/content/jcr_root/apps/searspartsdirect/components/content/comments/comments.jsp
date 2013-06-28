@@ -80,20 +80,37 @@
           %><cq:includeClientLib categories="cq.social.author"/><%
     }
 %><div id="<%= cs.getId() %>">
-    <div class="comment-signed-in-text" id="<%= cs.getId() %>-signed-in-text"><%= signedInText %><span class="comment-signed-in-user" id="<%= cs.getId() %>-signed-in-user"><%= StringEscapeUtils.escapeHtml4(formattedName) %></span></div>
-    <%
-    if (!cs.isClosed() && CollabUtil.canAddNode(resourceResolver.adaptTo(Session.class), cs.getRootPath())) {
-    %><sling:include resourceType="searspartsdirect/components/content/composer" replaceSelectors="simple-template"/><%
-    }
-    if(!CollabUtil.canAddNode(resourceResolver.adaptTo(Session.class), cs.getRootPath())) {
-        %><p><%=i18n.get("You are not allowed to post here, please sign in or join")%></p><%
-    }
-
-%><div class="articleComments-wrapper">
+<div class="articleComments-wrapper">
 	<h2>Comments</h2>
 	
-	<div class="comments-target">Loading...</div></div></div>
-	
+	<div class="comments-target">Loading...</div>
+	<button onClick='$(".comments-target").load("<%=currentPage.getPath()%>/jcr:content/comments.load.html"); $(this).hide();'>Load</button>
+
+<div class="articleComments-form">
+	<h2>Comment</h2>
+	<c:choose>
+		<c:when test="${not empty firstName}">
+		    <div class="comment-signed-in-text" id="<%= cs.getId() %>-signed-in-text"><%= signedInText %><span class="comment-signed-in-user" id="<%= cs.getId() %>-signed-in-user"><%= StringEscapeUtils.escapeHtml4(formattedName) %></span></div>
+		    <%
+		    if (!cs.isClosed() && CollabUtil.canAddNode(resourceResolver.adaptTo(Session.class), cs.getRootPath())) {
+		    %><sling:include resourceType="searspartsdirect/components/content/composer" replaceSelectors="simple-template"/><%
+		    }
+		    if(!CollabUtil.canAddNode(resourceResolver.adaptTo(Session.class), cs.getRootPath())) {
+		        %><p><%=i18n.get("You are not allowed to post here, please sign in or join")%></p><%
+		    }%>
+	    </c:when>
+	    <c:otherwise>
+			<p>
+				Got Something to Say?
+			</p>
+			<p>
+				<a data-toggle="modal" data-target="#loginModal">Sign in with your Sears ID</a>
+			</p>
+		</c:otherwise>
+	</c:choose>
+</div>
+
+</div></div><br/>
 <script>	
 $CQ(function(){
     var refreshCommentCount = function (target, count) {
@@ -110,7 +127,7 @@ $CQ(function(){
     <%if( isRTEenabled) {%>
     CQ.soco.commons.activateRTE($CQ("#<%=cs.getId()%>").find("form").first());
     <%}%>
-    CQ.soco.comments.attachToComposer($CQ("#<%=cs.getId()%>").find("form").first(), $CQ("#<%=cs.getId()%>"), "comment");
+    CQ.soco.comments.attachToComposer($CQ("#<%=cs.getId()%>").find("form").first(), $CQ(".comments-target"), "comment");
     $CQ("#<%=cs.getId()%>").bind(CQ.soco.comments.events.ADDED, function(event){
             CQ_Analytics.record({event: 'postComment',
                     values: {commenterName: '<%=loggedInUserID%>',
@@ -138,16 +155,6 @@ $CQ(function(){
 </script>
 
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-
-<div class="articleComments-form">
-	<h2>Item</h2>
-	<p>
-		Got Something to Say?
-	</p>
-	<p>
-		<a data-toggle="modal" data-target="#loginModal">Sign in with your Sears ID</a>
-	</p>
-</div>
 
 <div class="articleComments-loader">
 	<h2>3 Article Comments</h2>
