@@ -52,11 +52,11 @@ public class ModelSubPageFilter implements Filter {
         RequestPathInfo rpi = request.getRequestPathInfo();      
         String ext = rpi.getExtension(), resPath = rpi.getResourcePath();        
         Resource res = resourceResolver.getResource(resPath);
-        Pattern p = Pattern.compile("/model/(.*)/guide(.*)");
+        Pattern p = Pattern.compile("/(.*)/(.*)/model-(.*)-repair(.*)");
         Matcher m = p.matcher(resPath);
         if (m.find()) {
         	//String forwardUrl = m.group(2) + "?model=" + m.group(1);
-        	String forwardUrl = m.group(2).replace(".html","." + m.group(1) + ".html");
+        	String forwardUrl = m.group(4).replace(".html","." + m.group(1) + "." + m.group(2) + "." + m.group(3) + ".html");
         	request.getRequestDispatcher(forwardUrl).forward(request, response);
         	return;
         }

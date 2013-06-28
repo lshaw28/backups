@@ -21,9 +21,12 @@ public class DisplayModelHeaderTag extends CQBaseTag {
 		 */
 		JspWriter out = pageContext.getOut();
 		String[] selectors = slingRequest.getRequestPathInfo().getSelectors();
-		if (selectors.length > 0) {
+		if (selectors.length > 2) {
+			String brand = selectors[0];
+			String category = selectors[1];
+			String model = selectors[2];
 			StringBuilder sb = new StringBuilder();
-			sb.append("<h1>Header for Model #" + selectors[0] + "</h1>");
+			sb.append("<h1>Header for Model #" + model + ", " + brand + " " + category + "</h1>");
 			sb.append("<span>Parts</span> | ");
 			sb.append("<span>Manuals(2)</span> | ");
 			sb.append("<span>Repair Help</span> | ");
