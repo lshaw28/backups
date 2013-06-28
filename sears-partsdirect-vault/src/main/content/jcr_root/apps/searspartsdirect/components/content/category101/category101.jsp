@@ -1,6 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
-<spd:tagsByPage tagType="parent_categories" />
 <spd:getMultifieldCategories />
 <spd:getRelation single="true" assetType="productCategory" />
 <spd:getNameByNodePath nodePath="${productCategoryRelation.path}" />
@@ -8,10 +7,10 @@
 <c:if test="${not empty categories}">
 	<c:choose>
 		<c:when test="${fn:length(parent_categoriesList[0].title) lt 38 }">
-			<cq:text property="header" placeholder="${parent_categoriesList[0].title} 101" />
+			<cq:text property="header" placeholder="${productCategoryRelation.title} 101" />
 		</c:when>
 		<c:otherwise>
-			<cq:text property="header" placeholder="${fn:substring(parent_categoriesList[0].title,0,37)} 101" />
+			<cq:text property="header" placeholder="${fn:substring(productCategoryRelation.title,0,37)} 101" />
 		</c:otherwise>
 	</c:choose>
 	<ul>
