@@ -5,6 +5,8 @@ import javax.servlet.jsp.JspWriter;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
+
 /**
  * Custom Tag to display a model header spoofed onto another page based on a request parameter
  * @author Joseph
@@ -22,9 +24,9 @@ public class DisplayModelHeaderTag extends CQBaseTag {
 		JspWriter out = pageContext.getOut();
 		String[] selectors = slingRequest.getRequestPathInfo().getSelectors();
 		if (selectors.length > 2) {
-			String brand = selectors[0];
-			String category = selectors[1];
-			String model = selectors[2];
+			String brand = selectors[Constants.BRAND_SELECTOR];
+			String category = selectors[Constants.CATEGORY_SELECTOR];
+			String model = selectors[Constants.MODEL_SELECTOR];
 			StringBuilder sb = new StringBuilder();
 			sb.append("<h1>Header for Model #" + model + ", " + brand + " " + category + "</h1>");
 			sb.append("<span>Parts</span> | ");
