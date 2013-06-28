@@ -11,6 +11,7 @@ import org.mockito.stubbing.Answer;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.spd.cq.searspartsdirect.common.tags.GetRelatedGuidesTag;
 
 import static org.mockito.Mockito.*;
 
@@ -33,7 +34,7 @@ public class GetRelatedGuidesFixture extends GetRelatedItemsFixture {
 		when(currentPage.getProperties()).thenReturn(pageProperties);
 		directRelations.clear();
 		final String[] empty = new String[0];
-		when(pageProperties.get("pages",empty)).thenAnswer(new Answer<String[]>() {
+		when(pageProperties.get(GetRelatedGuidesTag.REL_GUIDES_ATTR,empty)).thenAnswer(new Answer<String[]>() {
 			public String[] answer(InvocationOnMock invocation)
 					throws Throwable {
 				return directRelations.toArray(empty);

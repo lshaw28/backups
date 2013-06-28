@@ -8,7 +8,7 @@
         cq:tags="[searspartsdirect:parent_categories/kitchen_appliances]"
         jcr:description="Range description"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Ranges"
+        jcr:title="Range"
         sling:resourceType="searspartsdirect/components/scaffolding/genericScaffolding">
         <dialog/>
         <image

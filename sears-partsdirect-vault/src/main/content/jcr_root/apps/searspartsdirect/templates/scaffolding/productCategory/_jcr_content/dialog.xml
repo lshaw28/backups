@@ -11,10 +11,10 @@
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title"
                     name="./jcr:content/jcr:title"/>
-                <titleSingular
+                <titlePlural
                     jcr:primaryType="cq:Widget"
-                    fieldLabel="Title Singular Form"
-                    name="./jcr:content/titleSingular"/>
+                    fieldLabel="Title Plural Form"
+                    name="./jcr:content/titlePlural"/>
                 <description
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Description"
