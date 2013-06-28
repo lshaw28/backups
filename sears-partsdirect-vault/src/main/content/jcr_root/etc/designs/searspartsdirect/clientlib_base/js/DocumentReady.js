@@ -79,5 +79,9 @@
 			});
 
 		});
+                
+                $('.category101').each(function() {
+                    var newCategory101 = new category101($(this));
+                });
 	});
 }(window));
