@@ -9,6 +9,7 @@
         jcr:description="Range description"
         jcr:primaryType="cq:PageContent"
         jcr:title="Range"
+        titlePlural="Ranges"
         sling:resourceType="searspartsdirect/components/scaffolding/genericScaffolding">
         <dialog/>
         <image

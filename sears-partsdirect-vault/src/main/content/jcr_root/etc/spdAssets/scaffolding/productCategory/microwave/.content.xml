@@ -9,6 +9,7 @@
         jcr:description="Microwave description"
         jcr:primaryType="cq:PageContent"
         jcr:title="Microwave"
+        titlePlural="Microwaves"
         sling:resourceType="searspartsdirect/components/scaffolding/genericScaffolding">
         <dialog/>
         <image
