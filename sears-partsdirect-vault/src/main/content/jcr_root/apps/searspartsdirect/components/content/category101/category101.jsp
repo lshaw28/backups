@@ -1,16 +1,16 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<spd:tagsByPage tagType="parent_categories" />
 <spd:getMultifieldCategories />
+<spd:getRelation single="true" assetType="productCategory" />
+<spd:getNameByNodePath nodePath="${productCategoryRelation.path}" />
 
 <c:if test="${not empty categories}">
 	<c:choose>
 		<c:when test="${fn:length(parent_categoriesList[0].title) lt 38 }">
-			<cq:text property="header" placeholder="${parent_categoriesList[0].title} 101" />
+			<cq:text property="header" placeholder="${productCategoryRelation.title} 101" />
 		</c:when>
 		<c:otherwise>
-			<cq:text property="header" placeholder="${fn:substring(parent_categoriesList[0].title,0,37)} 101" />
+			<cq:text property="header" placeholder="${fn:substring(productCategoryRelation.title,0,37)} 101" />
 		</c:otherwise>
 	</c:choose>
 	<ul>
@@ -19,7 +19,12 @@
 			<li><a href="${url}">${category.title}</a></li>
 		</c:forEach>
 	</ul>
-	<c:set var="viewAllLink"><cq:text property='viewAllLink'/></c:set>
-	<spd:LinkResolver value="${viewAllLink}" />
-	<a href="${url}">View All Categories</a>
+	
+	<c:set var="linkText"><cq:text property='viewAllLinkText'/></c:set>
+	<c:if test="${not empty linkText}">
+		<c:set var="homePath" value="/content/searspartsdirect/en/allarticles" />
+		<c:set var="suffix" value="-repair/repair-articles" />
+		<spd:LinkResolver value="${homePath}/${nodeName}${suffix}" />
+    	<a href="${url}">${linkText}</a>
+	</c:if>
 </c:if>

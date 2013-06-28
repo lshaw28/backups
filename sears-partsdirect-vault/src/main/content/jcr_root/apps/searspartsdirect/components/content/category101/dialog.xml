@@ -15,29 +15,31 @@
 					   fieldDescription="Character limit is 42" />
 					   
 				<multi
-		            jcr:primaryType="cq:Widget"
-		            fieldLabel="Categories"
-		            name="./multipaths"
-		            xtype="multifield">
+			            jcr:primaryType="cq:Widget"
+			            fieldLabel="Articles"
+			            name="./multipaths"
+			            xtype="multifieldlimit"
+			            limit="6" >
 			            <fieldConfig
 			                jcr:primaryType="cq:Widget"
 			                xtype="multicustom">
 			                <items jcr:primaryType="cq:WidgetCollection">
 			                    <url
 			                        jcr:primaryType="cq:Widget"
-			                        fieldLabel="Category"
+			                        fieldLabel="Article"
 			                        name="url"
+			                        rootPath="/content/searspartsdirect/en/articles"
 			                        xtype="pathfield"/>
 			                </items>
 			            </fieldConfig>
 			    </multi>
 			    
 			    <viewall
-			    	jcr:primaryType="cq:Widget"
-							            defaultValue=""
-							            fieldLabel="link to Articles Index page"
-							            name="./viewAllLink"
-							            xtype="pathfield"/>	
+				    	jcr:primaryType="cq:Widget"
+			            fieldLabel="Enter link text"
+			            fieldDescription="Enter Text to display link"
+			            name="./viewAllLinkText"
+			            xtype="textfield"/>	
 			</items>
 		</Panel>
 	</items>

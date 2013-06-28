@@ -57,7 +57,7 @@ public class GetUserDataTag extends CQBaseTag {
 		if (cookieFound) {
 			PartsDirectAPIHelper apiHelper = new PartsDirectAPIHelper();
 			try {
-				String jsonString = apiHelper.readJsonString(apiUrl.toString());
+				String jsonString = apiHelper.readJsonData(apiUrl.toString());
 				Gson gson = new Gson();
 		        PDUserDataModel userData = gson.fromJson(jsonString, PDUserDataModel.class);
 		        log.debug("JSON Parsing"+ userData.toString());
