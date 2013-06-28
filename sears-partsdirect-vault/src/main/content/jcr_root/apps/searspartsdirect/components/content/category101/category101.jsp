@@ -6,7 +6,7 @@
 
 <c:if test="${not empty categories}">
 	<c:choose>
-		<c:when test="${fn:length(parent_categoriesList[0].title) lt 38 }">
+		<c:when test="${fn:length(productCategoryRelation.title) lt 38 }">
 			<cq:text property="header" placeholder="${productCategoryRelation.title} 101" />
 		</c:when>
 		<c:otherwise>
