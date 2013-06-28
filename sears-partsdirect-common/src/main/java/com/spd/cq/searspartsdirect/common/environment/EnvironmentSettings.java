@@ -85,6 +85,15 @@ public class EnvironmentSettings {
     	return getProperty(PD_URL,"");
     }
     
+    @Property(label = "PartsDirect JobCode API", 
+    		description = "API will get jobcodes for a symptom ",
+    		value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcode/parts")
+    public static final String PD_JOBCODE_API = "searspartsdirect.pd.jobcode.api";
+    
+    public static String getPDJobCodeApiUrl() {
+    	return getProperty(PD_JOBCODE_API,"");
+    }
+    
     // ---- for testing ----
     public void externalActivateForTesting(final ComponentContext context) throws Exception {
     	activate(context);
