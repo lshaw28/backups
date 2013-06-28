@@ -240,6 +240,19 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>GetUrlRelation</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetUrlRelationTag</tag-class>
+		<info>Gets a relation defined in page selectors</info>
+		<attribute>
+			<name>relationType</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- for productCategory or brand, will place a model instance in productCategoryRelation or brandRelation -->
+		<!-- for model, will place the model selector string in modelRelation -->
+	</tag>
+	<tag>
 	   <name>getRelatedPages</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetRelatedPagesTag</tag-class>
 		 <info>Gets any Pages related to the given Asset</info>
