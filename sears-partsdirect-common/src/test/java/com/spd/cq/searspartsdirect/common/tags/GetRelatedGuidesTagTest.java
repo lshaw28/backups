@@ -22,6 +22,7 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 		super.setUp();
 		fixture = new GetRelatedGuidesFixture(pageManager,currentPage);
 		tag = new GetRelatedGuidesTag();
+		tag.setMaxOutput(4);
 	}
 
 	@Test
@@ -51,6 +52,7 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 	public void testTwoHits() {
 		try {
 			fixture.setUpNoDirectRelations();
+			fixture.andSetUpBadRelations(7);
 			fixture.makeNHits(2, resourceResolver);
 
 			tag.setPageContext(pageContext);
@@ -65,6 +67,30 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 			List<Object> result = (List<Object>)pageContext.getAttribute("guides");
 			assertThat(result,isA(List.class));
 			assertThat(result,hasSize(2));
+				
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testTwoHitsAndTwoDirect() {
+		try {
+			fixture.setUpDirectRelations(2);
+			fixture.makeNHits(2, resourceResolver);
+
+			tag.setPageContext(pageContext);
+			tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+			
+			int startResult = tag.doStartTag();
+			assertThat(startResult,is(TagSupport.SKIP_BODY));
+			int endResult = tag.doEndTag();
+			assertThat(endResult,is(TagSupport.EVAL_PAGE));
+			
+			@SuppressWarnings("unchecked")
+			List<Object> result = (List<Object>)pageContext.getAttribute("guides");
+			assertThat(result,isA(List.class));
+			assertThat(result,hasSize(4));
 				
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -95,4 +121,26 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 		}
 	}
 
+	@Test
+	public void testFiveDirect() {
+		try {
+			fixture.setUpDirectRelations(5);
+
+			tag.setPageContext(pageContext);
+			tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+			
+			int startResult = tag.doStartTag();
+			assertThat(startResult,is(TagSupport.SKIP_BODY));
+			int endResult = tag.doEndTag();
+			assertThat(endResult,is(TagSupport.EVAL_PAGE));
+			
+			@SuppressWarnings("unchecked")
+			List<Object> result = (List<Object>)pageContext.getAttribute("guides");
+			assertThat(result,isA(List.class));
+			assertThat(result,hasSize(4));
+				
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

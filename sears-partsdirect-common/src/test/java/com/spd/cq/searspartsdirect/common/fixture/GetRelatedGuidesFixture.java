@@ -11,6 +11,7 @@ import org.mockito.stubbing.Answer;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.tags.GetRelatedGuidesTag;
 
 import static org.mockito.Mockito.*;
@@ -40,6 +41,30 @@ public class GetRelatedGuidesFixture extends GetRelatedItemsFixture {
 				return directRelations.toArray(empty);
 			}
 		});
+	}
+
+	public void setUpDirectRelations(int howMany) {
+		setUpNoDirectRelations();
+		directRelations.add(Constants.GUIDES_ROOT + "/unresolvable"); // just for fun
+		for (int i = 0; i < howMany; i++) {
+			String pPath = Constants.GUIDES_ROOT + "/direct"+i;
+			directRelations.add(pPath);
+			// and also set up a dup
+			directRelations.add(pPath);
+			Page p = mock(Page.class);
+			when(pageManager.getPage(pPath)).thenReturn(p);
+			when(p.getPath()).thenReturn(pPath);
+		}
+	}
+	
+	public void andSetUpBadRelations(int howMany) {
+		for (int i = 0; i < howMany; i++) {
+			String pPath = "/direct"+i;
+			directRelations.add(pPath);
+			Page p = mock(Page.class);
+			when(pageManager.getPage(pPath)).thenReturn(p);
+			when(p.getPath()).thenReturn(pPath);
+		}
 	}
 
 }

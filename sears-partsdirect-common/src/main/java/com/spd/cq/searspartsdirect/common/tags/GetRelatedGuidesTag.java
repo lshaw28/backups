@@ -81,11 +81,14 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 		String[] empty = new String[0];
 		Page workingPage = currentPage;
 		String[] relations = workingPage.getProperties().get(REL_GUIDES_ATTR, empty);
-		for (int i = 0; i < relations.length; i++) {
+		for (int i = 0; i < relations.length && directlyRelated.size() < maxOutput; i++) {
 			if (Pattern.matches(Constants.GUIDES_ROOT + "/[^/]+", relations[i])) {
 				Page p = pageManager.getPage(relations[i]);
 				if (p != null) {
-					directlyRelated.add(makeModelFromPage(p));
+					RelatedGuideModel model = makeModelFromPage(p);
+					if (!directlyRelated.contains(model)) {
+						directlyRelated.add(model);
+					}
 				} else {
 					log.warn("Could not resolve path "+relations[i]+" to a page");
 				}
