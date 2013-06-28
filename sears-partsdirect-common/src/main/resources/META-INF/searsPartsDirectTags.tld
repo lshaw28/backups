@@ -72,6 +72,17 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>DisplayTagTitle</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.DisplayTagTitleTag</tag-class>
+		<info>Displays the title of a tag given its ID</info>
+		<attribute>
+			<name>tagId</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
 		<name>getParentPage</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ParentPageTag</tag-class>
 		<info>Creates path to parent url</info>

@@ -19,6 +19,7 @@ import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
+import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
@@ -81,6 +82,10 @@ public class GetCategoryArticleListFixture {
 				when(imageNode.hasNode("file")).thenReturn(true);
 			}
 		}
+		Tag hasFour = mock(Tag.class);
+		when(hasFour.getTagID()).thenReturn(Constants.SUBCATEGORY_TAG+"/hasFour");
+		Tag[] tagArr = new Tag[]{hasFour};
+		when(created.getTags()).thenReturn(tagArr);
 		return created;
 	}
 	

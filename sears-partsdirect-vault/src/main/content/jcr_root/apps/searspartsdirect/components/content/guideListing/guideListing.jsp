@@ -22,7 +22,7 @@
 <cq:text property="subTitle"/> <br/>
 
 <c:forEach items="${guides}" var="row">
-    SubCategory:  ${row.key}<br/>
+    SubCategory:  <spd:DisplayTagTitle tagId="${row.key}" /><br/>
  	<c:forEach var="guide" items="${row.value}">
  		<spd:LinkResolver value="${guide.url}" />
 		<a href="${url}"><spd:displayImage path="${guide.imagePath}"/></a>
