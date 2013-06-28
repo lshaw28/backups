@@ -2,6 +2,8 @@
 
 <spd:tagsByPage tagType="parent_categories" />
 <spd:getMultifieldCategories />
+<spd:getRelation single="true" assetType="productCategory" />
+<spd:getNameByNodePath nodePath="${productCategoryRelation.path}" />
 
 <c:if test="${not empty categories}">
 	<c:choose>
@@ -18,9 +20,12 @@
 			<li><a href="${url}">${category.title}</a></li>
 		</c:forEach>
 	</ul>
-	<%--
-	<c:set var="viewAllLink"><cq:text property='viewAllLink'/></c:set>
-	<spd:LinkResolver value="${viewAllLink}" />
-	<a href="${url}">This will be authorable</a>
-	 --%>
+	
+	<c:set var="linkText"><cq:text property='viewAllLinkText'/></c:set>
+	<c:if test="${not empty linkText}">
+		<c:set var="homePath" value="/content/searspartsdirect/en/allarticles" />
+		<c:set var="suffix" value="-repair/repair-articles" />
+		<spd:LinkResolver value="${homePath}/${nodeName}${suffix}" />
+    	<a href="${url}">${linkText}</a>
+	</c:if>
 </c:if>
