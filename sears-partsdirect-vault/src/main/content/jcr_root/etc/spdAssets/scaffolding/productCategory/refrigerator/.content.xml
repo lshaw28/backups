@@ -9,6 +9,7 @@
         jcr:description="Refrigerator description"
         jcr:primaryType="cq:PageContent"
         jcr:title="Refrigerator"
+        titlePlural="Refrigerators"
         sling:resourceType="searspartsdirect/components/scaffolding/genericScaffolding">
         <dialog/>
         <image

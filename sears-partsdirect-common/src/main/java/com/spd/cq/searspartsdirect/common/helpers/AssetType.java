@@ -64,9 +64,10 @@ public enum AssetType {
 		public Object createModelInstance(Page p, ValueMap properties) {
 			String title = properties.get(Constants.ASSETS_TITLE_PATH,"");
 			String description = properties.get(Constants.ASSETS_DESCRIPTION_PATH,"");
-			return new ProductCategoryModel(p.getPath(),
+			return new ProductCategoryModel(p.getName(),
+					p.getPath(),
 					title,
-					properties.get("titleSingular",""),
+					properties.get("titlePlural",""),
 					description,
 					p.getPath() + Constants.ASSETS_IMAGE_PATH);
 		}

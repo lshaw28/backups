@@ -25,7 +25,7 @@ public class ProductCategoryModelTest extends TestCase {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		productCategoryModel = new ProductCategoryModel(path,title,singular,description,imagePath);
+		productCategoryModel = new ProductCategoryModel(path,path,title,singular,description,imagePath);
 	}
 	
 	@Test
@@ -33,17 +33,17 @@ public class ProductCategoryModelTest extends TestCase {
 		try {
 			assertThat(productCategoryModel.getPath(),is(path));
 			assertThat(productCategoryModel.getTitle(),is(title));
-			assertThat(productCategoryModel.getSingularTitle(),is(singular));
+			assertThat(productCategoryModel.getPluralTitle(),is(singular));
 			assertThat(productCategoryModel.getDescription(),is(description));
 			assertThat(productCategoryModel.getImagePath(),is(imagePath));
 			productCategoryModel.setPath(path2);
 			productCategoryModel.setTitle(title2);
-			productCategoryModel.setSingularTitle(singular2);
+			productCategoryModel.setPluralTitle(singular2);
 			productCategoryModel.setDescription(description2);
 			productCategoryModel.setImagePath(imagePath2);
 			assertThat(productCategoryModel.getPath(),is(path2));
 			assertThat(productCategoryModel.getTitle(),is(title2));
-			assertThat(productCategoryModel.getSingularTitle(),is(singular2));
+			assertThat(productCategoryModel.getPluralTitle(),is(singular2));
 			assertThat(productCategoryModel.getDescription(),is(description2));
 			assertThat(productCategoryModel.getImagePath(),is(imagePath2));
 		} catch (Exception e) {

@@ -2,18 +2,28 @@ package com.spd.cq.searspartsdirect.common.model.spdasset;
 
 public class ProductCategoryModel {
 	
+	private String trueName;
 	private String title;
-	private String singularTitle;
+	private String pluralTitle;
 	private String description;
 	private String imagePath;
 	private String path;
 	
-	public ProductCategoryModel(String path, String title, String singularTitle, String description, String imagePath) {
+	public ProductCategoryModel(String trueName, String path, String title, String pluralTitle, String description, String imagePath) {
+		this.trueName = trueName;
 		this.title = title;
-		this.singularTitle = singularTitle;
+		this.pluralTitle = pluralTitle;
 		this.description = description;
 		this.imagePath = imagePath;
 		this.path = path;
+	}
+	
+	public String getTrueName() {
+		return trueName;
+	}
+	
+	public void setTrueName(String trueName) {
+		this.trueName = trueName;
 	}
 	
 	public String getTitle() {
@@ -23,11 +33,11 @@ public class ProductCategoryModel {
 		this.title = title;
 	}
 	
-	public String getSingularTitle() {
-		return singularTitle;
+	public String getPluralTitle() {
+		return pluralTitle;
 	}
-	public void setSingularTitle(String singularTitle) {
-		this.singularTitle = singularTitle;
+	public void setPluralTitle(String pluralTitle) {
+		this.pluralTitle = pluralTitle;
 	}
 	
 	public String getDescription() {
