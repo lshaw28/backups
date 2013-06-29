@@ -8,8 +8,15 @@
 			jcr:primaryType="cq:Widget"
 			xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-
+				<authors
+	        			jcr:primaryType="cq:Widget"
+	        			name="./authors"
+						treeRootPath="/content/searspartsdirect/en/authors"
+	        			hideLabel="{Boolean}false"
+	        			fieldLabel="Select Author Page"
+	        			xtype="pagemapper"/>
 			</items>
 		</panel>
+
 	</items>
 </jcr:root>
