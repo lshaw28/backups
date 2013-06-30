@@ -10,7 +10,21 @@ These repairs may help solve your problem:
 
 <c:forEach var="jobCode" items="${symptomJobCodes.recoveryCodesModel}">
 	 <b>${jobCode.codeId}</b>
+	 
+	<c:choose>
+		<c:when test="${jobCode.partTypeModel != null &&  jobCode.partTypeModel.imagePath != null}">
+			<spd:displayImage path="${jobCode.partTypeModel.imagePath}"/>
+		</c:when>
+		<c:otherwise>
+			show a default no part image
+		</c:otherwise>
+	</c:choose>	
+		
 	 <p>${jobCode.description}</p>
+	 
+	 <c:if test="${jobCode.guide != null}">
+	 	<a href="${jobCode.guide.url}">${jobCode.guide.title}</a>
+	 </c:if>
 
 	 <table border="1">
 		 <c:forEach var="part" items="${jobCode.recoveryPartsModel}">

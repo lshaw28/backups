@@ -7,7 +7,7 @@
         cq:scaffolding="/etc/scaffolding/partType"
         jcr:description="test partType desc"
         jcr:primaryType="cq:PageContent"
-        jcr:title="testPartType"
+        jcr:title="burner"
         sling:resourceType="searspartsdirect/components/scaffolding/genericScaffolding">
         <dialog/>
         <image

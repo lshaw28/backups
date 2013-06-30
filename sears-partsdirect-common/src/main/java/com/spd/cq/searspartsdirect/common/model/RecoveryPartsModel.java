@@ -16,7 +16,7 @@ public class RecoveryPartsModel {
 	private String partNumber;
 	
 	@SerializedName("recoveryFrequency")
-	private float recoveryFrequency;
+	private double recoveryFrequency;
 
 
 	public String getPartDescription() {
@@ -43,18 +43,18 @@ public class RecoveryPartsModel {
 		this.jobCodePart = jobCodePart;
 	}
 
+	public double getRecoveryFrequency() {
+		return recoveryFrequency;
+	}
+
+	public void setRecoveryFrequency(double recoveryFrequency) {
+		this.recoveryFrequency = recoveryFrequency;
+	}
+
 	@Override
 	public String toString() {
 		return "RecoveryPartsModel [jobCodePart=" + jobCodePart
 				+ ", partDescription=" + partDescription + ", partNumber="
 				+ partNumber + ", recoveryFrequency=" + recoveryFrequency + "]";
-	}
-
-	public float getRecoveryFrequency() {
-		return recoveryFrequency;
-	}
-
-	public void setRecoveryFrequency(float recoveryFrequency) {
-		this.recoveryFrequency = recoveryFrequency;
 	}
 }
