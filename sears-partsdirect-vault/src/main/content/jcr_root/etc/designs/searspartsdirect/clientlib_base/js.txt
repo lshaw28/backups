@@ -23,7 +23,6 @@ src/IndexController.js
 src/Carousel.js
 widgets/DesktopCarousel.js
 widgets/TouchCarousel.js
-main.js
 
 #base=js/components/.
 cartNav.js
