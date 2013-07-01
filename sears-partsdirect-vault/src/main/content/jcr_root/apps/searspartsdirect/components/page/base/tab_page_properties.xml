@@ -4,11 +4,11 @@
 	width="500"
 	title="Page Properties">
 	<items jcr:primaryType="cq:WidgetCollection">
-		
+
         <subcontainer2
 			jcr:primaryType="cq:Widget"
                   flex="{Long}1"
-                  height="150"
+                  height="250"
                   xtype="dialogfieldset">
         	<items jcr:primaryType="cq:WidgetCollection">
 	            <abstracttext jcr:primaryType="cq:Widget"
@@ -17,6 +17,14 @@
 							   name="./abstracttext"
 							   maxLength="400"
 							   xtype="textarea" />
+
+				<authors jcr:primaryType="cq:Widget"
+							   fieldLabel="Authors"
+							   fieldDescription="Author(s) for this article"
+							   treeRootPath="/content/searspartsdirect/en/authors"
+							   name="./authors"
+							   xtype="pagemapper" />
+
 	            <resType
 		        	jcr:primaryType="cq:Widget"
 		        	ignoreData="{Boolean}true"
@@ -25,6 +33,6 @@
 		        	value="foundation/components/image"/>
 			</items>
         </subcontainer2>
-        
+
 	</items>
 </jcr:root>
