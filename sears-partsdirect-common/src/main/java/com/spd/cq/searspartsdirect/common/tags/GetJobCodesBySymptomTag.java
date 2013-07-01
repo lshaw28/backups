@@ -38,9 +38,10 @@ public class GetJobCodesBySymptomTag extends CQBaseTag {
 	private QueryBuilder builder;
 	private Query query;
 	
-	List<JobCodeModel> models = new ArrayList<JobCodeModel>();
-	JobCodesModel jobCodesModel = new JobCodesModel();
-	List<RecoveryCodesModel> updatedRecoveryCodesModels =  new ArrayList<RecoveryCodesModel>();
+	List<JobCodeModel> models;
+	JobCodesModel jobCodesModel;
+	List<RecoveryCodesModel> updatedRecoveryCodesModels;
+	List<RelatedGuideModel> guides;
 	protected static Logger log = LoggerFactory.getLogger(GetJobCodesBySymptomTag.class);
 	
 	@Override
@@ -51,6 +52,10 @@ public class GetJobCodesBySymptomTag extends CQBaseTag {
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(apiUrl.toString()).append("?symptomId=").append(symptomId);
+		
+		updatedRecoveryCodesModels = new ArrayList<RecoveryCodesModel>();
+		models = new ArrayList<JobCodeModel>();
+		jobCodesModel = new JobCodesModel();
 		
 		try {
 			String jsonString = apiHelper.readJsonData("http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcode/parts?symptomId=1");
@@ -95,14 +100,20 @@ public class GetJobCodesBySymptomTag extends CQBaseTag {
 					}
 					
 					//now get the guide info
+					guides = new ArrayList<RelatedGuideModel>();
 					String[] guidePages = (String[]) props.get("guide", String[].class);
-					if (guidePages != null && guidePages.length == 1) {
-								Page guidePage = pageManager.getPage(guidePages[0]);
-								if (guidePage != null) {
-									RelatedGuideModel guide = new RelatedGuideModel(guidePage.getPath(), null, guidePage.getTitle());
-									log.debug("guide "+ guide.toString());
-									model.setGuide(guide);
-								}
+					log.debug("guidePages array"+ guidePages);
+					if (guidePages != null) {
+						for(int i=0; i< guidePages.length; i++) {
+							log.debug("guide path "+ guidePages[i]);
+							Page guidePage = pageManager.getPage(guidePages[i]);
+							if (guidePage != null) {
+								RelatedGuideModel guide = new RelatedGuideModel(guidePage.getPath(), null, guidePage.getTitle());
+								log.debug("setting the guide"+ guide.toString());
+								guides.add(guide);
+							}
+						}
+						model.setGuides(guides);		
 					}
 					models.add(model);
 				}
@@ -119,7 +130,9 @@ public class GetJobCodesBySymptomTag extends CQBaseTag {
 	    	for(JobCodeModel jobCodeModel : models) {
 	    		if (jobCodeModel.getTitle().equalsIgnoreCase(recoveryCodesModel.getCodeId())) {
 	    			recoveryCodesModel.setPartTypeModel(jobCodeModel.getPartTypeModel());
+	    			recoveryCodesModel.setGuides(jobCodeModel.getGuides());
 	    			log.debug("setPartTypeModel "+jobCodeModel.getPartTypeModel());
+	    			log.debug("setGuides "+jobCodeModel.getGuides());
 	    			updatedRecoveryCodesModels.add(recoveryCodesModel);
 	    		}
 	    	}
@@ -131,7 +144,7 @@ public class GetJobCodesBySymptomTag extends CQBaseTag {
 	    updatedJobCodesModel.setRecoveryCodesModel(updatedRecoveryCodesModels);
 	    
 	    jobCodesModel.setRecoveryCodesModel(recoveryCodesModels);
-	    log.debug("jobcodeModel "+ jobCodesModel);
+	    log.error("updated jobcodeModel "+ jobCodesModel);
 	    pageContext.setAttribute("symptomJobCodes", updatedJobCodesModel);
 		return SKIP_BODY;
 	}
