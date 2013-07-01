@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		  jcr:primaryType="cq:Dialog"
-		  title="Author Display"
+		  title="Header"
 		  xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
 		<panel
 			jcr:primaryType="cq:Widget"
 			xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-			
-				<pages
+				<header
 	        			jcr:primaryType="cq:Widget"
-	        			name="./authors"
-						treeRootPath="/content/searspartsdirect/en/authors"
-	        			hideLabel="{Boolean}false"
-	        			fieldLabel="Select Author Page"
-	        			xtype="pagemapper"/>
-	        	<position
-	        			jcr:primaryType="cq:Widget"
-	        			name="./authorPosition"
-	        			fieldLabel="Author Position"
+	        			name="./header"
+	        			fieldLabel="Header Override"
 	        			xtype="textfield"/>
-	        			
 			</items>
 		</panel>
 	</items>
