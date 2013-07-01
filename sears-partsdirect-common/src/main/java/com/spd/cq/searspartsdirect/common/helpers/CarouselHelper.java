@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.Property;
@@ -15,6 +13,8 @@ import javax.jcr.Value;
 import javax.jcr.ValueFormatException;
 
 import org.apache.sling.api.resource.ValueMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -22,7 +22,7 @@ import org.apache.sling.api.resource.ValueMap;
  * adapted from LogoCarouselHelper, @author aalkhafaji
  */
 public class CarouselHelper {
-
+	protected final static Logger log = LoggerFactory.getLogger(CarouselHelper.class);
 	/**
     *
     * @param currentNode   The current node passed in.
@@ -54,7 +54,7 @@ public class CarouselHelper {
 
            }
        } catch (RepositoryException ex) {
-           ex.printStackTrace();
+           log.error("Retrieving carousel image list, ",ex);
        }
        return logos;
 
