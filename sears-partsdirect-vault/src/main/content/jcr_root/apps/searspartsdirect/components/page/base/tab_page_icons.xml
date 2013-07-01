@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="cq:Panel"
+	width="500"
+	title="Icons">
+	<items jcr:primaryType="cq:WidgetCollection">
+        <subcontainer2
+			jcr:primaryType="cq:Widget"
+                  flex="{Long}1"
+                  height="250"
+                  xtype="dialogfieldset">
+        	<items jcr:primaryType="cq:WidgetCollection">
+	        	<iconImages
+		            jcr:primaryType="nt:unstructured"
+		            fieldLabel="Choose Icon(s)"
+		            name="./iconImages"
+		            type="select"
+		            xtype="selection">
+		            <options jcr:primaryType="cq:WidgetCollection">
+		                <iconOne
+		                    jcr:primaryType="nt:unstructured"
+		                    text="First Icon"
+		                    value="iconONe"/>
+		                <iconTwo
+		                    jcr:primaryType="nt:unstructured"
+		                    text="Second Icon"
+		                    value="iconTwo"/>
+		                <iconThree
+		                    jcr:primaryType="nt:unstructured"
+		                    text="Third Icon"
+		                    value="iconThree"/>
+		                <iconFour
+		                    jcr:primaryType="nt:unstructured"
+		                    text="Fourth Icon"
+		                    value="iconFour"/>
+		                <iconFive
+		                    jcr:primaryType="nt:unstructured"
+		                    text="Fifth Icon"
+		                    value="iconFive"/>
+		            </options>
+				</iconImages>
+			</items>
+        </subcontainer2>
+	</items>
+</jcr:root>
