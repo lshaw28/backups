@@ -16,29 +16,35 @@ These repairs may help solve your problem:
 			<spd:displayImage path="${jobCode.partTypeModel.imagePath}"/>
 		</c:when>
 		<c:otherwise>
-			show a default no part image
+			show a default no jobcode part type image
 		</c:otherwise>
 	</c:choose>	
 		
 	 <p>${jobCode.description}</p>
-	 
 	 <c:if test="${jobCode.guide != null}">
 	 	<a href="${jobCode.guide.url}">${jobCode.guide.title}</a>
 	 </c:if>
-
-	 <table border="1">
-		 <c:forEach var="part" items="${jobCode.recoveryPartsModel}">
-			 <tr>
-			 	<td>Used in this repair ${part.recoveryFrequency}% of the time</td>
-			 	<td>
-					 <a href="${mainSitePath}/partsdirect/part-number/${part.jobCodePart.partCompositeKey.partNumber}/${part.jobCodePart.partCompositeKey.productGroupId}/${part.jobCodePart.partCompositeKey.supplierId}">${part.jobCodePart.description}</a><br/>
-					 	  Part #${part.jobCodePart.partCompositeKey.partNumber}
-				</td>
-			 	<td>
-			 		<img src="${part.jobCodePart.partImage.imageURL}" height="75px" width="75px"/>
-			 	</td>
-			 	<td> $${part.jobCodePart.priceAndAvailability.sellingPrice} -- ${part.jobCodePart.priceAndAvailability.availabilityStatus}</td>
-			 </tr>	   
-		</c:forEach>
-	</table>
+	
+	<c:choose>
+		<c:when test="${not empty jobCode.recoveryPartsModel}">	
+			 <table border="1">
+					 <c:forEach var="part" items="${jobCode.recoveryPartsModel}">
+						 <tr>
+						 	<td>Used in this repair ${part.recoveryFrequency}% of the time</td>
+						 	<td>
+								 <a href="${mainSitePath}/partsdirect/part-number/${part.jobCodePart.partCompositeKey.partNumber}/${part.jobCodePart.partCompositeKey.productGroupId}/${part.jobCodePart.partCompositeKey.supplierId}">${part.jobCodePart.description}</a><br/>
+								 	  Part #${part.jobCodePart.partCompositeKey.partNumber}
+							</td>
+						 	<td>
+						 		<img src="${part.jobCodePart.partImage.imageURL}" height="75px" width="75px"/>
+						 	</td>
+						 	<td> $${part.jobCodePart.priceAndAvailability.sellingPrice} -- ${part.jobCodePart.priceAndAvailability.availabilityStatus}</td>
+						 </tr>	   
+					</c:forEach>
+			</table>
+		</c:when>
+		<c:otherwise>
+			<a href="http://www.searspartsdirect.com/partsdirect/part-model/Frigidaire-Parts/Cooktop-Parts/Model-33003/1428/0121050&partType=${jobCode.partTypeModel.title}">Install a ${jobCode.partTypeModel.title}</a>
+		</c:otherwise>
+		</c:choose>	
 </c:forEach>
