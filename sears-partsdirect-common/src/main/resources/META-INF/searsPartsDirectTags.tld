@@ -182,13 +182,6 @@
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetBrandCategoryModelNoTag</tag-class>
 		 <info>Provides the Brand Category and Model No.</info>
 	</tag>
-	
-	<tag>
-	   <name>getPageTitle</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetPageTitleTag</tag-class>
-		 <info>Provides the current page title</info>
-	</tag>
-	
 	<tag>
 		<name>getModelSymptoms</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ModelSymptomsTag</tag-class>
