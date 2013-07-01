@@ -142,7 +142,7 @@
 			<type>java.lang.Integer</type>
 			<required>false</required><!-- defaulted to 4 -->
 			<rtexprvalue>true</rtexprvalue>
-		</attribute>	
+		</attribute>
 	</tag>
 	<tag>
 		<name>getRelatedArticles</name>
@@ -165,7 +165,7 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-	</tag>	
+	</tag>
 	<tag>
 	   <name>getBrandCategoryModelNo</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetBrandCategoryModelNoTag</tag-class>
@@ -327,15 +327,9 @@
 		</variable>
 	</tag>
 	<tag>
-	   <name>getAuthorArticles</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetAuthorArticlesTag</tag-class>
-		 <info>Gets the list of author articles </info>
-		 	<attribute>
-			<name>authorPath</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
+	   	<name>getAuthorArticles</name>
+	   	<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAuthorArticlesTag</tag-class>
+		<info>Gets the list of the current author's articles </info>
 	</tag>
 	<tag>
 	   <name>getGuideListing</name>

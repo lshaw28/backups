@@ -9,7 +9,7 @@
         jcr:primaryType="cq:PageContent"
         jcr:title="Main Burner"
         sling:resourceType="searspartsdirect/components/scaffolding/genericScaffolding"
-        partType="/etc/spdAssets/scaffolding/partType/testPartType">
+        partType="/etc/spdAssets/scaffolding/partType/test_part_type">
         <dialog/>
     </jcr:content>
 </jcr:root>
