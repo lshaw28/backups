@@ -1,4 +1,4 @@
-/*global $:true, window:true, document:true, Class:true, responsiveImage: true */
+/*global $:true, window:true, document:true, Class:true, searchPanel:true, revealPanel:true, responsiveImage: true, video:true, guideNavigation:true, regula:true */
 (function (window) {
 	"use strict";
 	/**
@@ -79,5 +79,26 @@
 			});
 
 		});
+		/**
+		 * Form validation
+		 */
+		regula.custom({
+			name: "EmailsMatch",
+			formSpecific: true,
+			defaultMessage: "Email addresses do not match!",
+			params: ["field1", "field2"],
+			validator: function(params) {
+				var failingElements = [],
+					emailField1 = document.getElementById(params["field1"])
+					emailField2 = document.getElementById(params["field2"]);
+
+				if (emailField1.value != emailField2.value) {
+					failingElements = [emailField1, emailField2];
+				}
+
+				return failingElements;
+			}
+		});
+		regula.bind();
 	});
 }(window));

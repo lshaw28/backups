@@ -5,3 +5,6 @@
 <spd:DefineObjects />
 <spd:GetPDUrl />
 <c:set var="mainSitePath" scope="request">${PDUrl}</c:set>
+<% // @TODO: Where should we actually be posting to? %>
+<c:set var="loginPath" scope="request" value="https://sso.shld.net/shccas/shcLogin"></c:set>
+<c:set var="registerPath" scope="request" value="https://www.searspartsdirect.com/partsdirect/register.pd"></c:set>
