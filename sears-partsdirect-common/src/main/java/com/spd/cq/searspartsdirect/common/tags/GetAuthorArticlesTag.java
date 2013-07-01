@@ -20,7 +20,7 @@ import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
 public class GetAuthorArticlesTag extends CQBaseTag {
 
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = LoggerFactory.getLogger(GetAuthorArticlesTag.class);
+	protected static final Logger log = LoggerFactory.getLogger(GetAuthorArticlesTag.class);
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -28,7 +28,7 @@ public class GetAuthorArticlesTag extends CQBaseTag {
 		ArrayList<RelatedArticleModel> articles = new ArrayList<RelatedArticleModel>();
 		try {
 			log.debug("Author Article");
-			ArrayList<Page> result = new ArrayList<Page>();
+			ArrayList<Page> results = new ArrayList<Page>();
 			// Get the list of all the pages/articles authored by the given
 			// author
 			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
@@ -37,18 +37,20 @@ public class GetAuthorArticlesTag extends CQBaseTag {
 			props.put("path", "/content/searspartsdirect/en/articles");
 			props.put("property", "jcr:content/authors");
 			props.put("property.value", currentPage.getPath());
-			log.debug("currentPage.getPath(): " + currentPage.getPath());
+			log.debug("Author page path: " + currentPage.getPath());
 
 			List<Hit> hits = qb.createQuery(PredicateGroup.create(props),
 												resourceResolver.adaptTo(Session.class))
 												.getResult().getHits();
+
+
 			for (Hit hit : hits) {
-				result.add(pageManager.getPage(hit.getPath()));
+				results.add(pageManager.getPage(hit.getPath()));
 			}
 
 			// Add the pages to the arraylist
 			// reusing RelatedArticleModel
-			for (Page page : result) {
+			for (Page page : results) {
 
 				articles.add(new RelatedArticleModel(page.getPath() + ".html",
 												page.getPath() + Constants.ASSETS_IMAGE_PATH,
