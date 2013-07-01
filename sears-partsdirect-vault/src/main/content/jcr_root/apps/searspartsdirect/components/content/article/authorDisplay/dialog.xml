@@ -8,13 +8,6 @@
 			jcr:primaryType="cq:Widget"
 			xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-			
-				<header
-	        			jcr:primaryType="cq:Widget"
-	        			name="./guideHeader"
-	        			fieldLabel="Guide Header"
-	        			xtype="textfield"/>
-				
 				<pages
 	        			jcr:primaryType="cq:Widget"
 	        			name="./authors"
