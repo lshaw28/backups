@@ -28,5 +28,14 @@ public class GetNameByNodePathTagTest extends MocksTag {
 		assertThat(tag.doEndTag(),is(TagSupport.EVAL_PAGE));
 		assertThat((String)pageContext.getAttribute("nodeName"),is("d"));
 	}
+	
+	@Test
+	public void testNoSlashes() throws JspException {
+		tag.setPageContext(pageContext);
+		tag.setNodePath("onepath");
+		assertThat(tag.doStartTag(),is(TagSupport.SKIP_BODY));	
+		assertThat(tag.doEndTag(),is(TagSupport.EVAL_PAGE));
+		assertThat((String)pageContext.getAttribute("nodeName"),is("onepath"));
+	}
 
 }
