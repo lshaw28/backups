@@ -12,16 +12,17 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 	<h2>
 		<cq:text property="itemsHeader" />
 	</h2>
-	
-	<div class="carousel-mobile-only">
+	<div class="touch-carousel hide-onload">
 		<div class="carousel-wrapper row-fluid">
-			<c:forEach var="guide" items="${guides}">
-				<div class="carousel-mobile-item span3">
-					<spd:LinkResolver value="${guide.url}" />
-					<a href="${url}"><spd:displayImage path="${guide.imagePath}" /></a>
-					<a href="${url}">${guide.title}</a>
-				</div>
-			</c:forEach>
+			<div class="carousel-list-wrapper">
+				<c:forEach var="guide" items="${guides}">
+					<div class="carousel-item span3">
+						<spd:LinkResolver value="${guide.url}" />
+						<a href="${url}"><spd:displayImage path="${guide.imagePath}" /></a>
+						<a href="${url}">${guide.title}</a>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 
