@@ -6,5 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Category 101 Detail"
 	jcr:description="List of category articles with image and description"
-	sling:resourceSuperType="searspartsdirect/components/content/category101"
 	componentGroup="SearsPartsDirect" />

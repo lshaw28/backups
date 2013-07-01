@@ -45,6 +45,8 @@ public final class Constants {
 	public static final String USERGEN_ROOT = ident("/content/usergenerated");
 	public static final String ARTICLES_ROOT = ident("/content/searspartsdirect/en/articles");
 	public static final String GUIDES_ROOT = ident("/content/searspartsdirect/en/guides");
+	public static final String CATEGORIES_ROOT = ident("/content/searspartsdirect/en/categories");
+
 	
 	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
 	public static final String GUIDE_NAV_PATH = ident("guideNavigation");
@@ -103,6 +105,7 @@ public final class Constants {
     public static final String REGISTER = ident("");
 	
 	public static final String SUBCATEGORY_TAG = "searspartsdirect:subcategories";
+	public static final String TAGS_FEATURES_PATH = "searspartsdirect:features";
 
 	
 	/**
