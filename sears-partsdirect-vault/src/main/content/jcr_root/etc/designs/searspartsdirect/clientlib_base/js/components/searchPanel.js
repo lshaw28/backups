@@ -90,12 +90,14 @@ var searchPanel = Class.extend(function () {
 			.bind('keypress', function (e) {
 				var key = -1;
 
+				// Determine which key was pressed
 				if (e.keyCode) {
 					key = e.keyCode;
 				} else if (e.which) {
 					key = e.which;
 				}
 
+				// If the user hit enter, check if there's a type
 				if (key === 13) {
 					if ($(selectStatement).length > 0) {
 						self.selectType($(selectStatement));
