@@ -21,8 +21,11 @@ These repairs may help solve your problem:
 	</c:choose>	
 		
 	 <p>${jobCode.description}</p>
-	 <c:if test="${jobCode.guide != null}">
-	 	<a href="${jobCode.guide.url}">${jobCode.guide.title}</a>
+	 Guide:-
+	 <c:if test="${not empty jobCode.guides}">
+	 	<c:forEach var="guide" items="${jobCode.guides}">
+	 		<a href="${guide.url}">${guide.title}</a>
+	 	</c:forEach>
 	 </c:if>
 	
 	<c:choose>
