@@ -1,12 +1,14 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
@@ -19,6 +21,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
 import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
 
@@ -30,7 +33,7 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		
-		List<RelatedArticleModel> articles = new ArrayList<RelatedArticleModel>();
+		Map<String,List<RelatedArticleModel>> articles = new LinkedHashMap<String,List<RelatedArticleModel>>();
 		try {
 
 			List<Page> result = new ArrayList<Page>();
@@ -54,36 +57,42 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	          
 	        for(Page page: result){
 	        	if (!page.equals(currentPage)) { // we exclude ourself from results
-	        		// We need to resolve the image path, and hand out a blank for image if the image does not exist
-	        		String imagePath = page.getPath() + Constants.ASSETS_IMAGE_PATH;
-	        		Resource imageResource = resourceResolver.getResource(imagePath);
-	        		if (imageResource == null) {
-	        			// If we cannot resolve to an image, we return a blank string
-	        			imagePath = Constants.EMPTY;
-	        		} else {
-	        			Node imageNode = imageResource.adaptTo(Node.class);
-	        			if (!(imageNode.hasProperty("fileReference") || imageNode.hasNode("file"))) {
-	        				// If the image is not set up one way or another, we return a blank string
-	        				imagePath = Constants.EMPTY;
-	        			}
+	        		String subcategory = PDUtils.getSubcategoryFromPage(page);
+	        		List<RelatedArticleModel> articleList = articles.get(subcategory);
+	        		if (articleList == null) {
+	        			articleList = new ArrayList<RelatedArticleModel>();
+	        			articles.put(subcategory, articleList);
 	        		}
-	        		
-	        		articles.add(new RelatedArticleModel(
-		        				page.getPath() + ".html", 
-		        				imagePath, 
-		        				page.getTitle(), 
-		        				page.getProperties().get("abstracttext",Constants.EMPTY).toString())
-	        				);
+	        		articleList.add(getArticleModelFromPage(page));
 	        	}
 	        }	        	
-
-			
 		}
 		catch (Exception e) {
 			log.error("Failure building article list, ",e);
 		}
 		pageContext.setAttribute("articles", articles);
         return SKIP_BODY;
+	}
+	
+	public RelatedArticleModel getArticleModelFromPage(Page page) throws RepositoryException {
+		// We need to resolve the image path, and hand out a blank for image if the image does not exist
+		String imagePath = page.getPath() + Constants.ASSETS_IMAGE_PATH;
+		Resource imageResource = resourceResolver.getResource(imagePath);
+		if (imageResource == null) {
+			// If we cannot resolve to an image, we return a blank string
+			imagePath = Constants.EMPTY;
+		} else {
+			Node imageNode = imageResource.adaptTo(Node.class);
+			if (!(imageNode.hasProperty("fileReference") || imageNode.hasNode("file"))) {
+				// If the image is not set up one way or another, we return a blank string
+				imagePath = Constants.EMPTY;
+			}
+		}
+		return new RelatedArticleModel(
+				page.getPath() + ".html", 
+				imagePath, 
+				page.getTitle(), 
+				page.getProperties().get("abstracttext",Constants.EMPTY).toString());
 	}
 	
 	public void setCategoryPath(String categoryPath) {

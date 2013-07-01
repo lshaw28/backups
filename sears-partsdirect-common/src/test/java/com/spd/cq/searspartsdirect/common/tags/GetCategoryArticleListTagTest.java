@@ -2,6 +2,7 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.jsp.tagext.TagSupport;
 
@@ -9,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetCategoryArticleListFixture;
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,12 +33,13 @@ public class GetCategoryArticleListTagTest extends MocksTag {
 	public void testDoStartTag() {
 		runTheTag();
 		@SuppressWarnings("unchecked")
-		List<RelatedArticleModel> articles = (List<RelatedArticleModel>)pageContext.getAttribute("articles");
-		assertThat(articles,is(instanceOf(List.class)));
-		assertThat(articles,hasSize(4));
-		RelatedArticleModel first = articles.get(0);
+		Map<String,List<RelatedArticleModel>> articles = (Map<String,List<RelatedArticleModel>>)pageContext.getAttribute("articles");
+		assertThat(articles,is(instanceOf(Map.class)));
+		List<RelatedArticleModel> articleList = articles.get(Constants.SUBCATEGORY_TAG+"/hasFour");
+		assertThat(articleList,hasSize(4));
+		RelatedArticleModel first = articleList.get(0);
 		assertThat(first.getUrl(),is("/baz.html"));
-		RelatedArticleModel last = articles.get(3);
+		RelatedArticleModel last = articleList.get(3);
 		assertThat(last.getUrl(),is("/foo.html"));
 	}
 	
@@ -45,9 +48,9 @@ public class GetCategoryArticleListTagTest extends MocksTag {
 		fixture.setUpToThrow();
 		runTheTag();
 		@SuppressWarnings("unchecked")
-		List<RelatedArticleModel> articles = (List<RelatedArticleModel>)pageContext.getAttribute("articles");
-		assertThat(articles,is(instanceOf(List.class)));
-		assertThat(articles,hasSize(0));
+		Map<String,List<RelatedArticleModel>> articles = (Map<String,List<RelatedArticleModel>>)pageContext.getAttribute("articles");
+		assertThat(articles,is(instanceOf(Map.class)));
+		assertThat(articles.entrySet(),hasSize(0));
 	}
 	
 	private void runTheTag() {

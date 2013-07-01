@@ -46,4 +46,7 @@ public class RelatedArticleModel {
 		this.description = description;
 	}
 
+	public String toString() {
+		return "url:" + url + "||title:" + title + "||description:" + description + "||imagePath:" + imagePath;
+	}
 }

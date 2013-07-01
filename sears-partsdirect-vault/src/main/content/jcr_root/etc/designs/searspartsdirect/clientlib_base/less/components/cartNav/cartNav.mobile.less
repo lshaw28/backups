@@ -3,6 +3,8 @@
 
 @media (max-width: 650px) {
 	.cartNav {
+		min-width: 270px;
+
 		ul.cartNavItems {
 			height: 44px;
 			position: relative;
@@ -28,6 +30,35 @@
 				.dropdown-menu {
 					min-width: 160px;
 					right: 0;
+				}
+			}
+
+			.cart-canvas {
+				background-color: transparent;
+				height: 100%;
+				list-style: none;
+				min-height: 480px;
+				right: -276px;
+				padding: 0;
+				position: absolute;
+				top: 0;
+				width: 276px;
+				z-index: 0;
+
+				li {
+					clear: left;
+					float: left;
+					font-size: @h5Size;
+					margin: 0;
+					padding: 20px 5%;
+					width: 90%;
+
+					a {
+						color: @linkColor;
+						display: block;
+						float: left;
+						font-size: @h5Size;
+					}
 				}
 			}
 		}

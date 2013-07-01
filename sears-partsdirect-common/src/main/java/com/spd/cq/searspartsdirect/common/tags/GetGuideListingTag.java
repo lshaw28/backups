@@ -17,6 +17,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
 import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
 
@@ -48,35 +49,28 @@ public class GetGuideListingTag extends CQBaseTag{
 	        
 	        Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
 	        for(Page page: result){
-	        	String subcategoryName = null;
-	        	if (!page.equals(currentPage)) { 
-	        		Tag[] tagsArr = page.getTags();
-	        		if (tagsArr != null){
-		        		for(int i=0; i<=tagsArr.length-1 ; i++){
-		        			if (StringUtils.contains(tagsArr[i].getTagID(), Constants.SUBCATEGORY_TAG)){
-		        				subcategoryName = tagsArr[i].getName();
-		        				break;
-		        			}
-		        		}
-	        		}
-	        	}
 	        	
-	        	if (!(guides.isEmpty()) && guides.containsKey(subcategoryName)){
-	        		List<RelatedArticleModel> tmp = guides.get(subcategoryName);
-	        		tmp.add( new RelatedArticleModel(
-	        				page.getPath() + ".html", 
-	        				page.getPath() + Constants.ASSETS_IMAGE_PATH, 
-	        				page.getTitle(), 
-	        				page.getDescription()));
-	        	}else{
-	        		List<RelatedArticleModel> tmpGuides = new ArrayList<RelatedArticleModel>();
-		        	tmpGuides.add( new RelatedArticleModel(
-	        				page.getPath() + ".html", 
-	        				page.getPath() + Constants.ASSETS_IMAGE_PATH, 
-	        				page.getTitle(), 
-	        				page.getDescription()));
-		        		//Add the guides to the list 
-		        	guides.put(subcategoryName, tmpGuides);
+	        	if (!page.equals(currentPage)) { 
+	        		
+	        		String subcategoryName = PDUtils.getSubcategoryFromPage(page);
+	        	
+		        	if (!(guides.isEmpty()) && guides.containsKey(subcategoryName)){
+		        		List<RelatedArticleModel> tmp = guides.get(subcategoryName);
+		        		tmp.add( new RelatedArticleModel(
+		        				page.getPath() + ".html", 
+		        				page.getPath() + Constants.ASSETS_IMAGE_PATH, 
+		        				page.getTitle(), 
+		        				page.getDescription()));
+		        	}else{
+		        		List<RelatedArticleModel> tmpGuides = new ArrayList<RelatedArticleModel>();
+			        	tmpGuides.add( new RelatedArticleModel(
+		        				page.getPath() + ".html", 
+		        				page.getPath() + Constants.ASSETS_IMAGE_PATH, 
+		        				page.getTitle(), 
+		        				page.getDescription()));
+			        		//Add the guides to the list 
+			        	guides.put(subcategoryName, tmpGuides);
+		        	}
 	        	}
         	}
 	   

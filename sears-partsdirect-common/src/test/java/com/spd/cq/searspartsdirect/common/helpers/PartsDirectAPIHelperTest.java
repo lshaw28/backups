@@ -14,30 +14,11 @@ import com.spd.cq.searspartsdirect.common.fixture.EnvironmentSettingsFixture;
 public class PartsDirectAPIHelperTest {
 	
 	@Test
-	public void testReadJsonFromUrl() throws Exception {
-		(new EnvironmentSettingsFixture()).setUpRealDefaults(new EnvironmentSettings());
-		PartsDirectAPIHelper helper = new PartsDirectAPIHelper();
-		try {
-			JSONObject json = helper.readJsonFromUrl(EnvironmentSettings.getPDUserDataApiUrl()+"spdtest123@test.com");
-			Assert.assertNotNull(json);
-		}  catch (UnknownHostException uhe) {
-			Assert.assertTrue("API is not reachable, this is not our problem.",true);
-		} catch (IOException ioe) {
-			String message = ioe.getMessage();
-			if (message.contains("Server returned HTTP")) {
-				Assert.assertTrue("API reached but complaining, this is not our problem",true);
-			} else {
-				throw ioe;
-			}
-		}
-	}
-	
-	@Test
 	public void testReadJsonString() throws Exception {
 		(new EnvironmentSettingsFixture()).setUpRealDefaults(new EnvironmentSettings());
 		PartsDirectAPIHelper helper = new PartsDirectAPIHelper();
 		try {
-			String jsonStr = helper.readJsonString(EnvironmentSettings.getPDUserDataApiUrl()+"spdtest123@test.com");
+			String jsonStr = helper.readJsonData(EnvironmentSettings.getPDUserDataApiUrl()+"spdtest123@test.com");
 			Assert.assertNotNull(jsonStr);
 		}  catch (UnknownHostException uhe) {
 			Assert.assertTrue("API is not reachable, this is not our problem.",true);

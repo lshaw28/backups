@@ -38,6 +38,28 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>getNameByNodePath</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetNameByNodePathTag</tag-class>
+		<info>returns the name of a node given its path</info>
+		<attribute>
+			<name>nodePath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>getCategory101Models</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCategory101PagesTag</tag-class>
+		<info>returns the product category Model Objects that have a Category 101 Tag</info>
+		<attribute>
+			<name>category</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
 	<name>displayImage</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.DisplayImageTag</tag-class>
 		<info>Displays an image</info>
@@ -57,6 +79,17 @@
 			<name>altText</name>
 			<type>java.lang.String</type>
 			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>DisplayTagTitle</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.DisplayTagTitleTag</tag-class>
+		<info>Displays the title of a tag given its ID</info>
+		<attribute>
+			<name>tagId</name>
+			<type>java.lang.String</type>
+			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
@@ -109,7 +142,13 @@
 			<type>java.lang.String</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
-		</attribute>		
+		</attribute>
+		<attribute>
+			<name>maxOutput</name>
+			<type>java.lang.Integer</type>
+			<required>false</required><!-- defaulted to 4 -->
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	<tag>
 		<name>getRelatedArticles</name>
@@ -132,12 +171,19 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-	</tag>	
+	</tag>
 	<tag>
 	   <name>getBrandCategoryModelNo</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetBrandCategoryModelNoTag</tag-class>
 		 <info>Provides the Brand Category and Model No.</info>
 	</tag>
+	
+	<tag>
+	   <name>getPageTitle</name>
+	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetPageTitleTag</tag-class>
+		 <info>Provides the current page title</info>
+	</tag>
+	
 	<tag>
 		<name>getModelSymptoms</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ModelSymptomsTag</tag-class>
@@ -200,17 +246,6 @@
 		</attribute>
 	</tag>
 	<tag>
-	   <name>getMostViewedGuides</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetMostViewedGuidesTag</tag-class>
-		 <info>Gets the list of most viewed Repair Guides</info>
-		 	<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-	<tag>
 	   <name>getRelation</name>
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetRelationTag</tag-class>
 		 <info>Gets any Assets related to the current (or defined) page</info>
@@ -232,6 +267,19 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+	</tag>
+	<tag>
+		<name>GetUrlRelation</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetUrlRelationTag</tag-class>
+		<info>Gets a relation defined in page selectors</info>
+		<attribute>
+			<name>relationType</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- for productCategory or brand, will place a model instance in productCategoryRelation or brandRelation -->
+		<!-- for model, will place the model selector string in modelRelation -->
 	</tag>
 	<tag>
 	   <name>getRelatedPages</name>
@@ -292,15 +340,9 @@
 		</variable>
 	</tag>
 	<tag>
-	   <name>getAuthorArticles</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetAuthorArticlesTag</tag-class>
-		 <info>Gets the list of author articles </info>
-		 	<attribute>
-			<name>authorPath</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
+	   	<name>getAuthorArticles</name>
+	   	<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAuthorArticlesTag</tag-class>
+		<info>Gets the list of the current author's articles </info>
 	</tag>
 	<tag>
 	   <name>getGuideListing</name>
@@ -359,5 +401,10 @@
 		<name>RepairModelHelp</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.RepairModelHelpTag</tag-class>
 		<info>this tag gets the data on the repair model help page</info>
+	</tag>
+	<tag>
+		<name>GetJobCodesBySymptom</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetJobCodesBySymptomTag</tag-class>
+		<info>TODO</info>
 	</tag>
 </taglib>

@@ -41,4 +41,10 @@ public class PartTypeModel {
 	public void setPath(String path) {
 		this.path = path;
 	}
+
+	@Override
+	public String toString() {
+		return "PartTypeModel [title=" + title + ", description=" + description
+				+ ", imagePath=" + imagePath + ", path=" + path + "]";
+	}
 }

@@ -35,6 +35,10 @@
 					jcr:primaryType="cq:Widget"
 					path="/apps/searspartsdirect/components/page/repairGuide/tab_page_properties.infinity.json"
 					xtype="cqinclude"/>
+				<pageRelations
+					jcr:primaryType="cq:Widget"
+					path="/apps/searspartsdirect/components/page/repairGuide/tab_page_relations.infinity.json"
+					xtype="cqinclude"/>
 			</items>
 		</tabs>
 	</items>

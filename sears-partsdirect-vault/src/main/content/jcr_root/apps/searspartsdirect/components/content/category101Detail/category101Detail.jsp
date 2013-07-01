@@ -1,6 +1,8 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <spd:tagsByPage tagType="parent_categories" />
 <spd:getMultifieldCategories />
+<spd:getRelation single="true" assetType="productCategory" />
+<spd:getNameByNodePath nodePath="${productCategoryRelation.path}" />
 
 <c:if test="${not empty categories}">
 	<h2>
@@ -36,9 +38,14 @@
 			</c:when>
 		</c:choose>
 	</c:forEach>
+	
 	<p>
-		<c:set var="viewAllLink"><cq:text property='viewAllLink'/></c:set>
-		<spd:LinkResolver value="${viewAllLink}" />
-		<a class="new-btn-small" href="${url}">View All Categories</a>
+	<c:set var="linkText"><cq:text property='viewAllLinkText'/></c:set>
+	<c:if test="${not empty linkText}">
+		<c:set var="homePath" value="/content/searspartsdirect/en/allarticles" />
+		<c:set var="suffix" value="-repair/repair-articles" />
+		<spd:LinkResolver value="${homePath}/${nodeName}${suffix}" />
+    	<a class="new-btn-small" href="${url}">${linkText}</a>
+	</c:if>
 	</p>
 </c:if>

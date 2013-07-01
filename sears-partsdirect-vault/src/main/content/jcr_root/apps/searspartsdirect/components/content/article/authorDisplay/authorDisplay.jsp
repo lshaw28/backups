@@ -1,14 +1,12 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
 <spd:getAuthorPages />
-<cq:text property="guideHeader" />
-<c:set var="s" value="${fn:length(authorPages) gt 1? 's':''}" />
-
+<c:set var="s" value="${fn:length(authors) gt 1? 's':''}" />
 <p>
 	by
-	<c:forEach var="authorPage" items="${authorPages}">
-		<spd:LinkResolver value="${authorPage.path}" />
-		<a href="${url}">${authorPage.title}</a>, 
+	<c:forEach var="author" items="${authors}">
+		<spd:LinkResolver value="${author.path}" />
+		<a href="${url}">${author.title}</a>, 
 	</c:forEach>
-	Sears Home Services repair technician${s}
+	<cq:text property="authorPosition" placeholder="Sears Home Services repair technician${s}"/>
 </p>

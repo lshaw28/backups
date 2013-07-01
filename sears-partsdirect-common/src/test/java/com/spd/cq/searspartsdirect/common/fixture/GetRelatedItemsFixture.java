@@ -21,7 +21,7 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 public class GetRelatedItemsFixture {
 	
-	private PageManager pageManager;
+	protected PageManager pageManager;
 
 	public GetRelatedItemsFixture(PageManager pageManager) throws RepositoryException {
 		this.pageManager = pageManager;	
