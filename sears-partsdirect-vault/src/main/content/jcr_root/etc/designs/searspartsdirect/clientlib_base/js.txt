@@ -29,6 +29,7 @@ main.js
 cartNav.js
 category101.js
 guideNavigation.js
+modalForm.js
 responsiveImage.js
 revealPanel.js
 searchPanel.js

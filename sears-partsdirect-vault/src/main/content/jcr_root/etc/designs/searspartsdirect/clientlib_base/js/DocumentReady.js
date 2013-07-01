@@ -82,6 +82,9 @@
 		/**
 		 * Form validation
 		 */
+		var registerForm = new modalForm($('#registerModal')),
+			loginForm = new modalForm($('#loginModal'));
+
 		regula.custom({
 			name: "EmailsMatch",
 			formSpecific: true,
@@ -89,7 +92,7 @@
 			params: ["field1", "field2"],
 			validator: function(params) {
 				var failingElements = [],
-					emailField1 = document.getElementById(params["field1"])
+					emailField1 = document.getElementById(params["field1"]),
 					emailField2 = document.getElementById(params["field2"]);
 
 				if (emailField1.value != emailField2.value) {
