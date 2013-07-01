@@ -8,6 +8,7 @@
 			jcr:primaryType="cq:Widget"
 			xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
+			
 				<pages
 	        			jcr:primaryType="cq:Widget"
 	        			name="./authors"
@@ -15,6 +16,12 @@
 	        			hideLabel="{Boolean}false"
 	        			fieldLabel="Select Author Page"
 	        			xtype="pagemapper"/>
+	        	<position
+	        			jcr:primaryType="cq:Widget"
+	        			name="./authorPosition"
+	        			fieldLabel="Author Position"
+	        			xtype="textfield"/>
+	        			
 			</items>
 		</panel>
 	</items>
