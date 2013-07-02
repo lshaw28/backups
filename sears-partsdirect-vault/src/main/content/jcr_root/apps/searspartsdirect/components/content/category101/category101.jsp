@@ -10,17 +10,17 @@
     <div class="accordion" id="parent_${uniqueId}" >
         <div class="accordion-group">
             <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="false" data-parent="#parent_${uniqueId}" href="#${uniqueId}">
-                <c:choose>
-                    <c:when test="${fn:length(parent_categoriesList[0].title) lt 38 }">
-                            <cq:text property="header" placeholder="${parent_categoriesList[0].title} 101" />
-                    </c:when>
-                    <c:otherwise>
-                            <cq:text property="header" placeholder="${fn:substring(parent_categoriesList[0].title,0,37)} 101" />
-                    </c:otherwise>
-                </c:choose>
-                <i class="icon-minus"></i>
-		<i class="icon-plus"></i>
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#parent_${uniqueId}" href="#${uniqueId}">
+                    <c:choose>
+                        <c:when test="${fn:length(parent_categoriesList[0].title) lt 38 }">
+                                <cq:text property="header" placeholder="${parent_categoriesList[0].title} 101" />
+                        </c:when>
+                        <c:otherwise>
+                                <cq:text property="header" placeholder="${fn:substring(parent_categoriesList[0].title,0,37)} 101" />
+                        </c:otherwise>
+                    </c:choose>
+                    <i class="icon-chevron-up pull-right"></i>
+		            <i class="icon-chevron-down pull-right"></i>
                 </a>
             </div>
             <div id="${uniqueId}" class="accordion-body collapse in">
