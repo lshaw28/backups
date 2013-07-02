@@ -85,6 +85,12 @@
 			});
 
 		});
+
+        
+        $('.category101').each(function() {
+            var newCategory101 = new category101($(this));
+        });
+
 		// desktop carousel initialization
 		$('.desktop-carousel').each(function () {
 			var carouselElement = $(this);

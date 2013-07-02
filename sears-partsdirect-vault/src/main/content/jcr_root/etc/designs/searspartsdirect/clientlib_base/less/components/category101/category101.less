@@ -1,0 +1,72 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.category101 {
+
+    ul {
+        list-style: none;
+	margin: 0px;
+	padding: 0;
+	text-align: left;
+    }
+
+    .accordion-heading a {
+        color: @color-primary-b;
+        font-size: @h4Size;
+        padding: 8px 15px 5px 15px;
+        text-decoration: none;
+    }
+    
+    .accordion-group {
+        border-radius: 0;
+        border: none;
+        background: @tableHoverColor;
+        margin-bottom: 2px;
+    }
+
+    .accordion .accordion-body {
+        background: @tableHoverColor;
+        border-radius: 0;
+        border: none;
+        color: @color-primary-b;
+        margin-bottom: 2px;
+    }
+
+    .accordion-inner {
+        border-top: none;
+    }
+    
+    .accordion-inner li a {
+        border-bottom: 1px solid #fff;
+        font-size: @smallPSize;
+        padding: 5px 15px 5px 0px;
+    }
+
+    .accordion-inner li:first-child a {
+        border-top: 1px solid #fff;
+    }
+
+    .accordion-inner-btn {
+        font-size: @smallestPSize;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+
+    .collapse ul li a {
+        float: left;
+        width: 98%;
+    }
+
+    .accordion-toggle {
+        .icon-chevron-down {
+            display: none;
+	}
+
+        .icon-chevron-up {
+            display: none;
+	}
+     }
+
+}
+
+@import "category101.mobile.less";

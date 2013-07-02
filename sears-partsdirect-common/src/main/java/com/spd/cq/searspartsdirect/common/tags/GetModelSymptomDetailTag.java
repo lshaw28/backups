@@ -10,6 +10,8 @@ import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.api.resource.ValueMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
@@ -30,9 +32,10 @@ public class GetModelSymptomDetailTag extends CQBaseTag {
 	private QueryBuilder builder;
 	private Query query;
 	ModelSymptomModel modelSymptomModel;
-	
 	List<JobCodeModel> jobCodeModels;
-
+	
+	public static final Logger log = LoggerFactory.getLogger(GetModelSymptomDetailTag.class);
+	
 	@Override
 	public int doStartTag() throws JspException {
 		//read the symptom seo text from url and get the symptom first
@@ -64,15 +67,15 @@ public class GetModelSymptomDetailTag extends CQBaseTag {
 					if (pages != null) {
 						jobCodeModels = new ArrayList<JobCodeModel>();
 						for(int i = 0; i< pages.length; i++) {
-							log.error("**********"+ pages[i]);
+							log.debug("**********"+ pages[i]);
 							if (pages[i].indexOf(Constants.ASSETS_PATH.concat("/jobCode")) > -1) {
 								Page jobCodePage = pageManager.getPage(pages[i]);
 								if (jobCodePage != null) {
 									JobCodeModel jobCodeModel = new JobCodeModel(jobCodePage.getPath(), jobCodePage.getTitle(), jobCodePage.getDescription());
 									//getting jobcode
-									ValueMap jobcodeProps = jobCodePage.getProperties();
-									if (jobcodeProps != null) {
-										String partType = (String) jobcodeProps.get("partType");
+									ValueMap jobCodeProps = jobCodePage.getProperties();
+									if (jobCodeProps != null) {
+										String partType = (String) jobCodeProps.get("partType");
 										Page partTypePage = pageManager.getPage(partType);
 										
 										PartTypeModel partTypeModel = new PartTypeModel(partTypePage.getPath(), 
@@ -82,7 +85,7 @@ public class GetModelSymptomDetailTag extends CQBaseTag {
 										jobCodeModels.add(jobCodeModel);
 										
 										//getting guides
-										String[] guides = (String[]) jobcodeProps.get("guide", String[].class);
+										String[] guides = (String[]) jobCodeProps.get("guide", String[].class);
 										if (guides != null) {
 											List<RelatedGuideModel> guideList = new ArrayList<RelatedGuideModel>();
 											for (int j = 0; j<guides.length; j++) {
