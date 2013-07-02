@@ -8,6 +8,7 @@ core.textclasses.less
 core.helperclasses.less
 core.grid.less
 core.buttons.less
+core.buttons.tablet.less
 core.forms.less
 core.tables.less
 comp.brandcarousel.less

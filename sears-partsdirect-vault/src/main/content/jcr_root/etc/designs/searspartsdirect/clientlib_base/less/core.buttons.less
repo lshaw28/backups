@@ -1,14 +1,14 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-.new-btn, .new-btn-small, .new-btn-smallest {
+.new-btn, .new-btn-small {
 	background-color: @bodyColor;
 	.borderRadius(4px);
 	border: 1px solid #c4d7e8;
 	color: #4577a3;
 	display: inline-block;
 	font: normal @pSize @bodyFont;
-
+	padding: 8px 19px;
 	text-decoration: none;
 
 	&:hover {
@@ -25,32 +25,20 @@
 		.borderRadius(0);
 	}
 }
-.new-btn {
-	padding: 15px 19px;
-}
 .new-btn-small {
-	padding: 7px 19px;
-}
-.new-btn-smallest {
 	font-size: @smallestPSize;
 	padding: 1px 12px;
 }
-.new-btn-dropdown, .new-btn-dropdown-small {
+.new-btn-dropdown {
 	background-color: @headerColor;
 	.borderRadius(2px);
 	color: @bodyColor;
 	font-size: @pSize;
 	line-height: @pSize;
 	margin: 0;
-	padding: 0;
+	padding: 10px 20px;
 
 	[class*="icon"] {
 		float: right;
 	}
-}
-.new-btn-dropdown {
-	padding: 18px 20px;
-}
-.new-btn-dropdown-small {
-	padding: 10px 20px;
 }
