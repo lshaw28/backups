@@ -27,6 +27,11 @@
 		<info>returns a pages array corresponding to the pagemapper string array output</info>
 	</tag>
 	<tag>
+		<name>getConstants</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetConstantsTag</tag-class>
+		<info>returns a model object with root path constants</info>
+	</tag>
+	<tag>
 		<name>pagesByTag</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.PagesByTagTag</tag-class>
 		<info>Generates a list of Pages represented by a specific Tag</info>
