@@ -13,6 +13,7 @@ import javax.jcr.Session;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.mockito.Mockito;
 
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
@@ -21,7 +22,9 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.google.gson.Gson;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.model.JobCodesModel;
 
 public class GetJobCodesBySymptomTagFixture {
 	
@@ -52,7 +55,6 @@ public class GetJobCodesBySymptomTagFixture {
 		hits.add(createATestHit("/bar"));
 		hits.add(createATestHit("/baz"));
 		hits.add(createATestHit("/foo"));
-		
 	}
 	
 	private Hit createATestHit(String titleAndDesc) throws RepositoryException {
