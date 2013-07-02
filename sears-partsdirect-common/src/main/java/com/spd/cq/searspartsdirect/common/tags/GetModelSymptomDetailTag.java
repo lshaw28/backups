@@ -38,8 +38,6 @@ public class GetModelSymptomDetailTag extends CQBaseTag {
 	
 	@Override
 	public int doStartTag() throws JspException {
-		//read the symptom seo text from url and get the symptom first
-		
 		String symptomId = request.getParameter("id");
 		
 		session = slingRequest.getResourceResolver().adaptTo(Session.class);
@@ -47,7 +45,7 @@ public class GetModelSymptomDetailTag extends CQBaseTag {
 		map.put("path", Constants.ASSETS_PATH + "/symptom");
 		map.put("type", Constants.CQ_PAGE);
 		map.put("property", "jcr:content/id");
-		map.put("property.value", "203");
+		map.put("property.value", symptomId);
 		
 		builder = resourceResolver.adaptTo(QueryBuilder.class);
 		query = builder.createQuery(PredicateGroup.create(map), session);
@@ -78,10 +76,12 @@ public class GetModelSymptomDetailTag extends CQBaseTag {
 										String partType = (String) jobCodeProps.get("partType");
 										Page partTypePage = pageManager.getPage(partType);
 										
-										PartTypeModel partTypeModel = new PartTypeModel(partTypePage.getPath(), 
-																	partTypePage.getTitle(), partTypePage.getDescription(), 
-																	partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH);
-										jobCodeModel.setPartTypeModel(partTypeModel);
+										if (partTypePage != null) {
+											PartTypeModel partTypeModel = new PartTypeModel(partTypePage.getPath(), 
+													partTypePage.getTitle(), partTypePage.getDescription(), 
+													partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH);
+											jobCodeModel.setPartTypeModel(partTypeModel);
+										}
 										jobCodeModels.add(jobCodeModel);
 										
 										//getting guides
