@@ -58,6 +58,27 @@ public class GetUrlRelationTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testGetProductCategoryFromUri() throws JspException {
+		fixture.setUpProductCategoryUri();
+		fixture.setUpProductCategory();
+		tag.setRelationType("productCategory");
+		runsSkipsBodyEvalsPage();
+		Object pcr = pageContext.getAttribute("productCategoryRelation");
+		assertThat(pcr,not(nullValue()));
+		assertTrue(pcr.getClass().equals(ProductCategoryModel.class));
+	}
+	
+	@Test
+	public void testGetProductCategoryFromUriNonePresent() throws JspException {
+		fixture.setUpJRandomUri();
+		fixture.setUpProductCategory();
+		tag.setRelationType("productCategory");
+		runsSkipsBodyEvalsPage();
+		Object pcr = pageContext.getAttribute("productCategoryRelation");
+		assertThat(pcr,is(nullValue()));
+	}
+	
+	@Test
 	public void testGetBrand() throws JspException {
 		fixture.setUpSelectors();
 		fixture.setUpBrand();
