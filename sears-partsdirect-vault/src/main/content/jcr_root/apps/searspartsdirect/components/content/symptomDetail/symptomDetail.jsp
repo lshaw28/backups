@@ -1,7 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
 <p>symptom details page</p>
-<spd:GetModelRepairSymptom />
+<spd:GetModelSymptomDetail />
 
 <h1>${modelSymptom.symptomModel.title}</h1>
 <p>${modelSymptom.symptomModel.description}</p>

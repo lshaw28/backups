@@ -411,8 +411,8 @@
 		<info>TODO</info>
 	</tag>
 	<tag>
-		<name>GetModelRepairSymptom</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelRepairSymptomTag</tag-class>
+		<name>GetModelSymptomDetail</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelSymptomDetailTag</tag-class>
 		<info>Gets the model symptom data</info>
 	</tag>
 </taglib>

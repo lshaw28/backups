@@ -24,7 +24,7 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 
-public class GetModelRepairSymptomTag extends CQBaseTag {
+public class GetModelSymptomDetailTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	private Session session;
 	private QueryBuilder builder;
