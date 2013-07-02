@@ -79,7 +79,7 @@ var responsiveDropdown = Class.extend(function () {
 			self.renderItems();
 			self.buttonGroup.append(self.dropdownItems);
 			// Hide the select element
-			self.el.addClass('.responsiveDropdownHidden');
+			self.el.addClass('responsiveDropdownHidden');
 			self.buttonGroup.insertBefore(self.el);
 		},
 		/**
