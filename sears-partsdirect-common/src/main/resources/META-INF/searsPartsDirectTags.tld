@@ -406,8 +406,8 @@
 		<info>this tag gets the data on the repair model help page</info>
 	</tag>
 	<tag>
-		<name>GetJobCodesBySymptom</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetJobCodesBySymptomTag</tag-class>
-		<info>TODO</info>
+		<name>GetModelSymptomDetail</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelSymptomDetailTag</tag-class>
+		<info>Gets the model symptom data</info>
 	</tag>
 </taglib>

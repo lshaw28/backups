@@ -59,6 +59,12 @@
 			var newResponsiveImage = new responsiveImage($(this));
 		});
 		/**
+		 * responsiveDropdown class setup
+		 */
+		$('[data-toggle="responsive-dropdown"]').each(function () {
+			var newResponsiveDropdown = new responsiveDropdown($(this));
+		});
+		/**
 		 * video component setup
 		 */
 		$('.video div[data-youtubeid]').each(function () {
