@@ -1,0 +1,68 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.categoryListing {
+
+    .category-title {
+        border-bottom: 1px solid @color-primary-b;
+        clear:both;
+        margin-top: 10px;
+        margin-bottom: 40px;
+
+        h4 {
+            margin-bottom: 10px;
+        }
+    }
+
+    .category-container {
+        
+        width: 100%;
+    }
+
+    .category-item {
+        display: inline-block;
+        height: @repairHelpIconHeight;
+        margin: 0 1% 1% 0;
+        min-width: 150px;
+        position: relative;
+        width: 15%;
+        
+        a {
+            clear: both;
+            height: 100%;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            
+            .category-item-inner {
+                  display: inline-block;
+                  margin-top: @repairHelpIconHeight/-2;
+                  position: absolute;
+                  top: 50%;
+                  width: 100%;
+
+                  .icon-camera {
+                    color: @color-primary-b;
+                    font-size: @largeSize;
+                }
+            }
+
+              
+              &:hover {
+                       .icon-camera {
+                            color: @linkHoverColor;
+                        }
+                    }
+            
+            }
+
+
+    }
+    
+   
+    
+
+}
+
+@import "categoryListing.tablet.less";
+@import "categoryListing.mobile.less";
