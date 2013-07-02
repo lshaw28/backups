@@ -118,7 +118,6 @@ var responsiveDropdown = Class.extend(function () {
 			if (value.indexOf('#') === 0) {
 				a.attr('href', value);
 				a.bind('click', function (e) {
-					e.preventDefault();
 					self.dropdownItems.toggleClass('active');
 				});
 			}
@@ -135,7 +134,6 @@ var responsiveDropdown = Class.extend(function () {
 			var self = this;
 
 			el.bind('click', function (e) {
-				e.preventDefault();
 				self.selectValue($(this).data('value'));
 			});
 		},
@@ -163,15 +161,18 @@ var responsiveDropdown = Class.extend(function () {
 			$('li', self.dropdownItems).removeClass('selected');
 			$('li[data-value="' + val + '"]', self.dropdownItems).addClass('selected');
 			// Update the select element
-			$('option', self.el).attr('selected', '');
+			$('option', self.el).attr('selected', false);
 			$('option[data-value="' + val + '"]', self.el).attr('selected', 'selected');
 			// Update the optional hidden field
 			if (self.hiddenField !== null) {
 				self.hiddenField.attr('value', val);
 			}
 			// Navigate
-			if (self.navigate === true && sel === true) {
-				document.location.hash = val;
+			if (self.navigate === true) {
+				if (sel === true) {
+					document.location.hash = val;
+				}
+				window.scrollTo($(window).scrollTop() - self.button.height());
 			}
 		},
 		bindEvent: function () {
