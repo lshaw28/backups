@@ -11,10 +11,10 @@
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title"
                     name="./jcr:content/jcr:title"/>
-                <titleSingular
+                <titlePlural
                     jcr:primaryType="cq:Widget"
-                    fieldLabel="Title Singular Form"
-                    name="./jcr:content/titleSingular"/>
+                    fieldLabel="Title Plural Form"
+                    name="./jcr:content/titlePlural"/>
                 <description
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Description"
@@ -26,6 +26,12 @@
                     name="./jcr:content/image/sling:resourceType"
                     value="foundation/components/image"
                     xtype="hidden"/>
+                <articleIndexCopy
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Article Index Copy"
+                    fieldLabelDescription="Description for Article Index page"
+                    name="./jcr:content/articleIndexCopy"
+                    xtype="textarea"/>
             </items>
         </tab1>
         <tab2

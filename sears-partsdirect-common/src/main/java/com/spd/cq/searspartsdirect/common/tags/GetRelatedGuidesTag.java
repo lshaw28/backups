@@ -29,10 +29,12 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 	protected String categoryPath;
 	protected int maxOutput = 4;
 	
+	public static final String REL_GUIDES_ATTR = Constants.ident("relatedGuides");
+	
 	@Override
 	public int doStartTag() throws JspException {
 		
-		// We start with, any guides directly related to the page - the JSP will feed those in if present.
+		// We start with, any guides directly related to the page
 		List<RelatedGuideModel> guides = findDirectlyRelatedGuides();
 		
 		// If we don't already have enough, we will do a search for guides for the passed category
@@ -78,12 +80,15 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 		List<RelatedGuideModel> directlyRelated = new ArrayList<RelatedGuideModel>();
 		String[] empty = new String[0];
 		Page workingPage = currentPage;
-		String[] relations = workingPage.getProperties().get("pages", empty);
-		for (int i = 0; i < relations.length; i++) {
+		String[] relations = workingPage.getProperties().get(REL_GUIDES_ATTR, empty);
+		for (int i = 0; i < relations.length && directlyRelated.size() < maxOutput; i++) {
 			if (Pattern.matches(Constants.GUIDES_ROOT + "/[^/]+", relations[i])) {
 				Page p = pageManager.getPage(relations[i]);
 				if (p != null) {
-					directlyRelated.add(makeModelFromPage(p));
+					RelatedGuideModel model = makeModelFromPage(p);
+					if (!directlyRelated.contains(model)) {
+						directlyRelated.add(model);
+					}
 				} else {
 					log.warn("Could not resolve path "+relations[i]+" to a page");
 				}

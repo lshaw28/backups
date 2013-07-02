@@ -4,6 +4,13 @@
 .legalCopy {
 	background-color: @bodyColor;
 	float: left;
-	padding: 4%;
-	width: 92%;
+	font-size: @smallPSize;
+	margin: 0 20px;
+	padding: 20px;
+
+	p {
+		font-size: @smallPSize;
+	}
 }
+
+@import "legalCopy.tablet.less";

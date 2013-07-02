@@ -1,7 +1,5 @@
 package com.spd.cq.searspartsdirect.common.model;
 
-import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
 
 public class RecoveryPartsModel {
@@ -14,6 +12,9 @@ public class RecoveryPartsModel {
 	
 	@SerializedName("partNumber")
 	private String partNumber;
+	
+	@SerializedName("recoveryFrequency")
+	private double recoveryFrequency;
 
 
 	public String getPartDescription() {
@@ -40,10 +41,18 @@ public class RecoveryPartsModel {
 		this.jobCodePart = jobCodePart;
 	}
 
+	public double getRecoveryFrequency() {
+		return recoveryFrequency;
+	}
+
+	public void setRecoveryFrequency(double recoveryFrequency) {
+		this.recoveryFrequency = recoveryFrequency;
+	}
+
 	@Override
 	public String toString() {
 		return "RecoveryPartsModel [jobCodePart=" + jobCodePart
 				+ ", partDescription=" + partDescription + ", partNumber="
-				+ partNumber + "]";
+				+ partNumber + ", recoveryFrequency=" + recoveryFrequency + "]";
 	}
 }

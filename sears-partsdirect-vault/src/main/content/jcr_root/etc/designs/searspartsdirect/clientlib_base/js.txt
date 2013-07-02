@@ -2,6 +2,7 @@
 Compatibility.js
 bootstrap.min.js
 modernizr.custom.50282-2.6.2.min.js
+plugins/regula-1.2.3.min.js
 Class.js
 Utilities.js
 DocumentReady.js
@@ -22,12 +23,13 @@ src/IndexController.js
 src/Carousel.js
 widgets/DesktopCarousel.js
 widgets/TouchCarousel.js
-main.js
 
 #base=js/components/.
 cartNav.js
 category101.js
 guideNavigation.js
+modalForm.js
+responsiveDropdown.js
 responsiveImage.js
 revealPanel.js
 searchPanel.js

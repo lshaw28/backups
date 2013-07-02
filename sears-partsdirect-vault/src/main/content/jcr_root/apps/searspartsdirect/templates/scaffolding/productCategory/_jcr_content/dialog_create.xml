@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Dialog"
+    xtype="tabpanel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <tab1
+            jcr:primaryType="cq:Panel"
+            title="Properties">
+            <items jcr:primaryType="cq:WidgetCollection">
+            	<trueName
+            		jcr:primaryType="cq:Widget"
+                    fieldLabel="Category True Name"
+                    allowBlank="false"
+                    name=":nameHint"/>
+                <title
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Title"
+                    name="./jcr:content/jcr:title"/>
+                <titlePlural
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Title Plural Form"
+                    name="./jcr:content/titlePlural"/>
+                <description
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Description"
+                    xtype="textarea"
+                    name="./jcr:content/jcr:description"/>
+                 <resType
+                    jcr:primaryType="cq:Widget"
+                    ignoreData="{Boolean}true"
+                    name="./jcr:content/image/sling:resourceType"
+                    value="foundation/components/image"
+                    xtype="hidden"/>
+                <articleIndexCopy
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Article Index Copy"
+                    fieldLabelDescription="Description for Article Index page"
+                    name="./jcr:content/articleIndexCopy"
+                    xtype="textarea"/>
+            </items>
+        </tab1>
+        <tab2
+            jcr:primaryType="cq:Panel"
+            title="Image">
+            <items jcr:primaryType="cq:WidgetCollection">
+	 		    <image
+		            jcr:primaryType="cq:Widget"
+		            cropParameter="./jcr:content/image/imageCrop"
+		            ddGroups="[media]"
+		            fileNameParameter="./jcr:content/image/fileName"
+		            fileReferenceParameter="./jcr:content/image/fileReference"
+		            mapParameter="./jcr:content/image/imageMap"
+		            name="./jcr:content/image/file"
+		            requestSuffix="/jcr:content/image.img.png"
+		            rotateParameter="./jcr:content/image/imageRotate"
+		            height="400"
+		            xtype="html5smartimage"/>
+            </items>
+        </tab2>
+        <tab3
+        	jcr:primaryType="cq:Panel"
+        	title="Related Assets">
+        	<items jcr:primaryType="cq:WidgetCollection">
+        		<tags
+        			jcr:primaryType="cq:Widget"
+        			name="./jcr:content/cq:tags"
+        			fieldLabel="Tag Associations"
+        			xtype="tags"/>
+        		<pages
+        			jcr:primaryType="cq:Widget"
+        			name="./jcr:content/pages"
+					treeRootPath="/etc/spdAssets/scaffolding"
+        			hideLabel="{Boolean}false"
+        			fieldLabel="Page Associations"
+        			xtype="scaffoldingpagemapper"/>
+        	</items>
+       	</tab3>
+    </items>
+</jcr:root>

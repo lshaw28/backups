@@ -1,25 +1,25 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
+<spd:GetCarouselImages />
 
-<%-- Make `<h2 />` configurable --%>
-<h2>Photo/Gallery</h2>
-
-<div class="hide-onload desktop-carousel touch-carousel">
-	<div class="carousel-wrapper">
-		<div class="carousel-list-wrapper">
-			<div class="carousel-item">
-				<img src="" />
-				<p>Sample Text</p>
+<c:choose>
+	<c:when test="${not empty carouselImages}">
+		<c:set var="titleText"><cq:text property="./titleText" placeholder="" /></c:set>
+		<c:if test="${not empty titleText}">
+			<h2>${titleText}</h2>
+		</c:if>
+		<div class="hide-onload desktop-carousel touch-carousel">
+			<div class="carousel-wrapper">
+				<div class="carousel-list-wrapper">
+					<c:forEach items="${carouselImages}" var="carouselImage">
+						<div class="carousel-item">
+							<cq:include path="${carouselImage}" resourceType="searspartsdirect/components/content/responsiveImage" />
+						</div>
+					</c:forEach>
+				</div>
 			</div>
-
-			<div class="carousel-item">
-				<img src="" />
-				<p>Sample Text</p>
-			</div>
-
-			<div class="carousel-item">
-				<img src="" />
-				<p>Sample Text</p>
-			</div>		
 		</div>
-	</div>
-</div>
+	</c:when>
+	<c:otherwise>
+		No content.
+	</c:otherwise>
+</c:choose>

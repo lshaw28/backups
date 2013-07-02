@@ -46,6 +46,7 @@ overviewImage/overviewImage.less
 partsRequiredRepair/partsRequiredRepair.less
 relatedArticles/relatedArticles.less
 repairStep/repairStep.less
+responsiveDropdown/responsiveDropdown.less
 searchPanel/searchPanel.less
 skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less

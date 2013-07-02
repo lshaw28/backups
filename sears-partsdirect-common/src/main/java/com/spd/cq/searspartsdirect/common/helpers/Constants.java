@@ -23,6 +23,11 @@ public final class Constants {
 	//Model Search Constants
 	public static final String MODEL_NOT_FOUND = ident("Not Found");
 	
+	//Selector Constants
+	public static final int BRAND_SELECTOR = ident(0);
+	public static final int CATEGORY_SELECTOR = ident(1);
+	public static final int MODEL_SELECTOR = ident(2);
+	
 	//DAM Sub-directory Constants
 	public static final String DAM_APPROVED_PATH = ident("/content/dam/searspartsdirect");
 	public static final String DAM_DENIED_PATH = ident("/content/dam/assetsdenied");
@@ -40,7 +45,10 @@ public final class Constants {
 	public static final String USERGEN_ROOT = ident("/content/usergenerated");
 	public static final String ARTICLES_ROOT = ident("/content/searspartsdirect/en/articles");
 	public static final String GUIDES_ROOT = ident("/content/searspartsdirect/en/guides");
-	
+	public static final String CATEGORIES_ROOT = ident("/content/searspartsdirect/en/categories");
+	public static final String EN_ROOT = ident("/content/searspartsdirect/en/categories");
+
+
 	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
 	public static final String GUIDE_NAV_PATH = ident("guideNavigation");
 	public static final String SLINGTYPE = ident("sling:resourceType");
@@ -98,6 +106,7 @@ public final class Constants {
     public static final String REGISTER = ident("");
 	
 	public static final String SUBCATEGORY_TAG = "searspartsdirect:subcategories";
+	public static final String TAGS_FEATURES_PATH = "searspartsdirect:features";
 
 	
 	/**

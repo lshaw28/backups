@@ -1,6 +1,9 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-	<div class="row authorDetail">  
-		<div class="span9 text-justify">  
-		<p><spd:displayImage path="image"/><cq:text property="authorDescription"/></p>   
-		</div>  
+	<div class="row-fluid">
+		<div class="span2">
+			<spd:displayImage path="image"/>
+		</div>
+		<div class="span9">
+			<cq:text property="authorDescription" />
+		</div>
 	</div>

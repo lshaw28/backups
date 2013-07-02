@@ -37,12 +37,15 @@ var searchPanel = Class.extend(function () {
 			var self = this,
 				value = $('#searchBarField').attr('value'),
 				action = mainSitePath + '/partsdirect/' + el.data('postpath') + '/',
+				label = el.data('label'),
 				modelNumber = '',
 				partNumber = '';
 
 			// Update selection status
 			$('#searchContent .dropdown-menu li').removeClass('selected');
 			el.parent().addClass('selected');
+			// Set the drop-down label
+			$('#searchTypeLabel').text(label);
 			// Make sure the value isn't the help text
 			if (value === $('#searchBarField').data('inputhelp') || value === $('#searchBarField').data('inputhelpmobile')) {
 				value = '';
@@ -73,16 +76,47 @@ var searchPanel = Class.extend(function () {
 			var self = this,
 				selectStatement = '#searchContent .dropdown-menu li.selected a';
 
-			// Set initial values
-			self.selectType($(selectStatement));
-
 			// Bind events on search field
 			$('#searchBarField').bind('blur', function () {
-				self.selectType($(selectStatement));
+				if ($(selectStatement).length > 0) {
+					self.selectType($(selectStatement));
+				}
 			})
 			.bind('change', function () {
-				self.selectType($(selectStatement));
+				if ($(selectStatement).length > 0) {
+					self.selectType($(selectStatement));
+				}
+			})
+			.bind('keypress', function (e) {
+				var key = -1;
+
+				// Determine which key was pressed
+				if (e.keyCode) {
+					key = e.keyCode;
+				} else if (e.which) {
+					key = e.which;
+				}
+
+				// If the user hit enter, check if there's a type
+				if (key === 13) {
+					if ($(selectStatement).length > 0) {
+						self.selectType($(selectStatement));
+						return true;
+					} else {
+						$('#searchContent .dropdown-menu').dropdown('toggle');
+						return false;
+					}
+				} else {
+					return true;
+				}
 			});
+
+			// Determine if Search button is enabled
+			if ($(selectStatement).length > 0) {
+				$('#searchModelsParts').attr('disabled', true);
+			} else {
+				$('#searchModelsParts').attr('disabled', false);
+			}
 		}
 	}
 }());
