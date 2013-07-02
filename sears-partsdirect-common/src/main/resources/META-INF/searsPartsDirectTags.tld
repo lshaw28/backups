@@ -410,4 +410,9 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetJobCodesBySymptomTag</tag-class>
 		<info>TODO</info>
 	</tag>
+	<tag>
+		<name>GetModelRepairSymptom</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelRepairSymptomTag</tag-class>
+		<info>Gets the model symptom data</info>
+	</tag>
 </taglib>
