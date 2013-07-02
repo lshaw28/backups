@@ -9,7 +9,7 @@
 	 <spd:getAssets assetType="productCategory" tagFilter="${parentCategory.tagID}" />
 	 <c:forEach var="category" items="${productCategoryList}">
 
-	 	<spd:getRelatedPages assetPath="${category.path}" rootPath="/content/searspartsdirect/en/categories" />
+	 	<spd:getRelatedPages assetPath="${category.path}" rootPath="${Constants.CATEGORIES_ROOT}" />
 	 	<spd:LinkResolver value="${relatedPages[0].path}" />
 		<a href="${url}"><spd:displayImage path="${relatedPages[0].path}/jcr:content/image"/></a>
 		<a href="${url}">${relatedPages[0].title}</a>
