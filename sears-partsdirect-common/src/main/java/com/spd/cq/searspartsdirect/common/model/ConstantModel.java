@@ -11,8 +11,8 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 public class ConstantModel {
 	
 	private String ARTICLES_ROOT = Constants.ARTICLES_ROOT;
-	private String GUIDES_ROOT = Constants.ARTICLES_ROOT;
-	private String CATEGORIES_ROOT = Constants.ARTICLES_ROOT;
+	private String GUIDES_ROOT = Constants.GUIDES_ROOT;
+	private String CATEGORIES_ROOT = Constants.CATEGORIES_ROOT;
 	private String EN_ROOT = Constants.EN_ROOT;
 
 	public String getARTICLES_ROOT() {
