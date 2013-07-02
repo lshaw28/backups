@@ -23,7 +23,7 @@ public class GetConstantsTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		
 		constants = new ConstantModel();
-		pageContext.setAttribute("constant", constants);
+		pageContext.setAttribute("Constants", constants);
 		return SKIP_BODY;
 	}
 

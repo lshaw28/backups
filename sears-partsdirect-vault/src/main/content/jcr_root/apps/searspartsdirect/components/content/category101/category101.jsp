@@ -32,14 +32,14 @@
                         </c:forEach>
                     </ul>
                     <c:set var="linkText"><cq:text property='viewAllLinkText'/></c:set>
-                    <c:if test="${not empty linkText}">
-                        <c:set var="homePath" value="/content/searspartsdirect/en/allarticles" />
-                        <c:set var="suffix" value="-repair/repair-articles" />
-                        <spd:LinkResolver value="${homePath}/${nodeName}${suffix}" />
+                    <c:if test="${fn:length(linkText) gt 0}">
+                    <c:set var="suffix" value="-repair/repair-articles" />
+                    <spd:LinkResolver value="${Constants.EN_ROOT}/${nodeName}${suffix}" />
                         <a href="${url}" class="new-btn-small accordion-inner-btn">${linkText}</a>
                     </c:if>
                 </div>
             </div>
         </div>
     </div>
+
 </c:if>
