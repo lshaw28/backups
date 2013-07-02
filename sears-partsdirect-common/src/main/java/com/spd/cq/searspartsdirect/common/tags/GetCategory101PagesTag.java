@@ -10,6 +10,8 @@ import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.api.resource.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
@@ -27,6 +29,8 @@ import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
  *
  */
 public class GetCategory101PagesTag extends CQBaseTag {
+	
+	protected final static Logger log = LoggerFactory.getLogger(GetCategory101PagesTag.class);
 	
 	protected String category;
 	private String category101TagID = Constants.TAGS_FEATURES_PATH + "/category_101";

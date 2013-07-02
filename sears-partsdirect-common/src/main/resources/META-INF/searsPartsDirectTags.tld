@@ -27,6 +27,11 @@
 		<info>returns a pages array corresponding to the pagemapper string array output</info>
 	</tag>
 	<tag>
+		<name>getConstants</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetConstantsTag</tag-class>
+		<info>returns a model object with root path constants</info>
+	</tag>
+	<tag>
 		<name>pagesByTag</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.PagesByTagTag</tag-class>
 		<info>Generates a list of Pages represented by a specific Tag</info>
@@ -182,13 +187,6 @@
 	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetBrandCategoryModelNoTag</tag-class>
 		 <info>Provides the Brand Category and Model No.</info>
 	</tag>
-	
-	<tag>
-	   <name>getPageTitle</name>
-	   <tag-class>com.spd.cq.searspartsdirect.common.tags.GetPageTitleTag</tag-class>
-		 <info>Provides the current page title</info>
-	</tag>
-	
 	<tag>
 		<name>getModelSymptoms</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ModelSymptomsTag</tag-class>

@@ -1,5 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<spd:getRelation single="true" assetType="productCategory"/>
+
+<spd:GetUrlRelation relationType="productCategory" />
+
 <h3>
 	<c:if test="${productCategoryRelation != null}">
 		${productCategoryRelation.title}
@@ -7,6 +9,7 @@
 	<cq:text property="errorCodeTitle" placeholder=""/>
 </h3>
 <cq:text property="errorCodeDescription" placeholder=""/>
+
 
 <spd:GetErrorCodesList categoryPath="${productCategoryRelation.path}" />
 <c:forEach var="item" items="${errorCodeList}">

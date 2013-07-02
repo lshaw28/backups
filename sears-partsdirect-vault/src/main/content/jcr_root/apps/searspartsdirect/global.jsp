@@ -4,6 +4,8 @@
 <%@page import="java.util.LinkedList" %>
 <spd:DefineObjects />
 <spd:GetPDUrl />
+<spd:getConstants />
+
 <c:set var="mainSitePath" scope="request">${PDUrl}</c:set>
 <% // @TODO: Where should we actually be posting to? %>
 <c:set var="loginPath" scope="request" value="https://sso.shld.net/shccas/shcLogin"></c:set>
