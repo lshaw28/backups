@@ -10,7 +10,7 @@
         jcr:title="Main Burner"
         sling:resourceType="searspartsdirect/components/scaffolding/genericScaffolding"
         partType="/etc/spdAssets/scaffolding/partType/test_part_type"
-        guide="/content/searspartsdirect/en/guides/oldDishwashers.html">
+        guide="[/content/searspartsdirect/en/guides/oldDishwashers,/content/searspartsdirect/en/guides/recycling]">
         <dialog/>
     </jcr:content>
 </jcr:root>

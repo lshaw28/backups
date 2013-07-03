@@ -7,20 +7,28 @@
 			display: none;
 			visibility: hidden;
 		}
-		.new-input-small {
+		input[type="text"] {
 			font-size: @pSize;
-			margin-right: 8px;
-			width: 35%;
+			margin-right: 6px;
+			width: 50%;
 		}
 		.btn-group {
-			margin-right: 10px;
+			margin-right: 6px;
+
+			.btn-type {
+				font-size: @pSize;
+
+				.icon-chevron-sign-down {
+					float: right;
+					margin: 10px 0 0 10px;
+				}
+			}
 		}
 	}
 }
 
 @media (max-width: 650px) {
 	.search-content-pane {
-		height: 70px;
 		padding: 10px 10px 0;
 
 		p {
@@ -47,6 +55,14 @@
 					}
 				}
 			}
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.search-content-pane {
+		input[type="text"] {
+			width: 40%;
 		}
 	}
 }

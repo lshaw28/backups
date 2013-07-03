@@ -8,7 +8,7 @@
 		</ul>
 
 		<div id="searchContent" class="search-content-pane active">
-			<input id="searchBarField" class="new-input-small" type="text" maxlength="100" tabindex="1" data-inputhelp="Enter model or part number" data-inputhelpmobile="Model/Part #" name="searchModPar"><span class="large">in</span><div class="btn-group ">
+			<input id="searchBarField" type="text" maxlength="100" tabindex="1" data-inputhelp="Enter model or part number" data-inputhelpmobile="Model/Part #" name="searchModPar"><span class="large">in</span><div class="btn-group ">
 				<a class="btn btn-type" href="#" data-toggle="dropdown"><span id="searchTypeLabel" data-texthelp="Select Type" data-texthelpmobile="Type">Select Type</span> <i class="icon-chevron-sign-down">&nbsp;</i></a>
 				<ul class="dropdown-menu">
 					<li>
@@ -18,7 +18,7 @@
 						<a data-postpath="part-number" data-pathtaken="partSearch" data-label="Part">Part #</a>
 					</li>
 				</ul>
-			</div><button id="searchModelsParts" class="new-btn-small new-btn-search">Search</button>
+			</div><button id="searchModelsParts" class="new-btn new-btn-search">Search</button>
 			<p>Can't locate your model number? <a data-toggle="reveal" data-target="#findMyModel" id="newFinderModel">Use our finder <i class="icon-angle-down">&nbsp;</i></a></p>
 			<input name="pathTaken" id="pathTaken" type="hidden"/>
 			<input name="prst" id="prst" type="hidden"/>

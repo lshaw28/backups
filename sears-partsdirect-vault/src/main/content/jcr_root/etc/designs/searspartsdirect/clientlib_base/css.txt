@@ -8,6 +8,7 @@ core.textclasses.less
 core.helperclasses.less
 core.grid.less
 core.buttons.less
+core.buttons.tablet.less
 core.forms.less
 core.tables.less
 comp.brandcarousel.less
@@ -46,6 +47,7 @@ overviewImage/overviewImage.less
 partsRequiredRepair/partsRequiredRepair.less
 relatedArticles/relatedArticles.less
 repairStep/repairStep.less
+responsiveDropdown/responsiveDropdown.less
 searchPanel/searchPanel.less
 skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less

@@ -1,36 +1,36 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-<spd:GetJobCodesBySymptom />
+<p>symptom details page</p>
+<spd:GetSymptomDetail partsRequired="true" />
 
-These repairs may help solve your problem:
+<h1>${modelSymptom.symptomModel.title}</h1>
+<p>${modelSymptom.symptomModel.description}</p>
 
-<c:if test="${symptomJobCodes != null}">
-	<h2>${symptomJobCodes.description}</h2>
-</c:if>
 
-<c:forEach var="jobCode" items="${symptomJobCodes.recoveryCodesModel}">
-	 <b>${jobCode.codeId}</b>
-	 
+<c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
 	<c:choose>
 		<c:when test="${jobCode.partTypeModel != null &&  jobCode.partTypeModel.imagePath != null}">
 			<spd:displayImage path="${jobCode.partTypeModel.imagePath}"/>
 		</c:when>
 		<c:otherwise>
-			show a default no jobcode part type image
+			<p>show a default no jobcode part type image</p>
 		</c:otherwise>
 	</c:choose>	
-		
-	 <p>${jobCode.description}</p>
-	 Guide:-
+	<h3>${jobCode.title}</h3>
+	<p>${jobCode.description}</p>
+	
+	Guides:-
 	 <c:if test="${not empty jobCode.guides}">
 	 	<c:forEach var="guide" items="${jobCode.guides}">
-	 		<a href="${guide.url}">${guide.title}</a>
+	 		<spd:LinkResolver value="${guide.url}"/>
+	 		<p><a href="${url}">${guide.title}</a></p>
 	 	</c:forEach>
 	 </c:if>
-	
-	<c:choose>
-		<c:when test="${not empty jobCode.recoveryPartsModel}">	
-			 <table border="1">
+	 
+	 <c:choose>
+		<c:when test="${not empty jobCode.parts}">
+			<!--  once we get the data from the api, show the following section -->	
+			 <%-- <table border="1">
 					 <c:forEach var="part" items="${jobCode.recoveryPartsModel}">
 						 <tr>
 						 	<td>Used in this repair ${part.recoveryFrequency}% of the time</td>
@@ -44,10 +44,12 @@ These repairs may help solve your problem:
 						 	<td> $${part.jobCodePart.priceAndAvailability.sellingPrice} -- ${part.jobCodePart.priceAndAvailability.availabilityStatus}</td>
 						 </tr>	   
 					</c:forEach>
-			</table>
+			</table> --%>
 		</c:when>
 		<c:otherwise>
-			<a href="http://www.searspartsdirect.com/partsdirect/part-model/Frigidaire-Parts/Cooktop-Parts/Model-33003/1428/0121050&partType=${jobCode.partTypeModel.title}">Install a ${jobCode.partTypeModel.title}</a>
+			<c:if test="${jobCode.partTypeModel != null}">
+				<a href="http://www.searspartsdirect.com/partsdirect/part-model/Frigidaire-Parts/Cooktop-Parts/Model-33003/1428/0121050&partType=${jobCode.partTypeModel.title}">find a ${jobCode.partTypeModel.title} in this model</a>
+			</c:if>
 		</c:otherwise>
-		</c:choose>	
+	</c:choose>		
 </c:forEach>

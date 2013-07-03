@@ -46,8 +46,9 @@ public final class Constants {
 	public static final String ARTICLES_ROOT = ident("/content/searspartsdirect/en/articles");
 	public static final String GUIDES_ROOT = ident("/content/searspartsdirect/en/guides");
 	public static final String CATEGORIES_ROOT = ident("/content/searspartsdirect/en/categories");
+	public static final String EN_ROOT = ident("/content/searspartsdirect/en");
 
-	
+
 	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
 	public static final String GUIDE_NAV_PATH = ident("guideNavigation");
 	public static final String SLINGTYPE = ident("sling:resourceType");

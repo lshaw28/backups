@@ -24,9 +24,11 @@ public class GetUrlRelationTagFixture {
 	private final String MODEL = "model";
 
 	private PageManager pageManager;
+	private SlingHttpServletRequest slingRequest;
 	
 	public GetUrlRelationTagFixture(SlingHttpServletRequest slingRequest, PageManager pageManager) {
 		this.pageManager = pageManager;
+		this.slingRequest = slingRequest;
 		selectors = new ArrayList<String>();
 		RequestPathInfo rpi = mock(RequestPathInfo.class);
 		when(slingRequest.getRequestPathInfo()).thenReturn(rpi);
@@ -51,6 +53,14 @@ public class GetUrlRelationTagFixture {
 		when(pageManager.getPage(relatedAssetPath)).thenReturn(p);
 		ValueMap properties = mock(ValueMap.class);
 		when(p.getProperties()).thenReturn(properties);
+	}
+	
+	public void setUpProductCategoryUri() {
+		when(slingRequest.getRequestURI()).thenReturn(CATEGORY+"-repair/");
+	}
+	
+	public void setUpJRandomUri() {
+		when(slingRequest.getRequestURI()).thenReturn(CATEGORY+"-aupair/");
 	}
 
 	public void setUpBrand() {

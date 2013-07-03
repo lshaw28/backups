@@ -1,4 +1,3 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-<spd:getPageTitle />
-<cq:text property="header" placeholder="${pageTitle}"/>
+<cq:text property="header" placeholder="${currentPage.title}"/>

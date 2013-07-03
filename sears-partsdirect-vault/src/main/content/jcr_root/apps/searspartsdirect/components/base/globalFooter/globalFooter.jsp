@@ -46,7 +46,7 @@
 			<div class="footerPromoContent">
 				<h3><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">fast shipping</a></h3>
 				<p>Sears PartsDirect ships from regionally-located warehouses for timely delivery.</p>
-				<p><a class="new-btn-small new-btn-square" href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">Learn More</a></p>
+				<p><a class="new-btn new-btn-square" href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">Learn More</a></p>
 			</div>
 		</div>
 
@@ -60,7 +60,7 @@
 			<div class="footerPromoContent">
 				<h3><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush?pop=flush?pop=flush&amp;commercialUI=false#returnsFAQ">guaranteed fit</a></h3>
 				<p>All parts are manufacturer-approved, to ensure proper fit and to keep appliances running for years to come.</p>
-				<p><a class="new-btn-small new-btn-square" href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">Learn More</a></p>
+				<p><a class="new-btn new-btn-square" href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">Learn More</a></p>
 			</div>
 		</div>
 	</div>

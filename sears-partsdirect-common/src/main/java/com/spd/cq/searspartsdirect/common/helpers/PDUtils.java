@@ -11,10 +11,6 @@ public class PDUtils {
 
 	protected static final Logger log = LoggerFactory.getLogger(PDUtils.class);
 	
-	private PDUtils() {
-		// TODO Auto-generated constructor stub
-	}
-	
 	public static String getSubcategoryFromPage(Page page) {
 		String subcategoryID = null;
 		Tag[] tagsArr = page.getTags();
