@@ -1,8 +1,8 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-<spd:GetUrlRelation relationType="productCategory" />
-<%-- <spd:GetUrlRelation relationType="brand" />--%>
-<%-- <spd:GetUrlRelation relationType="model" />--%>
+<spd:getUrlRelation relationType="productCategory" />
+<%-- <spd:getUrlRelation relationType="brand" />--%>
+<%-- <spd:getUrlRelation relationType="model" />--%>
 
 <%-- <h2>
 Repair Symptoms for ${brandRelation.title} ${productCategoryRelation.title} Model #${modelRelation.title}
@@ -10,11 +10,11 @@ Repair Symptoms for ${brandRelation.title} ${productCategoryRelation.title} Mode
 
 ${productCategoryRelation.path}
 
-<spd:GetModelSymptoms categoryPath="${productCategoryRelation.path}" />
+<spd:getModelSymptoms categoryPath="${productCategoryRelation.path}" />
 
 <%-- <spd:getRelation single="true" assetType="productCategory"/> --%>
 
-<%-- 
+<%--
 <c:choose>
 	<c:when test="${productCategoryRelation != null}">
 		<h2>
