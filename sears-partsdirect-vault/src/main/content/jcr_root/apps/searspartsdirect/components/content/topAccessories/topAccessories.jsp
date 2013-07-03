@@ -17,11 +17,11 @@
 				</div>
 			</c:when>
 			<c:otherwise>
-				No accessories defined for this category. Add accessories at ${productCategoryRelation.path}
+				<p>No accessories defined for this category. Add accessories at ${productCategoryRelation.path}</p>
 			</c:otherwise>
 		</c:choose>
 	</c:when>
 	<c:otherwise>
-		No category defined for this page. Add a category in page properties.
+		<p>No category defined for this page. Add a category in page properties.</p>
 	</c:otherwise>
 </c:choose>
