@@ -6,4 +6,4 @@
 	xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
     jcr:primaryType="cq:ClientLibraryFolder"
     categories="[cq.widgets]"
-	dependencies="cq.shared" />
+	dependencies="[cq.shared,apps.searspartsdirect.cq.edit]" />
