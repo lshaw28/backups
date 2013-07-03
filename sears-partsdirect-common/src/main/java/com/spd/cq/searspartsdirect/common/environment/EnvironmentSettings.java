@@ -85,6 +85,7 @@ public class EnvironmentSettings {
     	return getProperty(PD_URL,"");
     }
     
+    // should these maybe just be the URIs? and always appended to the PD_URL?
     @Property(label = "PartsDirect JobCode API", 
     		description = "API will get jobcodes for a symptom ",
     		value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcode/parts")
@@ -92,6 +93,15 @@ public class EnvironmentSettings {
     
     public static String getPDJobCodeApiUrl() {
     	return getProperty(PD_JOBCODE_API,"");
+    }
+    
+    @Property(label = "PartsDirect Top Parts API", 
+    		description = "API will get top parts for a model, category, and brand",
+    		value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/modelTop/topParts")
+    public static final String PD_TOPPARTS_API = "searspartsdirect.pd.topparts.api";
+    
+    public static String getPDTopPartsApiUrl() {
+    	return getProperty(PD_TOPPARTS_API,"");
     }
     
     // ---- for testing ----
