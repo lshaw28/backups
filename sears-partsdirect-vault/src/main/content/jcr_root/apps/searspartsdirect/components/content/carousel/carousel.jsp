@@ -12,7 +12,7 @@
 				<div class="carousel-list-wrapper">
 					<c:forEach items="${carouselImages}" var="carouselImage">
 						<div class="carousel-item">
-							<cq:include path="${carouselImage}" resourceType="searspartsdirect/components/content/responsiveImage" />
+							<cq:include path="${carouselImage}" resourceType="searspartsdirect/components/content/carouselItem" />
 						</div>
 					</c:forEach>
 				</div>
