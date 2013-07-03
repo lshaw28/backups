@@ -34,26 +34,54 @@
 				<li>
 					<span class="icon-stack pull-left">
 						<i class="icon-circle icon-stack-base"></i>
-						<i class="icon-file-alt icon-light"></i>
+						<i class="<cq:text property="panelIcon1" placeholder="icon-file-alt icon-light" />"></i>
 					</span>
-					<h4><a href="${mainSitePath}/partsdirect/user-manuals">Get Manuals<br /><span class="hidden-phone">Find &amp; Download</span></h4>
+					<h4><a href="${mainSitePath}/partsdirect/user-manuals"><cq:text property="header1" placeholder="Get Manuals" /><br /><span class="hidden-phone"><cq:text property="subheader1" placeholder="Find &amp; Download" /></span></h4>
 				</li>
 				<li>
 					<span class="icon-stack pull-left">
 						<i class="icon-circle icon-stack-base"></i>
-						<i class="icon-file-alt icon-light"></i>
+						<i class="<cq:text property="panelIcon2" placeholder="icon-file-alt icon-light" />"></i>
 					</span>
-					<h4><a href="${mainSitePath}/partsdirect/lawn-garden-guides">Lawn &amp; Garden<br /><span class="hidden-phone">Repair &amp; Care Tips</span></h4>
+					<h4><a href="${mainSitePath}/partsdirect/lawn-garden-guides"><cq:text property="header2" placeholder="Lawn &amp; Garden" /><br /><span class="hidden-phone"><cq:text property="subheader2" placeholder="Repair &amp; Care Tips" /></span></h4>
 				</li>
 				<li>
 					<span class="icon-stack pull-left">
 						<i class="icon-circle icon-stack-base"></i>
-						<i class="icon-file-alt icon-light"></i>
+						<i class="<cq:text property="panelIcon3" placeholder="icon-file-alt icon-light" />"></i>
 					</span>
-					<h4><a href="${mainSitePath}/partsdirect/category/appliances">Ask An Expert<br /><span class="hidden-phone">Have Questions?</span></a></h4>
+					<h4><a href="${mainSitePath}/partsdirect/category/appliances"><cq:text property="header3" placeholder="Ask An Expert" /><br /><span class="hidden-phone"><cq:text property="subheader3" placeholder="Have Questions?" /></span></a></h4>
 				</li>
 			</ul>
 		</div>
 	</div>
 	<div id="searchRightShadow" class="search-shadow"></div>
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
