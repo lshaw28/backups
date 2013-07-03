@@ -98,11 +98,9 @@ public enum AssetType {
 		@Override
 		public Object createModelInstance(Page p, ValueMap properties) {
 			String title = properties.get(Constants.ASSETS_TITLE_PATH,"");
-			String seoURL = properties.get(Constants.ASSETS_SEO_PATH,"");
 			String description = properties.get(Constants.ASSETS_DESCRIPTION_PATH,"");
 			return new SymptomModel(p.getPath(),
 					title,
-					seoURL,
 					description,
 					properties.get("id",""));
 		}

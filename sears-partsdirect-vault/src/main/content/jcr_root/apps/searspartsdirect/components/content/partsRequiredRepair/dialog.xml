@@ -37,8 +37,9 @@
 		                        jcr:primaryType="cq:Widget"
 		                        fieldLabel="Link"
 		                        name="url"
-		                        width="{Long}130"
-		                        xtype="pathfield"/>								
+		                        fieldDescription="Must be a valid link"
+		                        regex="/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+		                        xtype="textfield"/>								
 						</items>
 					</fieldConfig>
 				</multi>

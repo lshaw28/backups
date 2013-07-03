@@ -1,30 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		  jcr:primaryType="cq:Dialog"
-		  title="Related Items"
+		  title="Generic Header"
 		  xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
 		<Panel 	jcr:primaryType="cq:Widget"
 				xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-			
-				<itemsHeader jcr:primaryType="cq:Widget"
-							 fieldLabel="Header"
-							 name="./itemsHeader"
+				<newHeader jcr:primaryType="cq:Widget"
+							 fieldLabel="New Header"
+							 name="./newHeader"
 							 xtype="textfield" />
-			
-			    <viewAllLink jcr:primaryType="cq:Widget"
-			             	 defaultValue=""
-				             fieldLabel="link to View all Items"
-				             name="./viewAllItemsLink"
-				             xtype="pathfield"/>
-			        
-			    <viewAllText jcr:primaryType="cq:Widget"
-			                defaultValue=""
-			             	fieldLabel="Description to View All Link"
-			            	 name="./viewAllItemsText"
-			          		xtype="textfield"/>
-			             
 			</items>
 		</Panel>
 	</items>

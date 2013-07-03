@@ -16,7 +16,7 @@ var responsiveDropdown = Class.extend(function () {
 			this.dropdownItems = $('<ul />');
 			// Properties
 			this.buttonClass = 'new-btn-select';
-			this.buttonContent = 'Select <i class="icon-chevron-sign-down">&nbsp;</i>';
+			this.buttonContent = 'Select';
 			this.groupClass = ''
 			this.hiddenField = null;
 			this.navigate = false;
@@ -68,7 +68,7 @@ var responsiveDropdown = Class.extend(function () {
 			self.buttonGroup.addClass('responsiveDropdown');
 			self.buttonGroup.addClass(self.groupClass);
 			// Setup button
-			self.button.html(self.buttonContent);
+			self.button.html(self.buttonContent +  '<i class="icon-chevron-sign-down">&nbsp;</i>');
 			self.button.addClass(self.buttonClass);
 			self.button.bind('click', function (e) {
 				e.preventDefault();

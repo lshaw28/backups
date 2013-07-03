@@ -3,14 +3,12 @@ package com.spd.cq.searspartsdirect.common.model.spdasset;
 public class SymptomModel {
 	
 	private String title;
-	private String seoURL;
 	private String description;
 	private String id;
 	private String path;
 	
-	public SymptomModel(String path, String title, String seoURL, String description, String id) {
+	public SymptomModel(String path, String title, String description, String id) {
 		this.title = title;
-		this.seoURL = seoURL;
 		this.description = description;
 		this.id = id;
 		this.path = path;
@@ -21,14 +19,6 @@ public class SymptomModel {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	
-	public String getSeoURL() {
-		return seoURL;
-	}
-
-	public void setSeoURL(String seoURL) {
-		this.seoURL = seoURL;
 	}
 
 	public String getDescription() {
