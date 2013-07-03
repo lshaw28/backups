@@ -13,7 +13,6 @@ import javax.jcr.Session;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
-import org.mockito.Mockito;
 
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
@@ -22,17 +21,15 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-import com.google.gson.Gson;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-import com.spd.cq.searspartsdirect.common.model.JobCodesModel;
 
-public class GetJobCodesBySymptomTagFixture {
+public class GetSymptomDetailTagFixture {
 	
 	private SlingHttpServletRequest slingRequest;
 	private ResourceResolver resourceResolver;
 	private PageManager pageManager;
 	
-	public GetJobCodesBySymptomTagFixture(SlingHttpServletRequest slingRequest,
+	public GetSymptomDetailTagFixture(SlingHttpServletRequest slingRequest,
 			ResourceResolver resourceResolver, PageManager pageManager) {
 		this.slingRequest = slingRequest;
 		this.resourceResolver = resourceResolver;
@@ -63,29 +60,51 @@ public class GetJobCodesBySymptomTagFixture {
 		ValueMap props = mock(ValueMap.class);
 		when(testHit.getProperties()).thenReturn(props);
 		populateTestProps(props,titleAndDesc);
+		
 		Page testPage = mock(Page.class);
 		when(pageManager.getPage(titleAndDesc)).thenReturn(testPage);
 		when(testPage.getTitle()).thenReturn(titleAndDesc);
 		when(testPage.getDescription()).thenReturn(titleAndDesc);
+		
 		Page partTypePage = mock(Page.class);
 		when(pageManager.getPage(getPartTypePage(titleAndDesc))).thenReturn(partTypePage);
 		when(partTypePage.getTitle()).thenReturn(titleAndDesc);
 		when(partTypePage.getDescription()).thenReturn(titleAndDesc);
 		when(partTypePage.getPath()).thenReturn(titleAndDesc);
+		
+		Page guide = mock(Page.class);
+		when(pageManager.getPage(getGuidePage(titleAndDesc))).thenReturn(guide);
+		when(guide.getTitle()).thenReturn(titleAndDesc);
+		when(guide.getDescription()).thenReturn(titleAndDesc);
+		when(guide.getPath()).thenReturn(titleAndDesc);
+		
+		Page jobCodePage = mock(Page.class);
+		when(pageManager.getPage(getJobCodePage(titleAndDesc))).thenReturn(jobCodePage);
+		when(jobCodePage.getTitle()).thenReturn(titleAndDesc);
+		when(jobCodePage.getDescription()).thenReturn(titleAndDesc);
+		when(jobCodePage.getPath()).thenReturn(titleAndDesc);
+		when(jobCodePage.getProperties()).thenReturn(props);
+		when(props.get("partType")).thenReturn(getPartTypePage(titleAndDesc));
+		when(props.get("guide")).thenReturn(getGuidePage(titleAndDesc));
 		return testHit;
 	}
 	
 	private void populateTestProps(ValueMap props, String titleAndDesc) {
+		when(props.get("pages", String[].class)).thenReturn(new String[]{getJobCodePage(titleAndDesc)});
 		when(props.get("jcr:title", String.class)).thenReturn(titleAndDesc);
-		when(props.get("partType", String[].class)).thenReturn(new String[]{getPartTypePage(titleAndDesc)});
+		when(props.get("partType", String.class)).thenReturn(new String(getPartTypePage(titleAndDesc)));
 		when(props.get("guide", String[].class)).thenReturn(new String[]{getGuidePage(titleAndDesc)});
 	}
-
+	
 	private String getPartTypePage(String pathAndTitle) {
 		return Constants.ASSETS_PATH+"/partType"+pathAndTitle;
 	}
 	
 	private String getGuidePage(String pathAndTitle) {
-		return Constants.GUIDES_ROOT+"/"+pathAndTitle;
+		return Constants.GUIDES_ROOT+ pathAndTitle;
+	}
+	
+	private String getJobCodePage(String pathAndTitle) {
+		return Constants.ASSETS_PATH+"/jobCode"+pathAndTitle;
 	}
 }

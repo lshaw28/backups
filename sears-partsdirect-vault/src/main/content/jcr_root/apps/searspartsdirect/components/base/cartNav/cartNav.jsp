@@ -50,7 +50,7 @@
 						<a href="">Edit List</a>
 					</c:when>
 					<c:otherwise>
-							<li>You can find parts to your models faster by adding models you own to this list.<br /><br /><a class="new-btn-small" href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a></li>
+							<li>You can find parts to your models faster by adding models you own to this list.<br /><br /><a class="new-btn" href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -72,7 +72,7 @@
 				<c:choose>
 					<c:when test="${fn:length(shoppingCart) gt 0}">
 						<li>Parts -- Quantity</li>
-						<li><a class="new-btn-small" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
+						<li><a class="new-btn" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
 						<c:forEach var="cartItem" items="${shoppingCart}">
 							<li class="cart-item">
 								<a href="${mainSitePath}/partsdirect/part-number/${cartItem.part.partNumber}/${cartItem.part.productGroupId}/${cartItem.part.supplierId}">
@@ -89,7 +89,7 @@
 							</li>
 						</c:forEach>
 						<li><strong>Total items: ${fn:length(shoppingCart)}</strong></li>
-						<li><a class="new-btn-small" href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</a></li>
+						<li><a class="new-btn" href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</a></li>
 					</c:when>
 					<c:otherwise>
 						<li>Your shopping cart is empty</li>

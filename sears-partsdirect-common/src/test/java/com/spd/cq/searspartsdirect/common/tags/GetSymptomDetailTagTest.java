@@ -2,10 +2,6 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import java.net.UnknownHostException;
 
 import javax.jcr.RepositoryException;
 import javax.servlet.jsp.JspException;
@@ -15,22 +11,20 @@ import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import com.google.gson.Gson;
-import com.spd.cq.searspartsdirect.common.fixture.GetJobCodesBySymptomTagFixture;
-import com.spd.cq.searspartsdirect.common.model.JobCodesModel;
+import com.spd.cq.searspartsdirect.common.fixture.GetSymptomDetailTagFixture;
+import com.spd.cq.searspartsdirect.common.model.ModelSymptomModel;
 
-public class GetJobCodesBySymptomTagTest extends MocksTag {
+public class GetSymptomDetailTagTest extends MocksTag {
 
-	private GetJobCodesBySymptomTag tag;
-	private GetJobCodesBySymptomTagFixture fixture;
+	private GetSymptomDetailTag tag;
+	private GetSymptomDetailTagFixture fixture;
 
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		tag = new GetJobCodesBySymptomTag();
-		fixture = new GetJobCodesBySymptomTagFixture(slingRequest,
+		tag = new GetSymptomDetailTag();
+		fixture = new GetSymptomDetailTagFixture(slingRequest,
 				resourceResolver, pageManager);
 	}
 
@@ -38,11 +32,14 @@ public class GetJobCodesBySymptomTagTest extends MocksTag {
 	public void testDostartTag() throws RepositoryException, JspException {
 		fixture.setupFixture();
 		tag.setPageContext(pageContext);
-		
 		tag.doStartTag();
-		Assert.assertNotNull(pageContext.getAttribute("symptomJobCodes"));
-		JobCodesModel updatedJobCodesModel = (JobCodesModel) pageContext.getAttribute("symptomJobCodes");
-		Assert.assertNotNull(updatedJobCodesModel);
+		
+		Assert.assertNotNull(pageContext.getAttribute("modelSymptom"));
+		ModelSymptomModel model = (ModelSymptomModel) pageContext.getAttribute("modelSymptom");
+		Assert.assertNotNull(model);
+		Assert.assertNotNull(model.getJobCodeModels());
+		Assert.assertNotNull(model.getJobCodeModels().size() > 0);
+		Assert.assertNotNull(model.getSymptomModel());
 		runTagSkipsBodyEvalsPage();
 	}
 

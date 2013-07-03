@@ -4,15 +4,15 @@
 		  activeTab="0"
 		  xtype="panel">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<text1 jcr:primaryType="cq:Widget"
+		<text jcr:primaryType="cq:Widget"
 					fieldLabel="Title"
-					name="./text1"
+					name="./text"
 					xtype="textfield"
 					maxlength="42"/>
 
-		<optionalDescription jcr:primaryType="cq:Widget"
+		<description jcr:primaryType="cq:Widget"
 					fieldLabel="Description"
-					name="./optionalDescription"
+					name="./description"
 					xtype="richtext"
 					maxlength="500"
 					allowBlank="{Boolean}true"/>

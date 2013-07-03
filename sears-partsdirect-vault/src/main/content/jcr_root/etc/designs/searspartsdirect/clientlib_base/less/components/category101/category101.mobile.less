@@ -1,0 +1,41 @@
+@media (max-width: 480px) {
+        .category101 {
+            .accordion-heading a {
+                color: white;
+             }
+
+            .accordion-toggle {
+                    background-color: @color-primary-b;
+                    color: white;
+                    text-decoration: none;
+
+                    i {
+                            display: inline-block;
+                            margin-right: 20px;
+                            color: @accordionToggleColor;
+                            font-size: 20px;
+                            vertical-align: middle;
+                    }
+
+                    .icon-chevron-down {
+
+                            display: none;
+                    }
+
+                    .icon-chevron-up {
+
+                            display: inline-block;
+                    }
+
+                    &.collapsed {
+                            .icon-chevron-down {
+                                    display: inline-block;
+                            }
+
+                            .icon-chevron-up {
+                                    display: none;
+                            }
+                    }
+            }
+    }
+}

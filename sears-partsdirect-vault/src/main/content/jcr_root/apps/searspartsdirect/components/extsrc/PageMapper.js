@@ -264,17 +264,81 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		// config for right click > delete
 		this.gridPanel.on('rowcontextmenu', function (grid, index, e) {
 			var xy = e.getXY(),
-				menu = new CQ.Ext.menu.Menu({
-				items:[{
-					text: 'Remove',
+				menu,
+				items = [];
+			
+			// build context menu
+			
+			// move up
+			if (index > 0) {
+				items.push({
+					text: 'Move Up',
 					handler: function() {
-						// get path
-						var path = _this.dataStore.getAt(index).data.path;
-						
-						// remove path
-						_this.removeValue(path);
+						// qualifier
+						if (index > 0) {
+							var store = _this.dataStore,
+								reference = store.getAt(index);
+
+							// remove
+							store.removeAt(index);
+							store.insert(index - 1, reference);
+
+							// remove all hidden values for rebuild
+							_this.removeAllHiddenValues();
+
+							// rebuild
+							store.each(function (record) {
+								_this.addHiddenValue(record.get('path'));
+							})
+						} else {
+							CQ.Ext.Msg.alert('Page Mapper' , 'Item is already on the top.');
+						}
 					}
-				}]
+				});
+			}
+			
+			// move down
+			if (index < _this.dataStore.getCount() - 1) {
+				items.push({
+					text: 'Move Down',
+					handler: function() {
+						// qualifier
+						if (index < _this.dataStore.getCount() - 1) {
+							var store = _this.dataStore,
+								reference = store.getAt(index);
+
+							// remove
+							store.removeAt(index);
+							store.insert(index + 1, reference);
+
+							// remove all hidden values for rebuild
+							_this.removeAllHiddenValues();
+
+							// rebuild
+							store.each(function (record) {
+								_this.addHiddenValue(record.get('path'));
+							})
+						} else {
+							CQ.Ext.Msg.alert('Page Mapper' , 'Item is already on the bottom.');
+						}
+					}
+				});
+			}
+			
+			// remove
+			items.push({
+				text: 'Remove',
+				handler: function() {
+					// get path
+					var path = _this.dataStore.getAt(index).data.path;
+
+					// remove path
+					_this.removeValue(path);
+				}
+			});
+			
+			menu = new CQ.Ext.menu.Menu({
+				items: items
 			});
 			
 			// location of ext context menu
@@ -488,6 +552,25 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 				break;
 			}
 		}
+		
+		// render
+		this.doLayout();
+	},
+	/**
+	 * Removes all hidden values
+	 * (Used for resorting since the order that gets send is the POST order)
+	 * @return {undefined}
+	 */
+	removeAllHiddenValues: function () {
+		var i;
+		
+		// itertate over fields
+		for (i = 0; i < this.hiddenFields.length; ++i) {
+			this.hiddenFields[i].remove();
+		}
+		
+		// reset
+		this.hiddenFields = [];
 		
 		// render
 		this.doLayout();

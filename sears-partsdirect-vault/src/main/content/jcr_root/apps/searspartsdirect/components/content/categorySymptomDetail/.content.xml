@@ -4,6 +4,6 @@
 	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Component"
-	jcr:title="Model Symptoms"
-	jcr:description="Lists the repair symptoms for models"
+	jcr:title="Category Symptom Detail"
+	jcr:description="Category Symptom Details page"
 	componentGroup="SearsPartsDirect" />
