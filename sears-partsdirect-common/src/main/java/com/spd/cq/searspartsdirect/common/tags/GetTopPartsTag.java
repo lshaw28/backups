@@ -95,9 +95,7 @@ public class GetTopPartsTag extends CQBaseTag {
 		try {
 			jsonString = apiHelper.readJsonData(apiUrl.toString());
 		} catch (IOException e) {
-			log.error("I/O Exception while getting data from PD API ", e);
-		} catch (JSONException e) {
-			log.error("JSON Exception while getting data from PD API ", e);
+			log.error("reading from "+apiUrl+", ", e);
 		}
 		
 		log.debug("jsonString "+jsonString);
