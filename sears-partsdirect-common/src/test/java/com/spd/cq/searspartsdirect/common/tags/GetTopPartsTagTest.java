@@ -42,6 +42,25 @@ public class GetTopPartsTagTest extends MocksTag {
 		List<PartModel> topParts = (List<PartModel>)pageContext.getAttribute("topParts");
 		assertThat(topParts,hasSize(2));
 	}
+	
+	@Test
+	public void testDoStartTagWithOnlyModel() throws JspException {
+		tag.setModelName("123-848F401");
+		runsSkipsBodyEvalsPage();
+		@SuppressWarnings("unchecked")
+		List<PartModel> topParts = (List<PartModel>)pageContext.getAttribute("topParts");
+		assertThat(topParts,hasSize(0));
+	}
+	
+	@Test
+	public void testDoStartTagWithoutCategory() throws JspException {
+		tag.setModelName("123-848F401");
+		tag.setBrandName("0736");
+		runsSkipsBodyEvalsPage();
+		@SuppressWarnings("unchecked")
+		List<PartModel> topParts = (List<PartModel>)pageContext.getAttribute("topParts");
+		assertThat(topParts,hasSize(0));
+	}
 
 	private void runsSkipsBodyEvalsPage() throws JspException {
 		tag.setPageContext(pageContext);
