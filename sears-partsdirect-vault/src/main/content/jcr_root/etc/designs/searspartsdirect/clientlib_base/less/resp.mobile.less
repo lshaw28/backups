@@ -19,7 +19,7 @@
 		width: 100%;
 
 		&.loginNav-open {
-			background-color: #ebebeb;
+			background-color: @secondaryHueLighter;
 			background-image: none;
 
 			#viewport {
@@ -38,8 +38,8 @@
 		}
 	}
 	#viewport {
-		background: @tableHoverColor url('../img/menu_shadow.png') repeat-y 577px 0;
-		.boxShadow(0 0 5px 5px #c3c3c3);
+		background: @secondaryHueLighter url('../img/menu_shadow.png') repeat-y 577px 0;
+		.boxShadow(0 0 5px 5px @secondaryHueLight);
 	}
 	.container-fluid {
 		-webkit-transition-property: -webkit-transform;

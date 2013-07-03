@@ -42,12 +42,9 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
         public void init(ProcessingContext processingContext, ProcessingComponentConfiguration processingComponentConfiguration) throws IOException {
             pm = processingContext.getRequest().getResourceResolver().adaptTo(PageManager.class);
             String requestURI = processingContext.getRequest().getRequestURI();
-            log.error("DEBUG A: " + requestURI);
             Pattern p = Pattern.compile("/(.*)/(.*)/model-(.*)-repair(.*)");
-            log.error("DEBUG B");
             m = p.matcher(requestURI);
             found = m.find();
-            log.error("DEBUG C: " + found);
         }
 
         public void dispose() {
@@ -56,9 +53,7 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
 
         public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
             AttributesImpl attributes = new AttributesImpl(atts);
-            log.error("DEBUG " + found + ", " + localName);
             if (found && localName.equalsIgnoreCase("a")){
-            	log.error("DEBUG D");
                 try{
                     String href = attributes.getValue("href");
                     if (href.startsWith("/") && href.indexOf(".html") >0) {

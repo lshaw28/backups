@@ -45,7 +45,6 @@ public class ModelSubPageFilter implements Filter {
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain fc) throws IOException, ServletException {
 
-        log.error("Model debug first");
 		SlingHttpServletRequest request = (SlingHttpServletRequest)servletRequest;
         SlingHttpServletResponse response = (SlingHttpServletResponse)servletResponse;
         ResourceResolver resourceResolver = request.getResourceResolver();
@@ -55,14 +54,11 @@ public class ModelSubPageFilter implements Filter {
         Resource res = resourceResolver.getResource(resPath);
         Pattern p = Pattern.compile("/(.*)/(.*)/model-(.*)-repair(.*)");
         Matcher m = p.matcher(resPath);
-        log.error("Model debug a");
         if (m.find()) {
-            log.error("Model debug b");
         	//String forwardUrl = m.group(2) + "?model=" + m.group(1);
             //Resource Resolver gets overzealous here
             String group1 = m.group(1).replace("content/searspartsdirect/en/", "");
         	String forwardUrl = m.group(4).replace(".html","." + group1 + "." + m.group(2) + "." + m.group(3) + ".html");
-        	log.error("Model debug c: " + forwardUrl);
         	request.getRequestDispatcher(forwardUrl).forward(request, response);
         	return;
         }

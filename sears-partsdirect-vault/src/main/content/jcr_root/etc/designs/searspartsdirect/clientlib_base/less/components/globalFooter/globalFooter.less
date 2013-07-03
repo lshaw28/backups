@@ -10,7 +10,7 @@
 	width: 97%;
 }
 #footerDivider {
-	background: #c0c1c5;
+	background: @secondaryHueLight;
 	height: 1px;
 	left: 0;
 	position: absolute;
@@ -18,7 +18,7 @@
 	width: 100%;
 }
 #footerContent {
-	background: @tableHoverColor;
+	background: @secondaryHueLighter;
 	float: left;
 	width: 100%;
 }
@@ -49,15 +49,11 @@
 		width: 100%;
 
 		a {
-			color: @linkColor;
+			color: @primaryHueNormal;
 			font-family: @bodyFont;
 			font-size: @h4Size;
 			font-weight: bold;
 
-			span {
-				font-weight: normal;
-				text-decoration: none;
-			}
 			.icon-stack {
 				float: left;
 				font-size: @h2Size;
@@ -67,12 +63,13 @@
 				color: @bodyColor;
 			}
 			.icon-light {
-				color: @headerColor;
+				color: @secondaryHueDark;
 			}
 			.footerIconHelp {
-				color: @headerColor;
+				color: @secondaryHueDark;
 				font-family: @standardFont;
 				font-size: @smallPSize;
+				font-weight: normal;
 			}
 
 			&:hover {
@@ -84,7 +81,7 @@
 					text-decoration: none;
 				}
 				.icon-circle {
-					color: #304295;
+					color: @primaryHueDarkest;
 				}
 				.icon-light {
 					color: @bodyColor;
@@ -110,7 +107,7 @@
 				color: @bodyColor;
 			}
 			.icon-light {
-				color: @headerColor;
+				color: @secondaryHueDark;
 			}
 		}
 		.footerPromoContent {
@@ -120,17 +117,17 @@
 			padding: 10px 30px;
 
 			h3 {
-				color: #304295;
+				color: @primaryHueDarkest;
 				font-weight: normal;
 				margin: 0 0 3px 0;
 				padding: 0;
 				width: 100%;
 
 				a {
-					color: @linkColor;
+					color: @primaryHueNormal;
 
 					&:hover {
-						color: @linkHoverColor;
+						color: @primaryHueDarker;
 					}
 				}
 			}
@@ -140,7 +137,7 @@
 
 #footerColumn3 {
 	h3 {
-		color: @bodyCopyColor;
+		color: @secondaryHueDark;
 		font-weight: normal;
 		line-height: 30px;
 		margin: 0 0 10px 0;
@@ -187,7 +184,7 @@
 	width: 100%;
 
 	.footerGlow {
-		background-color: @linkHoverColor;
+		background-color: @primaryHueDarker;
 		height: 6px;
 		margin: 0 auto;
 		width: 100%;
@@ -197,7 +194,7 @@
 		width: 561px;
 
 		a {
-			color: @bodyCopyColor;
+			color: @secondaryHueDark;
 			display: inline-block;
 			float: left;
 			font-size: @smallestPSize;
@@ -205,7 +202,7 @@
 		}
 	}
 	.copyright {
-		color: @bodyCopyColor;
+		color: @secondaryHueDark;
 		float: left;
 		font-size: @smallPSize;
 		padding: 12px 0 0 0;
