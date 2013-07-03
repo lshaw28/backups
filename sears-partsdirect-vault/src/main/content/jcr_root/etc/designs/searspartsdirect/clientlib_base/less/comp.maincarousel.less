@@ -51,7 +51,7 @@
 	position: relative;
 }
 .main_carousel .attnText {
-	color: #F00f00;
+	color: @highlightHueNormal;
 }
 .main_carousel li .mc_main_slide_image {
 	width: 300px;
@@ -139,14 +139,14 @@
 	background-position: -308px -1860px;
 }
 .main_carousel li .mc_slide_bottom {
-	background-color: @tableHoverColor;
+	background-color: @secondaryHueLighter;
 	width: 290px;
 	height: 170px;
 	margin: 0 5px;
 	padding-top: 5px;
 }
 .main_carousel li .mc_slide_bottom .mc_slide_content_bar {
-	background-color: #dedede;
+	background-color: @secondaryHueLight;
 	width: 280px;
 	height: 10px;
 	margin: 0 5px;
@@ -156,7 +156,7 @@
 }
 .main_carousel li .mc_slide_bottom .mc_slide_content .mc_slide_title {
 	margin: 0 0 5px;
-	color: #304295;
+	color: @primaryHueDarkest;
 	font-size: 20px;
 }
 .main_carousel li .mc_slide_bottom .mc_slide_content .mc_slide_text {
@@ -167,7 +167,7 @@
 	position: relative;
 	float: left;
 	background-color: @bodyColor;
-	border: 1px solid #b5cde4;
+	border: 1px solid @primaryHueLighter;
 	padding: 4px 15px 4px 15px;
 	font-weight: bold;
 	.borderRadius(2px);
@@ -187,7 +187,7 @@
 	line-height: 30px;
 	width: 890px;
 	margin: 0 auto;
-	background-color: @tableHoverColor;
+	background-color: @secondaryHueLighter;
 	position: relative;
 	left: 0;
 }
