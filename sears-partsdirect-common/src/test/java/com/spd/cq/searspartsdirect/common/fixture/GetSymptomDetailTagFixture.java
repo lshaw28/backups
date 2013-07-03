@@ -23,13 +23,13 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
-public class GetModelSymptomDetailTagFixture {
+public class GetSymptomDetailTagFixture {
 	
 	private SlingHttpServletRequest slingRequest;
 	private ResourceResolver resourceResolver;
 	private PageManager pageManager;
 	
-	public GetModelSymptomDetailTagFixture(SlingHttpServletRequest slingRequest,
+	public GetSymptomDetailTagFixture(SlingHttpServletRequest slingRequest,
 			ResourceResolver resourceResolver, PageManager pageManager) {
 		this.slingRequest = slingRequest;
 		this.resourceResolver = resourceResolver;

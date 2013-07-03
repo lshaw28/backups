@@ -26,20 +26,19 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 
-public class GetModelSymptomDetailTag extends CQBaseTag {
+public class GetSymptomDetailTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	private Session session;
 	private QueryBuilder builder;
 	private Query query;
 	ModelSymptomModel modelSymptomModel;
 	List<JobCodeModel> jobCodeModels;
+	private boolean partsRequired;
 	
-	public static final Logger log = LoggerFactory.getLogger(GetModelSymptomDetailTag.class);
+	public static final Logger log = LoggerFactory.getLogger(GetSymptomDetailTag.class);
 	
 	@Override
 	public int doStartTag() throws JspException {
-		//read the symptom seo text from url and get the symptom first
-		
 		String symptomId = request.getParameter("id");
 		
 		session = slingRequest.getResourceResolver().adaptTo(Session.class);
@@ -47,7 +46,7 @@ public class GetModelSymptomDetailTag extends CQBaseTag {
 		map.put("path", Constants.ASSETS_PATH + "/symptom");
 		map.put("type", Constants.CQ_PAGE);
 		map.put("property", "jcr:content/id");
-		map.put("property.value", "203");
+		map.put("property.value", symptomId);
 		
 		builder = resourceResolver.adaptTo(QueryBuilder.class);
 		query = builder.createQuery(PredicateGroup.create(map), session);
@@ -73,15 +72,23 @@ public class GetModelSymptomDetailTag extends CQBaseTag {
 								if (jobCodePage != null) {
 									JobCodeModel jobCodeModel = new JobCodeModel(jobCodePage.getPath(), jobCodePage.getTitle(), jobCodePage.getDescription());
 									//getting jobcode
+									
+									log.debug("partsRequired "+partsRequired);
+									if (partsRequired) {
+										//make the api call by passing the jobcode ids
+									} 
+									
 									ValueMap jobCodeProps = jobCodePage.getProperties();
 									if (jobCodeProps != null) {
 										String partType = (String) jobCodeProps.get("partType");
 										Page partTypePage = pageManager.getPage(partType);
 										
-										PartTypeModel partTypeModel = new PartTypeModel(partTypePage.getPath(), 
-																	partTypePage.getTitle(), partTypePage.getDescription(), 
-																	partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH);
-										jobCodeModel.setPartTypeModel(partTypeModel);
+										if (partTypePage != null) {
+											PartTypeModel partTypeModel = new PartTypeModel(partTypePage.getPath(), 
+													partTypePage.getTitle(), partTypePage.getDescription(), 
+													partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH);
+											jobCodeModel.setPartTypeModel(partTypeModel);
+										}
 										jobCodeModels.add(jobCodeModel);
 										
 										//getting guides
@@ -115,6 +122,14 @@ public class GetModelSymptomDetailTag extends CQBaseTag {
 	@Override
 	public int doEndTag() throws JspException {
 		return EVAL_PAGE;
+	}
+
+	public boolean isPartsRequired() {
+		return partsRequired;
+	}
+
+	public void setPartsRequired(boolean partsRequired) {
+		this.partsRequired = partsRequired;
 	}
 
 }

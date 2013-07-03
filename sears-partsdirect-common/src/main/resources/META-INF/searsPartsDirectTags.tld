@@ -429,8 +429,14 @@
 		<info>this tag gets the data on the repair model help page</info>
 	</tag>
 	<tag>
-		<name>GetModelSymptomDetail</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelSymptomDetailTag</tag-class>
+		<name>GetSymptomDetail</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetSymptomDetailTag</tag-class>
 		<info>Gets the model symptom data</info>
+		<attribute>
+			<name>partsRequired</name>
+			<type>boolean</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 </taglib>

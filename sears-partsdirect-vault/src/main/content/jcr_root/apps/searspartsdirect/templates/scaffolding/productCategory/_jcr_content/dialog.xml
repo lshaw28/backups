@@ -54,6 +54,31 @@
         </tab2>
         <tab3
         	jcr:primaryType="cq:Panel"
+        	title="Category 101">
+            <items jcr:primaryType="cq:WidgetCollection">
+	        	<multi
+		            jcr:primaryType="cq:Widget"
+		            fieldLabel="Articles"
+		            name="./multipaths"
+		            xtype="multifieldlimit"
+		            limit="6" >
+		            <fieldConfig
+		                jcr:primaryType="cq:Widget"
+		                xtype="multicustom">
+		                <items jcr:primaryType="cq:WidgetCollection">
+		                    <url
+		                        jcr:primaryType="cq:Widget"
+		                        fieldLabel="Article"
+		                        name="url"
+		                        rootPath="/content/searspartsdirect/en/articles"
+		                        xtype="pathfield"/>
+		                </items>
+		            </fieldConfig>
+		    	</multi>
+	    	</items>
+	    </tab3>
+        <tab4
+        	jcr:primaryType="cq:Panel"
         	title="Related Assets">
         	<items jcr:primaryType="cq:WidgetCollection">
         		<tags
@@ -69,6 +94,6 @@
         			fieldLabel="Page Associations"
         			xtype="scaffoldingpagemapper"/>
         	</items>
-       	</tab3>
+       	</tab4>
     </items>
 </jcr:root>

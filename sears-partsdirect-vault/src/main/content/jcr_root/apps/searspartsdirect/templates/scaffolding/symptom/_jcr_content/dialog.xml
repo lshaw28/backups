@@ -11,6 +11,10 @@
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title"
                     name="./jcr:content/jcr:title"/>
+                <seoURL
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="SEO-friendly URL"
+                    name="./jcr:content/seoURL"/>
                 <description
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Description"
