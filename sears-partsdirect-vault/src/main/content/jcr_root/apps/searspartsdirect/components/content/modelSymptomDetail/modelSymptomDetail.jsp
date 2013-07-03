@@ -1,7 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
 <p>symptom details page</p>
-<spd:GetModelSymptomDetail />
+<spd:GetSymptomDetail partsRequired="true" />
 
 <h1>${modelSymptom.symptomModel.title}</h1>
 <p>${modelSymptom.symptomModel.description}</p>
@@ -28,7 +28,8 @@
 	 </c:if>
 	 
 	 <c:choose>
-		<c:when test="${not empty jobCode.parts}">	
+		<c:when test="${not empty jobCode.parts}">
+			<!--  once we get the data from the api, show the following section -->	
 			 <%-- <table border="1">
 					 <c:forEach var="part" items="${jobCode.recoveryPartsModel}">
 						 <tr>

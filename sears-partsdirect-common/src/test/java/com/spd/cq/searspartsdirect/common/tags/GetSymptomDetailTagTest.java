@@ -12,19 +12,19 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.fixture.GetModelSymptomDetailTagFixture;
+import com.spd.cq.searspartsdirect.common.fixture.GetSymptomDetailTagFixture;
 import com.spd.cq.searspartsdirect.common.model.ModelSymptomModel;
 
-public class GetModelSymptomDetailTagTest extends MocksTag {
+public class GetSymptomDetailTagTest extends MocksTag {
 
-	private GetModelSymptomDetailTag tag;
-	private GetModelSymptomDetailTagFixture fixture;
+	private GetSymptomDetailTag tag;
+	private GetSymptomDetailTagFixture fixture;
 
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		tag = new GetModelSymptomDetailTag();
-		fixture = new GetModelSymptomDetailTagFixture(slingRequest,
+		tag = new GetSymptomDetailTag();
+		fixture = new GetSymptomDetailTagFixture(slingRequest,
 				resourceResolver, pageManager);
 	}
 

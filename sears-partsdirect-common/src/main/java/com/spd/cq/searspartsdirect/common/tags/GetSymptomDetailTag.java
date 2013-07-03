@@ -26,15 +26,16 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 
-public class GetModelSymptomDetailTag extends CQBaseTag {
+public class GetSymptomDetailTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	private Session session;
 	private QueryBuilder builder;
 	private Query query;
 	ModelSymptomModel modelSymptomModel;
 	List<JobCodeModel> jobCodeModels;
+	private boolean partsRequired;
 	
-	public static final Logger log = LoggerFactory.getLogger(GetModelSymptomDetailTag.class);
+	public static final Logger log = LoggerFactory.getLogger(GetSymptomDetailTag.class);
 	
 	@Override
 	public int doStartTag() throws JspException {
@@ -71,6 +72,12 @@ public class GetModelSymptomDetailTag extends CQBaseTag {
 								if (jobCodePage != null) {
 									JobCodeModel jobCodeModel = new JobCodeModel(jobCodePage.getPath(), jobCodePage.getTitle(), jobCodePage.getDescription());
 									//getting jobcode
+									
+									log.debug("partsRequired "+partsRequired);
+									if (partsRequired) {
+										//make the api call by passing the jobcode ids
+									} 
+									
 									ValueMap jobCodeProps = jobCodePage.getProperties();
 									if (jobCodeProps != null) {
 										String partType = (String) jobCodeProps.get("partType");
@@ -115,6 +122,14 @@ public class GetModelSymptomDetailTag extends CQBaseTag {
 	@Override
 	public int doEndTag() throws JspException {
 		return EVAL_PAGE;
+	}
+
+	public boolean isPartsRequired() {
+		return partsRequired;
+	}
+
+	public void setPartsRequired(boolean partsRequired) {
+		this.partsRequired = partsRequired;
 	}
 
 }
