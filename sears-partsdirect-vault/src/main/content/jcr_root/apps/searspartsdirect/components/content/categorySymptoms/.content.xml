@@ -4,6 +4,6 @@
 	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Component"
-	jcr:title="Common Symptoms"
-	jcr:description="Custom text and selection component for common symptoms for a category"
+	jcr:title="Common Category Symptoms"
+	jcr:description="Custom text and selection component for common category symptoms"
 	componentGroup="SearsPartsDirect" />

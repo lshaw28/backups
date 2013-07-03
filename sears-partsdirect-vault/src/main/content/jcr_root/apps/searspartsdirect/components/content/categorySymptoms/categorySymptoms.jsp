@@ -3,31 +3,22 @@
 <c:choose>
 	<c:when test="${productCategoryRelation != null}">
 		<h2>
-			<cq:text property="text1" placeholder=""/>
-			${productCategoryRelation.title}
-			<cq:text property="text2" placeholder=""/>
+			<!--  <cq:text property="text1" placeholder=""/> -->
+			${productCategoryRelation.title} Symptoms
+			<!--  <cq:text property="text2" placeholder=""/> -->
 		</h2>
 		<p><cq:text property="optionalDescription" placeholder=""/></p>
 
 		<spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryRelation.path}" />
 		<c:forEach var="symptom" items="${symptomList}" varStatus="currentItem">
-		    <spd:getRelatedPages assetPath="${symptom.path}"/>
-
 			<c:choose>
 				<c:when test="${currentItem.count % 2 eq 1}">
 					<div class="row-fluid">
 				</c:when>
 			</c:choose>
-						<div class="span6">
-							<c:choose>
-								 <c:when test="${fn:length(relatedPages) eq 1}">
-									<a href="${relatedPages[0].path}">${symptom.title}</a>
-								 </c:when>
-								 <c:otherwise>
-									${symptom.title}
-								 </c:otherwise>
-							 </c:choose>
-						</div>
+				<div class="span6">
+					<a href="/${productCategoryRelation.title}-repair/symptom/${symptom.id}">${symptom.title}</a>
+				</div>
 			<c:choose>
 				<c:when test="${currentItem.count % 2 eq 0 or currentItem.last}">
 					</div>

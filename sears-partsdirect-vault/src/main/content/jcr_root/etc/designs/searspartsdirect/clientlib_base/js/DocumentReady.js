@@ -91,6 +91,9 @@
 
 		});
 
+        $('[data-toggle="collapse101"]').each(function () {
+            var newCollapse101 = new Collapse101($(this));
+        });
         
         $('.category101').each(function() {
             var newCategory101 = new category101($(this));
