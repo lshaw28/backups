@@ -42,7 +42,7 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
         public void init(ProcessingContext processingContext, ProcessingComponentConfiguration processingComponentConfiguration) throws IOException {
             pm = processingContext.getRequest().getResourceResolver().adaptTo(PageManager.class);
             String requestURI = processingContext.getRequest().getRequestURI();
-            Pattern p = Pattern.compile("/(.*)/(.*)/model-(.*)-repair(.*)");
+            Pattern p = Pattern.compile("/([^/]*)/([^/]*)/model-([^-]*)-repair(.*)");
             m = p.matcher(requestURI);
             found = m.find();
         }
@@ -56,7 +56,7 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
             if (found && localName.equalsIgnoreCase("a")){
                 try{
                     String href = attributes.getValue("href");
-                    if (href.startsWith("/") && href.indexOf(".html") >0) {
+                    if (href != null && href.startsWith("/") && href.indexOf(".html") >0) {
                     	StringBuilder sb = new StringBuilder();
                     	sb.append("/").append(m.group(1)).append("/").append(m.group(2));
                     	sb.append("/").append("model-" + m.group(3) + "-repair");
@@ -69,7 +69,7 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
                     	}
                     }
                 } catch (Exception e){
-                    log.error("Exception in RestrictedLinkTransformer: " + e.getMessage());
+                    log.error("Exception in RestrictedLinkTransformer, ", e);
                 }
         }
 
