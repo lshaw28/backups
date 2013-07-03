@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<spd:GetMaintenanceTopicJump />
+<spd:getMaintenanceTopicJump />
 
 <c:if test="${not empty jumpTopics}">
 	<cq:include path="/etc/spdAssets/globalConfig/maintenanceJumpMenuTitle" resourceType="searspartsdirect/components/content/maintenanceJumpMenuTitle" />
