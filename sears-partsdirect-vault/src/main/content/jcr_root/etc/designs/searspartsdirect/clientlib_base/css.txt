@@ -40,6 +40,7 @@ homeLogo/homeLogo.less
 informationBanner/informationBanner.less
 legalCopy/legalCopy.less
 loginNav/loginNav.less
+maintenanceTopicJump/maintenanceTopicJump.less
 modal/modal.less
 modelNumberSearch/modelNumberSearch.less
 notice/notice.less
