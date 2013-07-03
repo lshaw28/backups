@@ -4,28 +4,35 @@
 .responsiveDropdown {
 	display: inline-block;
 	height: 50px;
-	overflow: visible;
+	overflow-y: visible;
 	position: relative;
 	z-index: 10;
 
+	.new-btn-dropdown {
+		position: relative;
+		z-index: 1;
+	}
+
 	ul {
 		background-color: @bodyColor;
+		border: 1px solid @secondaryHueLight;
 		display: none;
+		.boxShadow(0 0 3px 3px @secondaryHueLight);
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		width: 100%;
+		position: relative;
+		z-index: 0;
 
 		&.active {
-			display: inline-block;
+			display: block;
 		}
 
 		li {
 			border-top: 1px solid @secondaryHueLight;
-			display: inline-block;
+			display: block;
 			float: none;
-			padding: 10px 2px;
-			width: 96%;
+			padding: 10px;
 
 			&:first-child {
 				border-top: 0px;
