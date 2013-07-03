@@ -14,8 +14,11 @@ public final class Constants {
 	public static final String ASSETS_PATH = ident("/etc/spdAssets/scaffolding");
 	public static final String ASSETS_TITLE_PATH = ident("jcr:title");
 	public static final String ASSETS_TITLE_REL_PATH = ident("jcr:content/jcr:title");
+	public static final String ASSETS_SEO_PATH = ident("seoURL");
 	public static final String ASSETS_PAGES_REL_PATH = ident("jcr:content/pages");
 	public static final String ASSETS_DESCRIPTION_PATH = ident("jcr:description");
+	public static final String ASSETS_ARTICLE_COPY_PATH = ident("articleCopy");
+	public static final String ASSETS_CATEGORY_101_PATH = ident("category101");
 	public static final String ASSETS_LOGO_PATH = ident("/jcr:content/logo");
 	public static final String ASSETS_IMAGE_PATH = ident("/jcr:content/image");
 	public static final String ASSETS_IMAGE_REL_PATH = ident("jcr:content/image");

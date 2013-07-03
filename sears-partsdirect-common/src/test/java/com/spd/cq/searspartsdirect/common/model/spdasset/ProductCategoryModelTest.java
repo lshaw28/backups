@@ -15,6 +15,8 @@ public class ProductCategoryModelTest extends TestCase {
 	private String title = "title";
 	private String singular = "singular";
 	private String description = "description";
+	private String articleIndexCopy = "articleIndexCopy";
+	private String category101 = "category101";
 	private String imagePath = "imagePath";
 	private String path2 = "path2";
 	private String title2 = "title2";
@@ -25,7 +27,7 @@ public class ProductCategoryModelTest extends TestCase {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		productCategoryModel = new ProductCategoryModel(path,path,title,singular,description,imagePath);
+		productCategoryModel = new ProductCategoryModel(path,path,title,singular,description,articleIndexCopy,category101,imagePath);
 	}
 	
 	@Test

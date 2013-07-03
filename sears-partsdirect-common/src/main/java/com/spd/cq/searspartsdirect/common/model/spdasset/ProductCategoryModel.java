@@ -6,14 +6,18 @@ public class ProductCategoryModel {
 	private String title;
 	private String pluralTitle;
 	private String description;
+	private String articleIndexCopy;
+	private String category101;
 	private String imagePath;
 	private String path;
 	
-	public ProductCategoryModel(String trueName, String path, String title, String pluralTitle, String description, String imagePath) {
+	public ProductCategoryModel(String trueName, String path, String title, String pluralTitle, String description, String articleIndexCopy, String category101, String imagePath) {
 		this.trueName = trueName;
 		this.title = title;
 		this.pluralTitle = pluralTitle;
 		this.description = description;
+		this.articleIndexCopy = articleIndexCopy;
+		this.category101 = category101;
 		this.imagePath = imagePath;
 		this.path = path;
 	}
@@ -45,6 +49,22 @@ public class ProductCategoryModel {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getArticleIndexCopy() {
+		return articleIndexCopy;
+	}
+
+	public void setArticleIndexCopy(String articleIndexCopy) {
+		this.articleIndexCopy = articleIndexCopy;
+	}
+
+	public String getCategory101() {
+		return category101;
+	}
+
+	public void setCategory101(String category101) {
+		this.category101 = category101;
 	}
 
 	public String getImagePath() {

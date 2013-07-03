@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import junit.framework.Assert;
 
 import org.apache.sling.commons.json.JSONObject;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
@@ -13,9 +14,13 @@ import com.spd.cq.searspartsdirect.common.fixture.EnvironmentSettingsFixture;
 
 public class PartsDirectAPIHelperTest {
 	
+	@Before
+	public void setUp() throws Exception {
+		(new EnvironmentSettingsFixture()).setUpRealDefaults(new EnvironmentSettings());
+	}
+	
 	@Test
 	public void testReadJsonString() throws Exception {
-		(new EnvironmentSettingsFixture()).setUpRealDefaults(new EnvironmentSettings());
 		PartsDirectAPIHelper helper = new PartsDirectAPIHelper();
 		try {
 			String jsonStr = helper.readJsonData(EnvironmentSettings.getPDUserDataApiUrl()+"spdtest123@test.com");
