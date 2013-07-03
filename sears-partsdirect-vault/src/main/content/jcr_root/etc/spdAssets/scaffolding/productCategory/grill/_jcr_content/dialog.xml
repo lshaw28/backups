@@ -11,42 +11,73 @@
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title"
                     name="./jcr:content/jcr:title"/>
-               <titlePlural
+                <titlePlural
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title Plural Form"
                     name="./jcr:content/titlePlural"/>
                 <description
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Description"
-                    name="./jcr:content/jcr:description"
-                    xtype="textarea"/>
-                <resType
+                    xtype="textarea"
+                    name="./jcr:content/jcr:description"/>
+                 <resType
                     jcr:primaryType="cq:Widget"
                     ignoreData="{Boolean}true"
                     name="./jcr:content/image/sling:resourceType"
                     value="foundation/components/image"
                     xtype="hidden"/>
+                <articleIndexCopy
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Article Index Copy"
+                    fieldLabelDescription="Description for Article Index page"
+                    name="./jcr:content/articleIndexCopy"
+                    xtype="textarea"/>
             </items>
         </tab1>
         <tab2
             jcr:primaryType="cq:Panel"
             title="Image">
             <items jcr:primaryType="cq:WidgetCollection">
-                <image
-                    jcr:primaryType="cq:Widget"
-                    cropParameter="./jcr:content/image/imageCrop"
-                    ddGroups="[media]"
-                    fileNameParameter="./jcr:content/image/fileName"
-                    fileReferenceParameter="./jcr:content/image/fileReference"
-                    height="400"
-                    mapParameter="./jcr:content/image/imageMap"
-                    name="./jcr:content/image/file"
-                    requestSuffix="/jcr:content/image.img.png"
-                    rotateParameter="./jcr:content/image/imageRotate"
-                    xtype="html5smartimage"/>
+	 		    <image
+		            jcr:primaryType="cq:Widget"
+		            cropParameter="./jcr:content/image/imageCrop"
+		            ddGroups="[media]"
+		            fileNameParameter="./jcr:content/image/fileName"
+		            fileReferenceParameter="./jcr:content/image/fileReference"
+		            mapParameter="./jcr:content/image/imageMap"
+		            name="./jcr:content/image/file"
+		            requestSuffix="/jcr:content/image.img.png"
+		            rotateParameter="./jcr:content/image/imageRotate"
+		            height="400"
+		            xtype="html5smartimage"/>
             </items>
         </tab2>
         <tab3
+        	jcr:primaryType="cq:Panel"
+        	title="Category 101">
+            <items jcr:primaryType="cq:WidgetCollection">
+	        	<multi
+		            jcr:primaryType="cq:Widget"
+		            fieldLabel="Articles"
+		            name="./jcr:content/multipaths"
+		            xtype="multifieldlimit"
+		            limit="6" >
+		            <fieldConfig
+		                jcr:primaryType="cq:Widget"
+		                xtype="multicustom">
+		                <items jcr:primaryType="cq:WidgetCollection">
+		                    <url
+		                        jcr:primaryType="cq:Widget"
+		                        fieldLabel="Article"
+		                        name="url"
+		                        rootPath="/content/searspartsdirect/en/articles"
+		                        xtype="pathfield"/>
+		                </items>
+		            </fieldConfig>
+		    	</multi>
+	    	</items>
+	    </tab3>
+        <tab4
         	jcr:primaryType="cq:Panel"
         	title="Related Assets">
         	<items jcr:primaryType="cq:WidgetCollection">
@@ -55,7 +86,7 @@
         			name="./jcr:content/cq:tags"
         			fieldLabel="Tag Associations"
         			xtype="tags"/>
-				<pages
+        		<pages
         			jcr:primaryType="cq:Widget"
         			name="./jcr:content/pages"
 					treeRootPath="/etc/spdAssets/scaffolding"
@@ -63,6 +94,156 @@
         			fieldLabel="Page Associations"
         			xtype="scaffoldingpagemapper"/>
         	</items>
-       	</tab3>
+       	</tab4>
+        <tab5
+        	jcr:primaryType="cq:Panel"
+        	title="SkyScraper Ad"/>
+       	<desktop
+       		jcr:primaryType="cq:Panel"
+       		title="Desktop Image">
+            <items jcr:primaryType="cq:WidgetCollection">
+		       	<desktopImageTab
+					jcr:primaryType="cq:Widget"
+					itemId="desktopImageTab"
+					cropParameter="./jcr:content/desktopImage/imageCrop"
+					ddGroups="[media]"
+					fileNameParameter="./jcr:content/desktopImage/fileName"
+					fileReferenceParameter="./jcr:content/desktopImage/fileReference"
+					blankText="An image is required"
+					name="./jcr:content/desktopImage/file"
+					requestSuffix="/jcr:content/desktopImage.img.png"
+					rotateParameter="./desktopImage/imageRotate"
+					sizeLimit="100"
+					uploadUrl="/tmp/upload/*"
+		            height="400"
+					xtype="html5smartimage" />
+			</items>
+		</desktop>
+       	<tablet
+       		jcr:primaryType="cq:Panel"
+       		title="Tablet Image">
+            <items jcr:primaryType="cq:WidgetCollection">
+				<tabletImageTab
+					jcr:primaryType="cq:Widget"
+					itemId="tabletImageTab"
+					cropParameter="./jcr:content/tabletImage/imageCrop"
+					ddGroups="[media]"
+					fileNameParameter="./jcr:content/tabletImage/fileName"
+					fileReferenceParameter="./jcr:content/tabletImage/fileReference"
+					blankText="An image is required"
+					name="./jcr:content/tabletImage/file"
+					requestSuffix="/jcr:content/tabletImage.img.png"
+					rotateParameter="./jcr:content/tabletImage/imageRotate"
+					sizeLimit="100"
+					uploadUrl="/tmp/upload/*"
+		            height="400"
+					xtype="html5smartimage" />
+			</items>
+		</tablet>
+       	<mobile
+       		jcr:primaryType="cq:Panel"
+       		title="Mobile Image">
+            <items jcr:primaryType="cq:WidgetCollection">
+				<mobileImageTab
+					jcr:primaryType="cq:Widget"
+					itemId="mobileImageTab"
+					cropParameter="./jcr:content/mobileImage/imageCrop"
+					ddGroups="[media]"
+					fileNameParameter="./jcr:content/mobileImage/fileName"
+					fileReferenceParameter="./jcr:content/mobileImage/fileReference"
+					blankText="An image is required"
+					name="./jcr:content/mobileImage/file"
+					requestSuffix="/jcr:content/mobileImage.img.png"
+					rotateParameter="./jcr:content/mobileImage/imageRotate"
+					sizeLimit="100"
+					uploadUrl="/tmp/upload/*"
+		            height="400"
+					xtype="html5smartimage" />
+			</items>
+		</mobile>
+       	<linkTab
+			jcr:primaryType="cq:Widget"
+			title="Image Link"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<linkAlt
+					jcr:primaryType="cq:Widget"
+					fieldLabel="Alternative Text"
+					allowBlank="{Boolean}true"
+					itemId="linkAlt"
+					name="./jcr:content/linkAlt"
+					xtype="textfield" />
+				<linkURL
+					jcr:primaryType="cq:Widget"
+					fieldLabel="Link"
+					allowBlank="{Boolean}true"
+					itemId="linkURL"
+					name="./jcr:content/linkURL"
+					xtype="pathfield" />
+				<linkTarget
+					jcr:primaryType="cq:Widget"
+					fieldLabel="Target"
+					name="./jcr:content/linkTarget"
+					type="select"
+					xtype="selection">
+					<options
+						jcr:primaryType="cq:WidgetCollection">
+						<r1
+							jcr:primaryType="nt:unstructured"
+							text="New Window"
+							value="_blank" />
+						<r2
+							jcr:primaryType="nt:unstructured"
+							text="This Window"
+							value="_self" />
+					</options>
+				</linkTarget>
+			</items>
+		</linkTab>
+		<imageDetails
+			jcr:primaryType="cq:Widget"
+			title="Image Details"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<displayWidth
+                    jcr:primaryType="cq:Widget"
+                    fieldDescription="Set a specific display width for the image."
+                    fieldLabel="Display Width"
+                    name="./jcr:content/displayWidth"
+                    xtype="textfield"/>
+				<displayHeight
+                    jcr:primaryType="cq:Widget"
+                    fieldDescription="Set a specific display height for the image."
+                    fieldLabel="Display Height"
+                    name="./jcr:content/displayHeight"
+                    xtype="textfield"/>
+				<desktopResType
+					jcr:primaryType="cq:Widget"
+					ignoreData="{Boolean}true"
+					name="./jcr:content/desktopImage/sling:resourceType"
+					value="foundation/components/image"
+					xtype="hidden" />
+				<tabletResType
+					jcr:primaryType="cq:Widget"
+					ignoreData="{Boolean}true"
+					name="./jcr:content/tabletImage/sling:resourceType"
+					value="foundation/components/image"
+					xtype="hidden" />
+				<mobileResType
+					jcr:primaryType="cq:Widget"
+					ignoreData="{Boolean}true"
+					name="./jcr:content/mobileImage/sling:resourceType"
+					value="foundation/components/image"
+					xtype="hidden" />
+				<caption jcr:primaryType="cq:Widget" 
+					fieldLabel="Caption"
+					name="./jcr:content/imageCaption" 
+					xtype="textfield" />
+				<credit jcr:primaryType="cq:Widget" 
+					fieldLabel="Photo Credit"
+					name="./jcr:content/photoCredit" 
+					xtype="textfield" />
+			</items>
+		</imageDetails>
     </items>
 </jcr:root>

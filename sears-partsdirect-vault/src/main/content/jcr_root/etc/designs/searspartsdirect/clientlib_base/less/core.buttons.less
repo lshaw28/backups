@@ -4,8 +4,8 @@
 .new-btn, .new-btn-small {
 	background-color: @bodyColor;
 	.borderRadius(4px);
-	border: 1px solid #c4d7e8;
-	color: #4577a3;
+	border: 1px solid @primaryHueNormal;
+	color: @primaryHueNormal;
 	display: inline-block;
 	font: normal @pSize @bodyFont;
 	padding: 8px 19px;
@@ -16,10 +16,10 @@
 	}
 
 	&.new-btn-search {
-		background-color: #f3762c;
-		border: 1px solid #f3762c;
+		background-color: @highlightHueLight;
+		border: 1px solid @highlightHueLight;
 		color: @bodyColor;
-		text-shadow: 1px 1px 1px #000;
+		text-shadow: 1px 1px 1px @secondaryHueDarkest;
 	}
 	&.new-btn-square {
 		.borderRadius(0);
@@ -30,7 +30,7 @@
 	padding: 1px 12px;
 }
 .new-btn-dropdown {
-	background-color: @headerColor;
+	background-color: @secondaryHueDark;
 	.borderRadius(2px);
 	color: @bodyColor;
 	font-size: @pSize;

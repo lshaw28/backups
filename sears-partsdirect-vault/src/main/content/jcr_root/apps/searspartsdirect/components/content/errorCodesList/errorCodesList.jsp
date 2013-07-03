@@ -5,7 +5,7 @@
 
 <h3>
 	<c:if test="${productCategoryRelation != null}">
-		${productCategoryRelation.title}
+		<c:out value="${productCategoryRelation.title}" />
 	</c:if>&nbsp;
 	<cq:text property="errorCodeTitle" placeholder=""/>
 </h3>
@@ -17,10 +17,10 @@
 		<c:forEach var="item" items="${errorCodeList}">
 			<c:if test="${brandRelation.title eq item.key.title}">
 				<table border="1">
-					<tr><td>${item.key.title} <!-- ${item.key.description}--></td><td><spd:displayImage path="${item.key.logoPath}"/></td>
+					<tr><td><c:out value="${item.key.title}" /> <!-- ${item.key.description}--></td><td><spd:displayImage path="${item.key.logoPath}"/></td>
 					<c:forEach var="errorCodeTable" items="${item.value}">
 						<spd:LinkResolver value="${errorCodeTable.path}" />
-						<tr><td colspan="2"><a href="${url}">${errorCodeTable.title}</a></td></tr>
+						<tr><td colspan="2"><a href="${url}"><c:out value="${errorCodeTable.title}" /></a></td></tr>
 					</c:forEach>
 				</table>
 			</c:if>
@@ -29,14 +29,12 @@
 	<c:otherwise>
 		<c:forEach var="item" items="${errorCodeList}">
 			<table border="1">
-				<tr><td>${item.key.title} <!-- ${item.key.description}--></td><td><spd:displayImage path="${item.key.logoPath}"/></td>
+				<tr><td><c:out value="${item.key.title}" /> <!-- ${item.key.description}--></td><td><spd:displayImage path="${item.key.logoPath}"/></td>
 				<c:forEach var="errorCodeTable" items="${item.value}">
 					<spd:LinkResolver value="${errorCodeTable.path}" />
-					<tr><td colspan="2"><a href="${url}">${errorCodeTable.title}</a></td></tr>
+					<tr><td colspan="2"><a href="${url}"><c:out value="${errorCodeTable.title}" /></a></td></tr>
 				</c:forEach>
 			</table>
 		</c:forEach>
 	</c:otherwise>
 </c:choose>
-
-

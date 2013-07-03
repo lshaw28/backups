@@ -44,7 +44,7 @@ public class ModelSubPageFilter implements Filter {
 	
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain fc) throws IOException, ServletException {
-		
+
 		SlingHttpServletRequest request = (SlingHttpServletRequest)servletRequest;
         SlingHttpServletResponse response = (SlingHttpServletResponse)servletResponse;
         ResourceResolver resourceResolver = request.getResourceResolver();
@@ -56,7 +56,9 @@ public class ModelSubPageFilter implements Filter {
         Matcher m = p.matcher(resPath);
         if (m.find()) {
         	//String forwardUrl = m.group(2) + "?model=" + m.group(1);
-        	String forwardUrl = m.group(4).replace(".html","." + m.group(1) + "." + m.group(2) + "." + m.group(3) + ".html");
+            //Resource Resolver gets overzealous here
+            String group1 = m.group(1).replace("content/searspartsdirect/en/", "");
+        	String forwardUrl = m.group(4).replace(".html","." + group1 + "." + m.group(2) + "." + m.group(3) + ".html");
         	request.getRequestDispatcher(forwardUrl).forward(request, response);
         	return;
         }

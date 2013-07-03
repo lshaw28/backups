@@ -59,7 +59,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 				ValueMap props = hit.getProperties();
 				Page p = pageManager.getPage(hit.getPath());
 				if (props != null) {
-					SymptomModel symptomModel  = new SymptomModel(p.getPath(), props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("id", String.class));
+					SymptomModel symptomModel  = new SymptomModel(p.getPath(), props.get("jcr:title", String.class), props.get("jcr:description", String.class), null, props.get("id", String.class));
 					
 					// now get the jobcode and gudes info
 					String[] pages = (String[]) props.get("pages", String[].class);

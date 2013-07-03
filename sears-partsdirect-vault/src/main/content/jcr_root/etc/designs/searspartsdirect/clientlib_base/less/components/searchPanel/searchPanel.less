@@ -49,9 +49,8 @@
 		float: left;
 
 		a {
-			border: 1px solid #4369b6;
+			border: 1px solid @primaryHueLight;
 			.borderRadius(4px 4px 0 0);
-			color: @searchColor;
 			height: 27px;
 			line-height: 32px;
 			padding: 8px 10px;
@@ -64,14 +63,14 @@
 	}
 	li.active {
 		a {
-			background-color: #4369b6;
+			background-color: @primaryHueLight;
 			border-width: 3px;
 			.borderRadius(4px 4px 0 0);
 			color: @bodyColor;
 			font-size: @pSize;
 			height: 32px;
 			line-height: 32px;
-			padding: 10px;
+			padding: 10px 10px 8px 10px;
 			text-align: center;
 		}
 	}
@@ -97,9 +96,9 @@
 	}
 }
 .search-content-pane {
-	.verticalGradient(#446eb9, #1c2e57);
-	border: inset 1px solid #b7c5de;
-	.boxShadow(0 8px 6px -6px #ccc);
+	.verticalGradient(@primaryHueLight, @primaryHueDarkest);
+	border: inset 1px solid @primaryHueLighter;
+	.boxShadow(0 8px 6px -6px @secondaryHueLight);
 	display: none;
 	height: 80px;
 	line-height: 35px;
@@ -129,7 +128,7 @@
 	input[type="text"] {
 		font-size: @h5Size;
 		margin: 0;
-		width: 52%;
+		width: 50%;
 	}
 	.btn-group {
 		margin-right: 10px;
@@ -138,7 +137,7 @@
 			background-color: @bodyColor;
 			border: 0;
 			.borderRadius(0);
-			color: @headerColor;
+			color: @secondaryHueDark;
 			display: inline-block;
 			font: 16px/35px @standardFont;
 			padding: 0 10px;
@@ -146,10 +145,11 @@
 		.btn-type {
 			background-color: @bodyColor;
 			background-image: none;
-			border: 1px solid #ccc;
+			border: 1px solid @secondaryHueLight;
 			.borderRadius(2px);
 			display: inline-block;
 			float: left;
+			min-width: 120px;
 			padding-left: 8px;
 			padding-right: 8px;
 			text-align: left;
@@ -161,7 +161,7 @@
 		}
 		.dropdown-menu {
 			.borderRadius(0);
-			border: 1% solid #cbcbcb !important;
+			border: 1% solid @secondaryHueLight !important;
 			border-top: 0;
 			margin-top: 0;
 			min-width: 50px;
@@ -200,7 +200,7 @@
 					color: @bodyColor;
 				}
 				.icon-light {
-					color: #1c2e57;
+					color: @primaryHueDarkest;
 				}
 			}
 
@@ -227,7 +227,7 @@
 
 #findMyModel {
 	background-color: @bodyColor;
-	border: 1% solid @headerColor;
+	border: 1% solid @secondaryHueDark;
 	display: none;
 	margin: 0 0 10px;
 	padding: 4%;

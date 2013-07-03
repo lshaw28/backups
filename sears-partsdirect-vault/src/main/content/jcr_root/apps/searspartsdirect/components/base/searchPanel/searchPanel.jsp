@@ -12,10 +12,10 @@
 				<a class="btn btn-type" href="#" data-toggle="dropdown"><span id="searchTypeLabel" data-texthelp="Select Type" data-texthelpmobile="Type">Select Type</span> <i class="icon-chevron-sign-down">&nbsp;</i></a>
 				<ul class="dropdown-menu">
 					<li>
-						<a data-postpath="part-model" data-pathtaken="modelSearch" data-label="Model">Model #</a>
+						<a data-postpath="part-model" data-pathtaken="modelSearch" data-label="Model #">Model #</a>
 					</li>
 					<li>
-						<a data-postpath="part-number" data-pathtaken="partSearch" data-label="Part">Part #</a>
+						<a data-postpath="part-number" data-pathtaken="partSearch" data-label="Part #">Part #</a>
 					</li>
 				</ul>
 			</div><button id="searchModelsParts" class="new-btn new-btn-search">Search</button>

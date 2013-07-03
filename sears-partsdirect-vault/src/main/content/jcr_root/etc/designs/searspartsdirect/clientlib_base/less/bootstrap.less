@@ -74,7 +74,7 @@ html {
 }
 
 a:focus {
-	outline: thin dotted #333;
+	outline: thin dotted @secondaryHueDarker;
 	outline: 5px auto -webkit-focus-ring-color;
 	outline-offset: -2px;
 }
@@ -173,7 +173,7 @@ textarea {
 
 @media print {
 	* {
-		color: #000 !important;
+		color: @secondaryHueDarkest !important;
 		text-shadow: none !important;
 		background: transparent !important;
 		box-shadow: none !important;
@@ -224,7 +224,7 @@ textarea {
 }
 body {
 	background: url('../img/bg.jpg') repeat-x top left;
-	color: @bodyCopyColor;
+	color: @secondaryHueDark;
 	font-family: @bodyFont;
 	font-size: @pSize;
 	margin: 0;
@@ -232,10 +232,10 @@ body {
 }
 a {
 	font-size: @pSize;
-	color: #067bb5;
+	color: @primaryHueNormal;
 }
 a:hover, a:focus {
-	color: #304e88;
+	color: @primaryHueDarker;
 }
 
 .img-rounded {
@@ -245,8 +245,8 @@ a:hover, a:focus {
 .img-polaroid {
 	padding: 4px;
 	background-color: @bodyColor;
-	border: 1px solid #ccc;
-	border: 1px solid #cbcbcb;
+	border: 1px solid @secondaryHueLight;
+	border: 1px solid @secondaryHueLight;
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 		 -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 					box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -966,7 +966,7 @@ pre {
 	padding: 0 3px 2px;
 	font-family: @codeFont;
 	font-size: @smallPSize;
-	color: @bodyCopyColor;
+	color: @secondaryHueDark;
 	.borderRadius(3px);
 }
 
@@ -989,7 +989,7 @@ pre {
 	white-space: pre;
 	white-space: pre-wrap;
 	background-color: #f5f5f5;
-	border: 1px solid #ccc;
+	border: 1px solid @secondaryHueLight;
 	border: 1px solid rgba(0, 0, 0, 0.15);
 	.borderRadius(4px);
 }
@@ -1029,7 +1029,7 @@ legend {
 	margin-bottom: 20px;
 	font-size: 21px;
 	line-height: 40px;
-	color: @bodyCopyColor;
+	color: @secondaryHueDark;
 	border: 0;
 	border-bottom: 1px solid #e5e5e5;
 }
@@ -1176,7 +1176,7 @@ input[type="file"] {
 select {
 	width: 220px;
 	background-color: @bodyColor;
-	border: 1px solid #cccccc;
+	border: 1px solid @secondaryHueLight;
 }
 
 select[multiple],
@@ -1188,7 +1188,7 @@ select:focus,
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-	outline: thin dotted #333;
+	outline: thin dotted @secondaryHueDarker;
 	outline: 5px auto -webkit-focus-ring-color;
 	outline-offset: -2px;
 }
@@ -1198,7 +1198,7 @@ input[type="checkbox"]:focus {
 	color: #999;
 	cursor: not-allowed;
 	background-color: #fcfcfc;
-	border-color: #cccccc;
+	border-color: @secondaryHueLight;
 	-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.025);
 		 -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.025);
 					box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.025);
@@ -1699,7 +1699,7 @@ select:focus:invalid:focus {
 	text-align: center;
 	text-shadow: 0 1px 0 @bodyColor;
 	background-color: #eeeeee;
-	border: 1px solid #ccc;
+	border: 1px solid @secondaryHueLight;
 }
 
 .input-append .add-on,
@@ -2222,7 +2222,7 @@ table th[class*="span"],
 	width: 0;
 	height: 0;
 	vertical-align: top;
-	border-top: 4px solid #000;
+	border-top: 4px solid @secondaryHueDarkest;
 	border-right: 4px solid transparent;
 	border-left: 4px solid transparent;
 	content: "";
@@ -2245,14 +2245,14 @@ table th[class*="span"],
 	margin: 2px 0 0;
 	list-style: none;
 	background-color: @bodyColor;
-	border: 1px solid #ccc;
-	border: 1px solid #cbcbcb;
+	border: 1px solid @secondaryHueLight;
+	border: 1px solid @secondaryHueLight;
 	*border-right-width: 2px;
 	*border-bottom-width: 2px;
 	.borderRadius(6px);
-	-webkit-box-shadow: 0 5px 10px #cbcbcb;
-		 -moz-box-shadow: 0 5px 10px #cbcbcb;
-					box-shadow: 0 5px 10px #cbcbcb;
+	-webkit-box-shadow: 0 5px 10px @secondaryHueLight;
+		 -moz-box-shadow: 0 5px 10px @secondaryHueLight;
+					box-shadow: 0 5px 10px @secondaryHueLight;
 	-webkit-background-clip: padding-box;
 		 -moz-background-clip: padding;
 					background-clip: padding-box;
@@ -2279,7 +2279,7 @@ table th[class*="span"],
 	clear: both;
 	font-weight: normal;
 	line-height: 20px;
-	color: @bodyCopyColor;
+	color: @secondaryHueDark;
 	white-space: nowrap;
 }
 
@@ -2346,7 +2346,7 @@ table th[class*="span"],
 .dropup .caret,
 .navbar-fixed-bottom .dropdown .caret {
 	border-top: 0;
-	border-bottom: 4px solid #000;
+	border-bottom: 4px solid @secondaryHueDarkest;
 	content: "";
 }
 
@@ -2389,7 +2389,7 @@ table th[class*="span"],
 	margin-top: 5px;
 	margin-right: -10px;
 	border-color: transparent;
-	border-left-color: #cccccc;
+	border-left-color: @secondaryHueLight;
 	border-style: solid;
 	border-width: 5px 0 5px 5px;
 	content: " ";
@@ -2478,7 +2478,7 @@ table th[class*="span"],
 	font-size: 20px;
 	font-weight: bold;
 	line-height: 20px;
-	color: #000;
+	color: @secondaryHueDarkest;
 	text-shadow: 0 1px 0 @bodyColor;
 	opacity: 0.2;
 	filter: alpha(opacity=20);
@@ -2486,7 +2486,7 @@ table th[class*="span"],
 
 .close:hover,
 .close:focus {
-	color: #000;
+	color: @secondaryHueDarkest;
 	text-decoration: none;
 	cursor: pointer;
 	opacity: 0.4;
@@ -2509,7 +2509,7 @@ button.close {
 	*margin-left: .3em;
 	font-size: @pSize;
 	line-height: 20px;
-	color: @bodyCopyColor;
+	color: @secondaryHueDark;
 	text-align: center;
 	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
 	vertical-align: middle;
@@ -2522,7 +2522,7 @@ button.close {
 	background-image: -o-linear-gradient(top, @bodyColor, #e6e6e6);
 	background-image: linear-gradient(to bottom, @bodyColor, #e6e6e6);
 	background-repeat: repeat-x;
-	border: 1px solid #cccccc;
+	border: 1px solid @secondaryHueLight;
 	*border: 0;
 	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -2542,14 +2542,14 @@ button.close {
 .btn.active,
 .btn.disabled,
 .btn[disabled] {
-	color: @bodyCopyColor;
+	color: @secondaryHueDark;
 	background-color: #e6e6e6;
 	*background-color: #d9d9d9;
 }
 
 .btn:active,
 .btn.active {
-	background-color: #cccccc \9;
+	background-color: @secondaryHueLight;
 }
 
 .btn:first-child {
@@ -2558,7 +2558,7 @@ button.close {
 
 .btn:hover,
 .btn:focus {
-	color: @bodyCopyColor;
+	color: @secondaryHueDark;
 	text-decoration: none;
 	background-position: 0 -15px;
 	-webkit-transition: background-position 0.1s linear;
@@ -2568,7 +2568,7 @@ button.close {
 }
 
 .btn:focus {
-	outline: thin dotted #333;
+	outline: thin dotted @secondaryHueDarker;
 	outline: 5px auto -webkit-focus-ring-color;
 	outline-offset: -2px;
 }
@@ -2831,7 +2831,7 @@ input[type="button"].btn-block {
 	background-image: -o-linear-gradient(top, #444444, #222222);
 	background-image: linear-gradient(to bottom, #444444, #222222);
 	background-repeat: repeat-x;
-	border-color: #222222 #222222 #000;
+	border-color: #222222 #222222 @secondaryHueDarkest;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
@@ -2909,7 +2909,7 @@ input[type="submit"].btn.btn-mini {
 
 .btn-link[disabled]:hover,
 .btn-link[disabled]:focus {
-	color: @bodyCopyColor;
+	color: @secondaryHueDark;
 	text-decoration: none;
 }
 
@@ -3213,7 +3213,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .alert-ship{
-	color: #dc0b00;
+	color: @highlightHueNormal;
 	font-weight: normal;
 }
 
@@ -3277,7 +3277,7 @@ input[type="submit"].btn.btn-mini {
 .nav-list > .active > a:hover,
 .nav-list > .active > a:focus {
 	color: @bodyColor;
-	text-shadow: 0 -1px 0 #cbcbcb;
+	text-shadow: 0 -1px 0 @secondaryHueLight;
 	background-color: #0088cc;
 }
 
@@ -3663,7 +3663,7 @@ input[type="submit"].btn.btn-mini {
 	margin-left: -20px;
 	font-size: 20px;
 	font-weight: 200;
-	color: #777777;
+	color: @secondaryHueDark;
 	text-shadow: 0 1px 0 @bodyColor;
 }
 
@@ -3675,16 +3675,16 @@ input[type="submit"].btn.btn-mini {
 .navbar-text {
 	margin-bottom: 0;
 	line-height: 40px;
-	color: #777777;
+	color: @secondaryHueDark;
 }
 
 .navbar-link {
-	color: #777777;
+	color: @secondaryHueDark;
 }
 
 .navbar-link:hover,
 .navbar-link:focus {
-	color: @bodyCopyColor;
+	color: @secondaryHueDark;
 }
 
 .navbar .divider-vertical {
@@ -3852,7 +3852,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > li > a {
 	float: none;
 	padding: 10px 15px 10px;
-	color: #777777;
+	color: @secondaryHueDark;
 	text-decoration: none;
 	text-shadow: 0 1px 0 @bodyColor;
 }
@@ -3863,7 +3863,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover {
-	color: @bodyCopyColor;
+	color: @secondaryHueDark;
 	text-decoration: none;
 	background-color: transparent;
 }
@@ -3917,7 +3917,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .btn-navbar:active,
 .navbar .btn-navbar.active {
-	background-color: #cccccc \9;
+	background-color: @secondaryHueLight;
 }
 
 .navbar .btn-navbar .icon-bar {
@@ -3941,9 +3941,9 @@ input[type="submit"].btn.btn-mini {
 	left: 9px;
 	display: inline-block;
 	border-right: 7px solid transparent;
-	border-bottom: 7px solid #ccc;
+	border-bottom: 7px solid @secondaryHueLight;
 	border-left: 7px solid transparent;
-	border-bottom-color: #cbcbcb;
+	border-bottom-color: @secondaryHueLight;
 	content: '';
 }
 
@@ -3961,9 +3961,9 @@ input[type="submit"].btn.btn-mini {
 .navbar-fixed-bottom .nav > li > .dropdown-menu:before {
 	top: auto;
 	bottom: -7px;
-	border-top: 7px solid #ccc;
+	border-top: 7px solid @secondaryHueLight;
 	border-bottom: 0;
-	border-top-color: #cbcbcb;
+	border-top-color: @secondaryHueLight;
 }
 
 .navbar-fixed-bottom .nav > li > .dropdown-menu:after {
@@ -3975,8 +3975,8 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav li.dropdown > a:hover .caret,
 .navbar .nav li.dropdown > a:focus .caret {
-	border-top-color: #333;
-	border-bottom-color: #333;
+	border-top-color: @secondaryHueDarker;
+	border-bottom-color: @secondaryHueDarker;
 }
 
 .navbar .nav li.dropdown.open > .dropdown-toggle,
@@ -3987,8 +3987,8 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar .nav li.dropdown > .dropdown-toggle .caret {
-	border-top-color: #777777;
-	border-bottom-color: #777777;
+	border-top-color: @secondaryHueDark;
+	border-bottom-color: @secondaryHueDark;
 }
 
 .navbar .nav li.dropdown.open > .dropdown-toggle .caret,
@@ -4124,21 +4124,21 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .navbar-search .search-query:-moz-placeholder {
-	color: #cccccc;
+	color: @secondaryHueLight;
 }
 
 .navbar-inverse .navbar-search .search-query:-ms-input-placeholder {
-	color: #cccccc;
+	color: @secondaryHueLight;
 }
 
 .navbar-inverse .navbar-search .search-query::-webkit-input-placeholder {
-	color: #cccccc;
+	color: @secondaryHueLight;
 }
 
 .navbar-inverse .navbar-search .search-query:focus,
 .navbar-inverse .navbar-search .search-query.focused {
 	padding: 5px 15px;
-	color: @bodyCopyColor;
+	color: @secondaryHueDark;
 	text-shadow: 0 1px 0 @bodyColor;
 	background-color: @bodyColor;
 	border: 0;
@@ -4159,7 +4159,7 @@ input[type="submit"].btn.btn-mini {
 	background-image: -o-linear-gradient(top, #151515, #040404);
 	background-image: linear-gradient(to bottom, #151515, #040404);
 	background-repeat: repeat-x;
-	border-color: #040404 #040404 #000;
+	border-color: #040404 #040404 @secondaryHueDarkest;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff151515', endColorstr='#ff040404', GradientType=0);
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
@@ -4173,12 +4173,12 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .btn-navbar[disabled] {
 	color: @bodyColor;
 	background-color: #040404;
-	*background-color: #000;
+	*background-color: @secondaryHueDarkest;
 }
 
 .navbar-inverse .btn-navbar:active,
 .navbar-inverse .btn-navbar.active {
-	background-color: #000 \9;
+	background-color: @secondaryHueDarkest;
 }
 
 .breadcrumb {
@@ -4198,7 +4198,7 @@ input[type="submit"].btn.btn-mini {
 
 .breadcrumb > li > .divider {
 	padding: 0 5px;
-	color: #ccc;
+	color: @secondaryHueLight;
 }
 
 .breadcrumb > .active {
@@ -4388,7 +4388,7 @@ input[type="submit"].btn.btn-mini {
 	bottom: 0;
 	left: 0;
 	z-index: 1040;
-	background-color: #000;
+	background-color: @secondaryHueDarkest;
 }
 
 .modal-backdrop.fade {
@@ -4538,7 +4538,7 @@ input[type="submit"].btn.btn-mini {
 	color: @bodyColor;
 	text-align: center;
 	text-decoration: none;
-	background-color: #000;
+	background-color: @secondaryHueDarkest;
 	.borderRadius(4px);
 }
 
@@ -4554,7 +4554,7 @@ input[type="submit"].btn.btn-mini {
 	bottom: 0;
 	left: 50%;
 	margin-left: -5px;
-	border-top-color: #000;
+	border-top-color: @secondaryHueDarkest;
 	border-width: 5px 5px 0;
 }
 
@@ -4562,7 +4562,7 @@ input[type="submit"].btn.btn-mini {
 	top: 50%;
 	left: 0;
 	margin-top: -5px;
-	border-right-color: #000;
+	border-right-color: @secondaryHueDarkest;
 	border-width: 5px 5px 5px 0;
 }
 
@@ -4570,7 +4570,7 @@ input[type="submit"].btn.btn-mini {
 	top: 50%;
 	right: 0;
 	margin-top: -5px;
-	border-left-color: #000;
+	border-left-color: @secondaryHueDarkest;
 	border-width: 5px 0 5px 5px;
 }
 
@@ -4578,7 +4578,7 @@ input[type="submit"].btn.btn-mini {
 	top: 0;
 	left: 50%;
 	margin-left: -5px;
-	border-bottom-color: #000;
+	border-bottom-color: @secondaryHueDarkest;
 	border-width: 0 5px 5px;
 }
 
@@ -4593,12 +4593,12 @@ input[type="submit"].btn.btn-mini {
 	text-align: left;
 	white-space: normal;
 	background-color: @bodyColor;
-	border: 1px solid #ccc;
-	border: 1px solid #cbcbcb;
+	border: 1px solid @secondaryHueLight;
+	border: 1px solid @secondaryHueLight;
 	.borderRadius(6px);
-	-webkit-box-shadow: 0 5px 10px #cbcbcb;
-		 -moz-box-shadow: 0 5px 10px #cbcbcb;
-					box-shadow: 0 5px 10px #cbcbcb;
+	-webkit-box-shadow: 0 5px 10px @secondaryHueLight;
+		 -moz-box-shadow: 0 5px 10px @secondaryHueLight;
+					box-shadow: 0 5px 10px @secondaryHueLight;
 	-webkit-background-clip: padding-box;
 		 -moz-background-clip: padding;
 					background-clip: padding-box;
@@ -4627,7 +4627,7 @@ input[type="submit"].btn.btn-mini {
 	font-weight: normal;
 	line-height: 18px;
 	background-color: #f7f7f7;
-	border-bottom: 1px solid @tableHoverColor;
+	border-bottom: 1px solid @secondaryHueLighter;
 	.borderRadius(5px 5px 0 0);
 }
 
@@ -4901,7 +4901,7 @@ a.badge:focus {
 
 .label-inverse,
 .badge-inverse {
-	background-color: #333;
+	background-color: @secondaryHueDarker;
 }
 
 .label-inverse[href],
@@ -5267,7 +5267,7 @@ a.badge:focus {
 	height: 10px;
 	margin-left: 5px;
 	text-indent: -999px;
-	background-color: #ccc;
+	background-color: @secondaryHueLight;
 	background-color: rgba(255, 255, 255, 0.25);
 	.borderRadius(5px);
 }
@@ -5282,7 +5282,7 @@ a.badge:focus {
 	bottom: 0;
 	left: 0;
 	padding: 15px;
-	background: #333;
+	background: @secondaryHueDarker;
 	background: rgba(0, 0, 0, 0.75);
 }
 

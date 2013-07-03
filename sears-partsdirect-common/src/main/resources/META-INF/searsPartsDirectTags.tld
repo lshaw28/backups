@@ -104,6 +104,11 @@
 		<info>Gets relative paths of carousel images</info>
 	</tag>
 	<tag>
+		<name>getMaintenanceTopicJump</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMaintenanceTopicJumpTag</tag-class>
+		<info>Gets the contents of the maintenance topics jump menu</info>
+	</tag>
+	<tag>
 		<name>getParentPage</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ParentPageTag</tag-class>
 		<info>Creates path to parent url</info>
@@ -268,6 +273,29 @@
 			<name>single</name>
 			<type>java.lang.String</type>
 			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>GetTopParts</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetTopPartsTag</tag-class>
+		<info>Gets the top parts from the API for given brand, model, and category</info>
+		<attribute>
+			<name>modelName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>brandName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>categoryName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>

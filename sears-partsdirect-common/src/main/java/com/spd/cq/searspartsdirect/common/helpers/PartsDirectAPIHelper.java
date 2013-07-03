@@ -18,7 +18,7 @@ public class PartsDirectAPIHelper {
 	
 	protected static Logger log = LoggerFactory.getLogger(PartsDirectAPIHelper.class);
 
-	public String readJsonData(String apiUrl) throws IOException, JSONException {
+	public String readJsonData(String apiUrl) throws IOException {
 		log.debug("PD API url String is2="+apiUrl);
 		String jsonText = null;
 		//apiUrl="http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username=&profileid=c4ccbcf4-3b71-4071-83dc-d88c75aded8c&cartid=8a6bc7483f5ba81b013f5dd11c360013"

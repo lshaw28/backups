@@ -51,6 +51,15 @@
                 <section jcr:primaryType="nt:unstructured"/>
             </parsys>
        	</categorySymptom>
+		<maintenanceTips jcr:primaryType="nt:unstructured">
+            <parsys
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="foundation/components/parsys"
+                drawAnchors="true"
+                components="[group:SearsPartsDirect]">
+                <section jcr:primaryType="nt:unstructured"/>
+            </parsys>
+       	</maintenanceTips>
 		<repairGuide jcr:primaryType="nt:unstructured">
             <parsys
                 jcr:primaryType="nt:unstructured"

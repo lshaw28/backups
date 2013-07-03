@@ -24,7 +24,7 @@
 
 		img {
 			height: 370px;
-			background: #aaa;
+			background: @secondaryHueNormal;
 		}
 
 		p {
@@ -53,19 +53,19 @@
 	[class*="carousel-trigger"] {
 		width: 50px;
 		height: 50px;
-		background: #dedede; // non rba compliant browsers
+		background: @secondaryHueLight; // non rba compliant browsers
 		background: rgba(222, 222, 222, .8);
-		border: solid 1px #dedede;
+		border: solid 1px @secondaryHueLight;
 		position: absolute;
 		display: block;
 		top: 159px;
 		z-index: 2;
-		color: #a7a7a7;
+		color: @secondaryHueNormal;
 		text-align: center;
 
 		&:hover {
-			background: #66a7eb;
-			color: #fff;
+			background: @primaryHueLighter;
+			color: @bodyColor;
 		}
 
 		i {
@@ -103,12 +103,12 @@
 			width: 14px;
 			height: 14px;
 			border-radius: 7px;
-			background: @color-primary-b;
+			background: @secondaryHueDark;
 			cursor: pointer;
 			margin: 0 7px;
 
 			&.active {
-				background: @color-secondary-b;
+				background: @primaryHueDarker;
 			}
 		}
 	}

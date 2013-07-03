@@ -11,7 +11,7 @@
     }
 
     .accordion-heading a {
-        color: @color-primary-b;
+        color: @secondaryHueDark;
         font-size: @h4Size;
         padding: 8px 15px 5px 15px;
         text-decoration: none;
@@ -20,15 +20,15 @@
     .accordion-group {
         border-radius: 0;
         border: none;
-        background: @tableHoverColor;
+        background: @secondaryHueLighter;
         margin-bottom: 2px;
     }
 
     .accordion .accordion-body {
-        background: @tableHoverColor;
+        background: @secondaryHueLighter;
         border-radius: 0;
         border: none;
-        color: @color-primary-b;
+        color: @secondaryHueDark;
         margin-bottom: 2px;
     }
 
@@ -37,13 +37,13 @@
     }
     
     .accordion-inner li a {
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid @bodyColor;
         font-size: @smallPSize;
         padding: 5px 15px 5px 0px;
     }
 
     .accordion-inner li:first-child a {
-        border-top: 1px solid #fff;
+        border-top: 1px solid @bodyColor;
     }
 
     .accordion-inner-btn {

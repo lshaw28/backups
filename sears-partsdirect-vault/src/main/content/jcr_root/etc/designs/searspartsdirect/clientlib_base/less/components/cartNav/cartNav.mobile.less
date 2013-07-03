@@ -17,12 +17,12 @@
 				a[data-toggle] {
 					padding: 5px 7px 5px 7px;
 					font-size: @smallPSize;
-					border-left: 1px solid #c3c3c3;
+					border-left: 1px solid @secondaryHueLight;
 					border-right: none;
 					line-height: 34px;
 
 					&:hover {
-						border-left: 1px solid #304295;
+						border-left: 1px solid @primaryHueDarkest;
 						border-right: none;
 					}
 				}
@@ -54,7 +54,7 @@
 					width: 90%;
 
 					a {
-						color: @linkColor;
+						color: @primaryHueNormal;
 						display: block;
 						float: left;
 						font-size: @h5Size;

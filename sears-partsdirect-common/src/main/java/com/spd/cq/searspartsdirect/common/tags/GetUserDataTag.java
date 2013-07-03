@@ -69,9 +69,7 @@ public class GetUserDataTag extends CQBaseTag {
 	
 			} catch (IOException e) {
 				log.error("I/O Exception while getting data from PD API ", e);
-			} catch (JSONException e) {
-				log.error("JSON Exception while getting data from PD API ", e);
-			}
+			} 
 		}
 		return SKIP_BODY;
 	}

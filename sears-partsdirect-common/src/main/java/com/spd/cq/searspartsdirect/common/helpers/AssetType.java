@@ -64,11 +64,15 @@ public enum AssetType {
 		public Object createModelInstance(Page p, ValueMap properties) {
 			String title = properties.get(Constants.ASSETS_TITLE_PATH,"");
 			String description = properties.get(Constants.ASSETS_DESCRIPTION_PATH,"");
+			String articleIndexCopy = properties.get(Constants.ASSETS_ARTICLE_COPY_PATH,"");
+			String category101 = properties.get(Constants.ASSETS_CATEGORY_101_PATH,"");
 			return new ProductCategoryModel(p.getName(),
 					p.getPath(),
 					title,
 					properties.get("titlePlural",""),
 					description,
+					articleIndexCopy,
+					category101,
 					p.getPath() + Constants.ASSETS_IMAGE_PATH);
 		}
 	}, 
@@ -94,9 +98,11 @@ public enum AssetType {
 		@Override
 		public Object createModelInstance(Page p, ValueMap properties) {
 			String title = properties.get(Constants.ASSETS_TITLE_PATH,"");
+			String seoURL = properties.get(Constants.ASSETS_SEO_PATH,"");
 			String description = properties.get(Constants.ASSETS_DESCRIPTION_PATH,"");
 			return new SymptomModel(p.getPath(),
 					title,
+					seoURL,
 					description,
 					properties.get("id",""));
 		}
