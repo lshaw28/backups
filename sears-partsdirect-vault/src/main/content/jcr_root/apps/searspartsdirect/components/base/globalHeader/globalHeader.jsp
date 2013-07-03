@@ -3,7 +3,7 @@
 	<div class="body_shadow_left"></div>
 	<div class="body_shadow_right"></div>
 	<cq:include path="homeLogo" resourceType="/apps/searspartsdirect/components/base/homeLogo" />
-	<spd:GetUserData/>
+	<spd:getUserData/>
 	<c:set var="shoppingCart" scope="request" value="${userData.cart.cartLines}"/>
 	<c:set var="myProfileModels" scope="request" value="${userData.myProfileModels.profileModelsList}"/>
 	<c:if test="${userData.loggedIn}">

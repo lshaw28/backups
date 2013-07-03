@@ -1,13 +1,13 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <spd:getRelation single="true" assetType="productCategory" />
-<spd:GetCategoryArticleList categoryPath="${productCategoryRelation.path}" />
+<spd:getCategoryArticleList categoryPath="${productCategoryRelation.path}" />
 
 <h2>${productCategoryRelation.title}</h2>
 <c:choose>
 	<c:when test="${not empty articles}">
 		<%-- Becomes iteration over article.value --%>
 		<c:forEach var="articlesEntry" items="${articles}" varStatus="currentSubcat">
-			<h3><spd:DisplayTagTitle tagId="${articlesEntry.key}" /></h3>
+			<h3><spd:displayTagTitle tagId="${articlesEntry.key}" /></h3>
 			<c:forEach var="article" items="${articlesEntry.value}" varStatus="currentItem">
 				<c:choose>
 					<c:when test="${currentItem.count % 2 eq 1}">
@@ -15,7 +15,7 @@
 					</c:when>
 				</c:choose>
 							<div class="span6">
-								<spd:LinkResolver value="${article.url}" />
+								<spd:linkResolver value="${article.url}" />
 								<c:if test="${not empty article.imagePath}">
 									<a href="${url}"><spd:displayImage path="${article.imagePath}" decorated="false" /></a>
 								</c:if>

@@ -3,7 +3,7 @@
 <spd:getRelation single="true" assetType="productCategory" />
 
 <c:if test="${not empty productCategoryRelation}">
-	<spd:GetErrorCodesList categoryPath="${productCategoryRelation.path}" />
+	<spd:getErrorCodesList categoryPath="${productCategoryRelation.path}" />
 
 	<c:if test="${not empty errorCodeList}">
 		<p><c:out value="${productCategoryRelation.title}" /> returning an error code?</p>

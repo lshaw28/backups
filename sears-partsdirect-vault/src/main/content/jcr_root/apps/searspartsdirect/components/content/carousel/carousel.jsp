@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<spd:GetCarouselImages />
+<spd:getCarouselImages />
 
 <c:choose>
 	<c:when test="${not empty carouselImages}">

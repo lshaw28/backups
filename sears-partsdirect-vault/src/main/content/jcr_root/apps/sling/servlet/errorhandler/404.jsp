@@ -2,7 +2,7 @@
 --%><%@taglib prefix="cq" uri="http://www.day.com/taglibs/cq/1.0" %><%--
 --%><%@taglib prefix="spd" uri="http://cms.testsears.com/bundles/cq/tags" %><%--
 --%><cq:defineObjects/><%--
---%><spd:Four04 /><%--
+--%><spd:four04 /><%--
 --%><c:choose><%--
 	--%><c:when test="${!empty mustRedirect}" ><%--
 		--%><c:redirect url="${mustRedirect}" /><%--
