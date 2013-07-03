@@ -27,6 +27,7 @@ widgets/TouchCarousel.js
 #base=js/components/.
 cartNav.js
 category101.js
+collapse101.js
 guideNavigation.js
 modalForm.js
 responsiveDropdown.js
