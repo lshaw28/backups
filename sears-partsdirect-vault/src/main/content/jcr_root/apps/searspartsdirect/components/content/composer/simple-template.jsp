@@ -1,3 +1,5 @@
+
+
 <%--
 
  ADOBE CONFIDENTIAL
@@ -128,64 +130,66 @@
                               });
     }
 </script>
-<form
-    class="comment"
-    action="<%= formAction %>"
-    onsubmit="return CQ.soco.comments.validateCommentForm(this)"
-    method="POST"
-    name="comment"
-    enctype="multipart/form-data"
-    id="<%= formId %>">
-    <script type="text/javascript" charset="utf-8">
-        CQ_collab_comments_defaultMessage = "<%= defaultMessage.replaceAll("\\\"", "\\\\\"") %>";
-        CQ_collab_comments_requireLogin = <%= requireLogin %>;
-        CQ_collab_comments_enterComment = "<%= i18n.get("Please enter a comment") %>";
-        CQ_collab_comments_commentActivated = "<%= i18n.get("Comment activated") %>";
-        CQ_collab_comments_unableToActivate = "<%= i18n.get("Unable to activate comment") %>";
-    </script>
-    <div class="comment-error" id="<%= id %>-error"></div>
-    <label for="<%= textId %>" class="comment-text-label"><%= i18n.get("Comment") %></label>
-    <textarea
-            name="<%= Comment.PROP_MESSAGE %>"
-            id="<%= textId %>"
-            class="comment-text"
-            onfocus="CQ.soco.commons.handleOnFocus(this, '<%= defaultMessage%>');"
-            onblur="CQ.soco.commons.handleOnBlur(this, '<%= defaultMessage%>');"
-            rows="10"
-            cols="10"><%= defaultMessage %></textarea>
-    <div id="formFileUploadDiv" >
-        <% if (allowFileUploads) {
-             String fileFilter = cs.getProperty(CommentSystem.PROP_FILE_UPLOAD_TYPES, String.class);
-             fileFilter = StringUtils.isNotBlank(fileFilter) ?
-       "accept='" + fileFilter + "'" :"";
-        %>
-            <input type="hidden" name="_charset_" value="<%= response.getCharacterEncoding() %>"/>
-            <input class="submit" type="file" name="file" <%=fileFilter %> value="<%= i18n.get("Upload", "Upload a file") %>"/>
-        <%}%>
-    </div>
-
-    <div class="comment-info">
-        <div>
-            <div class="<%= commentBlockClass %>" id="<%= nameId %>-comment-block" >
-                <span class="comment-error" id="<%= nameId %>-displayName-error"></span>
-                <label for="<%= nameId %>" class="comment-text-label"><%= i18n.get("Name", "Label for commenter's name") %></label>
-                <input id="comments-userIdentifier" class="comment-text" type="text" name="userIdentifier" value="${firstNameLastInitial}"/>
-            </div>
-            <div class="<%= commentBlockClass %>" id="<%= mailId %>-comment-block" >
-                <span class="comment-error" id="<%= mailId %>-email-error"></span>
-                <label for="<%= mailId %>" class="comment-text-label"><%= i18n.get("Email", "Label for commenter's email") %></label>
-                <personalization:contextProfileHtmlInput id="<%= mailId %>" clazz="comment-text" type="text" name="<%= CollabUser.PROP_EMAIL %>" propertyName="email"/>
-            </div>
-            <div class="<%= commentBlockClass %>" id="<%= webId %>-comment-block" >
-                <span class="comment-error" id="<%= webId %>-url-error"></span>
-                <label for="<%= webId %>" class="comment-text-label"><%= i18n.get("Website (optional)", "Label for commenter's website") %></label>
-                <personalization:contextProfileHtmlInput id="<%= webId %>" clazz="comment-text" type="text" name="<%= CollabUser.PROP_WEBSITE %>" propertyName="url"/>
-            </div>
-            <div class="submit-block">
-                <input type="hidden" name="_charset_" value="<%= response.getCharacterEncoding() %>"/>
-                <input class="submit" type="submit" name="submit" id="<%= id %>-submit" value="<%= i18n.get("Post Comment", "Form submit action button") %>"
-            onclick="recordPostCommentEvent('<%= commentResource.getPath() %>','${firstNameLastInitial}','social/commons/components/composer' , 'forum')"/>
-            </div>
-        </div>
-    </div>
-</form>
+<div class="row-fluid">
+	<form
+	    class="comment"
+	    action="<%= formAction %>"
+	    onsubmit="return CQ.soco.comments.validateCommentForm(this)"
+	    method="POST"
+	    name="comment"
+	    enctype="multipart/form-data"
+	    id="<%= formId %>">
+	    <script type="text/javascript" charset="utf-8">
+	        CQ_collab_comments_defaultMessage = "<%= defaultMessage.replaceAll("\\\"", "\\\\\"") %>";
+	        CQ_collab_comments_requireLogin = <%= requireLogin %>;
+	        CQ_collab_comments_enterComment = "<%= i18n.get("Please enter a comment") %>";
+	        CQ_collab_comments_commentActivated = "<%= i18n.get("Comment activated") %>";
+	        CQ_collab_comments_unableToActivate = "<%= i18n.get("Unable to activate comment") %>";
+	    </script>
+	    <div class="comment-error" id="<%= id %>-error"></div>
+	    <label for="<%= textId %>" class="comment-text-label"><%= i18n.get("Comment") %></label>
+	    <textarea
+	            name="<%= Comment.PROP_MESSAGE %>"
+	            id="<%= textId %>"
+	            class="comment-text span12"
+	            onfocus="CQ.soco.commons.handleOnFocus(this, '<%= defaultMessage%>');"
+	            onblur="CQ.soco.commons.handleOnBlur(this, '<%= defaultMessage%>');"
+	            rows="10"
+	            cols="10"><%= defaultMessage %></textarea>
+	    <div id="formFileUploadDiv" >
+	        <% if (allowFileUploads) {
+	             String fileFilter = cs.getProperty(CommentSystem.PROP_FILE_UPLOAD_TYPES, String.class);
+	             fileFilter = StringUtils.isNotBlank(fileFilter) ?
+	       "accept='" + fileFilter + "'" :"";
+	        %>
+	            <input type="hidden" name="_charset_" value="<%= response.getCharacterEncoding() %>"/>
+	            <input class="submit" type="file" name="file" <%=fileFilter %> value="<%= i18n.get("Upload", "Upload a file") %>"/>
+	        <%}%>
+	    </div>
+	
+	    <div>
+	        <div>
+	            <div class="<%= commentBlockClass %>" id="<%= nameId %>-comment-block" >
+	                <span class="comment-error" id="<%= nameId %>-displayName-error"></span>
+	                <label for="<%= nameId %>" class="comment-text-label"><%= i18n.get("Name", "Label for commenter's name") %></label>
+	                <input id="comments-userIdentifier" class="comment-text" type="text" name="userIdentifier" value="${firstNameLastInitial}"/>
+	            </div>
+	            <div class="<%= commentBlockClass %>" id="<%= mailId %>-comment-block" >
+	                <span class="comment-error" id="<%= mailId %>-email-error"></span>
+	                <label for="<%= mailId %>" class="comment-text-label"><%= i18n.get("Email", "Label for commenter's email") %></label>
+	                <personalization:contextProfileHtmlInput id="<%= mailId %>" clazz="comment-text" type="text" name="<%= CollabUser.PROP_EMAIL %>" propertyName="email"/>
+	            </div>
+	            <div class="<%= commentBlockClass %>" id="<%= webId %>-comment-block" >
+	                <span class="comment-error" id="<%= webId %>-url-error"></span>
+	                <label for="<%= webId %>" class="comment-text-label"><%= i18n.get("Website (optional)", "Label for commenter's website") %></label>
+	                <personalization:contextProfileHtmlInput id="<%= webId %>" clazz="comment-text" type="text" name="<%= CollabUser.PROP_WEBSITE %>" propertyName="url"/>
+	            </div>
+	            <div class="submit-block" >
+	                <input type="hidden" name="_charset_" value="<%= response.getCharacterEncoding() %>"/>
+	                <input class="submit btn" type="submit" name="submit" id="<%= id %>-submit" value="<%= i18n.get("Post Comment", "Form submit action button") %>"
+	            onclick="recordPostCommentEvent('<%= commentResource.getPath() %>','${firstNameLastInitial}','social/commons/components/composer' , 'forum')"/>
+	            </div>
+	        </div>
+	    </div>
+	</form>
+</div>
