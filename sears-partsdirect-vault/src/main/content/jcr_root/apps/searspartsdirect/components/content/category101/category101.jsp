@@ -9,7 +9,7 @@
 	<div class="accordion" id="parent_${uniqueId}">
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse"
+				<a class="accordion-toggle" data-toggle="collapse101"
 					data-parent="#parent_${uniqueId}" href="#${uniqueId}"> <c:choose>
 						<c:when test="${fn:length(productCategoryRelation.title) lt 38 }">
 							<cq:text property="header"
