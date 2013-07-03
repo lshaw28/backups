@@ -7,6 +7,7 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 
 <spd:getRelation single="true" assetType="productCategory" />
 <spd:getRelatedGuides categoryPath="${productCategoryRelation.path}" />
+<spd:getNameByNodePath nodePath="${productCategoryRelation.path}" />
 
 <c:if test="${not empty guides && not empty productCategoryRelation}">
 	<h2>
@@ -28,10 +29,10 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 
 	<c:if test="${fn:length(guides) eq 4}">
 	<br />
-	<div class="new-btn">
-			<c:set var="viewAllItemsLink"><cq:text property='viewAllItemsLink'/></c:set>
-			<spd:LinkResolver value="${viewAllItemsLink}" />
-			<a href="${url}" ><cq:text property="viewAllItemsText" placeholder="View all Guides" /></a>
+		<div class="new-btn">
+			<c:set var="suffix" value="-repair/repair-articles" />
+			<spd:LinkResolver value="${Constants.CATEGORIES_ROOT}/${nodeName}${suffix}" />
+			<a href="${url}" class="new-btn-small accordion-inner-btn">View All Articles</a>						
 		</div>
 	</c:if>
 </c:if>

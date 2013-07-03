@@ -9,7 +9,7 @@ public class GetSymptomFrequencyFixture {
 	
 	public List<SymptomModel> getSymptoms() {
 		List<SymptomModel> models = new ArrayList<SymptomModel>();
-		SymptomModel model = new SymptomModel(null, "some title", "some-url", "description", "201");
+		SymptomModel model = new SymptomModel(null, "some title", "description", "201");
 		models.add(model);
 		return models;
 	}
