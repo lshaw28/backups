@@ -112,7 +112,7 @@
 					blankText="An image is required"
 					name="./jcr:content/desktopImage/file"
 					requestSuffix="/jcr:content/desktopImage.img.png"
-					rotateParameter="./desktopImage/imageRotate"
+					rotateParameter="./jcr:content/desktopImage/imageRotate"
 					sizeLimit="100"
 					uploadUrl="/tmp/upload/*"
 		            height="400"
