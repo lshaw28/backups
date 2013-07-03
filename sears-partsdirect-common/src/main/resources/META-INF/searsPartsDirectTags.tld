@@ -444,4 +444,15 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>GetModelSymptoms</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelSymptomsTag</tag-class>
+		<info>Gets the model symptom data</info>
+		<attribute>
+			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>
