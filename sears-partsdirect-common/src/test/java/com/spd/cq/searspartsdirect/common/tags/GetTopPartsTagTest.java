@@ -18,6 +18,10 @@ public class GetTopPartsTagTest extends MocksTag {
 
 	private GetTopPartsTag tag;
 
+	private final static String TEST_BRAND = "kenmore";
+	private final static String TEST_CATEGORY = "dishwasher";
+	private final static String TEST_MODEL = "66517722k900";
+	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -34,18 +38,18 @@ public class GetTopPartsTagTest extends MocksTag {
 	
 	@Test
 	public void testDoStartTagWithIds() throws JspException {
-		tag.setModelName("123-848F401");
-		tag.setBrandName("0736");
-		tag.setCategoryName("1500600");
+		tag.setModelName(TEST_MODEL);
+		tag.setBrandName(TEST_BRAND);
+		tag.setCategoryName(TEST_CATEGORY);
 		runsSkipsBodyEvalsPage();
 		@SuppressWarnings("unchecked")
 		List<PartModel> topParts = (List<PartModel>)pageContext.getAttribute("topParts");
-		assertThat(topParts,hasSize(2));
+		assertThat(topParts,is(not(nullValue())));
 	}
 	
 	@Test
 	public void testDoStartTagWithOnlyModel() throws JspException {
-		tag.setModelName("123-848F401");
+		tag.setModelName(TEST_MODEL);
 		runsSkipsBodyEvalsPage();
 		@SuppressWarnings("unchecked")
 		List<PartModel> topParts = (List<PartModel>)pageContext.getAttribute("topParts");
@@ -54,8 +58,8 @@ public class GetTopPartsTagTest extends MocksTag {
 	
 	@Test
 	public void testDoStartTagWithoutCategory() throws JspException {
-		tag.setModelName("123-848F401");
-		tag.setBrandName("0736");
+		tag.setModelName(TEST_MODEL);
+		tag.setBrandName(TEST_BRAND);
 		runsSkipsBodyEvalsPage();
 		@SuppressWarnings("unchecked")
 		List<PartModel> topParts = (List<PartModel>)pageContext.getAttribute("topParts");

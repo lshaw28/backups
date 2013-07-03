@@ -272,6 +272,29 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>GetTopParts</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetTopPartsTag</tag-class>
+		<info>Gets the top parts from the API for given brand, model, and category</info>
+		<attribute>
+			<name>modelName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>brandName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>categoryName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
 		<name>GetUrlRelation</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetUrlRelationTag</tag-class>
 		<info>Gets a relation defined in page selectors</info>

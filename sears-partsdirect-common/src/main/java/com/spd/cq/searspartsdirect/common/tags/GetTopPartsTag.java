@@ -27,8 +27,10 @@ import com.spd.cq.searspartsdirect.common.model.PartModel;
 public class GetTopPartsTag extends CQBaseTag {
 
 	private static final String MODEL_NAME = "modelNumber";
-	private static final String BRAND_NAME = "modelBrandId";
-	private static final String CATEGORY_NAME = "modelCategoryId";
+	private static final String BRAND_NAME = "modelBrandName";
+	private static final String CATEGORY_NAME = "modelCategoryName";
+	
+	public static final String NO_IMAGE_URL = Constants.ident("http://c.searspartsdirect.com/pd-web-consumer-3.112.20130618-05/assets/img/images/no_part.gif");
 	
 	protected static Logger log = LoggerFactory.getLogger(GetTopPartsTag.class);
 	
@@ -44,6 +46,7 @@ public class GetTopPartsTag extends CQBaseTag {
 		if (url != null) {
 			topParts.addAll(getPartsFromJson(getJsonFromApi(url)));
 		}
+		addNoImageUrl(topParts);
 		
 		pageContext.setAttribute("topParts", topParts);
 		return SKIP_BODY;
@@ -90,15 +93,12 @@ public class GetTopPartsTag extends CQBaseTag {
 		String jsonString = null;
 		
 		try {
-			
 			jsonString = apiHelper.readJsonData(apiUrl.toString());
 		} catch (IOException e) {
 			log.error("I/O Exception while getting data from PD API ", e);
 		} catch (JSONException e) {
 			log.error("JSON Exception while getting data from PD API ", e);
 		}
-		
-		jsonString = "[{\"partName\":null,\"imageURL\":\"http://s.sears.com/is/image/Sears/PD_0071_247_736-0242\",\"partDesc\":\"Bell Washer\",\"partDetailsPageURL\":\"http://www.searspartsdirect.com/partsdirect/part-number/736-0242/0071/247\"},{\"partName\":null,\"imageURL\":\"http://s.sears.com/is/image/Sears/PD_0071_247_736-0242\",\"partDesc\":\"Bell Washer\",\"partDetailsPageURL\":\"http://www.searspartsdirect.com/partsdirect/part-number/736-0242/0071/247\"},{\"partName\":null,\"imageURL\":\"http://s.sears.com/is/image/Sears/PD_0071_247_736-0242\",\"partDesc\":\"Bell Washer\",\"partDetailsPageURL\":\"http://www.searspartsdirect.com/partsdirect/part-number/736-0242/0071/247\"},{\"partName\":null,\"imageURL\":\"\",\"partDesc\":\"Screw\",\"partDetailsPageURL\":\"http://www.searspartsdirect.com/partsdirect/part-number/710-0599/0071/247\"},{\"partName\":null,\"imageURL\":\"\",\"partDesc\":\"Screw\",\"partDetailsPageURL\":\"http://www.searspartsdirect.com/partsdirect/part-number/710-0599/0071/247\"}]";
 		
 		log.debug("jsonString "+jsonString);
 		return jsonString;
@@ -111,7 +111,7 @@ public class GetTopPartsTag extends CQBaseTag {
 		try {
 			Gson gson = new Gson();
 			PartModel[] parts = gson.fromJson(jsonString, PartModel[].class);
-		    log.debug("JSON Parsing"+ parts.toString());
+		    log.debug("JSON parsed to "+ Arrays.toString(parts));
 				
 			noDups.addAll(Arrays.asList(parts));
 		} catch (Exception e) {
@@ -120,4 +120,11 @@ public class GetTopPartsTag extends CQBaseTag {
 		return noDups;
 	}
 	
+	void addNoImageUrl(List<PartModel> topParts) {
+		for (PartModel part : topParts) {
+			if (StringUtils.isBlank(part.getImageUrl())) {
+				part.setImageUrl(NO_IMAGE_URL);
+			}
+		}
+	}
 }
