@@ -1,3 +1,5 @@
+
+
 <%--
 
  ADOBE CONFIDENTIAL
@@ -21,7 +23,14 @@
 
   Includes all child resources (comments).
 
---%><%@ page session="false" import="java.util.List,
+--%>
+<div class="articleComments-loader">
+    <h2>3 Article Comments</h2>
+    <a href="javascript:void(0);" class="primary-btn">Load Comments</a>
+</div>
+
+
+<%@ page session="false" import="java.util.List,
                      com.adobe.cq.social.commons.Comment,
                      com.adobe.cq.social.commons.CommentSystem,
                      com.adobe.cq.social.commons.CollabUtil,
@@ -80,16 +89,16 @@
           %><cq:includeClientLib categories="cq.social.author"/><%
     }
 %><div id="<%= cs.getId() %>">
-<div class="articleComments-wrapper">
+<div class="articleComments-wrapper span9">
 	<h2>Comments</h2>
-	
-	<div class="comments-target">Loading...</div>
-	<button onClick='$(".comments-target").load("<%=currentPage.getPath()%>/jcr:content/comments.load.html"); $(this).hide();'>Load</button>
+	<div class="comments-target"></div>
+	<button class="btn" id="btn_load" onClick='$(".comments-target").load("<%=currentPage.getPath()%>/jcr:content/comments.load.html"); $(this).hide();'>Load</button>
 
-<div class="articleComments-form">
-	<h2>Comment</h2>
+<div class="articleComments-form" >
+
 	<c:choose>
 		<c:when test="${not empty firstName}">
+		<h2>Got Something to Say?</h2>
 		    <div class="comment-signed-in-text" id="<%= cs.getId() %>-signed-in-text"><%= signedInText %><span class="comment-signed-in-user" id="<%= cs.getId() %>-signed-in-user"><%= StringEscapeUtils.escapeHtml4(formattedName) %></span></div>
 		    <%
 		    if (!cs.isClosed() && CollabUtil.canAddNode(resourceResolver.adaptTo(Session.class), cs.getRootPath())) {
@@ -100,9 +109,7 @@
 		    }%>
 	    </c:when>
 	    <c:otherwise>
-			<p>
-				Got Something to Say?
-			</p>
+			<h2>Got Something to Say?</h2>
 			<p>
 				<a data-toggle="modal" data-target="#loginModal">Sign in with your Sears ID</a>
 			</p>
@@ -110,7 +117,8 @@
 	</c:choose>
 </div>
 
-</div></div><br/>
+</div>
+</div>
 <script>	
 $CQ(function(){
     var refreshCommentCount = function (target, count) {
@@ -155,8 +163,3 @@ $CQ(function(){
 </script>
 
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-
-<div class="articleComments-loader">
-	<h2>3 Article Comments</h2>
-	<a href="" class="primary-btn">Load Comments</a>
-</div>

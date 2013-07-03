@@ -6,6 +6,11 @@
 	 */
 	$(document).ready(function () {
 		/**
+		 * Comment Section
+		 */
+
+		var commentcheck = new commentCheck();
+		/**
 		 * Search Panel
 		 */
 		var mainSearchPanel = new searchPanel();

@@ -34,3 +34,4 @@ responsiveImage.js
 revealPanel.js
 searchPanel.js
 video.js
+comments.js
