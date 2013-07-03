@@ -5,6 +5,6 @@
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Component"
 	jcr:title="Repair Instructions"
-	jcr:description="Instructions for repair, used in repair guides"
-	componentGroup="SearsPartsDirect" />
+	jcr:description="Instructions for repair, used in repair guides template"
+	componentGroup=".hidden" />
 	
