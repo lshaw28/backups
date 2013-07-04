@@ -445,7 +445,7 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>GetModelSymptoms</name>
+		<name>getModelSymptoms</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelSymptomsTag</tag-class>
 		<info>Gets the model symptom data</info>
 		<attribute>

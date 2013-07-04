@@ -1,55 +1,51 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-<p>symptom details page</p>
-<spd:getSymptomDetail partsRequired="true" />
+<spd:GetUrlRelation relationType="productCategory" />
+<%-- <spd:GetUrlRelation relationType="brand" />--%>
+<%-- <spd:GetUrlRelation relationType="model" />--%>
 
-<h1>${modelSymptom.symptomModel.title}</h1>
-<p>${modelSymptom.symptomModel.description}</p>
+<%-- <h2>
+Repair Symptoms for ${brandRelation.title} ${productCategoryRelation.title} Model #${modelRelation.title}
+</h2>--%>
 
+${productCategoryRelation.path}
 
-<c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
-	<c:choose>
-		<c:when test="${jobCode.partTypeModel != null &&  jobCode.partTypeModel.imagePath != null}">
-			<spd:displayImage path="${jobCode.partTypeModel.imagePath}"/>
-		</c:when>
-		<c:otherwise>
-			<p>show a default no jobcode part type image</p>
-		</c:otherwise>
-	</c:choose>
-	<h3>${jobCode.title}</h3>
-	<p>${jobCode.description}</p>
+<spd:getModelSymptoms categoryPath="${productCategoryRelation.path}" />
 
-	Guides:-
-	<c:if test="${not empty jobCode.guides}">
-		<c:forEach var="guide" items="${jobCode.guides}">
-			<spd:linkResolver value="${guide.url}"/>
-			<p><a href="${url}">${guide.title}</a></p>
-		</c:forEach>
-	</c:if>
-
-	<c:choose>
-		<c:when test="${not empty jobCode.parts}">
-			<!--  once we get the data from the api, show the following section -->
-			<%-- <table border="1">
-					<c:forEach var="part" items="${jobCode.recoveryPartsModel}">
-						<tr>
-							<td>Used in this repair ${part.recoveryFrequency}% of the time</td>
-							<td>
-								<a href="${mainSitePath}/partsdirect/part-number/${part.jobCodePart.partCompositeKey.partNumber}/${part.jobCodePart.partCompositeKey.productGroupId}/${part.jobCodePart.partCompositeKey.supplierId}">${part.jobCodePart.description}</a><br/>
-									Part #${part.jobCodePart.partCompositeKey.partNumber}
-							</td>
-							<td>
-								<img src="${part.jobCodePart.partImage.imageURL}" height="75px" width="75px"/>
-							</td>
-							<td> $${part.jobCodePart.priceAndAvailability.sellingPrice} -- ${part.jobCodePart.priceAndAvailability.availabilityStatus}</td>
-						</tr>
-					</c:forEach>
-			</table> --%>
-		</c:when>
-		<c:otherwise>
-			<c:if test="${jobCode.partTypeModel != null}">
-				<a href="http://www.searspartsdirect.com/partsdirect/part-model/Frigidaire-Parts/Cooktop-Parts/Model-33003/1428/0121050&partType=${jobCode.partTypeModel.title}">find a ${jobCode.partTypeModel.title} in this model</a>
-			</c:if>
-		</c:otherwise>
-	</c:choose>
+<c:forEach var="symptom" items="${categorySymptoms}">
+	<p><a href="/<brand>/<category>/model-<model-number>-repair/symptom/${symptom.id}">${symptom.title}</a></p>
 </c:forEach>
+
+<%-- <spd:getRelation single="true" assetType="productCategory"/> --%>
+
+<%-- 
+<c:choose>
+	<c:when test="${productCategoryRelation != null}">
+		<h2>
+			<!--  <cq:text property="text1" placeholder=""/> -->
+			${productCategoryRelation.title} Symptoms
+			<!--  <cq:text property="text2" placeholder=""/> -->
+		</h2>
+		<p><cq:text property="optionalDescription" placeholder=""/></p>
+
+		<spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryRelation.path}" />
+		<c:forEach var="symptom" items="${symptomList}" varStatus="currentItem">
+			<c:choose>
+				<c:when test="${currentItem.count % 2 eq 1}">
+					<div class="row-fluid">
+				</c:when>
+			</c:choose>
+				<div class="span6">
+					<a href="/${productCategoryRelation.title}-repair/symptom/${symptom.id}">${symptom.title}</a>
+				</div>
+			<c:choose>
+				<c:when test="${currentItem.count % 2 eq 0 or currentItem.last}">
+					</div>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+		<p>No items are available.</p>
+	</c:otherwise>
+</c:choose> --%>

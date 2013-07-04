@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.http.Cookie;
 import javax.servlet.jsp.JspException;
 
-import org.apache.sling.commons.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
