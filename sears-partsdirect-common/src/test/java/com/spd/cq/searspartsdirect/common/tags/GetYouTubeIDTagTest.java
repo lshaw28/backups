@@ -3,6 +3,7 @@ package com.spd.cq.searspartsdirect.common.tags;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.junit.Before;
@@ -23,40 +24,46 @@ public class GetYouTubeIDTagTest extends MocksTag {
 	}
 
 	@Test
-	public void testWithValidID() {
-		try {
-			fixture.setupValidID();
-			tag.setPageContext(pageContext);
-			int startResult = tag.doStartTag();
-			assertThat(startResult, is(TagSupport.SKIP_BODY));
-			int endResult = tag.doEndTag();
-			assertThat(endResult, is(TagSupport.EVAL_PAGE));
-			String youTubeID = (String) pageContext.getAttribute("youTubeID");
-			assertThat(youTubeID, is(not("")));
+	public void testWithValidID() throws JspException {
+		fixture.setupValidID();
 
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		runsSkipsBodyEvalsPage();
+		
+		String youTubeID = (String) pageContext.getAttribute("youTubeID");
+		assertThat(youTubeID, is(not("")));
 
 	}
 
 	@Test
-	public void testWithInvalidID() {
-		try {
-			fixture.setupInvalidID();
+	public void testWithInvalidID() throws JspException {
 
-			tag.setPageContext(pageContext);
-			int startResult = tag.doStartTag();
-			assertThat(startResult, is(TagSupport.SKIP_BODY));
-			int endResult = tag.doEndTag();
-			assertThat(endResult, is(TagSupport.EVAL_PAGE));
-			String youTubeID = (String) pageContext.getAttribute("youTubeID");
-			assertThat(youTubeID, is(""));
+		fixture.setupInvalidID();
 
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-
+		runsSkipsBodyEvalsPage();
+		
+		String youTubeID = (String) pageContext.getAttribute("youTubeID");
+		assertThat(youTubeID, is(""));
+		
+	}
+	
+	@Test
+	public void testWithExplodingID() throws JspException {
+		
+		fixture.setupExplodingID();
+		
+		runsSkipsBodyEvalsPage();
+		
+		String youTubeID = (String) pageContext.getAttribute("youTubeID");
+		assertThat(youTubeID, is(""));
+		
+	}
+	
+	private void runsSkipsBodyEvalsPage() throws JspException {
+		tag.setPageContext(pageContext);
+		int startResult = tag.doStartTag();
+		assertThat(startResult, is(TagSupport.SKIP_BODY));
+		int endResult = tag.doEndTag();
+		assertThat(endResult, is(TagSupport.EVAL_PAGE));
 	}
 
 }
