@@ -32,6 +32,7 @@ cartNav/cartNav.less
 category101/category101.less
 categoryArticleList/categoryArticleList.less
 categoryListing/categoryListing.less
+difficultyRating/difficultyRating.less
 globalHeader/globalHeader.less
 globalFooter/globalFooter.less
 guideNavigation/guideNavigation.less
