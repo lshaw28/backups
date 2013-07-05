@@ -5,12 +5,12 @@
 <c:forEach var="part" items="${parts}">
 	<c:choose>
 		<c:when test="${fn:length(part.url) gt 0}">
-			<spd:LinkResolver value="${part.url}" />
+			<spd:linkResolver value="${part.url}" />
 			<li data-toolid="${part.id}"><a href="${url}">${part.text}</a></li>
 		</c:when>
 		<c:otherwise>
 			<li data-toolid="${part.id}">${part.text}</li>
-		</c:otherwise>              
+		</c:otherwise>
 	</c:choose>
 </c:forEach>
 </ul>

@@ -1,6 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
-<spd:GetUrlRelation relationType="productCategory" />
+<spd:getUrlRelation relationType="productCategory" />
 
 <h2>
 <c:choose>
@@ -22,7 +22,7 @@
 		</c:when>
 	</c:choose>
 	<div class="span6">
-		<spd:LinkResolver value="${category101Model.url}" />
+		<spd:linkResolver value="${category101Model.url}" />
 	<c:if test="${not empty category101Model.imagePath}">
 		<a href="${url}" ><spd:displayImage path="${category101Model.imagePath}" decorated="false" /></a>
 	</c:if>

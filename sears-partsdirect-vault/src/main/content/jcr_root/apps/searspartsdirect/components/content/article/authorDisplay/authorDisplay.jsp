@@ -5,8 +5,8 @@
 <p>
 	by
 	<c:forEach var="author" items="${authors}">
-		<spd:LinkResolver value="${author.path}" />
-		<a href="${url}">${author.title}</a>, 
+		<spd:linkResolver value="${author.path}" />
+		<a href="${url}">${author.title}</a>,
 	</c:forEach>
 	<cq:text property="authorPosition" placeholder="Sears Home Services repair technician${s}"/>
 </p>

@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<spd:ResolveHazardTipWarning adhocField="noticeText" choiceField="tipChosen" placeholder=""/>
+<spd:resolveHazardTipWarning adhocField="noticeText" choiceField="tipChosen" placeholder=""/>
 <c:set var="noticeIcon"><cq:text property="noticeIcon" placeholder="icon-info"/></c:set>
 <cq:include path="/etc/spdAssets/globalConfig/tipPrefix" resourceType="searspartsdirect/components/content/tipPrefix" />
 

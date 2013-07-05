@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<spd:GetCarouselImages />
+<spd:getCarouselImages />
 
 <c:choose>
 	<c:when test="${not empty carouselImages}">
@@ -12,7 +12,7 @@
 				<div class="carousel-list-wrapper">
 					<c:forEach items="${carouselImages}" var="carouselImage">
 						<div class="carousel-item">
-							<cq:include path="${carouselImage}" resourceType="searspartsdirect/components/content/responsiveImage" />
+							<cq:include path="${carouselImage}" resourceType="searspartsdirect/components/content/carouselItem" />
 						</div>
 					</c:forEach>
 				</div>

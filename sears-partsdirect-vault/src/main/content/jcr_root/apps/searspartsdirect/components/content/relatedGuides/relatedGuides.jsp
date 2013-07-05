@@ -1,6 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
-<%-- 
+<%--
 Make sure h1 and footer link are configurable!
 Carousel Shows at max 5 items, component spec sets max to display at 4
 --%>
@@ -18,7 +18,7 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 			<div class="carousel-list-wrapper">
 				<c:forEach var="guide" items="${guides}">
 					<div class="carousel-item span3">
-						<spd:LinkResolver value="${guide.url}" />
+						<spd:linkResolver value="${guide.url}" />
 						<a href="${url}"><spd:displayImage path="${guide.imagePath}" /></a>
 						<a href="${url}">${guide.title}</a>
 					</div>
@@ -31,8 +31,8 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 	<br />
 		<div class="new-btn">
 			<c:set var="suffix" value="-repair/repair-articles" />
-			<spd:LinkResolver value="${Constants.CATEGORIES_ROOT}/${nodeName}${suffix}" />
-			<a href="${url}" class="new-btn-small accordion-inner-btn">View All Articles</a>						
+			<spd:linkResolver value="${Constants.CATEGORIES_ROOT}/${nodeName}${suffix}" />
+			<a href="${url}" class="new-btn-small accordion-inner-btn">View All Articles</a>
 		</div>
 	</c:if>
 </c:if>

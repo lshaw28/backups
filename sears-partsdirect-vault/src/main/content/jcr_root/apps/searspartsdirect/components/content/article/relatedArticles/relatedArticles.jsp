@@ -1,6 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
-<%-- 
+<%--
 Make sure h1 and footer link are configurable!
 Carousel Shows at max 5 items, component spec sets max to display at 4
 --%>
@@ -18,7 +18,7 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 		<div class="carousel-wrapper row-fluid">
 			<c:forEach var="article" items="${articles}">
 				<div class="carousel-mobile-item span3">
-					<spd:LinkResolver value="${article.url}" />
+					<spd:linkResolver value="${article.url}" />
 					<a href="${url}"><spd:displayImage path="${article.imagePath}" /></a>
 					<a href="${url}">${article.title}</a>
 					<p>${article.description}</p>
@@ -26,13 +26,13 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 			</c:forEach>
 		</div>
 	</div>
-	
+
 	<c:if test="${fn:length(articles) eq 4}">
 		<br />
 		<div class="view-all">
 			<c:set var="suffix" value="-repair/repair-articles" />
-			<spd:LinkResolver value="${Constants.CATEGORIES_ROOT}/${nodeName}${suffix}" />
-			<a href="${url}" class="new-btn-small accordion-inner-btn">View All Articles</a>						
+			<spd:linkResolver value="${Constants.CATEGORIES_ROOT}/${nodeName}${suffix}" />
+			<a href="${url}" class="new-btn-small accordion-inner-btn">View All Articles</a>
 		</div>
 	</c:if>
 </c:if>

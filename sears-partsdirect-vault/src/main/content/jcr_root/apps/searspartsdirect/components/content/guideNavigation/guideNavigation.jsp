@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<spd:GuideNavigation />
+<spd:guideNavigation />
 
 <c:choose>
 	<c:when test="${empty sections}">

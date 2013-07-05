@@ -8,7 +8,7 @@
 			<div class="row-fluid">
 		</c:if>
 		<div class="span6">
-			<spd:LinkResolver value="${article.url}" />
+			<spd:linkResolver value="${article.url}" />
 			<c:if test="${not empty article.imagePath}">
 				<a href="${url}"><spd:displayImage path="${article.imagePath}" /></a>
 			</c:if>

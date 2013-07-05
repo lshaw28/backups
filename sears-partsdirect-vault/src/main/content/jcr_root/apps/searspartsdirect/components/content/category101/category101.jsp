@@ -27,7 +27,7 @@
 				<div class="accordion-inner">
 					<ul>
 						<c:forEach var="category" items="${categories}">
-							<spd:LinkResolver value="${category.url}" />
+							<spd:linkResolver value="${category.url}" />
 							<li><a href="${url}">${category.title}</a></li>
 						</c:forEach>
 					</ul>
@@ -36,7 +36,7 @@
 					</c:set>
 					<c:if test="${fn:length(linkText) gt 0}">
 						<c:set var="suffix" value="-repair/repair-articles" />
-						<spd:LinkResolver
+						<spd:linkResolver
 							value="${Constants.CATEGORIES_ROOT}/${nodeName}${suffix}" />
 						<a href="${url}" class="new-btn-small accordion-inner-btn">${linkText}</a>
 					</c:if>

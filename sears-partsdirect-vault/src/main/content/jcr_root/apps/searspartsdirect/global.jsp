@@ -2,8 +2,8 @@
 <%@taglib prefix="spd" uri="http://cms.testsears.com/bundles/cq/tags" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page import="java.util.LinkedList" %>
-<spd:DefineObjects />
-<spd:GetPDUrl />
+<spd:defineObjects />
+<spd:getPDUrl />
 <spd:getConstants />
 
 <c:set var="mainSitePath" scope="request">${PDUrl}</c:set>
