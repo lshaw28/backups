@@ -1,6 +1,9 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import javax.jcr.RepositoryException;
+import javax.servlet.jsp.JspException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,31 +20,50 @@ public class GetImagePathTagTest extends MocksTag {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetImagePathTagFixture(pageContext);
+		fixture = new GetImagePathTagFixture(pageContext,resourceResolver);
 		tag = new GetImagePathTag();
 	}
 
 	@Test
-	public void testFullResponsiveImage() {
+	public void testFullResponsiveImage() throws JspException {
 		fixture.setUpFullResponsiveImage();
-		try {
-			tag.setPageContext(pageContext);
-			tag.doStartTag();
-			tag.doEndTag();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		
+		tag.setPageContext(pageContext);
+		tag.doStartTag();
+		tag.doEndTag();
+		
+		assertThat(pageContext.getAttribute("displayWidth"),is(nullValue()));
+		assertThat(pageContext.getAttribute("displayHeight"),is(nullValue()));
+		assertThat(pageContext.getAttribute("linkAlt"),is(nullValue()));
+		assertThat(pageContext.getAttribute("linkURL"),is(nullValue()));
+		assertThat(pageContext.getAttribute("linkTarget"),is(nullValue()));
+		assertThat(pageContext.getAttribute("imageCaption"),is(nullValue()));
+		assertThat(pageContext.getAttribute("photoCredit"),is(nullValue()));
 	}
 	
 	@Test
-	public void testEmptyResponsiveImage() {
-		try {
-			tag.setPageContext(pageContext);
-			tag.doStartTag();
-			tag.doEndTag();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	public void testEmptyResponsiveImage() throws JspException {
+		tag.setPageContext(pageContext);
+		tag.doStartTag();
+		tag.doEndTag();
+	}
+	
+	@Test
+	public void testNonlocalResponsiveImage() throws JspException, RepositoryException {
+		fixture.setUpNonlocalResponsiveImage();
+		tag.setResourcePath(fixture.getNonlocalResourcePath());
+		
+		tag.setPageContext(pageContext);
+		tag.doStartTag();
+		tag.doEndTag();
+		
+		assertThat(pageContext.getAttribute("displayWidth"),is(not(nullValue())));
+		assertThat(pageContext.getAttribute("displayHeight"),is(not(nullValue())));
+		assertThat(pageContext.getAttribute("linkAlt"),is(not(nullValue())));
+		assertThat(pageContext.getAttribute("linkURL"),is(not(nullValue())));
+		assertThat(pageContext.getAttribute("linkTarget"),is(not(nullValue())));
+		assertThat(pageContext.getAttribute("imageCaption"),is(not(nullValue())));
+		assertThat(pageContext.getAttribute("photoCredit"),is(not(nullValue())));
 	}
 
 	@Test
