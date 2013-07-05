@@ -218,6 +218,12 @@
 		<name>getImagePathTag</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetImagePathTag</tag-class>
 		<info>Provides the path of an image</info>
+		<attribute>
+			<name>resourcePath</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	<tag>
 		<name>guideNavigation</name>

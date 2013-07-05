@@ -3,5 +3,5 @@
 	jcr:primaryType="cq:EditConfig"
 	cq:layout="editbar"
 	cq:disableTargeting="true"
-	cq:actions="[text:Top parts,-,delete,insert,copymove]" >
+	cq:actions="[text:Top parts,-,insert,copymove]" >
 </jcr:root>
