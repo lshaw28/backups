@@ -4,6 +4,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
@@ -13,6 +15,8 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
  *
  */
 public class DisplayModelHeaderTag extends CQBaseTag {
+	
+	protected final static Logger log = LoggerFactory.getLogger(DisplayModelHeaderTag.class);
 	
 	@Override
 	public int doStartTag() throws JspException {
@@ -38,7 +42,7 @@ public class DisplayModelHeaderTag extends CQBaseTag {
 				out.flush();
 			}
 			catch (Exception e) {
-				log.error(ExceptionUtils.getFullStackTrace(e));
+				log.error("Writing model header, ",e);
 			}
 		}
         return SKIP_BODY;
