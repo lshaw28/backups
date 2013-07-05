@@ -30,6 +30,7 @@ public class GetAuthorArticlesTagTest extends MocksTag {
 		try {
 			fixture.setCurrentPagePath();
 			tag.doStartTag();
+			tag.doEndTag();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
