@@ -1,7 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <form id="searchBarForm" method="post">
-	<div id="searchLeftShadow" class="search-shadow"></div>
 	<div id="searchContainer">
+		<div id="searchLeftShadow" class="search-shadow"></div>
 		<ul id="searchTabs">
 			<li id="searchTab" class="header-search-tab active"> <a data-toggle="tab" data-target="#searchContent"><i class="icon-search">&nbsp;</i> Search</a></li>
 			<li id="headerManualTab" class="header-search-tab"><a data-toggle="tab" data-target="#manualContent">Manuals & Repair Help</a></li>
@@ -54,8 +54,8 @@
 				</li>
 			</ul>
 		</div>
+		<div id="searchRightShadow" class="search-shadow"></div>
 	</div>
-	<div id="searchRightShadow" class="search-shadow"></div>
 </form>
 
 

@@ -3,6 +3,7 @@
 
 .searchPanel {
 	height: auto;
+	overflow-x: hidden;
 	padding: 50px 0 10px 0;
 	width: 100%;
 
@@ -18,22 +19,27 @@
 }
 .search-shadow {
 	height: 25px;
-	margin: 0;
-	width: 15%;
+	margin-top: -12px;
+	position: absolute;
+	top: 50%;
+	width: 185px;
 	z-index: 50;
 }
 #searchLeftShadow {
 	background: url(../../../img/headerLeftShadow.png) no-repeat 0 0;
-	margin-right: -4px;
+	left: 0;
+	margin-left: -185px;
 }
 #searchRightShadow {
 	background: url(../../../img/headerRightShadow.png) no-repeat 0 0;
-	margin-left: -3px;
+	margin-right: -185px;
+	right: 0;
 }
 #searchContainer {
 	height: auto;
 	text-align: left;
 	min-width: 650px;
+	position: relative;
 	z-index: 75;
 }
 #searchTabs {
