@@ -38,7 +38,7 @@
 		                        fieldLabel="Link"
 		                        name="url"
 		                        fieldDescription="Must be a valid link"
-		                        regex="/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/"
+		                        regex="Shc.components.extsrc.regex.ValidationPattterns.url"
 		                        xtype="textfield"/>								
 						</items>
 					</fieldConfig>
