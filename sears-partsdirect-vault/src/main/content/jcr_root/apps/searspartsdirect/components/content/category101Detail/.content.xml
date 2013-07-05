@@ -6,4 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Category 101 Detail"
 	jcr:description="List of category articles with image and description"
-	componentGroup="SearsPartsDirect" />
+	componentGroup=".hidden" />
