@@ -17,7 +17,7 @@ var responsiveDropdown = Class.extend(function () {
 			// Properties
 			this.buttonClass = 'new-btn-select';
 			this.buttonContent = 'Select';
-			this.groupClass = ''
+			this.groupClass = '';
 			this.hiddenField = null;
 			this.navigate = false;
 			// Retrieve data
