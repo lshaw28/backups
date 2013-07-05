@@ -10,34 +10,54 @@
 				<tab1   jcr:primaryType="cq:Widget"
 						allowBlank="{Boolean}false"
 						cropParameter="./image/imageCrop"
-						ddGroups="[media]" 
+						ddGroups="[media]"
 						fileNameParameter="./image/fileName"
-						fileReferenceParameter="./image/fileReference" 
+						fileReferenceParameter="./image/fileReference"
 						name="./image/file"
-						requestSuffix="/image.img.png" 
+						requestSuffix="/image.img.png"
 						rotateParameter="./image/imageRotate"
-						title="Image" 
-						uploadUrl="/tmp/upload/*" 
+						title="Image"
+						uploadUrl="/tmp/upload/*"
 						xtype="smartimage" />
-				 <tab2 jcr:primaryType="cq:Widget" 
+				 <tab2 jcr:primaryType="cq:Widget"
 					   title="Information"
 					   xtype="panel">
 					<items jcr:primaryType="cq:WidgetCollection">
-						<text jcr:primaryType="cq:Widget" 
+						<text jcr:primaryType="cq:Widget"
 								fieldLabel="Long Description"
-								name="./longDescription" 
+								name="./longDescription"
 								maxLength="560"
 								allowBlank="{Boolean}false"
 								xtype="textarea" />
-						<difficulty 
-								jcr:primaryType="cq:Widget" 
-								fieldLabel="Difficulty Level"
-								name="./difficultyLevel"
-								maxLength="1"
-								maxValue="{Long}5"
-								minValue="{Long}1"
-								fieldDescription="Choose a number from 1-5"
-								xtype="numberfield"/>
+						<difficulty
+				            jcr:primaryType="nt:unstructured"
+				            fieldLabel="Difficulty Level"
+				            name="./difficultyLevel"
+				            type="select"
+				            xtype="selection">
+				            <options jcr:primaryType="cq:WidgetCollection">
+				                <l1
+				                    jcr:primaryType="nt:unstructured"
+				                    text="1/5"
+				                    value="level-one"/>
+				                <l2
+				                    jcr:primaryType="nt:unstructured"
+				                    text="2/5"
+				                    value="level-two"/>
+								<l3
+				                    jcr:primaryType="nt:unstructured"
+				                    text="3/5"
+				                    value="level-three"/>
+								<l4
+				                    jcr:primaryType="nt:unstructured"
+				                    text="4/5"
+				                    value="level-four"/>
+								<l5
+				                    jcr:primaryType="nt:unstructured"
+				                    text="5/5"
+				                    value="level-five"/>
+				            </options>
+				        </difficulty>
 						<timeRequired
 				            jcr:primaryType="nt:unstructured"
 				            fieldLabel="Time Required"
