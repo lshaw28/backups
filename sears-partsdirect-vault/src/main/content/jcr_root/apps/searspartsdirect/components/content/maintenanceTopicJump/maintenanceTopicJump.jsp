@@ -6,7 +6,7 @@
 	<c:if test="${isEditMode}">
 		<cq:include path="/etc/spdAssets/globalConfig/maintenanceJumpMenuFirstItem" resourceType="searspartsdirect/components/content/maintenanceJumpMenuFirstItem" />
 	</c:if>
-	<p><select data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select Topic" data-navigate="true">
+	<p><select data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="${maintJumpFirstItem}" data-navigate="true">
 		<c:forEach items="${jumpTopics}" var="current" varStatus="item">
 			<option value="#${current.anchorName}">${current.linkText}</option>
 		</c:forEach>
