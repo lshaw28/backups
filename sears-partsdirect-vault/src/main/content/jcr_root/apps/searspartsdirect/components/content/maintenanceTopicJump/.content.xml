@@ -7,5 +7,5 @@
 	jcr:title="Maintenance Topic Jump Menu"
 	jcr:description="Maintenance topic jump menu, on Maintenance Tips Index page when there is more than 1 topic"
 	cq:isContainer="true"
-	componentGroup="SearsPartsDirect" />
+	componentGroup=".hidden" />
 	

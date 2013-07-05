@@ -6,5 +6,5 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Guide Navigation"
 	jcr:description="Links to section anchors on page"
-	componentGroup="SearsPartsDirect" />
+	componentGroup=".hidden" />
 	
