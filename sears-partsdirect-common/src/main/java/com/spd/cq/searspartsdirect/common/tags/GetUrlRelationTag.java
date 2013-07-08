@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.jsp.JspException;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,14 +20,15 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 /**
  * Custom tag to draw out a related asset or selector string from page selectors. For productCategory,
- * when no selectors are present will attempt to extract relation from URI.
+ * when no selectors are present will attempt to extract relation from URI. When no relationType is
+ * specified, pulls all relations.
  * @author Ben
  *
  */
 public class GetUrlRelationTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(GetUrlRelationTag.class);
-	protected String relationType;
+	protected String pRelationType;
 	
 	public final static String CATEGORY = Constants.ident("productCategory");
 	public final static String BRAND = Constants.ident("brand");
@@ -58,26 +60,12 @@ public class GetUrlRelationTag extends CQBaseTag {
 	
 	@Override
 	public int doStartTag() throws JspException {
-		String[] selectors = slingRequest.getRequestPathInfo().getSelectors();
-
-		if (selectors.length > 2) {
-
-			if (relationToSelectorIndex.containsKey(relationType)) {
-
-				int selectorIndex = relationToSelectorIndex.get(relationType);
-				String selectorValue = selectors[selectorIndex];
-				pokeRelationIntoContext(selectorValue);
-				
-			} else {
-				throw new IllegalArgumentException("Invalid relationType "+relationType);
-			}
+		if (!StringUtils.isBlank(pRelationType)) {
+			lookUpRelation(pRelationType);
 		} else {
-			if (relationToUriExtractor.containsKey(relationType)) {
-				String uriValue = extractFromUri(relationToUriExtractor.get(relationType));
-				if (uriValue != null) {
-					pokeRelationIntoContext(uriValue);
-				}
-			} // We don't throw here else, b/c we don't have a full set of extractors.
+			for (String relationType : relationToSelectorIndex.keySet()) {
+				lookUpRelation(relationType);
+			}
 		}
 
 		return SKIP_BODY;
@@ -89,7 +77,7 @@ public class GetUrlRelationTag extends CQBaseTag {
     }
 
 	public void setRelationType(String relationType) {
-		this.relationType = relationType;
+		pRelationType = relationType;
 	}
 	
 	private String extractFromUri(Pattern pattern) {
@@ -100,8 +88,31 @@ public class GetUrlRelationTag extends CQBaseTag {
 			return null;
 		}
 	}
+	
+	private void lookUpRelation(String relationType) {
+		String[] selectors = slingRequest.getRequestPathInfo().getSelectors();
 
-	private void pokeRelationIntoContext(String relationValue) {
+		if (selectors.length > 2) {
+			if (relationToSelectorIndex.containsKey(relationType)) {
+
+				int selectorIndex = relationToSelectorIndex.get(relationType);
+				String selectorValue = selectors[selectorIndex];
+				pokeRelationIntoContext(relationType, selectorValue);
+				
+			} else {
+				throw new IllegalArgumentException("Invalid relationType "+relationType);
+			}
+		} else {
+			if (relationToUriExtractor.containsKey(relationType)) {
+				String uriValue = extractFromUri(relationToUriExtractor.get(relationType));
+				if (uriValue != null) {
+					pokeRelationIntoContext(relationType, uriValue);
+				}
+			} // We don't throw here else, b/c we don't have a full set of extractors.
+		}
+	}
+
+	private void pokeRelationIntoContext(String relationType, String relationValue) {
 		if (assetRelations.contains(relationType)) {
 			AssetType assetTypeEnum = AssetType.valueOf(relationType.toUpperCase());
 			
