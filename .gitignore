@@ -1,13 +1,29 @@
+# Project Files #
+#################
+build.xml
+!/sears-partsdirect--common/pom.xml
+!/sears-partsdirect-vault/src/main/content/jcr_root/apps/searspartsdirect/components/content/backButton/analytics/.content.xml
+
+# AEM Files #
+#############
+*.vlt
+
 # NetBeans Files #
-#####################
+##################
 /nbproject/
 /nbproject/private/
 */nb-configuration.xml
-build.xml
-!/sears-partsdirect--common/pom.xml
-*.vlt
+
+# Eclipse Files #
+#################
 *.project
 *.settings
+/.metadata/
+
+# Mac Files #
+#############
 *.DS_Store
+
+# Other Files #
+###############
 *.*~
-!/sears-partsdirect-vault/src/main/content/jcr_root/apps/searspartsdirect/components/content/backButton/analytics/.content.xml

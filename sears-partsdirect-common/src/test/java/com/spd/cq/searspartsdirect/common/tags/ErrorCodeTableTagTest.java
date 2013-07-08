@@ -29,6 +29,7 @@ public class ErrorCodeTableTagTest extends MocksTag {
 		ErrorCodeTableTag tag = new ErrorCodeTableTag();
 		tag.setPageContext(pageContext);
 		tag.doStartTag();
+		tag.doEndTag();
 		
 		Assert.assertNotNull(pageContext.getAttribute("errorCodeTableData"));
 		Map<String, List<ErrorCodeModel>> errorCodeTableData = (Map<String, List<ErrorCodeModel>>) pageContext.getAttribute("errorCodeTableData");

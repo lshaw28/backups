@@ -7,4 +7,4 @@
 	jcr:title="Maintenance Index Title"
 	jcr:description="Title on Maintenance Index page"
 	cq:isContainer="true"
-	componentGroup="SearsPartsDirect" />
+	componentGroup=".hidden" />

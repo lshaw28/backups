@@ -17,12 +17,10 @@ public class GetConstantsTag extends CQBaseTag {
 
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(GetConstantsTag.class);
-	private ConstantModel constants;
+	private static final ConstantModel constants = new ConstantModel();
 
 	@Override
 	public int doStartTag() throws JspException {
-		
-		constants = new ConstantModel();
 		pageContext.setAttribute("Constants", constants);
 		return SKIP_BODY;
 	}

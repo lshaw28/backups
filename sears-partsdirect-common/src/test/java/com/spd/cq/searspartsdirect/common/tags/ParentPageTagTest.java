@@ -1,6 +1,7 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.junit.Before;
@@ -24,39 +25,54 @@ public class ParentPageTagTest extends MocksTag {
 	}
 
 	@Test
-	public void testWithParent() {
-		try {
-			fixture.setUpParent();
-			
-			tag.setPageContext(pageContext);
-			int startResult = tag.doStartTag();
-			assertThat(startResult,is(TagSupport.SKIP_BODY));
-			int endResult = tag.doEndTag();
-			assertThat(endResult,is(TagSupport.EVAL_PAGE));
-			String parent = (String)pageContext.getAttribute("parentPage");
-			
-			assertThat(parent,is(fixture.getParent()));
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	public void testWithParent() throws JspException {
+		
+		fixture.setUpParent();
+		
+		runsSkipsBodyEvalsPage();
+		
+		String parent = (String)pageContext.getAttribute("parentPage");
+		assertThat(parent,is(fixture.getParent()));
 	}
 
 	@Test
-	public void testWithoutParent() {
-		try {
-			fixture.setUpNoParent();
-			
-			tag.setPageContext(pageContext);
-			int startResult = tag.doStartTag();
-			assertThat(startResult,is(TagSupport.SKIP_BODY));
-			int endResult = tag.doEndTag();
-			assertThat(endResult,is(TagSupport.EVAL_PAGE));
-			String parent = (String)pageContext.getAttribute("parentPage");
-			
-			assertThat(parent,is(nullValue()));
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	public void testWithoutParent() throws JspException {
+
+		fixture.setUpNoParent();
+		
+		runsSkipsBodyEvalsPage();
+		
+		String parent = (String)pageContext.getAttribute("parentPage");
+		assertThat(parent,is(nullValue()));
+	}
+	
+	@Test
+	public void testWithNullPathParent() throws JspException {
+
+		fixture.setUpNullPathParent();
+		
+		runsSkipsBodyEvalsPage();
+		
+		String parent = (String)pageContext.getAttribute("parentPage");
+		assertThat(parent,is(nullValue()));
+	}
+	
+	@Test
+	public void testWithEmptyPathParent() throws JspException {
+
+		fixture.setUpEmptyPathParent();
+		
+		runsSkipsBodyEvalsPage();
+		
+		String parent = (String)pageContext.getAttribute("parentPage");
+		assertThat(parent,is(nullValue()));
 	}
 
+	private void runsSkipsBodyEvalsPage() throws JspException {
+		tag.setPageContext(pageContext);
+		int startResult = tag.doStartTag();
+		assertThat(startResult,is(TagSupport.SKIP_BODY));
+		int endResult = tag.doEndTag();
+		assertThat(endResult,is(TagSupport.EVAL_PAGE));
+	}
 }

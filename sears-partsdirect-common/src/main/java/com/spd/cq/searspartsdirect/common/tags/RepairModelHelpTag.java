@@ -2,10 +2,14 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import javax.servlet.jsp.JspException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.day.cq.wcm.api.Page;
 
 public class RepairModelHelpTag extends CQBaseTag {
 	
+	protected static final Logger log = LoggerFactory.getLogger(RepairModelHelpTag.class);
 	private static final long serialVersionUID = 1L;
 
 	@Override

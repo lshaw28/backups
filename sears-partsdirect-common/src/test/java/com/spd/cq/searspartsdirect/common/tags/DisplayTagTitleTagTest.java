@@ -20,7 +20,7 @@ public class DisplayTagTitleTagTest extends MocksTag {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new DisplayTagTitleTagFixture(resourceResolver);
+		fixture = new DisplayTagTitleTagFixture(resourceResolver,pageContext);
 		tag = new DisplayTagTitleTag();
 	}
 

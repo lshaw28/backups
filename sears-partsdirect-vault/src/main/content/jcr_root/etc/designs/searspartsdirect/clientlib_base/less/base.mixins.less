@@ -37,7 +37,6 @@
 	@ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{oP})";
 	-ms-filter: "@{ms-filter}";
 }
-
 .verticalGradient(@s: @bodyColor, @e: @secondaryHueDarkest) {
 	background: @s;
 	background: -moz-linear-gradient(top, @s 0%, @e 100%);
@@ -59,8 +58,8 @@
 	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{s}', endColorstr='@{e}', GradientType=1)";
 }
 .boxShadow(@v: 0 0 0 0 @bodyColor) {
-	-moz-box-shadow: @v;
 	-webkit-box-shadow: @v;
+	-moz-box-shadow: @v;
 	-o-box-shadow: @v;
 	-ms-box-shadow: @v;
 	box-shadow: @v;
@@ -70,4 +69,11 @@
 	-moz-transition: @v;
 	-o-transition: @v;
 	transition: @v;
+}
+.boxSizing(@v: border-box) {
+	-webkit-box-sizing: @v;
+	-moz-box-sizing: @v;
+	-ms-box-sizing: @v;
+	-o-box-sizing: @v;
+	box-sizing: @v;
 }

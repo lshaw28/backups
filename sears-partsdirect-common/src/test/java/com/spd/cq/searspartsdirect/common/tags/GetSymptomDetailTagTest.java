@@ -30,8 +30,10 @@ public class GetSymptomDetailTagTest extends MocksTag {
 
 	@Test
 	public void testDostartTag() throws RepositoryException, JspException {
-		fixture.setupFixture();
+		fixture.setupFixtureComplete();
 		tag.setPageContext(pageContext);
+		tag.setPartsRequired(true);
+		assertThat(tag.isPartsRequired(),is(true));
 		tag.doStartTag();
 		
 		Assert.assertNotNull(pageContext.getAttribute("modelSymptom"));
@@ -40,10 +42,43 @@ public class GetSymptomDetailTagTest extends MocksTag {
 		Assert.assertNotNull(model.getJobCodeModels());
 		Assert.assertNotNull(model.getJobCodeModels().size() > 0);
 		Assert.assertNotNull(model.getSymptomModel());
+		tag.setPartsRequired(false);
+		assertThat(tag.isPartsRequired(),is(false));
+		runTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testNoHitProps() throws RepositoryException {
+		fixture.setUpNoHitProps();
+		runTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testEmptyHitProps() throws RepositoryException {
+		fixture.setUpEmptyHitProps();
+		runTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testNoJobCodeProps() throws RepositoryException {
+		fixture.setUpNoJobCodeProps();
+		runTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testNoJobCodePages() throws RepositoryException {
+		fixture.setUpNoJobCodePages();
+		runTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testNoJobCodePageProps() throws RepositoryException {
+		fixture.setUpNoJobCodePageProps();
 		runTagSkipsBodyEvalsPage();
 	}
 
 	private void runTagSkipsBodyEvalsPage() {
+		tag.setPageContext(pageContext);
 		int startResult = Integer.MIN_VALUE;
 		int endResult = Integer.MIN_VALUE;
 		try {

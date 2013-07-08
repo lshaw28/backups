@@ -3,6 +3,8 @@ package com.spd.cq.searspartsdirect.common.tags;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import java.io.IOException;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
@@ -19,30 +21,34 @@ public class DisplayModelHeaderTagTest extends MocksTag {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
+		fixture = new DisplayModelHeaderTagFixture(slingRequest, pageContext);
 		tag = new DisplayModelHeaderTag();
 	}
 	
 	@Test
 	public void testWithSelectors() throws JspException {
+		fixture.setUpWithSelectors();
 		runTagShouldSkipBodyEvalPage();
 	}
 	
 	@Test
 	public void testWithoutSelectors() throws JspException {
+		fixture.setUpWithoutSelectors();
 		runTagShouldSkipBodyEvalPage();
 	}
 	
 	@Test
-	public void testExceptions() throws JspException {
-		
+	public void testExceptions() throws JspException, IOException {
+		fixture.setUpWithSelectors();
+		fixture.setUpExceptions();
 		runTagShouldSkipBodyEvalPage();
 	}
 	
 	private void runTagShouldSkipBodyEvalPage() throws JspException {
-		/*tag.setPageContext(pageContext);
+		tag.setPageContext(pageContext);
 		int startResult = tag.doStartTag();
 		assertThat(startResult,is(TagSupport.SKIP_BODY));
 		int endResult = tag.doEndTag();
-		assertThat(endResult,is(TagSupport.EVAL_PAGE));*/
+		assertThat(endResult,is(TagSupport.EVAL_PAGE));
 	}
 }

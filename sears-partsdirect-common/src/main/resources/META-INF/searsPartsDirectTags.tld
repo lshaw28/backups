@@ -193,17 +193,6 @@
 		<info>Provides the Brand Category and Model No.</info>
 	</tag>
 	<tag>
-		<name>getModelSymptoms</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.ModelSymptomsTag</tag-class>
-		<info>Get repair symptoms for the given model no.</info>
-		<attribute>
-			<name>modelNumber</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-	<tag>
 		<name>getErrorCodesList</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetErrorCodesListTag</tag-class>
 		<info>This tag will get all error code table group by brand</info>
@@ -218,6 +207,12 @@
 		<name>getImagePathTag</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetImagePathTag</tag-class>
 		<info>Provides the path of an image</info>
+		<attribute>
+			<name>resourcePath</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	<tag>
 		<name>guideNavigation</name>

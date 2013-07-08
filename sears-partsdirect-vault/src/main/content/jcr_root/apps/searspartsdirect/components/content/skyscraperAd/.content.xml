@@ -6,5 +6,4 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Skyscraper Advertisement"
 	jcr:description="Responsive skyscraper advertisement."
-	sling:resourceSuperType="searspartsdirect/components/content/responsiveImage"
-	componentGroup="SearsPartsDirect" />
+	componentGroup=".hidden" />

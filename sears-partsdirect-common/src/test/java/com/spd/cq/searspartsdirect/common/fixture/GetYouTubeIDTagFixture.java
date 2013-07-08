@@ -31,4 +31,8 @@ public class GetYouTubeIDTagFixture {
 		when(properties.get("youTubeLink", "")).thenReturn(getInvalidID());
 	}
 
+	public void setupExplodingID() {
+		when(properties.get("youTubeLunk", "")).thenReturn(null);
+	}
+
 }
