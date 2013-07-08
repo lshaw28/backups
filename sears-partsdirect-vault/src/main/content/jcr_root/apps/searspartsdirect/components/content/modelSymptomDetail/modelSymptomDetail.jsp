@@ -1,51 +1,35 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-<spd:GetUrlRelation relationType="productCategory" />
-<%-- <spd:GetUrlRelation relationType="brand" />--%>
-<%-- <spd:GetUrlRelation relationType="model" />--%>
+<spd:getSymptomDetail partsRequired="true" />
 
-<%-- <h2>
-Repair Symptoms for ${brandRelation.title} ${productCategoryRelation.title} Model #${modelRelation.title}
-</h2>--%>
+<h1>${modelSymptom.symptomModel.title}</h1>
+<p>${modelSymptom.symptomModel.description}</p>
 
-${productCategoryRelation.path}
+<c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
+	<c:choose>
+		<c:when test="${jobCode.partTypeModel != null &&  jobCode.partTypeModel.imagePath != null}">
+			<spd:displayImage path="${jobCode.partTypeModel.imagePath}"/>
+		</c:when>
+		<c:otherwise>
+			<p>show a default no jobcode part type image</p>
+		</c:otherwise>
+	</c:choose>
+	<h3>${jobCode.title}</h3>
+	<p>${jobCode.description}</p>
 
-<spd:getModelSymptoms categoryPath="${productCategoryRelation.path}" />
-
-<c:forEach var="symptom" items="${categorySymptoms}">
-	<p><a href="/<brand>/<category>/model-<model-number>-repair/symptom/${symptom.id}">${symptom.title}</a></p>
-</c:forEach>
-
-<%-- <spd:getRelation single="true" assetType="productCategory"/> --%>
-
-<%-- 
-<c:choose>
-	<c:when test="${productCategoryRelation != null}">
-		<h2>
-			<!--  <cq:text property="text1" placeholder=""/> -->
-			${productCategoryRelation.title} Symptoms
-			<!--  <cq:text property="text2" placeholder=""/> -->
-		</h2>
-		<p><cq:text property="optionalDescription" placeholder=""/></p>
-
-		<spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryRelation.path}" />
-		<c:forEach var="symptom" items="${symptomList}" varStatus="currentItem">
-			<c:choose>
-				<c:when test="${currentItem.count % 2 eq 1}">
-					<div class="row-fluid">
-				</c:when>
-			</c:choose>
-				<div class="span6">
-					<a href="/${productCategoryRelation.title}-repair/symptom/${symptom.id}">${symptom.title}</a>
-				</div>
-			<c:choose>
-				<c:when test="${currentItem.count % 2 eq 0 or currentItem.last}">
-					</div>
-				</c:when>
-			</c:choose>
+	Guides:-
+	<c:if test="${not empty jobCode.guides}">
+		<c:forEach var="guide" items="${jobCode.guides}">
+			<spd:linkResolver value="${guide.url}"/>
+			<p><a href="${url}">${guide.title}</a></p>
 		</c:forEach>
-	</c:when>
-	<c:otherwise>
-		<p>No items are available.</p>
-	</c:otherwise>
-</c:choose> --%>
+	</c:if>
+
+	<c:if test="${jobCode.partTypeModel != null}">
+		<p>Don't have your model number?
+			<a href="http://www.searspartsdirect.com/partsdirect/part-model/Frigidaire-Parts/Cooktop-Parts/Model-33003/1428/0121050&partType=${jobCode.partTypeModel.title}">
+				Shop ${jobCode.partTypeModel.title}
+			</a>
+		</p>
+	</c:if>
+</c:forEach>
