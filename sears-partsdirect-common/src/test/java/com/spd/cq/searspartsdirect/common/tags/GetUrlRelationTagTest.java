@@ -100,6 +100,28 @@ public class GetUrlRelationTagTest extends MocksTag {
 		assertTrue(fixture.getModel().equals(mr));
 	}
 	
+	@Test
+	public void testGetAllRelations() throws JspException {
+		fixture.setUpSelectors();
+		fixture.setUpProductCategory();
+		fixture.setUpBrand();
+		
+		runsSkipsBodyEvalsPage();
+		
+		Object pcr = pageContext.getAttribute("productCategoryRelation");
+		assertThat(pcr,not(nullValue()));
+		assertTrue(pcr.getClass().equals(ProductCategoryModel.class));
+		
+		Object br = pageContext.getAttribute("brandRelation");
+		assertThat(br,not(nullValue()));
+		assertTrue(br.getClass().equals(BrandModel.class));
+		
+		Object mr = pageContext.getAttribute("modelRelation");
+		assertThat(mr,not(nullValue()));
+		assertTrue(mr.getClass().equals(String.class));
+		assertTrue(fixture.getModel().equals(mr));
+	}
+	
 	private void runsSkipsBodyEvalsPage() throws JspException {
 		tag.setPageContext(pageContext);
 		assertThat(tag.doStartTag(), is(TagSupport.SKIP_BODY));
