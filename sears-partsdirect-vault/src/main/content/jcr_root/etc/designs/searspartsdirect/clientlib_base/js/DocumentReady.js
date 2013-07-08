@@ -82,19 +82,19 @@
 			var newGuideNavigation = new guideNavigation($(this));
 			newGuideNavigation.setBreakPoint($(this).offset()['top']);
 			newGuideNavigation.setClassToggles('gn-sticky', 'gn-unsticky');
-
 			return $(window).scroll(function() {
 				var scrollDist;
 				scrollDist = $(window).scrollTop();
 				newGuideNavigation.checkState(scrollDist);
 			});
-
 		});
-
+		/*
+		 * collapse101 class setup, extends Twitter Bootstrap collapse
+		 */
         $('[data-toggle="collapse101"]').each(function () {
             var newCollapse101 = new Collapse101($(this));
         });
-        
+
         $('.category101').each(function() {
             var newCategory101 = new category101($(this));
         });
