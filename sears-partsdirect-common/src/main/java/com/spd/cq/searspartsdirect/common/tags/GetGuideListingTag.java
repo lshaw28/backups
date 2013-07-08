@@ -14,14 +14,11 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
-import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
 import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
-
-import org.apache.commons.lang.StringUtils;
 
 public class GetGuideListingTag extends CQBaseTag{
 
@@ -39,7 +36,7 @@ public class GetGuideListingTag extends CQBaseTag{
 			HashMap<String, String> props = new HashMap<String, String>();
 			props.put("type", "cq:Page");
 			props.put("path", Constants.GUIDES_ROOT);
-			props.put("property", "jcr:content/pages");
+			props.put("property", Constants.ASSETS_PAGES_REL_PATH);
 			props.put("property.value", categoryPath);
 
 			List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();

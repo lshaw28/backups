@@ -34,7 +34,7 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 			HashMap<String, String> props = new HashMap<String, String>();
 			props.put("type", "cq:Page");
 			props.put("path", Constants.ARTICLES_ROOT);
-			props.put("property", "jcr:content/pages");
+			props.put("property", Constants.ASSETS_PAGES_REL_PATH);
 			props.put("property.value", categoryPath);
 
 			List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();

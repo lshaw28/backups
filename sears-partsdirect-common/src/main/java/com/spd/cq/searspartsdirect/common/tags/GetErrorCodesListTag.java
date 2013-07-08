@@ -45,7 +45,7 @@ public class GetErrorCodesListTag extends CQBaseTag {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("path", Constants.ERROR_TABLES_ROOT);
 			map.put("type", Constants.CQ_PAGE);
-			map.put("property", "jcr:content/pages");
+			map.put("property", Constants.ASSETS_PAGES_REL_PATH);
 			map.put("property.value", categoryPath);
 
 			builder = resourceResolver.adaptTo(QueryBuilder.class);
@@ -104,7 +104,7 @@ public class GetErrorCodesListTag extends CQBaseTag {
 				}
 			});
 
-		   for (BrandModel brandModel : brandKeys) {
+		for (BrandModel brandModel : brandKeys) {
 				errorCodeList.put(brandModel, tempErrorCodeList.get(brandModel));
 			}
 
