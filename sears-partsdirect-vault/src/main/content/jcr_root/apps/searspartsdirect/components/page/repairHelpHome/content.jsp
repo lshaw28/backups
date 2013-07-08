@@ -4,7 +4,7 @@
 	<spd:displayModelHeader/>
 	<div class="row-fluid">
 		<div class="span12">
-			<cq:include path="header" resourceType="searspartsdirect/components/content/header" />
+			<cq:include path="pageTitleHeader" resourceType="searspartsdirect/components/content/pageTitleHeader" />
 		</div>
 	</div>
 	<div class="row-fluid">
