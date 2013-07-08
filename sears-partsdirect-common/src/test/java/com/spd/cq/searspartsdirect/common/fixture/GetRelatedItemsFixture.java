@@ -47,6 +47,10 @@ public class GetRelatedItemsFixture {
 			when(hit.getPath()).thenReturn(hitPath);
 			when(page.getPath()).thenReturn(hitPath);
 			ValueMap properties = mock(ValueMap.class);
+			if (i % 2 == 0) {
+				when(properties.containsKey("abstracttext")).thenReturn(true);
+				when(properties.get("abstracttext")).thenReturn("abstract "+i);
+			}
 			when(page.getProperties()).thenReturn(properties);
 			when(pageManager.getPage(hitPath)).thenReturn(page);
 			
