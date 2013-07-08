@@ -1,5 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-
 <spd:getRelation single="true" assetType="productCategory"/>
 <spd:getRelation single="true" assetType="brand"/>
 <spd:tagsByPage tagType="subcategories"/>

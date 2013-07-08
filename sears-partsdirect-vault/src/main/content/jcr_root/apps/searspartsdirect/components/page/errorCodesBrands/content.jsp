@@ -3,7 +3,7 @@
 	<cq:include path="/content/searspartsdirect/en/jcr:content/breadcrumbNavigation" resourceType="/apps/searspartsdirect/components/base/breadcrumbNavigation" />
 	<div class="row-fluid">
 		<div class="span12">
-			<cq:include path="errorCodesList" resourceType="searspartsdirect/components/content/errorCodesList" />
+			<cq:include path="errorCodesTable" resourceType="searspartsdirect/components/content/errorCodesTable" />
 		</div>
 	</div>
 </article>

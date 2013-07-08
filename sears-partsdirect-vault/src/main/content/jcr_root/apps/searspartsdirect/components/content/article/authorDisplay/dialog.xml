@@ -12,7 +12,7 @@
 				<pages
 	        			jcr:primaryType="cq:Widget"
 	        			name="./authors"
-						treeRootPath="/content/searspartsdirect/en/authors"
+						treeRootPath="/content/searspartsdirect/en/author"
 	        			hideLabel="{Boolean}false"
 	        			fieldLabel="Select Author Page"
 	        			xtype="pagemapper"/>

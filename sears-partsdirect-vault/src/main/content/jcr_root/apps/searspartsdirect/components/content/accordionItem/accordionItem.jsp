@@ -13,7 +13,7 @@
 		</div>
 		<div id="${uniqueId}" class="accordion-body collapse">
 			<div class="accordion-inner">
-				<cq:text property="text" placeholder="Accordion body text goes here"/>
+				<cq:include path="instructionsParsys" resourceType="foundation/components/parsys" />
 			</div>
 		</div>
 	</div>

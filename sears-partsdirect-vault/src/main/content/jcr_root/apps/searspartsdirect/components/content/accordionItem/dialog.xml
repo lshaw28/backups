@@ -14,11 +14,6 @@
 					name="./accordionHeader"
 					xtype="textfield" />
 			
-			<body
-					jcr:primaryType="cq:Widget"
-					path="/apps/searspartsdirect/components/content/text/dialog.infinity.json"
-					xtype="cqinclude"/>
-			
 			</items>
 		</panel>
 	</items>
