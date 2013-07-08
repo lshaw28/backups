@@ -4,6 +4,7 @@
 
 <c:when test="${fn:length(authors) lt 1 }">
 	<p class="authorMessage" />
+</c:when>
 <c:otherwise>
 	<c:set var="s" value="${fn:length(authors) gt 1? 's':''}" />
 	<p>
