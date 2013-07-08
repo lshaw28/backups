@@ -19,7 +19,7 @@
 					</li>
 				</ul>
 			</div><button id="searchModelsParts" class="new-btn new-btn-search">Search</button>
-			<p>Can't locate your model number? <a data-toggle="reveal" data-target="#findMyModel" id="newFinderModel">Use our finder <i class="icon-angle-down">&nbsp;</i></a></p>
+			<p>Can't locate your model number? <a data-toggle="reveal" data-target="#findMyModel" id="newFinderModel">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
 			<input name="pathTaken" id="pathTaken" type="hidden"/>
 			<input name="prst" id="prst" type="hidden"/>
 			<input name="shdMod" id="shdMod" type="hidden"/>
