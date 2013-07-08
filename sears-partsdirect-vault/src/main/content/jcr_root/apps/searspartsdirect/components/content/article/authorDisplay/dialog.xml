@@ -8,18 +8,12 @@
 			jcr:primaryType="cq:Widget"
 			xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-			
-				<pages
-	        			jcr:primaryType="cq:Widget"
-	        			name="./authors"
-						treeRootPath="/content/searspartsdirect/en/author"
-	        			hideLabel="{Boolean}false"
-	        			fieldLabel="Select Author Page"
-	        			xtype="pagemapper"/>
+
 	        	<position
 	        			jcr:primaryType="cq:Widget"
 	        			name="./authorPosition"
 	        			fieldLabel="Author Position"
+	        			fieldDescription="override default author title"
 	        			xtype="textfield"/>
 	        			
 			</items>

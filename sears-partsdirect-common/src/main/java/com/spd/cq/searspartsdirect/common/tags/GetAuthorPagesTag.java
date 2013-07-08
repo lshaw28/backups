@@ -28,7 +28,7 @@ public class GetAuthorPagesTag  extends CQBaseTag {
 
 		try {
 			
-			Value[] values = currentNode.getProperty("authors").getValues();
+			Value[] values = currentPage.getProperties().get("authors",new Value[0]);
 
 			for(Value path: values){
 				Page p = pageManager.getPage(path.getString());
