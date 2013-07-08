@@ -82,19 +82,26 @@
 			var newGuideNavigation = new guideNavigation($(this));
 			newGuideNavigation.setBreakPoint($(this).offset()['top']);
 			newGuideNavigation.setClassToggles('gn-sticky', 'gn-unsticky');
+
 			return $(window).scroll(function() {
 				var scrollDist;
 				scrollDist = $(window).scrollTop();
 				newGuideNavigation.checkState(scrollDist);
 			});
+
 		});
-		/*
-		 * collapse101 class setup, extends Twitter Bootstrap collapse
-		 */
+        /**
+         * collapse101 component setup
+         * NOTE: collapse101 is based on Twitter Bootstrap's
+         * collapse component with modifications to make it
+         * behave responsively the way Sears UX wanted.
+         */
         $('[data-toggle="collapse101"]').each(function () {
             var newCollapse101 = new Collapse101($(this));
         });
-
+        /**
+         * category101 component setup
+         */
         $('.category101').each(function() {
             var newCategory101 = new category101($(this));
         });
