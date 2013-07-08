@@ -1,5 +1,10 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
+import java.io.StringWriter;
+
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
+
 import org.apache.sling.api.resource.ResourceResolver;
 
 import com.day.cq.tagging.Tag;
@@ -10,10 +15,13 @@ import static org.mockito.Mockito.*;
 public class DisplayTagTitleTagFixture {
 
 	private TagManager tm;
+	private JspWriter bitbucket;
 	
-	public DisplayTagTitleTagFixture(ResourceResolver resourceResolver) {
+	public DisplayTagTitleTagFixture(ResourceResolver resourceResolver, PageContext pageContext) {
 		tm = mock(TagManager.class);
 		when(resourceResolver.adaptTo(TagManager.class)).thenReturn(tm);
+		bitbucket = mock(JspWriter.class);
+		when(pageContext.getOut()).thenReturn(bitbucket);
 	}
 
 	public String getTagId() {
