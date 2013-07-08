@@ -4,152 +4,206 @@
 		title="Search Panel"
 		xtype="tabpanel">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<tab1   jcr:primaryType="cq:Widget"
-			    title="Item 1"
-			    xtype="panel">
-			    <items jcr:primaryType="cq:WidgetCollection">
-					<header jcr:primaryType="cq:Widget" 
-					       fieldLabel="Header" 
-					       name="./header1" 
-					       xtype="textfield" />
-					<subheader jcr:primaryType="cq:Widget" 
-					       fieldLabel="Subheader" 
-					       name="./subheader1" 
-					       xtype="textfield" />
-					<url 	jcr:primaryType="cq:Widget"
-	                        fieldLabel="Link"
-	                        name="./url1"
-	                        regex="Shc.components.extsrc.regex.ValidationPattterns.url"
-	                        fieldDescription="Must be a valid link"
-	                        xtype="textfield"/>   
-					<icon
-			            jcr:primaryType="nt:unstructured"
-			            fieldLabel="Choose Icon"
-			            name="./panelIcon1"
-			            type="select"
-			            xtype="selection">
-			            <options jcr:primaryType="cq:WidgetCollection">
-			                <iconOne
-			                    jcr:primaryType="nt:unstructured"
-			                    text="First Icon"
-			                    value="iconONe"/>
-			                <iconTwo
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Second Icon"
-			                    value="iconTwo"/>
-			                <iconThree
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Third Icon"
-			                    value="iconThree"/>
-			                <iconFour
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Fourth Icon"
-			                    value="iconFour"/>
-			                <iconFive
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Fifth Icon"
-			                    value="iconFive"/>
-			            </options>
-					</icon>   
-			    </items>
+		<tab1 jcr:primaryType="cq:Widget"
+			title="Item 1"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<header jcr:primaryType="cq:Widget"
+					fieldLabel="Header"
+					name="./header1"
+					xtype="textfield" />
+				<subheader jcr:primaryType="cq:Widget"
+					fieldLabel="Subheader"
+					name="./subheader1"
+					xtype="textfield" />
+				<url jcr:primaryType="cq:Widget"
+					fieldLabel="Link"
+					name="./url1"
+					regex="Shc.components.extsrc.regex.ValidationPattterns.url"
+					fieldDescription="Must be a valid link"
+					xtype="textfield"/>
+				<url1Target
+					jcr:primaryType="cq:Widget"
+					fieldLabel="Target"
+					name="./url1Target"
+					type="select"
+					xtype="selection">
+					<options
+						jcr:primaryType="cq:WidgetCollection">
+						<r1
+							jcr:primaryType="nt:unstructured"
+							text="New Window"
+							value="_blank" />
+						<r2
+							jcr:primaryType="nt:unstructured"
+							text="This Window"
+							value="_self" />
+					</options>
+				</url1Target>
+				<icon
+					jcr:primaryType="nt:unstructured"
+					fieldLabel="Choose Icon"
+					name="./panelIcon1"
+					type="select"
+					xtype="selection">
+					<options jcr:primaryType="cq:WidgetCollection">
+						<iconOne
+							jcr:primaryType="nt:unstructured"
+							text="File"
+							value="icon-file-alt"/>
+						<iconTwo
+							jcr:primaryType="nt:unstructured"
+							text="Bell"
+							value="icon-bell"/>
+						<iconThree
+							jcr:primaryType="nt:unstructured"
+							text="Envelope"
+							value="icon-envelope"/>
+						<iconFour
+							jcr:primaryType="nt:unstructured"
+							text="Home"
+							value="icon-home"/>
+						<iconFive
+							jcr:primaryType="nt:unstructured"
+							text="Heart"
+							value="icon-heart-empty"/>
+					</options>
+				</icon>
+			</items>
 		 </tab1>
-		 <tab2   jcr:primaryType="cq:Widget"
-			    title="Item 2"
-			    xtype="panel">
-			    <items jcr:primaryType="cq:WidgetCollection">
-					<header jcr:primaryType="cq:Widget" 
-					       fieldLabel="Header" 
-					       name="./header2" 
-					       xtype="textfield" />
-					<subheader jcr:primaryType="cq:Widget" 
-					       fieldLabel="Subheader" 
-					       name="./subheader2" 
-					       xtype="textfield" />
-					<url 	jcr:primaryType="cq:Widget"
-	                        fieldLabel="Link"
-	                        name="./url2"
-	                        fieldDescription="Must be a valid link"
-	                        regex="Shc.components.extsrc.regex.ValidationPattterns.url"
-	                        xtype="textfield"/> 
-					<icon
-			            jcr:primaryType="nt:unstructured"
-			            fieldLabel="Choose Icon"
-			            name="./panelIcon2"
-			            type="select"
-			            xtype="selection">
-			            <options jcr:primaryType="cq:WidgetCollection">
-			                <iconOne
-			                    jcr:primaryType="nt:unstructured"
-			                    text="First Icon"
-			                    value="iconONe"/>
-			                <iconTwo
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Second Icon"
-			                    value="iconTwo"/>
-			                <iconThree
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Third Icon"
-			                    value="iconThree"/>
-			                <iconFour
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Fourth Icon"
-			                    value="iconFour"/>
-			                <iconFive
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Fifth Icon"
-			                    value="iconFive"/>
-			            </options>
-					</icon>   
-			    </items>
+		 <tab2 jcr:primaryType="cq:Widget"
+			title="Item 2"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<header jcr:primaryType="cq:Widget"
+					fieldLabel="Header"
+					name="./header2"
+					xtype="textfield" />
+				<subheader jcr:primaryType="cq:Widget"
+					fieldLabel="Subheader"
+					name="./subheader2"
+					xtype="textfield" />
+				<url jcr:primaryType="cq:Widget"
+					fieldLabel="Link"
+					name="./url2"
+					fieldDescription="Must be a valid link"
+					regex="Shc.components.extsrc.regex.ValidationPattterns.url"
+					xtype="textfield"/>
+				<url2Target
+					jcr:primaryType="cq:Widget"
+					fieldLabel="Target"
+					name="./url2Target"
+					type="select"
+					xtype="selection">
+					<options
+						jcr:primaryType="cq:WidgetCollection">
+						<r1
+							jcr:primaryType="nt:unstructured"
+							text="New Window"
+							value="_blank" />
+						<r2
+							jcr:primaryType="nt:unstructured"
+							text="This Window"
+							value="_self" />
+					</options>
+				</url2Target>
+				<icon
+					jcr:primaryType="nt:unstructured"
+					fieldLabel="Choose Icon"
+					name="./panelIcon2"
+					type="select"
+					xtype="selection">
+					<options jcr:primaryType="cq:WidgetCollection">
+						<iconOne
+							jcr:primaryType="nt:unstructured"
+							text="File"
+							value="icon-file-alt"/>
+						<iconTwo
+							jcr:primaryType="nt:unstructured"
+							text="Bell"
+							value="icon-bell"/>
+						<iconThree
+							jcr:primaryType="nt:unstructured"
+							text="Envelope"
+							value="icon-envelope"/>
+						<iconFour
+							jcr:primaryType="nt:unstructured"
+							text="Home"
+							value="icon-home"/>
+						<iconFive
+							jcr:primaryType="nt:unstructured"
+							text="Heart"
+							value="icon-heart-empty"/>
+					</options>
+				</icon>
+			</items>
 		</tab2>
-		<tab3   jcr:primaryType="cq:Widget"
-			    title="Item 3"
-			    xtype="panel">
-			    <items jcr:primaryType="cq:WidgetCollection">
-					<header jcr:primaryType="cq:Widget" 
-					       fieldLabel="Header" 
-					       name="./header3" 
-					       xtype="textfield" />
-					<subheader jcr:primaryType="cq:Widget" 
-					       fieldLabel="Subheader" 
-					       name="./subheader3" 
-					       xtype="textfield" />
-					<url 	jcr:primaryType="cq:Widget"
-	                        fieldLabel="Link"
-	                        name="./url3"
-	                        fieldDescription="Must be a valid link"
-	                        regex="Shc.components.extsrc.regex.ValidationPattterns.url"
-	                        xtype="textfield"/> 
-					<icon
-			            jcr:primaryType="nt:unstructured"
-			            fieldLabel="Choose Icon"
-			            name="./panelIcon3"
-			            type="select"
-			            xtype="selection">
-			            <options jcr:primaryType="cq:WidgetCollection">
-			                <iconOne
-			                    jcr:primaryType="nt:unstructured"
-			                    text="First Icon"
-			                    value="iconONe"/>
-			                <iconTwo
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Second Icon"
-			                    value="iconTwo"/>
-			                <iconThree
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Third Icon"
-			                    value="iconThree"/>
-			                <iconFour
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Fourth Icon"
-			                    value="iconFour"/>
-			                <iconFive
-			                    jcr:primaryType="nt:unstructured"
-			                    text="Fifth Icon"
-			                    value="iconFive"/>
-			            </options>
-					</icon>   
-			    </items>
+		<tab3 jcr:primaryType="cq:Widget"
+			title="Item 3"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<header jcr:primaryType="cq:Widget"
+					fieldLabel="Header"
+					name="./header3"
+					xtype="textfield" />
+				<subheader jcr:primaryType="cq:Widget"
+					fieldLabel="Subheader"
+					name="./subheader3"
+					xtype="textfield" />
+				<url jcr:primaryType="cq:Widget"
+					fieldLabel="Link"
+					name="./url3"
+					fieldDescription="Must be a valid link"
+					regex="Shc.components.extsrc.regex.ValidationPattterns.url"
+					xtype="textfield"/>
+				<url3Target
+					jcr:primaryType="cq:Widget"
+					fieldLabel="Target"
+					name="./url3Target"
+					type="select"
+					xtype="selection">
+					<options
+						jcr:primaryType="cq:WidgetCollection">
+						<r1
+							jcr:primaryType="nt:unstructured"
+							text="New Window"
+							value="_blank" />
+						<r2
+							jcr:primaryType="nt:unstructured"
+							text="This Window"
+							value="_self" />
+					</options>
+				</url3Target>
+				<icon
+					jcr:primaryType="nt:unstructured"
+					fieldLabel="Choose Icon"
+					name="./panelIcon3"
+					type="select"
+					xtype="selection">
+					<options jcr:primaryType="cq:WidgetCollection">
+						<iconOne
+							jcr:primaryType="nt:unstructured"
+							text="File"
+							value="icon-file-alt"/>
+						<iconTwo
+							jcr:primaryType="nt:unstructured"
+							text="Bell"
+							value="icon-bell"/>
+						<iconThree
+							jcr:primaryType="nt:unstructured"
+							text="Envelope"
+							value="icon-envelope"/>
+						<iconFour
+							jcr:primaryType="nt:unstructured"
+							text="Home"
+							value="icon-home"/>
+						<iconFive
+							jcr:primaryType="nt:unstructured"
+							text="Heart"
+							value="icon-heart-empty"/>
+					</options>
+				</icon>
+			</items>
 		</tab3>
 	</items>
 </jcr:root>
