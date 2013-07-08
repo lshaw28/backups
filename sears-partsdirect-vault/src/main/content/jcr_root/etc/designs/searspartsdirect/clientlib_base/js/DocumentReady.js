@@ -144,5 +144,10 @@
 			}
 		});
 		regula.bind();
+		
+		/*
+		 * Responsive table initializer
+		 */
+		shc.pd.base.widgets.ResponsiveTable.init($('table.responsive-table'));
 	});
 }(window));

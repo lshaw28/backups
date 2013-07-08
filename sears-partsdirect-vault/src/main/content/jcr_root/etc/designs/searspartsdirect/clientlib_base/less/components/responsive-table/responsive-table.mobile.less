@@ -1,0 +1,32 @@
+@media (max-width: 767px) {
+	.responsive-table {
+		thead {
+			display: none;
+		}
+
+		tbody,
+		tbody tr,
+		tbody td {
+			display: block;
+		}
+
+		tbody {
+			td {
+				position: relative;
+				padding-left: 110px;
+				min-height: 20px;
+			}
+
+			tr:nth-child(2n+1) td {
+				background: @secondaryHueLightest;
+			}
+		}
+
+		// @TODO use a different style to accomodate long headlines
+		.column-label {
+			position: absolute;
+			left: 5px;
+			font-weight: bold;
+		}
+	}
+}
