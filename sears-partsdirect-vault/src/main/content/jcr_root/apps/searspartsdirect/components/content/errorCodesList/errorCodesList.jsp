@@ -18,7 +18,7 @@
 			<c:if test="${brandRelation.title eq item.key.title}">
 				<table class="table-bordered">
 					<tr>
-						<td><c:out value="${item.key.title}" /> <!-- ${item.key.description}--></td>
+						<td><c:out value="${item.key.title}" /></td>
 						<td><spd:displayImage path="${item.key.logoPath}"/></td>
 					</tr>
 					<c:forEach var="errorCodeTable" items="${item.value}">
