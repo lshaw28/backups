@@ -49,6 +49,7 @@ public final class Constants {
 	public static final String ARTICLES_ROOT = ident("/content/searspartsdirect/en/article");
 	public static final String GUIDES_ROOT = ident("/content/searspartsdirect/en/repair-guide");
 	public static final String CATEGORIES_ROOT = ident("/content/searspartsdirect/en/categories");
+	public static final String ERROR_TABLES_ROOT = ident("/content/searspartsdirect/en/error-tables");
 	public static final String EN_ROOT = ident("/content/searspartsdirect/en");
 
 	public static final String AUTHOR_REL_PATH = ident("jcr:content/author");

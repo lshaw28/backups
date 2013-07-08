@@ -43,7 +43,7 @@ public class GetErrorCodesListTag extends CQBaseTag {
 
 			session = slingRequest.getResourceResolver().adaptTo(Session.class);
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("path", "/content/searspartsdirect/en/error-tables");
+			map.put("path", Constants.ERROR_TABLES_ROOT);
 			map.put("type", Constants.CQ_PAGE);
 			map.put("property", "jcr:content/pages");
 			map.put("property.value", categoryPath);
@@ -54,8 +54,8 @@ public class GetErrorCodesListTag extends CQBaseTag {
 			SearchResult result = query.getResult();
 			//log.debug("total results found "+ result.getQueryStatement().toString());
 
-		    for (Hit hit : result.getHits()) {
-		        try {
+			for (Hit hit : result.getHits()) {
+				try {
 					ValueMap props = hit.getProperties();
 
 					Page p = pageManager.getPage(hit.getPath());
@@ -92,19 +92,19 @@ public class GetErrorCodesListTag extends CQBaseTag {
 				} catch (RepositoryException e) {
 					log.error("Failure building results, ", e);
 				}
-		    }
+			}
 
-		    //need to sort the collection by brand name
-		    List<BrandModel> brandKeys = new ArrayList<BrandModel>();
-            brandKeys.addAll(tempErrorCodeList.keySet());
+			//need to sort the collection by brand name
+			List<BrandModel> brandKeys = new ArrayList<BrandModel>();
+			brandKeys.addAll(tempErrorCodeList.keySet());
 
-            Collections.sort(brandKeys, new Comparator<BrandModel>() {
-                public int compare(BrandModel o1, BrandModel o2) {
-                    return o1.getTitle().compareToIgnoreCase(o2.getTitle());
-                }
-            });
+			Collections.sort(brandKeys, new Comparator<BrandModel>() {
+				public int compare(BrandModel o1, BrandModel o2) {
+					return o1.getTitle().compareToIgnoreCase(o2.getTitle());
+				}
+			});
 
-           for (BrandModel brandModel : brandKeys) {
+		   for (BrandModel brandModel : brandKeys) {
 				errorCodeList.put(brandModel, tempErrorCodeList.get(brandModel));
 			}
 
