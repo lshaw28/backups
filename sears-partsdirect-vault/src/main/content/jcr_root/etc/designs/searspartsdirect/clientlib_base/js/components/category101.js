@@ -12,6 +12,8 @@ var category101 = Class.extend(function () {
 			this.el = $(el);
 			// Bind events
 			this.bindEvent();
+            // check if at mobile breakpoint
+            this.toggleAccordion();
 		},
                 
                 /**
@@ -21,14 +23,18 @@ var category101 = Class.extend(function () {
 		toggleAccordion: function () {
 			var self = this,
                 isMobileBreakpoint = window.SPDUtils.isMobileBreakpoint();
+
+            self[$(target).hasClass('in') ? 'addClass' : 'removeClass']('collapsed');
                         
 			if (isMobileBreakpoint === true) {
 
-                $('.accordion-body').collapse('hide');
+                $('.accordion-body').collapse101('hide');
 				
 			} else {
-
-                $('.accordion-body').collapse('show');
+                if (!$('.accordion-body').hasClass('in') ) {
+                    $('.accordion-body').addClass('in');
+                }
+                $('.accordion-body').collapse101('show');
 			}
 		},
 

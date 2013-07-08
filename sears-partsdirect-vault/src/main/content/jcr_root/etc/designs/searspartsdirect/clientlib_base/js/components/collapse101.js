@@ -2,14 +2,26 @@
  * ================================ */
 
 var Collapse101 = function (element, options) {
+    var isMobileBreakpoint = window.SPDUtils.isMobileBreakpoint(),
+        target;
+
     this.$element = $(element)
     this.options = $.extend({}, $.fn.collapse101.defaults, options)
+
+    target = $(this.$element.attr('href'));
 
     if (this.options.parent) {
         this.$parent = $(this.options.parent)
     }
 
-    this.options.toggle && this.toggle()
+    if (!isMobileBreakpoint) {
+        this.options.toggle && this.toggle();
+    } else {
+        // default to hidden on mobile
+        this.$element.removeClass('collapse');
+        this.$element.addClass('collapsed');
+        target.removeClass('in');
+    }
 }
 
 Collapse101.prototype = {

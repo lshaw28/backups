@@ -4,6 +4,6 @@
 	xmlns:jcr="http://www.jcp.org/jcr/1.0"
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
     jcr:primaryType="cq:Component"
-    jcr:title="Sears PartsDirect Error Codes For Brand Template"
+    jcr:title="Sears PartsDirect Model Repair Help Template"
 	componentGroup=".hidden"
 	sling:resourceSuperType="searspartsdirect/components/page/base" />
