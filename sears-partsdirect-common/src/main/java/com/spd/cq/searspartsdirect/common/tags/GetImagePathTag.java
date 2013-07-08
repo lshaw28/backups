@@ -47,9 +47,6 @@ public class GetImagePathTag extends CQBaseTag {
 		
 		try {
 			Image desktopImageObj = new Image(resource, DESKTOP_IMAGE);
-			log.debug(resourcePath);
-			log.debug(""+desktopImageObj);
-			log.debug(""+desktopImageObj.getHref());
 			desktopImage = repairHref(desktopImageObj.getHref(), DESKTOP_IMAGE);
 		} catch (Exception desktopEx) {
 			log.debug("Desktop image error:", desktopEx);
