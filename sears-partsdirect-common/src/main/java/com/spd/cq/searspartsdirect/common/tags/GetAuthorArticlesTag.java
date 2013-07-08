@@ -34,8 +34,8 @@ public class GetAuthorArticlesTag extends CQBaseTag {
 			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
 			HashMap<String, String> props = new HashMap<String, String>();
 			props.put("type", "cq:Page");
-			props.put("path", "/content/searspartsdirect/en/articles");
-			props.put("property", "jcr:content/authors");
+			props.put("path", Constants.ARTICLES_ROOT);
+			props.put("property", Constants.AUTHOR_REL_PATH);
 			props.put("property.value", currentPage.getPath());
 			log.debug("Author page path: " + currentPage.getPath());
 
