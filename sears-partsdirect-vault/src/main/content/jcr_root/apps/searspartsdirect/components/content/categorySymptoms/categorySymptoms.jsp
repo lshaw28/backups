@@ -3,9 +3,9 @@
 <c:choose>
 	<c:when test="${productCategoryRelation != null}">
 		<h2>
-			<!--  <cq:text property="text1" placeholder=""/> -->
-			${productCategoryRelation.title} Symptoms
-			<!--  <cq:text property="text2" placeholder=""/> -->
+			<cq:text property="text1" placeholder=""/>&nbsp;
+			${productCategoryRelation.title}
+			&nbsp;<cq:text property="text2" placeholder=""/>
 		</h2>
 		<p><cq:text property="optionalDescription" placeholder=""/></p>
 
