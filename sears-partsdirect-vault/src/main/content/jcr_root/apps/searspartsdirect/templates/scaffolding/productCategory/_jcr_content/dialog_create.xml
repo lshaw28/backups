@@ -11,6 +11,9 @@
             		jcr:primaryType="cq:Widget"
                     fieldLabel="Category True Name"
                     allowBlank="false"
+                    blankText="True name is required"
+                    regex="/^[a-z][a-z0-9_]*$/"
+                    regexText="True name must be all lowercase, and may also contain (but not start with) digits or underscores"
                     name=":nameHint"/>
                 <title
                     jcr:primaryType="cq:Widget"
