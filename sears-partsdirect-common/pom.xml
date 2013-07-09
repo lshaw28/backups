@@ -55,10 +55,16 @@
 				</configuration>
 				<executions>
 					<execution>
+						<id>uninstall-from-cq</id>
+						<phase>uninstall</phase>
+						<goals>
+							<goal>uninstall</goal>
+						</goals>
+					</execution>
+					<execution>
 						<id>install-to-cq</id>
 						<phase>install</phase>
 						<goals>
-							<goal>uninstall</goal>
 							<goal>install</goal>
 						</goals>
 					</execution>

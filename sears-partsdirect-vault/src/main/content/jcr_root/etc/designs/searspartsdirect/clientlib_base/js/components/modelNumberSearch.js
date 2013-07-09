@@ -18,8 +18,8 @@ var modelNumberSearch = Class.extend(function () {
 			this.button = null;
 			// Find elements
 			this.setProperties();
-			// Render
-			this.render();
+			// Bind events
+			this.bindEvents();
 		},
 		/**
 		 * Finds related elements
@@ -45,11 +45,25 @@ var modelNumberSearch = Class.extend(function () {
 		search: function () {
 			var self = this,
 				su = window.SPDUtils,
-				searchTerm = su.validString(self.input.attr('value'));
+				searchTerm = su.validString(self.inputField.attr('value'));
 
 			// Check the input value
 			if (searchTerm !== '' && searchTerm !== self.inputHelp && searchTerm !== self.inputHelpMobile) {
+				// Clear any existing error message
+				self.displayMessage('', '');
+				// Make an AJAX call
+				$.ajax({
+					'url': 'http://www.someurl.com/',
+					'crossDomain': true,
+					'dataType': 'JSON',
+					'headers': {
+						'modelNumber': searchTerm
+					}
+				}).done(function (data) {
+					self.searchResponse(data);
+				});
 			} else {
+				// Display an error message
 				self.displayMessage('Please provide a model number.', 'error');
 			}
 		},
@@ -59,6 +73,7 @@ var modelNumberSearch = Class.extend(function () {
 		 * @return {void}
 		 */
 		searchResponse: function (resp) {
+			console.log(resp);
 		},
 		/**
 		 * Handles a redirect to the single result router
@@ -66,6 +81,7 @@ var modelNumberSearch = Class.extend(function () {
 		 * @return {void}
 		 */
 		redirect: function (resp) {
+			console.log(resp);
 		},
 		/**
 		 * Displays a message to the user
@@ -79,7 +95,7 @@ var modelNumberSearch = Class.extend(function () {
 			// Set the message
 			self.messageArea.html(msg);
 			// Set the classes; faster than using toggles
-			self.attr('class', 'display-message ' + type);
+			self.messageArea.attr('class', 'display-message ' + type);
 		},
 		/**
 		 * Bind form events

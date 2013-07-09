@@ -1,8 +1,5 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.jsp.JspException;
 
 import junit.framework.Assert;
@@ -11,7 +8,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.spd.cq.searspartsdirect.common.fixture.ErrorCodesFixture;
-import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
+import com.spd.cq.searspartsdirect.common.model.ErrorCodeTableModel;
 
 public class ErrorCodeTableTagTest extends MocksTag {
 	
@@ -22,6 +19,7 @@ public class ErrorCodeTableTagTest extends MocksTag {
 		super.setUp();
 		fixture = new ErrorCodesFixture();
 		Mockito.when(properties.get("errorCodeTable",new String[0])).thenReturn(fixture.getJSONData());
+		Mockito.when(properties.get("codeType", String.class)).thenReturn(fixture.getCodeType());
 	}
 	
 	@Test
@@ -31,12 +29,12 @@ public class ErrorCodeTableTagTest extends MocksTag {
 		tag.doStartTag();
 		tag.doEndTag();
 		
-		/*Assert.assertNotNull(pageContext.getAttribute("errorCodeTableData"));
-		Map<String, List<ErrorCodeModel>> errorCodeTableData = (Map<String, List<ErrorCodeModel>>) pageContext.getAttribute("errorCodeTableData");
-		Assert.assertTrue(errorCodeTableData.size() > 0);
-		Assert.assertNotNull(errorCodeTableData.get("Type1"));
-		List<ErrorCodeModel> models = errorCodeTableData.get("Type1");
-		Assert.assertTrue(models.size() > 0);
-		Assert.assertEquals("code 101", models.get(0).getCode());*/
+		Assert.assertNotNull(pageContext.getAttribute("errorCodeTableData"));
+		ErrorCodeTableModel model = (ErrorCodeTableModel) pageContext.getAttribute("errorCodeTableData");
+		
+		Assert.assertNotNull(model.getErrorCodeType());
+		
+		Assert.assertNotNull(model);
+		Assert.assertTrue(model.getErrorCodes().size() > 0);
 	}
 }

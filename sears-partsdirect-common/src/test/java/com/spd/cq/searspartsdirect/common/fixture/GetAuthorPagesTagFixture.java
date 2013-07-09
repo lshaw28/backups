@@ -20,35 +20,33 @@ import static org.mockito.Mockito.*;
 
 public class GetAuthorPagesTagFixture {
 
-	private Node authorsNode;
-	private Property authorsProp;
-	private PageManager pageManager;
 	private Page authorPage;
-	private ValueMap authorProps;
+	private ValueMap pageProperties;
+	private Property authorsProp;
 	private ResourceResolver resourceResolver;
+	private ValueMap authorProps;
+	private Page currentPage;
 	
-	public GetAuthorPagesTagFixture(PageContext pageContext, PageManager pageManager, ResourceResolver resourceResolver) throws PathNotFoundException, RepositoryException {
-		authorsNode = mock(Node.class);
-		when(pageContext.findAttribute("currentNode")).thenReturn(authorsNode);
-		authorsProp = mock(Property.class);
-		when(authorsNode.getProperty("authors")).thenReturn(authorsProp);
-		Value[] empty = new Value[0];
-		when(authorsProp.getValues()).thenReturn(empty);
-		this.pageManager = pageManager;
-		this.resourceResolver = resourceResolver;
-	}
+	public GetAuthorPagesTagFixture(Page currentPage, PageManager pageManager, ResourceResolver resourceResolver) throws ValueFormatException, IllegalStateException, RepositoryException {
 
-	public void setUpAnAuthorInArray(String authorName) throws ValueFormatException, IllegalStateException, RepositoryException {
-		Value[] oneAuthor = new Value[1];
-		oneAuthor[0] = mock(Value.class);
-		when(oneAuthor[0].getString()).thenReturn(authorName);
-		when(authorsProp.getValues()).thenReturn(oneAuthor);
+		ValueMap pageProperties = mock(ValueMap.class);
+		authorsProp = mock(Property.class);
+		when(currentPage.getProperties()).thenReturn(pageProperties);
+		String authorPathName = "someAuthor";
+		Value[] authorValues = new Value[1];
+		authorValues[0] = mock(Value.class);
+		when(authorValues[0].getString()).thenReturn(authorPathName);
+		when(pageProperties.get("authors", new Value[0])).thenReturn(authorValues);
+		
 		//Page p = pageManager.getPage(path.getString());
 		authorPage = mock(Page.class);
-		when(pageManager.getPage(authorName)).thenReturn(authorPage);
-		when(authorPage.getPath()).thenReturn(authorName);
+		when(pageManager.getPage(authorPathName)).thenReturn(authorPage);
+		when(authorPage.getPath()).thenReturn(authorPathName);
 		authorProps = mock(ValueMap.class);
 		when(authorPage.getProperties()).thenReturn(authorProps);
+		this.resourceResolver = resourceResolver;
+		this.currentPage = currentPage;
+
 	}
 
 	public Node setUpEmptyImage() {
@@ -75,16 +73,8 @@ public class GetAuthorPagesTagFixture {
 		when(imageNode.hasProperty("fileReference")).thenReturn(true);
 	}
 
-	public void setUpExplodesVfe() throws ValueFormatException, RepositoryException {
-		when(authorsProp.getValues()).thenThrow(new ValueFormatException());
-	}
-
-	public void setUpExplodesPnfe() throws PathNotFoundException, RepositoryException {
-		when(authorsNode.getProperty("authors")).thenThrow(new PathNotFoundException());
-	}
-
-	public void setUpExplodesRe() throws PathNotFoundException, RepositoryException {
-		when(authorsNode.getProperty("authors")).thenThrow(new RepositoryException());
+	public void setUpExplodes() throws Exception {
+		when(currentPage.getProperties()).thenThrow(new Exception());
 	}
 
 }
