@@ -3,6 +3,7 @@
 <spd:getAuthorArticles />
 
 <c:if test="${not empty articles}">
+	<h2>Articles by this author</h2>
 	<c:forEach var="article" items="${articles}" varStatus="currentItem">
 		<c:if test="${currentItem.count % 2 eq 1}">
 			<div class="row-fluid">
