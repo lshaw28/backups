@@ -28,22 +28,37 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 public class GetUrlRelationTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(GetUrlRelationTag.class);
-	protected String pRelationType;
+	
 	
 	public final static String CATEGORY = Constants.ident("productCategory");
 	public final static String BRAND = Constants.ident("brand");
 	public final static String MODEL = Constants.ident("model");
+	public final static String SYMPTOM = Constants.ident("symptom");
 	
 	private static final Set<String> assetRelations = initAssetRelations();
 	private static final Set<String> initAssetRelations() {
 		Set<String> assetRelations = new HashSet<String>();
 		assetRelations.add(CATEGORY);
 		assetRelations.add(BRAND);
+		assetRelations.add(SYMPTOM);
 		return assetRelations;
 	}
 
-	private static final Map<String,Integer> relationToSelectorIndex = initRelationToSelectorIndex();
-	private static final Map<String,Integer> initRelationToSelectorIndex() {
+	private static final Map<Integer,Map<String,Integer>> selectorCountToScheme = initSelectorCountToScheme();
+	private static final Map<Integer,Map<String,Integer>> initSelectorCountToScheme() {
+		Map<Integer,Map<String,Integer>> countToScheme = new HashMap<Integer,Map<String,Integer>>();
+		countToScheme.put(1, initSymptomOnlyScheme(new HashMap<String,Integer>()));
+		countToScheme.put(3, initBrandCategoryModelScheme());
+		countToScheme.put(4, initSymptomOnlyScheme(initBrandCategoryModelScheme()));
+		return countToScheme;
+	}
+	
+	private static final Map<String,Integer> initSymptomOnlyScheme(Map<String,Integer> schemeSoFar) {
+		schemeSoFar.put(SYMPTOM, schemeSoFar.size());
+		return schemeSoFar;
+	}
+	
+	private static final Map<String,Integer> initBrandCategoryModelScheme() {
 		Map<String,Integer> relationToSelectorIndex = new HashMap<String,Integer>();
 		relationToSelectorIndex.put(CATEGORY, Constants.CATEGORY_SELECTOR);
 		relationToSelectorIndex.put(BRAND, Constants.BRAND_SELECTOR);
@@ -58,13 +73,18 @@ public class GetUrlRelationTag extends CQBaseTag {
 		return relationToUriExtractor;
 	}
 	
+	protected String relationType;
+	protected Map<String,Integer> relationToSelectorIndex;
+	
 	@Override
 	public int doStartTag() throws JspException {
-		if (!StringUtils.isBlank(pRelationType)) {
-			lookUpRelation(pRelationType);
+		relationToSelectorIndex = selectorCountToScheme.get(slingRequest.getRequestPathInfo().getSelectors().length);
+		if (!StringUtils.isBlank(relationType)) {
+			lookUpRelation();
 		} else {
-			for (String relationType : relationToSelectorIndex.keySet()) {
-				lookUpRelation(relationType);
+			for (String possibleRelation : relationToSelectorIndex.keySet()) {
+				relationType = possibleRelation;
+				lookUpRelation();
 			}
 		}
 
@@ -77,7 +97,7 @@ public class GetUrlRelationTag extends CQBaseTag {
     }
 
 	public void setRelationType(String relationType) {
-		pRelationType = relationType;
+		this.relationType = relationType;
 	}
 	
 	private String extractFromUri(Pattern pattern) {
@@ -89,30 +109,26 @@ public class GetUrlRelationTag extends CQBaseTag {
 		}
 	}
 	
-	private void lookUpRelation(String relationType) {
+	private void lookUpRelation() {
 		String[] selectors = slingRequest.getRequestPathInfo().getSelectors();
 
-		if (selectors.length > 2) {
-			if (relationToSelectorIndex.containsKey(relationType)) {
+		if (relationToSelectorIndex != null && relationToSelectorIndex.containsKey(relationType)) {
 
-				int selectorIndex = relationToSelectorIndex.get(relationType);
-				String selectorValue = selectors[selectorIndex];
-				pokeRelationIntoContext(relationType, selectorValue);
-				
-			} else {
-				throw new IllegalArgumentException("Invalid relationType "+relationType);
-			}
+			int selectorIndex = relationToSelectorIndex.get(relationType);
+			String selectorValue = selectors[selectorIndex];
+			pokeRelationIntoContext(selectorValue);
+			
 		} else {
 			if (relationToUriExtractor.containsKey(relationType)) {
 				String uriValue = extractFromUri(relationToUriExtractor.get(relationType));
 				if (uriValue != null) {
-					pokeRelationIntoContext(relationType, uriValue);
+					pokeRelationIntoContext(uriValue);
 				}
-			} // We don't throw here else, b/c we don't have a full set of extractors.
+			} 
 		}
 	}
 
-	private void pokeRelationIntoContext(String relationType, String relationValue) {
+	private void pokeRelationIntoContext(String relationValue) {
 		if (assetRelations.contains(relationType)) {
 			AssetType assetTypeEnum = AssetType.valueOf(relationType.toUpperCase());
 			

@@ -6,12 +6,14 @@ public class ErrorCodeModel {
 	private String condition;
 	private String repairPath;
 	private String path;
+	private String shopPartsLink;
 	
-	public ErrorCodeModel(String path, String code, String condition, String repairPath) {
+	public ErrorCodeModel(String path, String code, String condition, String repairPath, String shopPartsLink) {
 		this.code = code;
 		this.condition = condition;
 		this.repairPath = repairPath;
 		this.path = path;
+		this.shopPartsLink = shopPartsLink;
 	}
 	
 	public String getCode() {
@@ -40,5 +42,13 @@ public class ErrorCodeModel {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public String getShopPartsLink() {
+		return shopPartsLink;
+	}
+
+	public void setShopPartsLink(String shopPartsLink) {
+		this.shopPartsLink = shopPartsLink;
 	}
 }

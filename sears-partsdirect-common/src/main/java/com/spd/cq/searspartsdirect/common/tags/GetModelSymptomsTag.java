@@ -23,16 +23,16 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 
 public class GetModelSymptomsTag extends CQBaseTag {
-	
+
 	private static final long serialVersionUID = 1L;
 	private String categoryPath;
 	public static final Logger log = LoggerFactory.getLogger(GetModelSymptomsTag.class);
-	
+
 	Session session;
 	QueryBuilder builder;
 	Query query;
 	List<SymptomModel> symptomModels;
-	
+
 	@Override
 	public int doStartTag() throws JspException {
 		if (categoryPath != null) {
@@ -40,16 +40,16 @@ public class GetModelSymptomsTag extends CQBaseTag {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("path", Constants.ASSETS_PATH + "/symptom");
 			map.put("type", Constants.CQ_PAGE);
-			map.put("property", "jcr:content/pages");
+			map.put("property", Constants.ASSETS_PAGES_REL_PATH);
 			map.put("property.value", categoryPath);
-			
+
 			builder = resourceResolver.adaptTo(QueryBuilder.class);
 			query = builder.createQuery(PredicateGroup.create(map), session);
 			SearchResult result = query.getResult();
-			
+
 			symptomModels = new ArrayList<SymptomModel>();
 			for (Hit hit : result.getHits()) {
-			        try {
+					try {
 						ValueMap props = hit.getProperties();
 						Page p = pageManager.getPage(hit.getPath());
 						if (props != null) {
@@ -61,12 +61,12 @@ public class GetModelSymptomsTag extends CQBaseTag {
 					} catch (RepositoryException e) {
 						log.error("Failure building results, ", e);
 					}
-			    }
+				}
 		}
 		pageContext.setAttribute("categorySymptoms", symptomModels);
-		return SKIP_BODY;	
+		return SKIP_BODY;
 	}
-	
+
 	@Override
 	public int doEndTag() throws JspException {
 		return EVAL_PAGE;

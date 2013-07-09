@@ -58,3 +58,5 @@ topAccessories/topAccessories.less
 carousel/desktopImageCarousel/desktopImageCarousel.less
 carousel/touchImageCarousel/touchImageCarousel.less
 errorListing/errorListing.less
+errorCodeTable/errorCodeTable.less
+responsive-table/responsive-table.less

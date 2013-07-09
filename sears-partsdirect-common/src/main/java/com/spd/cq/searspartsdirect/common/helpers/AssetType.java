@@ -26,7 +26,8 @@ public enum AssetType {
 			return new ErrorCodeModel(p.getPath(),
 					title,
 					description,
-					properties.get("repairPath",""));
+					properties.get("repairPath",""),
+					properties.get("shopParts",""));
 		}
 	}, 
 	HAZARD(HazardModel.class) {
