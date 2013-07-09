@@ -1,11 +1,15 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.spd.cq.searspartsdirect.common.model.ErrorCodeTableModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
 
 public class ErrorCodeTableTag extends CQBaseTag {
@@ -15,16 +19,22 @@ public class ErrorCodeTableTag extends CQBaseTag {
 
 	@Override
 	public int doStartTag() throws JspException {
+		ErrorCodeTableModel errorCodeTableModel = new ErrorCodeTableModel();
+		
 		try {
+			String codeType = properties.get("codeType",String.class);
+			errorCodeTableModel.setErrorCodeType(codeType);
+			
 			String[]  multiJsons = properties.get("errorCodeTable",new String[0]);
-			for (String json : multiJsons) {
-				JSONObject jsob = new JSONObject(json);
-				String errorCodeType = jsob.getString("codeType");
-				//log.debug(json.toString());
-				ErrorCodeModel model = new ErrorCodeModel("", jsob.getString("code"),jsob.getString("condition"), jsob.getString("checkRepairLink"), jsob.getString("shopParts"));
-				log.debug("Error code model type="+errorCodeType +"and "+model);
-			}
-			//pageContext.setAttribute("errorCodeTableData", errorCodeTableData);
+				List<ErrorCodeModel> codes = new ArrayList<ErrorCodeModel>();
+				for (String json : multiJsons) {
+					JSONObject jsob = new JSONObject(json);
+					ErrorCodeModel model = new ErrorCodeModel("", jsob.getString("code"),jsob.getString("condition"),jsob.getString("checkRepairLink"),jsob.getString("shopParts"));
+					codes.add(model);
+				}
+			errorCodeTableModel.setErrorCodes(codes);
+								
+			pageContext.setAttribute("errorCodeTableData", errorCodeTableModel);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
