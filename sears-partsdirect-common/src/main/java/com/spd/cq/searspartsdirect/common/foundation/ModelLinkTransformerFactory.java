@@ -71,11 +71,8 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
                 } catch (Exception e){
                     log.error("Exception in RestrictedLinkTransformer, ", e);
                 }
+            }
+            super.startElement(uri, localName, qName, attributes);
         }
-
-        super.startElement(uri, localName, qName, attributes);
-
     }
-
-}
 }
