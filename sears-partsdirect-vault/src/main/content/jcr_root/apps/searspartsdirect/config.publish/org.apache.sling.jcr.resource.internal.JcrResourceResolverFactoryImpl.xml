@@ -2,5 +2,5 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="sling:OsgiConfig"
     resource.resolver.map.location="/etc/map.publish"
-    resource.resolver.mapping="[/-/,/content/searspartsdirect/en/</,/content/searspartsdirect/en/categories/</]"
+    resource.resolver.mapping="[/-/,/content/searspartsdirect/en/&lt;/,/content/searspartsdirect/en/categories/&lt;/]"
     resource.resolver.searchpath="[/apps,/libs,/apps/foundation/components/primary,/libs/foundation/components/primary]"/>
