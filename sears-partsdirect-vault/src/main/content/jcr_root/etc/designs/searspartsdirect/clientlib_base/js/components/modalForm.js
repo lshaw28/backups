@@ -10,7 +10,7 @@ var modalForm = Class.extend(function () {
 		 */
 		init: function (el) {
 			this.el = el;
-			this.group = $('form', el).attr('data-regulagroup');
+			this.group = $('form', el).attr('data-regulagroup').toString();
 			this.bindSubmit();
 			this.bindCheckField();
             this.resetFields();
@@ -37,7 +37,7 @@ var modalForm = Class.extend(function () {
 				i = 0,
 				errorMessage = '',
 				divider = '',
-				regulaResponse = regula.validate('{ "groups": "' + self.group + '" }');
+				regulaResponse = regula.validate(self.createValidationObject());
 
 			// Parse the error messages
 			for (i = 0; i < regulaResponse.length; i = i + 1) {
@@ -57,14 +57,27 @@ var modalForm = Class.extend(function () {
 			}
 		},
 		/**
+		 * Creates validation object literal
+		 * @return {object}
+		 */
+		createValidationObject: function () {
+			var self = this;
+
+			return {
+				groups: [regula.Group[self.group]]
+			};
+		},
+		/**
 		 * Binds any related fields so changing one affects the other
 		 */
 		bindCheckField: function () {
-			$('[data-checkfield]').each(function () {
+			var self = this;
+
+			$('[data-checkfield]', self.el).each(function () {
 				var me = $(this),
 					relative = $(me.data('checkfield'));
 
-				$(this).bind('change', function () {
+				me.bind('change', function () {
 					var checked = me.attr('checked');
 
 					if (checked === 'true' || checked === 'checked') {
@@ -76,7 +89,7 @@ var modalForm = Class.extend(function () {
 			});
 		},
         resetFields: function () {
-            var self=this;
+            var self = this;
 
             $('.alert', self.el).addClass('hidden');
             $('input', self.el).each(function() {
