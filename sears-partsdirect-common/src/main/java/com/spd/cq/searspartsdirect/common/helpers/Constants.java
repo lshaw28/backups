@@ -52,7 +52,7 @@ public final class Constants {
 	public static final String ERROR_TABLES_ROOT = ident("/content/searspartsdirect/en/error-tables");
 	public static final String EN_ROOT = ident("/content/searspartsdirect/en");
 
-	public static final String AUTHOR_REL_PATH = ident("jcr:content/author");
+	public static final String AUTHOR_REL_PATH = ident("jcr:content/authors");
 
 	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
 	public static final String GUIDE_NAV_PATH = ident("guideNavigation");
