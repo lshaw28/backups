@@ -5,6 +5,7 @@
 	<div class="input-append">
 		<input type="text" id="modelNumberSearchInput" name="modelNumberSearchInput" maxlength="42" data-inputhelp="Enter model number" data-inputhelpmobile="Model #" />
 		<span class="add-on"><button><i class="icon-search">&nbsp;</i></button></span>
+		<span class="display-message">&nbsp;</span>
 	</div>
 </form>
-<p><a href="#manuals_help_tab"><cq:text property="linkText" placeholder="Help me find my model number"/></a></p>
+<p><a data-toggle="reveal" data-target="#findMyModel" id="newFinderModel"><cq:text property="linkText" placeholder="Help me find my model number"/></a></p>
