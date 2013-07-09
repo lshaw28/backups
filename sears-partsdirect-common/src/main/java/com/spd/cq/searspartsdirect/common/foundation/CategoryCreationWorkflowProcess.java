@@ -5,6 +5,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.Workspace;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Reference;
@@ -47,12 +48,14 @@ public class CategoryCreationWorkflowProcess implements WorkflowProcess {
     public static final String TYPE_JCR_PATH = "JCR_PATH";
 
     public void execute(WorkItem item, WorkflowSession session, MetaDataMap args) throws WorkflowException {
-        try {
+    	Session jcrSession = null;
+    	ResourceResolver resourceResolver = null;
+    	try {
         	WorkflowData workflowData = item.getWorkflowData();
 	        if (workflowData.getPayloadType().equals(TYPE_JCR_PATH)) {
 	            String path = workflowData.getPayload().toString();
-                Session jcrSession = session.adaptTo(Session.class);
-                ResourceResolver resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
+                jcrSession = session.adaptTo(Session.class);
+                resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
                 PageManager pm = resourceResolver.adaptTo(PageManager.class);
                 TagManager tm = resourceResolver.adaptTo(TagManager.class);
                 Workspace workspace = jcrSession.getWorkspace();
@@ -73,7 +76,8 @@ public class CategoryCreationWorkflowProcess implements WorkflowProcess {
                 jcrSession.save();
 	        }
         } catch (Exception e) {
-            throw new WorkflowException(e.getMessage(), e);
+            log.error(ExceptionUtils.getFullStackTrace(e));
+            throw new WorkflowException(e);
         }
     }
     
