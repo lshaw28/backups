@@ -1,6 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <div id="loginModal" class="modal hide fade" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-	<h1 id="loginModalLabel">Sign In<span class="pull-right">New Customer? <a data-toggle="modal" data-target="#registerModal">Register</a></span></h1>
+	<h1 id="loginModalLabel">Sign In<span class="pull-right">New Customer? <a data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Register</a></span></h1>
 	<form method="post" action="${loginPath}" data-regulagroup="loginModal">
 		<div class="alert alert-error hidden">&nbsp;</div>
 		<fieldset>
