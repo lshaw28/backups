@@ -11,8 +11,7 @@
 				<c:if test="${fn:length(subcategoriesList) eq 1}">
 					${subcategoriesList[0].title}
 					<c:set var="subCatUrl" value="${subcategoriesList[0].tagID}"/>
-				</c:if>
-				<cq:include path="tableHeader" resourceType="/apps/searspartsdirect/components/content/plainText" />
+				</c:if> <cq:include path="plainText" resourceType="/apps/searspartsdirect/components/content/plainText" />
 			</h3>
 			<cq:include path="tableDescription" resourceType="/apps/searspartsdirect/components/content/text" />
 			<cq:include path="errorCodesTable" resourceType="searspartsdirect/components/content/errorCodesTable" />
