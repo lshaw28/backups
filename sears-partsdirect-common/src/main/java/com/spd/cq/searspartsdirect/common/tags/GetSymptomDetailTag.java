@@ -92,7 +92,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 										jobCodeModels.add(jobCodeModel);
 										
 										//getting guides
-										String[] guides = (String[]) jobCodeProps.get("guide", String[].class);
+										String[] guides = (String[]) jobCodeProps.get("guides", String[].class);
 										if (guides != null) {
 											List<RelatedGuideModel> guideList = new ArrayList<RelatedGuideModel>();
 											for (int j = 0; j<guides.length; j++) {
