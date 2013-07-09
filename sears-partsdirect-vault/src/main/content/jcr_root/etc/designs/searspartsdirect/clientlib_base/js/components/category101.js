@@ -24,7 +24,7 @@ var category101 = Class.extend(function () {
 			var self = this,
                 isMobileBreakpoint = window.SPDUtils.isMobileBreakpoint();
 
-            self[$(target).hasClass('in') ? 'addClass' : 'removeClass']('collapsed');
+            //self[$(target).hasClass('in') ? 'addClass' : 'removeClass']('collapsed');
                         
 			if (isMobileBreakpoint === true) {
 
