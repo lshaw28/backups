@@ -11,7 +11,7 @@
 		<div class="span3 offset1 pull-right">
 			<cq:include path="topAccessories" resourceType="searspartsdirect/components/content/topAccessories" />
 		</div>
-		<div class="span2 ad-span offset2 pull-right">
+		<div class="span3 ad-span offset1 pull-right">
 			<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
 		</div>
 	</div>
