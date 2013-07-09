@@ -1,10 +1,12 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <spd:errorCodeTable/>
 
-<div class="errorCodesTable-header">
-	${errorCodeTableData.errorCodeType}
-</div>
-
+<c:if test='${errorCodeTableData.errorCodeType != null}'>
+	<div class="errorCodesTable-header">
+		${errorCodeTableData.errorCodeType}
+	</div>
+</c:if>
+	
 <div class="table-wrapper">
 	<table class="responsive-table">
 		<thead>
