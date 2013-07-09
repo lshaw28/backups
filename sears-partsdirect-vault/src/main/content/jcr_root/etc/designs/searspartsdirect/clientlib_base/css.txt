@@ -47,6 +47,7 @@ modelNumberSearch/modelNumberSearch.less
 notice/notice.less
 overviewImage/overviewImage.less
 partsRequiredRepair/partsRequiredRepair.less
+plainText/plainText.less
 relatedArticles/relatedArticles.less
 repairStep/repairStep.less
 responsiveDropdown/responsiveDropdown.less

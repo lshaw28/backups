@@ -15,6 +15,12 @@
 		 */
 		var mainSearchPanel = new searchPanel();
 		/**
+		 * modelNumberSearch component setup
+		 */
+		$('.modelNumberSearch').each(function () {
+			var newNodelNumberSearch = new modelNumberSearch($(this));
+		});
+		/**
 		 * revealPanel class setup
 		 */
 		$('[data-toggle="reveal"]').each(function () {
@@ -151,7 +157,7 @@
 			}
 		});
 		regula.bind();
-		
+
 		/*
 		 * Responsive table initializer
 		 */

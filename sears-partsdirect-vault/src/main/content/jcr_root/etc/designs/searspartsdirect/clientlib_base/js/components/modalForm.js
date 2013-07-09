@@ -13,6 +13,7 @@ var modalForm = Class.extend(function () {
 			this.group = $('form', el).attr('data-regulagroup');
 			this.bindSubmit();
 			this.bindCheckField();
+            this.resetFields();
 		},
 		/**
 		 * Binds the submit button to perform Regula validation
@@ -73,6 +74,14 @@ var modalForm = Class.extend(function () {
 					}
 				});
 			});
-		}
+		},
+        resetFields: function () {
+            var self=this;
+
+            $('.alert', self.el).addClass('hidden');
+            $('input', self.el).each(function() {
+                 $(this).val('');
+            });
+        }
 	}
 }());

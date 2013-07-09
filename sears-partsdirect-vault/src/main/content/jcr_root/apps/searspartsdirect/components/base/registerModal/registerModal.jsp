@@ -9,7 +9,7 @@
 			<label>Email<span>Required</span></label>
 			<input type="text" id="registerEmail" name="user.email" data-constraints='@Required(message="Email is required.", groups=[registerModal]) @Required(message="A valid email address is required.", groups=[registerModal])' />
 			<label>Confirm Email<span>Required</span></label>
-			<input type="text" id="registerEmailConfirm" name="user.confirmEmailAddress" data-constraints='@Required(message="Please confirm your email address.", groups=[registerModal]) @Required(message="A valid confirmation email address is required.", groups=[registerModal])'" />
+			<input type="text" id="registerEmailConfirm" name="user.confirmEmailAddress" data-constraints='@Required(message="Please confirm your email address.", groups=[registerModal]) @Required(message="A valid confirmation email address is required.", groups=[registerModal])' />
 			<label>Password<span>Required</span></label>
 			<input type="text" name="user.password" data-constraints='@Required(message="Please provide a password.", groups=[registerModal])' />
 			<label>Zip Code<span>Required</span><label>
