@@ -49,9 +49,8 @@ public final class Constants {
 	public static final String ARTICLES_ROOT = ident("/content/searspartsdirect/en/article");
 	public static final String GUIDES_ROOT = ident("/content/searspartsdirect/en/repair-guide");
 	public static final String CATEGORIES_ROOT = ident("/content/searspartsdirect/en/categories");
-	public static final String ERROR_TABLES_ROOT = ident("/content/searspartsdirect/en/error-tables");
 	public static final String EN_ROOT = ident("/content/searspartsdirect/en");
-	
+
 	public static final String SPD_ROOT = ident("/content/searspartsdirect/");
 	public static final String MODELNO_PFX = ident("model-");
 	public static final String MODELNO_SFX = ident("-repair");
@@ -62,6 +61,7 @@ public final class Constants {
 	public static final String CATEGORIES_PFX = ident("/categories");
 
 	public static final String AUTHOR_REL_PATH = ident("jcr:content/authors");
+	public static final String TEMPLATE_REL_PATH = ident("jcr:content/cq:template");
 
 	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
 	public static final String GUIDE_NAV_PATH = ident("guideNavigation");
@@ -121,6 +121,9 @@ public final class Constants {
 
 	public static final String SUBCATEGORY_TAG = "searspartsdirect:subcategories";
 	public static final String TAGS_FEATURES_PATH = "searspartsdirect:features";
+
+	// Constants for Templates
+	public static final String ERROR_CODE_TEMPLATE = ident("/apps/searspartsdirect/templates/errorCodesBrands");
 
 
 	/**
