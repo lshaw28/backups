@@ -8,11 +8,11 @@
 		</div>
 	</div>
 	<div class="row-fluid">
-		<div class="span9">
+		<div class="span8">
 			<cq:include path="overviewImage" resourceType="searspartsdirect/components/content/responsiveImage" />
 			<cq:include path="overview" resourceType="searspartsdirect/components/content/text" />
 		</div>
-		<div class="span3">
+		<div class="span3 offset1">
 			<cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />
 		</div>
 	</div>

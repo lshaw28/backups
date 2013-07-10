@@ -5,11 +5,7 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<cq:include path="pageTitleHeader" resourceType="searspartsdirect/components/content/pageTitleHeader" />
-		</div>
-		<div class="span12">
 			<cq:include path="authorDisplay" resourceType="searspartsdirect/components/content/article/authorDisplay" />
-		</div>
-		<div class="span12">
 			<cq:include path="socialBar" resourceType="searspartsdirect/components/content/socialBar" />
 		</div>
 	</div>
@@ -33,8 +29,6 @@
 		<div class="span9">
 			<a name="template_beforeYouBegin"></a>
 			<cq:include path="beforeYouBegin" resourceType="searspartsdirect/components/content/text" />
-		</div>
-		<div class="span9">
 			<a name="template_repairInstructions"></a>
 			<cq:include path="repairInstructions" resourceType="searspartsdirect/components/content/repairInstructions" />
 		</div>
