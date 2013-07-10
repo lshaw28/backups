@@ -74,7 +74,11 @@ public class Four04TagFixture {
 	}
 	
 	public void setupToDoUsualRedirect() {
-		when(request.getRequestURI()).thenReturn("/akjsdfsadfhsjdhfkjs");
+		when(request.getRequestURI()).thenReturn("/akjsdfsadfhsjdhfkjs.html");
+	}
+	
+	public void setupResourceRequest() {
+		when(request.getRequestURI()).thenReturn("/akjsdfsadfhsjdhfkjs.css");
 	}
 
 	public void removeAuthenticator() {

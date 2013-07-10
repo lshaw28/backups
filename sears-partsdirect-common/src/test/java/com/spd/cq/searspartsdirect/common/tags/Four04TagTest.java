@@ -37,6 +37,14 @@ public class Four04TagTest extends MocksTag {
 		fixture.setupToDoUsualRedirect();
 		assertThat(tag.needsAuthentication(fixture.getRequest()),is(false));
 	}
+	
+	@Test
+	public void testIsTargetedExtension() {
+		assertThat(tag.isTargetedExtension("/404.html"),is(true));
+		assertThat(tag.isTargetedExtension("/404.jsp"),is(true));
+		assertThat(tag.isTargetedExtension("/404.css"),is(false));
+		assertThat(tag.isTargetedExtension("/404.js"),is(false));
+	}
 
 	@Test
 	public void testWithPlebeianPage() {
@@ -45,6 +53,15 @@ public class Four04TagTest extends MocksTag {
 		runTagAndShouldContinue();
 		shouldNotAttemptAuth();
 		shouldBeRedirecting();
+	}
+	
+	@Test
+	public void testWithAResource() {
+		fixture.setupResourceRequest();
+		fixture.setup404ErrorCode();
+		runTagAndShouldContinue();
+		shouldNotAttemptAuth();
+		shouldBeIncludingDefaultError();
 	}
 	
 	@Test
