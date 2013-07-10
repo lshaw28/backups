@@ -22,6 +22,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
+import com.google.common.base.Strings;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.ErrorCodeListModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
@@ -31,28 +32,31 @@ public class GetErrorCodesListTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(GetErrorCodesListTag.class);
 	private String categoryPath;
+	private String categoryName;
 	Session session;
 	QueryBuilder builder;
 	Query query;
 
 	@Override
 	public int doStartTag() throws JspException {
-		if (categoryPath != null) {
+		if (!Strings.isNullOrEmpty(categoryPath)) {
 			Map<BrandModel, List<ErrorCodeListModel>> tempErrorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeListModel>>();
 			Map<BrandModel, List<ErrorCodeListModel>> errorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeListModel>>();
 
 			session = slingRequest.getResourceResolver().adaptTo(Session.class);
+
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("path", Constants.ERROR_TABLES_ROOT);
+			map.put("path", Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/error-codes");
 			map.put("type", Constants.CQ_PAGE);
-			map.put("property", Constants.ASSETS_PAGES_REL_PATH);
-			map.put("property.value", categoryPath);
+			map.put("1_property", Constants.ASSETS_PAGES_REL_PATH);
+			map.put("1_property.value", categoryPath);
+			map.put("2_property", Constants.TEMPLATE_REL_PATH);
+			map.put("2_property.value", Constants.ERROR_CODE_TEMPLATE);
 
 			builder = resourceResolver.adaptTo(QueryBuilder.class);
 			query = builder.createQuery(PredicateGroup.create(map), session);
 
 			SearchResult result = query.getResult();
-			//log.debug("total results found "+ result.getQueryStatement().toString());
 
 			for (Hit hit : result.getHits()) {
 				try {
@@ -125,4 +129,13 @@ public class GetErrorCodesListTag extends CQBaseTag {
 	public void setCategoryPath(String categoryPath) {
 		this.categoryPath = categoryPath;
 	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
 }

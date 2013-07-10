@@ -92,7 +92,7 @@
 <div class="articleComments-wrapper span9">
 	<h2>Comments</h2>
 	<div class="comments-target"></div>
-	<button class="btn" id="btn_load" onClick='$(".comments-target").load("<%=currentPage.getPath()%>/jcr:content/comments.load.html"); $(this).hide();'>Load</button>
+	<button class="new-btn visible-phone" id="btn_load" onClick='$(".comments-target").load("<%=currentPage.getPath()%>/jcr:content/comments.load.html"); $(this).hide();'>Load</button>
 
 <div class="articleComments-form" >
 

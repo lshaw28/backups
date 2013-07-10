@@ -202,6 +202,12 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+		<attribute>
+			<name>categoryName</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	<tag>
 		<name>getImagePathTag</name>
@@ -408,8 +414,8 @@
 		<info>this tag will fetch the PD (QA, Stress, Production) url</info>
 	</tag>
 	<tag>
-		<name>displayModelHeader</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.DisplayModelHeaderTag</tag-class>
+		<name>getModelHeader</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelHeaderTag</tag-class>
 		<info>Displays a mocked-up header</info>
 	</tag>
 	<tag>

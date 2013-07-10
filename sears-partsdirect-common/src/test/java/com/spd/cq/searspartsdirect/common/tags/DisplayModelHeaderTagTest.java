@@ -16,13 +16,13 @@ import com.spd.cq.searspartsdirect.common.fixture.DisplayModelHeaderTagFixture;
 public class DisplayModelHeaderTagTest extends MocksTag {
 	
 	private DisplayModelHeaderTagFixture fixture;
-	private DisplayModelHeaderTag tag; // tag
+	private GetModelHeaderTag tag; // tag
 	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
 		fixture = new DisplayModelHeaderTagFixture(slingRequest, pageContext);
-		tag = new DisplayModelHeaderTag();
+		tag = new GetModelHeaderTag();
 	}
 	
 	@Test

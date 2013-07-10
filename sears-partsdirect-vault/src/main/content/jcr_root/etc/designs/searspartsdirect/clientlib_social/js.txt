@@ -1,0 +1,4 @@
+#base=js/.
+comments.js
+pagination.js
+topic.js
