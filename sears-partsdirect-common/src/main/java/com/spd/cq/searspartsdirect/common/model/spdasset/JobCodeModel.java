@@ -3,7 +3,7 @@ package com.spd.cq.searspartsdirect.common.model.spdasset;
 import java.util.List;
 
 import com.spd.cq.searspartsdirect.common.model.Part;
-import com.spd.cq.searspartsdirect.common.model.RelatedGuideModel;
+import com.spd.cq.searspartsdirect.common.model.GuideModel;
 
 public class JobCodeModel {
 	
@@ -11,7 +11,7 @@ public class JobCodeModel {
 	private String description;
 	private String path;
 	private PartTypeModel partTypeModel;
-	private List<RelatedGuideModel> guides;
+	private List<GuideModel> guides;
 	private List<Part> parts;
 	
 	public JobCodeModel(String path, String title, String description) {
@@ -49,11 +49,11 @@ public class JobCodeModel {
 		this.partTypeModel = partTypeModel;
 	}
 
-	public List<RelatedGuideModel> getGuides() {
+	public List<GuideModel> getGuides() {
 		return guides;
 	}
 
-	public void setGuides(List<RelatedGuideModel> guides) {
+	public void setGuides(List<GuideModel> guides) {
 		this.guides = guides;
 	}
 

@@ -1,15 +1,12 @@
 package com.spd.cq.searspartsdirect.common.model;
 
-public class RelatedGuideModel {
+public class GuideModel {
 
 	private String url;
 	private String imagePath;
 	private String title;
 
-	// for Related Articles
-	// private String Description;
-
-	public RelatedGuideModel(String url, String imagePath, String title) {
+	public GuideModel(String url, String imagePath, String title) {
 		this.url = url;
 		this.imagePath = imagePath;
 		this.title = title;
@@ -59,10 +56,10 @@ public class RelatedGuideModel {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof RelatedGuideModel)) {
+		if (!(obj instanceof GuideModel)) {
 			return false;
 		}
-		RelatedGuideModel other = (RelatedGuideModel) obj;
+		GuideModel other = (GuideModel) obj;
 		if (imagePath == null) {
 			if (other.imagePath != null) {
 				return false;

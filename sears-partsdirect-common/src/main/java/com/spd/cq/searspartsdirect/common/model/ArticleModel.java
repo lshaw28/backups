@@ -1,13 +1,13 @@
 package com.spd.cq.searspartsdirect.common.model;
 
-public class RelatedArticleModel {
+public class ArticleModel {
 
 	private String url;
 	private String imagePath;
 	private String title;
 	private String description;
 
-	public RelatedArticleModel(String url, String imagePath, String title, String description) {
+	public ArticleModel(String url, String imagePath, String title, String description) {
 		this.url = url;
 		this.imagePath = imagePath;
 		this.title = title;
