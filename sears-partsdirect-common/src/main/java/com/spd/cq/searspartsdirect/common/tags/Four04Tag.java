@@ -6,6 +6,7 @@ import javax.servlet.jsp.PageContext;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.apache.sling.api.auth.Authenticator;
 import org.apache.sling.api.auth.NoAuthenticationHandlerException;
@@ -20,6 +21,8 @@ public class Four04Tag extends CQBaseTag {
 	
 	public static final String INCLUDE_VAR = Constants.ident("mustInclude");
 	public static final String REDIRECT_VAR = Constants.ident("mustRedirect");
+	
+	private final static Pattern targetedExtension = Pattern.compile("\\.(?:html|jsp)$");
 	
 	protected static Logger log = LoggerFactory.getLogger(Four04Tag.class);
 	protected static PathStringUtils psu = new PathStringUtils();
@@ -107,6 +110,7 @@ public class Four04Tag extends CQBaseTag {
 	    String pageName = error404PageUrl.substring(error404PageUrl.lastIndexOf("/"));
 	    if (needsAuthentication(jspRequest) 
 	    		|| jspRequest.getRequestURI().endsWith(pageName)
+	    		|| !isTargetedExtension(jspRequest.getRequestURI())
 	    		) {  
 	    	// per JSP <%@include file="/libs/sling/servlet/errorhandler/default.jsp"%><%
 	    	pageContext.setAttribute(REDIRECT_VAR,Constants.EMPTY);
@@ -126,18 +130,22 @@ public class Four04Tag extends CQBaseTag {
 		return endResult;
 	}
     
-    private boolean isAnonymousUser(HttpServletRequest request) {
+    boolean isAnonymousUser(HttpServletRequest request) {
         return request.getAuthType() == null
             || request.getRemoteUser() == null;
     }
     
-    private boolean isBrowserRequest(HttpServletRequest request) {
+    boolean isBrowserRequest(HttpServletRequest request) {
         // check if user agent contains "Mozilla" or "Opera" or is the Maven SCR plugin
         final String userAgent = request.getHeader("User-Agent");
         return userAgent != null
             && (userAgent.indexOf("Mozilla") > -1
                 || userAgent.indexOf("Opera") > -1
                 || userAgent.indexOf("Jakarta Commons-HttpClient") > -1); 
+    }
+    
+    boolean isTargetedExtension(String uri) {
+    	return targetedExtension.matcher(uri).find();
     }
     
     private final Set<String> authenticatedRequestRoots = initAuthenticatedRoots();
@@ -151,7 +159,7 @@ public class Four04Tag extends CQBaseTag {
     	return authRoots;
     }
     
-    public boolean needsAuthentication(HttpServletRequest request) {
+    boolean needsAuthentication(HttpServletRequest request) {
     	final String requestUri = request.getRequestURI();
     	boolean requiresAuth = psu.hasAnyParentIn(authenticatedRequestRoots,requestUri);
     	return requiresAuth;
