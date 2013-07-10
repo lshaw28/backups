@@ -1,12 +1,7 @@
 package com.spd.cq.searspartsdirect.common.foundation;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Writer;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Enumeration;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,6 +9,7 @@ import java.util.regex.Pattern;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -25,10 +21,10 @@ import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.request.RequestPathInfo;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 @Component
 @Service
@@ -42,30 +38,106 @@ public class ModelSubPageFilter implements Filter {
 
 	private static final Logger log = LoggerFactory.getLogger(ModelSubPageFilter.class);
 	
+	private final static Pattern authorModeRoot = Pattern.compile("^"
+			+ Constants.SPD_ROOT + "[^\\./]*");
+	private final static Pattern brandCatModelRest = Pattern
+			.compile("^/([^/]*)/([^/]*)/" + Constants.MODELNO_PFX + "([^/]*)"
+					+ Constants.MODELNO_SFX + "(.*\\"+Constants.MARKUP_EXT+")$");
+	private final static Pattern repairGuide = Pattern.compile("^"
+			+ Constants.REPAIR_GUIDES_ROOT);
+	private final static Pattern categoryRepair = Pattern.compile("^/[^/]*"
+			+ Constants.MODELNO_SFX + "[\\./]");
+	private final static Pattern symptomatic = Pattern
+			.compile(Constants.SYMPTOM_ROOT + "([^\\./]+)");
+	
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain fc) throws IOException, ServletException {
 
 		SlingHttpServletRequest request = (SlingHttpServletRequest)servletRequest;
         SlingHttpServletResponse response = (SlingHttpServletResponse)servletResponse;
-        ResourceResolver resourceResolver = request.getResourceResolver();
         
         RequestPathInfo rpi = request.getRequestPathInfo();      
-        String ext = rpi.getExtension(), resPath = rpi.getResourcePath();        
-        Resource res = resourceResolver.getResource(resPath);
-        Pattern p = Pattern.compile("/(.*)/(.*)/model-(.*)-repair(.*)");
-        Matcher m = p.matcher(resPath);
-        if (m.find()) {
-        	//String forwardUrl = m.group(2) + "?model=" + m.group(1);
-            //Resource Resolver gets overzealous here
-            String group1 = m.group(1).replace("content/searspartsdirect/en/", "");
-        	String forwardUrl = m.group(4).replace(".html","." + group1 + "." + m.group(2) + "." + m.group(3) + ".html");
-        	request.getRequestDispatcher(forwardUrl).forward(request, response);
-        	return;
-        }
+
+        String resPath = rpi.getResourcePath();
+        List<String> selectors = new LinkedList<String>();
+        boolean mustForward = false;
+        String authorPrepend = "";
         
-	    fc.doFilter(request, response);
+        if (resPath.endsWith(Constants.MARKUP_EXT)) {
+	        // We'd rather strip content/searspartsdirect/en/ immediately to get cleaner matches.
+	        // We need to remember whether we did so and prepend.
+	        // resPath = resPath.replace("/content/searspartsdirect/en","");
+	        Matcher authorFix = authorModeRoot.matcher(resPath); 
+	        if (authorFix.find()) {
+	        	authorPrepend = authorFix.group(0);
+	        	resPath = resPath.substring(authorFix.end());
+	        }
+	        
+	        // We just strip this.. we restore it as needed further along
+	        resPath = resPath.replace("/categories","");
+	
+	        Matcher mBcm = brandCatModelRest.matcher(resPath);
+	        if (mBcm.find()) {
+	        	//String forwardUrl = m.group(2) + "?model=" + m.group(1);
+	            //Resource Resolver gets overzealous here
+	        	selectors.add(mBcm.group(1));
+	        	selectors.add(mBcm.group(2));
+	        	selectors.add(mBcm.group(3));
+	        	resPath = mBcm.group(4);
+	        	mustForward = true;
+	        	if (resPath.equals(".html")) {
+	        		resPath = Constants.MODEL_REPAIR_PAGE_NO_EXT + resPath;
+	        	} else if (!hasRepairGuide(resPath)) {
+	        		resPath = "/" + mBcm.group(2) + Constants.MODELNO_SFX + resPath;
+	        	}
+	        }
+	        
+	        Matcher symptom = symptomatic.matcher(resPath);
+	        if (symptom.find()) {
+	        	// start of symptom-id group, - 1 to remove the slash or .
+	        	resPath = resPath.substring(0,symptom.start(1) - 1)+Constants.MARKUP_EXT;
+	        	selectors.add(symptom.group(1));
+	        	mustForward = true;
+	        }
+	        
+	        if (hasCategoryRepair(resPath)) {
+	        	resPath = Constants.CATEGORIES_PFX + resPath;
+	        	mustForward = true;
+	        }
+		}
+        
+        if (mustForward) {
+        	String forwardUrl = addSelectors(authorPrepend + resPath,Constants.MARKUP_EXT,selectors);
+        	RequestDispatcher requestDispatcher = request.getRequestDispatcher(forwardUrl);
+        	//if (requestDispatcher != null) { // afaik this is canthappen outside of tests.
+        	log.debug("Forwarding to "+forwardUrl);
+        	requestDispatcher.forward(request, response);
+        	//} else {
+        	//	throw new RuntimeException("No dispatcher for "+forwardUrl);
+        	//}
+        } else {
+        	fc.doFilter(request, response);
+        }
 	    return;
 		
+	}
+	
+	boolean hasRepairGuide(String path) {
+		return repairGuide.matcher(path).find();
+	}
+	
+	boolean hasCategoryRepair(String path) {
+		return !path.startsWith(Constants.MODEL_REPAIR_PAGE_NO_EXT) && categoryRepair.matcher(path).find();
+	}
+	
+	String addSelectors(String inUrl, String extension, List<String> selectors) {
+		StringBuilder outUrl = new StringBuilder(inUrl.substring(0,inUrl.length()-extension.length()));
+		for (String selector : selectors) {
+			outUrl.append(".").append(selector);
+		}
+		//outUrl.setLength(outUrl.length() - 1);
+		outUrl.append(extension);
+		return outUrl.toString();
 	}
 
 	public void init(FilterConfig arg0) throws ServletException {

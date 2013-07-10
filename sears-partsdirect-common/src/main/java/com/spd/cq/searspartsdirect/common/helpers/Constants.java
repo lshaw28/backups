@@ -51,6 +51,15 @@ public final class Constants {
 	public static final String CATEGORIES_ROOT = ident("/content/searspartsdirect/en/categories");
 	public static final String ERROR_TABLES_ROOT = ident("/content/searspartsdirect/en/error-tables");
 	public static final String EN_ROOT = ident("/content/searspartsdirect/en");
+	
+	public static final String SPD_ROOT = ident("/content/searspartsdirect/");
+	public static final String MODELNO_PFX = ident("model-");
+	public static final String MODELNO_SFX = ident("-repair");
+	public static final String REPAIR_GUIDES_ROOT = ident("/repair-guide/");
+	public static final String SYMPTOM_ROOT = ident("/symptom/");
+	public static final String MODEL_REPAIR_PAGE_NO_EXT = ident("/model-repair");
+	public static final String MARKUP_EXT = ident(".html");
+	public static final String CATEGORIES_PFX = ident("/categories");
 
 	public static final String AUTHOR_REL_PATH = ident("jcr:content/authors");
 

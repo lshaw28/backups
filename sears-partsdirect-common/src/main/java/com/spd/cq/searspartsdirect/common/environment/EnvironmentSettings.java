@@ -6,12 +6,11 @@ import java.util.Hashtable;
 import org.apache.felix.scr.annotations.*;
 import org.osgi.service.component.ComponentContext;
 
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
+
 @Component(label="Sears PartsDirect Environment Settings",description="Environment specific variables",immediate=true,metatype=true)
 @Service(value=com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings.class)
-@Properties({	
-	@Property(name = org.osgi.framework.Constants.SERVICE_DESCRIPTION, value = "Environment specific variables"),
-    @Property(name = org.osgi.framework.Constants.SERVICE_VENDOR, value = "Siteworx")
-})
+
 public class EnvironmentSettings {
     
     private static Dictionary<?, ?> props;
@@ -27,7 +26,7 @@ public class EnvironmentSettings {
     public static final String HANDLE_404_URL = "searspartsdirect.error.404.url";
     
     public static String get404HandlerURL() {
-    	return getProperty(HANDLE_404_URL,"");
+    	return getProperty(HANDLE_404_URL, Constants.EMPTY);
     }
     
     @Property(label = "Sitemap Start Paths", 
@@ -37,7 +36,7 @@ public class EnvironmentSettings {
     public static final String SITEMAP_START_PATHS = "searspartsdirect.sitemap.paths.start";
     
     public static String getSitemapStartPaths() {
-    	return getProperty(SITEMAP_START_PATHS,"");
+    	return getProperty(SITEMAP_START_PATHS,Constants.EMPTY);
     }
     
     @Property(label = "Sitemap Stop Paths", 
@@ -46,7 +45,7 @@ public class EnvironmentSettings {
     public static final String SITEMAP_STOP_PATHS = "searspartsdirect.sitemap.paths.stop";
     
     public static String getSitemapStopPaths() {
-    	return getProperty(SITEMAP_STOP_PATHS,"");
+    	return getProperty(SITEMAP_STOP_PATHS,Constants.EMPTY);
     }
     
     @Property(label = "External Url Added Prefix", 
@@ -55,7 +54,7 @@ public class EnvironmentSettings {
     public static final String EXTERNAL_ADDED_PREFIX = "searspartsdirect.external.added.prefix";
     
     public static String getExternalAddedPrefix() {
-    	return getProperty(EXTERNAL_ADDED_PREFIX,"");
+    	return getProperty(EXTERNAL_ADDED_PREFIX,Constants.EMPTY);
     }
     
     @Property(label = "External Url Added Suffix", 
@@ -64,7 +63,7 @@ public class EnvironmentSettings {
     public static final String EXTERNAL_ADDED_SUFFIX = "searspartsdirect.external.added.suffix";
     
     public static String getExternalAddedSuffix() {
-    	return getProperty(EXTERNAL_ADDED_SUFFIX,"");
+    	return getProperty(EXTERNAL_ADDED_SUFFIX,Constants.EMPTY);
     }
     
     @Property(label = "PartsDirect User Data API", 
@@ -73,7 +72,7 @@ public class EnvironmentSettings {
     public static final String PD_USERDATA_API = "searspartsdirect.pd.userdata.api";
     
     public static String getPDUserDataApiUrl() {
-    	return getProperty(PD_USERDATA_API,"");
+    	return getProperty(PD_USERDATA_API,Constants.EMPTY);
     }
     
     
@@ -82,7 +81,7 @@ public class EnvironmentSettings {
     		value = "http://partsbetavip.qa.ch3.s.com")
     public static final String PD_URL = "searspartsdirect.url";
     public static String getPDUrl() {
-    	return getProperty(PD_URL,"");
+    	return getProperty(PD_URL,Constants.EMPTY);
     }
     
     // should these maybe just be the URIs? and always appended to the PD_URL?
@@ -92,7 +91,7 @@ public class EnvironmentSettings {
     public static final String PD_JOBCODE_API = "searspartsdirect.pd.jobcode.api";
     
     public static String getPDJobCodeApiUrl() {
-    	return getProperty(PD_JOBCODE_API,"");
+    	return getProperty(PD_JOBCODE_API,Constants.EMPTY);
     }
     
     @Property(label = "PartsDirect Top Parts API", 
@@ -101,7 +100,7 @@ public class EnvironmentSettings {
     public static final String PD_TOPPARTS_API = "searspartsdirect.pd.topparts.api";
     
     public static String getPDTopPartsApiUrl() {
-    	return getProperty(PD_TOPPARTS_API,"");
+    	return getProperty(PD_TOPPARTS_API,Constants.EMPTY);
     }
     
     // ---- for testing ----

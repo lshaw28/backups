@@ -14,9 +14,41 @@
                 <description
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Description"
-                    name="./jcr:content/jcr:description"
-                    xtype="textarea"/>
+                    xtype="textarea"
+                    name="./jcr:content/jcr:description"/>
+                <id
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="ID"
+                    xtype="textfield"
+                    name="./jcr:content/id"/>
             </items>
         </tab1>
+        
+         <tab2
+        	jcr:primaryType="cq:Panel"
+        	title="Related Part Type">
+        	<items jcr:primaryType="cq:WidgetCollection">
+        		<partType
+        			jcr:primaryType="cq:Widget"
+        			name="./jcr:content/partType"
+        			rootPath="/etc/spdAssets/scaffolding/partType"
+        			fieldLabel="Part Type"
+        			xtype="pathfield"/>
+        	</items>
+       	</tab2>
+       	
+       	<tab3
+       		jcr:primaryType ="cq:Panel"
+       		title="Related Guides">
+       		<items jcr:primaryType="cq:WidgetCollection">
+	       		<guides jcr:primaryType="cq:Widget"
+								fieldLabel="Guides"
+								fieldDescription="Guides"
+								hideLabel="{Boolean}false"
+								treeRootPath="/content/searspartsdirect/en/repair-guide"
+								name="./jcr:content/guides"
+								xtype="scaffoldingpagemapper" />
+			</items>
+       	</tab3>
     </items>
 </jcr:root>

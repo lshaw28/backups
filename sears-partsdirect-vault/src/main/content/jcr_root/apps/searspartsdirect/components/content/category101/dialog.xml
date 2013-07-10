@@ -28,7 +28,7 @@
 			                        jcr:primaryType="cq:Widget"
 			                        fieldLabel="Article"
 			                        name="url"
-			                        rootPath="/content/searspartsdirect/en/articles"
+			                        rootPath="/content/searspartsdirect/en/article"
 			                        xtype="pathfield"/>
 			                </items>
 			            </fieldConfig>
