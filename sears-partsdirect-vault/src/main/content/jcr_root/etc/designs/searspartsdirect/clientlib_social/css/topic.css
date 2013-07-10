@@ -1,0 +1,25 @@
+div.forum div.topic div.message {
+    background-color: #e4eaee;
+    border-bottom: 1px solid #dddddd;
+    border-top: 1px solid #dddddd;
+    overflow: hidden;
+}
+
+div.forum div.topic div.message.op {
+    background-color: #e4eaee;
+}
+
+div.forum div.topic p.back {
+    font-size: 11px;
+    margin-bottom: 20px;
+}
+
+
+div.forum div.topic div.subject p {
+    color: #535353;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}

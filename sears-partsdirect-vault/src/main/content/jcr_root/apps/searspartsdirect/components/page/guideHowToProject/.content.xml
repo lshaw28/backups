@@ -6,4 +6,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Sears PartsDirect Disassembly Guide/How It Works/Maintenance Project Template"
 	componentGroup=".hidden"
-	sling:resourceSuperType="searspartsdirect/components/page/base" />
+	sling:resourceSuperType="searspartsdirect/components/page/repairGuide" />

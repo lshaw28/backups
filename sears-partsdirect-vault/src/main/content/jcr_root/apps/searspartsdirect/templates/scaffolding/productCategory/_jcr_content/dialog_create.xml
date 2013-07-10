@@ -64,6 +64,12 @@
         	jcr:primaryType="cq:Panel"
         	title="Category 101">
             <items jcr:primaryType="cq:WidgetCollection">
+	        	<title jcr:primaryType="cq:Widget"
+					   fieldLabel="New Header"
+					   name="./jcr:content/header"
+					   xtype="textfield"
+					   maxLength="42"
+					   fieldDescription="Character limit is 42" />
 	        	<multi
 		            jcr:primaryType="cq:Widget"
 		            fieldLabel="Articles"
@@ -78,11 +84,17 @@
 		                        jcr:primaryType="cq:Widget"
 		                        fieldLabel="Article"
 		                        name="url"
-		                        rootPath="/content/searspartsdirect/en/articles"
+		                        rootPath="/content/searspartsdirect/en/article"
 		                        xtype="pathfield"/>
 		                </items>
 		            </fieldConfig>
 		    	</multi>
+		    	<viewall
+				    	jcr:primaryType="cq:Widget"
+			            fieldLabel="Enter link text"
+			            fieldDescription="Enter Text to display link"
+			            name="./jcr:content/viewAllLinkText"
+			            xtype="textfield"/>
 	    	</items>
 	    </tab3>
         <tab4

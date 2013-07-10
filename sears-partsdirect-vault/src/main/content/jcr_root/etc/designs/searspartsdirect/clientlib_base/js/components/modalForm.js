@@ -12,6 +12,7 @@ var modalForm = Class.extend(function () {
 			this.el = el;
 			this.group = $('form', el).attr('data-regulagroup').toString();
 			this.bindSubmit();
+            this.bindCancel();
 			this.bindCheckField();
             this.resetFields();
 		},
@@ -52,10 +53,19 @@ var modalForm = Class.extend(function () {
 			if (errorMessage.length > 0) {
 				$('.alert', self.el).removeClass('hidden');
 			} else if ($('.alert', self.el).hasClass('hidden') === false) {
-				$('.alert', self.el).addClass('hidden');
+				self.resetFields();
 				$('form', self.el)[0].submit();
 			}
 		},
+
+        bindCancel: function () {
+            var self = this;
+
+            $('[data-cancel]', self.el).bind('click', function () {
+                self.resetFields();
+            });
+
+        },
 		/**
 		 * Creates validation object literal
 		 * @return {object}
