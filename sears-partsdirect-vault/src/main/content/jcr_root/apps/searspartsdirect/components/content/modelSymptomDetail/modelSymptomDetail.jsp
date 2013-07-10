@@ -1,8 +1,11 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-<spd:getSymptomDetail partsRequired="true" />
+<spd:getUrlRelation relationType="symptom" />
+symptom details - ${symptomRelation.id}
 
-<h1>${modelSymptom.symptomModel.title}</h1>
+<spd:getSymptomDetail partsRequired="true" symptomId ="${symptomRelation.id}" />
+
+ <h1>${modelSymptom.symptomModel.title}</h1>
 <p>${modelSymptom.symptomModel.description}</p>
 
 <c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
