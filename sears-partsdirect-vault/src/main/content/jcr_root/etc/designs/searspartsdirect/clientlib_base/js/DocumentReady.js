@@ -5,7 +5,13 @@
 	 * Global functionality instantiation
 	 */
 	$(document).ready(function () {
-		/**
+         /**
+		 * model section
+		 */
+
+		var modelsection = new modelsectionHeader();
+
+        /**
 		 * Comment Section
 		 */
 
@@ -14,12 +20,6 @@
 		 * Search Panel
 		 */
 		var mainSearchPanel = new searchPanel();
-		/**
-		 * modelNumberSearch component setup
-		 */
-		$('.modelNumberSearch').each(function () {
-			var newNodelNumberSearch = new modelNumberSearch($(this));
-		});
 		/**
 		 * revealPanel class setup
 		 */
@@ -157,7 +157,7 @@
 			}
 		});
 		regula.bind();
-
+		
 		/*
 		 * Responsive table initializer
 		 */
