@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetCategoryArticleListFixture;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
+import com.spd.cq.searspartsdirect.common.model.ArticleModel;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -33,13 +33,13 @@ public class GetCategoryArticleListTagTest extends MocksTag {
 	public void testDoStartTag() {
 		runTheTag();
 		@SuppressWarnings("unchecked")
-		Map<String,List<RelatedArticleModel>> articles = (Map<String,List<RelatedArticleModel>>)pageContext.getAttribute("articles");
+		Map<String,List<ArticleModel>> articles = (Map<String,List<ArticleModel>>)pageContext.getAttribute("articles");
 		assertThat(articles,is(instanceOf(Map.class)));
-		List<RelatedArticleModel> articleList = articles.get(Constants.SUBCATEGORY_TAG+"/hasFour");
+		List<ArticleModel> articleList = articles.get(Constants.SUBCATEGORY_TAG+"/hasFour");
 		assertThat(articleList,hasSize(4));
-		RelatedArticleModel first = articleList.get(0);
+		ArticleModel first = articleList.get(0);
 		assertThat(first.getUrl(),is("/baz.html"));
-		RelatedArticleModel last = articleList.get(3);
+		ArticleModel last = articleList.get(3);
 		assertThat(last.getUrl(),is("/foo.html"));
 	}
 	
@@ -48,7 +48,7 @@ public class GetCategoryArticleListTagTest extends MocksTag {
 		fixture.setUpToThrow();
 		runTheTag();
 		@SuppressWarnings("unchecked")
-		Map<String,List<RelatedArticleModel>> articles = (Map<String,List<RelatedArticleModel>>)pageContext.getAttribute("articles");
+		Map<String,List<ArticleModel>> articles = (Map<String,List<ArticleModel>>)pageContext.getAttribute("articles");
 		assertThat(articles,is(instanceOf(Map.class)));
 		assertThat(articles.entrySet(),hasSize(0));
 	}

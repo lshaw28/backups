@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetAuthorArticlesTagFixture;
-import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
+import com.spd.cq.searspartsdirect.common.model.ArticleModel;
 
 public class GetAuthorArticlesTagTest extends MocksTag {
 	GetAuthorArticlesTag tag;
@@ -36,14 +36,14 @@ public class GetAuthorArticlesTagTest extends MocksTag {
 		}
 
 		@SuppressWarnings("unchecked")
-		ArrayList<RelatedArticleModel> articles = (ArrayList<RelatedArticleModel>) pageContext.getAttribute("articles");
+		ArrayList<ArticleModel> articles = (ArrayList<ArticleModel>) pageContext.getAttribute("articles");
 		assertNotNull(articles);
 		if (CollectionUtils.isNotEmpty(articles)) {
 			assertThat(articles, is(instanceOf(ArrayList.class)));
 			assertEquals(articles.size(), 3);
-			RelatedArticleModel first = articles.get(0);
+			ArticleModel first = articles.get(0);
 			assertThat(first.getUrl(), is("/foo.html"));
-			RelatedArticleModel last = articles.get(2);
+			ArticleModel last = articles.get(2);
 			assertThat(last.getUrl(), is("/baz.html"));
 		}
 	}

@@ -12,6 +12,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,6 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
-import com.google.common.base.Strings;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.ErrorCodeListModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
@@ -39,7 +39,7 @@ public class GetErrorCodesListTag extends CQBaseTag {
 
 	@Override
 	public int doStartTag() throws JspException {
-		if (!Strings.isNullOrEmpty(categoryPath)) {
+		if (StringUtils.isNotBlank(categoryPath)) {
 			Map<BrandModel, List<ErrorCodeListModel>> tempErrorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeListModel>>();
 			Map<BrandModel, List<ErrorCodeListModel>> errorCodeList = new LinkedHashMap<BrandModel, List<ErrorCodeListModel>>();
 
