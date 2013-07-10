@@ -10,14 +10,22 @@
 
 <spd:getModelSymptoms categoryPath="${productCategoryRelation.path}" />
 
-<table>
-<tr><td>Symptom</td><td>Symptom Frequency</td></tr>
-<c:forEach var="symptom" items="${categorySymptoms}">
-	<tr>
-		<td><a href="/${brandRelation.title}/${productCategoryRelation.title}/model-${modelRelation}-repair/symptom/${symptom.id}">${symptom.title}</a></td>
-		<td>No data available</td>
-	</tr>
-</c:forEach>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Symptom</th>
+            <th>Frequency</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="symptom" items="${categorySymptoms}">
+            <tr>
+                <td><a href="/${brandRelation.title}/${productCategoryRelation.title}/model-${modelRelation}-repair/symptom/${symptom.id}">${symptom.title}</a></td>
+                <td>No data available</td>
+            </tr>
+        </c:forEach>
+    </tbody>
+
 </table>
 
 <%-- <spd:getRelation single="true" assetType="productCategory"/> --%>

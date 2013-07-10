@@ -49,6 +49,7 @@ maintenanceTopicJump/maintenanceTopicJump.less
 modal/modal.less
 modelHeader/modelHeader.less
 modelNumberSearch/modelNumberSearch.less
+modelSymptoms/modelSymptoms.less
 notice/notice.less
 overviewImage/overviewImage.less
 partsRequiredRepair/partsRequiredRepair.less
