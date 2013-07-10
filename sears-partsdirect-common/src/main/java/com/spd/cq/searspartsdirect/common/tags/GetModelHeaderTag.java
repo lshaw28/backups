@@ -14,9 +14,9 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
  * @author Joseph
  *
  */
-public class DisplayModelHeaderTag extends CQBaseTag {
+public class GetModelHeaderTag extends CQBaseTag {
 	
-	protected final static Logger log = LoggerFactory.getLogger(DisplayModelHeaderTag.class);
+	protected final static Logger log = LoggerFactory.getLogger(GetModelHeaderTag.class);
 	
 	@Override
 	public int doStartTag() throws JspException {
