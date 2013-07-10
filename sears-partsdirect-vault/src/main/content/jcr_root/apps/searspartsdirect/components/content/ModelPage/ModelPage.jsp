@@ -18,7 +18,7 @@
 
 
      <div class="iwonsection span5">
-            <span class="span5"><button class="btn"><i class="icon-ok"></i> I won this</button></span> 
+            <span class="span5"><button class="btn"><i class="icon-ok"></i> I own this</button></span> 
             <span class="span7">This model has been added to "My Models."</span>
         </div>
 
