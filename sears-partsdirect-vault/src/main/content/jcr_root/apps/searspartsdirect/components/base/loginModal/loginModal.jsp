@@ -12,7 +12,7 @@
             <a href="#">Forgot Password?</a>
 		</fieldset>
 		<div class="pull-right">
-			<button class="new-btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			<button class="new-btn" data-dismiss="modal" data-cancel="true"aria-hidden="true">Cancel</button>
 			<button class="new-btn new-btn-search" data-submit="true">Sign In</button>
 		</div>
 	</form>
