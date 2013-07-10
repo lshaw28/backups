@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.jcr.Node;
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
-import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,20 +19,19 @@ import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
-import com.spd.cq.searspartsdirect.common.model.ArticleModel;
+import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
 
-public class GetGuideListingTag extends CQBaseTag{
-
+public class GetMostPopularGuideTag extends CQBaseTag{
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = LoggerFactory.getLogger(GetGuideListingTag.class);
+	protected static Logger log = LoggerFactory.getLogger(GetMostPopularGuideTag.class);
 	protected String categoryPath;
 
+	
 	@Override
 	public int doStartTag() throws JspException {
 
-		
 		try {
-			HashMap<String, List<ArticleModel>> guides = new HashMap<String, List<ArticleModel>>();
+			List<RelatedArticleModel> guides = new ArrayList<RelatedArticleModel>();
 			ArrayList<Page> result = new ArrayList<Page>();
 			//Get the guides based on the category
 			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
@@ -48,34 +47,41 @@ public class GetGuideListingTag extends CQBaseTag{
 			}
 
 			Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
-			for(Page page: result){
+			/*for(Page page: result){
 
 				if (!page.equals(currentPage)) {
-
-					String subcategoryName = PDUtils.getSubcategoryFromPage(page);
-
-					if (!(guides.isEmpty()) && guides.containsKey(subcategoryName)){
-						List<ArticleModel> tmp = guides.get(subcategoryName);
-						tmp.add( new ArticleModel(
-								page.getPath() + ".html",
-								page.getPath() + Constants.ASSETS_IMAGE_PATH,
-								page.getTitle(),
-								page.getDescription()));
-					}else{
-						List<ArticleModel> tmpGuides = new ArrayList<ArticleModel>();
-						tmpGuides.add( new ArticleModel(
-								page.getPath() + ".html",
-								page.getPath() + Constants.ASSETS_IMAGE_PATH,
-								page.getTitle(),
-								page.getDescription()));
-							//Add the guides to the list
-						guides.put(subcategoryName, tmpGuides);
-					}
+					guides.add( new RelatedArticleModel(
+							page.getPath() + ".html",
+							page.getPath() + Constants.ASSETS_IMAGE_PATH,
+							page.getTitle(),
+							page.getDescription()));
+					
 				}
-			}
+			}*/
+			
+			guides.add( new RelatedArticleModel(
+					result.get(0).getPath() + ".html",
+					result.get(0).getPath() + Constants.ASSETS_IMAGE_PATH,
+					result.get(0).getTitle(),
+					result.get(0).getDescription()));
 
 		pageContext.setAttribute("guides", guides);
-
+		
+		//Get the difficulty level from the repair guide page
+		resource = resourceResolver.getResource(result.get(0).getPath());
+		Node resourceNode = resource.adaptTo(Node.class);
+		String difficultyLevel = resourceNode.getNode(Constants.GUIDES_REL_PATH).getProperty("difficultyLevel").getString();
+		pageContext.setAttribute("difficultyLevel", difficultyLevel);
+		//Get time required from the repair guide page
+		String timeRequired = resourceNode.getNode(Constants.GUIDES_REL_PATH).getProperty("timeRequired").getString();
+		pageContext.setAttribute("timeRequired", timeRequired);
+		
+		/*Resource r = resourceResolver.getResource("path");
+		if (r != null) {
+			Node n = r.adaptTo(Node.class);
+		}
+		n.getNode("jcr:content/guideDetails").getProperty("difficultyLevel").getString();
+*/
 		}
 		catch (Exception e) {
 

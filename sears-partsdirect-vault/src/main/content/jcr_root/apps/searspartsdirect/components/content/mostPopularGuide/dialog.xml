@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0"
+		xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		jcr:primaryType="cq:TabPanel"
+		title="Guide Description"
+		xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<tabpanel jcr:primaryType="cq:TabPanel">
+			<items jcr:primaryType="cq:WidgetCollection">
+						
+				 <tab1 jcr:primaryType="cq:Widget" 
+					   title="Most Popular Guide Information"
+					   xtype="panel">
+					  
+					<items jcr:primaryType="cq:WidgetCollection">
+						<text jcr:primaryType="cq:Widget" 
+								fieldLabel="Title"
+								name="./title" 
+								maxLength="70"
+								allowBlank="{Boolean}false"
+								xtype="textfield" />
+								
+						<difficulty
+				            jcr:primaryType="nt:unstructured"
+				            fieldLabel="Difficulty Level"
+				            name="./difficultyLevel"
+				            type="select"
+				            xtype="selection">
+				            <options jcr:primaryType="cq:WidgetCollection">
+				                <l1
+				                    jcr:primaryType="nt:unstructured"
+				                    text="1/5"
+				                    value="level-one"/>
+				                <l2
+				                    jcr:primaryType="nt:unstructured"
+				                    text="2/5"
+				                    value="level-two"/>
+								<l3
+				                    jcr:primaryType="nt:unstructured"
+				                    text="3/5"
+				                    value="level-three"/>
+								<l4
+				                    jcr:primaryType="nt:unstructured"
+				                    text="4/5"
+				                    value="level-four"/>
+								<l5
+				                    jcr:primaryType="nt:unstructured"
+				                    text="5/5"
+				                    value="level-five"/>
+				            </options>
+						</difficulty>
+						<timeRequired
+				            jcr:primaryType="nt:unstructured"
+				            fieldLabel="Time Required"
+				            name="./timeRequired"
+				            type="select"
+				            xtype="selection">
+				            <options jcr:primaryType="cq:WidgetCollection">
+				                <fifteen
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 15 min."
+				                    value="Less than 15 min."/>
+				                <thirty
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 30 min."
+				                    value="Less than 30 min."/>
+				                <fortyFive
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 45 min."
+				                    value="Less than 45 min."/>
+				                <sixty
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 60 min."
+				                    value="Less than 60 min."/>
+				                <ninety
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 90 min."
+				                    value="Less than 90 min."/>
+				                <hundredTwenty
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Less than 120 min."
+				                    value="Less than 120 min."/>
+				            </options>
+				        </timeRequired>
+								
+						<viewAlltext jcr:primaryType="cq:Widget" 
+								fieldLabel="View All link Text"
+								name="./viewAllText" 
+								maxLength="35"
+								allowBlank="{Boolean}false"
+								xtype="textfield" />
+						
+					</items>
+				</tab1>
+				 <tab2 jcr:primaryType="cq:Widget" 
+					   title="All Guides Information"
+					   xtype="panel">
+					  
+					<items jcr:primaryType="cq:WidgetCollection">
+						<title jcr:primaryType="cq:Widget" 
+								fieldLabel="All Guides Title"
+								name="./allGuidestitle" 
+								maxLength="42"
+								allowBlank="{Boolean}true"
+								xtype="textfield" />
+
+					</items>
+				</tab2>
+			</items>
+		</tabpanel>
+	</items>
+</jcr:root>
