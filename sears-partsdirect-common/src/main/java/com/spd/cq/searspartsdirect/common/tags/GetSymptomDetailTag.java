@@ -21,7 +21,7 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.ModelSymptomModel;
-import com.spd.cq.searspartsdirect.common.model.RelatedGuideModel;
+import com.spd.cq.searspartsdirect.common.model.GuideModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
@@ -96,10 +96,10 @@ public class GetSymptomDetailTag extends CQBaseTag {
 										//getting guides
 										String[] guides = (String[]) jobCodeProps.get(GUIDES, String[].class);
 										if (guides != null) {
-											List<RelatedGuideModel> guideList = new ArrayList<RelatedGuideModel>();
+											List<GuideModel> guideList = new ArrayList<GuideModel>();
 											for (int j = 0; j<guides.length; j++) {
 												Page guidePage = pageManager.getPage(guides[j]);
-												RelatedGuideModel guide = new RelatedGuideModel(guidePage.getPath(), null, guidePage.getTitle());
+												GuideModel guide = new GuideModel(guidePage.getPath(), null, guidePage.getTitle());
 												guideList.add(guide);
 											}
 											jobCodeModel.setGuides(guideList);

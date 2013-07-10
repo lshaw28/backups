@@ -20,7 +20,7 @@ import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
+import com.spd.cq.searspartsdirect.common.model.ArticleModel;
 
 /**
  * custom tag to return all the article Models
@@ -40,7 +40,7 @@ public class GetCategory101PagesTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 
-		ArrayList<RelatedArticleModel> category101Models = new ArrayList<RelatedArticleModel>();
+		ArrayList<ArticleModel> category101Models = new ArrayList<ArticleModel>();
 		Tag[] pageTags = null;
 		TagManager tm = resourceResolver.adaptTo(TagManager.class);
 		Tag cat101Tag = tm.resolve(category101TagID);
@@ -88,7 +88,7 @@ public class GetCategory101PagesTag extends CQBaseTag {
 						description = "";
 					}
 					// turn pages to models
-					category101Models.add(new RelatedArticleModel(
+					category101Models.add(new ArticleModel(
 							page.getPath(),
 							imagePath,
 							page.getTitle(),

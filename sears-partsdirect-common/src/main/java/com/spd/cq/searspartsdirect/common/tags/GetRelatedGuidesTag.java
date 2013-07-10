@@ -20,7 +20,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
-import com.spd.cq.searspartsdirect.common.model.RelatedGuideModel;
+import com.spd.cq.searspartsdirect.common.model.GuideModel;
 
 public class GetRelatedGuidesTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
@@ -35,7 +35,7 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		
 		// We start with, any guides directly related to the page
-		List<RelatedGuideModel> guides = findDirectlyRelatedGuides();
+		List<GuideModel> guides = findDirectlyRelatedGuides();
 		
 		// If we don't already have enough, we will do a search for guides for the passed category
 		if (guides.size() < maxOutput) {
@@ -44,7 +44,7 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 		        
 		        for(Page page: result){
 		        	
-		        	RelatedGuideModel guideModel = makeModelFromPage(page);
+		        	GuideModel guideModel = makeModelFromPage(page);
 		        	
 		        	if (guides.size() < maxOutput) { // if we don't have enough
 		        		if (!guides.contains(guideModel)) { // and it isn't a dup,
@@ -76,8 +76,8 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 		this.maxOutput  = maxOutput;
 	}
 	
-	public List<RelatedGuideModel> findDirectlyRelatedGuides() {
-		List<RelatedGuideModel> directlyRelated = new ArrayList<RelatedGuideModel>();
+	public List<GuideModel> findDirectlyRelatedGuides() {
+		List<GuideModel> directlyRelated = new ArrayList<GuideModel>();
 		String[] empty = new String[0];
 		Page workingPage = currentPage;
 		String[] relations = workingPage.getProperties().get(REL_GUIDES_ATTR, empty);
@@ -85,7 +85,7 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 			if (Pattern.matches(Constants.GUIDES_ROOT + "/[^/]+", relations[i])) {
 				Page p = pageManager.getPage(relations[i]);
 				if (p != null) {
-					RelatedGuideModel model = makeModelFromPage(p);
+					GuideModel model = makeModelFromPage(p);
 					if (!directlyRelated.contains(model)) {
 						directlyRelated.add(model);
 					}
@@ -126,8 +126,8 @@ public class GetRelatedGuidesTag extends CQBaseTag {
         return result;
 	}
 	
-	private RelatedGuideModel makeModelFromPage(Page page) {
-		return new RelatedGuideModel(
+	private GuideModel makeModelFromPage(Page page) {
+		return new GuideModel(
     			page.getPath() + ".html", 
     			page.getPath() + Constants.ASSETS_IMAGE_PATH, 
     			page.getTitle());

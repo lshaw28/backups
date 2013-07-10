@@ -23,7 +23,7 @@ import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
-import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
+import com.spd.cq.searspartsdirect.common.model.ArticleModel;
 
 public class GetCategoryArticleListTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
@@ -33,7 +33,7 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		
-		Map<String,List<RelatedArticleModel>> articles = new LinkedHashMap<String,List<RelatedArticleModel>>();
+		Map<String,List<ArticleModel>> articles = new LinkedHashMap<String,List<ArticleModel>>();
 		try {
 
 			List<Page> result = new ArrayList<Page>();
@@ -58,9 +58,9 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	        for(Page page: result){
 	        	if (!page.equals(currentPage)) { // we exclude ourself from results
 	        		String subcategory = PDUtils.getSubcategoryFromPage(page);
-	        		List<RelatedArticleModel> articleList = articles.get(subcategory);
+	        		List<ArticleModel> articleList = articles.get(subcategory);
 	        		if (articleList == null) {
-	        			articleList = new ArrayList<RelatedArticleModel>();
+	        			articleList = new ArrayList<ArticleModel>();
 	        			articles.put(subcategory, articleList);
 	        		}
 	        		articleList.add(getArticleModelFromPage(page));
@@ -74,7 +74,7 @@ public class GetCategoryArticleListTag extends CQBaseTag {
         return SKIP_BODY;
 	}
 	
-	public RelatedArticleModel getArticleModelFromPage(Page page) throws RepositoryException {
+	public ArticleModel getArticleModelFromPage(Page page) throws RepositoryException {
 		// We need to resolve the image path, and hand out a blank for image if the image does not exist
 		String imagePath = page.getPath() + Constants.ASSETS_IMAGE_PATH;
 		Resource imageResource = resourceResolver.getResource(imagePath);
@@ -88,7 +88,7 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 				imagePath = Constants.EMPTY;
 			}
 		}
-		return new RelatedArticleModel(
+		return new ArticleModel(
 				page.getPath() + ".html", 
 				imagePath, 
 				page.getTitle(), 

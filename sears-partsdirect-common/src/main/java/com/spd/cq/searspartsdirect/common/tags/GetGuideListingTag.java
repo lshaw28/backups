@@ -18,7 +18,7 @@ import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
-import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
+import com.spd.cq.searspartsdirect.common.model.ArticleModel;
 
 public class GetGuideListingTag extends CQBaseTag{
 
@@ -29,7 +29,7 @@ public class GetGuideListingTag extends CQBaseTag{
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			HashMap<String, List<RelatedArticleModel>> guides = new HashMap<String, List<RelatedArticleModel>>();
+			HashMap<String, List<ArticleModel>> guides = new HashMap<String, List<ArticleModel>>();
 			ArrayList<Page> result = new ArrayList<Page>();
 			//Get the guides based on the category
 			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
@@ -52,15 +52,15 @@ public class GetGuideListingTag extends CQBaseTag{
 					String subcategoryName = PDUtils.getSubcategoryFromPage(page);
 
 					if (!(guides.isEmpty()) && guides.containsKey(subcategoryName)){
-						List<RelatedArticleModel> tmp = guides.get(subcategoryName);
-						tmp.add( new RelatedArticleModel(
+						List<ArticleModel> tmp = guides.get(subcategoryName);
+						tmp.add( new ArticleModel(
 								page.getPath() + ".html",
 								page.getPath() + Constants.ASSETS_IMAGE_PATH,
 								page.getTitle(),
 								page.getDescription()));
 					}else{
-						List<RelatedArticleModel> tmpGuides = new ArrayList<RelatedArticleModel>();
-						tmpGuides.add( new RelatedArticleModel(
+						List<ArticleModel> tmpGuides = new ArrayList<ArticleModel>();
+						tmpGuides.add( new ArticleModel(
 								page.getPath() + ".html",
 								page.getPath() + Constants.ASSETS_IMAGE_PATH,
 								page.getTitle(),

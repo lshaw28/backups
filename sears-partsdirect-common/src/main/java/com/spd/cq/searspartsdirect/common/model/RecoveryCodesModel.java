@@ -16,7 +16,7 @@ public class RecoveryCodesModel {
 	
 	private PartTypeModel partTypeModel;
 	
-	private List<RelatedGuideModel> guides;
+	private List<GuideModel> guides;
 	
 	public String getCodeId() {
 		return codeId;
@@ -42,10 +42,10 @@ public class RecoveryCodesModel {
 	public void setPartTypeModel(PartTypeModel partTypeModel) {
 		this.partTypeModel = partTypeModel;
 	}
-	public List<RelatedGuideModel> getGuides() {
+	public List<GuideModel> getGuides() {
 		return guides;
 	}
-	public void setGuides(List<RelatedGuideModel> guides) {
+	public void setGuides(List<GuideModel> guides) {
 		this.guides = guides;
 	}
 	@Override

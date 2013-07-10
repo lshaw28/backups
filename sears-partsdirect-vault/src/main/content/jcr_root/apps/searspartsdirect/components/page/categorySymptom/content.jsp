@@ -3,7 +3,9 @@
 	<cq:include path="/content/searspartsdirect/en/jcr:content/breadcrumbNavigation" resourceType="/apps/searspartsdirect/components/base/breadcrumbNavigation" />
 	<div class="row-fluid">
 		<div class="span12">
-			<cq:include path="parsys" resourceType="foundation/components/parsys" />
+			<% // @TODO: Make this an if/else %>
+			<cq:include path="categorySymptomLayout" resourceType="searspartsdirect/components/content/categorySymptomLayout" />
+			<cq:include path="modelSymptomLayout" resourceType="searspartsdirect/components/content/modelSymptomLayout" />
 		</div>
 	</div>
 </article>

@@ -15,7 +15,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
+import com.spd.cq.searspartsdirect.common.model.ArticleModel;
 
 public class GetRelatedArticlesTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +25,7 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 
-		ArrayList<RelatedArticleModel> articles = new ArrayList<RelatedArticleModel>();
+		ArrayList<ArticleModel> articles = new ArrayList<ArticleModel>();
 		try {
 
 			ArrayList<Page> result = new ArrayList<Page>();
@@ -53,7 +53,7 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 					} else {
 						description = "";
 					}
-					articles.add(new RelatedArticleModel(
+					articles.add(new ArticleModel(
 							page.getPath() + ".html",
 							page.getPath() + Constants.ASSETS_IMAGE_PATH,
 							page.getTitle(),
@@ -67,7 +67,7 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 					} else {
 						description = "";
 					}
-					articles.add(new RelatedArticleModel(
+					articles.add(new ArticleModel(
 							result.get(i).getPath() + ".html",
 							result.get(i).getPath() + Constants.ASSETS_IMAGE_PATH,
 							result.get(i).getTitle(),
