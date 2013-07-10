@@ -36,6 +36,8 @@ public class GetSymptomDetailTag extends CQBaseTag {
 	private boolean partsRequired;
 	
 	public static final Logger log = LoggerFactory.getLogger(GetSymptomDetailTag.class);
+	private static final String PART_TYPE = "partType";
+	private static final String GUIDES = "guides";
 	
 	@Override
 	public int doStartTag() throws JspException {
@@ -80,7 +82,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 									
 									ValueMap jobCodeProps = jobCodePage.getProperties();
 									if (jobCodeProps != null) {
-										String partType = (String) jobCodeProps.get("partType");
+										String partType = (String) jobCodeProps.get(PART_TYPE);
 										Page partTypePage = pageManager.getPage(partType);
 										
 										if (partTypePage != null) {
@@ -92,7 +94,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 										jobCodeModels.add(jobCodeModel);
 										
 										//getting guides
-										String[] guides = (String[]) jobCodeProps.get("guides", String[].class);
+										String[] guides = (String[]) jobCodeProps.get(GUIDES, String[].class);
 										if (guides != null) {
 											List<RelatedGuideModel> guideList = new ArrayList<RelatedGuideModel>();
 											for (int j = 0; j<guides.length; j++) {
