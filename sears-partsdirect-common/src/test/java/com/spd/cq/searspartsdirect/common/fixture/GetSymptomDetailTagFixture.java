@@ -165,7 +165,7 @@ public class GetSymptomDetailTagFixture {
 			when(jobCodePage.getProperties()).thenReturn(props);
 		}
 		when(props.get("partType")).thenReturn(getPartTypePage(titleAndDesc));
-		when(props.get("guide")).thenReturn(getGuidePage(titleAndDesc));
+		when(props.get("guides")).thenReturn(getGuidePage(titleAndDesc));
 		return testHit;
 	}
 	
@@ -173,14 +173,14 @@ public class GetSymptomDetailTagFixture {
 		when(props.get("pages", String[].class)).thenReturn(new String[]{getJobCodePage(titleAndDesc)});
 		when(props.get("jcr:title", String.class)).thenReturn(titleAndDesc);
 		when(props.get("partType", String.class)).thenReturn(new String(getPartTypePage(titleAndDesc)));
-		when(props.get("guide", String[].class)).thenReturn(new String[]{getGuidePage(titleAndDesc)});
+		when(props.get("guides", String[].class)).thenReturn(new String[]{getGuidePage(titleAndDesc)});
 	}
 	
 	private void populateTestPropsNoJobCode(ValueMap props, String titleAndDesc) {
 		when(props.get("pages", String[].class)).thenReturn(new String[]{"beeeezer"});
 		when(props.get("jcr:title", String.class)).thenReturn(titleAndDesc);
 		when(props.get("partType", String.class)).thenReturn(new String(getPartTypePage(titleAndDesc)));
-		when(props.get("guide", String[].class)).thenReturn(new String[]{getGuidePage(titleAndDesc)});
+		when(props.get("guides", String[].class)).thenReturn(new String[]{getGuidePage(titleAndDesc)});
 	}
 	
 	private String getPartTypePage(String pathAndTitle) {
