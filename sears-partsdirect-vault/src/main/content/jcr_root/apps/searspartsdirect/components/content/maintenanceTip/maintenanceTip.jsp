@@ -2,4 +2,4 @@
 
 <h5><cq:text property="tipTitle" placeholder="Maintenance tip question goes here" /></h5>
 
-<cq:text property="text" placeholder="Maintenance tip answer goes here" />
+<p class="borderBottom"><cq:text property="text" placeholder="Maintenance tip answer goes here" /></p>
