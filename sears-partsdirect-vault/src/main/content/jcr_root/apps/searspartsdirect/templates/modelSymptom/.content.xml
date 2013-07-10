@@ -10,7 +10,7 @@
 	ranking="20">
 	<jcr:content
 		jcr:primaryType="cq:PageContent"
-		sling:resourceType="searspartsdirect/components/page/modelSymptoms"
+		sling:resourceType="searspartsdirect/components/page/modelSymptom"
 		cq:designPath="/etc/designs/searspartsdirect">
 	</jcr:content>
 </jcr:root>
