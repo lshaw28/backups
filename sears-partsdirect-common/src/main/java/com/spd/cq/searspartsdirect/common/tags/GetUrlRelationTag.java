@@ -79,12 +79,16 @@ public class GetUrlRelationTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		relationToSelectorIndex = selectorCountToScheme.get(slingRequest.getRequestPathInfo().getSelectors().length);
+		
 		if (!StringUtils.isBlank(relationType)) {
 			lookUpRelation();
 		} else {
-			for (String possibleRelation : relationToSelectorIndex.keySet()) {
-				relationType = possibleRelation;
-				lookUpRelation();
+			if (relationToSelectorIndex != null) {
+				for (String possibleRelation : relationToSelectorIndex.keySet()) {
+					relationType = possibleRelation;
+					lookUpRelation();
+					relationType = null;
+				}
 			}
 		}
 

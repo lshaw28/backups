@@ -110,6 +110,16 @@ public class GetUrlRelationTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testGetAllTwoRelations() throws JspException {
+		fixture.setUpBCSelectors();
+		fixture.setUpProductCategory();
+		fixture.setUpBrand();
+		fixture.setUpSymptom();
+		
+		runsSkipsBodyEvalsPage();
+	}
+	
+	@Test
 	public void testGetAllWithoutSymptom() throws JspException {
 		fixture.setUpBCMSelectors();
 		fixture.setUpProductCategory();
