@@ -6,13 +6,9 @@
 		<div class="span12">
 			<cq:include path="pageTitleHeader" resourceType="searspartsdirect/components/content/pageTitleHeader" />
 		</div>
-	</div>
-	<div class="row-fluid">
 		<div class="span12">
 			<cq:include path="authorDisplay" resourceType="searspartsdirect/components/content/article/authorDisplay" />
 		</div>
-	</div>
-	<div class="row-fluid">
 		<div class="span12">
 			<cq:include path="socialBar" resourceType="searspartsdirect/components/content/socialBar" />
 		</div>
@@ -26,9 +22,6 @@
 		</div>
 	</div>
 	<div class="row-fluid">
-		<div class="span2 offset1 ad-span pull-right">
-			<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
-		</div>
 		<div class="span5">
 			<a name="template_toolsRequiredRepair"></a>
 			<cq:include path="toolsRequiredRepair" resourceType="searspartsdirect/components/content/toolsRequiredRepair" />
@@ -45,6 +38,11 @@
 			<a name="template_repairInstructions"></a>
 			<cq:include path="repairInstructions" resourceType="searspartsdirect/components/content/repairInstructions" />
 		</div>
+		<div class="span2 offset1 ad-span pull-right">
+			<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
+		</div>
+	</div>
+	<div class="row-fluid">
 		<div class="span9">
 			<a name="template_comments"></a>
 			<cq:include path="comments" resourceType="searspartsdirect/components/content/comments" />
