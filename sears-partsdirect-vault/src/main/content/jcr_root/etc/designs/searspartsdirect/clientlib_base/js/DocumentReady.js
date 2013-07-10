@@ -32,6 +32,11 @@
 		$('.trigger').bind('click', function () {
 			$('body').toggleClass('loginNav-open');
 		});
+		$('#loginNavGetHelp').bind('click', function () {
+			if (window.SPDUtils.isMobileBreakpoint() === true) {
+				$('body').toggleClass('loginNav-open');
+			}
+		});
 		/**
 		 * Cart Navigation
 		 */
@@ -157,7 +162,7 @@
 			}
 		});
 		regula.bind();
-		
+
 		/*
 		 * Responsive table initializer
 		 */
