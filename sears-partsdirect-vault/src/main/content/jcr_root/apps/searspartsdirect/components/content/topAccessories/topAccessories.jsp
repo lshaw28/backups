@@ -17,11 +17,15 @@
 				</div>
 			</c:when>
 			<c:otherwise>
-				<p>No accessories defined for this category. Add accessories at ${productCategoryRelation.path}</p>
+				<c:if test="${isEditMode or isDesignMode}">
+					<p>No accessories defined for this category. Add accessories at ${productCategoryRelation.path}</p>
+				</c:if>
 			</c:otherwise>
 		</c:choose>
 	</c:when>
 	<c:otherwise>
-		<p>No category defined for this page. Add a category in page properties.</p>
+		<c:if test="${isEditMode or isDesignMode}">
+			<p>No category defined for this page. Add a category in page properties.</p>
+		</c:if>
 	</c:otherwise>
 </c:choose>
