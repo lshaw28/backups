@@ -45,11 +45,23 @@ public class PDModelSubcomponentModel {
 	
 	// sugar to elide wrappers
 	public PDSymptom[] getSymptomsArr() {
-		return symptoms.getSymptom();
+		if (symptoms != null) {
+			PDSymptom[] symptomArr = symptoms.getSymptom();
+			if (symptomArr != null) {
+				return symptomArr;
+			}
+		} 
+		return new PDSymptom[0];
 	}
 	
 	public PDTab[] getTabsArr() {
-		return tabs.getTab();
+		if (tabs != null) {
+			PDTab[] tabArr = tabs.getTab();
+			if (tabArr != null) {
+				return tabArr;
+			}
+		} 
+		return new PDTab[0];
 	}
 
 }
