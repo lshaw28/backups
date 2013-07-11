@@ -4,58 +4,31 @@ var commentCheck = Class.extend(function() {
 
 	return {
 		/**
-		 * @singleton cartNav Singleton class for the CommentSection
+		 * @singleton commentSection
+		 * Singleton class for the commentSection
 		 * 
 		 * init: On page load events to fire
 		 */
 		init : function() {
-			// Properties
-			$(".articleComments-form").hide();
-			// Initialize events
 			this.bindEvents();
-			this.enableCommentSection();
 		},
 		/**
-		 * check Screen resolution
-		 * 
-		 * @return {void}
-		 */
-		enableCommentSection : function() {
-			var self = this, isMobileBreakpoint = window.SPDUtils
-					.isMobileBreakpoint();
-			$("#btn_load").hide();
-			$(".comments-target").show();
-			$(".comment-text-label").hide();
-			if (isMobileBreakpoint === true) {
-				$("#btn_load").hide();
-				$(".comments-target").hide();
-				$(".articleComments-wrapper h2").hide();
-				$(".primary-btn").live("click", function() {
-					$(".articleComments-form").show();
-					$(".comments-target").show();
-					$(".primary-btn").hide();
-				});
-
-			} else {
-					$(".articleComments-form").show();
-					$("#btn_load").hide();
-			}
-		},
-		/**
-		 * Perform initial event binding
+		 * BindEvents
 		 * 
 		 * @return {void}
 		 */
 		bindEvents : function() {
-			var self = this;
-
-			// Window resize and orientation change
-		// @TODO: Use Matt's responsive helper to bind
-		$(window).resize(function() {
-			self.enableCommentSection();
-		}).bind('orientationchange', function() {
-			self.enableCommentSection();
-		});
-	}
+			var self = this,
+				isMobileBreakpoint = window.SPDUtils.isMobileBreakpoint(),
+				isTabletBreakpoint = window.SPDUtils.isTabletBreakpoint();
+			$(".articleComments-loader button.new-btn").bind('click', function (e) {
+				var commentPath = $("[data-path]").data("path");
+				$(".comments-target").load(commentPath.concat("/jcr:content/comments.load.html"));
+				$(".articleComments-loader button.new-btn").remove();
+			});
+			if (!(isMobileBreakpoint || isTabletBreakpoint)) {
+				$(".articleComments-loader button.new-btn").click();
+			}
+		}
 	}
 }());

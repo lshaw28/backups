@@ -24,11 +24,6 @@
   Includes all child resources (comments).
 
 --%>
-<div class="articleComments-loader">
-    <h2>3 Article Comments</h2>
-    <a href="javascript:void(0);" class="primary-btn">Load Comments</a>
-</div>
-
 
 <%@ page session="false" import="java.util.List,
                      com.adobe.cq.social.commons.Comment,
@@ -45,7 +40,8 @@
                      org.apache.sling.api.resource.ResourceUtil,
                      org.apache.commons.lang3.StringEscapeUtils" %><%
 %><%@taglib uri="http://www.day.com/taglibs/cq/personalization/1.0" prefix="personalization" %>
-<%@include file="/libs/social/commons/commons.jsp"%><%
+<%@include file="/libs/social/commons/commons.jsp"%>
+	<%
 
     final List<Resource> editResources = FormsHelper.getFormEditResources(slingRequest);
     final Resource editComment = (null != editResources && editResources.size() > 0) ? editResources.get(0) : null;
@@ -90,9 +86,11 @@
     }
 %><div id="<%= cs.getId() %>">
 <div class="articleComments-wrapper span9">
-	<h2>Comments</h2>
+	<div class="articleComments-loader">
+	    <h2>3 Article Comments</h2>
+	    <button class="new-btn" data-path="<%=currentPage.getPath()%>">Load Comments</button>
+	</div>
 	<div class="comments-target"></div>
-	<button class="new-btn visible-phone" id="btn_load" onClick='$(".comments-target").load("<%=currentPage.getPath()%>/jcr:content/comments.load.html"); $(this).hide();'>Load</button>
 
 <div class="articleComments-form" >
 
