@@ -77,6 +77,19 @@
 			}
 		},
 		/**
+		 * Retrieve the current protocol, host name and path
+		 * @return {object}
+		 */
+		getLocationDetails: function () {
+			var details = {
+				protocol: document.location.protocol,
+				hostName: document.location.hostname,
+				port: document.location.port,
+				fullAddress: document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/'
+			};
+			return details;
+		},
+		/**
 		 * Handles responsive input help text
 		 * @param {object} el jQuery element to check
 		 * @param {boolean} edit Optional boolean denoting the user is about to edit
