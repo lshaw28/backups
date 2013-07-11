@@ -61,6 +61,12 @@ public class GetUrlRelationTagFixture {
 		selectors.add(SYMPTOM);
 	}
 	
+	public void setUpBCSelectors() {
+		selectors.clear();
+		selectors.add(BRAND);
+		selectors.add(CATEGORY);
+	}
+	
 	public void setUpProductCategory() {
 		String relatedAssetPath = Constants.ASSETS_PATH + "/productCategory/" + CATEGORY;
 		Page p = mock(Page.class);
@@ -96,5 +102,7 @@ public class GetUrlRelationTagFixture {
 	public Object getModel() {
 		return MODEL;
 	}
+
+
 
 }

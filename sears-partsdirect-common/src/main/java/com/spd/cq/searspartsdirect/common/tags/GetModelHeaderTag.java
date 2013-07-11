@@ -1,5 +1,8 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 
@@ -8,6 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.model.ExternalLinkModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 /**
  * Custom Tag to display a model header spoofed onto another page based on a request parameter
@@ -17,6 +23,9 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 public class GetModelHeaderTag extends CQBaseTag {
 	
 	protected final static Logger log = LoggerFactory.getLogger(GetModelHeaderTag.class);
+	private BrandModel brand;
+	private ProductCategoryModel productCategory;
+	private String model;
 	
 	@Override
 	public int doStartTag() throws JspException {
@@ -25,26 +34,19 @@ public class GetModelHeaderTag extends CQBaseTag {
 		 * This will be replaced with realistic markup when it is provided,
 		 * as well as links based on API calls/site hierarchy of SPD base site
 		 */
-		JspWriter out = pageContext.getOut();
-		String[] selectors = slingRequest.getRequestPathInfo().getSelectors();
-		if (selectors.length > 2) {
-			String brand = selectors[Constants.BRAND_SELECTOR];
-			String category = selectors[Constants.CATEGORY_SELECTOR];
-			String model = selectors[Constants.MODEL_SELECTOR];
-			StringBuilder sb = new StringBuilder();
-			sb.append("<h1>Header for Model #" + model + ", " + brand + " " + category + "</h1>");
-			sb.append("<span>Parts</span> | ");
-			sb.append("<span>Manuals(2)</span> | ");
-			sb.append("<span>Repair Help</span> | ");
-			sb.append("<span>Expert Q&A</span>");
-			try {
-				out.write(sb.toString());
-				out.flush();
-			}
-			catch (Exception e) {
-				log.error("Writing model header, ",e);
-			}
-		}
+		// This is perfectly likely to also have some other output vars,
+		// & who knows if API integration will involve changing the list output type. BUT,
+		
+		List<ExternalLinkModel> pseudoTabs = new LinkedList<ExternalLinkModel>();
+		
+		pseudoTabs.add(new ExternalLinkModel("#","Shop Parts"));
+		pseudoTabs.add(new ExternalLinkModel("#","Manuals(2)"));
+		pseudoTabs.add(new ExternalLinkModel("#","Expert Q&amp;A"));
+		
+		pseudoTabs.add(pseudoTabs.size() - 1, new ExternalLinkModel("#","Repair Help"));
+		
+		pageContext.setAttribute("pseudoTabs", pseudoTabs);
+		
         return SKIP_BODY;
 	}
 	
@@ -52,4 +54,16 @@ public class GetModelHeaderTag extends CQBaseTag {
     public int doEndTag() throws JspException {
         return EVAL_PAGE;
     }
+	
+	public void setBrand(BrandModel brand) {
+		this.brand = brand;
+	}
+	
+	public void setProductCategory(ProductCategoryModel productCategory) {
+		this.productCategory = productCategory;
+	}
+	
+	public void setModel(String model) {
+		this.model = model;
+	}
 }

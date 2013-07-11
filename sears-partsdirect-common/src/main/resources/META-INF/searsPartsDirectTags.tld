@@ -144,9 +144,15 @@
 		<info>Sets page context information required for Parts Required for Repair</info>
 	</tag>
 	<tag>
-		<name>getMultifieldCategories</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMultifieldCategoriesTag</tag-class>
-		<info>Sets page context information required for Category 101 multifield categories</info>
+		<name>getMultifieldArticles</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMultifieldArticlesTag</tag-class>
+		<info>Sets page context information required for Category 101 multifield articles</info>
+		<attribute>
+			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	<tag>
 		<name>getRelatedGuides</name>
@@ -307,7 +313,7 @@
 		<attribute>
 			<name>relationType</name>
 			<type>java.lang.String</type>
-			<required>true</required>
+			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<!-- for productCategory or brand, will place a model instance in productCategoryRelation or brandRelation -->
@@ -416,7 +422,25 @@
 	<tag>
 		<name>getModelHeader</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelHeaderTag</tag-class>
-		<info>Displays a mocked-up header</info>
+		<info>Pulls API information for display in Model Header</info>
+		<attribute>
+			<name>brand</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>productCategory</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>model</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	<tag>
 		<name>getSymptomFrequency</name>
@@ -442,6 +466,12 @@
 			<name>partsRequired</name>
 			<type>boolean</type>
 			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>symptomId</name>
+			<type>java.lang.Long</type>
+			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>

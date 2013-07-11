@@ -38,17 +38,16 @@ public class GetSymptomDetailTag extends CQBaseTag {
 	public static final Logger log = LoggerFactory.getLogger(GetSymptomDetailTag.class);
 	private static final String PART_TYPE = "partType";
 	private static final String GUIDES = "guides";
+	private long symptomId;
 	
 	@Override
 	public int doStartTag() throws JspException {
-		String symptomId = request.getParameter("id");
-		
 		session = slingRequest.getResourceResolver().adaptTo(Session.class);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("path", Constants.ASSETS_PATH + "/symptom");
 		map.put("type", Constants.CQ_PAGE);
 		map.put("property", "jcr:content/id");
-		map.put("property.value", symptomId);
+		map.put("property.value", Long.toString(symptomId));
 		
 		builder = resourceResolver.adaptTo(QueryBuilder.class);
 		query = builder.createQuery(PredicateGroup.create(map), session);
@@ -132,6 +131,14 @@ public class GetSymptomDetailTag extends CQBaseTag {
 
 	public void setPartsRequired(boolean partsRequired) {
 		this.partsRequired = partsRequired;
+	}
+
+	public long getSymptomId() {
+		return symptomId;
+	}
+
+	public void setSymptomId(long symptomId) {
+		this.symptomId = symptomId;
 	}
 
 }

@@ -11,23 +11,28 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.fixture.DisplayModelHeaderTagFixture;
+import com.spd.cq.searspartsdirect.common.fixture.GetModelHeaderTagFixture;
+import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
-public class DisplayModelHeaderTagTest extends MocksTag {
+public class GetModelHeaderTagTest extends MocksTag {
 	
-	private DisplayModelHeaderTagFixture fixture;
+	private GetModelHeaderTagFixture fixture;
 	private GetModelHeaderTag tag; // tag
 	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new DisplayModelHeaderTagFixture(slingRequest, pageContext);
+		fixture = new GetModelHeaderTagFixture(slingRequest, pageContext);
 		tag = new GetModelHeaderTag();
 	}
 	
 	@Test
 	public void testWithSelectors() throws JspException {
 		fixture.setUpWithSelectors();
+		tag.setBrand(new BrandModel("a","b","c","d"));
+		tag.setProductCategory(new ProductCategoryModel("a","b","c", "d", "e", "f", "g", "h"));
+		tag.setModel("A");
 		runTagShouldSkipBodyEvalPage();
 	}
 	

@@ -12,12 +12,12 @@ import org.apache.sling.api.request.RequestPathInfo;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-public class DisplayModelHeaderTagFixture {
+public class GetModelHeaderTagFixture {
 	
 	private String[] selectors;
 	private JspWriter out;
 
-	public DisplayModelHeaderTagFixture(SlingHttpServletRequest slingRequest, PageContext pageContext) {
+	public GetModelHeaderTagFixture(SlingHttpServletRequest slingRequest, PageContext pageContext) {
 		out = mock(JspWriter.class);
 		when(pageContext.getOut()).thenReturn(out);
 		RequestPathInfo rpi = mock(RequestPathInfo.class);

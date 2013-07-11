@@ -63,3 +63,4 @@ skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less
 text/text.less
 topAccessories/topAccessories.less
+maintenanceTips/maintenanceTips.less

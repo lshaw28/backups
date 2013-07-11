@@ -14,12 +14,12 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
-public class GetMultifieldCategoriesTagFixture {
+public class GetMultifieldArticlesTagFixture {
 
 	private PageManager pageManager;
 	private ResourceResolver resourceResolver;
 
-	public GetMultifieldCategoriesTagFixture(ValueMap properties, PageManager pageManager, ResourceResolver resourceResolver) {
+	public GetMultifieldArticlesTagFixture(ValueMap properties, PageManager pageManager, ResourceResolver resourceResolver) {
 		this.pageManager = pageManager;
 		this.resourceResolver = resourceResolver;
 		String [] multiJsons = new String[]{

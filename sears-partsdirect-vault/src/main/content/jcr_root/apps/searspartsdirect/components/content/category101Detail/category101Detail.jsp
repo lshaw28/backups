@@ -1,7 +1,9 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
 <spd:getUrlRelation relationType="productCategory" />
-
+<c:if test="${not empty productCategoryRelation}">
+	<spd:getRelation single="true" assetType="productCategory" />
+</c:if>
 <h2>
 <c:choose>
 	<c:when test="${fn:length(productCategoryRelation.title) lt 38 }">
