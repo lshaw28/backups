@@ -29,35 +29,12 @@ public class GetModelHeaderTagTest extends MocksTag {
 	}
 	
 	@Test
-	public void testWithSelectors() throws JspException {
-		fixture.setUpWithSelectors();
-		tag.setBrand(new BrandModel("a","b","c","d"));
-		tag.setProductCategory(new ProductCategoryModel("a","b","c", "d", "e", "f", "g", "h"));
-		tag.setModel("A");
+	public void testWithArguments() throws JspException {
+		tag.setBrand(new BrandModel("a","Kenmore","c","d"));
+		tag.setProductCategory(new ProductCategoryModel("a","b","Dishwasher", "d", "e", "f", "g", "h"));
+		tag.setModel("66513593K600");
 		runTagShouldSkipBodyEvalPage();
 	}
-	
-	@Test
-	public void testWithoutSelectors() throws JspException {
-		fixture.setUpWithoutSelectors();
-		runTagShouldSkipBodyEvalPage();
-	}
-	
-	@Test
-	public void testExceptions() throws JspException, IOException {
-		fixture.setUpWithSelectors();
-		fixture.setUpExceptions();
-		runTagShouldSkipBodyEvalPage();
-	}
-	
-	/*
-	@Test
-	public void testGetJsonFromApi() throws IOException {
-		PartsDirectAPIHelper api = new PartsDirectAPIHelper();
-		String json = api.readJsonData(fixture.getTestUrl());
-		assertThat(json,nullValue());
-	}
-	*/ // purpose served..
 	
 	private void runTagShouldSkipBodyEvalPage() throws JspException {
 		tag.setPageContext(pageContext);
