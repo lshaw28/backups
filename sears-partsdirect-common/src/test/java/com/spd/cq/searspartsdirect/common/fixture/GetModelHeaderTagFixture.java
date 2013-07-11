@@ -12,12 +12,15 @@ import org.apache.sling.api.request.RequestPathInfo;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
+
 public class GetModelHeaderTagFixture {
 	
 	private String[] selectors;
 	private JspWriter out;
 
-	public GetModelHeaderTagFixture(SlingHttpServletRequest slingRequest, PageContext pageContext) {
+	public GetModelHeaderTagFixture(SlingHttpServletRequest slingRequest, PageContext pageContext) throws Exception {
+		new EnvironmentSettingsFixture().setUpRealDefaults(new EnvironmentSettings());
 		out = mock(JspWriter.class);
 		when(pageContext.getOut()).thenReturn(out);
 		RequestPathInfo rpi = mock(RequestPathInfo.class);
@@ -40,5 +43,9 @@ public class GetModelHeaderTagFixture {
 	
 	public void setUpExceptions() throws IOException {
 		doThrow(new IOException()).when(out).flush();
+	}
+
+	public String getTestUrl() {
+		return EnvironmentSettings.getPDModelSubApiUrl() + "?modelNumber=66513593K600&categoryName=Dishwasher&brandName=Kenmore";
 	}
 }

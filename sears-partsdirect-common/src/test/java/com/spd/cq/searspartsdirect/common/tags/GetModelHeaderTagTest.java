@@ -1,7 +1,7 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
 
@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetModelHeaderTagFixture;
+import com.spd.cq.searspartsdirect.common.helpers.PartsDirectAPIHelper;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
@@ -48,6 +49,15 @@ public class GetModelHeaderTagTest extends MocksTag {
 		fixture.setUpExceptions();
 		runTagShouldSkipBodyEvalPage();
 	}
+	
+	/*
+	@Test
+	public void testGetJsonFromApi() throws IOException {
+		PartsDirectAPIHelper api = new PartsDirectAPIHelper();
+		String json = api.readJsonData(fixture.getTestUrl());
+		assertThat(json,nullValue());
+	}
+	*/ // purpose served..
 	
 	private void runTagShouldSkipBodyEvalPage() throws JspException {
 		tag.setPageContext(pageContext);
