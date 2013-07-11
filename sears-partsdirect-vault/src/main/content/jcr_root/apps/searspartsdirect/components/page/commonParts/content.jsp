@@ -10,10 +10,16 @@
 			<cq:include path="parsys" resourceType="foundation/components/parsys" />
 		</div>
 		<div class="span3 offset1 pull-right">
-			<cq:include path="topAccessories" resourceType="searspartsdirect/components/content/topAccessories" />
-		</div>
-		<div class="span3 offset1 pull-right">
-			<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />
+			<div class="row-fluid">
+				<div class="span12">
+					<cq:include path="topAccessories" resourceType="searspartsdirect/components/content/topAccessories" />
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12">
+					<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />
+				</div>
+			</div>
 		</div>
 	</div>
 </article>
