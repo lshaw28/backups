@@ -1,6 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-<p>category symptom details page</p>
 <spd:getUrlRelation relationType="symptom" />
 <spd:getSymptomDetail partsRequired="false" symptomId ="${symptomRelation.id}" />
 
@@ -9,6 +8,7 @@
 
 <cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />
 
+<h2>Checking these parts may help solve your problem:</h2>
 <c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
 	<c:choose>
 		<c:when test="${jobCode.partTypeModel != null &&  jobCode.partTypeModel.imagePath != null}">
@@ -21,7 +21,7 @@
 	<h3>${jobCode.title}</h3>
 	<p>${jobCode.description}</p>
 
-	Guides:-
+	<!-- Guides:- -->
 	<c:if test="${not empty jobCode.guides}">
 		<c:forEach var="guide" items="${jobCode.guides}">
 			<spd:linkResolver value="${guide.url}"/>
@@ -29,13 +29,12 @@
 		</c:forEach>
 	</c:if>
 
-	<cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />
+	<p><b>Find this part</b></p>
 
-	<c:if test="${jobCode.partTypeModel != null}">
-		<p>Don't have your model number?
-			<a href="http://www.searspartsdirect.com/partsdirect/part-model/Frigidaire-Parts/Cooktop-Parts/Model-33003/1428/0121050&partType=${jobCode.partTypeModel.title}">
-				Shop ${jobCode.partTypeModel.title}
-			</a>
-		</p>
-	</c:if>
+	<p>For the manuals, repair guides, and specific part recommendations, enter your model number.</p>
+	
+	<cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />
+	
+	<a href="#">Help me find my model number</a><!-- open the model number finder flyout from the header -->
+	
 </c:forEach>

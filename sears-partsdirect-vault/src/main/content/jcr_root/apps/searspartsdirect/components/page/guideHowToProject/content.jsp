@@ -26,11 +26,17 @@
 				</div>
 			</div>
 		</div>
-		<div class="span3 offset1 ad-span pull-right">
-			<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />
-		</div>
-		<div class="span3 offset1 ad-span pull-right">
-			<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
+		<div class="span3 offset1 pull-right">
+			<div class="row-fluid">
+				<div class="span12">
+					<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12 ad-span">
+					<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row-fluid">
