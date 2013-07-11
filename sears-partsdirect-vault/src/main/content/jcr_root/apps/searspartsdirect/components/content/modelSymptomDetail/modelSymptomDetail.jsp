@@ -32,8 +32,8 @@
 	</c:if>
 
 	<c:if test="${jobCode.partTypeModel != null}">
-	<!-- TODO: need to find out the final url for below -->
-		<p><a href="${mainSitePath}/partsdirect/part-model/${brandRelation.title}-Parts/${productCategoryRelation.title}-Parts/Model-${modelRelation}/1428/0121050&partType=${jobCode.partTypeModel.title}">
+	<!-- from the api get the parts tab url for the following -->
+		<p><a href="api-parts-tab-url">
 				Find ${jobCode.partTypeModel.title} in this model
 			</a>
 		</p>
