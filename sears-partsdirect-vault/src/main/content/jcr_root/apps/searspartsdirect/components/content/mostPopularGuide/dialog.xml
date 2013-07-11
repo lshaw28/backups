@@ -21,8 +21,8 @@
 								xtype="textfield" />
 			
 						<viewAlltext jcr:primaryType="cq:Widget" 
-								fieldLabel="View All link Text"
-								name="./viewAllText" 
+								fieldLabel="View This Guide link Text"
+								name="./viewThisText" 
 								maxLength="35"
 								allowBlank="{Boolean}false"
 								xtype="textfield" />

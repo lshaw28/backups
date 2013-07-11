@@ -68,6 +68,7 @@ public class GetMostPopularGuideTag extends CQBaseTag{
 		
 		//Get the difficulty level from the repair guide page
 		resource = resourceResolver.getResource(result.get(0).getPath());
+		log.debug("GUIDE PATH " + result.get(0).getPath());
 		Node resourceNode = resource.adaptTo(Node.class);
 		String difficultyLevel = resourceNode.getNode(Constants.GUIDES_REL_PATH).getProperty("difficultyLevel").getString();
 		pageContext.setAttribute("difficultyLevel", difficultyLevel);
