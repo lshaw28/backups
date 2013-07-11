@@ -20,8 +20,8 @@
     <tbody>
         <c:forEach var="symptom" items="${categorySymptoms}">
             <tr>
-                <td><a href="/${brandRelation.title}/${productCategoryRelation.title}/model-${modelRelation}-repair/symptom/${symptom.id}">${symptom.title}</a></td>
-                <td>No data available</td>
+                <td><a href="http://www.google.com">${symptom.title}</a></td>
+                <td><span class="big-number">74%&nbsp</span>of repairs</td>
             </tr>
         </c:forEach>
     </tbody>
