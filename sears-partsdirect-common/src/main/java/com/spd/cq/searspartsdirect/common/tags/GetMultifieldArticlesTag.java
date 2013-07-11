@@ -25,7 +25,10 @@ public class GetMultifieldArticlesTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		ArrayList<CategoryModel> articles = new ArrayList<CategoryModel>();
 		List<Page> pages = new ArrayList<Page>();
-		ValueMap assetProperties = pageManager.getPage(categoryPath).getProperties();
+		ValueMap assetProperties = null;
+		if(!categoryPath.isEmpty()){ // check that categoryPath is not empty b/c page blows up otherwise
+			assetProperties = pageManager.getPage(categoryPath).getProperties();
+		}
 		
 		try {
 			String[]  multiJsons = assetProperties.get("multipaths",new String[0]);

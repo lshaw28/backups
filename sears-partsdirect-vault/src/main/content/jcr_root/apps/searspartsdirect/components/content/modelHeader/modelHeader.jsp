@@ -6,6 +6,7 @@
 		<div class="span8">
 			<h1>Model # ${modelRelation} ${brandRelation.title} ${productCategoryRelation.title}</h1>
 		</div>
+		<%-- 
 		<div class="span2 offset2 modelInfo">Model Info <i class="icon-chevron-up"></i></div>
 		<div class="span9 pull-left" id="modelSection">
 			<div class="pull-left span3" > <a href="#."><img src="http://s7.sears.com/is/image/Sears/04678543000?hei=150&wid=150&op_sharpen=1&qlt=100" class="thumbnail" alt="refrigirator" title=""></a> </div>
@@ -24,6 +25,7 @@
 				<p>Lorem Ipsum Dolor Model Info lorem ipsum dolor wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit consequat. <a href="#.">Read more</a></p>
 			</div>
 		</div>
+		--%>
 		<c:if test="${not empty pseudoTabs}">
 			<div class="span12">
 				<ul class="nav nav-tabs">

@@ -3,12 +3,13 @@
 <spd:getUrlRelation relationType="brand" />
 <spd:getUrlRelation relationType="model" />
 
-<!--  in order to test use the test url-http://localhost:4502/content/searspartsdirect/en/home.kenmore.refrigerator.123.html  -->
 <h2>
 	Repair Symptoms for ${brandRelation.title}  ${productCategoryRelation.title} Model #${modelRelation}
 </h2>
 
+<!-- check the api for model symptoms if yes, then display otherwise make the call to the following tag-->
 <spd:getModelSymptoms categoryPath="${productCategoryRelation.path}" />
+<!--  if no category symptoms then display the featured guide -->
 
 <table class="table table-striped">
     <thead>

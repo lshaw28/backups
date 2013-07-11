@@ -75,7 +75,6 @@ public class EnvironmentSettings {
     	return getProperty(PD_USERDATA_API,Constants.EMPTY);
     }
     
-    
     @Property(label = "PartsDirect URL", 
     		description = "Configurable PartsDirect Url for QA, Stress and production env",
     		value = "http://partsbetavip.qa.ch3.s.com")
@@ -84,7 +83,6 @@ public class EnvironmentSettings {
     	return getProperty(PD_URL,Constants.EMPTY);
     }
     
-    // should these maybe just be the URIs? and always appended to the PD_URL?
     @Property(label = "PartsDirect JobCode API", 
     		description = "API will get jobcodes for a symptom ",
     		value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcode/parts")
@@ -101,6 +99,15 @@ public class EnvironmentSettings {
     
     public static String getPDTopPartsApiUrl() {
     	return getProperty(PD_TOPPARTS_API,Constants.EMPTY);
+    }
+    
+    @Property(label = "PartsDirect Model Subcomponents API", 
+    		description = "API will get API description, symptom frequencies, and header tabs for a model",
+    		value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/modelInfo")
+    public static final String PD_MODELSUB_API = "searspartsdirect.pd.modelsub.api";
+    
+    public static String getPDModelSubApiUrl() {
+    	return getProperty(PD_MODELSUB_API,Constants.EMPTY);
     }
     
     // ---- for testing ----

@@ -38,4 +38,4 @@ revealPanel.js
 searchPanel.js
 video.js
 comments.js
-modelSection.js
+modelHeader.js
