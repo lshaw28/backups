@@ -17,9 +17,8 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
-import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
+import com.spd.cq.searspartsdirect.common.model.ArticleModel;
 
 public class GetMostPopularGuideTag extends CQBaseTag{
 	private static final long serialVersionUID = 1L;
@@ -31,7 +30,7 @@ public class GetMostPopularGuideTag extends CQBaseTag{
 	public int doStartTag() throws JspException {
 
 		try {
-			List<RelatedArticleModel> guides = new ArrayList<RelatedArticleModel>();
+			List<ArticleModel> guides = new ArrayList<ArticleModel>();
 			ArrayList<Page> result = new ArrayList<Page>();
 			//Get the guides based on the category
 			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
@@ -59,7 +58,7 @@ public class GetMostPopularGuideTag extends CQBaseTag{
 				}
 			}*/
 			
-			guides.add( new RelatedArticleModel(
+			guides.add( new ArticleModel(
 					result.get(0).getPath() + ".html",
 					result.get(0).getPath() + Constants.ASSETS_IMAGE_PATH,
 					result.get(0).getTitle(),
