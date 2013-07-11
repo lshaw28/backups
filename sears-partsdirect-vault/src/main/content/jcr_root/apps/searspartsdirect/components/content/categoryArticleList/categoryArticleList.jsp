@@ -42,7 +42,7 @@
 	</c:when>
 	<c:otherwise>
 		<c:if test="${isEditMode or isDesignMode}">
-			<p>No category defined. Please define a category in page properties.</p>
+			<p>No category defined for this page. Add a category in page properties.</p>
 		</c:if>
 	</c:otherwise>
 </c:choose>
