@@ -31,8 +31,6 @@ public class ModelSubcomponentAPIHelperFixture {
 		        return null;
 		    }
 		}).when(request).setAttribute(anyString(),anyObject());
-
-		// mock for method getAttribute
 		when(request.getAttribute(anyString())).thenAnswer(new Answer<Object>() {
 		    //@Override
 		    public Object answer(InvocationOnMock invocation) throws Throwable {

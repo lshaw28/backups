@@ -45,7 +45,6 @@ public class ModelSubcomponentAPIHelperTest extends TestCase {
 		setExampleParameters();
 		PDModelSubcomponentModel subcomponents = helper.getModelSubcomponentsFromApi();
 		assertThat(subcomponents,is(not(nullValue())));
-		hasExampleContent(subcomponents);
 	}
 
 	@Test
@@ -87,12 +86,14 @@ public class ModelSubcomponentAPIHelperTest extends TestCase {
 		PDSymptom[] symptomArr = symptoms.getSymptom();
 		assertThat(symptomArr,is(not(nullValue())));
 		assertThat(symptomArr.length,is(6));
+		assertThat(subcomponents.getSymptomsArr(),is(symptomArr));
 		// validate contents?
 		PDTabWrapper tabs = subcomponents.getTabs();
 		assertThat(tabs,is(not(nullValue())));
 		PDTab[] tabArr = tabs.getTab();
 		assertThat(tabArr,is(not(nullValue())));
 		assertThat(tabArr.length,is(4));
+		assertThat(subcomponents.getTabsArr(),is(tabArr));
 		// validate contents?
 	}
 

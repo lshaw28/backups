@@ -42,5 +42,14 @@ public class PDModelSubcomponentModel {
 	public void setTabs(PDTabWrapper tabs) {
 		this.tabs = tabs;
 	}
+	
+	// sugar to elide wrappers
+	public PDSymptom[] getSymptomsArr() {
+		return symptoms.getSymptom();
+	}
+	
+	public PDTab[] getTabsArr() {
+		return tabs.getTab();
+	}
 
 }
