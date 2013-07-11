@@ -14,7 +14,7 @@
 <tr><td>Symptom</td><td>Symptom Frequency</td></tr>
 <c:forEach var="symptom" items="${categorySymptoms}">
 	<tr>
-		<td><a href="/content/searspartsdirect/en/${brandRelation.title}/${productCategoryRelation.title}/model-${modelRelation}-repair/symptom/${symptom.id}">${symptom.title}</a></td>
+		<td><a href="/content/searspartsdirect/en/${brandRelation.title}/${productCategoryRelation.trueName}/model-${modelRelation}-repair/symptom/${symptom.id}.html">${symptom.title}</a></td>
 		<td>No data available</td>
 	</tr>
 </c:forEach>
