@@ -1,9 +1,13 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-<p>model symptom details page</p>
 <spd:getUrlRelation relationType="symptom" />
 <spd:getSymptomDetail partsRequired="true" symptomId ="${symptomRelation.id}" />
 
+<spd:getUrlRelation relationType="productCategory" />
+<spd:getUrlRelation relationType="brand" />
+<spd:getUrlRelation relationType="model" />
+
+<a href="content/searspartsdirect/en/${brandRelation.title}/${productCategoryRelation.title}/model-${modelRelation}-repair.html">Return to Repair help for model #${modelRelation}</a>
 <h1>${modelSymptom.symptomModel.title}</h1>
 <p>${modelSymptom.symptomModel.description}</p>
 
@@ -19,7 +23,7 @@
 	<h3>${jobCode.title}</h3>
 	<p>${jobCode.description}</p>
 
-	Guides:-
+	<!--  Guides:- -->
 	<c:if test="${not empty jobCode.guides}">
 		<c:forEach var="guide" items="${jobCode.guides}">
 			<spd:linkResolver value="${guide.url}"/>
@@ -28,9 +32,9 @@
 	</c:if>
 
 	<c:if test="${jobCode.partTypeModel != null}">
-		<p>Don't have your model number?
-			<a href="http://www.searspartsdirect.com/partsdirect/part-model/Frigidaire-Parts/Cooktop-Parts/Model-33003/1428/0121050&partType=${jobCode.partTypeModel.title}">
-				Shop ${jobCode.partTypeModel.title}
+	<!-- TODO: need to find out the final url for below -->
+		<p><a href="${mainSitePath}/partsdirect/part-model/${brandRelation.title}-Parts/${productCategoryRelation.title}-Parts/Model-${modelRelation}/1428/0121050&partType=${jobCode.partTypeModel.title}">
+				Find ${jobCode.partTypeModel.title} in this model
 			</a>
 		</p>
 	</c:if>
