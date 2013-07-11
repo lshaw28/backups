@@ -1,11 +1,13 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
-<spd:getMultifieldCategories />
-<spd:getRelation single="true" assetType="productCategory" />
-<spd:getNameByNodePath nodePath="${productCategoryRelation.path}" />
 <spd:uniqueID />
-
-<c:if test="${not empty categories}">
+<spd:getRelation single="true" assetType="productCategory" />
+<c:if test="${not empty productCategoryRelation}">
+	<spd:getUrlRelation relationType="productCategory" />
+</c:if>
+<spd:getNameByNodePath nodePath="${productCategoryRelation.path}" />
+<spd:getMultifieldArticles  categoryPath="${productCategoryRelation.path}" />
+<c:if test="${not empty articles}">
 	<div class="accordion" id="parent_${uniqueId}">
 		<div class="accordion-group">
 			<div class="accordion-heading">
@@ -26,9 +28,9 @@
 			<div id="${uniqueId}" class="accordion-body collapse in">
 				<div class="accordion-inner">
 					<ul>
-						<c:forEach var="category" items="${categories}">
-							<spd:linkResolver value="${category.url}" />
-							<li><a href="${url}">${category.title}</a></li>
+						<c:forEach var="article" items="${articles}">
+							<spd:linkResolver value="${article.url}" />
+							<li><a href="${url}">${article.title}</a></li>
 						</c:forEach>
 					</ul>
 					<c:set var="linkText">
@@ -44,5 +46,4 @@
 			</div>
 		</div>
 	</div>
-
 </c:if>

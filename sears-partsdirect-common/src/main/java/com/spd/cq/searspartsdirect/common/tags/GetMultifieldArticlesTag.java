@@ -7,6 +7,7 @@ import javax.jcr.Node;
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,17 +16,19 @@ import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.CategoryModel;
 
-public class GetMultifieldCategoriesTag extends CQBaseTag {
+public class GetMultifieldArticlesTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = LoggerFactory.getLogger(GetMultifieldCategoriesTag.class);
+	protected static Logger log = LoggerFactory.getLogger(GetMultifieldArticlesTag.class);
+	protected String categoryPath;
 	
 	@Override
 	public int doStartTag() throws JspException {
-		ArrayList<CategoryModel> categories = new ArrayList<CategoryModel>();
+		ArrayList<CategoryModel> articles = new ArrayList<CategoryModel>();
 		List<Page> pages = new ArrayList<Page>();
-
+		ValueMap assetProperties = pageManager.getPage(categoryPath).getProperties();
+		
 		try {
-			String[]  multiJsons = properties.get("multipaths",new String[0]);
+			String[]  multiJsons = assetProperties.get("multipaths",new String[0]);
 			for (String json : multiJsons) {
 				JSONObject jsob = new JSONObject(json);
 				pages.add(pageManager.getPage(jsob.getString("url")));
@@ -57,9 +60,9 @@ public class GetMultifieldCategoriesTag extends CQBaseTag {
 						imagePath,
 						page.getTitle(),
 						description);
-				categories.add(category);
+				articles.add(category);
 			}
-			pageContext.setAttribute("categories", categories);
+			pageContext.setAttribute("articles", articles);
 		}
 		catch (Exception e) {
 			log.error("Error creating multifield categories", e);
@@ -71,4 +74,9 @@ public class GetMultifieldCategoriesTag extends CQBaseTag {
     public int doEndTag() throws JspException {
         return EVAL_PAGE;
 	}
+	
+	public void setCategoryPath(String categoryPath) {
+		this.categoryPath = categoryPath;
+	}
+	
 }
