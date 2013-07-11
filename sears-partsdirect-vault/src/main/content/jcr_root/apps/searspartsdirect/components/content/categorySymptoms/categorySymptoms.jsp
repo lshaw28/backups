@@ -18,7 +18,7 @@
 			</c:choose>
 				<div class="span6">
 					<c:set var="symptomUrl" value="/content/searspartsdirect/en/categories/${productCategoryRelation.trueName}-repair/symptom/${symptom.id}.html" />
-						<a href="${symptomUrl}">${symptom.title}</a>
+						x ${symptomUrl} y<a href="${symptomUrl}">${symptom.title}</a>
 				</div>
 			<c:choose>
 				<c:when test="${currentItem.count % 2 eq 0 or currentItem.last}">
