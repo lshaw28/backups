@@ -7,21 +7,29 @@
 	<items jcr:primaryType="cq:WidgetCollection">
 		<tabpanel jcr:primaryType="cq:TabPanel">
 			<items jcr:primaryType="cq:WidgetCollection">
-
+						
 				 <tab1 jcr:primaryType="cq:Widget" 
-					   title="All Guides Information"
+					   title="Most Popular Guide Information"
 					   xtype="panel">
 					  
 					<items jcr:primaryType="cq:WidgetCollection">
-						<title jcr:primaryType="cq:Widget" 
-								fieldLabel="All Guides Title"
-								name="./allGuidestitle" 
-								maxLength="42"
-								allowBlank="{Boolean}true"
+						<text jcr:primaryType="cq:Widget" 
+								fieldLabel="Title"
+								name="./title" 
+								maxLength="70"
+								allowBlank="{Boolean}false"
 								xtype="textfield" />
-
+			
+						<viewAlltext jcr:primaryType="cq:Widget" 
+								fieldLabel="View This Guide link Text"
+								name="./viewThisText" 
+								maxLength="35"
+								allowBlank="{Boolean}false"
+								xtype="textfield" />
+						
 					</items>
 				</tab1>
+				
 			</items>
 		</tabpanel>
 	</items>
