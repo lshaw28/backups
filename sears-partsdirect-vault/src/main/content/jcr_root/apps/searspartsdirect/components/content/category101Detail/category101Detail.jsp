@@ -1,7 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
 <spd:getUrlRelation relationType="productCategory" />
-<c:if test="${not empty productCategoryRelation}">
+<c:if test="${empty productCategoryRelation}">
 	<spd:getRelation single="true" assetType="productCategory" />
 </c:if>
 <h2>
