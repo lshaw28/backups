@@ -139,10 +139,14 @@ public class GetUrlRelationTag extends CQBaseTag {
 			String relatedAssetPath = Constants.ASSETS_PATH + "/" + relationType + "/" + relationValue;
 			log.debug(relatedAssetPath);
 			Page p = pageManager.getPage(relatedAssetPath);
-			ValueMap properties = p.getProperties();
-			
-			Object relatedAsset = assetTypeEnum.createModelInstance(p,properties);
-			pageContext.setAttribute(relationType + "Relation", relatedAsset);
+			if (p != null) {
+				ValueMap properties = p.getProperties();
+				
+				Object relatedAsset = assetTypeEnum.createModelInstance(p,properties);
+				pageContext.setAttribute(relationType + "Relation", relatedAsset);
+			} else {
+				log.warn("No asset for "+relationType+" "+relationValue);
+			}
 		} else {
 			pageContext.setAttribute(relationType + "Relation", relationValue);
 		}

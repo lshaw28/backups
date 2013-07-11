@@ -84,6 +84,15 @@ public class GetUrlRelationTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testGetNonexistentBrand() throws JspException {
+		fixture.setUpBCMSelectors();
+		tag.setRelationType("brand");
+		runsSkipsBodyEvalsPage();
+		Object br = pageContext.getAttribute("brandRelation");
+		assertThat(br,nullValue());
+	}
+	
+	@Test
 	public void testGetModel() throws JspException {
 		fixture.setUpBCMSelectors();
 		tag.setRelationType("model");
