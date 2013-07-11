@@ -32,13 +32,6 @@ public class GetModelHeaderTag extends CQBaseTag {
 	
 	@Override
 	public int doStartTag() throws JspException {
-		/*
-		 * THIS IS PLACEHOLDER MARKUP
-		 * This will be replaced with realistic markup when it is provided,
-		 * as well as links based on API calls/site hierarchy of SPD base site
-		 */
-		// This is perfectly likely to also have some other output vars,
-		// & who knows if API integration will involve changing the list output type. BUT,
 		
 		List<ExternalLinkModel> pseudoTabs = new LinkedList<ExternalLinkModel>();
 		
