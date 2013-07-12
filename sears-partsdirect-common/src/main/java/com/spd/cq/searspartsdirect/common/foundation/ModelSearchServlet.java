@@ -1,7 +1,6 @@
 package com.spd.cq.searspartsdirect.common.foundation;
 
 import java.io.IOException;
-import java.io.Writer;
 
 import javax.servlet.ServletException;
 
@@ -9,6 +8,7 @@ import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.jcr.api.SlingRepository;

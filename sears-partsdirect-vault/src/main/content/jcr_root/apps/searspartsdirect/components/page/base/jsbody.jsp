@@ -11,5 +11,6 @@
 	<cq:includeClientLib js="apps.searspartsdirect.cq.edit" />
 </c:if>
 <script type="text/javascript" language="javascript">
-	var mainSitePath = '${mainSitePath}';
+	var mainSitePath = '${mainSitePath}',
+		modelSearchServletPath = 'bin/searspartsdirect/modelsearch';
 </script>

@@ -33,6 +33,11 @@ public class GetModelHeaderTagTest extends MocksTag {
 		runTagShouldSkipBodyEvalPage();
 	}
 	
+	@Test
+	public void testNoArguments() throws JspException {
+		runTagShouldSkipBodyEvalPage();
+	}
+	
 	private void runTagShouldSkipBodyEvalPage() throws JspException {
 		tag.setPageContext(pageContext);
 		int startResult = tag.doStartTag();
