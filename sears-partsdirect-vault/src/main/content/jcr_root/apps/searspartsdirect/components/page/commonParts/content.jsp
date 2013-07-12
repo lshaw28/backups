@@ -6,7 +6,7 @@
 		<div class="span8">
 			<cq:include path="pageTitleHeader" resourceType="searspartsdirect/components/content/pageTitleHeader" />
 			<cq:include path="commonPartsIntro" resourceType="searspartsdirect/components/content/text" />
-			<cq:include path="commonPartsTopicJump" resourceType="searspartsdirect/components/content/maintenanceTopicJump" />
+			<cq:include path="commonPartsTopicJump" resourceType="searspartsdirect/components/content/jumpTopicMenu" />
 			<cq:include path="parsys" resourceType="foundation/components/parsys" />
 		</div>
 		<div class="span3 offset1 pull-right">
