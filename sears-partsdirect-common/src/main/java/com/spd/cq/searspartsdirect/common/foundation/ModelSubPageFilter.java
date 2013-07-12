@@ -38,8 +38,7 @@ public class ModelSubPageFilter implements Filter {
 
 	private static final Logger log = LoggerFactory.getLogger(ModelSubPageFilter.class);
 	
-	private final static Pattern authorModeRoot = Pattern.compile("^"
-			+ Constants.SPD_ROOT + "[^\\./]*");
+	private final static Pattern authorModeRoot = Pattern.compile(Constants.SPD_ROOT + "[^\\./]*");
 	private final static Pattern brandCatModelRest = Pattern
 			.compile("^/([^/]*)/([^/]*)/" + Constants.MODELNO_PFX + "([^/]*)"
 					+ Constants.MODELNO_SFX + "(.*\\"+Constants.MARKUP_EXT+")$");
@@ -70,7 +69,7 @@ public class ModelSubPageFilter implements Filter {
 	        Matcher authorFix = authorModeRoot.matcher(resPath); 
 	        if (authorFix.find()) {
 	        	authorPrepend = authorFix.group(0);
-	        	resPath = resPath.substring(authorFix.end());
+	        	resPath = resPath.substring(0,authorFix.start())+resPath.substring(authorFix.end());
 	        }
 	        
 	        // We just strip this.. we restore it as needed further along
@@ -88,7 +87,10 @@ public class ModelSubPageFilter implements Filter {
 	        	if (resPath.equals(".html")) {
 	        		resPath = Constants.MODEL_REPAIR_PAGE_NO_EXT + resPath;
 	        	} else if (!hasRepairGuide(resPath)) {
-	        		resPath = "/" + mBcm.group(2) + Constants.MODELNO_SFX + resPath;
+	        		String catRepair = "/" + mBcm.group(2) + Constants.MODELNO_SFX;
+	        		if (!resPath.startsWith(catRepair)) {
+	        			resPath = catRepair + resPath;
+	        		}
 	        	}
 	        }
 	        
@@ -109,12 +111,12 @@ public class ModelSubPageFilter implements Filter {
         if (mustForward) {
         	String forwardUrl = addSelectors(authorPrepend + resPath,Constants.MARKUP_EXT,selectors);
         	RequestDispatcher requestDispatcher = request.getRequestDispatcher(forwardUrl);
-        	//if (requestDispatcher != null) { // afaik this is canthappen outside of tests.
+        	if (requestDispatcher != null) { // afaik this is canthappen outside of tests.
         	log.debug("Forwarding to "+forwardUrl);
         	requestDispatcher.forward(request, response);
-        	//} else {
-        	//	throw new RuntimeException("No dispatcher for "+forwardUrl);
-        	//}
+        	} else {
+        		throw new RuntimeException("No dispatcher for "+forwardUrl);
+        	}
         } else {
         	fc.doFilter(request, response);
         }
