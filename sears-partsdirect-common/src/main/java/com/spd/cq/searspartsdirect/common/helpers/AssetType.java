@@ -22,7 +22,8 @@ public enum AssetType {
 		public Object createModelInstance(Page p, ValueMap properties) {
 			String title = properties.get(Constants.ASSETS_TITLE_PATH,"");
 			String description = properties.get(Constants.ASSETS_DESCRIPTION_PATH,"");
-			return new BrandModel(p.getPath(),
+			return new BrandModel(p.getName(),
+					p.getPath(),
 					title,
 					description,
 					p.getPath() + Constants.ASSETS_LOGO_PATH);

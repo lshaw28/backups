@@ -27,7 +27,7 @@ public class GetModelHeaderTagTest extends MocksTag {
 	
 	@Test
 	public void testWithArguments() throws JspException {
-		tag.setBrand(new BrandModel("a","Kenmore","c","d"));
+		tag.setBrand(new BrandModel("0","a","Kenmore","c","d"));
 		tag.setProductCategory(new ProductCategoryModel("a","b","Dishwasher", "d", "e", "f", "g", "h"));
 		tag.setModel("66513593K600");
 		runTagShouldSkipBodyEvalPage();
