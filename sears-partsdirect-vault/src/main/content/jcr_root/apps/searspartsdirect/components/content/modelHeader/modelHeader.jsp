@@ -31,10 +31,6 @@
 				<ul class="nav nav-tabs">
 					<c:forEach items="${pseudoTabs}" var="tab">
 						<li<c:if test="${tab.linkText eq 'Repair Help'}"> class="active"</c:if>><a href="${tab.href}">${tab.linkText}</a>
-					<%-- <li><a href="#tab1" >Shop Parts</a></li>
-					<li><a href="#tab2" >Manuals(2)</a></li>
-					<li class="active">Repair Help</li>
-					<li><a href="#tab4" >Expert Q&A</a></li> --%>
 					</c:forEach>
 				</ul>
 			</div>
