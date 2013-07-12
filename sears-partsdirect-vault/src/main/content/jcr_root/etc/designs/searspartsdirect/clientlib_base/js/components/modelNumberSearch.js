@@ -11,6 +11,7 @@ var modelNumberSearch = Class.extend(function () {
 			// Parameters
 			this.el = $(el);
 			// Properties
+			this.GUID = '';
 			this.inputField = null;
 			this.inputHelp = '';
 			this.inputHelpMobile = '';
@@ -29,6 +30,9 @@ var modelNumberSearch = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils;
 
+			// GUID and Instance
+			self.GUID = su.getGUID();
+			window['mns' + self.GUID + 'sr'] = self.searchResponse;
 			// Input field
 			self.inputField = $('input[type="text"]', self.el);
 			self.inputHelp = self.inputField.data('inputhelp');
@@ -45,6 +49,7 @@ var modelNumberSearch = Class.extend(function () {
 		search: function () {
 			var self = this,
 				su = window.SPDUtils,
+				searchAddress = apiPath + 'modelSearch/modelSearch',
 				searchTerm = su.validString(self.inputField.attr('value'));
 
 			// Check the input value
@@ -53,14 +58,18 @@ var modelNumberSearch = Class.extend(function () {
 				self.displayMessage('', '');
 				// Make an AJAX call
 				$.ajax({
-					'url': 'http://www.someurl.com/',
-					'crossDomain': true,
-					'dataType': 'JSON',
-					'headers': {
-						'modelNumber': searchTerm
+					type: 'GET',
+					url: searchAddress,
+					async: false,
+					contentType: 'application/json',
+					dataType: 'jsonp',
+					jsonpCallback: 'mns' + self.GUID + 'sr',
+					data: {
+						modelNumber: searchTerm
+					},
+					success: function (data) {
+						self.searchResponse(data);
 					}
-				}).done(function (data) {
-					self.searchResponse(data);
 				});
 			} else {
 				// Display an error message
@@ -72,20 +81,17 @@ var modelNumberSearch = Class.extend(function () {
 		 * @param {object} resp Response from AJAX call
 		 * @return {void}
 		 */
-		searchResponse: function (resp) {
-			console.log(resp);
+		searchResponse: function (data) {
+			console.log(typeof data);
 			var self = this;
-
-			// Test redirect logic
-			self.redirect(resp);
 		},
 		/**
 		 * Handles a redirect to the single result router
 		 * @param {object} resp Response from AJAX call
 		 * @return {void}
 		 */
-		redirect: function (resp) {
-			console.log(resp);
+		redirect: function (data) {
+			console.log(data);
 			var self = this,
 				su = window.SPDUtils,
 				query = '',
@@ -100,7 +106,7 @@ var modelNumberSearch = Class.extend(function () {
 			query += '&link=' + link;
 
 			//document.location.href = su.getLocationDetails() + modelSearchServletPath + query;
-			console.log(su.getLocationDetails() + modelSearchServletPath + query);
+			console.log(su.getLocationDetails().fullAddress + modelSearchServletPath + query);
 		},
 		/**
 		 * Displays a message to the user
