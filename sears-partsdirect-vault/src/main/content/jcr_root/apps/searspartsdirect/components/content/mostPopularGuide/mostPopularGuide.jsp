@@ -43,7 +43,9 @@
 										<strong>Repair difficulty</strong>
 										<div>
 											<div class="difficulty-level-gauge">
-
+												<div class="difficulty-rating ${difficultyLevel}">
+													<i class="icon-wrench rating-one">&nbsp;</i><i class="icon-wrench rating-two">&nbsp;</i><i class="icon-wrench rating-three">&nbsp;</i><i class="icon-wrench rating-four">&nbsp;</i><i class="icon-wrench rating-five">&nbsp;</i>
+												</div>
 											</div>
 											${difficultyLevel}
 										</div>
@@ -51,7 +53,7 @@
 									<div class="pull-right time-required">
 										<strong>Time required</strong>
 										<div>
-											{timeRequired}
+											${timeRequired}
 										</div>
 
 									</div>
@@ -62,7 +64,7 @@
 								<c:choose>
 									<c:when test="${not empty viewText}">
 										<a class="new-btn-large" href="${url}">
-											<i class="icon-chevron-right"></i>
+											<i class="icon-chevron-left"></i>
 											${viewText}
 										</a>
 									</c:when>
