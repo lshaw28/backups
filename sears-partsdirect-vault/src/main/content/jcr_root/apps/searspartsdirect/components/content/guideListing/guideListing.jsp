@@ -7,8 +7,15 @@
 <c:if test="${not empty productCategoryRelation}">
 	<spd:getGuideListing categoryPath="${productCategoryRelation.path}" />
 	<spd:tagsByPage tagType="subcategories"/>
-
-	<cq:text property="allGuidestitle"/> <br/>
+	<c:set var="titleText"><cq:text property="allGuidestitle" placeholder="" /></c:set>
+	<c:choose>
+		<c:when test="${not empty titleText}">
+			${titleText}<br />
+		</c:when>
+		<c:otherwise>
+			All Guides
+		</c:otherwise>
+	</c:choose>
 	<c:choose>
 		<c:when test="${not empty guides}">
 			<c:forEach items="${guides}" var="row">
