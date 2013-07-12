@@ -3,7 +3,6 @@ package com.spd.cq.searspartsdirect.common.fixture;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.PageContext;
 
 import org.apache.sling.api.resource.Resource;

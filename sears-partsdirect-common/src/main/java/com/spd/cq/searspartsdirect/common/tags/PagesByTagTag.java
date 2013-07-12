@@ -1,13 +1,9 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
-import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 
 import org.apache.sling.api.resource.Resource;
 import org.slf4j.Logger;
@@ -16,9 +12,6 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
 
 /**
  * Custom tag to draw out a list of Page objects when given a Tag path or id

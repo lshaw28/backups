@@ -1,9 +1,6 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import javax.jcr.Node;
-import javax.jcr.PathNotFoundException;
-import javax.jcr.RepositoryException;
-import javax.jcr.ValueFormatException;
 import javax.servlet.jsp.JspException;
 
 import org.apache.commons.lang.StringUtils;
@@ -11,7 +8,6 @@ import org.apache.sling.api.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.foundation.Image;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
@@ -47,8 +43,6 @@ public class GetImagePathTag extends CQBaseTag {
 		
 		try {
 			Image desktopImageObj = new Image(resource, DESKTOP_IMAGE);
-			log.debug(""+desktopImageObj);
-			log.debug(""+desktopImageObj.getHref());
 			desktopImage = repairHref(desktopImageObj.getHref(), DESKTOP_IMAGE);
 		} catch (Exception desktopEx) {
 			log.debug("Desktop image error:", desktopEx);
@@ -79,7 +73,7 @@ public class GetImagePathTag extends CQBaseTag {
     }
 
 	public String repairHref(String originalPath, String targetName) {
-		String newPath = "";
+		String newPath = originalPath;
 
 		if (originalPath.indexOf(targetName + "/file.png")!= -1) {
 			newPath = originalPath.replace(targetName + "/file.png", targetName + ".img.png");

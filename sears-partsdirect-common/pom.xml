@@ -47,7 +47,7 @@
 				<groupId>org.apache.sling</groupId>
 				<artifactId>maven-sling-plugin</artifactId>
 				<version>2.1.0</version>
-                <configuration>
+				<configuration>
 					<slingUrl>${crx_url}/libs/sling/install</slingUrl>
 					<usePut>true</usePut>
 					<user>${crx_user}</user>
@@ -55,10 +55,16 @@
 				</configuration>
 				<executions>
 					<execution>
+						<id>uninstall-from-cq</id>
+						<phase>uninstall</phase>
+						<goals>
+							<goal>uninstall</goal>
+						</goals>
+					</execution>
+					<execution>
 						<id>install-to-cq</id>
 						<phase>install</phase>
 						<goals>
-							<goal>uninstall</goal>
 							<goal>install</goal>
 						</goals>
 					</execution>

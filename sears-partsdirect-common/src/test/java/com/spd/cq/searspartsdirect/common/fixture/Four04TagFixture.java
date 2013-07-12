@@ -1,6 +1,8 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -74,7 +76,11 @@ public class Four04TagFixture {
 	}
 	
 	public void setupToDoUsualRedirect() {
-		when(request.getRequestURI()).thenReturn("/akjsdfsadfhsjdhfkjs");
+		when(request.getRequestURI()).thenReturn("/akjsdfsadfhsjdhfkjs.html");
+	}
+	
+	public void setupResourceRequest() {
+		when(request.getRequestURI()).thenReturn("/akjsdfsadfhsjdhfkjs.css");
 	}
 
 	public void removeAuthenticator() {

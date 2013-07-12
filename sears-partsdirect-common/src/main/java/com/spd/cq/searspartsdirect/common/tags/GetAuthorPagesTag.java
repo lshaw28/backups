@@ -3,10 +3,7 @@ package com.spd.cq.searspartsdirect.common.tags;
 import java.util.ArrayList;
 
 import javax.jcr.Node;
-import javax.jcr.PathNotFoundException;
-import javax.jcr.RepositoryException;
 import javax.jcr.Value;
-import javax.jcr.ValueFormatException;
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.api.resource.Resource;
@@ -26,10 +23,10 @@ public class GetAuthorPagesTag  extends CQBaseTag {
 		ArrayList<Page> pages = new ArrayList<Page>();
 		ArrayList<AuthorModel> authors = new ArrayList<AuthorModel>();
 
-		Value[] values = null;
 		try {
-			values = currentNode.getProperty("authors").getValues();
-			// note for later: test values with a single value to see if it checks out
+			
+			Value[] values = currentPage.getProperties().get("authors",new Value[0]);
+
 			for(Value path: values){
 				Page p = pageManager.getPage(path.getString());
 				pages.add(p);
@@ -66,13 +63,9 @@ public class GetAuthorPagesTag  extends CQBaseTag {
 			}
 			
 			
-		} catch (ValueFormatException e) {
-			log.error("", e);
-		} catch (PathNotFoundException e) {
-			log.error("", e);
-		} catch (RepositoryException e) {
-			log.error("", e);
-		}
+		} catch (Exception e) {
+			log.error("failed to get author pages", e);
+		} 
 		pageContext.setAttribute("authors", authors);
 		
 		return SKIP_BODY;

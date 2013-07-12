@@ -1,6 +1,11 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
@@ -10,9 +15,7 @@ import org.junit.Test;
 import com.spd.cq.searspartsdirect.common.fixture.GetUrlRelationTagFixture;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 
 public class GetUrlRelationTagTest extends MocksTag {
 
@@ -34,21 +37,14 @@ public class GetUrlRelationTagTest extends MocksTag {
 	
 	@Test
 	public void testInvalidRelationTypeWithSelectors() throws JspException {
-		fixture.setUpSelectors();
+		fixture.setUpBCMSelectors();
 		tag.setRelationType("invalid");
-		Exception thrown = null;
-		try {
-			runsSkipsBodyEvalsPage();
-		} catch (Exception e) {
-			thrown = e;
-		}
-		assertThat(thrown,not(nullValue()));
-		assertTrue(thrown.getClass().equals(IllegalArgumentException.class));
+		runsSkipsBodyEvalsPage();	
 	}
 	
 	@Test
 	public void testGetProductCategory() throws JspException {
-		fixture.setUpSelectors();
+		fixture.setUpBCMSelectors();
 		fixture.setUpProductCategory();
 		tag.setRelationType("productCategory");
 		runsSkipsBodyEvalsPage();
@@ -80,7 +76,7 @@ public class GetUrlRelationTagTest extends MocksTag {
 	
 	@Test
 	public void testGetBrand() throws JspException {
-		fixture.setUpSelectors();
+		fixture.setUpBCMSelectors();
 		fixture.setUpBrand();
 		tag.setRelationType("brand");
 		runsSkipsBodyEvalsPage();
@@ -90,8 +86,17 @@ public class GetUrlRelationTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testGetNonexistentBrand() throws JspException {
+		fixture.setUpBCMSelectors();
+		tag.setRelationType("brand");
+		runsSkipsBodyEvalsPage();
+		Object br = pageContext.getAttribute("brandRelation");
+		assertThat(br,nullValue());
+	}
+	
+	@Test
 	public void testGetModel() throws JspException {
-		fixture.setUpSelectors();
+		fixture.setUpBCMSelectors();
 		tag.setRelationType("model");
 		runsSkipsBodyEvalsPage();
 		Object mr = pageContext.getAttribute("modelRelation");
@@ -102,24 +107,61 @@ public class GetUrlRelationTagTest extends MocksTag {
 	
 	@Test
 	public void testGetAllRelations() throws JspException {
-		fixture.setUpSelectors();
+		fixture.setUpBCMSSelectors();
+		fixture.setUpProductCategory();
+		fixture.setUpBrand();
+		fixture.setUpSymptom();
+		
+		runsSkipsBodyEvalsPage();
+		
+		productCategoryIsModel();
+		brandIsModel();
+		modelIsString();
+		symptomIsModel();
+	}
+	
+	@Test
+	public void testGetAllTwoRelations() throws JspException {
+		fixture.setUpBCSelectors();
+		fixture.setUpProductCategory();
+		fixture.setUpBrand();
+		fixture.setUpSymptom();
+		
+		runsSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testGetAllWithoutSymptom() throws JspException {
+		fixture.setUpBCMSelectors();
 		fixture.setUpProductCategory();
 		fixture.setUpBrand();
 		
 		runsSkipsBodyEvalsPage();
 		
-		Object pcr = pageContext.getAttribute("productCategoryRelation");
-		assertThat(pcr,not(nullValue()));
-		assertTrue(pcr.getClass().equals(ProductCategoryModel.class));
+		productCategoryIsModel();
+		brandIsModel();
+		modelIsString();
+	}
+	
+	@Test
+	public void testGetOnlySymptom() throws JspException {
+		fixture.setUpSSelector();
+		fixture.setUpSymptom();
 		
-		Object br = pageContext.getAttribute("brandRelation");
-		assertThat(br,not(nullValue()));
-		assertTrue(br.getClass().equals(BrandModel.class));
+		runsSkipsBodyEvalsPage();
 		
-		Object mr = pageContext.getAttribute("modelRelation");
-		assertThat(mr,not(nullValue()));
-		assertTrue(mr.getClass().equals(String.class));
-		assertTrue(fixture.getModel().equals(mr));
+		symptomIsModel();
+	}
+	
+	@Test
+	public void testGetOnlySymptomSpecifically() throws JspException {
+		fixture.setUpSSelector();
+		fixture.setUpSymptom();
+		tag.setRelationType("symptom");
+		
+		runsSkipsBodyEvalsPage();
+		
+		symptomIsModel();
 	}
 	
 	private void runsSkipsBodyEvalsPage() throws JspException {
@@ -128,4 +170,28 @@ public class GetUrlRelationTagTest extends MocksTag {
 		assertThat(tag.doEndTag(), is(TagSupport.EVAL_PAGE));
 	}
 
+	private void productCategoryIsModel() {
+		Object pcr = pageContext.getAttribute("productCategoryRelation");
+		assertThat(pcr,not(nullValue()));
+		assertTrue(pcr.getClass().equals(ProductCategoryModel.class));
+	}
+	
+	private void brandIsModel() {
+		Object br = pageContext.getAttribute("brandRelation");
+		assertThat(br,not(nullValue()));
+		assertTrue(br.getClass().equals(BrandModel.class));
+	}
+	
+	private void modelIsString() {
+		Object mr = pageContext.getAttribute("modelRelation");
+		assertThat(mr,not(nullValue()));
+		assertTrue(mr.getClass().equals(String.class));
+		assertTrue(fixture.getModel().equals(mr));
+	}
+	
+	private void symptomIsModel() {
+		Object sr = pageContext.getAttribute("symptomRelation");
+		assertThat(sr,not(nullValue()));
+		assertTrue(sr.getClass().equals(SymptomModel.class));
+	}
 }

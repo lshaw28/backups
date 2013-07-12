@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+	xmlns:cq="http://www.day.com/jcr/cq/1.0"
+	xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+	jcr:primaryType="cq:Template"
+	jcr:title="Sears PartsDirect Common Parts Template"
+	jcr:description="Common parts template for the Sears PartsDirect site."
+	allowedPaths="[/content/searspartsdirect(/.*)?]"
+	ranking="50">
+	<jcr:content
+		jcr:primaryType="cq:PageContent"
+		sling:resourceType="searspartsdirect/components/page/commonParts"
+		cq:designPath="/etc/designs/searspartsdirect" />
+</jcr:root>

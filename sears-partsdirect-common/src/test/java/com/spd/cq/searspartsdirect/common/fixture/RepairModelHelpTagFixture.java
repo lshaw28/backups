@@ -1,12 +1,14 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-
-import static org.mockito.Mockito.*;
 
 public class RepairModelHelpTagFixture {
 

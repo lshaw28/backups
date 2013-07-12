@@ -1,16 +1,13 @@
 package com.spd.cq.searspartsdirect.common.model;
 
 
-import java.util.HashSet;
-import java.util.Set;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isA;
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import junit.framework.TestCase;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class PartCookieModelTest extends TestCase {
 

@@ -1,7 +1,7 @@
 /* Components
  * Applies Author-only styling so components can be edited */
 /* Minimum Heights to Avoid Placeholders */
-.category101, .responsiveImage, .video, .relatedGuides, .relatedArticles, .commonSymptoms {
+.category101, .responsiveImage, .video, .relatedGuides, .relatedArticles, .commonSymptoms, .errorCodesTable, .errorCodesList {
 	min-height: 75px;
 }
 .responsiveImage {
@@ -16,4 +16,12 @@
 /* Padding To Provide Editable Space */
 .videoIframe {
 	margin: 10px 0;
+}
+
+/* Display a Message */
+.authorDisplay {
+	.authorMessage:before {
+		content: 'Edit the Page Properties: Page Associations to add authors.';
+		font-weight: bold;
+	}
 }

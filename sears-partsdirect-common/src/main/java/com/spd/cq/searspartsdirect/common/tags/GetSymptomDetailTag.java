@@ -20,8 +20,8 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.model.GuideModel;
 import com.spd.cq.searspartsdirect.common.model.ModelSymptomModel;
-import com.spd.cq.searspartsdirect.common.model.RelatedGuideModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
@@ -36,17 +36,18 @@ public class GetSymptomDetailTag extends CQBaseTag {
 	private boolean partsRequired;
 	
 	public static final Logger log = LoggerFactory.getLogger(GetSymptomDetailTag.class);
+	private static final String PART_TYPE = "partType";
+	private static final String GUIDES = "guides";
+	private long symptomId;
 	
 	@Override
 	public int doStartTag() throws JspException {
-		String symptomId = request.getParameter("id");
-		
 		session = slingRequest.getResourceResolver().adaptTo(Session.class);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("path", Constants.ASSETS_PATH + "/symptom");
 		map.put("type", Constants.CQ_PAGE);
 		map.put("property", "jcr:content/id");
-		map.put("property.value", symptomId);
+		map.put("property.value", Long.toString(symptomId));
 		
 		builder = resourceResolver.adaptTo(QueryBuilder.class);
 		query = builder.createQuery(PredicateGroup.create(map), session);
@@ -80,7 +81,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 									
 									ValueMap jobCodeProps = jobCodePage.getProperties();
 									if (jobCodeProps != null) {
-										String partType = (String) jobCodeProps.get("partType");
+										String partType = (String) jobCodeProps.get(PART_TYPE);
 										Page partTypePage = pageManager.getPage(partType);
 										
 										if (partTypePage != null) {
@@ -92,12 +93,12 @@ public class GetSymptomDetailTag extends CQBaseTag {
 										jobCodeModels.add(jobCodeModel);
 										
 										//getting guides
-										String[] guides = (String[]) jobCodeProps.get("guide", String[].class);
+										String[] guides = (String[]) jobCodeProps.get(GUIDES, String[].class);
 										if (guides != null) {
-											List<RelatedGuideModel> guideList = new ArrayList<RelatedGuideModel>();
+											List<GuideModel> guideList = new ArrayList<GuideModel>();
 											for (int j = 0; j<guides.length; j++) {
 												Page guidePage = pageManager.getPage(guides[j]);
-												RelatedGuideModel guide = new RelatedGuideModel(guidePage.getPath(), null, guidePage.getTitle());
+												GuideModel guide = new GuideModel(guidePage.getPath(), null, guidePage.getTitle());
 												guideList.add(guide);
 											}
 											jobCodeModel.setGuides(guideList);
@@ -130,6 +131,14 @@ public class GetSymptomDetailTag extends CQBaseTag {
 
 	public void setPartsRequired(boolean partsRequired) {
 		this.partsRequired = partsRequired;
+	}
+
+	public long getSymptomId() {
+		return symptomId;
+	}
+
+	public void setSymptomId(long symptomId) {
+		this.symptomId = symptomId;
 	}
 
 }

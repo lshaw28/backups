@@ -7,8 +7,6 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.model.spdasset.WarningModel;
-
 public class WarningModelTest extends TestCase {
 	private WarningModel warningModel;
 	private String path = "path";

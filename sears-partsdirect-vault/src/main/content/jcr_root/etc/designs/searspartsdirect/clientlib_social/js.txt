@@ -1,0 +1,5 @@
+#base=js/.
+comments.js
+pagination.js
+topic.js
+ugcparbase/commons.js

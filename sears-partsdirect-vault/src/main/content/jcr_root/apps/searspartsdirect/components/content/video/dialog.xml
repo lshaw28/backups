@@ -22,7 +22,7 @@
                     name="./youTubeLink"
                     allowBlank="{Boolean}false"
           			blankText="Link field is required"
-                    regex="Shc.components.extsrc.regex.ValidationPattterns.url"
+                    regex="Shc.components.extsrc.regex.ValidationPatterns.youtube"
                     xtype="textfield"/>
             </items>
         </videoTab>

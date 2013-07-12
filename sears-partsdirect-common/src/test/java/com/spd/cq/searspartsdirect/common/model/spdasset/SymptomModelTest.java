@@ -7,8 +7,6 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
-
 public class SymptomModelTest extends TestCase {
 	private SymptomModel symptomModel;
 	private String path = "path";

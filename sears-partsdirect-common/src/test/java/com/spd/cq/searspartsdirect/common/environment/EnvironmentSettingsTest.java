@@ -1,20 +1,15 @@
 package com.spd.cq.searspartsdirect.common.environment;
 
 
-import java.util.Dictionary;
-import java.util.Hashtable;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.osgi.service.component.ComponentContext;
 
 import com.spd.cq.searspartsdirect.common.fixture.EnvironmentSettingsFixture;
-import com.spd.cq.searspartsdirect.common.helpers.Constants;
-
-import junit.framework.TestCase;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 
 public class EnvironmentSettingsTest extends TestCase {
@@ -39,6 +34,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getPDUserDataApiUrl(), is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getPDJobCodeApiUrl(), is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getPDTopPartsApiUrl(), is(instanceOf(String.class)));
+		assertThat(EnvironmentSettings.getPDModelSubApiUrl(), is(instanceOf(String.class)));
 		fixture.setUpStubSettings(hook);
 		assertThat(EnvironmentSettings.get404HandlerURL(),is(EnvironmentSettings.HANDLE_404_URL));
 		assertThat(EnvironmentSettings.getSitemapStartPaths(),is(EnvironmentSettings.SITEMAP_START_PATHS));
@@ -49,6 +45,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getPDUrl(), is (EnvironmentSettings.PD_URL));
 		assertThat(EnvironmentSettings.getPDJobCodeApiUrl(), is(EnvironmentSettings.PD_JOBCODE_API));
 		assertThat(EnvironmentSettings.getPDTopPartsApiUrl(), is (EnvironmentSettings.PD_TOPPARTS_API));
+		assertThat(EnvironmentSettings.getPDModelSubApiUrl(), is(EnvironmentSettings.PD_MODELSUB_API));
 		try {
 			hook.deactivate(fixture.getComponentContext());
 		} catch (Exception e) {

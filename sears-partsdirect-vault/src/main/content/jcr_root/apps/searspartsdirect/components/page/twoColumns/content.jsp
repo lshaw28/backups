@@ -1,7 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <article id="content">
 	<cq:include path="/content/searspartsdirect/en/jcr:content/breadcrumbNavigation" resourceType="/apps/searspartsdirect/components/base/breadcrumbNavigation" />
-	<spd:displayModelHeader/>
+	<cq:include path="/content/searspartsdirect/en/jcr:content/modelHeader" resourceType="/apps/searspartsdirect/components/content/modelHeader" />
 	<div class="row-fluid">
 		<div class="span12">
 			<cq:include path="parsys_top" resourceType="foundation/components/parsys" />

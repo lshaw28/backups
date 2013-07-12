@@ -38,11 +38,19 @@
 		                        fieldLabel="Link"
 		                        name="url"
 		                        fieldDescription="Must be a valid link"
-		                        regex="Shc.components.extsrc.regex.ValidationPattterns.url"
+		                        regex="Shc.components.extsrc.regex.ValidationPatterns.url"
 		                        xtype="textfield"/>								
 						</items>
 					</fieldConfig>
 				</multi>
+				
+				<showSearch
+		            jcr:primaryType="cq:Widget"
+		            fieldLabel="Show Model Number Search?"
+		            name="./showSearch"
+		            type="checkbox"
+		            xtype="selection"/>
+				
 			</items>
 		</Panel>
 	</items>

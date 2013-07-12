@@ -7,46 +7,8 @@
 	<items jcr:primaryType="cq:WidgetCollection">
 		<tabpanel jcr:primaryType="cq:TabPanel">
 			<items jcr:primaryType="cq:WidgetCollection">
-						
+
 				 <tab1 jcr:primaryType="cq:Widget" 
-					   title="Most Popular Guide Information"
-					   xtype="panel">
-					  
-					<items jcr:primaryType="cq:WidgetCollection">
-						<text jcr:primaryType="cq:Widget" 
-								fieldLabel="Title"
-								name="./title" 
-								maxLength="70"
-								allowBlank="{Boolean}false"
-								xtype="textfield" />
-								
-						<difficulty 
-								jcr:primaryType="cq:Widget" 
-								fieldLabel="Difficulty Level"
-								name="./difficultyLevel"
-								maxLength="1"
-								maxValue="{Long}5"
-								minValue="{Long}1"
-								fieldDescription="Choose a number from 1-5"
-								allowBlank="{Boolean}false"
-								xtype="numberfield"/>
-		
-						<time   jcr:primaryType="cq:Widget" 
-								fieldLabel="Time Required"
-								name="./timeRequired" 
-								allowBlank="{Boolean}false"
-								xtype="textfield" />
-								
-						<viewAlltext jcr:primaryType="cq:Widget" 
-								fieldLabel="View All link Text"
-								name="./viewAllText" 
-								maxLength="35"
-								allowBlank="{Boolean}false"
-								xtype="textfield" />
-						
-					</items>
-				</tab1>
-				 <tab2 jcr:primaryType="cq:Widget" 
 					   title="All Guides Information"
 					   xtype="panel">
 					  
@@ -59,7 +21,7 @@
 								xtype="textfield" />
 
 					</items>
-				</tab2>
+				</tab1>
 			</items>
 		</tabpanel>
 	</items>

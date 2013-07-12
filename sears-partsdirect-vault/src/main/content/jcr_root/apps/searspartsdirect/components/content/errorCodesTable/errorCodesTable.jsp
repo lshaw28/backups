@@ -1,26 +1,12 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<spd:getRelation single="true" assetType="productCategory"/>
-<spd:getRelation single="true" assetType="brand"/>
-<spd:tagsByPage tagType="subcategories"/>
-
-<h3><c:if test="${brandRelation != null}">${brandRelation.title}&nbsp;</c:if>
-	<c:if test="${productCategoryRelation != null}">${productCategoryRelation.title}&nbsp;</c:if>
-	<c:if test="${fn:length(subcategoriesList) eq 1}">
-			${subcategoriesList[0].title}
-			<c:set var="subCatUrl" value="${subcategoriesList[0].tagID}"/>
-	</c:if>
-	<cq:text property="errorCodeText" placeholder=""/>
-</h3>
-
-<cq:text property="errorCodeDesc" placeholder="" tagName="p" />
-
 <spd:errorCodeTable/>
 
-<div class="errorCodesTable-header">
-	<%-- @TODO Add Type headline --%>
-	Error Code Type
-</div>
-
+<c:if test='${errorCodeTableData.errorCodeType != null}'>
+	<div class="errorCodesTable-header">
+		${errorCodeTableData.errorCodeType}
+	</div>
+</c:if>
+	
 <div class="table-wrapper">
 	<table class="responsive-table">
 		<thead>
@@ -32,31 +18,34 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="item" items="${errorCodeTableData}">
-				<c:forEach var="model" items="${item.value}">
-					<tr>
-						<td>${model.code}</td>
-						<td>${model.condition}</td>
-						<c:choose>
-							<c:when test='${fn:contains(model.repairPath, "/")}'>
-								<spd:linkResolver value="${model.repairPath}" />
-								<td>
-									<a href="${url}">Repair or Installation guide link</a>
-								</td>
-							</c:when>
-							<c:otherwise>
-								<td>
-									${model.repairPath}
-								</td>
-							</c:otherwise>
-						</c:choose>
+		<c:forEach var="model" items="${errorCodeTableData.errorCodes}">
+			<tr>
+				<td>${model.code}</td>
+				<td>${model.condition}</td>
+				<c:choose>
+					<c:when test='${fn:contains(model.repairPath, "/")}'>
+						<spd:linkResolver value="${model.repairPath}" />
 						<td>
-							<%-- @TODO determine requirements for this column and impl --%>
-							Browse Path Link
+							<a href="${url}">Repair or Installation guide link</a>
 						</td>
-					</tr>
-				</c:forEach>
-			</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<td>${model.repairPath}</td>
+					</c:otherwise>
+				</c:choose>
+				<c:choose>
+					<c:when test='${fn:contains(model.shopPartsLink, "/")}'>
+						<spd:linkResolver value="${model.shopPartsLink}" />
+						<td>
+							<a href="${url}">Repair or Installation guide link</a>
+						</td>
+					</c:when>
+					<c:otherwise>
+						<td>${model.shopPartsLink}</td>
+					</c:otherwise>
+				</c:choose>
+			</tr>
+		</c:forEach>
 		</tbody>
 	</table>
 </div>

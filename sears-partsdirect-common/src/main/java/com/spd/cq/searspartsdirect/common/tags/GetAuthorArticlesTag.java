@@ -15,7 +15,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
+import com.spd.cq.searspartsdirect.common.model.ArticleModel;
 
 public class GetAuthorArticlesTag extends CQBaseTag {
 
@@ -25,7 +25,7 @@ public class GetAuthorArticlesTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 
-		ArrayList<RelatedArticleModel> articles = new ArrayList<RelatedArticleModel>();
+		ArrayList<ArticleModel> articles = new ArrayList<ArticleModel>();
 		try {
 			log.debug("Author Article");
 			ArrayList<Page> results = new ArrayList<Page>();
@@ -34,8 +34,8 @@ public class GetAuthorArticlesTag extends CQBaseTag {
 			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
 			HashMap<String, String> props = new HashMap<String, String>();
 			props.put("type", "cq:Page");
-			props.put("path", "/content/searspartsdirect/en/articles");
-			props.put("property", "jcr:content/authors");
+			props.put("path", Constants.ARTICLES_ROOT);
+			props.put("property", Constants.AUTHOR_REL_PATH);
 			props.put("property.value", currentPage.getPath());
 			log.debug("Author page path: " + currentPage.getPath());
 
@@ -52,7 +52,7 @@ public class GetAuthorArticlesTag extends CQBaseTag {
 			// reusing RelatedArticleModel
 			for (Page page : results) {
 
-				articles.add(new RelatedArticleModel(page.getPath() + ".html",
+				articles.add(new ArticleModel(page.getPath() + ".html",
 												page.getPath() + Constants.ASSETS_IMAGE_PATH,
 												page.getTitle(),
 												page.getProperties().get("abstracttext", Constants.EMPTY).toString()));

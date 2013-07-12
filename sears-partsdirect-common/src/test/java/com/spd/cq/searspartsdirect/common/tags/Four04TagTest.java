@@ -1,6 +1,13 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.junit.Before;
@@ -9,11 +16,6 @@ import org.junit.Test;
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 import com.spd.cq.searspartsdirect.common.fixture.Four04TagFixture;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
 
 public class Four04TagTest extends MocksTag {
 
@@ -37,6 +39,14 @@ public class Four04TagTest extends MocksTag {
 		fixture.setupToDoUsualRedirect();
 		assertThat(tag.needsAuthentication(fixture.getRequest()),is(false));
 	}
+	
+	@Test
+	public void testIsTargetedExtension() {
+		assertThat(tag.isTargetedExtension("/404.html"),is(true));
+		assertThat(tag.isTargetedExtension("/404.jsp"),is(true));
+		assertThat(tag.isTargetedExtension("/404.css"),is(false));
+		assertThat(tag.isTargetedExtension("/404.js"),is(false));
+	}
 
 	@Test
 	public void testWithPlebeianPage() {
@@ -45,6 +55,15 @@ public class Four04TagTest extends MocksTag {
 		runTagAndShouldContinue();
 		shouldNotAttemptAuth();
 		shouldBeRedirecting();
+	}
+	
+	@Test
+	public void testWithAResource() {
+		fixture.setupResourceRequest();
+		fixture.setup404ErrorCode();
+		runTagAndShouldContinue();
+		shouldNotAttemptAuth();
+		shouldBeIncludingDefaultError();
 	}
 	
 	@Test

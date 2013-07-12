@@ -1,0 +1,56 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.modelSection {
+	margin: 0;
+
+	a.modelInfo {
+		font-weight: bold;
+		line-height: 65px;
+	}
+
+	.nav-tabs {
+		border-bottom: 1px solid @secondaryHueLight;
+		left: -40px;
+		margin-top: 30px;
+		position: relative;
+
+		li {
+			.verticalGradient(@secondaryHueLightest, @secondaryHueLightest);
+			.borderRadius(4px 4px 0 0);
+			left: 40px;
+			position: relative;
+			width: 23%;
+		}
+		a {
+			.borderRadius(4px 4px 0 0);
+			border-right: 1px dotted @secondaryHueNormal;
+			color: @primaryHueNormal;
+			font-size: @h4Size;
+			font-weight: bold;
+			height: 30px;
+			line-height: 32px;
+			padding: 8px 10px;
+			text-align: center;
+			text-decoration: none;
+		}
+	}
+
+	.iownsection {
+		background-color: @secondaryHueLighter;
+		.borderRadius(4px);
+		padding: 10px;
+
+		span.span5 {
+			position: relative;
+			text-align: center;
+			top: 5px;
+			}
+		}
+	}
+}
+
+
+
+@import "modelHeader.tablet.less";
+@import "modelHeader.mobile.less";

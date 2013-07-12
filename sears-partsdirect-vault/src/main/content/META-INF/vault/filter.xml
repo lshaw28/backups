@@ -14,5 +14,7 @@
 	<filter root="/sitemap" />
 	<filter root="/etc/workflow/launcher/config/665047955" />
 	<filter root="/etc/workflow/models/request_for_activation" />
+	<filter root="/etc/workflow/launcher/config/-643961773" />
+	<filter root="/etc/workflow/models/searspartsdirectcategorycreation" />
 	<filter root="/etc/workflow/models/spd-image-upload" />
 </workspaceFilter>

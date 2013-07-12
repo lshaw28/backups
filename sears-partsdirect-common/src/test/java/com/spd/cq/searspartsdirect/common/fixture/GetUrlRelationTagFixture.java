@@ -1,6 +1,7 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class GetUrlRelationTagFixture {
 	private final String BRAND = "brand";
 	private final String CATEGORY = "category";
 	private final String MODEL = "model";
+	private final String SYMPTOM = "symptom";
 
 	private PageManager pageManager;
 	private SlingHttpServletRequest slingRequest;
@@ -40,11 +42,30 @@ public class GetUrlRelationTagFixture {
 		});
 	}
 
-	public void setUpSelectors() {
+	public void setUpBCMSelectors() {
 		selectors.clear();
 		selectors.add(BRAND);
 		selectors.add(CATEGORY);
 		selectors.add(MODEL);
+	}
+	
+	public void setUpSSelector() {
+		selectors.clear();
+		selectors.add(SYMPTOM);
+	}
+	
+	public void setUpBCMSSelectors() {
+		selectors.clear();
+		selectors.add(BRAND);
+		selectors.add(CATEGORY);
+		selectors.add(MODEL);
+		selectors.add(SYMPTOM);
+	}
+	
+	public void setUpBCSelectors() {
+		selectors.clear();
+		selectors.add(BRAND);
+		selectors.add(CATEGORY);
 	}
 	
 	public void setUpProductCategory() {
@@ -70,9 +91,19 @@ public class GetUrlRelationTagFixture {
 		ValueMap properties = mock(ValueMap.class);
 		when(p.getProperties()).thenReturn(properties);
 	}
+	
+	public void setUpSymptom() {
+		String relatedAssetPath = Constants.ASSETS_PATH + "/symptom/" + SYMPTOM;
+		Page p = mock(Page.class);
+		when(pageManager.getPage(relatedAssetPath)).thenReturn(p);
+		ValueMap properties = mock(ValueMap.class);
+		when(p.getProperties()).thenReturn(properties);
+	}
 
 	public Object getModel() {
 		return MODEL;
 	}
+
+
 
 }

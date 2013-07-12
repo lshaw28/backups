@@ -14,10 +14,11 @@ public class GetPartsDirectUrl extends CQBaseTag {
 
 	@Override
 	public int doStartTag() throws JspException {
+		log.debug("PDUrl is "+EnvironmentSettings.getPDUrl());
 		pageContext.setAttribute("PDUrl", EnvironmentSettings.getPDUrl());
 		return SKIP_BODY;
 	}
-	
+
 	@Override
 	public int doEndTag() throws JspException {
 		return EVAL_PAGE;

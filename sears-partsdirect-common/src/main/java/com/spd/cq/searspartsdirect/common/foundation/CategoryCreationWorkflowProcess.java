@@ -5,9 +5,13 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.Workspace;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Property;
+import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +21,10 @@ import com.adobe.granite.workflow.exec.WorkItem;
 import com.adobe.granite.workflow.exec.WorkflowData;
 import com.adobe.granite.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.metadata.MetaDataMap;
-import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.day.cq.tagging.TagManager;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.day.cq.wcm.api.WCMException;
  
 /**
  * Workflow that generates pages for a Category based on the creation of a Category Asset
@@ -34,24 +41,52 @@ public class CategoryCreationWorkflowProcess implements WorkflowProcess {
     static final String VENDOR = org.osgi.framework.Constants.SERVICE_VENDOR;
     @Property(value = "Category Creation")
     static final String LABEL="process.label";
- 
- 
+    
+    @Reference
+    private ResourceResolverFactory resourceResolverFactory;
+    
     public static final String TYPE_JCR_PATH = "JCR_PATH";
 
     public void execute(WorkItem item, WorkflowSession session, MetaDataMap args) throws WorkflowException {
-    	WorkflowData workflowData = item.getWorkflowData();
-        if (workflowData.getPayloadType().equals(TYPE_JCR_PATH)) {
-            String path = workflowData.getPayload().toString();
-            try {
-                Session jcrSession = session.adaptTo(Session.class); 
+    	Session jcrSession = null;
+    	ResourceResolver resourceResolver = null;
+    	try {
+        	WorkflowData workflowData = item.getWorkflowData();
+	        if (workflowData.getPayloadType().equals(TYPE_JCR_PATH)) {
+	            String path = workflowData.getPayload().toString();
+                jcrSession = session.adaptTo(Session.class);
+                resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
+                PageManager pm = resourceResolver.adaptTo(PageManager.class);
+                TagManager tm = resourceResolver.adaptTo(TagManager.class);
                 Workspace workspace = jcrSession.getWorkspace();
                 Node node = (Node) jcrSession.getItem(path);
                 
-                //CODE
+                String nodePath = node.getPath();
+                String categoryTrueName = nodePath.substring(nodePath.lastIndexOf("/") + 1);
+                String categoryTitle = node.getNode("jcr:content").getProperty("jcr:title").getString();
+                String[] tag = new String[1];
+                tag[0] = node.getPath();
                 
-            } catch (RepositoryException e) {
-                throw new WorkflowException(e.getMessage(), e);
-            }
+                createPage(pm, "/content/searspartsdirect/en/categories", categoryTrueName + "-repair", "/apps/searspartsdirect/templates/category", categoryTitle, tag);
+                createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "repair-articles", "/apps/searspartsdirect/templates/articleIndex", "Article Index", tag);
+                createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "symptom", "/apps/searspartsdirect/templates/categorySymptom", "Symptoms", tag);
+                createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "error-codes", "/apps/searspartsdirect/templates/errorCodes", "Error Codes", tag);
+                createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "repair-guides", "/apps/searspartsdirect/templates/categoryGuideList", categoryTitle + " Guide List", tag);
+                
+                jcrSession.save();
+	        }
+        } catch (Exception e) {
+            log.error(ExceptionUtils.getFullStackTrace(e));
+            throw new WorkflowException(e);
         }
+    }
+    
+    public void createPage(PageManager pm, String path, String name, String template, String title, String[] relation) throws WCMException, RepositoryException {
+    	Page page = pm.getPage(path + "/" + name);
+    	if (page == null) {
+	    	page = pm.create(path, name, template, title);
+	        Node pageContents = page.getContentResource().adaptTo(Node.class);
+	        pageContents.setProperty("pages", relation);
+    	}
     }
 }

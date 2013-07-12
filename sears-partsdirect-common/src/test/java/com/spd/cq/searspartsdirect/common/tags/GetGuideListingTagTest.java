@@ -1,7 +1,8 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,10 +11,9 @@ import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetGuideListingTagFixture;
-import com.spd.cq.searspartsdirect.common.model.RelatedArticleModel;
+import com.spd.cq.searspartsdirect.common.model.ArticleModel;
 
 public class GetGuideListingTagTest extends MocksTag{
 	
@@ -38,7 +38,7 @@ public class GetGuideListingTagTest extends MocksTag{
 			throw new RuntimeException(e);
 		}
 		
-		HashMap<String, List<RelatedArticleModel>> guides = (HashMap<String, List<RelatedArticleModel>>)pageContext.getAttribute("guides");
+		HashMap<String, List<ArticleModel>> guides = (HashMap<String, List<ArticleModel>>)pageContext.getAttribute("guides");
 		assertThat(guides,is(instanceOf(HashMap.class)));
 		//assertThat(guides,hasSize(3));
 		Set keys = guides.keySet();
@@ -46,13 +46,13 @@ public class GetGuideListingTagTest extends MocksTag{
 		for (Iterator i = keys.iterator(); i.hasNext();)
 		{
 	       String key = (String) i.next();
-	       List<RelatedArticleModel> relatedArticles = guides.get(key);
+	       List<ArticleModel> relatedArticles = guides.get(key);
 	       if (count == 0){ //check the first entry
-			   RelatedArticleModel first = relatedArticles.get(0);
+			   ArticleModel first = relatedArticles.get(0);
 			   assertThat(first.getUrl(),is("/baz.html"));
 		   }
 		   if (count == 2){ //check the last entry
-			   RelatedArticleModel last =  relatedArticles.get(2);
+			   ArticleModel last =  relatedArticles.get(2);
 			   assertThat(last.getUrl(),is("/foo.html"));
 		   }
 		   count ++;

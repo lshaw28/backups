@@ -6,12 +6,15 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 --%>
 
 <spd:getRelation single="true" assetType="productCategory" />
-<spd:getRelatedArticles categoryPath="${productCategoryRelation.path}" />
+<c:if test="${empty productCategoryRelation}">
+	<spd:getUrlRelation relationType="productCategory" />
+</c:if>
+<spd:getRelatedArticles categoryPath="${productCategoryRelation.path}"/>
 <spd:getNameByNodePath nodePath="${productCategoryRelation.path}" />
 
 <c:if test="${not empty articles && not empty productCategoryRelation}">
 	<h2>
-		<cq:text property="newHeader" placeholder="Related Articles" />
+		<cq:text property="newHeader" placeholder="Most Viewed Articles" />
 	</h2>
 
 	<div class="carousel-mobile-only">

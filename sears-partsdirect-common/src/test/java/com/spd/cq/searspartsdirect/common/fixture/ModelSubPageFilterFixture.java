@@ -1,6 +1,7 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -32,16 +33,14 @@ public class ModelSubPageFilterFixture {
 		filterChain = mock(FilterChain.class);
 	}
 	
-	public void setUpPathAndExt(String resPath, String ext) {
+	public void setUpPath(String resPath) {
 		this.resPath = resPath;
-		this.ext = ext;
 		ResourceResolver resourceResolver = mock(ResourceResolver.class);
 		when(request.getResourceResolver()).thenReturn(resourceResolver);
 		//RequestPathInfo rpi = request.getRequestPathInfo();
 		RequestPathInfo rpi = mock(RequestPathInfo.class);
 		when(request.getRequestPathInfo()).thenReturn(rpi);
         //String ext = rpi.getExtension(), resPath = rpi.getResourcePath();
-		when(rpi.getExtension()).thenReturn(getExt());
 		when(rpi.getResourcePath()).thenReturn(getResPath());
         //Resource res = resourceResolver.getResource(resPath);
 		Resource res = mock(Resource.class);

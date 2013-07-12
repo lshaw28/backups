@@ -1,6 +1,5 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,8 +28,6 @@ public class PathStringUtils {
     	// String wins on readability. Alt, would be, StringBuilders as the set type. 
     	// See CharSequence docs (in particular, as regards equals and hashCode contracts) for why we don't use it.
     	while (path.length() > 0) {
-    		// Considered the logger to be a separable concern here. These will be removed.
-    		if (log.isDebugEnabled()) log.debug("Trying "+path);
     		if (roots.contains(path)) {
     			hasParent = true;
     			break;

@@ -4,7 +4,17 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 
 import com.day.cq.wcm.api.Page;
-import com.spd.cq.searspartsdirect.common.model.spdasset.*;
+import com.spd.cq.searspartsdirect.common.model.spdasset.AccessoryModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.AuthorModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.HazardModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.TipModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.WarningModel;
 
 public enum AssetType {
 	BRAND(BrandModel.class) {
@@ -26,7 +36,8 @@ public enum AssetType {
 			return new ErrorCodeModel(p.getPath(),
 					title,
 					description,
-					properties.get("repairPath",""));
+					properties.get("repairPath",""),
+					properties.get("shopParts",""));
 		}
 	}, 
 	HAZARD(HazardModel.class) {

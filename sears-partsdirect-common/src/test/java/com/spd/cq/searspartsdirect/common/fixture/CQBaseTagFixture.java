@@ -1,8 +1,8 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
-import javax.servlet.http.HttpServletRequest;
-
 import static org.mockito.Mockito.when;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class CQBaseTagFixture {
 

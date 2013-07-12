@@ -1,16 +1,16 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.mock; // mocking needed here is minimal, so we are forgoing the fixture
+import static org.mockito.Mockito.when;
+import junit.framework.TestCase;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import com.day.cq.wcm.api.Page;
-
-import junit.framework.TestCase;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*; // mocking needed here is minimal, so we are forgoing the fixture
 
 public class NavigablePageFilterTest extends TestCase {
 

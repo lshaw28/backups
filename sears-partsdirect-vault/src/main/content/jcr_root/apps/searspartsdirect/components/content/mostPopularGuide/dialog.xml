@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0"
+		xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		jcr:primaryType="cq:TabPanel"
+		title="Guide Description"
+		xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<tabpanel jcr:primaryType="cq:TabPanel">
+			<items jcr:primaryType="cq:WidgetCollection">
+						
+				 <tab1 jcr:primaryType="cq:Widget" 
+					   title="Most Popular Guide Information"
+					   xtype="panel">
+					  
+					<items jcr:primaryType="cq:WidgetCollection">
+						<text jcr:primaryType="cq:Widget" 
+								fieldLabel="Title"
+								name="./title" 
+								maxLength="70"
+								allowBlank="{Boolean}true"
+								xtype="textfield" />
+			
+						<viewAlltext jcr:primaryType="cq:Widget" 
+								fieldLabel="View This Guide link Text"
+								name="./viewThisText" 
+								maxLength="35"
+								allowBlank="{Boolean}true"
+								xtype="textfield" />
+						
+					</items>
+				</tab1>
+				
+			</items>
+		</tabpanel>
+	</items>
+</jcr:root>

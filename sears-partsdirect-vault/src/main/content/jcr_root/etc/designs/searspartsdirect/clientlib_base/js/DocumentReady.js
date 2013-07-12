@@ -5,7 +5,13 @@
 	 * Global functionality instantiation
 	 */
 	$(document).ready(function () {
-		/**
+         /**
+		 * model section
+		 */
+
+		var modelsection = new modelsectionHeader();
+
+        /**
 		 * Comment Section
 		 */
 
@@ -14,6 +20,12 @@
 		 * Search Panel
 		 */
 		var mainSearchPanel = new searchPanel();
+		/**
+		 * modelNumberSearch class setup
+		 */
+		$('.modelNumberSearch').each(function () {
+			var newModelNumberSearch = new modelNumberSearch($(this));
+		});
 		/**
 		 * revealPanel class setup
 		 */
@@ -25,6 +37,11 @@
 		 */
 		$('.trigger').bind('click', function () {
 			$('body').toggleClass('loginNav-open');
+		});
+		$('#loginNavGetHelp').bind('click', function () {
+			if (window.SPDUtils.isMobileBreakpoint() === true) {
+				$('body').toggleClass('loginNav-open');
+			}
 		});
 		/**
 		 * Cart Navigation
@@ -151,7 +168,7 @@
 			}
 		});
 		regula.bind();
-		
+
 		/*
 		 * Responsive table initializer
 		 */

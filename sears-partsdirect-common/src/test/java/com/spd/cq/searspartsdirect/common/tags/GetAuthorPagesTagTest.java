@@ -1,10 +1,13 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+
 import java.util.List;
 
 import javax.jcr.RepositoryException;
-import javax.jcr.ValueFormatException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
@@ -14,9 +17,6 @@ import org.junit.Test;
 import com.spd.cq.searspartsdirect.common.fixture.GetAuthorPagesTagFixture;
 import com.spd.cq.searspartsdirect.common.model.spdasset.AuthorModel;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-
 public class GetAuthorPagesTagTest extends MocksTag {
 
 	GetAuthorPagesTagFixture fixture;
@@ -25,29 +25,27 @@ public class GetAuthorPagesTagTest extends MocksTag {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetAuthorPagesTagFixture(pageContext,pageManager,resourceResolver);
+		fixture = new GetAuthorPagesTagFixture(currentPage, pageManager, resourceResolver);
 		tag = new GetAuthorPagesTag();
-	}
-
+	}	
+	
 	@Test
 	public void testMinimusDoStartTag() throws JspException {
 		runsSkipsBodyEvalsPage();
 	}
 	
 	@Test
-	public void testWhenArrayHasOneAuthor() throws JspException, ValueFormatException, IllegalStateException, RepositoryException {
-		fixture.setUpAnAuthorInArray("jjj");
+	public void testWhenArrayHasOneAuthor() throws JspException {
 		runsSkipsBodyEvalsPage();
 		@SuppressWarnings("unchecked")
 		List<AuthorModel> authors = (List<AuthorModel>)pageContext.getAttribute("authors");
 		assertThat(authors,hasSize(1));
 		AuthorModel author = authors.get(0);
-		assertThat(author.getPath(),is("jjj"));
+		assertThat(author.getPath(),is("someAuthor"));
 	}
 	
 	@Test
-	public void testWhenArrayHasOneAuthorEmptyImageAndAnAbstract() throws JspException, ValueFormatException, IllegalStateException, RepositoryException {
-		fixture.setUpAnAuthorInArray("lll");
+	public void testWhenArrayHasOneAuthorEmptyImageAndAnAbstract() throws JspException {
 		fixture.setUpEmptyImage();
 		fixture.setUpAbstract("isisnt");
 		runsSkipsBodyEvalsPage();
@@ -55,41 +53,28 @@ public class GetAuthorPagesTagTest extends MocksTag {
 		List<AuthorModel> authors = (List<AuthorModel>)pageContext.getAttribute("authors");
 		assertThat(authors,hasSize(1));
 		AuthorModel author = authors.get(0);
-		assertThat(author.getPath(),is("lll"));
+		assertThat(author.getPath(),is("someAuthor"));
 		assertThat(author.getDescription(),is("isisnt"));
 	}
 	
 	@Test
-	public void testWhenArrayHasOneAuthorFileImage() throws JspException, ValueFormatException, IllegalStateException, RepositoryException {
-		fixture.setUpAnAuthorInArray("mmm");
+	public void testWhenArrayHasOneAuthorFileImage() throws RepositoryException, JspException {
 		fixture.setUpFileImage();
 		runsSkipsBodyEvalsPage();
 	}
 	
 	@Test
-	public void testWhenArrayHasOneAuthorFileReferenceImage() throws JspException, ValueFormatException, IllegalStateException, RepositoryException {
-		fixture.setUpAnAuthorInArray("nnn");
+	public void testWhenArrayHasOneAuthorFileReferenceImage() throws RepositoryException, JspException {
 		fixture.setUpFileReferenceImage();
 		runsSkipsBodyEvalsPage();
 	}
 	
-	@Test
-	public void testWhenExplodesVfe() throws JspException, ValueFormatException, IllegalStateException, RepositoryException {
-		fixture.setUpExplodesVfe();
-		runsSkipsBodyEvalsPage();
-	}
-	
-	@Test
-	public void testWhenExplodesPnfe() throws JspException, ValueFormatException, IllegalStateException, RepositoryException {
-		fixture.setUpExplodesPnfe();
-		runsSkipsBodyEvalsPage();
-	}
-	
-	@Test
-	public void testWhenExplodesRe() throws JspException, ValueFormatException, IllegalStateException, RepositoryException {
-		fixture.setUpExplodesRe();
-		runsSkipsBodyEvalsPage();
-	}
+//	
+//	@Test
+//	public void testWhenExplodes() throws Exception {
+//		fixture.setUpExplodes();
+//		runsSkipsBodyEvalsPage();
+//	}
 
 	private void runsSkipsBodyEvalsPage() throws JspException {
 		tag.setPageContext(pageContext);

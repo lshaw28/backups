@@ -1,21 +1,22 @@
 package com.spd.cq.searspartsdirect.common.foundation;
 
 
-import java.io.IOException;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.xml.sax.SAXException;
+import java.io.IOException;
 
 import junit.framework.TestCase;
 
 import org.apache.sling.rewriter.Transformer;
 import org.apache.sling.rewriter.TransformerFactory;
+import org.junit.Before;
+import org.junit.Test;
+import org.xml.sax.SAXException;
 
 import com.spd.cq.searspartsdirect.common.fixture.ModelLinkTransformerFactoryFixture;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class ModelLinkTransformerFactoryTest extends TestCase {
 

@@ -1,13 +1,12 @@
 package com.spd.cq.searspartsdirect.common.model;
 
 
-import org.junit.Before;
-import org.junit.Test;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import junit.framework.TestCase;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import org.junit.Before;
+import org.junit.Test;
 
 public class CategoryModelTest extends TestCase {
 
