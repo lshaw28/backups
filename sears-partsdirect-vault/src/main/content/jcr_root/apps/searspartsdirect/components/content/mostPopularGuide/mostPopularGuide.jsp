@@ -23,8 +23,7 @@
 					<spd:linkResolver value="${popularGuide.url}" />
 						<div class="guideListing-popular-image">
 							<div class="wrapper">
-								<!--<spd:displayImage path="${popularGuide.imagePath}"/>-->
-								<img src="/content/dam/Sears-J10567-SHS06-E%23CC001A.jpg" />
+								<spd:displayImage path="${popularGuide.imagePath}"/>
 							</div>
 						</div>
 
