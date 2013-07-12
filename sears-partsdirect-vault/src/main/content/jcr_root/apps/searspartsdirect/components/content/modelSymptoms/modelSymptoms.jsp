@@ -21,13 +21,16 @@
         </tr>
     </thead>
     <tbody>
-        <c:forEach var="symptom" items="${categorySymptoms}">
-            <tr>
-            	<c:set var="symptomUrl" value="/content/searspartsdirect/en/${brandRelation.title}/${productCategoryRelation.trueName}/model-${modelRelation}-repair/symptom/${symptom.id}.html" />
-                <td><a href="${fn:toLowerCase(symptomUrl)}">${symptom.title}</a></td>
-                <td><span class="big-number">74%&nbsp</span>of repairs</td>
-            </tr>
-        </c:forEach>
+    	<c:choose>
+    		<c:when test="${not empty categorySymptoms}">
+		        <c:forEach var="symptom" items="${categorySymptoms}">
+		            <tr>
+		            	<c:set var="symptomUrl" value="/content/searspartsdirect/en/${brandRelation.title}/${productCategoryRelation.trueName}/model-${modelRelation}-repair/symptom/${symptom.id}.html" />
+		                <td><a href="${fn:toLowerCase(symptomUrl)}">${symptom.title}</a></td>
+		                <td><span class="big-number">74%&nbsp</span>of repairs</td>
+		            </tr>
+		        </c:forEach>
+	        </c:when>
 	        <c:otherwise>
 	        	<cq:include path="mostPopularGuide" resourceType="searspartsdirect/components/content/mostPopularGuide" />
 	        </c:otherwise>
