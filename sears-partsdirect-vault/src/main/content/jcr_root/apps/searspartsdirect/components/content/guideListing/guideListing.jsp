@@ -9,13 +9,16 @@
 	<spd:tagsByPage tagType="subcategories"/>
 
 	<cq:text property="allGuidestitle"/> <br/>
-	
-	<c:forEach items="${guides}" var="row">
-		SubCategory:  <spd:displayTagTitle tagId="${row.key}" /><br/>
-		<c:forEach var="guide" items="${row.value}">
-			<spd:linkResolver value="${guide.url}" />
-			<a href="${url}"><spd:displayImage path="${guide.imagePath}"/></a>
-			<a href="${url}">${guide.title}</a> <br/>
-		</c:forEach>
-	</c:forEach>
+	<c:choose>
+		<c:when test="${not empty guides}">
+			<c:forEach items="${guides}" var="row">
+				SubCategory:  <spd:displayTagTitle tagId="${row.key}" /><br/>
+				<c:forEach var="guide" items="${row.value}">
+					<spd:linkResolver value="${guide.url}" />
+					<a href="${url}"><spd:displayImage path="${guide.imagePath}"/></a>
+					<a href="${url}">${guide.title}</a> <br/>
+				</c:forEach>
+			</c:forEach>
+		</c:when>
+	</c:choose>
 </c:if>

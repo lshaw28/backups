@@ -28,6 +28,10 @@
                 <td><span class="big-number">74%&nbsp</span>of repairs</td>
             </tr>
         </c:forEach>
+	        <c:otherwise>
+	        	<cq:include path="mostPopularGuide" resourceType="searspartsdirect/components/content/mostPopularGuide" />
+	        </c:otherwise>
+	     </c:choose>
     </tbody>
 </table>
 
