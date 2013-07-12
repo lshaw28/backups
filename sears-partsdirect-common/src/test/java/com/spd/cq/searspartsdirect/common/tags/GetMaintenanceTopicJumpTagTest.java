@@ -18,19 +18,19 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.fixture.GetMaintenanceTopicJumpTagFixture;
+import com.spd.cq.searspartsdirect.common.fixture.GetTopicJumpTagFixture;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.AnchorLinkModel;
 
 public class GetMaintenanceTopicJumpTagTest extends MocksTag {
 
-	private GetMaintenanceTopicJumpTagFixture fixture;
+	private GetTopicJumpTagFixture fixture;
 	private GetTopicJumpTag tag;
 
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetMaintenanceTopicJumpTagFixture(currentPage);
+		fixture = new GetTopicJumpTagFixture(currentPage);
 		tag = new GetTopicJumpTag();
 	}
 

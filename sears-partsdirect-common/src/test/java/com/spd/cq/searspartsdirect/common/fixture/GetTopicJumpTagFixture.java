@@ -19,14 +19,14 @@ import org.mockito.stubbing.Answer;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.tags.GetTopicJumpTag;
 
-public class GetMaintenanceTopicJumpTagFixture {
+public class GetTopicJumpTagFixture {
 
 	private Page currentPage;
 	private Resource pageContent;
 	private List<Resource> pageChildren;
 	private List<Resource> parsysChildren;
 	
-	public GetMaintenanceTopicJumpTagFixture(Page currentPage) {
+	public GetTopicJumpTagFixture(Page currentPage) {
 		this.currentPage = currentPage;
 		pageContent = mock(Resource.class);
 		when(currentPage.getContentResource()).thenReturn(pageContent);
