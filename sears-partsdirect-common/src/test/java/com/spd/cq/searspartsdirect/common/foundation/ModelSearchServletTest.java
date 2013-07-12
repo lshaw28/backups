@@ -23,7 +23,7 @@ public class ModelSearchServletTest extends TestCase {
 	public void testFound() {
 		fixture.setUpFound();
 		try {
-			servlet.doPost(fixture.getRequest(), fixture.getResponse());
+			servlet.doGet(fixture.getRequest(), fixture.getResponse());
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -34,7 +34,7 @@ public class ModelSearchServletTest extends TestCase {
 	public void testNotFound() {
 		fixture.setUpNotFound();
 		try {
-			servlet.doPost(fixture.getRequest(), fixture.getResponse());
+			servlet.doGet(fixture.getRequest(), fixture.getResponse());
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
