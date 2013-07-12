@@ -22,7 +22,7 @@ import com.spd.cq.searspartsdirect.common.fixture.GetTopicJumpTagFixture;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.AnchorLinkModel;
 
-public class GetMaintenanceTopicJumpTagTest extends MocksTag {
+public class GetTopicJumpTagTest extends MocksTag {
 
 	private GetTopicJumpTagFixture fixture;
 	private GetTopicJumpTag tag;
