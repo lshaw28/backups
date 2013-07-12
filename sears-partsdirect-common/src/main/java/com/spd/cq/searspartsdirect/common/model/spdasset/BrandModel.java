@@ -2,18 +2,27 @@ package com.spd.cq.searspartsdirect.common.model.spdasset;
 
 public class BrandModel {
 	
+	private String trueName;
 	private String title;
 	private String description;
 	private String logoPath;
 	private String path;
 	
-	public BrandModel(String path, String title, String description, String logoPath) {
+	public BrandModel(String trueName, String path, String title, String description, String logoPath) {
+		this.trueName = trueName;
 		this.title = title;
 		this.description = description;
 		this.logoPath = logoPath;
 		this.path = path;
 	}
 	
+	public String getTrueName() {
+		return trueName;
+	}
+	public void setTrueName(String trueName) {
+		this.trueName = trueName;
+	}
+
 	public String getTitle() {
 		return title;
 	}

@@ -12,6 +12,7 @@ public class BrandModelTest  extends TestCase {
 	private BrandModel model;
 	private BrandModel modelPrime;
 	
+	private final static String TRUENAME = "truename";
 	private final static String DESCRIPTION = "description";
 	private final static String LOGO_PATH = "logoPath";
 	private final static String PATH = "path";
@@ -29,7 +30,7 @@ public class BrandModelTest  extends TestCase {
 	@Test
 	public void testModel() {
 		try {
-			model = new BrandModel(PATH, TITLE, DESCRIPTION, LOGO_PATH);
+			model = new BrandModel(TRUENAME, PATH, TITLE, DESCRIPTION, LOGO_PATH);
 			assertThat(model.getDescription(),is(DESCRIPTION));
 			assertThat(model.getLogoPath(),is(LOGO_PATH));
 			assertThat(model.getPath(),is(PATH));
@@ -49,11 +50,11 @@ public class BrandModelTest  extends TestCase {
 	
 	@Test
 	public void testEqualsAndHashcode() {
-		model = new BrandModel(null,null,null,null);
+		model = new BrandModel(null,null,null,null,null);
 		assertThat(model.equals(null),is(false));
 		assertThat(model.equals(this),is(false));
 		assertThat(model.equals(model),is(true));
-		modelPrime = new BrandModel(null,null,null,null);
+		modelPrime = new BrandModel(null,null,null,null,null);
 		bothAreEqual();
 		
 		model.setDescription(DESCRIPTION);

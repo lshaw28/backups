@@ -247,6 +247,25 @@ public class ModelSubPageFilterTest extends TestCase {
 	}
 
 	// End tests from taxonomy worksheet
+	
+	@Test
+	public void testBCMPrefixed() throws IOException, ServletException {
+		fixture.setUpPath("/acme/portable-hole/"+Constants.MODELNO_PFX+"0"+Constants.MODELNO_SFX+Constants.GUIDES_ROOT+"/donotfold.html");
+		fixture.setUpDispatcher(Constants.GUIDES_ROOT+"/donotfold.acme.portable-hole.0.html");
+		runFilter();
+		shouldForward();
+	}
+	
+	@Test
+	public void testAuthorModePrefixedModelParticularSymptom() throws IOException,
+			ServletException {
+		fixture.setUpPath("/brand/category/"+Constants.MODELNO_PFX+"model"+Constants.MODELNO_SFX+Constants.EN_ROOT+"/symptom/symptom-id.html");
+		fixture.setUpDispatcher(Constants.CATEGORIES_ROOT+"/category"+Constants.MODELNO_SFX+"/symptom.brand.category.model.symptom-id.html");
+		runFilter();
+		shouldForward();
+	}
+	
+	// End tests for allow prefixed rather than infixed b/c/p-m-s components
 
 	@Test
 	public void testAddSelectors() {

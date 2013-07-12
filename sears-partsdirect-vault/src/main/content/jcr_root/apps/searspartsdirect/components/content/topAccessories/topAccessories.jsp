@@ -1,5 +1,8 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <spd:getRelation assetType="productCategory" single="true" />
+<c:if test="${empty productCategoryRelation}">
+	<spd:getUrlRelation relationType="productCategory" />
+</c:if>
 <c:choose>
 	<c:when test="${!empty productCategoryRelation}">
 		<spd:getRelation assetType="accessory" pagepath="${productCategoryRelation.path}" />
