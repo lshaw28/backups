@@ -25,13 +25,13 @@ import com.spd.cq.searspartsdirect.common.model.AnchorLinkModel;
 public class GetMaintenanceTopicJumpTagTest extends MocksTag {
 
 	private GetMaintenanceTopicJumpTagFixture fixture;
-	private GetMaintenanceTopicJumpTag tag;
+	private GetTopicJumpTag tag;
 
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
 		fixture = new GetMaintenanceTopicJumpTagFixture(currentPage);
-		tag = new GetMaintenanceTopicJumpTag();
+		tag = new GetTopicJumpTag();
 	}
 
 	@Test

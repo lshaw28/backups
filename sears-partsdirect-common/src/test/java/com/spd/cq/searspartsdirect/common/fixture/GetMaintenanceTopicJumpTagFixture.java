@@ -17,7 +17,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import com.day.cq.wcm.api.Page;
-import com.spd.cq.searspartsdirect.common.tags.GetMaintenanceTopicJumpTag;
+import com.spd.cq.searspartsdirect.common.tags.GetTopicJumpTag;
 
 public class GetMaintenanceTopicJumpTagFixture {
 
@@ -78,19 +78,19 @@ public class GetMaintenanceTopicJumpTagFixture {
 	
 	public Resource getParsys() {
 		Resource parsys = mock(Resource.class);
-		when(parsys.getResourceType()).thenReturn(GetMaintenanceTopicJumpTag.PARSYS_TYPE);
+		when(parsys.getResourceType()).thenReturn(GetTopicJumpTag.PARSYS_TYPE);
 		when(parsys.getName()).thenReturn("parsys");
 		return parsys;
 	}
 
 	public Resource getTopic(String string) throws PathNotFoundException, RepositoryException {
 		Resource topic = mock(Resource.class);
-		when(topic.getResourceType()).thenReturn(GetMaintenanceTopicJumpTag.TOPIC_TYPE);
+		when(topic.getResourceType()).thenReturn(GetTopicJumpTag.TOPIC_TYPE);
 		when(topic.getName()).thenReturn(string);
 		Node topicNode = mock(Node.class);
 		when(topic.adaptTo(Node.class)).thenReturn(topicNode);
 		Property titleProp = mock(Property.class);
-		when(topicNode.getProperty(GetMaintenanceTopicJumpTag.TITLE_PROP)).thenReturn(titleProp);
+		when(topicNode.getProperty(GetTopicJumpTag.TITLE_PROP)).thenReturn(titleProp);
 		when(titleProp.getString()).thenReturn(string+string+string);
 		return topic;
 	}
