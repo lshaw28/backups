@@ -64,3 +64,4 @@ socialBar/socialBar.less
 text/text.less
 topAccessories/topAccessories.less
 maintenanceTips/maintenanceTips.less
+authorArticle/authorArticles.less
