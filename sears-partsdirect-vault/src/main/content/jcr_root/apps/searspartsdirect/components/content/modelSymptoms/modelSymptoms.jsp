@@ -9,7 +9,6 @@
 
 <spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryRelation.path}" />
 
-
 <!-- check the api for model symptoms if yes, then display otherwise make the call to the following tag-->
 <spd:getModelSymptoms brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}" />
 <!--  if no category symptoms then display the featured guide -->
@@ -23,11 +22,11 @@
 				        </tr>
 				    </thead>
 				    <tbody>
-				        <c:forEach var="symptom" items="${categorySymptoms}">
-				            <tr>
-				            	<c:set var="symptomUrl" value="/content/searspartsdirect/en/${brandRelation.title}/${productCategoryRelation.trueName}/model-${modelRelation}-repair/symptom/${symptom.id}.html" />
-				                <td><a href="${fn:toLowerCase(symptomUrl)}">${symptom.title}</a></td>
-				                <td><span class="big-number">74%&nbsp</span>of repairs</td>
+				        <c:forEach var="symptom" items="${modelSymptoms}">
+				            <tr> <!--  hardcoded the symptom id for now as api is not giving us that information -->
+				            	<c:set var="symptomUrl" value="/content/searspartsdirect/en/${brandRelation.title}/${productCategoryRelation.trueName}/model-${modelRelation}-repair/symptom/201.html" />
+				                <td><a href="${fn:toLowerCase(symptomUrl)}">${symptom.description}</a></td>
+				                <td><span class="big-number">${symptom.successfulFrequency}%&nbsp</span>of repairs</td>
 				            </tr>
 				        </c:forEach>
 		           </tbody>

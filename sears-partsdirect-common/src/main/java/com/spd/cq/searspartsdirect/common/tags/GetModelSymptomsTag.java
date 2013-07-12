@@ -22,7 +22,9 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.ModelSubcomponentAPIHelper;
+import com.spd.cq.searspartsdirect.common.model.ExternalLinkModel;
 import com.spd.cq.searspartsdirect.common.model.PDModelSubcomponentModel;
+import com.spd.cq.searspartsdirect.common.model.PDTab;
 import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 
 public class GetModelSymptomsTag extends CQBaseTag {
@@ -47,10 +49,12 @@ public class GetModelSymptomsTag extends CQBaseTag {
 			apiHelper.setCategory(categoryName);
 			apiHelper.setModel(modelNumber);
 			PDModelSubcomponentModel subcomponents = apiHelper.getModelSubcomponents(slingRequest);
-			log.debug("******* call is made "+brandName+categoryName+modelNumber);
-			if (subcomponents != null && subcomponents.getSymptomsArr() != null) {
-				pageContext.setAttribute("modelSymptoms", subcomponents.getSymptomsArr());
-			}
+			log.debug("brandName "+brandName+ " categoryName "+categoryName+" model is "+modelNumber);
+			
+			if (subcomponents != null) {
+				 pageContext.setAttribute("modelSymptoms", subcomponents.getSymptomsArr());
+				 log.debug("PD symptom length "+ subcomponents.getSymptomsArr().length);
+			 }
 		}
 		
 		if (categoryPath != null) {
