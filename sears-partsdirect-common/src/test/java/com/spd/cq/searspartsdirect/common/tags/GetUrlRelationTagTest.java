@@ -1,6 +1,11 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
@@ -11,9 +16,6 @@ import com.spd.cq.searspartsdirect.common.fixture.GetUrlRelationTagFixture;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class GetUrlRelationTagTest extends MocksTag {
 

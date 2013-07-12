@@ -1,10 +1,11 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
-import com.day.cq.wcm.api.WCMMode;
-import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import javax.servlet.jsp.JspException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.day.cq.wcm.api.WCMMode;
 
 public class DefineObjectsTag extends CQBaseTag {
 	protected static Logger log = LoggerFactory.getLogger(DefineObjectsTag.class);

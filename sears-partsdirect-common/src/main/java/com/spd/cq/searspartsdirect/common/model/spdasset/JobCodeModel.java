@@ -2,8 +2,8 @@ package com.spd.cq.searspartsdirect.common.model.spdasset;
 
 import java.util.List;
 
-import com.spd.cq.searspartsdirect.common.model.Part;
 import com.spd.cq.searspartsdirect.common.model.GuideModel;
+import com.spd.cq.searspartsdirect.common.model.Part;
 
 public class JobCodeModel {
 	

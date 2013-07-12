@@ -1,12 +1,13 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import javax.jcr.Node;
-import javax.jcr.PathNotFoundException;
 import javax.jcr.Property;
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
 import javax.jcr.ValueFormatException;
-import javax.servlet.jsp.PageContext;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -15,8 +16,6 @@ import org.apache.sling.api.resource.ValueMap;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-
-import static org.mockito.Mockito.*;
 
 public class GetAuthorPagesTagFixture {
 

@@ -1,5 +1,8 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
 import javax.jcr.ValueFormatException;
@@ -9,9 +12,6 @@ import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.ResolveHtwFixture;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 /**
  * @author bzethmayr

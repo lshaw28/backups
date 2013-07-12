@@ -4,13 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.ModelSubcomponentAPIHelper;
 import com.spd.cq.searspartsdirect.common.model.ExternalLinkModel;
 import com.spd.cq.searspartsdirect.common.model.PDModelSubcomponentModel;
@@ -32,13 +29,6 @@ public class GetModelHeaderTag extends CQBaseTag {
 	
 	@Override
 	public int doStartTag() throws JspException {
-		/*
-		 * THIS IS PLACEHOLDER MARKUP
-		 * This will be replaced with realistic markup when it is provided,
-		 * as well as links based on API calls/site hierarchy of SPD base site
-		 */
-		// This is perfectly likely to also have some other output vars,
-		// & who knows if API integration will involve changing the list output type. BUT,
 		
 		List<ExternalLinkModel> pseudoTabs = new LinkedList<ExternalLinkModel>();
 		

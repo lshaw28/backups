@@ -1,8 +1,6 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
-import static org.mockito.Mockito.*;
-
-import javax.servlet.jsp.PageContext;
+import static org.mockito.Mockito.when;
 
 import org.apache.sling.api.resource.ValueMap;
 

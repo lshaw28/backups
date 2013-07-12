@@ -12,17 +12,6 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.AssetType;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-import com.spd.cq.searspartsdirect.common.model.spdasset.AccessoryModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.AuthorModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.HazardModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.TipModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.WarningModel;
 
 /**
  * Custom tag to draw out a list of Related Assets from a given page, filtered by Asset type

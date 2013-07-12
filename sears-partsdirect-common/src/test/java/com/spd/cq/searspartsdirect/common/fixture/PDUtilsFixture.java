@@ -1,10 +1,11 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-
-import static org.mockito.Mockito.*;
 
 public class PDUtilsFixture {
 

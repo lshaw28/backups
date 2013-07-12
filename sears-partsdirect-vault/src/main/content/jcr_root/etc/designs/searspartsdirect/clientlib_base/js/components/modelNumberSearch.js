@@ -74,6 +74,10 @@ var modelNumberSearch = Class.extend(function () {
 		 */
 		searchResponse: function (resp) {
 			console.log(resp);
+			var self = this;
+
+			// Test redirect logic
+			self.redirect(resp);
 		},
 		/**
 		 * Handles a redirect to the single result router
@@ -82,6 +86,21 @@ var modelNumberSearch = Class.extend(function () {
 		 */
 		redirect: function (resp) {
 			console.log(resp);
+			var self = this,
+				su = window.SPDUtils,
+				query = '',
+				brand = '',
+				category = '',
+				model = '',
+				link = '';
+
+			query += '?brand=' + brand;
+			query += '&category=' + category;
+			query += '&model=' + model;
+			query += '&link=' + link;
+
+			//document.location.href = su.getLocationDetails() + modelSearchServletPath + query;
+			console.log(su.getLocationDetails() + modelSearchServletPath + query);
 		},
 		/**
 		 * Displays a message to the user
@@ -106,9 +125,10 @@ var modelNumberSearch = Class.extend(function () {
 				key = -1;
 
 			// Bind input events
-			self.inputField.bind('keyup', function (e) {
-				e.preventDefault();
-
+			self.inputField.bind('keyup', function () {
+				return false;
+			})
+			.bind('keyup', function (e) {
 				// Determine which key was pressed
 				if (e.keyCode) {
 					key = e.keyCode;

@@ -1,9 +1,16 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isA;
+
 import java.util.List;
 
 import javax.servlet.http.Cookie;
+
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,11 +18,6 @@ import org.junit.Test;
 import com.spd.cq.searspartsdirect.common.fixture.PartsDirectCookieHelperFixture;
 import com.spd.cq.searspartsdirect.common.model.ModelCookieModel;
 import com.spd.cq.searspartsdirect.common.model.PartCookieModel;
-
-import junit.framework.TestCase;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class PartsDirectCookieHelperTest extends TestCase {
 

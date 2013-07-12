@@ -1,6 +1,13 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.junit.Before;
@@ -9,11 +16,6 @@ import org.junit.Test;
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 import com.spd.cq.searspartsdirect.common.fixture.Four04TagFixture;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
 
 public class Four04TagTest extends MocksTag {
 

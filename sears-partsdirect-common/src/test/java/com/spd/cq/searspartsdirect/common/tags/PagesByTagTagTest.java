@@ -1,6 +1,12 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+
 import java.util.List;
 
 import javax.servlet.jsp.tagext.TagSupport;
@@ -10,9 +16,6 @@ import org.junit.Test;
 
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.fixture.PagesByTagTagFixture;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class PagesByTagTagTest extends MocksTag {
 

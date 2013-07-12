@@ -1,16 +1,26 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import junit.framework.TestCase;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.AssetTypeFixture;
-import com.spd.cq.searspartsdirect.common.fixture.ExternalLinksFixture;
-import com.spd.cq.searspartsdirect.common.model.spdasset.*;
-
-import junit.framework.TestCase;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import com.spd.cq.searspartsdirect.common.model.spdasset.AccessoryModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.AuthorModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.HazardModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.TipModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.WarningModel;
 
 /**
  * Verifies that the attributes on the AssetType enum are set up correctly. Current

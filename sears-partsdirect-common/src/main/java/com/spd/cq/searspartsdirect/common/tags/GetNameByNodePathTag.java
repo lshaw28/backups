@@ -1,8 +1,5 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.servlet.jsp.JspException;
 
 import org.slf4j.Logger;

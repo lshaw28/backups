@@ -1,5 +1,8 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import javax.jcr.Node;
 import javax.jcr.PathNotFoundException;
 import javax.jcr.Property;
@@ -10,8 +13,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-
-import static org.mockito.Mockito.*;
 
 public class ResolveHtwFixture {
 	

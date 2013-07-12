@@ -1,6 +1,12 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.endsWith;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+
 import javax.jcr.RepositoryException;
 import javax.servlet.jsp.JspException;
 
@@ -8,9 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetImagePathTagFixture;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class GetImagePathTagTest extends MocksTag {
 

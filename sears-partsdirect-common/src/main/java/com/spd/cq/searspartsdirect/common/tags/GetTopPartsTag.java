@@ -7,11 +7,9 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.jsp.JspException;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.sling.commons.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +17,6 @@ import com.google.gson.Gson;
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectAPIHelper;
-import com.spd.cq.searspartsdirect.common.helpers.PartsDirectCookieHelper;
-import com.spd.cq.searspartsdirect.common.model.PDUserDataModel;
 import com.spd.cq.searspartsdirect.common.model.PartModel;
 
 @SuppressWarnings("serial")

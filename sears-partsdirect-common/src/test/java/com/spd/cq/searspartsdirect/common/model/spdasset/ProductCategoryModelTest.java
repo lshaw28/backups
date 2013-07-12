@@ -7,8 +7,6 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
-
 public class ProductCategoryModelTest extends TestCase {
 	private ProductCategoryModel productCategoryModel;
 	private String path = "path";

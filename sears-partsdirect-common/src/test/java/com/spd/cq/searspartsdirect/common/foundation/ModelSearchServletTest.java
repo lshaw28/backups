@@ -1,18 +1,11 @@
 package com.spd.cq.searspartsdirect.common.foundation;
 
-import static org.mockito.Mockito.verify;
-
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-
 import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.ModelSearchServletFixture;
-import com.spd.cq.searspartsdirect.common.fixture.ModelSubPageFilterFixture;
 
 public class ModelSearchServletTest extends TestCase {
 
@@ -30,7 +23,7 @@ public class ModelSearchServletTest extends TestCase {
 	public void testFound() {
 		fixture.setUpFound();
 		try {
-			servlet.doPost(fixture.getRequest(), fixture.getResponse());
+			servlet.doGet(fixture.getRequest(), fixture.getResponse());
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -41,7 +34,7 @@ public class ModelSearchServletTest extends TestCase {
 	public void testNotFound() {
 		fixture.setUpNotFound();
 		try {
-			servlet.doPost(fixture.getRequest(), fixture.getResponse());
+			servlet.doGet(fixture.getRequest(), fixture.getResponse());
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);

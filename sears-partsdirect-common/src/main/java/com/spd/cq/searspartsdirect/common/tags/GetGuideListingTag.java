@@ -8,7 +8,6 @@ import java.util.List;
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
-import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

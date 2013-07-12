@@ -1,9 +1,7 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-
-import java.io.IOException;
+import static org.hamcrest.Matchers.is;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -12,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetModelHeaderTagFixture;
-import com.spd.cq.searspartsdirect.common.helpers.PartsDirectAPIHelper;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
@@ -33,6 +30,11 @@ public class GetModelHeaderTagTest extends MocksTag {
 		tag.setBrand(new BrandModel("a","Kenmore","c","d"));
 		tag.setProductCategory(new ProductCategoryModel("a","b","Dishwasher", "d", "e", "f", "g", "h"));
 		tag.setModel("66513593K600");
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testNoArguments() throws JspException {
 		runTagShouldSkipBodyEvalPage();
 	}
 	

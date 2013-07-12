@@ -1,7 +1,8 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
+import static org.mockito.Mockito.when;
+
 import org.apache.sling.api.resource.ValueMap;
-import static org.mockito.Mockito.*;
 
 public class GetYouTubeIDTagFixture {
 

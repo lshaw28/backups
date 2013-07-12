@@ -1,22 +1,22 @@
 package com.spd.cq.searspartsdirect.common.foundation;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.verify;
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 
+import junit.framework.TestCase;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.ModelSubPageFilterFixture;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-
-import junit.framework.TestCase;
-
-import static org.mockito.Mockito.verify;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class ModelSubPageFilterTest extends TestCase {
 

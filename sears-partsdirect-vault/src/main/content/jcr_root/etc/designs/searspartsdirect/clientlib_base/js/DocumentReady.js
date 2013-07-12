@@ -21,6 +21,12 @@
 		 */
 		var mainSearchPanel = new searchPanel();
 		/**
+		 * modelNumberSearch class setup
+		 */
+		$('.modelNumberSearch').each(function () {
+			var newModelNumberSearch = new modelNumberSearch($(this));
+		});
+		/**
 		 * revealPanel class setup
 		 */
 		$('[data-toggle="reveal"]').each(function () {

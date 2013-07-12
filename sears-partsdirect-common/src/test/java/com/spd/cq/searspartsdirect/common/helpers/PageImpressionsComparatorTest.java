@@ -1,6 +1,12 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+//import static org.mockito.Mockito.*; // We deliberately leave this out to force us to write the fixture correctly.
+import static org.hamcrest.Matchers.not;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,12 +22,7 @@ import org.junit.Test;
 
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.fixture.PageImpressionsComparatorFixture;
-import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
 import com.spd.cq.searspartsdirect.common.tags.MocksTag;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-//import static org.mockito.Mockito.*; // We deliberately leave this out to force us to write the fixture correctly.
 
 public class PageImpressionsComparatorTest extends MocksTag {
 

@@ -1,7 +1,8 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
-import java.util.Arrays;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -10,9 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetUserDataTagFixture;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class GetUserDataTagTest extends MocksTag {
 

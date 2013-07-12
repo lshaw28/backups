@@ -1,5 +1,9 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +18,6 @@ import org.mockito.stubbing.Answer;
 
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.tags.GetMaintenanceTopicJumpTag;
-
-import static org.mockito.Mockito.*;
 
 public class GetMaintenanceTopicJumpTagFixture {
 
