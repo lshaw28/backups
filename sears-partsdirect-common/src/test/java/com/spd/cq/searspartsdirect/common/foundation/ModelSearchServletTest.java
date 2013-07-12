@@ -1,18 +1,11 @@
 package com.spd.cq.searspartsdirect.common.foundation;
 
-import static org.mockito.Mockito.verify;
-
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-
 import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.ModelSearchServletFixture;
-import com.spd.cq.searspartsdirect.common.fixture.ModelSubPageFilterFixture;
 
 public class ModelSearchServletTest extends TestCase {
 

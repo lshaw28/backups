@@ -1,6 +1,5 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 

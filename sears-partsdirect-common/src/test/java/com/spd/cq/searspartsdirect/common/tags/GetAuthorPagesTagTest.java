@@ -1,10 +1,13 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+
 import java.util.List;
 
 import javax.jcr.RepositoryException;
-import javax.jcr.ValueFormatException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
@@ -13,9 +16,6 @@ import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetAuthorPagesTagFixture;
 import com.spd.cq.searspartsdirect.common.model.spdasset.AuthorModel;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class GetAuthorPagesTagTest extends MocksTag {
 

@@ -1,18 +1,13 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
-import java.io.IOException;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 
-import org.apache.sling.api.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
-import com.day.cq.wcm.api.components.DropTarget;
-import com.day.cq.wcm.foundation.Image;
 
 /**
  * Custom Tag to display the title for a named tag

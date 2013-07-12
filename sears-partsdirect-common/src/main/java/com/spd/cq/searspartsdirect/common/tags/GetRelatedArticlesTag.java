@@ -1,8 +1,10 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
@@ -15,37 +17,40 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
 import com.spd.cq.searspartsdirect.common.model.ArticleModel;
 
 public class GetRelatedArticlesTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(GetRelatedArticlesTag.class);
 	protected String categoryPath;
-
+	
 	@Override
 	public int doStartTag() throws JspException {
-
+		
 		ArrayList<ArticleModel> articles = new ArrayList<ArticleModel>();
 		try {
 
-			ArrayList<Page> result = new ArrayList<Page>();
+			List<Page> result = new ArrayList<Page>();
 
 			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
-			HashMap<String, String> props = new HashMap<String, String>();
-			props.put("type", "cq:Page");
-			props.put("path", Constants.ARTICLES_ROOT);
-			props.put("property", Constants.ASSETS_PAGES_REL_PATH);
-			props.put("property.value", categoryPath);
+			Map<String, String> props = new HashMap<String, String>();
+	        props.put("type", Constants.CQ_PAGE);
+	        props.put("path", Constants.ARTICLES_ROOT);
+	        props.put("property", Constants.ASSETS_PAGES_REL_PATH);
+	        props.put("property.value", categoryPath);
+	        
+	        List<Hit> hits = qb.createQuery(
+	        			PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)
+	        		).getResult().getHits();
 
-			List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
-
-			for (Hit hit: hits) {
-				result.add(pageManager.getPage(hit.getPath()));
-			}
-
-			// populate only up to four elements of "guides" return ArrayList, as per specifications
-			// May need to update this code in order to accommodate Guide selection preference
-			String description = "";
+	        for (Hit hit: hits) {
+	        	result.add(pageManager.getPage(hit.getPath()));
+	        }
+	        
+	        Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
+	          
+	        String description = "";
 			if (result.size() <= 4){
 				for(Page page: result){
 					if(page.getProperties().containsKey("abstracttext")){
@@ -75,12 +80,13 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 				}
 			}
 
-				pageContext.setAttribute("articles", articles);
 		}
+		
 		catch (Exception e) {
-			log.error("Error finding related articles: " + e.toString());
-			}
-		return SKIP_BODY;
+			log.error("Failure building article list, ",e);
+		}
+		pageContext.setAttribute("articles", articles);
+        return SKIP_BODY;
 	}
 
 	@Override

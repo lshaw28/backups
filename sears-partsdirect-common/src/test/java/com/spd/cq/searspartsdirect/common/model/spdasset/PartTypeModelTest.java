@@ -7,8 +7,6 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
-
 public class PartTypeModelTest extends TestCase {
 	private PartTypeModel partTypeModel;
 	private String path = "path";

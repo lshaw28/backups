@@ -3,10 +3,7 @@ package com.spd.cq.searspartsdirect.common.tags;
 import java.util.ArrayList;
 
 import javax.jcr.Node;
-import javax.jcr.PathNotFoundException;
-import javax.jcr.RepositoryException;
 import javax.jcr.Value;
-import javax.jcr.ValueFormatException;
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.api.resource.Resource;

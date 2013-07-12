@@ -6,7 +6,10 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 --%>
 
 <spd:getRelation single="true" assetType="productCategory" />
-<spd:getRelatedGuides categoryPath="${productCategoryRelation.path}" />
+<c:if test="${empty productCategoryRelation}">
+	<spd:getUrlRelation relationType="productCategory" />
+</c:if>
+<spd:getRelatedGuides categoryPath="${productCategoryRelation.path}"/>
 <spd:getNameByNodePath nodePath="${productCategoryRelation.path}" />
 
 <c:if test="${not empty guides && not empty productCategoryRelation}">

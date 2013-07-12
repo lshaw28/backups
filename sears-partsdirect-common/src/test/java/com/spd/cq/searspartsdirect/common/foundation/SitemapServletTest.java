@@ -1,22 +1,22 @@
 package com.spd.cq.searspartsdirect.common.foundation;
 
 
-import java.io.IOException;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.not;
+
 import java.io.StringReader;
 import java.io.StringWriter;
+
+import junit.framework.TestCase;
 
 import org.apache.xerces.parsers.XMLDocumentParser;
 import org.apache.xerces.xni.parser.XMLInputSource;
 import org.junit.Before;
 import org.junit.Test;
-import org.owasp.validator.html.util.XMLUtil;
 
 import com.spd.cq.searspartsdirect.common.fixture.SitemapServletFixture;
-
-import junit.framework.TestCase;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class SitemapServletTest extends TestCase {
 

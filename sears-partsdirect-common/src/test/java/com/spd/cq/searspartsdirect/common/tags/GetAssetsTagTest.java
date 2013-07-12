@@ -1,6 +1,11 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isA;
+
 import java.util.List;
 
 import javax.servlet.jsp.tagext.TagSupport;
@@ -10,9 +15,6 @@ import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetAssetsTagFixture;
 import com.spd.cq.searspartsdirect.common.helpers.AssetType;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class GetAssetsTagTest extends MocksTag {
 

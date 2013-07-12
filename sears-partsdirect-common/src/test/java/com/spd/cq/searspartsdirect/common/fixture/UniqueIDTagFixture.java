@@ -1,11 +1,12 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import org.apache.sling.api.resource.Resource;
 
 import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
-
-import static org.mockito.Mockito.*;
 
 public class UniqueIDTagFixture {
 

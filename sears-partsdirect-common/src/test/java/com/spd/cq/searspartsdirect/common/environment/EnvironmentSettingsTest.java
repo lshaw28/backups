@@ -1,20 +1,15 @@
 package com.spd.cq.searspartsdirect.common.environment;
 
 
-import java.util.Dictionary;
-import java.util.Hashtable;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.osgi.service.component.ComponentContext;
 
 import com.spd.cq.searspartsdirect.common.fixture.EnvironmentSettingsFixture;
-import com.spd.cq.searspartsdirect.common.helpers.Constants;
-
-import junit.framework.TestCase;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 
 public class EnvironmentSettingsTest extends TestCase {

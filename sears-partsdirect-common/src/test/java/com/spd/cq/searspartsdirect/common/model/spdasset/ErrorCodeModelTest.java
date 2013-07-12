@@ -7,8 +7,6 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
-
 public class ErrorCodeModelTest  extends TestCase {
 	private ErrorCodeModel errorCodeModel;
 	private String code = "code";

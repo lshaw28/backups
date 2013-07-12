@@ -63,6 +63,8 @@ public final class Constants {
 
 	public static final String AUTHOR_REL_PATH = ident("jcr:content/authors");
 	public static final String TEMPLATE_REL_PATH = ident("jcr:content/cq:template");
+	
+	public static final String GUIDES_REL_PATH = ident("jcr:content/guideDetails");
 
 	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
 	public static final String GUIDE_NAV_PATH = ident("guideNavigation");

@@ -2,7 +2,7 @@
 
 <spd:uniqueID />
 <spd:getRelation single="true" assetType="productCategory" />
-<c:if test="${not empty productCategoryRelation}">
+<c:if test="${empty productCategoryRelation}">
 	<spd:getUrlRelation relationType="productCategory" />
 </c:if>
 <spd:getNameByNodePath nodePath="${productCategoryRelation.path}" />

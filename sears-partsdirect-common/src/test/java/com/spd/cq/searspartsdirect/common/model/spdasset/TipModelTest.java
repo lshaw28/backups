@@ -7,8 +7,6 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.model.spdasset.TipModel;
-
 public class TipModelTest extends TestCase {
 	private TipModel tipModel;
 	private String path = "path";

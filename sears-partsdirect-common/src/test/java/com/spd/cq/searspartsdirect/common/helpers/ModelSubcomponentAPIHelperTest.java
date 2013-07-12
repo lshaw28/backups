@@ -1,6 +1,12 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import junit.framework.TestCase;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,11 +17,6 @@ import com.spd.cq.searspartsdirect.common.model.PDSymptom;
 import com.spd.cq.searspartsdirect.common.model.PDSymptomWrapper;
 import com.spd.cq.searspartsdirect.common.model.PDTab;
 import com.spd.cq.searspartsdirect.common.model.PDTabWrapper;
-
-import junit.framework.TestCase;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class ModelSubcomponentAPIHelperTest extends TestCase {
 
