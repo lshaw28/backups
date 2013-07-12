@@ -1,6 +1,7 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
-import java.io.StringWriter;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -9,8 +10,6 @@ import org.apache.sling.api.resource.ResourceResolver;
 
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
-
-import static org.mockito.Mockito.*;
 
 public class DisplayTagTitleTagFixture {
 

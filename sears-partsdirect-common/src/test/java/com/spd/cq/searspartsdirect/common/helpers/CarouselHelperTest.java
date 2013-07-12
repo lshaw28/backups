@@ -1,19 +1,23 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+
 import java.util.List;
 
 import javax.jcr.RepositoryException;
+
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.CarouselHelperFixture;
-
-import junit.framework.TestCase;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class CarouselHelperTest extends TestCase {
 

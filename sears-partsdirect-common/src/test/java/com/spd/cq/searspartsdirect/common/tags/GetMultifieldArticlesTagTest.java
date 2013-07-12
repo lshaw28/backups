@@ -1,17 +1,5 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isA;
-
-import java.util.List;
-
-import javax.jcr.RepositoryException;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.TagSupport;
-
 import org.junit.Before;
 import org.junit.Test;
 

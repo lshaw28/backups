@@ -1,15 +1,15 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
 
-import java.util.Set;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.isA;
 
-import org.junit.Before;
-import org.junit.Test;
+import java.util.Set;
 
 import junit.framework.TestCase;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import org.junit.Before;
+import org.junit.Test;
 
 public class SqlReservedWordTest extends TestCase {
 	

@@ -1,5 +1,7 @@
 package com.spd.cq.searspartsdirect.common.fixture;
-import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,6 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 public class GetRelatedItemsFixture {
 	

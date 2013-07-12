@@ -3,7 +3,10 @@ package com.spd.cq.searspartsdirect.common.environment;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
-import org.apache.felix.scr.annotations.*;
+
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Property;
+import org.apache.felix.scr.annotations.Service;
 import org.osgi.service.component.ComponentContext;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;

@@ -2,7 +2,6 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -22,9 +21,8 @@ import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.adobe.cq.social.commons.*;
+import com.adobe.cq.social.commons.CommentSystem;
 import com.day.cq.wcm.api.WCMMode;
-
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.AnchorLinkModel;
 

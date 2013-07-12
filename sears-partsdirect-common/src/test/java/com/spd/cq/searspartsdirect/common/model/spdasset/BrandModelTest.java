@@ -1,7 +1,8 @@
 package com.spd.cq.searspartsdirect.common.model.spdasset;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isA;
 import junit.framework.TestCase;
 
 import org.junit.Before;

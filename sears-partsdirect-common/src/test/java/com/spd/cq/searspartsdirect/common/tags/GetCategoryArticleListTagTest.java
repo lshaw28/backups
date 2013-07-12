@@ -1,6 +1,11 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+
 import java.util.List;
 import java.util.Map;
 
@@ -12,9 +17,6 @@ import org.junit.Test;
 import com.spd.cq.searspartsdirect.common.fixture.GetCategoryArticleListFixture;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.ArticleModel;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 
 public class GetCategoryArticleListTagTest extends MocksTag {

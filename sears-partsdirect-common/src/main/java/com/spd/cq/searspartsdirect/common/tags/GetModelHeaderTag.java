@@ -4,13 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.ModelSubcomponentAPIHelper;
 import com.spd.cq.searspartsdirect.common.model.ExternalLinkModel;
 import com.spd.cq.searspartsdirect.common.model.PDModelSubcomponentModel;

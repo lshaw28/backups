@@ -1,5 +1,9 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +25,6 @@ import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
-
-import static org.mockito.Mockito.*;
 
 public class GetCategory101PagesTagFixture {
 

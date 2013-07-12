@@ -1,17 +1,21 @@
 package com.spd.cq.searspartsdirect.common.foundation;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+
 import javax.jcr.RepositoryException;
+
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.adobe.granite.workflow.WorkflowException;
 import com.spd.cq.searspartsdirect.common.fixture.ImageApprovalWorkflowProcessFixture;
-
-import junit.framework.TestCase;
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ImageApprovalWorkflowProcessTest extends TestCase {
 

@@ -1,5 +1,14 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+
 import java.util.List;
 
 import javax.servlet.jsp.JspException;
@@ -11,9 +20,6 @@ import org.junit.Test;
 import com.spd.cq.searspartsdirect.common.fixture.GuideNavigationTagFixture;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.AnchorLinkModel;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class GuideNavigationTagTest extends MocksTag {
 

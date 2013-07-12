@@ -7,8 +7,6 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
-
 public class JobCodeModelTest extends TestCase {
 	private JobCodeModel jobCodeModel;
 	private String path = "path";

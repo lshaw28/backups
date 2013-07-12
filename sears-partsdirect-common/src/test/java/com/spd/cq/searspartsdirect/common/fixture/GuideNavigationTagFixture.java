@@ -1,8 +1,8 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import javax.jcr.Node;
 import javax.jcr.PathNotFoundException;
@@ -26,8 +26,6 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMMode;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.tags.GuideNavigationTag;
-
-import static org.mockito.Mockito.*;
 
 public class GuideNavigationTagFixture {
 	

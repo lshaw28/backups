@@ -2,11 +2,10 @@ package com.spd.cq.searspartsdirect.common.model;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import junit.framework.TestCase;
 
 public class CartLineModelTest extends TestCase {
 	

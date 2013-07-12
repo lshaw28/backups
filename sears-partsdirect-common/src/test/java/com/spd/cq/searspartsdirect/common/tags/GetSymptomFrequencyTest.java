@@ -1,5 +1,8 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.isA;
+
 import java.util.List;
 
 import javax.servlet.jsp.JspException;
@@ -7,9 +10,6 @@ import javax.servlet.jsp.JspException;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetSymptomFrequencyFixture;
-
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GetSymptomFrequencyTest extends MocksTag {
 

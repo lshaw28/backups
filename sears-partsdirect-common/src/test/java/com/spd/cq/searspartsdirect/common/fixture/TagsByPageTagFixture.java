@@ -1,12 +1,13 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import javax.servlet.jsp.PageContext;
 
 import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
-
-import static org.mockito.Mockito.*;
 
 public class TagsByPageTagFixture {
 	
