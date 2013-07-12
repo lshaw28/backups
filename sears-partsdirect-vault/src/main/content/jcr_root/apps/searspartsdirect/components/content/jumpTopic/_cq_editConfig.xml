@@ -6,7 +6,7 @@
 	xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:EditConfig"
     cq:disableTargeting="true"
-    cq:actions="[text:Maintenance Tip Topic,-,edit,delete,insert,copymove]" >
+    cq:actions="[text:Jump Topic,-,edit,delete,insert,copymove]" >
     <cq:listeners
         jcr:primaryType="cq:EditListenersConfig"
         aftercreate="REFRESH_PAGE"

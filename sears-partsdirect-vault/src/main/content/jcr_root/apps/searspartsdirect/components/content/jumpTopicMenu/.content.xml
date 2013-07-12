@@ -4,7 +4,8 @@
 	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
 	jcr:primaryType="cq:Component"
-	jcr:title="Maintenance Tip Topic"
-	jcr:description="Maintenance tip topic, header/separator for maintenance tips on Maintenance Tips Index page"
-	componentGroup="SearsPartsDirect" />
+	jcr:title="Topic Jump Menu"
+	jcr:description="Topic jump menu, appears on various index pages when there is more than 1 topic"
+	cq:isContainer="true"
+	componentGroup=".hidden" />
 	
