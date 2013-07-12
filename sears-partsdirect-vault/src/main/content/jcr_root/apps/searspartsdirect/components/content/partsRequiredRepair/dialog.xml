@@ -38,7 +38,7 @@
 		                        fieldLabel="Link"
 		                        name="url"
 		                        fieldDescription="Must be a valid link"
-		                        regex="Shc.components.extsrc.regex.ValidationPattterns.url"
+		                        regex="Shc.components.extsrc.regex.ValidationPatterns.url"
 		                        xtype="textfield"/>								
 						</items>
 					</fieldConfig>
