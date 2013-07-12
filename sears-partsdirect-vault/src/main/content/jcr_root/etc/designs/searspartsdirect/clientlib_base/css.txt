@@ -60,3 +60,5 @@ carousel/touchImageCarousel/touchImageCarousel.less
 errorListing/errorListing.less
 errorCodeTable/errorCodeTable.less
 responsive-table/responsive-table.less
+guideListing-listing/guideListing-listing.less
+guideListing-popular-view/guideListing-popular-view.less
