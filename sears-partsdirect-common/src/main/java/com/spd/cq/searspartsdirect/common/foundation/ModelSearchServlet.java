@@ -24,7 +24,7 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
  *
  */
 
-@SlingServlet(paths="/bin/searspartsdirect/modelsearch", methods = "POST", metatype=true)
+@SlingServlet(paths="/bin/searspartsdirect/modelsearch", methods = "GET", metatype=true)
 
 public class ModelSearchServlet extends SlingAllMethodsServlet {
 	private static final Logger log = LoggerFactory.getLogger(ModelSearchServlet.class);
@@ -34,23 +34,21 @@ public class ModelSearchServlet extends SlingAllMethodsServlet {
     private SlingRepository repository;
  
     @Override
-    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException
+    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException
     {
     	ResourceResolver resourceResolver = request.getResourceResolver();
-    	String query = request.getParameter("query");
-    	boolean found = Boolean.valueOf(request.getParameter("found"));
-    	
-		Writer out = response.getWriter();
-		
-    	//Make the API call to see if a model matches the input query
-		if (found) {
-			out.write("Found " + query);
-		} else {
-			out.write(Constants.MODEL_NOT_FOUND);
-		}
-		out.flush();
-		
-		//Commented out potential result
-		//response.sendRedirect("/content/searspartsdirect/models/" + apiResponseModel);
+    	String brand = request.getParameter("brand");
+    	String category = request.getParameter("category");
+    	String model = request.getParameter("model");
+    	String link = request.getParameter("link");
+
+    	String categoryResourcePath = Constants.ASSETS_PATH + "/" + Constants.ASSETS_PRODUCT_CATEGORY_PATH + "/" + category;
+    	Resource categoryResource = resourceResolver.getResource(categoryResourcePath);
+    	if (categoryResource != null) {
+    		response.sendRedirect("/" + brand + "/" + category + "/model-" + model + "-repair.html");
+    	}
+    	else {
+    		response.sendRedirect(link);
+    	}
     }
 }
