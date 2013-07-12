@@ -19,7 +19,7 @@
 				<url jcr:primaryType="cq:Widget"
 					fieldLabel="Link"
 					name="./url1"
-					regex="Shc.components.extsrc.regex.ValidationPattterns.url"
+					regex="Shc.components.extsrc.regex.ValidationPatterns.url"
 					fieldDescription="Must be a valid link"
 					xtype="textfield"/>
 				<url1Target
@@ -87,7 +87,7 @@
 					fieldLabel="Link"
 					name="./url2"
 					fieldDescription="Must be a valid link"
-					regex="Shc.components.extsrc.regex.ValidationPattterns.url"
+					regex="Shc.components.extsrc.regex.ValidationPatterns.url"
 					xtype="textfield"/>
 				<url2Target
 					jcr:primaryType="cq:Widget"
@@ -154,7 +154,7 @@
 					fieldLabel="Link"
 					name="./url3"
 					fieldDescription="Must be a valid link"
-					regex="Shc.components.extsrc.regex.ValidationPattterns.url"
+					regex="Shc.components.extsrc.regex.ValidationPatterns.url"
 					xtype="textfield"/>
 				<url3Target
 					jcr:primaryType="cq:Widget"

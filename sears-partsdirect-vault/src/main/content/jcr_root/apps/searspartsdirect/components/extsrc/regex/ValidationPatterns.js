@@ -1,6 +1,6 @@
 CQ.Ext.namespace('Shc.components.extsrc.regex');
 
-Shc.components.extsrc.regex.ValidationPattterns = (function () {
+Shc.components.extsrc.regex.ValidationPatterns = (function () {
 	'use strict';
 	
 	return {
