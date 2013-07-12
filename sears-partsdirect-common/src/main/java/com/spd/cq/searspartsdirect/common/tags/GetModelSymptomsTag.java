@@ -9,6 +9,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,8 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.helpers.ModelSubcomponentAPIHelper;
+import com.spd.cq.searspartsdirect.common.model.PDModelSubcomponentModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 
 public class GetModelSymptomsTag extends CQBaseTag {
@@ -32,9 +35,24 @@ public class GetModelSymptomsTag extends CQBaseTag {
 	QueryBuilder builder;
 	Query query;
 	List<SymptomModel> symptomModels;
+	private String brandName;
+	private String categoryName;
+	private String modelNumber;
 
 	@Override
 	public int doStartTag() throws JspException {
+		if (!StringUtils.isEmpty(brandName) && !StringUtils.isEmpty(categoryName) && !StringUtils.isEmpty(modelNumber)) {
+			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper();
+			apiHelper.setBrand(brandName);
+			apiHelper.setCategory(categoryName);
+			apiHelper.setModel(modelNumber);
+			PDModelSubcomponentModel subcomponents = apiHelper.getModelSubcomponents(slingRequest);
+			log.debug("******* call is made "+brandName+categoryName+modelNumber);
+			if (subcomponents != null && subcomponents.getSymptomsArr() != null) {
+				pageContext.setAttribute("modelSymptoms", subcomponents.getSymptomsArr());
+			}
+		}
+		
 		if (categoryPath != null) {
 			session = slingRequest.getResourceResolver().adaptTo(Session.class);
 			Map<String, String> map = new HashMap<String, String>();
@@ -64,6 +82,7 @@ public class GetModelSymptomsTag extends CQBaseTag {
 				}
 		}
 		pageContext.setAttribute("categorySymptoms", symptomModels);
+		pageContext.setAttribute("callmade", "yes");
 		return SKIP_BODY;
 	}
 
@@ -78,5 +97,29 @@ public class GetModelSymptomsTag extends CQBaseTag {
 
 	public void setCategoryPath(String categoryPath) {
 		this.categoryPath = categoryPath;
+	}
+
+	public String getBrandName() {
+		return brandName;
+	}
+
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getModelNumber() {
+		return modelNumber;
+	}
+
+	public void setModelNumber(String modelNumber) {
+		this.modelNumber = modelNumber;
 	}
 }

@@ -53,24 +53,17 @@ public class GetMostPopularGuideTag extends CQBaseTag{
 					result.get(0).getTitle(),
 					result.get(0).getDescription()));
 
-		pageContext.setAttribute("guides", guides);
-		
-		//Get the difficulty level from the repair guide page
-		resource = resourceResolver.getResource(result.get(0).getPath());
-		log.debug("GUIDE PATH " + result.get(0).getPath());
-		Node resourceNode = resource.adaptTo(Node.class);
-		String difficultyLevel = resourceNode.getNode(Constants.GUIDES_REL_PATH).getProperty("difficultyLevel").getString();
-		pageContext.setAttribute("difficultyLevel", difficultyLevel);
-		//Get time required from the repair guide page
-		String timeRequired = resourceNode.getNode(Constants.GUIDES_REL_PATH).getProperty("timeRequired").getString();
-		pageContext.setAttribute("timeRequired", timeRequired);
-		
-		/*Resource r = resourceResolver.getResource("path");
-		if (r != null) {
-			Node n = r.adaptTo(Node.class);
-		}
-		n.getNode("jcr:content/guideDetails").getProperty("difficultyLevel").getString();
-*/
+			pageContext.setAttribute("guides", guides);
+			
+			//Get the difficulty level from the repair guide page
+			resource = resourceResolver.getResource(result.get(0).getPath());
+			Node resourceNode = resource.adaptTo(Node.class);
+			String difficultyLevel = resourceNode.getNode(Constants.GUIDES_REL_PATH).getProperty("difficultyLevel").getString();
+			pageContext.setAttribute("difficultyLevel", difficultyLevel);
+			//Get time required from the repair guide page
+			String timeRequired = resourceNode.getNode(Constants.GUIDES_REL_PATH).getProperty("timeRequired").getString();
+			pageContext.setAttribute("timeRequired", timeRequired);
+
 		}
 		catch (Exception e) {
 

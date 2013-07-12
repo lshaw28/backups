@@ -2,7 +2,7 @@
 <c:set var="difficultyLevel"><cq:text property="difficultyLevel" placeholder="level-one" /></c:set>
 <div class="row-fluid">
 	<div class="new-span-quarter">
-		<spd:displayImage path="image"/>
+		<spd:displayImage path="${currentPage.path}${Constants.ASSETS_IMAGE_PATH}"/>
 	</div>
 	<div class="new-span-three-quarters">
 		<div class="row-fluid">

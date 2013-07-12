@@ -25,7 +25,11 @@ public class ConstantModel {
 	public String getEN_ROOT() {
 		return Constants.EN_ROOT;
 	}
-
+	
+	public String getASSETS_IMAGE_PATH() {
+		return Constants.ASSETS_IMAGE_PATH;
+	}
+	
 	public String getEMPTY() {
 		return Constants.EMPTY;
 	}
