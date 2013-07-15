@@ -140,10 +140,6 @@ var modelNumberSearch = Class.extend(function () {
 		displayMessage: function (msg, type) {
 			var self = this;
 
-			console.log('Message', msg);
-			console.log('Type', type);
-			console.log('Message Area', self.messageArea);
-
 			// Set the message
 			self.messageArea.html(msg);
 			// Set the classes; faster than using toggles
