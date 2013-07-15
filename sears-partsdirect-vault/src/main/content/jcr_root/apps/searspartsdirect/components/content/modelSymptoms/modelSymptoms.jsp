@@ -24,7 +24,7 @@
 				    <tbody>
 				        <c:forEach var="symptom" items="${modelSymptoms}">
 				            <tr>
-				            	<c:set var="symptomUrl" value="/content/searspartsdirect/en/${brandRelation.trueName}/${productCategoryRelation.trueName}/model-${modelRelation}-repair/symptom/${symptom.id}.html" />
+				            	<c:set var="symptomUrl" value="/content/searspartsdirect/en/symptom/${symptom.id}.html" />
 				                <td><a href="${fn:toLowerCase(symptomUrl)}">${symptom.title}</a></td>
 				                <td>
 				                	<c:choose>

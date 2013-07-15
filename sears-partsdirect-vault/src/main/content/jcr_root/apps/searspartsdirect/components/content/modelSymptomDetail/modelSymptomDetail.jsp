@@ -33,9 +33,9 @@
 
 	<!--  no parts found then show the following block -->
 	<spd:getPartsLinkTag brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}"/>
-	<c:if test="${not empty findPartUrl}">
+	<c:if test="${not empty findPartUrl && not empty jobCode.partTypeModel}">
 		<p>
-			<a href="api-parts-tab-url">Find ${jobCode.partTypeModel.title} in this model</a>
+			<a href="${findPartUrl}">Find ${jobCode.partTypeModel.title} in this model</a>
 		</p>
 	</c:if>
 </c:forEach>
