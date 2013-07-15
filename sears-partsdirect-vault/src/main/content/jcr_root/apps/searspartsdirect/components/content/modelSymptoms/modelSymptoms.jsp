@@ -23,9 +23,9 @@
 				    </thead>
 				    <tbody>
 				        <c:forEach var="symptom" items="${modelSymptoms}">
-				            <tr> <!--  hardcoded the symptom id for now as api is not giving us that information -->
-				            	<c:set var="symptomUrl" value="/content/searspartsdirect/en/${brandRelation.title}/${productCategoryRelation.trueName}/model-${modelRelation}-repair/symptom/201.html" />
-				                <td><a href="${fn:toLowerCase(symptomUrl)}">${symptom.description}</a></td>
+				            <tr>
+				            	<c:set var="symptomUrl" value="/content/searspartsdirect/en/${brandRelation.trueName}/${productCategoryRelation.trueName}/model-${modelRelation}-repair/symptom/${symptom.id}.html" />
+				                <td><a href="${fn:toLowerCase(symptomUrl)}">${symptom.title}</a></td>
 				                <td>
 				                	<c:choose>
 				                		<c:when test="${not empty symptom.frequency}">
