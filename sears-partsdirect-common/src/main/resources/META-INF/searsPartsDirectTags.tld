@@ -288,20 +288,20 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetTopPartsTag</tag-class>
 		<info>Gets the top parts from the API for given brand, model, and category</info>
 		<attribute>
-			<name>modelName</name>
+			<name>model</name>
 			<type>java.lang.String</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<name>brandName</name>
-			<type>java.lang.String</type>
+			<name>brand</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<name>categoryName</name>
-			<type>java.lang.String</type>
+			<name>category</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>

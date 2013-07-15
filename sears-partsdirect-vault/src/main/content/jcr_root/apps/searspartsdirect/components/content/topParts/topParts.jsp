@@ -1,13 +1,8 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
-<spd:getUrlRelation relationType="brand" />
-<c:set var="brandName">${brandRelation.trueName}</c:set>
-<spd:getUrlRelation relationType="productCategory" />
-<c:set var="categoryName">${productCategoryRelation.trueName}</c:set>
-<spd:getUrlRelation relationType="model" />
-<c:set var="modelName">${modelRelation}</c:set>
+<spd:getUrlRelation />
 
-<spd:getTopParts brandName="${brandName}" categoryName="${categoryName}" modelName="${modelName}" />
+<spd:getTopParts brand="${brandRelation}" category="${productCategoryRelation}" model="${modelRelation}" />
 
 <c:choose>
 	<c:when test="${!empty topParts}">
