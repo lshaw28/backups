@@ -1,9 +1,9 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <div class="row-fluid">
-	<div class="new-span-quarter">
+	<div class="span2">
 		<spd:displayImage path="image"/>
 	</div>
-	<div class="new-span-three-quarters">
+	<div class="span10">
 		<cq:text property="authorDescription" />
 	</div>
 </div>
