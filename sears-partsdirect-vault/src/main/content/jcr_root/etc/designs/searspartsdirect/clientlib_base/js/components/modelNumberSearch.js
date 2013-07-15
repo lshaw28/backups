@@ -58,7 +58,7 @@ var modelNumberSearch = Class.extend(function () {
 				self.displayMessage('', '');
 				// Make an AJAX call
 				$.ajax({
-					type: 'GET',
+					type: 'POST',
 					url: searchAddress,
 					async: false,
 					contentType: 'application/json',
@@ -82,31 +82,54 @@ var modelNumberSearch = Class.extend(function () {
 		 * @return {void}
 		 */
 		searchResponse: function (data) {
-			console.log(typeof data);
 			var self = this;
+
+			// Did the AJAX call return valid data?
+			if (data.count) {
+				// Redirect if there is one item
+				// Display a message
+				switch (data.count) {
+					case 0:
+						self.displayMessage('There were no results for your search, please try again.', 'error');
+						break;
+					case 1:
+						self.redirect(data.models[0]);
+						break;
+					default:
+						self.displayMessage('Text for success.', 'success');
+				}
+			}
 		},
 		/**
-		 * Handles a redirect to the single result router
+		 * Handles a redirect to the single result servlet
 		 * @param {object} resp Response from AJAX call
 		 * @return {void}
 		 */
 		redirect: function (data) {
-			console.log(data);
 			var self = this,
 				su = window.SPDUtils,
 				query = '',
-				brand = '',
-				category = '',
-				model = '',
-				link = '';
+				brandName = '',
+				categoryName = '',
+				modelNumber = '',
+				modelUrl = '';
 
-			query += '?brand=' + brand;
-			query += '&category=' + category;
-			query += '&model=' + model;
-			query += '&link=' + link;
+			// Check the data object
+			if (su.validString(data.brandName) !== '') {
+				brandName = encodeUriComponent(data.brandName);
+				categoryName = encodeUriComponent(data.categoryName);
+				modelNumber = encodeUriComponent(data.modelNumber);
+				modelUrl = encodeUriComponent(data.modelUrl);
 
-			//document.location.href = su.getLocationDetails() + modelSearchServletPath + query;
-			console.log(su.getLocationDetails().fullAddress + modelSearchServletPath + query);
+				query += '?brand=' + brandName;
+				query += '&category=' + categoryName;
+				query += '&model=' + modelNumber;
+				query += '&link=' + modelUrl;
+
+				document.location.href = su.getLocationDetails() + modelSearchServletPath + query;
+			} else {
+				self.displayMessage('There was a problem redirecting you.', 'error');
+			}
 		},
 		/**
 		 * Displays a message to the user
