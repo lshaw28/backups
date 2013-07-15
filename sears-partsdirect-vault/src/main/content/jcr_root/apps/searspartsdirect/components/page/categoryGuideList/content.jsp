@@ -28,7 +28,8 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span9">
-					<!-- Madhuri's components: featuredGuide and categoryGuideList? -->
+					<cq:include path="featuredGuide" resourceType="searspartsdirect/components/content/mostPopularGuide" />
+					<cq:include path="guideListing" resourceType="searspartsdirect/components/content/guideListing" />
 				</div>
 				<div class="span2 adspan offset1">
 					<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />

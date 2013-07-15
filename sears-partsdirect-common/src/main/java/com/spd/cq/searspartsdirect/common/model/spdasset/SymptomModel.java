@@ -6,6 +6,7 @@ public class SymptomModel {
 	private String description;
 	private String id;
 	private String path;
+	private long frequency;
 	
 	public SymptomModel(String path, String title, String description, String id) {
 		this.title = title;
@@ -40,5 +41,13 @@ public class SymptomModel {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public double getFrequency() {
+		return frequency;
+	}
+
+	public void setFrequency(long frequency) {
+		this.frequency = frequency;
 	}
 }
