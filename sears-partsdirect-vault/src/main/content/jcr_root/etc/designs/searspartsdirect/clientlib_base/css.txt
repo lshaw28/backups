@@ -34,6 +34,7 @@ cartNav/cartNav.less
 category101/category101.less
 categoryArticleList/categoryArticleList.less
 categoryListing/categoryListing.less
+categorySymptomDetail/categorySymptomDetail.less
 difficultyRating/difficultyRating.less
 errorCodeTable/errorCodeTable.less
 errorListing/errorListing.less
