@@ -1,10 +1,10 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <ul>
-	<li class="loginNavHome"><a href="#"><i class="icon-home">&nbsp;</i><span class="text-home">Home</span></a>
+	<li class="loginNavHome"><a href="${mainSitePath}"><i class="icon-home">&nbsp;</i><span class="text-home">Home</span></a>
 	<li>
 		<c:choose>
 			<c:when test="${loggedIn}">
-				Hello, ${firstName} &nbsp;
+				Hello, <strong>${firstName}</strong> &nbsp;
 				<a href="${mainSitePath}/partsdirect/myprofile/logout.action">Logout</a>
 			</c:when>
 			<c:otherwise>
@@ -21,7 +21,6 @@
 				<a data-toggle="modal" data-target="#registerModal">Register</a>
 			</c:otherwise>
 		</c:choose>
-
 	</li>
 	<li><a href="${mainSitePath}/partsdirect/orderStatus.pd?pop=flush" title="Order status">Order lookup</a></li>
 	<li><a href="#GetHelp" id="loginNavGetHelp">Get help</a></li>
