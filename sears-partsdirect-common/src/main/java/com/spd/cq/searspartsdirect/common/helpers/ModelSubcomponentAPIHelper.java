@@ -1,6 +1,8 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -65,9 +67,14 @@ public class ModelSubcomponentAPIHelper {
 				&& StringUtils.isNotBlank(category)
 				) {
 			StringBuilder url = new StringBuilder(EnvironmentSettings.getPDModelSubApiUrl());
-			url.append("?"+MODEL_PARAM+"="+model);
-			url.append("&"+CATEGORY_PARAM+"="+category);
-			url.append("&"+BRAND_PARAM+"="+brand);
+			try {
+				url.append("?"+MODEL_PARAM+"="+URLEncoder.encode(model,Constants.ENCODING));
+				url.append("&"+CATEGORY_PARAM+"="+URLEncoder.encode(category,Constants.ENCODING));
+				url.append("&"+BRAND_PARAM+"="+URLEncoder.encode(brand,Constants.ENCODING));
+			} catch (UnsupportedEncodingException e) {
+				log.error("Java is Broken!! No longer supports UTF-8!!");
+				return null;
+			}
 			return url.toString();
 		} else {
 			return null;
