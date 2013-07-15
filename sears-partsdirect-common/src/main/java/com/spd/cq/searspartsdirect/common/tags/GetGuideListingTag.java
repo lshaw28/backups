@@ -77,7 +77,7 @@ public class GetGuideListingTag extends CQBaseTag{
 
 		}
 		catch (Exception e) {
-
+			log.error("Error finding guides: " + e.toString());
 		}
 		return SKIP_BODY;
 	}

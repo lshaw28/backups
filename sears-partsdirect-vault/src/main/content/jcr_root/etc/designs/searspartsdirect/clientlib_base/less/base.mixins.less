@@ -1,5 +1,11 @@
 @import "base.variables.less";
-
+.backgroundSize(@v: contain) {
+	-webkit-background-size: @v;
+	-moz-background-size: @v;
+	-ms-background-size: @v;
+	-o-background-size: @v;
+	background-size: @v;
+}
 .borderRadius(@v: 0) {
 	-webkit-border-radius: @v;
 	-moz-border-radius: @v;
