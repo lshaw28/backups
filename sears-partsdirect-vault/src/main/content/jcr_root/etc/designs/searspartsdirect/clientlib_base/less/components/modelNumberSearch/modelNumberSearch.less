@@ -12,4 +12,14 @@
 			font-size: @smallPSize;
 		}
 	}
+	p.display-message {
+		display: none;
+
+		&.error, &.success {
+			display: block;
+		}
+		&.error {
+			color: @highlightHueNormal;
+		}
+	}
 }

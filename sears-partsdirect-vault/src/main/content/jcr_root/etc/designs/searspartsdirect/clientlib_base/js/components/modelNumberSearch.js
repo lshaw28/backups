@@ -50,8 +50,6 @@ var modelNumberSearch = Class.extend(function () {
 
 			// Check the input value
 			if (searchTerm !== '' && searchTerm !== self.inputHelp && searchTerm !== self.inputHelpMobile) {
-				// Clear any existing error message
-				self.displayMessage('', '');
 				// Make an AJAX call
 				$.ajax({
 					type: 'POST',
@@ -61,13 +59,13 @@ var modelNumberSearch = Class.extend(function () {
 					dataType: 'JSON',
 					data: {
 						modelNumber: searchTerm
-					},
-					success: function (data) {
-						self.searchResponse(data);
-					},
-					fail: function (e) {
-						self.displayMessage('We were unable to complete your search.', 'error');
 					}
+				})
+				.success(function (data) {
+					self.searchResponse(data, searchTerm);
+				})
+				.fail(function () {
+					self.displayMessage('We were unable to complete your search.', 'error');
 				});
 			} else {
 				// Display an error message
@@ -77,9 +75,10 @@ var modelNumberSearch = Class.extend(function () {
 		/**
 		 * Handles search results
 		 * @param {object} resp Response from AJAX call
+		 * @param {string} searchTerm Term entered by the user
 		 * @return {void}
 		 */
-		searchResponse: function (data) {
+		searchResponse: function (data, searchTerm) {
 			var self = this;
 
 			// Did the AJAX call return valid data?
@@ -88,14 +87,17 @@ var modelNumberSearch = Class.extend(function () {
 				// Display a message
 				switch (data.count) {
 					case 0:
-						self.displayMessage('There were no results for your search, please try again.', 'error');
+						self.displayMessage('We\'re sorry, no results were found. Please check that you entered your model number correctly and try again.', 'error');
 						break;
 					case 1:
 						self.redirect(data.models[0]);
 						break;
 					default:
-						self.displayMessage('Text for success.', 'success');
+						self.displayMessage('We found multiple results for this search. <a href="' + mainSitePath + '/partsdirect/modelSearch/' + searchTerm + '" target="_blank">View search results</a>', 'success');
+						break;
 				}
+			} else {
+				self.displayMessage('We\'re sorry, no results were found. Please check that you entered your model number correctly and try again.', 'error');
 			}
 		},
 		/**
@@ -137,6 +139,10 @@ var modelNumberSearch = Class.extend(function () {
 		 */
 		displayMessage: function (msg, type) {
 			var self = this;
+
+			console.log('Message', msg);
+			console.log('Type', type);
+			console.log('Message Area', self.messageArea);
 
 			// Set the message
 			self.messageArea.html(msg);
