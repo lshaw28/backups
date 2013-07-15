@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class PDSymptom {
 	String description;
 	String modelNumber;
+	String id;
 	String successfulSolutions;
 	BigDecimal successfulFrequency;
 	String[] recoveryCodesModel;
@@ -51,6 +52,14 @@ public class PDSymptom {
 
 	public void setRecoveryCodesModel(String[] recoveryCodesModel) {
 		this.recoveryCodesModel = recoveryCodesModel;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

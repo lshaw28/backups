@@ -22,9 +22,7 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.ModelSubcomponentAPIHelper;
-import com.spd.cq.searspartsdirect.common.model.ExternalLinkModel;
 import com.spd.cq.searspartsdirect.common.model.PDModelSubcomponentModel;
-import com.spd.cq.searspartsdirect.common.model.PDTab;
 import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 
 public class GetModelSymptomsTag extends CQBaseTag {
@@ -40,9 +38,11 @@ public class GetModelSymptomsTag extends CQBaseTag {
 	private String brandName;
 	private String categoryName;
 	private String modelNumber;
+	
 
 	@Override
 	public int doStartTag() throws JspException {
+		List<SymptomModel> symptoms = new ArrayList<SymptomModel>();
 		if (!StringUtils.isEmpty(brandName) && !StringUtils.isEmpty(categoryName) && !StringUtils.isEmpty(modelNumber)) {
 			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper();
 			apiHelper.setBrand(brandName);
@@ -52,41 +52,38 @@ public class GetModelSymptomsTag extends CQBaseTag {
 			log.debug("brandName "+brandName+ " categoryName "+categoryName+" model is "+modelNumber);
 			
 			if (subcomponents != null) {
-				 pageContext.setAttribute("modelSymptoms", subcomponents.getSymptomsArr());
 				 log.debug("PD symptom length "+ subcomponents.getSymptomsArr().length);
+				 
+				 for(int i=0; i<subcomponents.getSymptomsArr().length; i++) {
+					log.debug("ids are " + subcomponents.getSymptomsArr()[i].getId());
+				 	session = slingRequest.getResourceResolver().adaptTo(Session.class);
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("path", Constants.ASSETS_PATH + "/symptom");
+					map.put("type", Constants.CQ_PAGE);
+					map.put("property", "jcr:content/id");
+					map.put("property.value", subcomponents.getSymptomsArr()[i].getId());
+					
+					builder = resourceResolver.adaptTo(QueryBuilder.class);
+					query = builder.createQuery(PredicateGroup.create(map), session);
+					SearchResult result = query.getResult();
+					
+					for (Hit hit : result.getHits()) {
+					       try {
+								ValueMap props = hit.getProperties();
+								Page p = pageManager.getPage(hit.getPath());
+								if (props != null) {
+									SymptomModel symptomModel  = new SymptomModel(p.getPath(), props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("id", String.class));
+									symptomModel.setFrequency(Math.round(subcomponents.getSymptomsArr()[i].getSuccessfulFrequency().doubleValue()));
+									symptoms.add(symptomModel);
+								}
+					       } catch (RepositoryException e) {
+								log.error("Failure building results, ",e);
+							}
+					}  
+				 }
 			 }
+			pageContext.setAttribute("modelSymptoms", symptoms);
 		}
-		
-		if (categoryPath != null) {
-			session = slingRequest.getResourceResolver().adaptTo(Session.class);
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("path", Constants.ASSETS_PATH + "/symptom");
-			map.put("type", Constants.CQ_PAGE);
-			map.put("property", Constants.ASSETS_PAGES_REL_PATH);
-			map.put("property.value", categoryPath);
-
-			builder = resourceResolver.adaptTo(QueryBuilder.class);
-			query = builder.createQuery(PredicateGroup.create(map), session);
-			SearchResult result = query.getResult();
-
-			symptomModels = new ArrayList<SymptomModel>();
-			for (Hit hit : result.getHits()) {
-					try {
-						ValueMap props = hit.getProperties();
-						Page p = pageManager.getPage(hit.getPath());
-						if (props != null) {
-							SymptomModel symptomModel = new SymptomModel(p.getPath(), props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("id", String.class));
-							symptomModels.add(symptomModel);
-						} else {
-							log.debug("props is null");
-						}
-					} catch (RepositoryException e) {
-						log.error("Failure building results, ", e);
-					}
-				}
-		}
-		pageContext.setAttribute("categorySymptoms", symptomModels);
-		pageContext.setAttribute("callmade", "yes");
 		return SKIP_BODY;
 	}
 
