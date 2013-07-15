@@ -81,6 +81,10 @@ public class CategoryCreationWorkflowProcess implements WorkflowProcess {
         }
     }
     
+    void setTestResourceResolverFactory(ResourceResolverFactory resourceResolverFactory) {
+    	this.resourceResolverFactory = resourceResolverFactory;
+    }
+    
     public void createPage(PageManager pm, String path, String name, String template, String title, String[] relation) throws WCMException, RepositoryException {
     	Page page = pm.getPage(path + "/" + name);
     	if (page == null) {

@@ -27,7 +27,7 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
  */
 public class GetUrlRelationTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = LoggerFactory.getLogger(GetUrlRelationTag.class);
+	protected static final Logger log = LoggerFactory.getLogger(GetUrlRelationTag.class);
 	
 	
 	public final static String CATEGORY = Constants.ident("productCategory");
@@ -135,13 +135,16 @@ public class GetUrlRelationTag extends CQBaseTag {
 	private void pokeRelationIntoContext(String relationValue) {
 		if (assetRelations.contains(relationType)) {
 			AssetType assetTypeEnum = AssetType.valueOf(relationType.toUpperCase());
+			if (relationValue.length() > 20) {
+				relationValue = relationValue.substring(0,20);
+			}
 			
 			String relatedAssetPath = Constants.ASSETS_PATH + "/" + relationType + "/" + relationValue;
-			log.debug(relatedAssetPath);
+			log.debug("looking for "+relatedAssetPath);
 			Page p = pageManager.getPage(relatedAssetPath);
 			if (p != null) {
 				ValueMap properties = p.getProperties();
-				
+				log.debug(""+properties);
 				Object relatedAsset = assetTypeEnum.createModelInstance(p,properties);
 				pageContext.setAttribute(relationType + "Relation", relatedAsset);
 			} else {

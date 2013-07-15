@@ -45,22 +45,27 @@ var modelNumberSearch = Class.extend(function () {
 		search: function () {
 			var self = this,
 				su = window.SPDUtils,
+				searchAddress = apiPath + 'modelSearch/modelSearch',
 				searchTerm = su.validString(self.inputField.attr('value'));
 
 			// Check the input value
 			if (searchTerm !== '' && searchTerm !== self.inputHelp && searchTerm !== self.inputHelpMobile) {
-				// Clear any existing error message
-				self.displayMessage('', '');
 				// Make an AJAX call
 				$.ajax({
-					'url': 'http://www.someurl.com/',
-					'crossDomain': true,
-					'dataType': 'JSON',
-					'headers': {
-						'modelNumber': searchTerm
+					type: 'POST',
+					url: searchAddress,
+					async: false,
+					contentType: 'application/json',
+					dataType: 'JSON',
+					data: {
+						modelNumber: searchTerm
 					}
-				}).done(function (data) {
-					self.searchResponse(data);
+				})
+				.success(function (data) {
+					self.searchResponse(data, searchTerm);
+				})
+				.fail(function () {
+					self.displayMessage('We were unable to complete your search.', 'error');
 				});
 			} else {
 				// Display an error message
@@ -70,37 +75,61 @@ var modelNumberSearch = Class.extend(function () {
 		/**
 		 * Handles search results
 		 * @param {object} resp Response from AJAX call
+		 * @param {string} searchTerm Term entered by the user
 		 * @return {void}
 		 */
-		searchResponse: function (resp) {
-			console.log(resp);
+		searchResponse: function (data, searchTerm) {
 			var self = this;
 
-			// Test redirect logic
-			self.redirect(resp);
+			// Did the AJAX call return valid data?
+			if (data.count) {
+				// Redirect if there is one item
+				// Display a message
+				switch (data.count) {
+					case 0:
+						self.displayMessage('We\'re sorry, no results were found. Please check that you entered your model number correctly and try again.', 'error');
+						break;
+					case 1:
+						self.redirect(data.models[0]);
+						break;
+					default:
+						self.displayMessage('We found multiple results for this search. <a href="' + mainSitePath + '/partsdirect/modelSearch/' + searchTerm + '" target="_blank">View search results</a>', 'success');
+						break;
+				}
+			} else {
+				self.displayMessage('We\'re sorry, no results were found. Please check that you entered your model number correctly and try again.', 'error');
+			}
 		},
 		/**
-		 * Handles a redirect to the single result router
+		 * Handles a redirect to the single result servlet
 		 * @param {object} resp Response from AJAX call
 		 * @return {void}
 		 */
-		redirect: function (resp) {
-			console.log(resp);
+		redirect: function (data) {
 			var self = this,
 				su = window.SPDUtils,
 				query = '',
-				brand = '',
-				category = '',
-				model = '',
-				link = '';
+				brandName = '',
+				categoryName = '',
+				modelNumber = '',
+				modelUrl = '';
 
-			query += '?brand=' + brand;
-			query += '&category=' + category;
-			query += '&model=' + model;
-			query += '&link=' + link;
+			// Check the data object
+			if (su.validString(data.brandName) !== '') {
+				brandName = encodeUriComponent(su.validString(data.brandName));
+				categoryName = encodeUriComponent(su.validString(data.categoryName));
+				modelNumber = encodeUriComponent(su.validString(data.modelNumber));
+				modelUrl = encodeUriComponent(su.validString(data.modelUrl));
 
-			//document.location.href = su.getLocationDetails() + modelSearchServletPath + query;
-			console.log(su.getLocationDetails() + modelSearchServletPath + query);
+				query += '?brand=' + brandName;
+				query += '&category=' + categoryName;
+				query += '&model=' + modelNumber;
+				query += '&link=' + modelUrl;
+
+				document.location.href = su.getLocationDetails() + modelSearchServletPath + query;
+			} else {
+				self.displayMessage('There was a problem redirecting you.', 'error');
+			}
 		},
 		/**
 		 * Displays a message to the user

@@ -3,6 +3,8 @@ package com.spd.cq.searspartsdirect.common.helpers;
 public final class Constants {
 
 	public static final String EMPTY = "";
+	
+	public static final String ENCODING = ident("UTF-8");
 
 	//CQ constants
 	public static final String CQ_PAGE = ident("cq:Page");

@@ -7,4 +7,5 @@
 		<span class="add-on"><button><i class="icon-search">&nbsp;</i></button></span>
 	</div>
 </form>
-<p><span class="display-message"></span><a data-toggle="reveal" data-target="#findMyModel" id="newFinderModel"><cq:text property="linkText" placeholder="Help me find my model number"/></a></p>
+<p><a data-toggle="reveal" data-target="#findMyModel" id="newFinderModel"><cq:text property="linkText" placeholder="Help me find my model number"/></a></p>
+<p class="display-message">&nbsp;</p>

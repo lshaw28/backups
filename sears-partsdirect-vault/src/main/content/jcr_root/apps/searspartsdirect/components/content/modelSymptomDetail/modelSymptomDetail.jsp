@@ -31,11 +31,13 @@
 		</c:forEach>
 	</c:if>
 
-	<c:if test="${jobCode.partTypeModel != null}">
-	<!-- from the api get the parts tab url for the following -->
-		<p><a href="api-parts-tab-url">
-				Find ${jobCode.partTypeModel.title} in this model
-			</a>
+	<!--  no parts found then show the following block -->
+	<spd:getPartsLinkTag brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}"/>
+	<c:if test="${not empty findPartUrl}">
+		<p>
+			<a href="api-parts-tab-url">Find ${jobCode.partTypeModel.title} in this model</a>
 		</p>
 	</c:if>
 </c:forEach>
+
+

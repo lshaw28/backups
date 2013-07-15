@@ -10,6 +10,7 @@
 		 */
 		init: function () {
 			window.SPDUtils.checkConsole();
+			window.SPDUtils.getGlobalVariables();
 			console.log('SPDUtils available');
 		},
 		/*
@@ -22,6 +23,17 @@
 					}
 				};
 			}
+		},
+		/**
+		 * Retrieve and set global variables
+		 */
+		getGlobalVariables: function () {
+			$('meta[name^="global-"]').each(function () {
+				var newName = $(this).attr('name').replace('global-', ''),
+					newContent = $(this).attr('content');
+
+				window[newName] = newContent;
+			});
 		},
 		/**
 		 * Check that an object resolves to a valid string
@@ -137,6 +149,18 @@
 			if (value !== newValue) {
 				el.text(newValue);
 			}
+		},
+		/**
+		 * Generates a GUID
+		 * @return {string}
+		 */
+		s4: function () {
+			return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+		},
+		getGUID: function () {
+			var su = window.SPDUtils;
+
+			return su.s4() + su.s4() + su.s4() + su.s4() + su.s4() + su.s4() + su.s4() + su.s4();
 		}
 	};
 	window.SPDUtils.init();
