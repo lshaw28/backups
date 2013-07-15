@@ -65,7 +65,13 @@ public class GetMultifieldArticlesTag extends CQBaseTag {
 						description);
 				articles.add(category);
 			}
+			
+			String header = assetProperties.get("header", "");
+			String link = assetProperties.get("viewAllLinkText", "");
+
 			pageContext.setAttribute("articles", articles);
+			pageContext.setAttribute("category101header", header);
+			pageContext.setAttribute("category101linkText", link);
 		}
 		catch (Exception e) {
 			log.error("Error creating multifield categories", e);

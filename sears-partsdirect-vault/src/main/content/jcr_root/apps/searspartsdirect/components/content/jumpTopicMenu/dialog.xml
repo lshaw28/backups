@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:Dialog"
+		  title="Topic Jump Menu Configuration"
+		  xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<JumpTopicMenuConfig 	jcr:primaryType="cq:Widget"
+						xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<jumpMenuTitle jcr:primaryType="cq:Widget"
+						fieldLabel="Topic jump menu title"
+						fieldDescription="Displayed above dropdown, when dropdown is present"
+						allowBlank="{Boolean}false"
+						name="./jumpMenuTitle"
+						xtype="textfield"
+						maxLength="140" />
+				<jumpMenuFirstItem jcr:primaryType="cq:Widget"
+						fieldLabel="Topic jump menu first item"
+						fieldDescription="Displayed as first dropdown option, when dropdown is present"
+						allowBlank="{Boolean}false"
+						name="./jumpMenuFirstItem"
+						xtype="textfield"
+						maxLength="50" />
+			</items>
+		</JumpTopicMenuConfig>
+	</items>
+</jcr:root>

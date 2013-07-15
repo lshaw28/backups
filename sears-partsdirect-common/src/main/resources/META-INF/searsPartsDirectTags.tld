@@ -104,9 +104,9 @@
 		<info>Gets relative paths of carousel images</info>
 	</tag>
 	<tag>
-		<name>getMaintenanceTopicJump</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMaintenanceTopicJumpTag</tag-class>
-		<info>Gets the contents of the maintenance topics jump menu</info>
+		<name>getTopicJump</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetTopicJumpTag</tag-class>
+		<info>Gets the contents of the topics jump menu</info>
 	</tag>
 	<tag>
 		<name>getParentPage</name>

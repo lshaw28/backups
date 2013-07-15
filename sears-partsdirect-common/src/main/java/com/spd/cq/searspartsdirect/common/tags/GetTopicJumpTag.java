@@ -13,12 +13,12 @@ import org.slf4j.LoggerFactory;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.AnchorLinkModel;
 
-public class GetMaintenanceTopicJumpTag  extends CQBaseTag {
+public class GetTopicJumpTag  extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = LoggerFactory.getLogger(GetMaintenanceTopicJumpTag.class);
+	protected static Logger log = LoggerFactory.getLogger(GetTopicJumpTag.class);
 	
 	public final static String PARSYS_TYPE = Constants.ident("foundation/components/parsys");
-	public final static String TOPIC_TYPE = Constants.ident("searspartsdirect/components/content/maintenanceTipTopic");
+	public final static String TOPIC_TYPE = Constants.ident("searspartsdirect/components/content/jumpTopic");
 	public final static String TITLE_PROP = Constants.ident("topicTitle");
 	
 	@Override

@@ -17,14 +17,14 @@
 								fieldLabel="Title"
 								name="./title" 
 								maxLength="70"
-								allowBlank="{Boolean}false"
+								allowBlank="{Boolean}true"
 								xtype="textfield" />
 			
 						<viewAlltext jcr:primaryType="cq:Widget" 
 								fieldLabel="View This Guide link Text"
 								name="./viewThisText" 
 								maxLength="35"
-								allowBlank="{Boolean}false"
+								allowBlank="{Boolean}true"
 								xtype="textfield" />
 						
 					</items>

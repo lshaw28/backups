@@ -7,36 +7,36 @@
 	Repair Symptoms for ${brandRelation.title}  ${productCategoryRelation.title} Model #${modelRelation}
 </h2>
 
+<spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryRelation.path}" />
+
 <!-- check the api for model symptoms if yes, then display otherwise make the call to the following tag-->
-<spd:getModelSymptoms categoryPath="${productCategoryRelation.path}" />
+<spd:getModelSymptoms brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}" />
 <!--  if no category symptoms then display the featured guide -->
-
-
- 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Symptom</th>
-            <th>Frequency</th>
-        </tr>
-    </thead>
-    <tbody>
     	<c:choose>
-    		<c:when test="${not empty categorySymptoms}">
-		        <c:forEach var="symptom" items="${categorySymptoms}">
-		            <tr>
-		            	<c:set var="symptomUrl" value="/content/searspartsdirect/en/${brandRelation.title}/${productCategoryRelation.trueName}/model-${modelRelation}-repair/symptom/${symptom.id}.html" />
-		                <td><a href="${fn:toLowerCase(symptomUrl)}">${symptom.title}</a></td>
-		                <td><span class="big-number">74%&nbsp</span>of repairs</td>
-		            </tr>
-		        </c:forEach>
+    		<c:when test="${not empty modelSymptoms}">
+    			<table class="table table-striped">
+				    <thead>
+				        <tr>
+				            <th>Symptom</th>
+				            <th>Frequency</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				        <c:forEach var="symptom" items="${modelSymptoms}">
+				            <tr> <!--  hardcoded the symptom id for now as api is not giving us that information -->
+				            	<c:set var="symptomUrl" value="/content/searspartsdirect/en/${brandRelation.title}/${productCategoryRelation.trueName}/model-${modelRelation}-repair/symptom/201.html" />
+				                <td><a href="${fn:toLowerCase(symptomUrl)}">${symptom.description}</a></td>
+				                <td><span class="big-number">${symptom.successfulFrequency}%&nbsp</span>of repairs</td>
+				            </tr>
+				        </c:forEach>
+		           </tbody>
+				</table>
+	        </c:when>
+	        <c:when test="${not empty symptomList}">
+	        	<cq:include path="mostPopularGuide" resourceType="searspartsdirect/components/content/categorySymptoms" />
 	        </c:when>
 	        <c:otherwise>
 	        	<cq:include path="mostPopularGuide" resourceType="searspartsdirect/components/content/mostPopularGuide" />
 	        </c:otherwise>
-	     </c:choose>
-    </tbody>
-</table>
-
-<!--  
-<cq:include path="categorySymptoms" resourceType="searspartsdirect/components/content/c6ategorySymptoms" />-->
+		 </c:choose>
+	       

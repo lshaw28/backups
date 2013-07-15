@@ -66,3 +66,5 @@ text/text.less
 topAccessories/topAccessories.less
 maintenanceTips/maintenanceTips.less
 authorArticle/authorArticles.less
+guideListing-listing/guideListing-listing.less
+guideListing-popular-view/guideListing-popular-view.less

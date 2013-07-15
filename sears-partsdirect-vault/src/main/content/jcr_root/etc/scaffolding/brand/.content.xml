@@ -10,7 +10,7 @@
         jcr:description="Brand desc"
         jcr:primaryType="cq:PageContent"
         jcr:title="Brand"
-        sling:resourceType="wcm/scaffolding/components/scaffolding">
+        sling:resourceType="searspartsdirect/components/scaffolding/namedNodeScaffolding">
         <dialog/>
     </jcr:content>
 </jcr:root>

@@ -16,7 +16,7 @@
         <guidesRelations jcr:primaryType="cq:Widget"
         	fieldLabel="Related Guide Pages"
         	name="./relatedGuides"
-        	treeRootPath="/content/searspartsdirect/en/guides"
+        	treeRootPath="/content/searspartsdirect/en/repair-guide"
         	xtype="pagemapper"/>
         
 	</items>
