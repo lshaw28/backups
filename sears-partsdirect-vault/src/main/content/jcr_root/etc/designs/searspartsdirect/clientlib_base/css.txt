@@ -18,6 +18,7 @@ comp.globalHeader.less
 comp.maincarousel.less
 comp.manualshelp.less
 comp.sidebarlinks.less
+core.svgIcons.less
 resp.tablet.less
 resp.mobile.less
 

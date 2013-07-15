@@ -1,0 +1,129 @@
+@import "base.variables.less";
+@import "base.mixins.less";
+
+// # Shared Styles
+[class^="svg-icon-"], [class*=" svg-icon-"] {
+	background-position: center center;
+	background-repeat: no-repeat;
+	.backgroundSize(contain);
+	display: inline-block;
+	min-height: 20px;
+	min-width: 20px;
+
+	&:before {
+		text-indent: -9999px;
+	}
+}
+// # All initial icons are square
+.svg-icon-chainsaw {
+	background-image: url(../img/svg/Icon-Chainsaw.svg);
+
+	&:before {
+		content: 'Chainsaw';
+	}
+}
+.svg-icon-dishwasher {
+	background-image: url(../img/svg/Icon-Dishwasher.svg);
+
+	&:before {
+		content: 'Dishwasher';
+	}
+}
+.svg-icon-dryer-gaselectric {
+	background-image: url(../img/svg/Icon-Dryer-GasElectric.svg);
+
+	&:before {
+		content: 'Dryer';
+	}
+}
+.svg-icon-er {
+	background-image: url(../img/svg/Icon-ER.svg);
+
+	&:before {
+		content: 'Error';
+	}
+}
+.svg-icon-garagedooropener {
+	background-image: url(../img/svg/Icon-GarageDoorOpener.svg);
+
+	&:before {
+		content: 'Garage Door Opener';
+	}
+}
+.svg-icon-grasslinetrimmer {
+	background-image: url(../img/svg/Icon-GrasslineTrimmer.svg);
+
+	&:before {
+		content: 'Grass Line Trimmer';
+	}
+}
+.svg-icon-grill {
+	background-image: url(../img/svg/Icon-Grill.svg);
+
+	&:before {
+		content: 'Grill';
+	}
+}
+.svg-icon-lawnmower-riding {
+	background-image: url(../img/svg/Icon-Lawnmower-Riding.svg);
+
+	&:before {
+		content: 'Riding Lawnmower';
+	}
+}
+.svg-icon-lawnmower-walkbehind {
+	background-image: url(../img/svg/Icon-Lawnmower-WalkBehind.svg);
+
+	&:before {
+		content: 'Walk-Behind Lawnmower';
+	}
+}
+.svg-icon-oven-gaselectric {
+	background-image: url(../img/svg/Icon-Oven-GasElectric.svg);
+
+	&:before {
+		content: 'Gas/Electric Oven';
+	}
+}
+.svg-icon-range-gaselectric {
+	background-image: url(../img/svg/Icon-Range-GasElectric.svg);
+
+	&:before {
+		content: 'Gas/Electric Range';
+	}
+}
+.svg-icon-refrigerator {
+	background-image: url(../img/svg/Icon-Refrigerator.svg);
+
+	&:before {
+		content: 'Refrigerator';
+	}
+}
+.svg-icon-snowblower {
+	background-image: url(../img/svg/Icon-SnowBlower.svg);
+
+	&:before {
+		content: 'Snowblower';
+	}
+}
+.svg-icon-vacuum {
+	background-image: url(../img/svg/Icon-Vacuum.svg);
+
+	&:before {
+		content: 'Vacuum';
+	}
+}
+.svg-icon-washer-frontload {
+	background-image: url(../img/svg/Icon-Washer-FrontLoad.svg);
+
+	&:before {
+		content: 'Front-Loading Washer';
+	}
+}
+.svg-icon-washer-topload {
+	background-image: url(../img/svg/Icon-Washer-TopLoad.svg);
+
+	&:before {
+		content: 'Top-Loading Washer';
+	}
+}
