@@ -480,12 +480,6 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelSymptomsTag</tag-class>
 		<info>Gets the model symptom data</info>
 		<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
 			<name>brandName</name>
 			<type>java.lang.String</type>
 			<required>true</required>
@@ -510,6 +504,35 @@
 		<info>Gets the list of Guides for a category</info>
 			<attribute>
 			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>getPartsLinkTag</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetPartsLinkTag</tag-class>
+		<info>Gets the part link url for the functional site</info>
+		<attribute>
+			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>brandName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>modelNumber</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>categoryName</name>
 			<type>java.lang.String</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
