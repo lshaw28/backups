@@ -1,6 +1,8 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,6 +20,8 @@ import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectAPIHelper;
 import com.spd.cq.searspartsdirect.common.model.PartModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 @SuppressWarnings("serial")
 public class GetTopPartsTag extends CQBaseTag {
@@ -28,11 +32,11 @@ public class GetTopPartsTag extends CQBaseTag {
 	
 	public static final String NO_IMAGE_URL = Constants.ident("http://c.searspartsdirect.com/pd-web-consumer-3.112.20130618-05/assets/img/images/no_part.gif");
 	
-	protected static Logger log = LoggerFactory.getLogger(GetTopPartsTag.class);
+	protected static final Logger log = LoggerFactory.getLogger(GetTopPartsTag.class);
 	
-	private String modelName;
-	private String brandName;
-	private String categoryName;
+	private String model;
+	private BrandModel brand;
+	private ProductCategoryModel category;
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -53,16 +57,16 @@ public class GetTopPartsTag extends CQBaseTag {
 		return EVAL_PAGE;
 	}
 
-	public void setModelName(String modelName) {
-		this.modelName = modelName;
+	public void setModel(String model) {
+		this.model = model;
 	}
 
-	public void setBrandName(String brandName) {
-		this.brandName = brandName;
+	public void setBrand(BrandModel brand) {
+		this.brand = brand;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setCategory(ProductCategoryModel category) {
+		this.category = category;
 	}
 	
 	String buildUrl() {
@@ -70,16 +74,31 @@ public class GetTopPartsTag extends CQBaseTag {
 		// ?modelNumber=123-848F401
 		// &modelBrandId=0736
 		// &modelCategoryId=1500600
-		if (StringUtils.isNotBlank(modelName) 
+		String brandName = null;
+		if (brand != null) {
+			brandName = brand.getTitle();
+		}
+		String categoryName = null;
+		if (category != null) {
+			categoryName = category.getTitle();
+		}
+		if (StringUtils.isNotBlank(model) 
 					&& StringUtils.isNotBlank(brandName) 
 					&& StringUtils.isNotBlank(categoryName)
 				) {
 			StringBuilder url = new StringBuilder(EnvironmentSettings.getPDTopPartsApiUrl());
-			url.append("?"+MODEL_NAME+"="+modelName);
-			url.append("&"+BRAND_NAME+"="+brandName);
-			url.append("&"+CATEGORY_NAME+"="+categoryName);
+			try {
+				url.append("?"+MODEL_NAME+"="+URLEncoder.encode(model,Constants.ENCODING));
+				url.append("&"+BRAND_NAME+"="+URLEncoder.encode(brandName,Constants.ENCODING));
+				url.append("&"+CATEGORY_NAME+"="+URLEncoder.encode(categoryName,Constants.ENCODING));
+			} catch (UnsupportedEncodingException e) {
+				log.error("Java is Broken!!! UTF-8 no longer supported!!!");
+				return null;
+			}
+			log.debug("Top Parts API call URL is "+url);
 			return url.toString();
 		} else {
+			log.debug("Did not construct a URL from "+brandName+","+categoryName+","+model);
 			return null;
 		}
 	}

@@ -18,13 +18,15 @@ import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.PartModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 public class GetTopPartsTagTest extends MocksTag {
 
 	private GetTopPartsTag tag;
 
-	private final static String TEST_BRAND = "kenmore";
-	private final static String TEST_CATEGORY = "dishwasher";
+	private final static BrandModel TEST_BRAND = new BrandModel("kenmore", null, "Kenmore", null, null);
+	private final static ProductCategoryModel TEST_CATEGORY = new ProductCategoryModel("dishwasher", null, "Dishwasher", null, null, null, null, null);
 	private final static String TEST_MODEL = "66517722k900";
 	
 	private final static String FIAT_JSON = "[{\"partName\":null,\"imageURL\":\"http://s.sears.com/is/image/Sears/PD_0071_247_736-0242\",\"partDesc\":\"Bell Washer\",\"partDetailsPageURL\":\"http://www.searspartsdirect.com/partsdirect/part-number/736-0242/0071/247\"},{\"partName\":null,\"imageURL\":\"http://s.sears.com/is/image/Sears/PD_0071_247_736-0242\",\"partDesc\":\"Bell Washer\",\"partDetailsPageURL\":\"http://www.searspartsdirect.com/partsdirect/part-number/736-0242/0071/247\"},{\"partName\":null,\"imageURL\":\"http://s.sears.com/is/image/Sears/PD_0071_247_736-0242\",\"partDesc\":\"Bell Washer\",\"partDetailsPageURL\":\"http://www.searspartsdirect.com/partsdirect/part-number/736-0242/0071/247\"},{\"partName\":null,\"imageURL\":\"\",\"partDesc\":\"Screw\",\"partDetailsPageURL\":\"http://www.searspartsdirect.com/partsdirect/part-number/710-0599/0071/247\"},{\"partName\":null,\"imageURL\":\"\",\"partDesc\":\"Screw\",\"partDetailsPageURL\":\"http://www.searspartsdirect.com/partsdirect/part-number/710-0599/0071/247\"}]";
@@ -45,9 +47,9 @@ public class GetTopPartsTagTest extends MocksTag {
 	
 	@Test
 	public void testDoStartTagWithIds() throws JspException {
-		tag.setModelName(TEST_MODEL);
-		tag.setBrandName(TEST_BRAND);
-		tag.setCategoryName(TEST_CATEGORY);
+		tag.setModel(TEST_MODEL);
+		tag.setBrand(TEST_BRAND);
+		tag.setCategory(TEST_CATEGORY);
 		runsSkipsBodyEvalsPage();
 		@SuppressWarnings("unchecked")
 		List<PartModel> topParts = (List<PartModel>)pageContext.getAttribute("topParts");
@@ -56,7 +58,7 @@ public class GetTopPartsTagTest extends MocksTag {
 	
 	@Test
 	public void testDoStartTagWithOnlyModel() throws JspException {
-		tag.setModelName(TEST_MODEL);
+		tag.setModel(TEST_MODEL);
 		runsSkipsBodyEvalsPage();
 		@SuppressWarnings("unchecked")
 		List<PartModel> topParts = (List<PartModel>)pageContext.getAttribute("topParts");
@@ -65,8 +67,8 @@ public class GetTopPartsTagTest extends MocksTag {
 	
 	@Test
 	public void testDoStartTagWithoutCategory() throws JspException {
-		tag.setModelName(TEST_MODEL);
-		tag.setBrandName(TEST_BRAND);
+		tag.setModel(TEST_MODEL);
+		tag.setBrand(TEST_BRAND);
 		runsSkipsBodyEvalsPage();
 		@SuppressWarnings("unchecked")
 		List<PartModel> topParts = (List<PartModel>)pageContext.getAttribute("topParts");
