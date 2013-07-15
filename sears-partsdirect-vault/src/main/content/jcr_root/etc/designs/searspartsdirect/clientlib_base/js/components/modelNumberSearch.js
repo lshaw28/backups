@@ -11,7 +11,6 @@ var modelNumberSearch = Class.extend(function () {
 			// Parameters
 			this.el = $(el);
 			// Properties
-			this.GUID = '';
 			this.inputField = null;
 			this.inputHelp = '';
 			this.inputHelpMobile = '';
@@ -30,9 +29,6 @@ var modelNumberSearch = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils;
 
-			// GUID and Instance
-			self.GUID = su.getGUID();
-			window['mns' + self.GUID + 'sr'] = self.searchResponse;
 			// Input field
 			self.inputField = $('input[type="text"]', self.el);
 			self.inputHelp = self.inputField.data('inputhelp');
@@ -62,13 +58,15 @@ var modelNumberSearch = Class.extend(function () {
 					url: searchAddress,
 					async: false,
 					contentType: 'application/json',
-					dataType: 'jsonp',
-					jsonpCallback: 'mns' + self.GUID + 'sr',
+					dataType: 'JSON',
 					data: {
 						modelNumber: searchTerm
 					},
 					success: function (data) {
 						self.searchResponse(data);
+					},
+					fail: function (e) {
+						self.displayMessage('We were unable to complete your search.', 'error');
 					}
 				});
 			} else {
@@ -116,10 +114,10 @@ var modelNumberSearch = Class.extend(function () {
 
 			// Check the data object
 			if (su.validString(data.brandName) !== '') {
-				brandName = encodeUriComponent(data.brandName);
-				categoryName = encodeUriComponent(data.categoryName);
-				modelNumber = encodeUriComponent(data.modelNumber);
-				modelUrl = encodeUriComponent(data.modelUrl);
+				brandName = encodeUriComponent(su.validString(data.brandName));
+				categoryName = encodeUriComponent(su.validString(data.categoryName));
+				modelNumber = encodeUriComponent(su.validString(data.modelNumber));
+				modelUrl = encodeUriComponent(su.validString(data.modelUrl));
 
 				query += '?brand=' + brandName;
 				query += '&category=' + categoryName;
