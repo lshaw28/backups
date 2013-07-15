@@ -7,7 +7,8 @@
 <spd:getUrlRelation relationType="brand" />
 <spd:getUrlRelation relationType="model" />
 
-<a href="/content/searspartsdirect/en/${brandRelation.title}/${productCategoryRelation.title}/model-${modelRelation}-repair.html">Return to Repair help for model #${modelRelation}</a>
+<c:set var="modelRepairUrl" value="/content/searspartsdirect/en/${brandRelation.trueName}/${productCategoryRelation.trueName}/model-${modelRelation}-repair.html"/>
+<a href="${modelRepairUrl}">Return to Repair help for model #${modelRelation}</a>
 <h1>${modelSymptom.symptomModel.title}</h1>
 <p>${modelSymptom.symptomModel.description}</p>
 
