@@ -49,8 +49,6 @@ public class GetModelHeaderTag extends CQBaseTag {
 		ExternalLinkModel repairHelp = new ExternalLinkModel("#","Repair Help");
 		if (pseudoTabs.size() > 0) {
 			pseudoTabs.add(pseudoTabs.size() - 1, repairHelp);
-		} else {
-			pseudoTabs.add(repairHelp);
 		}
 		
 		pageContext.setAttribute("pseudoTabs", pseudoTabs);
