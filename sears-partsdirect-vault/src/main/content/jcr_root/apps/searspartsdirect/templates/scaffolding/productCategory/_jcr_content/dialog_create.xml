@@ -12,6 +12,7 @@
                     fieldLabel="Category True Name"
                     allowBlank="false"
                     blankText="True name is required"
+                    maxLength="20"
                     regex="/^[a-z][a-z0-9_]*$/"
                     regexText="True name must be all lowercase, and may also contain (but not start with) digits or underscores"
                     name=":nameHint"/>
