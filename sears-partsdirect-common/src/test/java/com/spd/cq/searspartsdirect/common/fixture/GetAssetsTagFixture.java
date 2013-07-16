@@ -25,9 +25,28 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 public class GetAssetsTagFixture {
 	
 	private PageManager pageManager;
+	private ResourceResolver rr;
 	
-	public GetAssetsTagFixture(ResourceResolver rr, PageManager pageManager) throws RepositoryException {
+	public GetAssetsTagFixture(ResourceResolver rr, PageManager pageManager) {
 		this.pageManager = pageManager;
+		this.rr = rr;
+	}
+	
+	public void setUpTestHits() throws RepositoryException {
+		List<Hit> hits = makeEmptyHits();
+		for (int i = 0; i < 3; i++) {
+			hits.add(makeTestHitPage(i));
+		}
+	}
+	
+	public void setUpExplodingHits() throws RepositoryException {
+		List<Hit> hits = makeEmptyHits();
+		for (int i = 0; i < 3; i++) {
+			hits.add(makeExplodingHitPage(i));
+		}
+	}
+	
+	List<Hit> makeEmptyHits() {
 		QueryBuilder qb = mock(QueryBuilder.class);
 		when(rr.adaptTo(QueryBuilder.class)).thenReturn(qb);
 		Session s = mock(Session.class);
@@ -37,17 +56,27 @@ public class GetAssetsTagFixture {
 		SearchResult sr = mock(SearchResult.class);
 		when(q.getResult()).thenReturn(sr);
 		List<Hit> hits = new ArrayList<Hit>();
-		for (int i = 0; i < 3; i++) {
-			hits.add(makeTestHitPage(i));
-		}
 		when(sr.getHits()).thenReturn(hits);
+		return hits;
 	}
 	
 	Hit makeTestHitPage(int i) throws RepositoryException {
+		String hitPath = "/hit"+i;
+		Hit hit = makeProtoHit(hitPath);
+		when(hit.getPath()).thenReturn(hitPath);
+		return hit;
+	}
+	
+	Hit makeExplodingHitPage(int i) throws RepositoryException {
+		String hitPath = "/hit"+i;
+		Hit hit = makeProtoHit(hitPath);
+		when(hit.getPath()).thenThrow(new RepositoryException());
+		return hit;
+	}
+	
+	Hit makeProtoHit(String hitPath) {
 		Hit hit = mock(Hit.class);
 		Page page = mock(Page.class);
-		String hitPath = "/hit"+i;
-		when(hit.getPath()).thenReturn(hitPath);
 		when(page.getPath()).thenReturn(hitPath);
 		ValueMap properties = mock(ValueMap.class);
 		when(page.getProperties()).thenReturn(properties);
@@ -55,4 +84,6 @@ public class GetAssetsTagFixture {
 		when(pageManager.getPage(hitPath)).thenReturn(page);
 		return hit;
 	}
+
+
 }

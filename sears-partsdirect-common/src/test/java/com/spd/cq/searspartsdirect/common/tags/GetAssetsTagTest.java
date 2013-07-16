@@ -8,6 +8,7 @@ import static org.hamcrest.Matchers.isA;
 
 import java.util.List;
 
+import javax.jcr.RepositoryException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.junit.Before;
@@ -29,7 +30,8 @@ public class GetAssetsTagTest extends MocksTag {
 	}
 
 	@Test
-	public void testAllAssetTypesAllFilters() {
+	public void testAllAssetTypesAllFilters() throws RepositoryException {
+		fixture.setUpTestHits();
 		try {
 			for (AssetType type : AssetType.values()) {
 				tag.setPageContext(pageContext);
@@ -53,7 +55,33 @@ public class GetAssetsTagTest extends MocksTag {
 	}
 	
 	@Test
-	public void testAllAssetTypesNoFilters() {
+	public void testAllAssetTypesAllExploding() throws RepositoryException {
+		fixture.setUpExplodingHits();
+		try {
+			for (AssetType type : AssetType.values()) {
+				tag.setPageContext(pageContext);
+				tag.setAssetType(type.toString());
+				tag.setBrandFilter("Acme");
+				tag.setProductCategoryFilter("Portable holes");
+				tag.setTagFilter("Freeze");
+				tag.setAuthorFilter("Staff");
+				int startResult = tag.doStartTag();
+				assertThat(startResult,is(TagSupport.SKIP_BODY));
+				int endResult = tag.doEndTag();
+				assertThat(endResult,is(TagSupport.EVAL_PAGE));
+				@SuppressWarnings("unchecked")
+				List<Object> result = (List<Object>)pageContext.getAttribute(type.toString()+"List");
+				assertThat(result,isA(List.class));
+				assertThat(result,hasSize(0));
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testAllAssetTypesNoFilters() throws RepositoryException {
+		fixture.setUpTestHits();
 		try {
 			for (AssetType type : AssetType.values()) {
 				tag.setPageContext(pageContext);
