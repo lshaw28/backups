@@ -4,9 +4,6 @@ bootstrap.min.js
 modernizr.custom.50282-2.6.2.min.js
 plugins/regula-1.2.3.min.js
 Class.js
-Utilities.js
-DocumentReady.js
-WindowResize.js
 core/Namespace.js
 fx/Easing.js
 fx/Translate3d.js
@@ -24,6 +21,9 @@ src/Carousel.js
 widgets/DesktopCarousel.js
 widgets/TouchCarousel.js
 widgets/ResponsiveTable.js
+Utilities.js
+DocumentReady.js
+WindowResize.js
 
 #base=js/components/.
 cartNav.js

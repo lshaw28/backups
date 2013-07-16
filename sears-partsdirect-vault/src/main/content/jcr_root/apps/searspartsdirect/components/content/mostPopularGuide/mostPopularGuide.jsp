@@ -49,7 +49,7 @@
 											${difficultyLevel}
 										</div>
 									</div>
-									<div class="pull-right time-required">
+									<div class="pull-left time-required">
 										<strong>Time required</strong>
 										<div>
 											${timeRequired}
