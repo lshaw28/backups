@@ -25,7 +25,20 @@
 	<p>${jobCode.description}</p>
 
 	<c:set var="recommendedParts" value="${jobCodeParts[jobCode.id]}" scope="request" />
-	<cq:include path="displayRecommendedParts" resourceType="searspartsdirect/components/content/displayRecommendedParts" />
+	<c:choose>
+		<c:when test="${not empty recommendedParts}">
+			<cq:include path="displayRecommendedParts" resourceType="searspartsdirect/components/content/displayRecommendedParts" />
+		</c:when>
+		<c:otherwise>
+			<!--  no parts found then show the following block -->
+			<spd:getPartsLinkTag brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}"/>
+			<c:if test="${not empty findPartUrl && not empty jobCode.partTypeModel}">
+				<p>
+					<a href="${findPartUrl}">Find ${jobCode.partTypeModel.title} in this model</a>
+				</p>
+			</c:if>
+		</c:otherwise>
+	</c:choose>
 
 	<!--  Guides:- -->
 	<c:if test="${not empty jobCode.guides}">
@@ -35,13 +48,6 @@
 		</c:forEach>
 	</c:if>
 
-	<!--  no parts found then show the following block -->
-	<spd:getPartsLinkTag brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}"/>
-	<c:if test="${not empty findPartUrl && not empty jobCode.partTypeModel}">
-		<p>
-			<a href="${findPartUrl}">Find ${jobCode.partTypeModel.title} in this model</a>
-		</p>
-	</c:if>
 </c:forEach>
 
 
