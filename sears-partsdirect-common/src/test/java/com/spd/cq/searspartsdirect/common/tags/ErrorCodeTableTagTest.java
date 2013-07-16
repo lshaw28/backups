@@ -5,7 +5,7 @@ import javax.servlet.jsp.JspException;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.mockito.Mockito;
+
 
 import com.spd.cq.searspartsdirect.common.fixture.ErrorCodesFixture;
 import com.spd.cq.searspartsdirect.common.model.ErrorCodeTableModel;
@@ -18,12 +18,11 @@ public class ErrorCodeTableTagTest extends MocksTag {
 	protected void setUp() throws Exception {
 		super.setUp();
 		fixture = new ErrorCodesFixture();
-		Mockito.when(properties.get("errorCodeTable",new String[0])).thenReturn(fixture.getJSONData());
-		Mockito.when(properties.get("codeType", String.class)).thenReturn(fixture.getCodeType());
 	}
 	
 	@Test
 	public void testDoStartTag() throws JspException {
+		fixture.setUpProperties(properties);
 		ErrorCodeTableTag tag = new ErrorCodeTableTag();
 		tag.setPageContext(pageContext);
 		tag.doStartTag();
@@ -36,5 +35,13 @@ public class ErrorCodeTableTagTest extends MocksTag {
 		
 		Assert.assertNotNull(model);
 		Assert.assertTrue(model.getErrorCodes().size() > 0);
+	}
+	
+	@Test
+	public void testDoStartTagNoProperties() throws JspException {
+		ErrorCodeTableTag tag = new ErrorCodeTableTag();
+		tag.setPageContext(pageContext);
+		tag.doStartTag();
+		tag.doEndTag();
 	}
 }
