@@ -8,6 +8,8 @@ import static org.hamcrest.Matchers.isA;
 
 import java.util.List;
 
+import javax.jcr.RepositoryException;
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.junit.Before;
@@ -26,73 +28,65 @@ public class GetRelatedArticlesTagTest extends MocksTag {
 		fixture = new GetRelatedItemsFixture(pageManager);
 		tag = new GetRelatedArticlesTag();
 	}
+	
+	@Test
+	public void testNothing() throws JspException {
+		runsSkipsBodyEvalsPage();
+		
+		List<Object> result = (List<Object>)pageContext.getAttribute("articles");
+		assertThat(result,isA(List.class));
+		assertThat(result,is(empty()));
+	}
 
 	@Test
-	public void testNoHits() {
-		try {
-				fixture.makeNHits(0, resourceResolver);
-				tag.setPageContext(pageContext);
-				tag.setCategoryPath("/content/searspartsdirect/en/somepage");
-				
-				int startResult = tag.doStartTag();
-				assertThat(startResult,is(TagSupport.SKIP_BODY));
-				int endResult = tag.doEndTag();
-				assertThat(endResult,is(TagSupport.EVAL_PAGE));
-				
-				List<Object> result = (List<Object>)pageContext.getAttribute("articles");
-				assertThat(result,isA(List.class));
-				assertThat(result,is(empty()));
-				
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	public void testNoHits() throws RepositoryException, JspException {
+		
+		fixture.makeNHits(0, resourceResolver);
+		
+		tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+		
+		runsSkipsBodyEvalsPage();
+		
+		List<Object> result = (List<Object>)pageContext.getAttribute("articles");
+		assertThat(result,isA(List.class));
+		assertThat(result,is(empty()));
 	}
 	
 	@Test
-	public void testTwoHits() {
-		try {
-				fixture.makeNHits(2, resourceResolver);
+	public void testTwoHits() throws RepositoryException, JspException {
+		
+		fixture.makeNHits(2, resourceResolver);
 
-				tag.setPageContext(pageContext);
-				tag.setCategoryPath("/content/searspartsdirect/en/somepage");
-				
-				int startResult = tag.doStartTag();
-				assertThat(startResult,is(TagSupport.SKIP_BODY));
-				int endResult = tag.doEndTag();
-				assertThat(endResult,is(TagSupport.EVAL_PAGE));
-				
-				@SuppressWarnings("unchecked")
-				List<Object> result = (List<Object>)pageContext.getAttribute("articles");
-				assertThat(result,isA(List.class));
-				assertThat(result,hasSize(2));
-				
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+		
+		runsSkipsBodyEvalsPage();
+		
+		@SuppressWarnings("unchecked")
+		List<Object> result = (List<Object>)pageContext.getAttribute("articles");
+		assertThat(result,isA(List.class));
+		assertThat(result,hasSize(2));
 	}
 
 	@Test
-	public void testFiveHits() {
-		try {
-			
-				fixture.makeNHits(5, resourceResolver);
+	public void testFiveHits() throws RepositoryException, JspException {
+		
+		fixture.makeNHits(5, resourceResolver);
 
-				tag.setPageContext(pageContext);
-				tag.setCategoryPath("/content/searspartsdirect/en/somepage");
-				
-				int startResult = tag.doStartTag();
-				assertThat(startResult,is(TagSupport.SKIP_BODY));
-				int endResult = tag.doEndTag();
-				assertThat(endResult,is(TagSupport.EVAL_PAGE));
-				
-				@SuppressWarnings("unchecked")
-				List<Object> result = (List<Object>)pageContext.getAttribute("articles");
-				assertThat(result,isA(List.class));
-				assertThat(result,hasSize(4));
-				
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+		
+		runsSkipsBodyEvalsPage();
+		
+		@SuppressWarnings("unchecked")
+		List<Object> result = (List<Object>)pageContext.getAttribute("articles");
+		assertThat(result,isA(List.class));
+		assertThat(result,hasSize(4)); // not 5.
+	} 
+
+	private void runsSkipsBodyEvalsPage() throws JspException {
+		tag.setPageContext(pageContext);
+		int startResult = tag.doStartTag();
+		assertThat(startResult,is(TagSupport.SKIP_BODY));
+		int endResult = tag.doEndTag();
+		assertThat(endResult,is(TagSupport.EVAL_PAGE));
 	}
-
 }
