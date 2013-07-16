@@ -108,7 +108,7 @@ public class GetTopPartsTag extends CQBaseTag {
 		String jsonString = null;
 		
 		try {
-			jsonString = apiHelper.readJsonData(apiUrl.toString());
+			jsonString = apiHelper.readJsonData(apiUrl);
 		} catch (IOException e) {
 			log.error("reading from "+apiUrl+", ", e);
 		}
