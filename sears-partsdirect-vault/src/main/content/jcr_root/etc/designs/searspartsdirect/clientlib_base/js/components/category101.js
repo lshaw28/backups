@@ -45,20 +45,12 @@ var category101 = Class.extend(function () {
 		 */
 		bindEvent: function () {
 			var self = this;
-
-			// Window resize and orientation change
-			// @TODO: Use Matt's responsive helper to bind
-			$(window).resize(function () {
-				self.toggleAccordion();
-			})
-			.bind('orientationchange', function () {
+			
+			shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
 				self.toggleAccordion();
 			});
 
-			self.isBound = true;
+			this.isBound = true;
 		}
-                        
-
-                        
-        }
+	}
 }());

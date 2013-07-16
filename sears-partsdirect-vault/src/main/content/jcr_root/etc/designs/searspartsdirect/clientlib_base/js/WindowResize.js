@@ -4,7 +4,7 @@
 	/**
 	 * Global functionality instantiation
 	 */
-	$(window).resize(function () {
+	shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
 		/**
 		 * Input help text listeners
 		 */
