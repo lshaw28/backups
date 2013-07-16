@@ -111,12 +111,10 @@ public class ModelSubPageFilter implements Filter {
         if (mustForward) {
         	String forwardUrl = addSelectors(authorPrepend + resPath,Constants.MARKUP_EXT,selectors);
         	RequestDispatcher requestDispatcher = request.getRequestDispatcher(forwardUrl);
-        	if (requestDispatcher != null) { // afaik this is canthappen outside of tests.
+        	
         	log.debug("Forwarding to "+forwardUrl);
         	requestDispatcher.forward(request, response);
-        	} else {
-        		throw new RuntimeException("No dispatcher for "+forwardUrl);
-        	}
+        	
         } else {
         	fc.doFilter(request, response);
         }
