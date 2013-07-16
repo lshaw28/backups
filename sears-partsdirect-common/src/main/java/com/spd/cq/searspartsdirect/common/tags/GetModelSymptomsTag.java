@@ -1,5 +1,6 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -72,7 +73,9 @@ public class GetModelSymptomsTag extends CQBaseTag {
 								Page p = pageManager.getPage(hit.getPath());
 								if (props != null) {
 									SymptomModel symptomModel  = new SymptomModel(p.getPath(), props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("id", String.class));
-									symptomModel.setFrequency(Math.round(subcomponents.getSymptomsArr()[i].getSuccessfulFrequency().doubleValue()));
+									if (subcomponents.getSymptomsArr()[i].getSuccessfulFrequency() != null) {
+										symptomModel.setFrequency(Math.round(subcomponents.getSymptomsArr()[i].getSuccessfulFrequency().doubleValue()));
+									}
 									symptoms.add(symptomModel);
 								}
 					       } catch (RepositoryException e) {

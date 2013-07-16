@@ -43,7 +43,7 @@ public class SymptomModel {
 		this.path = path;
 	}
 
-	public double getFrequency() {
+	public long getFrequency() {
 		return frequency;
 	}
 
