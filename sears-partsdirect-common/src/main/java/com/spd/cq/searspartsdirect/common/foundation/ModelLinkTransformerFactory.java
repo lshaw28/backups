@@ -57,15 +57,19 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
                 try{
                     String href = attributes.getValue("href");
                     if (href != null && href.startsWith("/") && href.indexOf(".html") >0) {
-                    	StringBuilder sb = new StringBuilder();
-                    	sb.append("/").append(m.group(1)).append("/").append(m.group(2));
-                    	sb.append("/").append("model-" + m.group(3) + "-repair");
-                    	sb.append(href);
-                    	href = sb.toString();
-                    	for (int i = 0; i<attributes.getLength(); i++) {
-                            if (attributes.getQName(i).equalsIgnoreCase("href")) {
-                                attributes.setValue(i, href);
-                            }
+                        Pattern p = Pattern.compile("/([^/]*)/([^/]*)/model-([^-]*)-repair(.*)");
+                    	Matcher linkMatch = p.matcher(href);
+                    	if (!linkMatch.find()) {
+	                    	StringBuilder sb = new StringBuilder();
+	                    	sb.append("/").append(m.group(1)).append("/").append(m.group(2));
+	                    	sb.append("/").append("model-" + m.group(3) + "-repair");
+	                    	sb.append(href);
+	                    	href = sb.toString();
+	                    	for (int i = 0; i<attributes.getLength(); i++) {
+	                            if (attributes.getQName(i).equalsIgnoreCase("href")) {
+	                                attributes.setValue(i, href);
+	                            }
+	                    	}
                     	}
                     }
                 } catch (Exception e){
