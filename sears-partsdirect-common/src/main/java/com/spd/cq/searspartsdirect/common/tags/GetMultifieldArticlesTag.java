@@ -6,6 +6,7 @@ import java.util.List;
 import javax.jcr.Node;
 import javax.servlet.jsp.JspException;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.commons.json.JSONObject;
@@ -26,7 +27,7 @@ public class GetMultifieldArticlesTag extends CQBaseTag {
 		ArrayList<CategoryModel> articles = new ArrayList<CategoryModel>();
 		List<Page> pages = new ArrayList<Page>();
 		ValueMap assetProperties = null;
-		if(!categoryPath.isEmpty()){ // check that categoryPath is not empty b/c page blows up otherwise
+		if(StringUtils.isNotEmpty(categoryPath)){ // check that categoryPath is not empty b/c page blows up otherwise
 			assetProperties = pageManager.getPage(categoryPath).getProperties();
 		}
 		

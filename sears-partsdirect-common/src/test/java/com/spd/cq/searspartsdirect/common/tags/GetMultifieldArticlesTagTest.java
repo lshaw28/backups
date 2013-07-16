@@ -1,9 +1,18 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import java.util.List;
+
+import javax.jcr.RepositoryException;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.TagSupport;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetMultifieldArticlesTagFixture;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 public class GetMultifieldArticlesTagTest  extends MocksTag {
 	
@@ -18,35 +27,39 @@ public class GetMultifieldArticlesTagTest  extends MocksTag {
 	}
 
 	@Test
-	public void testTag() {
-		assertTrue(true);
+	public void testTagNoSetup() throws JspException {
+		runsSkipsBodyEvalsPage();
 	}
 	
-//	@Test
-//	public void testDoStartTagNoPages() throws JspException {
-//		runsSkipsBodyEvalsPage();
-//		@SuppressWarnings("unchecked")
-//		List<Object> result = (List<Object>)pageContext.getAttribute("categories");
-//		assertNull(result);
-////			assertThat(result,isA(List.class));
-////			assertThat(result,hasSize(3));			
-//	}
-//	
-//	@Test
-//	public void testDoStartTagWithPages() throws JspException, RepositoryException {
-//		fixture.setUpTestPages();
-//		runsSkipsBodyEvalsPage();
-//		@SuppressWarnings("unchecked")
-//		List<Object> result = (List<Object>)pageContext.getAttribute("categories");
-//		assertThat(result,isA(List.class));
-//		assertThat(result,hasSize(5));			
-//	}
-//
-//	private void runsSkipsBodyEvalsPage() throws JspException {
-//		tag.setPageContext(pageContext);
-//		int startResult = tag.doStartTag();
-//		assertThat(startResult,is(TagSupport.SKIP_BODY));
-//		int endResult = tag.doEndTag();
-//		assertThat(endResult,is(TagSupport.EVAL_PAGE));
-//	}
+	@Test
+	public void testDoStartTagNoPages() throws JspException {
+		tag.setCategoryPath(fixture.getCategoryPath());
+		runsSkipsBodyEvalsPage();
+		@SuppressWarnings("unchecked")
+		List<Object> result = (List<Object>)pageContext.getAttribute("articles");
+		assertNull(result);			
+	}
+	
+	@Test
+	public void testDoStartTagWithPages() throws JspException, RepositoryException {
+		fixture.setUpTestPages();
+		tag.setCategoryPath(fixture.getCategoryPath());
+		runsSkipsBodyEvalsPage();
+		@SuppressWarnings("unchecked")
+		List<Object> result = (List<Object>)pageContext.getAttribute("articles");
+		assertThat(result,isA(List.class));
+		assertThat(result,hasSize(5));		
+		String cat101Header = (String)pageContext.getAttribute("category101header");
+		assertThat(cat101Header,is(fixture.getHeader()));
+		String cat101ViewAllLinkText = (String)pageContext.getAttribute("category101linkText");
+		assertThat(cat101ViewAllLinkText,is(fixture.getViewAllLinkText()));
+	}
+
+	private void runsSkipsBodyEvalsPage() throws JspException {
+		tag.setPageContext(pageContext);
+		int startResult = tag.doStartTag();
+		assertThat(startResult,is(TagSupport.SKIP_BODY));
+		int endResult = tag.doEndTag();
+		assertThat(endResult,is(TagSupport.EVAL_PAGE));
+	}
 }
