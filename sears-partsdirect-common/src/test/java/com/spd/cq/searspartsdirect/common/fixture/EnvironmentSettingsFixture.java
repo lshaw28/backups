@@ -33,10 +33,11 @@ public class EnvironmentSettingsFixture {
 		ourHash.put(EnvironmentSettings.PD_JOBCODE_API, EnvironmentSettings.PD_JOBCODE_API);
 		ourHash.put(EnvironmentSettings.PD_TOPPARTS_API, EnvironmentSettings.PD_TOPPARTS_API);
 		ourHash.put(EnvironmentSettings.PD_MODELSUB_API, EnvironmentSettings.PD_MODELSUB_API);
+		ourHash.put(EnvironmentSettings.PD_JOBCODE_PARTS_API, EnvironmentSettings.PD_JOBCODE_PARTS_API);
 		when(componentContext.getProperties()).thenReturn(ourHash);
 		env.externalActivateForTesting(componentContext);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void setUpRealDefaults(EnvironmentSettings env) throws Exception {
 		@SuppressWarnings("rawtypes")
@@ -51,6 +52,7 @@ public class EnvironmentSettingsFixture {
 		ourHash.put(EnvironmentSettings.PD_JOBCODE_API, "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcode/parts");
 		ourHash.put(EnvironmentSettings.PD_TOPPARTS_API, "http://partsapivip.qa.ch3.s.com/pd-services/v1/modelTop/topParts");
 		ourHash.put(EnvironmentSettings.PD_MODELSUB_API, "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/modelInfo");
+		ourHash.put(EnvironmentSettings.PD_JOBCODE_PARTS_API, "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcodelist/partlist");
 		when(componentContext.getProperties()).thenReturn(ourHash);
 		env.externalActivateForTesting(componentContext);
 	}
