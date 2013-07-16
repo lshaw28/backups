@@ -66,7 +66,7 @@ public class GetMostPopularGuideTag extends CQBaseTag{
 
 		}
 		catch (Exception e) {
-
+			log.error("Error finding the most popular guide: " + e.toString());
 		}
 		return SKIP_BODY;
 	}
