@@ -3,12 +3,13 @@ package com.spd.cq.searspartsdirect.common.helpers;
 public final class Constants {
 
 	public static final String EMPTY = "";
-	
+
 	public static final String ENCODING = ident("UTF-8");
 
 	//CQ constants
 	public static final String CQ_PAGE = ident("cq:Page");
 	public static final String CQ_TAG = ident("cq:Tag");
+	public static final String CQ_TEMPLATE = ident("cq:template");
 	public static final String CQ_DEFAULT_ERROR_PAGE = ident("/libs/sling/servlet/errorhandler/default.jsp");
 	public static final String CQ_WCMMODE_REQ_ATTR = ident("com.day.cq.wcm.api.WCMMode");
 
@@ -65,7 +66,8 @@ public final class Constants {
 
 	public static final String AUTHOR_REL_PATH = ident("jcr:content/authors");
 	public static final String TEMPLATE_REL_PATH = ident("jcr:content/cq:template");
-	
+	public static final String ID_REL_PATH = ident("jcr:content/id");
+
 	public static final String GUIDES_REL_PATH = ident("jcr:content/guideDetails");
 
 	public static final String GUIDE_COMMENTS_PATH = ident("/jcr:content/comments");
@@ -129,6 +131,7 @@ public final class Constants {
 
 	// Constants for Templates
 	public static final String ERROR_CODE_TEMPLATE = ident("/apps/searspartsdirect/templates/errorCodesBrands");
+	public static final String REPAIR_GUIDE_TEMPLATE = ident("/apps/searspartsdirect/templates/repairGuide");
 
 
 	/**
