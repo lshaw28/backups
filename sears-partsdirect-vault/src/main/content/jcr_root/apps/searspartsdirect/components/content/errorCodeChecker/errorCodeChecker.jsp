@@ -7,9 +7,8 @@
 	<c:if test="${not empty errorCodeList}">
 		<c:set var="numErrorCodes" value="${fn:length(errorCodeList)}" />
 		<c:set var="catRepairUrl" value="/content/searspartsdirect/en/categories/${productCategoryRelation.trueName}-repair/error-codes.html" />
-
-		<p><c:out value="${productCategoryRelation.title}" /> returning an error code? <a class="new-btn-small" href="${fn:toLowerCase(catRepairUrl)}">
-			View <c:out value="${productCategoryRelation.title}" /> error code<c:if test="${numErrorCodes gt 1}">(s)</c:if>
+		<p><i class="svg-icon-er">&nbsp;</i><span class="divider">&nbsp;</span><c:out value="${productCategoryRelation.title}" /> returning an error code? <a class="new-btn" href="${fn:toLowerCase(catRepairUrl)}">
+			View <c:out value="${productCategoryRelation.title}" /> Error Code<c:if test="${numErrorCodes gt 1}">s</c:if>
 		</a></p>
 	</c:if>
 </c:if>
