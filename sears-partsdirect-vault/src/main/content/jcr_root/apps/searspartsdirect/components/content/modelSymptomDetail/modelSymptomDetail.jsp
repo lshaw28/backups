@@ -23,7 +23,15 @@
 		</c:if>
 	<h3>${jobCode.title}</h3>
 	<p>${jobCode.description}</p>
-
+	
+	<!--  Guides:- -->
+	<c:if test="${not empty jobCode.guides}">
+		<c:forEach var="guide" items="${jobCode.guides}">
+			<spd:linkResolver value="${guide.url}"/>
+			<p><a href="${url}">${guide.title}</a></p>
+		</c:forEach>
+	</c:if>
+	
 	<c:set var="recommendedParts" value="${jobCodeParts[jobCode.id]}" scope="request" />
 	<c:choose>
 		<c:when test="${not empty recommendedParts}">
@@ -39,15 +47,6 @@
 			</c:if>
 		</c:otherwise>
 	</c:choose>
-
-	<!--  Guides:- -->
-	<c:if test="${not empty jobCode.guides}">
-		<c:forEach var="guide" items="${jobCode.guides}">
-			<spd:linkResolver value="${guide.url}"/>
-			<p><a href="${url}">${guide.title}</a></p>
-		</c:forEach>
-	</c:if>
-
 </c:forEach>
 
 
