@@ -1,57 +1,126 @@
 package com.spd.cq.searspartsdirect.common.model;
 
+import java.math.BigDecimal;
+
 import com.google.gson.annotations.SerializedName;
 
 public class JobCodePartModel {
-	
-	@SerializedName("partCompositeKey")
-	private PartCompositeKeyModel partCompositeKey;
-	
-	@SerializedName("priceAndAvailability")
-	private PriceAndAvailabilityModel priceAndAvailability;
-	
+
+	@SerializedName("description")
+	private String name;
+
+	@SerializedName("partNumber")
+	private String number;
+
+	@SerializedName("recoveryFrequency")
+	private float frequency;
+
+	@SerializedName("sellingPrice")
+	private BigDecimal price;
+
+	private boolean available;
+
+	private String availabilityStatus;
+
+	@SerializedName("hasRestriction")
+	private boolean restriction;
+
+	@SerializedName("partDetailUrl")
+	private String url;
+
 	@SerializedName("partImage")
-	private PartImageModel partImage;
-	
-	private String description;
+	private PartImageModel image;
 
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public PartCompositeKeyModel getPartCompositeKey() {
-		return partCompositeKey;
+	public String getNumber() {
+		return number;
 	}
 
-	public void setPartCompositeKey(PartCompositeKeyModel partCompositeKey) {
-		this.partCompositeKey = partCompositeKey;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
-	public PriceAndAvailabilityModel getPriceAndAvailability() {
-		return priceAndAvailability;
+	public float getFrequency() {
+		return frequency;
 	}
 
-	public void setPriceAndAvailability(
-			PriceAndAvailabilityModel priceAndAvailability) {
-		this.priceAndAvailability = priceAndAvailability;
+	public void setFrequency(float frequency) {
+		this.frequency = frequency;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+
+	public String getAvailabilityStatus() {
+
+		if ("INST".equalsIgnoreCase(availabilityStatus)) {
+			return "In stock";
+		} else if ("BORD".equalsIgnoreCase(availabilityStatus)) {
+			return "Back ordered";
+		} else if ("NLA".equalsIgnoreCase(availabilityStatus)) {
+			return "No longer available";
+		} else if ("PNF".equalsIgnoreCase(availabilityStatus)) {
+			return "Part not found";
+		} else {
+			return "";
+		}
+	}
+
+	public void setAvailabilityStatus(String availabilityStatus) {
+		this.availabilityStatus = availabilityStatus;
+	}
+
+	public boolean isRestriction() {
+		return restriction;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public void setRestriction(boolean restriction) {
+		this.restriction = restriction;
+	}
+
+	public PartImageModel getImage() {
+		return image;
+	}
+
+	public void setImage(PartImageModel image) {
+		this.image = image;
 	}
 
 	@Override
 	public String toString() {
-		return "JobCodePart [partCompositeKey=" + partCompositeKey
-				+ ", priceAndAvailability=" + priceAndAvailability
-				+ ", description=" + description + "]";
-	}
-
-	public PartImageModel getPartImage() {
-		return partImage;
-	}
-
-	public void setPartImage(PartImageModel partImage) {
-		this.partImage = partImage;
+		return "[name: " + name
+				+ " || number: " + number
+				+ " || frequency: " + frequency + " || price: " + price
+				+ " || availabilityStatus: " + availabilityStatus
+				+ " || imageUrl: " + image.getUrl()
+				+ " || restriction: " + restriction	+ "]";
 	}
 }

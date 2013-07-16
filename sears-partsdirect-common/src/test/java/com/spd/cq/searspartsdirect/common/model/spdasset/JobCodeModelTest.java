@@ -9,31 +9,36 @@ import org.junit.Test;
 
 public class JobCodeModelTest extends TestCase {
 	private JobCodeModel jobCodeModel;
+	private String id = "id";
 	private String path = "path";
 	private String title = "title";
 	private String description = "description";
+	private String id2 = "id2";
 	private String path2 = "path2";
 	private String title2 = "title2";
 	private String description2 = "description2";
-	
+
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		jobCodeModel = new JobCodeModel(path,title,description);
+		jobCodeModel = new JobCodeModel(id, path, title, description);
 	}
-	
+
 	@Test
 	public void testTagUsage() {
 		try {
-			assertThat(jobCodeModel.getPath(),is(path));
-			assertThat(jobCodeModel.getTitle(),is(title));
-			assertThat(jobCodeModel.getDescription(),is(description));
+			assertThat(jobCodeModel.getId(), is(id));
+			assertThat(jobCodeModel.getPath(), is(path));
+			assertThat(jobCodeModel.getTitle(), is(title));
+			assertThat(jobCodeModel.getDescription(), is(description));
+			jobCodeModel.setId(id2);
 			jobCodeModel.setPath(path2);
 			jobCodeModel.setTitle(title2);
 			jobCodeModel.setDescription(description2);
-			assertThat(jobCodeModel.getPath(),is(path2));
-			assertThat(jobCodeModel.getTitle(),is(title2));
-			assertThat(jobCodeModel.getDescription(),is(description2));
+			assertThat(jobCodeModel.getId(), is(id2));
+			assertThat(jobCodeModel.getPath(), is(path2));
+			assertThat(jobCodeModel.getTitle(), is(title2));
+			assertThat(jobCodeModel.getDescription(), is(description2));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

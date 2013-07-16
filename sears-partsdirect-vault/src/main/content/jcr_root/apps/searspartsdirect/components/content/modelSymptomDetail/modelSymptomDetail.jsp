@@ -9,8 +9,13 @@
 
 <c:set var="modelRepairUrl" value="/content/searspartsdirect/en/${brandRelation.trueName}/${productCategoryRelation.trueName}/model-${modelRelation}-repair.html"/>
 <a href="${modelRepairUrl}">Return to Repair help for model #${modelRelation}</a>
+
+<c:set var="jobCodes" value="${modelSymptom.jobCodeModels}" scope="request" />
+<c:set var="modelNumber" value="${modelRelation}" scope="request" />
+<cq:include path="jobCodePartsFinder" resourceType="searspartsdirect/components/content/jobCodePartsFinder" />
+
 <h1>${modelSymptom.symptomModel.title}</h1>
-<p>${modelSymptom.symptomModel.description}</p>
+<p>${modelSymptom.symptomModel.description} </p>
 
 <c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
 	<c:choose>
@@ -23,6 +28,9 @@
 	</c:choose>
 	<h3>${jobCode.title}</h3>
 	<p>${jobCode.description}</p>
+
+	<c:set var="recommendedParts" value="${jobCodeParts[jobCode.id]}" scope="request" />
+	<cq:include path="displayRecommendedParts" resourceType="searspartsdirect/components/content/displayRecommendedParts" />
 
 	<!--  Guides:- -->
 	<c:if test="${not empty jobCode.guides}">

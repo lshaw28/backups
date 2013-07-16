@@ -6,27 +6,29 @@ import com.spd.cq.searspartsdirect.common.model.GuideModel;
 import com.spd.cq.searspartsdirect.common.model.Part;
 
 public class JobCodeModel {
-	
+
+	private String id;
 	private String title;
 	private String description;
 	private String path;
 	private PartTypeModel partTypeModel;
 	private List<GuideModel> guides;
 	private List<Part> parts;
-	
-	public JobCodeModel(String path, String title, String description) {
+
+	public JobCodeModel(String id, String path, String title, String description) {
+		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.path = path;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
@@ -63,6 +65,14 @@ public class JobCodeModel {
 
 	public void setParts(List<Part> parts) {
 		this.parts = parts;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	@Override

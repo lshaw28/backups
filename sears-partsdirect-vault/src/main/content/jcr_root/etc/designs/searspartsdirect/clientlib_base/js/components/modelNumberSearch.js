@@ -52,7 +52,7 @@ var modelNumberSearch = Class.extend(function () {
 			if (searchTerm !== '' && searchTerm !== self.inputHelp && searchTerm !== self.inputHelpMobile) {
 				// Make an AJAX call
 				$.ajax({
-					type: 'POST',
+					type: 'GET',
 					url: searchAddress,
 					async: false,
 					contentType: 'application/json',
@@ -93,7 +93,7 @@ var modelNumberSearch = Class.extend(function () {
 						self.redirect(data.models[0]);
 						break;
 					default:
-						self.displayMessage('We found multiple results for this search. <a href="' + mainSitePath + '/partsdirect/modelSearch/' + searchTerm + '" target="_blank">View search results</a>', 'success');
+						self.displayMessage('We found multiple results for this search. <a href="' + mainSitePath + '/partsdirect/part-model/' + searchTerm + '" target="_blank">View search results</a>', 'success');
 						break;
 				}
 			} else {
@@ -116,17 +116,17 @@ var modelNumberSearch = Class.extend(function () {
 
 			// Check the data object
 			if (su.validString(data.brandName) !== '') {
-				brandName = encodeUriComponent(su.validString(data.brandName));
-				categoryName = encodeUriComponent(su.validString(data.categoryName));
-				modelNumber = encodeUriComponent(su.validString(data.modelNumber));
-				modelUrl = encodeUriComponent(su.validString(data.modelUrl));
+				brandName = encodeURI(su.validString(data.brandName));
+				categoryName = encodeURI(su.validString(data.categoryName));
+				modelNumber = encodeURI(su.validString(data.modelNumber));
+				modelUrl = encodeURI(su.validString(data.modelURL));
 
 				query += '?brand=' + brandName;
 				query += '&category=' + categoryName;
 				query += '&model=' + modelNumber;
 				query += '&link=' + modelUrl;
 
-				document.location.href = su.getLocationDetails() + modelSearchServletPath + query;
+				document.location.href = su.getLocationDetails().fullAddress + modelSearchServletPath + query;
 			} else {
 				self.displayMessage('There was a problem redirecting you.', 'error');
 			}

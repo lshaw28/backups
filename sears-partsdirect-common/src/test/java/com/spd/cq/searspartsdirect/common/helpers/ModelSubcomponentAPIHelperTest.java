@@ -50,7 +50,7 @@ public class ModelSubcomponentAPIHelperTest extends TestCase {
 	
 	@Test
 	public void testGetModelSubcomponentsModelOnly() {
-		helper.setModel("66513593K600");
+		helper.setModel(fixture.getModelNumber());
 		SlingHttpServletRequest request = fixture.getRequest();
 		PDModelSubcomponentModel subcomponents = helper.getModelSubcomponents(request);
 		assertThat(subcomponents,is(nullValue()));
@@ -58,8 +58,8 @@ public class ModelSubcomponentAPIHelperTest extends TestCase {
 	
 	@Test
 	public void testGetModelSubcomponentsNoCategory() {
-		helper.setModel("66513593K600");
-		helper.setBrand("Kenmore");
+		helper.setModel(fixture.getModelNumber());
+		helper.setBrand(fixture.getBrandName());
 		SlingHttpServletRequest request = fixture.getRequest();
 		PDModelSubcomponentModel subcomponents = helper.getModelSubcomponents(request);
 		assertThat(subcomponents,is(nullValue()));
@@ -105,13 +105,13 @@ public class ModelSubcomponentAPIHelperTest extends TestCase {
 	}
 	
 	private void setExampleParameters(ModelSubcomponentAPIHelper helper) {
-		helper.setBrand("Kenmore");
-		helper.setCategory("Dishwasher");
-		helper.setModel("66513593K600");
+		helper.setBrand(fixture.getBrandName());
+		helper.setCategory(fixture.getCategoryName());
+		helper.setModel(fixture.getModelNumber());
 	}
 	
 	private void hasExampleContent(PDModelSubcomponentModel subcomponents) {
-		assertThat(subcomponents.getModelDescription(),is("Dishwasher"));
+		assertThat(subcomponents.getModelDescription(),is(fixture.getCategoryName()));
 		PDSymptomWrapper symptoms = subcomponents.getSymptoms();
 		assertThat(symptoms,is(not(nullValue())));
 		PDSymptom[] symptomArr = symptoms.getSymptom();

@@ -35,7 +35,7 @@ public class GetSymptomDetailTagTest extends MocksTag {
 		tag.setPartsRequired(true);
 		assertThat(tag.isPartsRequired(),is(true));
 		tag.doStartTag();
-		
+
 		Assert.assertNotNull(pageContext.getAttribute("modelSymptom"));
 		ModelSymptomModel model = (ModelSymptomModel) pageContext.getAttribute("modelSymptom");
 		Assert.assertNotNull(model);
@@ -46,34 +46,28 @@ public class GetSymptomDetailTagTest extends MocksTag {
 		assertThat(tag.isPartsRequired(),is(false));
 		runTagSkipsBodyEvalsPage();
 	}
-	
+
 	@Test
 	public void testNoHitProps() throws RepositoryException {
 		fixture.setUpNoHitProps();
 		runTagSkipsBodyEvalsPage();
 	}
-	
+
 	@Test
 	public void testEmptyHitProps() throws RepositoryException {
 		fixture.setUpEmptyHitProps();
 		runTagSkipsBodyEvalsPage();
 	}
-	
+
 	@Test
 	public void testNoJobCodeProps() throws RepositoryException {
 		fixture.setUpNoJobCodeProps();
 		runTagSkipsBodyEvalsPage();
 	}
-	
+
 	@Test
 	public void testNoJobCodePages() throws RepositoryException {
 		fixture.setUpNoJobCodePages();
-		runTagSkipsBodyEvalsPage();
-	}
-	
-	@Test
-	public void testNoJobCodePageProps() throws RepositoryException {
-		fixture.setUpNoJobCodePageProps();
 		runTagSkipsBodyEvalsPage();
 	}
 
