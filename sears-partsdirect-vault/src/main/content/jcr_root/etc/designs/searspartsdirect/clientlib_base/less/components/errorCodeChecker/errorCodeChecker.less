@@ -4,6 +4,31 @@
 .errorCodeChecker {
 	p {
 		background-color: @secondaryHueLighter;
-		padding: 20px 70px;
+		line-height: 30px;
+		margin: 0;
+		padding: 2%;
+		width: 96%;
+
+		[class^="svg-icon-"], [class*=" svg-icon-"] {
+			display: inline-block;
+			height: 30px;
+			margin: 0;
+			vertical-align: baseline;
+			width: 30px;
+		}
+		.divider {
+			background-color: @secondaryHueNormal;
+			display: inline-block;
+			height: 36px;
+			margin: 0 10px;
+			vertical-align: baseline;
+			width: 2px;
+		}
+		.new-btn {
+			margin: 0 0 0 5px;
+		}
 	}
 }
+
+@import "errorCodeChecker.tablet.less";
+@import "errorCodeChecker.mobile.less";

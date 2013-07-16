@@ -8,13 +8,10 @@
          /**
 		 * model section
 		 */
-
 		var modelsection = new modelsectionHeader();
-
         /**
 		 * Comment Section
 		 */
-
 		var commentcheck = new commentCheck();
 		/**
 		 * Search Panel

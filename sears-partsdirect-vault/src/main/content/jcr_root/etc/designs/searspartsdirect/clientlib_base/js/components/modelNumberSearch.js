@@ -119,7 +119,7 @@ var modelNumberSearch = Class.extend(function () {
 				brandName = encodeURI(su.validString(data.brandName));
 				categoryName = encodeURI(su.validString(data.categoryName));
 				modelNumber = encodeURI(su.validString(data.modelNumber));
-				modelUrl = encodeURI(su.validString(data.modelURL));
+				modelUrl = encodeURI(mainSitePath + '/partsdirect' + su.validString(data.modelURL));
 
 				query += '?brand=' + brandName;
 				query += '&category=' + categoryName;
