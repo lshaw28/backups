@@ -154,6 +154,16 @@ public class GetUrlRelationTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testGetOnlyLongSymptom() throws JspException {
+		fixture.setUpLongSSelector();
+		fixture.setUpLongSymptom();
+		
+		runsSkipsBodyEvalsPage();
+		
+		symptomIsModel();
+	}
+	
+	@Test
 	public void testGetOnlySymptomSpecifically() throws JspException {
 		fixture.setUpSSelector();
 		fixture.setUpSymptom();
