@@ -23,24 +23,32 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 
 public class GetGuideListingTagFixture {
+	private ResourceResolver resourceResolver;
 	private PageImpressionsComparatorFixture testPages;
 	private PageManager pageManager;
-	private Page page;
+	private Page currentPage;
 	
 	
-	public GetGuideListingTagFixture(PageContext pageContext, ResourceResolver resourceResolver, PageManager pageManager) throws RepositoryException {
+	public GetGuideListingTagFixture(PageContext pageContext, ResourceResolver resourceResolver, PageManager pageManager, Page currentPage) throws RepositoryException {
+		this.resourceResolver = resourceResolver;
+		this.pageManager = pageManager;
+		this.currentPage = currentPage;
+	}
+	
+	public void setUpComplete() throws RepositoryException {
 		QueryBuilder ourFakeQueryBuilder = mock(QueryBuilder.class);
 		Query ourFakeQuery = mock(Query.class);
 		when(ourFakeQueryBuilder.createQuery(any(PredicateGroup.class),any(Session.class))).thenReturn(ourFakeQuery);
 		when(resourceResolver.adaptTo(QueryBuilder.class)).thenReturn(ourFakeQueryBuilder);
 		SearchResult result = mock(SearchResult.class);
 		when(ourFakeQuery.getResult()).thenReturn(result);
-		this.pageManager = pageManager;
+		
 		testPages = new PageImpressionsComparatorFixture(resourceResolver);
 		List<Hit> hits = new ArrayList<Hit>();
 		hits.add(createTestHitAndPage("/foo",88));
 		hits.add(createTestHitAndPage("/bar",818));
 		hits.add(createTestHitAndPage("/baz",18081));
+		hits.add(createTestHitAndPage("/quux",9999999));
 		when(result.getHits()).thenReturn(hits);
 
 		Page testPage = mock(Page.class);
@@ -48,9 +56,10 @@ public class GetGuideListingTagFixture {
 		Tag testTagInType = mock(Tag.class);
 		when(testTagInType.getTagID()).thenReturn("searspartsdirect:subcategories");
 		
+		when(pageManager.getPage("/quux")).thenReturn(currentPage);
+		
 		Tag[] tags = {testTagInType};
 		when(testPage.getTags()).thenReturn(tags);
-
 	}
 	
 	Hit createTestHitAndPage(String path, int viewCount) throws RepositoryException {
@@ -73,4 +82,6 @@ public class GetGuideListingTagFixture {
 	Page getTestPage(String path) {
 		return testPages.getTestPage(path);
 	}
+
+
 }
