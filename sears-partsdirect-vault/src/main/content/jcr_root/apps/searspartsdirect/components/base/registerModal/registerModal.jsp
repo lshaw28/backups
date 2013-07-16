@@ -11,7 +11,7 @@
 			<label>Confirm Email<span>Required</span></label>
 			<input type="text" id="registerEmailConfirm" name="user.confirmEmailAddress" data-constraints='@Required(message="Please confirm your email address.", groups=[registerModal]) @Required(message="A valid confirmation email address is required.", groups=[registerModal])' />
 			<label>Password<span>Required</span></label>
-			<input type="text" name="user.password" data-constraints='@Required(message="Please provide a password.", groups=[registerModal])' />
+			<input type="password" name="user.password" data-constraints='@Required(message="Please provide a password.", groups=[registerModal])' />
 			<label>Zip Code<span>Required</span><label>
 			<input type="text" name="user.zip" data-constraints='@Required(message="Please provide a valid ZIP code.", groups=[registerModal])' />
 			<label class="checkbox">
