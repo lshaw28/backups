@@ -35,6 +35,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getPDJobCodeApiUrl(), is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getPDTopPartsApiUrl(), is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getPDModelSubApiUrl(), is(instanceOf(String.class)));
+		assertThat(EnvironmentSettings.getPDJobCodePartsApiUrl(), is(instanceOf(String.class)));
 		fixture.setUpStubSettings(hook);
 		assertThat(EnvironmentSettings.get404HandlerURL(),is(EnvironmentSettings.HANDLE_404_URL));
 		assertThat(EnvironmentSettings.getSitemapStartPaths(),is(EnvironmentSettings.SITEMAP_START_PATHS));
@@ -46,6 +47,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getPDJobCodeApiUrl(), is(EnvironmentSettings.PD_JOBCODE_API));
 		assertThat(EnvironmentSettings.getPDTopPartsApiUrl(), is (EnvironmentSettings.PD_TOPPARTS_API));
 		assertThat(EnvironmentSettings.getPDModelSubApiUrl(), is(EnvironmentSettings.PD_MODELSUB_API));
+		assertThat(EnvironmentSettings.getPDJobCodePartsApiUrl(), is(EnvironmentSettings.PD_JOBCODE_PARTS_API));
 		try {
 			hook.deactivate(fixture.getComponentContext());
 		} catch (Exception e) {

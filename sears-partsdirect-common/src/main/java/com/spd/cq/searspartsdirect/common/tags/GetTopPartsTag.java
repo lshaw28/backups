@@ -91,10 +91,7 @@ public class GetTopPartsTag extends CQBaseTag {
 				url.append("?"+MODEL_NAME+"="+URLEncoder.encode(model,Constants.ENCODING));
 				url.append("&"+BRAND_NAME+"="+URLEncoder.encode(brandName,Constants.ENCODING));
 				url.append("&"+CATEGORY_NAME+"="+URLEncoder.encode(categoryName,Constants.ENCODING));
-			} catch (UnsupportedEncodingException e) {
-				log.error("Java is Broken!!! UTF-8 no longer supported!!!");
-				return null;
-			}
+			} catch (UnsupportedEncodingException e) {} // CANTHAPPEN - we are using a guaranteed encoding.
 			log.debug("Top Parts API call URL is "+url);
 			return url.toString();
 		} else {

@@ -71,10 +71,7 @@ public class ModelSubcomponentAPIHelper {
 				url.append("?"+MODEL_PARAM+"="+URLEncoder.encode(model,Constants.ENCODING));
 				url.append("&"+CATEGORY_PARAM+"="+URLEncoder.encode(category,Constants.ENCODING));
 				url.append("&"+BRAND_PARAM+"="+URLEncoder.encode(brand,Constants.ENCODING));
-			} catch (UnsupportedEncodingException e) {
-				log.error("Java is Broken!! No longer supports UTF-8!!");
-				return null;
-			}
+			} catch (UnsupportedEncodingException e) {} // CANTHAPPEN - we are using a guaranteed encoding.
 			return url.toString();
 		} else {
 			return null;

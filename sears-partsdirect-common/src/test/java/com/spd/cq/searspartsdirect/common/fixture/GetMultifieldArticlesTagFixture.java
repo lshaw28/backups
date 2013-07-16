@@ -22,6 +22,12 @@ public class GetMultifieldArticlesTagFixture {
 	public GetMultifieldArticlesTagFixture(ValueMap properties, PageManager pageManager, ResourceResolver resourceResolver) {
 		this.pageManager = pageManager;
 		this.resourceResolver = resourceResolver;
+		
+		Page categoryPage = mock(Page.class);
+		when(pageManager.getPage(getCategoryPath())).thenReturn(categoryPage);
+		ValueMap categoryProps = mock(ValueMap.class);
+		when(categoryPage.getProperties()).thenReturn(categoryProps);
+		
 		String [] multiJsons = new String[]{
 				"{\"url\":\"url1\"}",
 				"{\"url\":\"url2\"}",
@@ -29,7 +35,11 @@ public class GetMultifieldArticlesTagFixture {
 				"{\"url\":\"url4\"}",
 				"{\"url\":\"url5\"}",
 		};
-		when(properties.get("multipaths",new String[0])).thenReturn(multiJsons);
+		//String header = assetProperties.get("header", "");
+		//String link = assetProperties.get("viewAllLinkText", "");
+		when(categoryProps.get("multipaths",new String[0])).thenReturn(multiJsons);
+		when(categoryProps.get("header", "")).thenReturn(getHeader());
+		when(categoryProps.get("viewAllLinkText", "")).thenReturn(getViewAllLinkText());
 	}
 	
 	public void setUpTestPages() throws RepositoryException {
@@ -100,6 +110,18 @@ public class GetMultifieldArticlesTagFixture {
 		}
 		
 		return page;
+	}
+
+	public String getCategoryPath() {
+		return Constants.ASSETS_PATH+"/"+Constants.ASSETS_PRODUCT_CATEGORY_PATH+"/reciprobopulator";
+	}
+	
+	public String getHeader() {
+		return "Header";
+	}
+	
+	public String getViewAllLinkText() {
+		return "View All";
 	}
 	
 }
