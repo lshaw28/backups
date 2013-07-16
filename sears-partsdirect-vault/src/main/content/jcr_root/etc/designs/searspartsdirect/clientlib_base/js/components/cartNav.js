@@ -41,13 +41,8 @@ var cartNav = Class.extend(function () {
 		 */
 		bindEvents: function () {
 			var self = this;
-
-			// Window resize and orientation change
-			// @TODO: Use Matt's responsive helper to bind
-			$(window).resize(function () {
-				self.toggleAction();
-			})
-			.bind('orientationchange', function () {
+			
+			shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
 				self.toggleAction();
 			});
 		}
