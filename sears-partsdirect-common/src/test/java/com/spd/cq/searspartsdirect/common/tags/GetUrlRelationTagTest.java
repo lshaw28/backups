@@ -87,6 +87,17 @@ public class GetUrlRelationTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testGetLongBrand() throws JspException {
+		fixture.setUpLongBCMSelectors();
+		fixture.setUpLongBrand();
+		tag.setRelationType("brand");
+		runsSkipsBodyEvalsPage();
+		Object br = pageContext.getAttribute("brandRelation");
+		assertThat(br,not(nullValue()));
+		assertTrue(br.getClass().equals(BrandModel.class));
+	}
+	
+	@Test
 	public void testGetNonexistentBrand() throws JspException {
 		fixture.setUpBCMSelectors();
 		tag.setRelationType("brand");
@@ -155,6 +166,16 @@ public class GetUrlRelationTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testGetExplodingSymptom() throws JspException, RepositoryException {
+		fixture.setUpSSelector();
+		fixture.setUpExplodingSymptom();
+		
+		runsSkipsBodyEvalsPage();
+		
+		symptomIsNull();
+	}
+	
+	@Test
 	public void testGetOnlySymptomSpecifically() throws JspException, RepositoryException {
 		fixture.setUpSSelector();
 		fixture.setUpSymptom();
@@ -194,5 +215,10 @@ public class GetUrlRelationTagTest extends MocksTag {
 		Object sr = pageContext.getAttribute("symptomRelation");
 		assertThat(sr,not(nullValue()));
 		assertTrue(sr.getClass().equals(SymptomModel.class));
+	}
+	
+	private void symptomIsNull() {
+		Object sr = pageContext.getAttribute("symptomRelation");
+		assertThat(sr,nullValue());
 	}
 }

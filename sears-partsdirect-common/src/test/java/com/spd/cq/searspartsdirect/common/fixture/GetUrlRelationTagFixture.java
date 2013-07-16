@@ -61,6 +61,13 @@ public class GetUrlRelationTagFixture {
 		selectors.add(MODEL);
 	}
 	
+	public void setUpLongBCMSelectors() {
+		selectors.clear();
+		selectors.add(BRAND+BRAND+BRAND+BRAND+BRAND);
+		selectors.add(CATEGORY+CATEGORY+CATEGORY);
+		selectors.add(MODEL+MODEL+MODEL+MODEL+MODEL);
+	}
+	
 	public void setUpSSelector() {
 		selectors.clear();
 		selectors.add(SYMPTOM);
@@ -104,9 +111,31 @@ public class GetUrlRelationTagFixture {
 		when(p.getProperties()).thenReturn(properties);
 	}
 	
+	public void setUpLongBrand() {
+		String relatedAssetPath = Constants.ASSETS_PATH + "/brand/" + (BRAND+BRAND+BRAND+BRAND+BRAND).substring(0,Constants.MAX_TRUENAME_LENGTH);
+		Page p = mock(Page.class);
+		when(pageManager.getPage(relatedAssetPath)).thenReturn(p);
+		ValueMap properties = mock(ValueMap.class);
+		when(p.getProperties()).thenReturn(properties);
+	}
+	
 	public void setUpSymptom() throws RepositoryException {
 		String relatedAssetPath = Constants.ASSETS_PATH + "/symptom/" + SYMPTOM;
-        
+		Hit symptomFound = createSymptomHit(relatedAssetPath);
+		when(symptomFound.getPath()).thenReturn(relatedAssetPath);
+	}
+	
+	public void setUpExplodingSymptom() throws RepositoryException {
+		String relatedAssetPath = Constants.ASSETS_PATH + "/symptom/" + SYMPTOM;
+		Hit symptomFound = createSymptomHit(relatedAssetPath);
+		when(symptomFound.getPath()).thenThrow(new RepositoryException());
+	}
+
+	public Object getModel() {
+		return MODEL;
+	}
+
+	private Hit createSymptomHit(String relatedAssetPath) throws RepositoryException {
         QueryBuilder qb = mock(QueryBuilder.class);
         when(resourceResolver.adaptTo(QueryBuilder.class)).thenReturn(qb);
         Query query = mock(Query.class);
@@ -116,19 +145,14 @@ public class GetUrlRelationTagFixture {
         List<Hit> hits = new ArrayList<Hit>();
         when(result.getHits()).thenReturn(hits);
         Hit symptomFound = mock(Hit.class);
-        when(symptomFound.getPath()).thenReturn(relatedAssetPath);
         hits.add(symptomFound);
 		
 		Page p = mock(Page.class);
 		when(pageManager.getPage(relatedAssetPath)).thenReturn(p);
 		ValueMap properties = mock(ValueMap.class);
 		when(p.getProperties()).thenReturn(properties);
+		
+		return symptomFound;
 	}
-
-	public Object getModel() {
-		return MODEL;
-	}
-
-
 
 }
