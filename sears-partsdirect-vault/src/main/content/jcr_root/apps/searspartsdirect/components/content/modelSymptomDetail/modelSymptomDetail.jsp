@@ -13,14 +13,9 @@
 <p>${modelSymptom.symptomModel.description}</p>
 
 <c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
-	<c:choose>
-		<c:when test="${jobCode.partTypeModel != null &&  jobCode.partTypeModel.imagePath != null}">
+		<c:if test="${jobCode.partTypeModel != null &&  jobCode.partTypeModel.imagePath != null}">
 			<spd:displayImage path="${jobCode.partTypeModel.imagePath}"/>
-		</c:when>
-		<c:otherwise>
-			<p>show a default no jobcode part type image</p>
-		</c:otherwise>
-	</c:choose>
+		</c:if>
 	<h3>${jobCode.title}</h3>
 	<p>${jobCode.description}</p>
 
