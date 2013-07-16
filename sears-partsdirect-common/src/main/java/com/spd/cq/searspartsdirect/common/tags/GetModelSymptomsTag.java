@@ -28,7 +28,6 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 public class GetModelSymptomsTag extends CQBaseTag {
 
 	private static final long serialVersionUID = 1L;
-	private String categoryPath;
 	public static final Logger log = LoggerFactory.getLogger(GetModelSymptomsTag.class);
 
 	Session session;
@@ -90,14 +89,6 @@ public class GetModelSymptomsTag extends CQBaseTag {
 	@Override
 	public int doEndTag() throws JspException {
 		return EVAL_PAGE;
-	}
-
-	public String getCategoryPath() {
-		return categoryPath;
-	}
-
-	public void setCategoryPath(String categoryPath) {
-		this.categoryPath = categoryPath;
 	}
 
 	public String getBrandName() {
