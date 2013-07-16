@@ -54,6 +54,11 @@ public class GetUrlRelationTagFixture {
 		selectors.add(SYMPTOM);
 	}
 	
+	public void setUpLongSSelector() {
+		selectors.clear();
+		selectors.add(SYMPTOM+SYMPTOM+SYMPTOM+SYMPTOM);
+	}
+	
 	public void setUpBCMSSelectors() {
 		selectors.clear();
 		selectors.add(BRAND);
@@ -94,6 +99,14 @@ public class GetUrlRelationTagFixture {
 	
 	public void setUpSymptom() {
 		String relatedAssetPath = Constants.ASSETS_PATH + "/symptom/" + SYMPTOM;
+		Page p = mock(Page.class);
+		when(pageManager.getPage(relatedAssetPath)).thenReturn(p);
+		ValueMap properties = mock(ValueMap.class);
+		when(p.getProperties()).thenReturn(properties);
+	}
+	
+	public void setUpLongSymptom() {
+		String relatedAssetPath = Constants.ASSETS_PATH + "/symptom/" + (SYMPTOM+SYMPTOM+SYMPTOM).substring(0,Constants.MAX_TRUENAME_LENGTH);
 		Page p = mock(Page.class);
 		when(pageManager.getPage(relatedAssetPath)).thenReturn(p);
 		ValueMap properties = mock(ValueMap.class);

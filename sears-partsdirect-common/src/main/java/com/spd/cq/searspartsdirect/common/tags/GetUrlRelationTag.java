@@ -135,8 +135,8 @@ public class GetUrlRelationTag extends CQBaseTag {
 	private void pokeRelationIntoContext(String relationValue) {
 		if (assetRelations.contains(relationType)) {
 			AssetType assetTypeEnum = AssetType.valueOf(relationType.toUpperCase());
-			if (relationValue.length() > 20) {
-				relationValue = relationValue.substring(0,20);
+			if (relationValue.length() > Constants.MAX_TRUENAME_LENGTH) {
+				relationValue = relationValue.substring(0,Constants.MAX_TRUENAME_LENGTH);
 			}
 			
 			String relatedAssetPath = Constants.ASSETS_PATH + "/" + relationType + "/" + relationValue;

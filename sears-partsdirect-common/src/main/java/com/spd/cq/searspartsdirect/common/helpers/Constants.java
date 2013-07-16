@@ -26,7 +26,8 @@ public final class Constants {
 	public static final String ASSETS_IMAGE_PATH = ident("/jcr:content/image");
 	public static final String ASSETS_IMAGE_REL_PATH = ident("jcr:content/image");
 	public static final String ASSETS_PRODUCT_CATEGORY_PATH = ident("productCategory");
-
+	public static final int MAX_TRUENAME_LENGTH = ident(20);
+	
 	//Model Search Constants
 	public static final String MODEL_NOT_FOUND = ident("Not Found");
 
