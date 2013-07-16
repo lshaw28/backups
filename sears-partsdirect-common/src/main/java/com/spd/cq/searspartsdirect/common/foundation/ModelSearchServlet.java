@@ -41,6 +41,7 @@ public class ModelSearchServlet extends SlingAllMethodsServlet {
     	String model = request.getParameter("model");
     	String link = request.getParameter("link");
 
+    	
     	String categoryResourcePath = Constants.ASSETS_PATH + "/" + Constants.ASSETS_PRODUCT_CATEGORY_PATH + "/" + category;
     	Resource categoryResource = resourceResolver.getResource(categoryResourcePath);
     	if (categoryResource != null) {
