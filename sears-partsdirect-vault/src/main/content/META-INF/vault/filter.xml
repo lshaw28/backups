@@ -4,7 +4,9 @@
 	<filter root="/etc/designs/searspartsdirect" />
 	<filter root="/etc/tags/searspartsdirect" />
 	<filter root="/etc/scaffolding" />
-	<filter root="/etc/spdAssets" />
+	<filter root="/etc/spdAssets">
+		<exclude pattern="/etc/spdAssets/scaffolding.*" />
+	</filter>
 	<filter root="/etc/map.publish" />
 	<filter root="/apps/sling/" />
 	<filter root="/apps/install/" />
