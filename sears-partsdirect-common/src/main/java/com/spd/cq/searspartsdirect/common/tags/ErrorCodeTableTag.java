@@ -37,7 +37,7 @@ public class ErrorCodeTableTag extends CQBaseTag {
 			pageContext.setAttribute("errorCodeTableData", errorCodeTableModel);
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			log.error("Retrieving error code table, ",e);
 		}
         return SKIP_BODY;
 	}

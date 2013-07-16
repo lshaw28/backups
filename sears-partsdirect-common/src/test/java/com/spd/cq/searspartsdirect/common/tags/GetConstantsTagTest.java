@@ -9,13 +9,12 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.model.ConstantModel;
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 
 public class GetConstantsTagTest extends MocksTag {
 	
 	private GetConstantsTag tag;
-	private ConstantModel Constants;
 
 	@Before
 	protected void setUp() throws Exception {
@@ -25,9 +24,11 @@ public class GetConstantsTagTest extends MocksTag {
 
 	@Test
 	public void testTag() throws JspException {
+		Constants localConstants = new Constants();
+		
 		tag.setPageContext(pageContext);
 		assertThat(tag.doStartTag(),is(TagSupport.SKIP_BODY));
-		assertThat(tag.doEndTag(),is(TagSupport.EVAL_PAGE));	
+		assertThat(tag.doEndTag(),is(TagSupport.EVAL_PAGE));
 	}
 	
 }
