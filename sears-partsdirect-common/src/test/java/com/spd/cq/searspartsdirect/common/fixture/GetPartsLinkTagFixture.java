@@ -1,23 +1,15 @@
 package com.spd.cq.searspartsdirect.common.fixture;
 
+import javax.servlet.jsp.PageContext;
+
+import org.apache.sling.api.SlingHttpServletRequest;
+
+import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
+
 public class GetPartsLinkTagFixture {
-
-	ModelSubcomponentAPIHelperFixture modelSubFixture;
 	
-	public GetPartsLinkTagFixture() throws Exception {
-		modelSubFixture = new ModelSubcomponentAPIHelperFixture();
-	}
-	
-	public String getBrandName() {
-		return modelSubFixture.getBrandName();
-	}
-
-	public String getCategoryName() {
-		return modelSubFixture.getCategoryName();
-	}
-
-	public String getModelNumber() {
-		return modelSubFixture.getModelNumber();
+	public GetPartsLinkTagFixture(SlingHttpServletRequest slingRequest, PageContext pageContext) throws Exception {
+		new EnvironmentSettingsFixture().setUpRealDefaults(new EnvironmentSettings());
 	}
 
 }

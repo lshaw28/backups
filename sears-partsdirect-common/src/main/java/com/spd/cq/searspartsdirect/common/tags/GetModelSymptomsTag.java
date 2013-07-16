@@ -1,5 +1,6 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +29,6 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 public class GetModelSymptomsTag extends CQBaseTag {
 
 	private static final long serialVersionUID = 1L;
-	private String categoryPath;
 	public static final Logger log = LoggerFactory.getLogger(GetModelSymptomsTag.class);
 
 	Session session;
@@ -73,7 +73,9 @@ public class GetModelSymptomsTag extends CQBaseTag {
 								Page p = pageManager.getPage(hit.getPath());
 								if (props != null) {
 									SymptomModel symptomModel  = new SymptomModel(p.getPath(), props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("id", String.class));
-									symptomModel.setFrequency(Math.round(subcomponents.getSymptomsArr()[i].getSuccessfulFrequency().doubleValue()));
+									if (subcomponents.getSymptomsArr()[i].getSuccessfulFrequency() != null) {
+										symptomModel.setFrequency(Math.round(subcomponents.getSymptomsArr()[i].getSuccessfulFrequency().doubleValue()));
+									}
 									symptoms.add(symptomModel);
 								}
 					       } catch (RepositoryException e) {
@@ -90,14 +92,6 @@ public class GetModelSymptomsTag extends CQBaseTag {
 	@Override
 	public int doEndTag() throws JspException {
 		return EVAL_PAGE;
-	}
-
-	public String getCategoryPath() {
-		return categoryPath;
-	}
-
-	public void setCategoryPath(String categoryPath) {
-		this.categoryPath = categoryPath;
 	}
 
 	public String getBrandName() {
