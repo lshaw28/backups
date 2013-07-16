@@ -2,18 +2,25 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.AssetType;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
@@ -71,6 +78,66 @@ public class GetUrlRelationTag extends CQBaseTag {
 		Map<String,Pattern> relationToUriExtractor = new HashMap<String,Pattern>();
 		relationToUriExtractor.put(CATEGORY, Pattern.compile("(?:^|/)([^/]*)-repair[/\\.]"));
 		return relationToUriExtractor;
+	}
+	
+	private static abstract class RelationPathResolver {
+		abstract String resolveToPath(String relationValue, ResourceResolver resourceResolver);
+	}
+	
+	private static class TruncatingResolver extends RelationPathResolver {
+		private final String relationType;
+		
+		TruncatingResolver(String relationType) {
+			this.relationType = relationType;
+		}
+		
+		@Override
+		String resolveToPath(String relationValue, ResourceResolver unused) {
+			if (relationValue.length() > Constants.MAX_TRUENAME_LENGTH) {
+				relationValue = relationValue.substring(0,Constants.MAX_TRUENAME_LENGTH);
+			}
+			
+			return Constants.ASSETS_PATH + "/" + relationType + "/" + relationValue;
+		}
+	}
+	
+	private static class SymptomResolver extends RelationPathResolver {
+		@Override
+		String resolveToPath(String relationValue, ResourceResolver resourceResolver) {
+			String symptomPath = null;
+			
+			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
+			Map<String, String> props = new HashMap<String, String>();
+	        props.put("type", Constants.CQ_PAGE);
+	        props.put("path", Constants.ASSETS_PATH+"/"+Constants.ASSETS_SYMPTOM_PATH);
+	        props.put("property", Constants.ASSETS_ID_REL_PATH);
+	        props.put("property.value", relationValue);
+	        
+	        List<Hit> hits = qb.createQuery(
+	        			PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)
+	        		).getResult().getHits();
+
+	        for (Hit hit: hits) {
+	        	try {
+					symptomPath = hit.getPath();
+				} catch (RepositoryException e) {
+					log.error("Retrieving symptom path from search hit, ",e);
+				}
+	        }
+	        
+	        return symptomPath;
+		}
+	}
+	
+	private static final Map<String,RelationPathResolver> relationToPathResolver = initRelationToPathResolver();
+	private static final Map<String,RelationPathResolver> initRelationToPathResolver() {
+		Map<String,RelationPathResolver> relationToResolver = new HashMap<String,RelationPathResolver>();
+		
+		relationToResolver.put(CATEGORY, new TruncatingResolver(CATEGORY));
+		relationToResolver.put(BRAND, new TruncatingResolver(BRAND));
+		relationToResolver.put(SYMPTOM, new SymptomResolver());
+		
+		return relationToResolver;
 	}
 	
 	protected String relationType;
@@ -135,11 +202,9 @@ public class GetUrlRelationTag extends CQBaseTag {
 	private void pokeRelationIntoContext(String relationValue) {
 		if (assetRelations.contains(relationType)) {
 			AssetType assetTypeEnum = AssetType.valueOf(relationType.toUpperCase());
-			if (relationValue.length() > Constants.MAX_TRUENAME_LENGTH) {
-				relationValue = relationValue.substring(0,Constants.MAX_TRUENAME_LENGTH);
-			}
 			
-			String relatedAssetPath = Constants.ASSETS_PATH + "/" + relationType + "/" + relationValue;
+			String relatedAssetPath = relationToPathResolver.get(relationType).resolveToPath(relationValue,resourceResolver);
+			
 			log.debug("looking for "+relatedAssetPath);
 			Page p = pageManager.getPage(relatedAssetPath);
 			if (p != null) {

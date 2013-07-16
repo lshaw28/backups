@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 
+import javax.jcr.RepositoryException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
@@ -25,7 +26,7 @@ public class GetUrlRelationTagTest extends MocksTag {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetUrlRelationTagFixture(slingRequest,pageManager);
+		fixture = new GetUrlRelationTagFixture(slingRequest,pageManager,resourceResolver);
 		tag = new GetUrlRelationTag();
 	}
 
@@ -106,7 +107,7 @@ public class GetUrlRelationTagTest extends MocksTag {
 	}
 	
 	@Test
-	public void testGetAllRelations() throws JspException {
+	public void testGetAllRelations() throws JspException, RepositoryException {
 		fixture.setUpBCMSSelectors();
 		fixture.setUpProductCategory();
 		fixture.setUpBrand();
@@ -121,7 +122,7 @@ public class GetUrlRelationTagTest extends MocksTag {
 	}
 	
 	@Test
-	public void testGetAllTwoRelations() throws JspException {
+	public void testGetAllTwoRelations() throws JspException, RepositoryException {
 		fixture.setUpBCSelectors();
 		fixture.setUpProductCategory();
 		fixture.setUpBrand();
@@ -144,7 +145,7 @@ public class GetUrlRelationTagTest extends MocksTag {
 	}
 	
 	@Test
-	public void testGetOnlySymptom() throws JspException {
+	public void testGetOnlySymptom() throws JspException, RepositoryException {
 		fixture.setUpSSelector();
 		fixture.setUpSymptom();
 		
@@ -154,17 +155,7 @@ public class GetUrlRelationTagTest extends MocksTag {
 	}
 	
 	@Test
-	public void testGetOnlyLongSymptom() throws JspException {
-		fixture.setUpLongSSelector();
-		fixture.setUpLongSymptom();
-		
-		runsSkipsBodyEvalsPage();
-		
-		symptomIsModel();
-	}
-	
-	@Test
-	public void testGetOnlySymptomSpecifically() throws JspException {
+	public void testGetOnlySymptomSpecifically() throws JspException, RepositoryException {
 		fixture.setUpSSelector();
 		fixture.setUpSymptom();
 		tag.setRelationType("symptom");
