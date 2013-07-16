@@ -3,22 +3,17 @@ package com.spd.cq.searspartsdirect.common.tags;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
-
 import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import com.spd.cq.searspartsdirect.common.fixture.GetModelHeaderTagFixture;
 import com.spd.cq.searspartsdirect.common.fixture.GetPartsLinkTagFixture;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 public class GetPartsLinkTagTest extends MocksTag {
-	
 	private GetPartsLinkTagFixture fixture;
 	private GetPartsLinkTag tag;
 

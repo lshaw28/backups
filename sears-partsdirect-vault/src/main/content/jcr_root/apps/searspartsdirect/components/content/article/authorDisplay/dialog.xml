@@ -3,21 +3,23 @@
 		jcr:primaryType="cq:Dialog"
 		title="Author Display"
 		xtype="dialog">
-
 	<items jcr:primaryType="cq:WidgetCollection">
 		<panel
 			jcr:primaryType="cq:Widget"
 			xtype="panel">
-
 			<items jcr:primaryType="cq:WidgetCollection">
-
 				<default-author-title
 					jcr:primaryType="cq:Widget"
 					name="./authorPosition"
-					fieldLabel="Default Author Title"
+					fieldLabel="Author Title"
 					fieldDescription="Override default author title"
 					xtype="textfield" />
-
+                <displayDefault
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Do not display author title"
+                    name="./hideDefaultTitle"
+                    type="checkbox"
+                    xtype="selection"/>
 			</items>
 		</panel>
 	</items>
