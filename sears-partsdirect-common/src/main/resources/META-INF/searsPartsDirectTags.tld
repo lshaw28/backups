@@ -383,8 +383,8 @@
 		<info>Gets the list of the current author's articles </info>
 	</tag>
 	<tag>
-	<name>getGuideListing</name>
-	<tag-class>com.spd.cq.searspartsdirect.common.tags.GetGuideListingTag</tag-class>
+		<name>getGuideListing</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetGuideListingTag</tag-class>
 		<info>Gets the list of Guides for a category</info>
 			<attribute>
 			<name>categoryPath</name>
@@ -499,10 +499,10 @@
 		</attribute>
 	</tag>
 	<tag>
-	<name>getMostPopularGuide</name>
-	<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMostPopularGuideTag</tag-class>
+		<name>getMostPopularGuide</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMostPopularGuideTag</tag-class>
 		<info>Gets the list of Guides for a category</info>
-			<attribute>
+		<attribute>
 			<name>categoryPath</name>
 			<type>java.lang.String</type>
 			<required>true</required>
@@ -537,5 +537,27 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+	</tag>
+	<tag>
+		<name>getJobCodeParts</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetJobCodePartsTag</tag-class>
+		<info>Gets the parts associated with JobCode</info>
+		<attribute>
+			<name>jobCodes</name>
+			<type>java.util.List</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>modelNumber</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>getRepairGuideJobCode</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetRepairGuideJobCodeTag</tag-class>
+		<info>Gets the job code associated with the current repair guide page.</info>
 	</tag>
 </taglib>
