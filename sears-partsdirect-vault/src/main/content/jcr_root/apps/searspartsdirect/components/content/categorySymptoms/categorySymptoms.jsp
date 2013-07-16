@@ -8,6 +8,10 @@
 	<c:otherwise>
 		<h2>
 			<cq:text property="text1" placeholder=""/>&nbsp;
+			<spd:tagsByPage tagType="subcategories"/>
+			<c:if test="${fn:length(subcategoriesList) eq 1}">
+					&nbsp;${subcategoriesList[0].title}
+			</c:if>
 			${productCategoryRelation.title}
 			&nbsp;<cq:text property="text2" placeholder=""/>
 			<p><cq:text property="optionalDescription" placeholder=""/></p>
