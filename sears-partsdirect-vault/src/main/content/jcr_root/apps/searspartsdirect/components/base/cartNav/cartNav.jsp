@@ -1,32 +1,40 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
+<spd:getRecentlyViewed />
 <ul class="cartNavItems">
 	<div class="cartNavShadow"></div>
 	<li class="cartNavItem">
 		<div class="btn-group">
-			<a data-toggle="dropdown" href="#">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
-			<ul class="dropdown-menu">
-				<spd:getRecentlyViewed />
-				<!-- Model List -->
-				<c:forEach var="model" items="${rvModelList}">
-					<li>Model <a href="${model.itemURL}">${model.itemName}</a><br />
-					<a href="${model.itemURL}">${model.itemDescription}</a></li>
-				</c:forEach>
-				<!-- Part List -->
-				<c:forEach var="part" items="${rvPartList}">
-					<li>
-						<a href="${part.itemURL}">
-						<c:choose>
-							<c:when test='${part.itemImageURL != null && part.itemImageURL != "null"}'>
-								<img src="${part.itemImageURL}" alt="${part.itemDescription}" />
-							</c:when>
-							<c:otherwise>
-								<img src="/assets/img/images/no_part_100x100.gif" alt="No part image available" />
-							</c:otherwise>
-						</c:choose>
-						${part.itemName}<br />${part.itemDescription}</a>
-					</li>
-				</c:forEach>
-			</ul>
+			<c:choose>
+				<c:when test="${not empty rvModelList and not empty rvPartList}">
+					<a data-toggle="dropdown" href="#">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
+					<ul class="dropdown-menu">
+
+						<!-- Model List -->
+						<c:forEach var="model" items="${rvModelList}">
+							<li>Model <a href="${model.itemURL}">${model.itemName}</a><br />
+							<a href="${model.itemURL}">${model.itemDescription}</a></li>
+						</c:forEach>
+						<!-- Part List -->
+						<c:forEach var="part" items="${rvPartList}">
+							<li>
+								<a href="${part.itemURL}">
+								<c:choose>
+									<c:when test='${part.itemImageURL != null && part.itemImageURL != "null"}'>
+										<img src="${part.itemImageURL}" alt="${part.itemDescription}" />
+									</c:when>
+									<c:otherwise>
+										<img src="/assets/img/images/no_part_100x100.gif" alt="No part image available" />
+									</c:otherwise>
+								</c:choose>
+								${part.itemName}<br />${part.itemDescription}</a>
+							</li>
+						</c:forEach>
+					</ul>
+				</c:when>
+				<c:otherwise>
+					<a data-toggle="false">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</li>
 	<li class="cartNavItem">
