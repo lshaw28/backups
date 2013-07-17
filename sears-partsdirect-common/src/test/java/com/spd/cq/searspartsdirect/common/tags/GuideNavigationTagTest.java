@@ -62,6 +62,34 @@ public class GuideNavigationTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testNoBeforeYouBeginResource() {
+		try {
+			fixture.removeBeforeYouBeginResource();
+			runTagSkipsBodyEvalsPage();
+			@SuppressWarnings("unchecked")
+			List<AnchorLinkModel> result = (List<AnchorLinkModel>)pageContext.getAttribute(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR);
+			assertThat(result,instanceOf(List.class));
+			assertThat(result,hasSize(4));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testNoBeforeYouBeginHeader() {
+		try {
+			fixture.beforeYouBeginHasNoHeaderNow();
+			runTagSkipsBodyEvalsPage();
+			@SuppressWarnings("unchecked")
+			List<AnchorLinkModel> result = (List<AnchorLinkModel>)pageContext.getAttribute(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR);
+			assertThat(result,instanceOf(List.class));
+			assertThat(result,hasSize(4));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
 	public void testJumpTextIsBroken() {
 		try {
 			fixture.breakJumpText();
@@ -92,9 +120,19 @@ public class GuideNavigationTagTest extends MocksTag {
 	}
 	
 	@Test
-	public void testMissingMiscellany() {
+	public void testNoPageNode() {
 		try {
 			fixture.setupNoPageNode();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testGetSessionExplodes() {
+		try {
+			fixture.setupPageNodeGetSessionExplodes();
 			runTagSkipsBodyEvalsPage();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -135,6 +173,46 @@ public class GuideNavigationTagTest extends MocksTag {
 	public void testBlankLabels() {
 		try {
 			fixture.setupBlankLabels();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testSingleTypeAndLabel() {
+		try {
+			fixture.setupSingleTypeAndLabel();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testBeforeYouBeginLabelPropExplodes() {
+		try {
+			fixture.setupBYBLabelPropExplodes();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testNoCommentsResource() {
+		try {
+			fixture.breakCommentsResource();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testNoCommentsSystem() {
+		try {
+			fixture.breakCommentsSystem();
 			runTagSkipsBodyEvalsPage();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
