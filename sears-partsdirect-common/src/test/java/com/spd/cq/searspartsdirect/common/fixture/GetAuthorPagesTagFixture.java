@@ -72,8 +72,8 @@ public class GetAuthorPagesTagFixture {
 		when(imageNode.hasProperty("fileReference")).thenReturn(true);
 	}
 
-	public void setUpExplodes() throws Exception {
-		when(currentPage.getProperties()).thenThrow(new Exception());
+	public void setUpExplodes() {
+		when(currentPage.getProperties()).thenThrow(new RuntimeException());
 	}
 
 }
