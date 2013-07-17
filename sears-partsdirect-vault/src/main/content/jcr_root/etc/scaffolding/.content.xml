@@ -5,7 +5,7 @@
     <geometrixx/>
     <accessory/>
     <brand/>
-    <errorCode/>
+   <!-- <errorCode/> -->
     <productCategory/>
     <hazard/>
     <jobCode/>
