@@ -33,10 +33,7 @@ public class GetModelHeaderTag extends CQBaseTag {
 		List<ExternalLinkModel> pseudoTabs = new LinkedList<ExternalLinkModel>();
 		
 		try {
-			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper();
-			apiHelper.setBrand(brand.getTitle());
-			apiHelper.setCategory(productCategory.getTitle());
-			apiHelper.setModel(model);
+			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(brand.getTitle(), productCategory.getTitle(), model);
 			PDModelSubcomponentModel subcomponents = apiHelper.getModelSubcomponents(slingRequest);
 			PDTab[] apiTabs = subcomponents.getTabsArr();
 			for (PDTab tab : apiTabs) {
