@@ -38,7 +38,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 	public static final Logger log = LoggerFactory.getLogger(GetSymptomDetailTag.class);
 	private static final String PART_TYPE = "partType";
 	private static final String GUIDES = "guides";
-	private long symptomId;
+	private String id;
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -47,7 +47,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 		map.put("path", Constants.ASSETS_PATH + "/symptom");
 		map.put("type", Constants.CQ_PAGE);
 		map.put("property", "jcr:content/id");
-		map.put("property.value", Long.toString(symptomId));
+		map.put("property.value", id);
 
 		builder = resourceResolver.adaptTo(QueryBuilder.class);
 		query = builder.createQuery(PredicateGroup.create(map), session);
@@ -129,12 +129,13 @@ public class GetSymptomDetailTag extends CQBaseTag {
 		this.partsRequired = partsRequired;
 	}
 
-	public long getSymptomId() {
-		return symptomId;
+	public String getId() {
+		return id;
 	}
 
-	public void setSymptomId(long symptomId) {
-		this.symptomId = symptomId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
+	
 }
