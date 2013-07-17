@@ -27,15 +27,17 @@ public class ModelSubcomponentAPIHelperTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		fixture = new ModelSubcomponentAPIHelperFixture();
-		helper = new ModelSubcomponentAPIHelper();
+		helper = new ModelSubcomponentAPIHelper(null, null, null);
 	}
 
 	@Test
 	public void testGetModelSubcomponents() {
+		//override the parameters
+		helper = new ModelSubcomponentAPIHelper(fixture.getBrandName(), fixture.getCategoryName(), fixture.getModelNumber());
 		setExampleParameters();
 		SlingHttpServletRequest request = fixture.getRequest();
 		PDModelSubcomponentModel subcomponents1 = helper.getModelSubcomponents(request);
-		ModelSubcomponentAPIHelper helper2 = new ModelSubcomponentAPIHelper();
+		ModelSubcomponentAPIHelper helper2 = new ModelSubcomponentAPIHelper(fixture.getBrandName(), fixture.getCategoryName(), fixture.getModelNumber());
 		setExampleParameters(helper2);
 		PDModelSubcomponentModel subcomponents2 = helper2.getModelSubcomponents(request);
 		assertTrue(subcomponents1 == subcomponents2);

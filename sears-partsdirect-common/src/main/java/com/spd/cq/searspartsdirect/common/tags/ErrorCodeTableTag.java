@@ -33,11 +33,10 @@ public class ErrorCodeTableTag extends CQBaseTag {
 					codes.add(model);
 				}
 			errorCodeTableModel.setErrorCodes(codes);
-								
 			pageContext.setAttribute("errorCodeTableData", errorCodeTableModel);
 		}
 		catch (Exception e) {
-			log.error("Retrieving error code table, ",e);
+			log.error("Error while retrieving error code table, ",e.fillInStackTrace());
 		}
         return SKIP_BODY;
 	}

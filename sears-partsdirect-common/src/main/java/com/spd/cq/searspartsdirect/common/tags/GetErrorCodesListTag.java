@@ -75,7 +75,6 @@ public class GetErrorCodesListTag extends CQBaseTag {
 									List<ErrorCodeListModel> errorCodeModels = new ArrayList<ErrorCodeListModel>();
 									Page page = pageManager.getPage(pages[i]);
 									BrandModel brandModel = new BrandModel(page.getName(),"", page.getTitle(), page.getDescription(), page.getPath() + Constants.ASSETS_LOGO_PATH);
-									//TODO - need to clean up the following messy code to have a better code option
 									if (!tempErrorCodeList.containsKey(brandModel)) {
 										errorCodeModels.add(model);
 										tempErrorCodeList.put(brandModel, errorCodeModels);
@@ -108,7 +107,7 @@ public class GetErrorCodesListTag extends CQBaseTag {
 				}
 			});
 
-		for (BrandModel brandModel : brandKeys) {
+			for (BrandModel brandModel : brandKeys) {
 				errorCodeList.put(brandModel, tempErrorCodeList.get(brandModel));
 			}
 

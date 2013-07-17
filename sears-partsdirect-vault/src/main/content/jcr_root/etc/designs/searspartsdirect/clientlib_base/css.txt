@@ -40,6 +40,7 @@ difficultyRating/difficultyRating.less
 errorCodeChecker/errorCodeChecker.less
 errorCodeTable/errorCodeTable.less
 errorListing/errorListing.less
+findThisPart/findThisPart.less
 globalHeader/globalHeader.less
 globalFooter/globalFooter.less
 guideNavigation/guideNavigation.less

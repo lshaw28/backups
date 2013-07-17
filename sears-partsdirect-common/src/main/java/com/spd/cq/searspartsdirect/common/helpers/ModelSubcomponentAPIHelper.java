@@ -27,6 +27,14 @@ public class ModelSubcomponentAPIHelper {
 	private String category;
 	private String model;
 	
+	public ModelSubcomponentAPIHelper(String brand, String category,
+			String model) {
+		super();
+		this.brand = brand;
+		this.category = category;
+		this.model = model;
+	}
+
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
