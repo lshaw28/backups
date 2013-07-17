@@ -8,12 +8,15 @@ import static org.hamcrest.Matchers.isA;
 
 import java.util.List;
 
+import javax.jcr.RepositoryException;
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetRelatedGuidesFixture;
+import com.spd.cq.searspartsdirect.common.fixture.GetRelatedItemsFixture;
 
 public class GetRelatedGuidesTagTest extends MocksTag {
 
@@ -52,6 +55,40 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testOneExploding() throws RepositoryException, JspException {
+		fixture.setUpNoDirectRelations();
+		fixture.makeNHits(1, resourceResolver, new GetRelatedItemsFixture.Explodes());
+		tag.setPageContext(pageContext);
+		tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+		
+		int startResult = tag.doStartTag();
+		assertThat(startResult,is(TagSupport.SKIP_BODY));
+		int endResult = tag.doEndTag();
+		assertThat(endResult,is(TagSupport.EVAL_PAGE));
+		
+		@SuppressWarnings("unchecked")
+		List<Object> result = (List<Object>)pageContext.getAttribute("guides");
+		assertThat(result,isA(List.class));
+		assertThat(result,is(empty()));
+	}
+	
+	@Test
+	public void testNoPath() throws RepositoryException, JspException {
+		fixture.setUpNoDirectRelations();
+		tag.setPageContext(pageContext);
+		
+		int startResult = tag.doStartTag();
+		assertThat(startResult,is(TagSupport.SKIP_BODY));
+		int endResult = tag.doEndTag();
+		assertThat(endResult,is(TagSupport.EVAL_PAGE));
+		
+		@SuppressWarnings("unchecked")
+		List<Object> result = (List<Object>)pageContext.getAttribute("guides");
+		assertThat(result,isA(List.class));
+		assertThat(result,is(empty()));
+	}
+	
+	@Test
 	public void testTwoHits() {
 		try {
 			fixture.setUpNoDirectRelations();
@@ -79,9 +116,12 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 	@Test
 	public void testTwoHitsAndTwoDirect() {
 		try {
+			assertThat(currentPage.equals(currentPage),is(true));
+			
 			fixture.setUpDirectRelations(2);
+			fixture.setCurrentPage(currentPage);
 			fixture.makeNHits(2, resourceResolver);
-
+			
 			tag.setPageContext(pageContext);
 			tag.setCategoryPath("/content/searspartsdirect/en/somepage");
 			
@@ -104,7 +144,7 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 	public void testFiveHits() {
 		try {
 			fixture.setUpNoDirectRelations();
-			fixture.makeNHits(5, resourceResolver);
+			fixture.makeNHits(5, resourceResolver, 1);
 
 			tag.setPageContext(pageContext);
 			tag.setCategoryPath("/content/searspartsdirect/en/somepage");
