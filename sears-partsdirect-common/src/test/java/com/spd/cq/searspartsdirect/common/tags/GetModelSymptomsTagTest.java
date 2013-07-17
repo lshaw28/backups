@@ -2,6 +2,7 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -36,7 +37,94 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		tag = new GetModelSymptomsTag();
 		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
 		
+		createQueryWithNoHitsYet();
 		
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		
+		tag.setBrandName("Kenmore");
+		tag.setCategoryName("Dishwasher");
+		tag.setModelNumber("66513593K600");
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithArgumentsButNoProperties() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		createQueryWithNoHitsYet();
+		
+		hits.add(createATestHit("/foo"));
+		
+		tag.setBrandName("Kenmore");
+		tag.setCategoryName("Dishwasher");
+		tag.setModelNumber("66513593K600");
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithArgumentsButExplodes() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		createQueryWithNoHitsYet();
+		
+		Hit explodingHit = createATestHit("/foo");
+		when(explodingHit.getPath()).thenThrow(new RepositoryException());
+		hits.add(explodingHit);
+		
+		tag.setBrandName("Kenmore");
+		tag.setCategoryName("Dishwasher");
+		tag.setModelNumber("66513593K600");
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithMissingModel() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		createQueryWithNoHitsYet();
+		
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		
+		tag.setBrandName("Kenmore");
+		tag.setCategoryName("Dishwasher");
+		assertThat(tag.getModelNumber(),nullValue());
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithOnlyBrand() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		createQueryWithNoHitsYet();
+		
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		
+		tag.setBrandName("Kenmore");
+		assertThat(tag.getCategoryName(),nullValue());
+		assertThat(tag.getModelNumber(),nullValue());
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithNoArguments() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		createQueryWithNoHitsYet();
+		
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		
+		assertThat(tag.getBrandName(),nullValue());
+		assertThat(tag.getCategoryName(),nullValue());
+		assertThat(tag.getModelNumber(),nullValue());
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	private void createQueryWithNoHitsYet() {
 		when(slingRequest.getResourceResolver()).thenReturn(resourceResolver);
 		Session session = mock(Session.class);
 		when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
@@ -53,16 +141,6 @@ public class GetModelSymptomsTagTest extends MocksTag {
 				return hits;
 			}
 		});
-		
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
-		
-		Hit testHit = mock(Hit.class);
-		when(testHit.getPath()).thenReturn("titleAndDesc");
-		
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
-		tag.setModelNumber("66513593K600");
-		runTagShouldSkipBodyEvalPage();
 	}
 	
 	private Hit createATestHit(String titleAndDesc) throws RepositoryException {
