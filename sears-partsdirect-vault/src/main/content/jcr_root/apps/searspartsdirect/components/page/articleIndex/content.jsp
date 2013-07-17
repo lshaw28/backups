@@ -5,7 +5,7 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<cq:include path="pageTitleHeader" resourceType="searspartsdirect/components/content/pageTitleHeader" />
-			<cq:include path="articleIndexIntro" resourceType="searspartsdirect/components/content/text" />
+			<cq:include path="articleIndexCopy" resourceType="searspartsdirect/components/content/articleIndexCopy" />
 		</div>
 	</div>
 	<div class="row-fluid">

@@ -1,7 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
 <spd:getUrlRelation relationType="symptom" />
-<spd:getSymptomDetail partsRequired="false" symptomId ="${symptomRelation.id}" />
+<spd:getSymptomDetail partsRequired="false" id ="${symptomRelation.id}" />
 
 <h1>${modelSymptom.symptomModel.title}</h1>
 <p>${modelSymptom.symptomModel.description}</p>
