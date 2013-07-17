@@ -69,12 +69,12 @@ public class GetAuthorPagesTagTest extends MocksTag {
 		runsSkipsBodyEvalsPage();
 	}
 	
-//	
-//	@Test
-//	public void testWhenExplodes() throws Exception {
-//		fixture.setUpExplodes();
-//		runsSkipsBodyEvalsPage();
-//	}
+	
+	@Test
+	public void testWhenExplodes() throws Exception {
+		fixture.setUpExplodes();
+		runsSkipsBodyEvalsPage();
+	}
 
 	private void runsSkipsBodyEvalsPage() throws JspException {
 		tag.setPageContext(pageContext);

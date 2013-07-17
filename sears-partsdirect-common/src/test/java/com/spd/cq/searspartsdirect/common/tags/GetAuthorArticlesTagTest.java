@@ -6,6 +6,9 @@ import static org.hamcrest.Matchers.is;
 
 import java.util.ArrayList;
 
+import javax.jcr.RepositoryException;
+import javax.servlet.jsp.JspException;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,20 +23,20 @@ public class GetAuthorArticlesTagTest extends MocksTag {
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetAuthorArticlesTagFixture(pageContext, resourceResolver, pageManager);
+		fixture = new GetAuthorArticlesTagFixture(currentPage, resourceResolver, pageManager);
 		tag = new GetAuthorArticlesTag();
-		tag.setPageContext(pageContext);
 	}
 
 	@Test
-	public void testDoStartTag() {
-		try {
-			fixture.setCurrentPagePath();
-			tag.doStartTag();
-			tag.doEndTag();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	public void testDoStartTag() throws JspException, RepositoryException {
+		
+		fixture.setUpComplete();
+		
+		tag.setPageContext(pageContext);
+		fixture.setCurrentPagePath();
+		tag.doStartTag();
+		tag.doEndTag();
+		
 
 		@SuppressWarnings("unchecked")
 		ArrayList<ArticleModel> articles = (ArrayList<ArticleModel>) pageContext.getAttribute("articles");
@@ -46,6 +49,23 @@ public class GetAuthorArticlesTagTest extends MocksTag {
 			ArticleModel last = articles.get(2);
 			assertThat(last.getUrl(), is("/baz.html"));
 		}
+	}
+	
+	@Test
+	public void testDoStartTagExplodes() throws JspException, RepositoryException {
+		
+		fixture.setUpExplodes();
+		
+		tag.setPageContext(pageContext);
+		fixture.setCurrentPagePath();
+		tag.doStartTag();
+		tag.doEndTag();
+		
+
+		@SuppressWarnings("unchecked")
+		ArrayList<ArticleModel> articles = (ArrayList<ArticleModel>) pageContext.getAttribute("articles");
+		assertNull(articles);
+		
 	}
 
 }

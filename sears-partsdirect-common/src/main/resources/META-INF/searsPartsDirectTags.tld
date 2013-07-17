@@ -443,17 +443,6 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>getSymptomFrequency</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetSymptomFrequency</tag-class>
-		<info>this tag will fetch symptom frequencies from PD using symptom id</info>
-		<attribute>
-			<name>symptomList</name>
-			<type>java.util.List</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-	<tag>
 		<name>repairModelHelp</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.RepairModelHelpTag</tag-class>
 		<info>this tag gets the data on the repair model help page</info>
@@ -464,13 +453,13 @@
 		<info>Gets the model symptom data</info>
 		<attribute>
 			<name>partsRequired</name>
-			<type>boolean</type>
+			<type>java.lang.Boolean</type>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<name>symptomId</name>
-			<type>java.lang.Long</type>
+			<name>id</name>
+			<type>java.lang.String</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>

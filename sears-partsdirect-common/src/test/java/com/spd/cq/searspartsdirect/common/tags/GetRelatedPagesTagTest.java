@@ -49,4 +49,50 @@ public class GetRelatedPagesTagTest extends MocksTag {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	@Test
+	public void testRelatedPagesTagExplodes() {
+		try {
+				fixture.makeNHits(3, resourceResolver, new GetRelatedItemsFixture.Explodes());
+				tag.setPageContext(pageContext);
+				tag.setAssetPath("/etc/spdAssets/scaffolding/commonasset");
+				tag.setRootPath("/content/searspartsdirect/en/somepage");
+				
+				int startResult = tag.doStartTag();
+				assertThat(startResult,is(TagSupport.SKIP_BODY));
+				int endResult = tag.doEndTag();
+				assertThat(endResult,is(TagSupport.EVAL_PAGE));
+				
+				@SuppressWarnings("unchecked")
+				List<Page> result = (List<Page>)pageContext.getAttribute("relatedPages");
+				assertThat(result,isA(List.class));
+				assertThat(result,hasSize(0));
+				
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void testRelatedPagesTagNoRootPath() {
+		try {
+				fixture.makeNHits(3, resourceResolver);
+				tag.setPageContext(pageContext);
+				tag.setAssetPath("/etc/spdAssets/scaffolding/commonasset");
+				//tag.setRootPath("/content/searspartsdirect/en/somepage");
+				
+				int startResult = tag.doStartTag();
+				assertThat(startResult,is(TagSupport.SKIP_BODY));
+				int endResult = tag.doEndTag();
+				assertThat(endResult,is(TagSupport.EVAL_PAGE));
+				
+				@SuppressWarnings("unchecked")
+				List<Page> result = (List<Page>)pageContext.getAttribute("relatedPages");
+				assertThat(result,isA(List.class));
+				assertThat(result,hasSize(3));
+				
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

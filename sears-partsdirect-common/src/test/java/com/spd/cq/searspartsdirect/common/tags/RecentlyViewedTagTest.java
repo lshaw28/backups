@@ -3,6 +3,7 @@ package com.spd.cq.searspartsdirect.common.tags;
 import java.util.LinkedList;
 
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.TagSupport;
 
 import junit.framework.Assert;
 
@@ -42,6 +43,16 @@ public class RecentlyViewedTagTest extends MocksTag {
 		recentlyViewedTag.setPageContext(pageContext);
 		recentlyViewedTag.doStartTag();
 	}
+	
+	@Test
+	public void testWithEmptyCookies() throws JspException {
+		Mockito.when(pageContext.getRequest()).thenReturn(request);
+		Mockito.when(request.getCookies()).thenReturn(recentlyViewedFixture.getEmptyPartAndModelCookie());
+
+		recentlyViewedTag.setPageContext(pageContext);
+		Assert.assertEquals(recentlyViewedTag.doStartTag(),TagSupport.SKIP_BODY);
+		Assert.assertEquals(recentlyViewedTag.doEndTag(),TagSupport.EVAL_PAGE);
+	}
 
 	@SuppressWarnings("unchecked")
 	@Test
@@ -51,8 +62,8 @@ public class RecentlyViewedTagTest extends MocksTag {
 
 		Mockito.when(pageContext.getRequest()).thenReturn(request);
 		Mockito.when(request.getCookies()).thenReturn(recentlyViewedFixture.getPartAndModelCookie());
-		Mockito.when(pageContext.getAttribute("rvModelList")).thenReturn(modelList);
-		Mockito.when(pageContext.getAttribute("rvPartList")).thenReturn(partList);
+		//Mockito.when(pageContext.getAttribute("rvModelList")).thenReturn(modelList);
+		//Mockito.when(pageContext.getAttribute("rvPartList")).thenReturn(partList);
 
 		recentlyViewedTag.setPageContext(pageContext);
 		recentlyViewedTag.doStartTag();

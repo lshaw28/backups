@@ -20,10 +20,7 @@ public class GetPartsLinkTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper();
-			apiHelper.setBrand(brandName);
-			apiHelper.setCategory(categoryName);
-			apiHelper.setModel(modelNumber);
+			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(brandName, categoryName, modelNumber);
 			PDModelSubcomponentModel subcomponents = apiHelper.getModelSubcomponents(slingRequest);
 			PDTab[] apiTabs = subcomponents.getTabsArr();
 			for (PDTab tab : apiTabs) {
@@ -33,7 +30,7 @@ public class GetPartsLinkTag extends CQBaseTag {
 				}
 			}
 		} catch (Exception e) {
-			log.error("Reading model header tabs from API, ",e.fillInStackTrace());
+			log.error("Reading parts tab url from API, ",e.fillInStackTrace());
 		}
 		return SKIP_BODY;
 	}
