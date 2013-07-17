@@ -112,18 +112,6 @@
 						<li><a class="new-btn" href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a class="new-btn new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
-						<li><strong><span class="cart-part">Parts</span><span class="cart-quantity">Qty</span></strong></li>
-						<li class="cart-item">
-							<span class="cart-part"><a href="${mainSitePath}/partsdirect/part-number/12345/12345/12345">12345</a><br />
-							This is a part</span>
-							<span class="cart-quantity">1</span>
-						</li>
-						<li class="cart-item">
-							<span class="cart-part"><a href="${mainSitePath}/partsdirect/part-number/12345/12345/12345">12345</a><br />
-							This is a part</span>
-							<span class="cart-quantity">2</span>
-						</li>
 						<li>Your shopping cart is empty</li>
 					</c:otherwise>
 				</c:choose>
