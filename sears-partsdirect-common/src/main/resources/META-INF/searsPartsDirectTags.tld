@@ -464,13 +464,13 @@
 		<info>Gets the model symptom data</info>
 		<attribute>
 			<name>partsRequired</name>
-			<type>boolean</type>
+			<type>java.lang.Boolean</type>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<name>symptomId</name>
-			<type>java.lang.Long</type>
+			<name>id</name>
+			<type>java.lang.String</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
