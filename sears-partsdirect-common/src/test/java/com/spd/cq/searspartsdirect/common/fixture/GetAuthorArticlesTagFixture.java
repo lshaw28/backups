@@ -11,7 +11,6 @@ import java.util.Map;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import javax.servlet.jsp.PageContext;
 
 import org.apache.sling.api.resource.ResourceResolver;
 
@@ -27,37 +26,55 @@ public class GetAuthorArticlesTagFixture {
 
 	private PageImpressionsComparatorFixture testPages;
 	private PageManager pageManager;
+	private ResourceResolver resourceResolver;
 	private Page currentPage;
 
-	public Page getCurrentPage() {
-		return currentPage;
-	}
-
-	public void setCurrentPage(Page currentPage) {
+	public GetAuthorArticlesTagFixture(Page currentPage, ResourceResolver resourceResolver,
+			PageManager pageManager) {
+		this.pageManager = pageManager;
+		this.resourceResolver = resourceResolver;
 		this.currentPage = currentPage;
+		
+		testPages = new PageImpressionsComparatorFixture(resourceResolver);
+
 	}
-
-	public GetAuthorArticlesTagFixture(PageContext pageContext, ResourceResolver resourceResolver,
-			PageManager pageManager) throws RepositoryException {
-
+	
+	public void setUpComplete() throws RepositoryException {
+		// TODO Auto-generated method stub
+		List<Hit> hits = setUpEmptyHits();
+		
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("abstracttext", "Lorem Ipsum");
+		hits.add(createTestHitAndPage("/foo", "Article 1", props, 88));
+		hits.add(createTestHitAndPage("/bar", "Article 2", props, 818));
+		hits.add(createTestHitAndPage("/baz", "Article 3", props, 18081));
+	}
+	
+	public void setUpExplodes() throws RepositoryException {
+		// TODO Auto-generated method stub
+		List<Hit> hits = setUpEmptyHits();
+		
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("abstracttext", "Lorem Ipsum");
+		hits.add(createExplodingHit("/foo", "Article 1", props, 88));
+		hits.add(createExplodingHit("/bar", "Article 2", props, 818));
+		hits.add(createExplodingHit("/baz", "Article 3", props, 18081));
+	}
+	
+	List<Hit> setUpEmptyHits() {
 		QueryBuilder ourFakeQueryBuilder = mock(QueryBuilder.class);
 		Query ourFakeQuery = mock(Query.class);
 		when(ourFakeQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(ourFakeQuery);
 		when(resourceResolver.adaptTo(QueryBuilder.class)).thenReturn(ourFakeQueryBuilder);
 		SearchResult result = mock(SearchResult.class);
 		when(ourFakeQuery.getResult()).thenReturn(result);
-		this.pageManager = pageManager;
-		currentPage = mock(Page.class);
-		when((Page) pageContext.findAttribute("currentPage")).thenReturn(currentPage);
-
-		testPages = new PageImpressionsComparatorFixture(resourceResolver);
+		
+//		currentPage = mock(Page.class);
+//		when((Page) pageContext.findAttribute("currentPage")).thenReturn(currentPage);
+		
 		List<Hit> hits = new ArrayList<Hit>();
-		Map<String, Object> props = new HashMap<String, Object>();
-		props.put("abstracttext", "Lorem Ipsum");
-		hits.add(createTestHitAndPage("/foo", "Article 1", props, 88));
-		hits.add(createTestHitAndPage("/bar", "Article 2", props, 818));
-		hits.add(createTestHitAndPage("/baz", "Article 3", props, 18081));
 		when(result.getHits()).thenReturn(hits);
+		return hits;
 	}
 
 	Hit createTestHitAndPage(String path, String title, Map<String, Object> properties, int viewCount)
@@ -65,6 +82,16 @@ public class GetAuthorArticlesTagFixture {
 
 		Hit aHit = mock(Hit.class);
 		when(aHit.getPath()).thenReturn(path);
+		when(aHit.getTitle()).thenReturn(title);
+		createTestPage(path, title, properties, viewCount);
+		return aHit;
+	}
+	
+	Hit createExplodingHit(String path, String title, Map<String, Object> properties, int viewCount)
+			throws RepositoryException {
+
+		Hit aHit = mock(Hit.class);
+		when(aHit.getPath()).thenThrow(new RepositoryException());
 		when(aHit.getTitle()).thenReturn(title);
 		createTestPage(path, title, properties, viewCount);
 		return aHit;

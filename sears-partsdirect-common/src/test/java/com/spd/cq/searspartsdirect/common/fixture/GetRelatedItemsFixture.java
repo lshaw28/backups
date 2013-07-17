@@ -28,7 +28,27 @@ public class GetRelatedItemsFixture {
 		this.pageManager = pageManager;	
 	}
 	
-	public void makeNHits(int hitTotal, ResourceResolver rr) throws RepositoryException{
+	public abstract static class HitGetPathBehavior {
+		public abstract void addPathBehavior(Hit hit, String path) throws RepositoryException;
+	}
+	
+	public static class ReturnsPath extends HitGetPathBehavior {
+		public void addPathBehavior(Hit hit, String path) throws RepositoryException {
+			when(hit.getPath()).thenReturn(path);
+		}
+	}
+	
+	public static class Explodes extends HitGetPathBehavior {
+		public void addPathBehavior(Hit hit, String path) throws RepositoryException {
+			when(hit.getPath()).thenThrow(new RepositoryException());
+		}
+	}
+	
+	public void makeNHits(int hitTotal, ResourceResolver rr) throws RepositoryException {
+		makeNHits(hitTotal, rr, new ReturnsPath());
+	}
+	
+	public void makeNHits(int hitTotal, ResourceResolver rr, HitGetPathBehavior hitGetPathBehavior) throws RepositoryException{
 		
 		QueryBuilder qb = mock(QueryBuilder.class);
 		when(rr.adaptTo(QueryBuilder.class)).thenReturn(qb);
@@ -45,7 +65,9 @@ public class GetRelatedItemsFixture {
 			Hit hit = mock(Hit.class);
 			Page page = mock(Page.class);
 			String hitPath = "/hit"+i;
-			when(hit.getPath()).thenReturn(hitPath);
+			
+			hitGetPathBehavior.addPathBehavior(hit,hitPath);
+			
 			when(page.getPath()).thenReturn(hitPath);
 			ValueMap properties = mock(ValueMap.class);
 			if (i % 2 == 0) {

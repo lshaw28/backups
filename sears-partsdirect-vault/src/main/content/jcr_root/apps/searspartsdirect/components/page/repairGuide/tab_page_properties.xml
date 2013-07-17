@@ -5,29 +5,6 @@
 	title="Page Properties">
 	<items jcr:primaryType="cq:WidgetCollection">
 		
-		<subcontainer1
-			jcr:primaryType="cq:Widget"
-                  flex="{Long}1"
-                  height="250"
-                  xtype="dialogfieldset">
-               <items jcr:primaryType="cq:WidgetCollection">
-                   
-                    <image
-			        jcr:primaryType="cq:Widget"
-				    cropParameter="./image/imageCrop"
-				    ddGroups="[media]"
-				    fileNameParameter="./image/fileName"
-				    fileReferenceParameter="./image/fileReference"
-				    name="./image/file"
-				    requestSuffix="/image.img.png"
-				    rotateParameter="./image/imageRotate"
-				    title="image"
-				    height="200"
-				    uploadUrl="/tmp/upload/*"
-				    xtype="smartimage"/>
-			</items>
-		</subcontainer1>
-		
         <subcontainer2
 			jcr:primaryType="cq:Widget"
                   flex="{Long}1"

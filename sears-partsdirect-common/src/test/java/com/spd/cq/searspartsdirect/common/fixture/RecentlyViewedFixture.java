@@ -32,6 +32,21 @@ public class RecentlyViewedFixture {
 		partCookie.setDomain("localhost");
 		return new Cookie[] { modelCookie, partCookie };
 	}
+	
+	public Cookie[] getEmptyPartAndModelCookie() {
+		Cookie modelCookie = new Cookie(Constants.RECENTLY_VIEWED_MODEL_COOKIE,"");
+		modelCookie.setValue(null);
+		modelCookie.setMaxAge(12000);
+		modelCookie.setPath("/partsdirect/");
+		modelCookie.setDomain("localhost");
+
+		Cookie partCookie = new Cookie(Constants.RECENTLY_VIEWED_PART_COOKIE,"");
+		partCookie.setValue(null);
+		partCookie.setMaxAge(12000);
+		partCookie.setPath("/partsdirect/");
+		partCookie.setDomain("localhost");
+		return new Cookie[] { modelCookie, partCookie };
+	}
 
 	public LinkedList<ModelCookieModel> getModelList() {
 		LinkedList<ModelCookieModel> modelList = new LinkedList<ModelCookieModel>();
