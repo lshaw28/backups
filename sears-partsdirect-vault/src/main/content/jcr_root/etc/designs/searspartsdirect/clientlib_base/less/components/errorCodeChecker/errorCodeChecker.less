@@ -6,16 +6,22 @@
 		background-color: @secondaryHueLighter;
 		line-height: 30px;
 		margin: 0;
-		padding: 2%;
-		width: 96%;
+		padding: 20px;
+		overflow: hidden;
 
-		[class^="svg-icon-"], [class*=" svg-icon-"] {
+		[class^="svg-icon-"], 
+		[class*=" svg-icon-"] {
 			display: inline-block;
-			height: 30px;
+			height: 40px;
 			margin: 0;
-			vertical-align: baseline;
-			width: 30px;
+			vertical-align: middle;
+			width: 40px;
+
+			&:before {
+				content: '';
+			}
 		}
+
 		.divider {
 			background-color: @secondaryHueNormal;
 			display: inline-block;
@@ -26,6 +32,7 @@
 		}
 		.new-btn {
 			margin: 0 0 0 5px;
+			float: right;
 		}
 	}
 }
