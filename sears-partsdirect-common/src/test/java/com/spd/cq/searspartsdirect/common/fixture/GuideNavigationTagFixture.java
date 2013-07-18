@@ -29,12 +29,13 @@ import com.spd.cq.searspartsdirect.common.tags.GuideNavigationTag;
 
 public class GuideNavigationTagFixture {
 	
-	private final static String jumpToValue = "Jump to...";
-	private final static String testPagePath = "/content/searspartsdirect/en/test";
-	private final static String h2Contents = "Before you begin";
+	private final static String JUMP_TO_VALUE = "Jump to...";
+	private final static String TEST_PAGE_PATH = "/content/searspartsdirect/en/test";
+	private final static String H2_CONTENTS = "Before you begin";
 	
 	private Page currentPage;
 	private SlingHttpServletRequest slingRequest;
+	private ResourceResolver resourceResolver;
 	
 	private Resource pageContentResource;
 	private Node pageNode;
@@ -47,6 +48,7 @@ public class GuideNavigationTagFixture {
 	public GuideNavigationTagFixture(Page currentPage, SlingHttpServletRequest slingRequest, ResourceResolver resourceResolver) throws Exception {
 		this.currentPage = currentPage;
 		this.slingRequest = slingRequest;
+		this.resourceResolver = resourceResolver;
 		pageContentResource = mock(Resource.class);
 		when(currentPage.getContentResource()).thenReturn(pageContentResource);
 		when(currentPage.getPath()).thenReturn(getCurrentPagePath());
@@ -109,6 +111,25 @@ public class GuideNavigationTagFixture {
 		when(commentSystem.countComments()).thenReturn(getCommentCount());
 	}
 	
+	public void breakCommentsResource() {
+		when(resourceResolver.resolve(Constants.USERGEN_ROOT+getCurrentPagePath()+Constants.GUIDE_COMMENTS_PATH)).thenReturn(null);
+		
+	}
+	
+	public void breakCommentsSystem() {
+		Resource commentsResource = resourceResolver.resolve(Constants.USERGEN_ROOT+getCurrentPagePath()+Constants.GUIDE_COMMENTS_PATH);
+		when(commentsResource.adaptTo(CommentSystem.class)).thenReturn(null);
+	}
+	
+	public void setupSingleTypeAndLabel() throws RepositoryException {
+		when(sectionsProperty.isNew()).thenReturn(false);
+//		PropertyDefinition sectionsPropDefinition = mock(PropertyDefinition.class);
+//		when(sectionsPropDefinition.isMultiple()).thenReturn(true);
+//		when(sectionsProperty.getDefinition()).thenReturn(sectionsPropDefinition);
+		PropertyDefinition sectionsPropDefinition = sectionsProperty.getDefinition();
+		when(sectionsPropDefinition.isMultiple()).thenReturn(false);
+	}
+	
 	public Resource getExistingResource() {
 		return mock(Resource.class);
 	}
@@ -117,6 +138,29 @@ public class GuideNavigationTagFixture {
 		Resource nonexistent = getExistingResource();
 		when(nonexistent.isResourceType(Resource.RESOURCE_TYPE_NON_EXISTING)).thenReturn(true);
 		return nonexistent;
+	}
+	
+	public void removeBeforeYouBeginResource() {
+		when(currentPage.getContentResource(GuideNavigationTag.BEFORE_YOU_BEGIN)).thenReturn(null);
+	}
+	
+	public void beforeYouBeginHasNoHeaderNow() throws PathNotFoundException, RepositoryException {
+//		when(currentPage.getContentResource(GuideNavigationTag.BEFORE_YOU_BEGIN)).thenReturn(textResource);
+//		
+//		when(textResource.adaptTo(Node.class)).thenReturn(textNode);
+//		
+//		when(textNode.getProperty(Constants.GUIDE_TEXT_LABEL_PROP)).thenReturn(textProperty);
+//		when(textProperty.getString()).thenReturn("<h2>"+getTextHeader()+"</h2><p>Read the source code</p>");
+		Resource textResource = currentPage.getContentResource(GuideNavigationTag.BEFORE_YOU_BEGIN);
+		Node textNode = textResource.adaptTo(Node.class);
+		Property textProperty = textNode.getProperty(Constants.GUIDE_TEXT_LABEL_PROP);
+		when(textProperty.getString()).thenReturn(getTextHeader());
+	}
+	
+	public void setupBYBLabelPropExplodes() throws PathNotFoundException, RepositoryException {
+		Resource textResource = currentPage.getContentResource(GuideNavigationTag.BEFORE_YOU_BEGIN);
+		Node textNode = textResource.adaptTo(Node.class);
+		when(textNode.getProperty(Constants.GUIDE_TEXT_LABEL_PROP)).thenThrow(new PathNotFoundException());
 	}
 	
 	public void breakJumpText() throws ValueFormatException, RepositoryException {
@@ -130,6 +174,10 @@ public class GuideNavigationTagFixture {
 	public void setupNoSetupNode() throws PathNotFoundException, RepositoryException {
 		when(pageNode.hasNode(Constants.GUIDE_NAV_PATH)).thenReturn(false);
 		when(pageNode.addNode(Constants.GUIDE_NAV_PATH,Constants.UNSTRUCTURED)).thenReturn(setupNode);
+	}
+	
+	public void setupPageNodeGetSessionExplodes() throws RepositoryException {
+		when(pageNode.getSession()).thenThrow(new RepositoryException());
 	}
 	
 	public void setupCannotSetupDisabled() {
@@ -160,15 +208,15 @@ public class GuideNavigationTagFixture {
 	}
 	
 	public String getCurrentPagePath() {
-		return testPagePath;
+		return TEST_PAGE_PATH;
 	}
 	
 	public String getJumpToValue() {
-		return jumpToValue;
+		return JUMP_TO_VALUE;
 	}
 
 	public String getTextHeader() {
-		return h2Contents;
+		return H2_CONTENTS;
 	}
 
 	public int getCommentCount() {
@@ -188,4 +236,5 @@ public class GuideNavigationTagFixture {
 	private static class OneStringArrayHolder {
 		public String[] held = null;
 	}
+
 }

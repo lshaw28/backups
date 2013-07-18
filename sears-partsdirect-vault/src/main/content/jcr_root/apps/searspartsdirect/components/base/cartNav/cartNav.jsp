@@ -37,7 +37,7 @@
 			</c:choose>
 		</div>
 	</li>
-	<li class="cartNavItem">
+	<li id="cartModels" class="cartNavItem">
 		<div class="btn-group">
 			<a data-toggle="dropdown" href="#">My Models
 			<c:choose>
@@ -51,7 +51,7 @@
 					<span class="count-badge parentheses">0</span>
 				</c:otherwise>
 			</c:choose>
-			<i class="icon-caret-down hidden-phone">&nbsp;</i></a>
+			<i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
 				<c:choose>
 					<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 0}">
@@ -60,10 +60,11 @@
 						</c:forEach>
 						<c:choose>
 							<c:when test="${loggedIn}">
-								<li>Registered user edit</li>
+								<li><a class="new-btn" href="${mainSitePath}/partsdirect/">Edit List</a></li>
 							</c:when>
 							<c:otherwise>
-								<li>Guest user edit</li>
+								<li id="cartGuestEdit"><a class="new-btn edit_js">Edit List</a></li>
+								<li id="cartGuestControls"><a class="new-btn new-btn-edit remove_js">Remove</a><a class="new-btn new-btn-borderless pull-right cancel_js">Cancel</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:when>

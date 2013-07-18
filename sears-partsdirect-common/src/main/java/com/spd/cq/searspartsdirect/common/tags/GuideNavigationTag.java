@@ -46,7 +46,6 @@ public class GuideNavigationTag extends CQBaseTag {
 		
 		// we read our configuration into a map
 		Map<String,String> typesAndLabels = readTypesAndLabelsFromConfig(pageNode);
-		if (log.isDebugEnabled()) log.debug("typesAndLabels is "+typesAndLabels);
 		
 		// We find the jump-to text for the select and place it in context
 		String jumpToString = Constants.GUIDE_NAV_DEF_JUMPTO_TEXT;
@@ -106,7 +105,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		for (LinkGenerator linkGen : generators) {
 			String label = linkGen.generateLabel();
 			if (!labelIsBlank(label)) {
-				AnchorLinkModel newLink = new AnchorLinkModel(linkGen.generateLink(),linkGen.generateLabel());
+				AnchorLinkModel newLink = new AnchorLinkModel(linkGen.generateLink(),label);
 				sections.add(newLink);
 			}
 		}
