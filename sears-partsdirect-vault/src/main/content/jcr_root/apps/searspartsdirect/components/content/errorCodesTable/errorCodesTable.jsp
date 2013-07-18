@@ -29,7 +29,7 @@
 								<a href="${url}">Repair or Installation guide link</a>
 						</c:when>
 						<c:otherwise>
-							${model.repairPathText}
+							${model.repairText}
 						</c:otherwise>
 					</c:choose>
 				</td>

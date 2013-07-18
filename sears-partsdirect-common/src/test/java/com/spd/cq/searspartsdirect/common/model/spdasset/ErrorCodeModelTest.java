@@ -38,20 +38,20 @@ public class ErrorCodeModelTest  extends TestCase {
 			assertThat(errorCodeModel.getRepairPath(),is(repairPath));
 			assertThat(errorCodeModel.getPath(),is(path));
 			assertThat(errorCodeModel.getShopPartsLink(),is(shopPartsLink));
-			assertThat(errorCodeModel.getRepairPathText(), is(repairPathText));
+			assertThat(errorCodeModel.getRepairText(), is(repairPathText));
 			assertThat(errorCodeModel.getShopPartsText(), is(shopPartsText));
 			errorCodeModel.setCode(code2);
 			errorCodeModel.setCondition(condition2);
 			errorCodeModel.setRepairPath(repairPath2);
 			errorCodeModel.setPath(path2);
 			errorCodeModel.setShopPartsLink(shopPartsLink2);
-			errorCodeModel.setRepairPathText(repairPathText2);
+			errorCodeModel.setRepairText(repairPathText2);
 			errorCodeModel.setShopPartsText(shopPartsText2);
 			assertThat(errorCodeModel.getCode(),is(code2));
 			assertThat(errorCodeModel.getCondition(),is(condition2));
 			assertThat(errorCodeModel.getRepairPath(),is(repairPath2));
 			assertThat(errorCodeModel.getShopPartsLink(), is(shopPartsLink2));
-			assertThat(errorCodeModel.getRepairPathText(), is(repairPathText2));
+			assertThat(errorCodeModel.getRepairText(), is(repairPathText2));
 			assertThat(errorCodeModel.getShopPartsText(), is(shopPartsText2));
 			
 		} catch (Exception e) {
