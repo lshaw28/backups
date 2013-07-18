@@ -114,11 +114,6 @@
 		<info>Creates path to parent url</info>
 	</tag>
 	<tag>
-		<name>getProductCategoryName</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
-		<info>Provides the product category name</info>
-	</tag>
-	<tag>
 		<name>getRecentlyViewed</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.RecentlyViewedTag</tag-class>
 		<info>Get the recently viewed model and parts</info>
