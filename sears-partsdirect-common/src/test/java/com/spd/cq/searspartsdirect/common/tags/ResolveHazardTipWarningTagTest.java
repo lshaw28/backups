@@ -48,6 +48,16 @@ public class ResolveHazardTipWarningTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testDoStartTagAdhocPropMissing() throws PathNotFoundException, RepositoryException {
+		//fixture.setupAdhocExists();
+		fixture.setupAdhocValue();
+		setupForHazardTest();
+		resolveHtwTag.doStartTag();
+		assertThat((String)pageContext.getAttribute("htwText"),is(fixture.getHazardPlaceholder()));
+		assertThat((String)pageContext.getAttribute("htwImage"),is(Constants.EMPTY));
+	}
+	
+	@Test
 	public void testDoStartTagAdhocEmptyHazard() throws PathNotFoundException, RepositoryException {
 		fixture.setupAdhocExists();
 		fixture.setupAdhocEmpty();
@@ -82,6 +92,20 @@ public class ResolveHazardTipWarningTagTest extends MocksTag {
 		resolveHtwTag.doStartTag();
 		assertThat((String)pageContext.getAttribute("htwText"),is(fixture.getAdhocHazardText()));
 		assertThat((String)pageContext.getAttribute("htwImage"),is(fixture.getChoiceHazardImage()));
+	}
+	
+	@Test
+	public void testDoStartChosenTitleExplodes() throws RepositoryException {
+		fixture.setupAdhocExists();
+		fixture.setupAdhocValue();
+		fixture.setupChoiceExists();
+		fixture.setupChoiceValue();
+		fixture.setupChoiceValueContents();
+		fixture.makeChoiceTitleExplode();
+		setupForHazardTest();
+		resolveHtwTag.doStartTag();
+		assertThat((String)pageContext.getAttribute("htwText"),is(fixture.getAdhocHazardText()));
+		assertThat((String)pageContext.getAttribute("htwImage"),is(Constants.EMPTY));
 	}
 	
 	@Test

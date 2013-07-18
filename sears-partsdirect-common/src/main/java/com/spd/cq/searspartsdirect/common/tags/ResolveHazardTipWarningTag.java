@@ -22,9 +22,7 @@ public class ResolveHazardTipWarningTag extends CQBaseTag {
 	 * Sets pageContext attributes htwText and htwImage.
 	 */
 	public int doStartTag() {
-		if (log.isDebugEnabled()) {
-			log.debug("adhocField is "+adhocField+", choiceField is "+choiceField);
-		}
+
 		String resultText = placeholder;
 		String resultImage = "";
 		
@@ -65,10 +63,6 @@ public class ResolveHazardTipWarningTag extends CQBaseTag {
 		public void setImage(String image) {
 			this.image = image;
 		}
-		@Override
-		public String toString() {
-			return "text="+text+", image="+image;
-		}
 	}
 	
 	private ChosenSettings maybeRetrieveChosenSettings() {
@@ -87,7 +81,6 @@ public class ResolveHazardTipWarningTag extends CQBaseTag {
 			Resource chosenResource = resourceResolver.resolve(chosenPath);
 			if (chosenResource != null) {
 				Node chosenNode = chosenResource.adaptTo(Node.class);
-				if (log.isDebugEnabled()) log.debug("chosenNode is "+chosenNode);
 				try {
 					if (chosenNode.hasProperty(Constants.ASSETS_TITLE_REL_PATH)) {
 						settings.setText(chosenNode.getProperty(Constants.ASSETS_TITLE_REL_PATH).getString());
@@ -96,7 +89,7 @@ public class ResolveHazardTipWarningTag extends CQBaseTag {
 					if (chosenNode.hasNode(Constants.ASSETS_IMAGE_REL_PATH)) {
 						settings.setImage(chosenNode.getPath()+Constants.ASSETS_IMAGE_PATH); // +Constants.ASSETS_IMAGE_PATH
 					} else {
-						if (log.isDebugEnabled()) log.debug("No such child as "+Constants.ASSETS_IMAGE_REL_PATH+" under "+chosenNode);
+						log.info("No such child as "+Constants.ASSETS_IMAGE_REL_PATH+" under "+chosenNode);
 					}
 				} catch (RepositoryException re) {
 					log.warn("Could not retrieve title, ",re);
@@ -106,7 +99,7 @@ public class ResolveHazardTipWarningTag extends CQBaseTag {
 				log.warn("Could not resolve "+chosenPath);
 			}
 		}
-		if (log.isDebugEnabled()) log.debug("at end, settings is "+settings);
+
 		return settings;
 	}
 	

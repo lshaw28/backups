@@ -33,59 +33,120 @@ public class GetSymptomDetailTagFixture {
 
 	private List<Hit> hits;
 
-	public GetSymptomDetailTagFixture(SlingHttpServletRequest slingRequest,
-			ResourceResolver resourceResolver, PageManager pageManager) {
+	public GetSymptomDetailTagFixture(SlingHttpServletRequest slingRequest, ResourceResolver resourceResolver, PageManager pageManager) {
 		this.slingRequest = slingRequest;
 		this.resourceResolver = resourceResolver;
 		this.pageManager = pageManager;
 	}
-
-	public void setupFixtureComplete() throws RepositoryException {
+	
+	public void setUpMinimus() {
 		createQueryNoHitsYet();
-		hits.add(popJobCodePage(populateTestHitPagesExceptJobCode(popProps(createTestHitProps(createATestHit("/foo")))),true));
-		hits.add(popJobCodePage(populateTestHitPagesExceptJobCode(popProps(createTestHitProps(createATestHit("/bar")))),true));
-		hits.add(popJobCodePage(populateTestHitPagesExceptJobCode(popProps(createTestHitProps(createATestHit("/baz")))),true));
-		hits.add(popJobCodePage(populateTestHitPagesExceptJobCode(popProps(createTestHitProps(createATestHit("/foo")))),true));
 	}
-
-	public void setUpNoJobCodePageProps() throws RepositoryException {
+	
+	public void setUpComplete() throws RepositoryException {
 		createQueryNoHitsYet();
-		hits.add(popJobCodePage(popProps(createTestHitProps(createATestHit("/foo"))),false));
-		hits.add(popJobCodePage(popProps(createTestHitProps(createATestHit("/bar"))),false));
-		hits.add(popJobCodePage(popProps(createTestHitProps(createATestHit("/baz"))),false));
-		hits.add(popJobCodePage(popProps(createTestHitProps(createATestHit("/foo"))),false));
+
+		addTestHit("/foo");
+		addTestHit("/bar");
+		addTestHit("/baz");
+		addTestHit("/foo");
 	}
-
-	public void setUpNoHitProps() throws RepositoryException {
-		createQueryNoHitsYet();
-		hits.add(createATestHit("/foo"));
-		hits.add(createATestHit("/bar"));
-		hits.add(createATestHit("/baz"));
-		hits.add(createATestHit("/foo"));
+	
+	public void removeHitProps() throws RepositoryException {
+		for (Hit hit : hits) {
+			when(hit.getProperties()).thenReturn(null);
+		}
 	}
-
-	public void setUpEmptyHitProps() throws RepositoryException {
-		createQueryNoHitsYet();
-		hits.add(createTestHitProps(createATestHit("/foo")));
-		hits.add(createTestHitProps(createATestHit("/bar")));
-		hits.add(createTestHitProps(createATestHit("/baz")));
-		hits.add(createTestHitProps(createATestHit("/foo")));
+	
+	public void makeHitPropsExplode() throws RepositoryException {
+		for (Hit hit : hits) {
+			when(hit.getProperties()).thenThrow(new RepositoryException());
+		}
 	}
-
-	public void setUpNoJobCodeProps() throws RepositoryException {
-		createQueryNoHitsYet();
-		hits.add(populateTestHitPropsNoJobCode(createTestHitProps(createATestHit("/foo"))));
-		hits.add(populateTestHitPropsNoJobCode(createTestHitProps(createATestHit("/bar"))));
-		hits.add(populateTestHitPropsNoJobCode(createTestHitProps(createATestHit("/baz"))));
-		hits.add(populateTestHitPropsNoJobCode(createTestHitProps(createATestHit("/foo"))));
+	
+	public void removeHitPagesProp() throws RepositoryException {
+		for (Hit hit : hits) {
+			ValueMap hitProps = hit.getProperties();
+			when(hitProps.get("pages", String[].class)).thenReturn((String[])null);
+		}
 	}
+	
+	public void makeJobCodePagesInvalid() throws RepositoryException {
+		for (Hit hit : hits) {
+			ValueMap hitProps = hit.getProperties();
+			when(hitProps.get("pages", String[].class)).thenReturn(new String[]{getGuidePage("")});
+		}
+	}
+	
+	public void makeJobCodePagesMissing() throws RepositoryException {
+		for (Hit hit : hits) {
+			when(pageManager.getPage(getJobCodePage(hit.getPath()))).thenReturn(null);
+		}
+	}
+	
+	public void makeJobCodePagesMissingProps() throws RepositoryException {
+		for (Hit hit : hits) {
+			Page jobCodePage = pageManager.getPage(getJobCodePage(hit.getPath()));
+			when(jobCodePage.getProperties()).thenReturn(null);
+		}
+	}
+	
+	public void makeJobCodePagesPropsEmpty() throws RepositoryException {
+		for (Hit hit : hits) {
+			Page jobCodePage = pageManager.getPage(getJobCodePage(hit.getPath()));
+			ValueMap emptyProps = mock(ValueMap.class);
+			when(jobCodePage.getProperties()).thenReturn(emptyProps);
+		}
+	}
+	
+	public String getSymptomId() {
+		return "testId";
+	}
+	
+	public String getJobCodeId() {
+		return "testId";
+	}
+	
+	private void addTestHit(String pathTitleDesc) throws RepositoryException {
 
-	public void setUpNoJobCodePages() throws RepositoryException {
-		createQueryNoHitsYet();
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
-		hits.add(popProps(createTestHitProps(createATestHit("/bar"))));
-		hits.add(popProps(createTestHitProps(createATestHit("/baz"))));
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		Hit testHit = mock(Hit.class);
+		when(testHit.getPath()).thenReturn(pathTitleDesc);
+		hits.add(testHit);
+		
+		ValueMap hitProps = mock(ValueMap.class);
+		when(testHit.getProperties()).thenReturn(hitProps);
+		Page testPage = mock(Page.class);
+		when(pageManager.getPage(pathTitleDesc)).thenReturn(testPage);
+		when(testPage.getTitle()).thenReturn(pathTitleDesc);
+		when(testPage.getDescription()).thenReturn(pathTitleDesc);
+		
+		when(hitProps.get("id", String.class)).thenReturn(getSymptomId());
+		when(hitProps.get("pages", String[].class)).thenReturn(new String[]{getJobCodePage(pathTitleDesc)});
+		when(hitProps.get("jcr:title", String.class)).thenReturn(pathTitleDesc);
+		
+		Page partTypePage = mock(Page.class);
+		when(pageManager.getPage(getPartTypePage(pathTitleDesc))).thenReturn(partTypePage);
+		when(partTypePage.getTitle()).thenReturn(pathTitleDesc);
+		when(partTypePage.getDescription()).thenReturn(pathTitleDesc);
+		when(partTypePage.getPath()).thenReturn(pathTitleDesc);
+
+		Page guide = mock(Page.class);
+		when(pageManager.getPage(getGuidePage(pathTitleDesc))).thenReturn(guide);
+		when(guide.getTitle()).thenReturn(pathTitleDesc);
+		when(guide.getDescription()).thenReturn(pathTitleDesc);
+		when(guide.getPath()).thenReturn(pathTitleDesc);
+		
+		Page jobCodePage = mock(Page.class);
+		when(pageManager.getPage(getJobCodePage(pathTitleDesc))).thenReturn(jobCodePage);
+		when(jobCodePage.getTitle()).thenReturn(pathTitleDesc);
+		when(jobCodePage.getDescription()).thenReturn(pathTitleDesc);
+		when(jobCodePage.getPath()).thenReturn(pathTitleDesc);
+		
+		ValueMap jobCodeProps = mock(ValueMap.class);
+		when(jobCodePage.getProperties()).thenReturn(jobCodeProps);
+		when(jobCodeProps.get("id", String.class)).thenReturn(getJobCodeId());
+		when(jobCodeProps.get("partType")).thenReturn(getPartTypePage(pathTitleDesc));
+		when(jobCodeProps.get("guides", String[].class)).thenReturn(new String[]{getGuidePage(pathTitleDesc)});
 	}
 
 	private void createQueryNoHitsYet() {
@@ -99,91 +160,7 @@ public class GetSymptomDetailTagFixture {
 		SearchResult result = mock(SearchResult.class);
 		when(query.getResult()).thenReturn(result);
 		hits = new ArrayList<Hit>();
-		when(result.getHits()).thenAnswer(new Answer<List<Hit>>() {
-			public List<Hit> answer(InvocationOnMock invocation) {
-				return hits;
-			}
-		});
-	}
-
-	private Hit createATestHit(String titleAndDesc) throws RepositoryException {
-		Hit testHit = mock(Hit.class);
-		when(testHit.getPath()).thenReturn(titleAndDesc);
-		return testHit;
-	}
-
-	private Hit createTestHitProps(Hit testHit) throws RepositoryException {
-		String titleAndDesc = testHit.getPath();
-		ValueMap props = mock(ValueMap.class);
-		props.put("id", "testId");
-		when(testHit.getProperties()).thenReturn(props);
-		Page testPage = mock(Page.class);
-		when(pageManager.getPage(titleAndDesc)).thenReturn(testPage);
-		when(testPage.getTitle()).thenReturn(titleAndDesc);
-		when(testPage.getDescription()).thenReturn(titleAndDesc);
-		return testHit;
-	}
-
-	private Hit popProps(Hit testHit) throws RepositoryException {
-		String titleAndDesc = testHit.getPath();
-		ValueMap props = testHit.getProperties();
-		populateTestProps(props,titleAndDesc);
-		return testHit;
-	}
-
-	private Hit populateTestHitPropsNoJobCode(Hit testHit) throws RepositoryException {
-		String titleAndDesc = testHit.getPath();
-		ValueMap props = testHit.getProperties();
-		populateTestPropsNoJobCode(props,titleAndDesc);
-		return testHit;
-	}
-
-	private Hit populateTestHitPagesExceptJobCode(Hit testHit) throws RepositoryException {
-		String titleAndDesc = testHit.getPath();
-		Page partTypePage = mock(Page.class);
-		when(pageManager.getPage(getPartTypePage(titleAndDesc))).thenReturn(partTypePage);
-		when(partTypePage.getTitle()).thenReturn(titleAndDesc);
-		when(partTypePage.getDescription()).thenReturn(titleAndDesc);
-		when(partTypePage.getPath()).thenReturn(titleAndDesc);
-
-		Page guide = mock(Page.class);
-		when(pageManager.getPage(getGuidePage(titleAndDesc))).thenReturn(guide);
-		when(guide.getTitle()).thenReturn(titleAndDesc);
-		when(guide.getDescription()).thenReturn(titleAndDesc);
-		when(guide.getPath()).thenReturn(titleAndDesc);
-		return testHit;
-	}
-
-	private Hit popJobCodePage(Hit testHit, boolean hasProps) throws RepositoryException {
-		String titleAndDesc = testHit.getPath();
-		ValueMap props = testHit.getProperties();
-		Page jobCodePage = mock(Page.class);
-		when(pageManager.getPage(getJobCodePage(titleAndDesc))).thenReturn(jobCodePage);
-		when(jobCodePage.getTitle()).thenReturn(titleAndDesc);
-		when(jobCodePage.getDescription()).thenReturn(titleAndDesc);
-		when(jobCodePage.getPath()).thenReturn(titleAndDesc);
-		if (hasProps) {
-			when(jobCodePage.getProperties()).thenReturn(props);
-		}
-		when(props.get("partType")).thenReturn(getPartTypePage(titleAndDesc));
-		when(props.get("guides")).thenReturn(getGuidePage(titleAndDesc));
-		return testHit;
-	}
-
-	private void populateTestProps(ValueMap props, String titleAndDesc) {
-		when(props.get("id", String.class)).thenReturn("testId");
-		when(props.get("pages", String[].class)).thenReturn(new String[]{getJobCodePage(titleAndDesc)});
-		when(props.get("jcr:title", String.class)).thenReturn(titleAndDesc);
-		when(props.get("partType", String.class)).thenReturn(new String(getPartTypePage(titleAndDesc)));
-		when(props.get("guides", String[].class)).thenReturn(new String[]{getGuidePage(titleAndDesc)});
-	}
-
-	private void populateTestPropsNoJobCode(ValueMap props, String titleAndDesc) {
-		when(props.get("id", String.class)).thenReturn("testId");
-		when(props.get("pages", String[].class)).thenReturn(new String[]{"beeeezer"});
-		when(props.get("jcr:title", String.class)).thenReturn(titleAndDesc);
-		when(props.get("partType", String.class)).thenReturn(new String(getPartTypePage(titleAndDesc)));
-		when(props.get("guides", String[].class)).thenReturn(new String[]{getGuidePage(titleAndDesc)});
+		when(result.getHits()).thenReturn(hits);
 	}
 
 	private String getPartTypePage(String pathAndTitle) {

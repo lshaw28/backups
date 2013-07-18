@@ -37,8 +37,6 @@ public class ResolveHtwFixture {
 		choiceImageNode = mock(Node.class);
 	}
 	
-	
-	
 	public void setupAdhocExists() throws PathNotFoundException, RepositoryException {
 		when(currentNode.getProperty(getHazardAdhocField())).thenReturn(adhocProperty);
 		when(currentNode.hasProperty(getHazardAdhocField())).thenReturn(true);
@@ -76,6 +74,10 @@ public class ResolveHtwFixture {
 		when(choiceNode.getNode(Constants.ASSETS_IMAGE_REL_PATH)).thenReturn(choiceImageNode);
 	}
 	
+	public void makeChoiceTitleExplode() throws RepositoryException {
+		when(choiceNode.hasProperty(Constants.ASSETS_TITLE_REL_PATH)).thenThrow(new RepositoryException());
+	}
+	
 	public void setupChoiceValueEmpty() throws RepositoryException {
 		when(resourceResolver.resolve(getChoiceValue())).thenReturn(choiceResource);
 		when(choiceResource.adaptTo(Node.class)).thenReturn(choiceNode);
@@ -110,11 +112,4 @@ public class ResolveHtwFixture {
 		return "/etc/fakepath/jcr:content/image";
 	}
 
-
-
-	
-
-	
-
-	
 }
