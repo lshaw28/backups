@@ -14,9 +14,9 @@ var cartNav = Class.extend(function () {
 			this.modelDropdown = $('#cartModels .dropdown-menu');
 			this.guestEdit = $('#cartGuestEdit');
 			this.guestControls = $('#cartGuestControls');
-			this.editButton = $('#cartModels .guest-edit_js .edit_js');
-			this.removeButton = $('#cartModels .guest-edit_js .remove_js');
-			this.cancelButton = $('#cartModels .guest-edit_js .cancel_js');
+			this.editButton = $('#cartModels .edit_js');
+			this.removeButton = $('#cartModels .remove_js');
+			this.cancelButton = $('#cartModels .cancel_js');
 			this.cartDropdown = $('#cartShop .dropdown-menu');
 			// Initialize events
 			this.bindEvents();
@@ -30,7 +30,7 @@ var cartNav = Class.extend(function () {
 			var self = this;
 
 			// Flip out the controls and checkboxes
-			self.modelDropdown.toggleClass('edit-mode');
+			self.modelDropdown.toggleClass('guest-edit');
 		},
 		/**
 		 * Determine whether or not the Remove button should appear actionable
@@ -97,6 +97,27 @@ var cartNav = Class.extend(function () {
 			var self = this;
 
 			// My models buttons
+			self.editButton.bind('click', function () {
+				return false;
+			})
+			.bind('click', function (e) {
+				e.preventDefault();
+				self.toggleGuestEdit();
+			});
+			self.removeButton.bind('click', function () {
+				return false;
+			})
+			.bind('click', function (e) {
+				e.preventDefault();
+				self.removeItems();
+			});
+			self.cancelButton.bind('click', function () {
+				return false;
+			})
+			.bind('click', function (e) {
+				e.preventDefault();
+				self.toggleGuestEdit();
+			});
 			// Responsive handling of cart tray
 			shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
 				self.toggleTray();

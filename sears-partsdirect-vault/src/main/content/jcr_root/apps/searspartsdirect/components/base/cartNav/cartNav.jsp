@@ -55,16 +55,18 @@
 			<ul class="dropdown-menu">
 				<c:choose>
 					<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 0}">
+						<li id="cartModelItems">
 						<c:forEach var="model" items="${myProfileModels}">
-							<li><input type="checkbox" value="${model.modelNumber}" /><a href="${mainSitePath}${model.itemURL}">${model.brandName} ${model.categoryName} model #${model.modelNumber}</a></li>
+							<span class="cartModelItem"><input type="checkbox" value="${model.modelNumber}" /><a href="${mainSitePath}${model.itemURL}">${model.brandName} ${model.categoryName} model #${model.modelNumber}</a></span>
 						</c:forEach>
+						</li>
 						<c:choose>
 							<c:when test="${loggedIn}">
 								<li><a class="new-btn" href="${mainSitePath}/partsdirect/">Edit List</a></li>
 							</c:when>
 							<c:otherwise>
-								<li id="cartGuestEdit"><a class="new-btn edit_js">Edit List</a></li>
-								<li id="cartGuestControls"><a class="new-btn new-btn-edit remove_js">Remove</a><a class="new-btn new-btn-borderless pull-right cancel_js">Cancel</a></li>
+								<li id="cartGuestEdit"><button type="button" class="new-btn edit_js">Edit List</button></li>
+								<li id="cartGuestControls"><button type="button" class="new-btn new-btn-edit remove_js">Remove</button><button type="button" class="new-btn new-btn-borderless pull-right cancel_js">Cancel</button></li>
 							</c:otherwise>
 						</c:choose>
 					</c:when>
