@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.ModelSearchServletFixture;
 
+import static org.mockito.Mockito.verify;
+
 public class ModelSearchServletTest extends TestCase {
 
 	private ModelSearchServletFixture fixture;
@@ -19,25 +21,58 @@ public class ModelSearchServletTest extends TestCase {
 		fixture = new ModelSearchServletFixture();
 	}
 
+//	response.sendRedirect("/" + brandTrueName + "/" + categoryTrueName + "/model-" + model + "-repair.html");
+//	 84	 	
+//	                         }
+//	 85	 1	
+//	                         catch (Exception e) {
+//	 86	 1	
+//	                                 log.error(ExceptionUtils.getFullStackTrace(e));
+//	 87	 3	
+//	                         }
+//	 88	 	
+//	                 }
+//	 89	 	
+//	             else {
+//	 90	 2	
+//	                     response.sendRedirect(link);
+	
 	@Test
-	public void testFound() {
-		fixture.setUpFound();
-		try {
-			//servlet.doGet(fixture.getRequest(), fixture.getResponse());
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	public void testBothFound() throws Exception {
+		fixture.setUpCategoryFound();
+		fixture.setUpBrandFound();
+		servlet.doGet(fixture.getRequest(), fixture.getResponse());
+		verify(fixture.getResponse()).sendRedirect(fixture.getExpectedRedirect());
 	}
 
 	@Test
-	public void testNotFound() {
-		fixture.setUpNotFound();
-		try {
-			//servlet.doGet(fixture.getRequest(), fixture.getResponse());
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	public void testNeitherFound() throws Exception {
+		fixture.setUpCategoryNotFound();
+		fixture.setUpBrandNotFound();
+		servlet.doGet(fixture.getRequest(), fixture.getResponse());
+		verify(fixture.getResponse()).sendRedirect(fixture.getLink());
+	}
+	
+	@Test
+	public void testOnlyCategoryFound() throws Exception {
+		fixture.setUpCategoryFound();
+		fixture.setUpBrandNotFound();
+		servlet.doGet(fixture.getRequest(), fixture.getResponse());
+		verify(fixture.getResponse()).sendRedirect(fixture.getExpectedRedirect());
+	}
+	
+	@Test
+	public void testOnlyBrandFound() throws Exception {
+		fixture.setUpCategoryNotFound();
+		fixture.setUpBrandFound();
+		servlet.doGet(fixture.getRequest(), fixture.getResponse());
+		verify(fixture.getResponse()).sendRedirect(fixture.getLink());
+	}
+	
+	@Test
+	public void testBothFoundButCategoryNodeThrows() throws Exception {
+		fixture.setUpCategoryFoundButThrows();
+		fixture.setUpBrandFound();
+		servlet.doGet(fixture.getRequest(), fixture.getResponse());
 	}
 }
