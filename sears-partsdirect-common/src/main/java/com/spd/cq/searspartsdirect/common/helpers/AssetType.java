@@ -38,8 +38,9 @@ public enum AssetType {
 					title,
 					description,
 					properties.get("repairPath",""),
-					properties.get("shopParts",""),
-					properties.get("repairPathText", ""));
+					properties.get("shopPartsLink",""),
+					properties.get("repairPathText", ""),
+					properties.get("shopPartsText", ""));
 		}
 	},
 	HAZARD(HazardModel.class) {
