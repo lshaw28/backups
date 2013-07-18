@@ -10,13 +10,13 @@ public class ErrorCodeModel {
 	private String shopPartsLink;
 	private String shopPartsText;
 	
-	public ErrorCodeModel(String path, String code, String condition, String repairPath, String shopPartsLink, String repairText, String shopPartsText) {
+	public ErrorCodeModel(String path, String code, String condition, String repairPath, String repairText, String shopPartsLink,  String shopPartsText) {
+		this.path = path;
 		this.code = code;
 		this.condition = condition;
 		this.repairPath = repairPath;
-		this.path = path;
-		this.shopPartsLink = shopPartsLink;
 		this.repairText = repairText;
+		this.shopPartsLink = shopPartsLink;
 		this.shopPartsText = shopPartsText;
 	}
 	
