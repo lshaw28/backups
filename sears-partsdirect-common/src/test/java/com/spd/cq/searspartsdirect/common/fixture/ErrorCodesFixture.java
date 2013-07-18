@@ -11,7 +11,7 @@ public class ErrorCodesFixture {
 	}
 	
 	public String[] getJSONData() {
-		return new String[] {"{\"./errorCodeTable\":\"\",\"code\":\"code 101\",\"condition\":\"door is not working\",\"checkRepairLink\":\"/content/searspartsdirect/en/test\",\"shopParts\":\"/content/searspartsdirect/en/test\",\"checkRepairText\":\"door is not working\"}"};
+		return new String[] {"{\"./errorCodeTable\":\"\",\"code\":\"code 101\",\"condition\":\"door is not working\",\"checkRepairLink\":\"/content/searspartsdirect/en/test\",\"shopPartsLink\":\"/content/searspartsdirect/en/test\",\"checkRepairText\":\"door is not working\", \"shopPartsText\":\"door is not working\"}"};
 	}
 	
 	public String getCodeType() {

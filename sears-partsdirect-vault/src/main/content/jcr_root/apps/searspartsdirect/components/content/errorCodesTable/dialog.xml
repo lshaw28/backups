@@ -38,11 +38,17 @@
 		                        name="checkRepairLink"
 		                        xtype="pathfield"
 		                        rootPath="/content/searspartsdirect/en/repair-guide" />
-		                     <shopParts
+		                     
+		                     <shopPartsText
 		                        jcr:primaryType="cq:Widget"
-		                        fieldLabel="shopParts"
+		                        fieldLabel="Shop parts Text"
+		                        name="shopPartsText"
+		                        xtype="textfield"/>    
+		                     <shopPartsLink
+		                        jcr:primaryType="cq:Widget"
+		                        fieldLabel="Shop Parts link"
 		                        fieldDescription="Must be a valid link"
-		                        name="shopParts"
+		                        name="shopPartsLink"
 		                        regex="Shc.components.extsrc.regex.ValidationPatterns.url"
 		                        xtype="textfield"/>             
 		                </items>
