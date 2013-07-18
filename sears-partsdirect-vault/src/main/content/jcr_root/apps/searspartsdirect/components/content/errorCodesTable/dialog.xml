@@ -28,16 +28,22 @@
 		                        fieldLabel="Condition"
 		                        name="condition"
 		                        xtype="textfield"/>
-		                      <checkRepairLink
+		                      <checkRepairText
 		                        jcr:primaryType="cq:Widget"
 		                        fieldLabel="Check/Repair"
+		                        name="checkRepairText"
+		                        xtype="textfield"/>  
+		                      <checkRepairLink
+		                        jcr:primaryType="cq:Widget"
 		                        name="checkRepairLink"
 		                        xtype="pathfield"
-		                        rootPath="/content/searspartsdirect/en" /><!-- need to replace with the repair guide path -->
+		                        rootPath="/content/searspartsdirect/en/repair-guide" />
 		                     <shopParts
 		                        jcr:primaryType="cq:Widget"
 		                        fieldLabel="shopParts"
+		                        fieldDescription="Must be a valid link"
 		                        name="shopParts"
+		                        regex="Shc.components.extsrc.regex.ValidationPatterns.url"
 		                        xtype="textfield"/>             
 		                </items>
 	            </fieldConfig>

@@ -20,9 +20,24 @@
 		border: 1px solid @highlightHueLight;
 		color: @bodyColor;
 		text-shadow: 1px 1px 1px @secondaryHueDarkest;
+
+		&:hover {
+			color: @bodyColor;
+		}
+	}
+	&.new-btn-edit {
+		border-color: @highlightHueNormal;
+		color: @highlightHueNormal;
+
+		&:hover {
+			color: @highlightHueNormal;
+		}
 	}
 	&.new-btn-square {
 		.borderRadius(0);
+	}
+	&.new-btn-borderless {
+		border-color: transparent;
 	}
 }
 .new-btn-small {

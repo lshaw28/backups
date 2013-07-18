@@ -23,6 +23,8 @@ import com.day.cq.wcm.api.PageManager;
 public class GetRelatedItemsFixture {
 	
 	protected PageManager pageManager;
+	
+	private Page currentPage;
 
 	public GetRelatedItemsFixture(PageManager pageManager) throws RepositoryException {
 		this.pageManager = pageManager;	
@@ -44,11 +46,24 @@ public class GetRelatedItemsFixture {
 		}
 	}
 	
-	public void makeNHits(int hitTotal, ResourceResolver rr) throws RepositoryException {
-		makeNHits(hitTotal, rr, new ReturnsPath());
+	public void setCurrentPage(Page currentPage) {
+		this.currentPage = currentPage;
+		//when(currentPage.equals(currentPage)).thenReturn(true); // Mockito disallows this.
 	}
 	
-	public void makeNHits(int hitTotal, ResourceResolver rr, HitGetPathBehavior hitGetPathBehavior) throws RepositoryException{
+	public void makeNHits(int hitTotal, ResourceResolver rr) throws RepositoryException {
+		makeNHits(hitTotal, rr, new ReturnsPath(), 0);
+	}
+	
+	public void makeNHits(int hitTotal, ResourceResolver rr, int nDuplicates) throws RepositoryException {
+		makeNHits(hitTotal, rr, new ReturnsPath(), nDuplicates);
+	}
+	
+	public void makeNHits(int hitTotal, ResourceResolver rr, HitGetPathBehavior hitGetPathBehavior) throws RepositoryException {
+		makeNHits(hitTotal, rr, hitGetPathBehavior, 0);
+	}
+	
+	public void makeNHits(int hitTotal, ResourceResolver rr, HitGetPathBehavior hitGetPathBehavior, int nDuplicates) throws RepositoryException{
 		
 		QueryBuilder qb = mock(QueryBuilder.class);
 		when(rr.adaptTo(QueryBuilder.class)).thenReturn(qb);
@@ -78,6 +93,18 @@ public class GetRelatedItemsFixture {
 			when(pageManager.getPage(hitPath)).thenReturn(page);
 			
 			hits.add(hit);
+			for (int j = 0; j < nDuplicates; j++) {
+				hits.add(hit);
+			}
+		}
+		if (currentPage != null) {
+			Hit current = mock(Hit.class);
+			when(current.getPath()).thenReturn("__currentPage");
+			when(pageManager.getPage("__currentPage")).thenReturn(currentPage);
+			hits.add(current);
+			Hit currant = mock(Hit.class);
+			when(currant.getPath()).thenReturn("__currantPage");
+			hits.add(currant);
 		}
 		when(sr.getHits()).thenReturn(hits);
 	}

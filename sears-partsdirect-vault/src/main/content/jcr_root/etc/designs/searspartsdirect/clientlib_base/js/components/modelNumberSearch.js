@@ -79,13 +79,20 @@ var modelNumberSearch = Class.extend(function () {
 		 * @return {void}
 		 */
 		searchResponse: function (data, searchTerm) {
-			var self = this;
+			var self = this,
+				su = window.SPDUtils,
+				count = 0;
+
+			try {
+				su.validNumber(data.count);
+			} catch(e) {
+			}
 
 			// Did the AJAX call return valid data?
-			if (data.count) {
+			if (count) {
 				// Redirect if there is one item
 				// Display a message
-				switch (data.count) {
+				switch (count) {
 					case 0:
 						self.displayMessage('We\'re sorry, no results were found. Please check that you entered your model number correctly and try again.', 'error');
 						break;

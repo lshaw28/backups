@@ -37,28 +37,39 @@
 			</c:choose>
 		</div>
 	</li>
-	<li class="cartNavItem">
+	<li id="cartModels" class="cartNavItem">
 		<div class="btn-group">
 			<a data-toggle="dropdown" href="#">My Models
 			<c:choose>
-				<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 0}">
-					(${fn:length(myProfileModels)})
+				<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 99}">
+					<span class="count-badge parentheses">99+</span>
+				</c:when>
+				<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 0 && fn:length(myProfileModels) lt 100}">
+					<span class="count-badge parentheses">${fn:length(myProfileModels)}</span>
 				</c:when>
 				<c:otherwise>
-						(0)
+					<span class="count-badge parentheses">0</span>
 				</c:otherwise>
 			</c:choose>
-				<i class="icon-caret-down">&nbsp;</i></a>
+			<i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
 				<c:choose>
 					<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 0}">
 						<c:forEach var="model" items="${myProfileModels}">
-								<li><a href="${mainSitePath}${model.itemURL}">${model.brandName} ${model.categoryName} model #${model.modelNumber}</a></li>
+							<li><input type="checkbox" value="${model.modelNumber}" /><a href="${mainSitePath}${model.itemURL}">${model.brandName} ${model.categoryName} model #${model.modelNumber}</a></li>
 						</c:forEach>
-						<a href="">Edit List</a>
+						<c:choose>
+							<c:when test="${loggedIn}">
+								<li><a class="new-btn" href="${mainSitePath}/partsdirect/">Edit List</a></li>
+							</c:when>
+							<c:otherwise>
+								<li id="cartGuestEdit"><a class="new-btn edit_js">Edit List</a></li>
+								<li id="cartGuestControls"><a class="new-btn new-btn-edit remove_js">Remove</a><a class="new-btn new-btn-borderless pull-right cancel_js">Cancel</a></li>
+							</c:otherwise>
+						</c:choose>
 					</c:when>
 					<c:otherwise>
-							<li>You can find parts to your models faster by adding models you own to this list.<br /><br /><a class="new-btn" href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a></li>
+						<li>You can find parts to your models faster by adding models you own to this list.<br /><br /><a class="new-btn" href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -66,34 +77,36 @@
 	</li>
 	<li id="cartShop" class="cartNavItem">
 		<div class="btn-group">
-			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i> Cart
+			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i><span class="hidden-phone"> Cart</span>
 			<c:choose>
-				<c:when test="${fn:length(shoppingCart) gt 0}">
-					${fn:length(shoppingCart)}
+				<c:when test="${not empty shoppingCart && fn:length(shoppingCart) gt 99}">
+					<span class="count-badge">99+</span>
+				</c:when>
+				<c:when test="${not empty shoppingCart && fn:length(shoppingCart) gt 0 && fn:length(shoppingCart) lt 100}">
+					<span class="count-badge">${fn:length(shoppingCart)}</span>
 				</c:when>
 				<c:otherwise>
-					0
+					<span class="count-badge">0</span>
 				</c:otherwise>
-			</c:choose><i class="icon-caret-down">&nbsp;</i></a>
+			</c:choose><i class="icon-caret-down hidden-phone">&nbsp;</i></a>
 			<ul class="dropdown-menu">
 				<li class="cart-title"><strong>Your Shopping Cart</strong></li>
 				<c:choose>
 					<c:when test="${fn:length(shoppingCart) gt 0}">
-						<li>Parts -- Quantity</li>
-						<li><a class="new-btn" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
+						<li><strong><span class="cart-part">Parts</span><span class="cart-quantity">Quantity</span></strong></li>
+						<li><a class="new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
 						<c:forEach var="cartItem" items="${shoppingCart}">
 							<li class="cart-item">
-								<a href="${mainSitePath}/partsdirect/part-number/${cartItem.part.partNumber}/${cartItem.part.productGroupId}/${cartItem.part.supplierId}">
-									${cartItem.part.partNumber} --
-									<c:choose>
-										<c:when test="${fn:length(cartItem.part.description) > 17}">
-											${fn:substring(cartItem.part.description, 0, 17)}...
-										</c:when>
-										<c:otherwise>
-											${cartItem.part.description}
-										</c:otherwise>
-									</c:choose> -- ${cartItem.quantity}
-								</a>
+								<span class="cart-part"><a href="${mainSitePath}/partsdirect/part-number/${cartItem.part.partNumber}/${cartItem.part.productGroupId}/${cartItem.part.supplierId}">${cartItem.part.partNumber}</a><br />
+								<c:choose>
+									<c:when test="${fn:length(cartItem.part.description) > 17}">
+										${fn:substring(cartItem.part.description, 0, 17)}...
+									</c:when>
+									<c:otherwise>
+										${cartItem.part.description}
+									</c:otherwise>
+								</c:choose></span>
+								<span class="cart-quantity">${cartItem.quantity}</span>
 							</li>
 						</c:forEach>
 						<li><strong>Total items: ${fn:length(shoppingCart)}</strong></li>

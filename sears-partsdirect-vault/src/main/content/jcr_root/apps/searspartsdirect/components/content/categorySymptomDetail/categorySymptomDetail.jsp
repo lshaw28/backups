@@ -6,35 +6,31 @@
 <h1>${modelSymptom.symptomModel.title}</h1>
 <p>${modelSymptom.symptomModel.description}</p>
 
-<cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />
-
 <h2>Checking these parts may help solve your problem:</h2>
 <c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
-	<c:choose>
-		<c:when test="${jobCode.partTypeModel != null &&  jobCode.partTypeModel.imagePath != null}">
-			<spd:displayImage path="${jobCode.partTypeModel.imagePath}"/>
-		</c:when>
-		<c:otherwise>
-			<p>show a default no jobcode part type image</p>
-		</c:otherwise>
-	</c:choose>
-	<h3>${jobCode.title}</h3>
-	<p>${jobCode.description}</p>
+    <div class="row-fluid csd-border">
+        <h3>${jobCode.title}</h3>
 
-	<!-- Guides:- -->
-	<c:if test="${not empty jobCode.guides}">
-		<c:forEach var="guide" items="${jobCode.guides}">
-			<spd:linkResolver value="${guide.url}"/>
-			<p><a href="${url}">${guide.title}</a></p>
-		</c:forEach>
-	</c:if>
+        <c:if test="${jobCode.partTypeModel != null &&  jobCode.partTypeModel.imagePath != null}">
+            <div class="span3 csd-image">
+                <spd:displayImage path="${jobCode.partTypeModel.imagePath}"/>
+            </div>
+        </c:if>
 
-	<p><b>Find this part</b></p>
+        <p>${jobCode.description}</p>
 
-	<p>For the manuals, repair guides, and specific part recommendations, enter your model number.</p>
-	
-	<cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />
-	
-	<a href="#">Help me find my model number</a><!-- open the model number finder flyout from the header -->
+        <!-- Guides:- -->
+        <c:if test="${not empty jobCode.guides}">
+            <c:forEach var="guide" items="${jobCode.guides}">
+                <spd:linkResolver value="${guide.url}"/>
+                <span class="arrow-link">
+                    <a href="${url}">${guide.title}</a>
+                    <i class="icon-chevron-left blue"></i>
+                </span>
+            </c:forEach>
+        </c:if>
+    </div>
+    <cq:include path="findThisPart" resourceType="searspartsdirect/components/content/findThisPart" />
+
 	
 </c:forEach>

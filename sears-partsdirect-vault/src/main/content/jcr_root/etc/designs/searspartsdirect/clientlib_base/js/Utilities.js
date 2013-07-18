@@ -11,7 +11,6 @@
 		init: function () {
 			window.SPDUtils.checkConsole();
 			window.SPDUtils.getGlobalVariables();
-			console.log('SPDUtils available');
 		},
 		/*
 		 * Creates a console stub for unsupported browsers

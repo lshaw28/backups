@@ -120,6 +120,11 @@
             var newCategory101 = new category101($(this));
         });
 
+        // find this part component setup
+        $('.findThisPart').each(function() {
+            var newFindThisPart = new findThisPart($(this));
+        });
+
 		// desktop carousel initialization
 		$('.desktop-carousel').each(function () {
 			var carouselElement = $(this);

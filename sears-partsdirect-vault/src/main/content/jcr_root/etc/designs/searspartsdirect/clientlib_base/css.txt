@@ -40,6 +40,7 @@ difficultyRating/difficultyRating.less
 errorCodeChecker/errorCodeChecker.less
 errorCodeTable/errorCodeTable.less
 errorListing/errorListing.less
+findThisPart/findThisPart.less
 globalHeader/globalHeader.less
 globalFooter/globalFooter.less
 guideNavigation/guideNavigation.less
@@ -71,3 +72,4 @@ authorArticle/authorArticles.less
 guideListing-listing/guideListing-listing.less
 guideListing-popular-view/guideListing-popular-view.less
 topParts/topParts.less
+toolsRequiredRepair/toolsRequiredRepair.less

@@ -13,7 +13,6 @@ var searchPanel = Class.extend(function () {
 			// Initialize events
 			this.findItems();
 			this.bindEvents();
-			console.log('searchPanel initialized');
 		},
 		/**
 		 * Finds dropdown items

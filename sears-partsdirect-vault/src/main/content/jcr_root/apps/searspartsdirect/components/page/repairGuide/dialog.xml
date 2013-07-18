@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 	jcr:primaryType="cq:Dialog"
-	height="400"
-	stateful="false" 
+	width="700"
+	stateful="false"
 	xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
 		<tabs jcr:primaryType="cq:TabPanel">
@@ -20,9 +20,9 @@
 					path="/libs/foundation/components/page/tab_image.infinity.json"
 					xtype="cqinclude"/>
 				<cloudservices
-                    jcr:primaryType="cq:Widget"
-                    path="/libs/foundation/components/page/tab_cloudservices.infinity.json"
-                    xtype="cqinclude"/>
+					jcr:primaryType="cq:Widget"
+					path="/libs/foundation/components/page/tab_cloudservices.infinity.json"
+					xtype="cqinclude"/>
 				<impressions
 					jcr:primaryType="cq:Widget"
 					path="/libs/foundation/components/page/tab_impressions.infinity.json"

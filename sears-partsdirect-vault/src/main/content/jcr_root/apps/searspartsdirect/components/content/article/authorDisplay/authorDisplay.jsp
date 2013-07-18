@@ -6,7 +6,7 @@
 </c:set>
 <c:choose>
 	<c:when test="${fn:length(authors) eq 0}">
-		<p class="authorMessage" />
+		<p class="authorMessage">&nbsp;</p>
 	</c:when>
 
 	<c:otherwise>
@@ -18,7 +18,7 @@
 						<a href="${url}">${author.title}</a>,
 					</c:when>
 					<c:when test="${(fn:length(authors) - currentItem.count) eq 1}">
-						<a href="${url}">${author.title}</a> and 
+						<a href="${url}">${author.title}</a> and
 					</c:when>
 					<c:when test="${hideTitle}">
 						<a href="${url}">${author.title}</a>

@@ -29,6 +29,7 @@ WindowResize.js
 cartNav.js
 category101.js
 collapse101.js
+findThisPart.js
 guideNavigation.js
 modalForm.js
 modelNumberSearch.js

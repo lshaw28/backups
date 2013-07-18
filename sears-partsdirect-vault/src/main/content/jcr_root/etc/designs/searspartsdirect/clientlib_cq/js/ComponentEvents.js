@@ -9,7 +9,6 @@
 		 * init: On page load events to fire
 		 */
 		init: function () {
-			console.log('SPDComponentEvents available');
 		},
 		/**
 		 * Rerender responsive image on edit

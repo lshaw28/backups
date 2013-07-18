@@ -1,6 +1,5 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,10 +43,7 @@ public class GetModelSymptomsTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		List<SymptomModel> symptoms = new ArrayList<SymptomModel>();
 		if (!StringUtils.isEmpty(brandName) && !StringUtils.isEmpty(categoryName) && !StringUtils.isEmpty(modelNumber)) {
-			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper();
-			apiHelper.setBrand(brandName);
-			apiHelper.setCategory(categoryName);
-			apiHelper.setModel(modelNumber);
+			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(brandName, categoryName, modelNumber);
 			PDModelSubcomponentModel subcomponents = apiHelper.getModelSubcomponents(slingRequest);
 			log.debug("brandName "+brandName+ " categoryName "+categoryName+" model is "+modelNumber);
 			
@@ -79,7 +75,7 @@ public class GetModelSymptomsTag extends CQBaseTag {
 									symptoms.add(symptomModel);
 								}
 					       } catch (RepositoryException e) {
-								log.error("Failure building results, ",e);
+								log.error("error while getting model symptoms, ",e.fillInStackTrace());
 							}
 					}  
 				 }

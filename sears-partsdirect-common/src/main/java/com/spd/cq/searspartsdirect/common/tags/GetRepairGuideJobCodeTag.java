@@ -21,10 +21,11 @@ public class GetRepairGuideJobCodeTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 
 		List<JobCodeModel> repairGuideJobCodes = new ArrayList<JobCodeModel>();
+
 		try {
 
 			// Get the jobCode associated with the current repair guide
-			Page repairGuidePage = pageManager.getPage(currentPage.getPath());
+			Page repairGuidePage = currentPage;
 
 			if (repairGuidePage != null && repairGuidePage.getProperties() != null) {
 				if (repairGuidePage.getProperties().containsKey("pages")) {
@@ -35,7 +36,12 @@ public class GetRepairGuideJobCodeTag extends CQBaseTag {
 						if (jobCodeResource != null) {
 							Page jobCodeResourcePage = jobCodeResource.adaptTo(Page.class);
 							if (jobCodeResourcePage != null) {
-								repairGuideJobCodes.add(new JobCodeModel(jobCodeResourcePage.getProperties().get("id", String.class), null, null, null));
+								repairGuideJobCodes.add(
+										new JobCodeModel(
+												jobCodeResourcePage.getProperties().get("id", String.class),
+												null,
+												null,
+												null));
 							}
 						}
 					}
