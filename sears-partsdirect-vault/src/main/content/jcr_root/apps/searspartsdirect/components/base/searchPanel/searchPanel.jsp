@@ -18,7 +18,7 @@
 						<a data-postpath="part-number" data-pathtaken="partSearch" data-label="Part #">Part #</a>
 					</li>
 				</ul>
-			</div><button id="searchModelsParts" class="new-btn new-btn-search">Search</button>
+			</div><button type="button" id="searchModelsParts" class="new-btn new-btn-search">Search</button>
 			<p>Can't locate your model number? <a data-toggle="reveal" data-target="#findMyModel" id="newFinderModel">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
 			<input name="pathTaken" id="pathTaken" type="hidden"/>
 			<input name="prst" id="prst" type="hidden"/>

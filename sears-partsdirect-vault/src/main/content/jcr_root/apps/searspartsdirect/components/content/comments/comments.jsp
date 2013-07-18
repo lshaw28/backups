@@ -88,7 +88,7 @@
 <div class="articleComments-wrapper span9">
 	<div class="articleComments-loader">
 	    <h2>3 Article Comments</h2>
-	    <button class="new-btn" data-path="<%=currentPage.getPath()%>">Load Comments</button>
+	    <button type="button" class="new-btn" data-path="<%=currentPage.getPath()%>">Load Comments</button>
 	</div>
 	<div class="comments-target"></div>
 
@@ -117,7 +117,7 @@
 
 </div>
 </div>
-<script>	
+<script>
 $CQ(function(){
     var refreshCommentCount = function (target, count) {
         if (count === 1) {
