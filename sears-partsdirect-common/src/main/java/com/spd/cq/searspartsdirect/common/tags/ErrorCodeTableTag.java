@@ -29,7 +29,7 @@ public class ErrorCodeTableTag extends CQBaseTag {
 				List<ErrorCodeModel> codes = new ArrayList<ErrorCodeModel>();
 				for (String json : multiJsons) {
 					JSONObject jsob = new JSONObject(json);
-					ErrorCodeModel model = new ErrorCodeModel("", jsob.getString("code"),jsob.getString("condition"),jsob.getString("checkRepairLink"),jsob.getString("shopParts"));
+					ErrorCodeModel model = new ErrorCodeModel("", jsob.getString("code"),jsob.getString("condition"),jsob.getString("checkRepairLink"),jsob.getString("shopParts"), jsob.getString("checkRepairText"));
 					codes.add(model);
 				}
 			errorCodeTableModel.setErrorCodes(codes);
