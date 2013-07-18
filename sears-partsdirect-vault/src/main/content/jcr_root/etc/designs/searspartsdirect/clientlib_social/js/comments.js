@@ -1,4 +1,4 @@
-/*
+ /*
  *
  * ADOBE CONFIDENTIAL
  * __________________
@@ -84,7 +84,9 @@
 		replyFormDiv.toggle();
 	};
 	CQ.soco.comments.showError = function(targetForm, errorMessage) {
+       $CQ(targetForm).find("div.comment-error").show();
 		var errorElem = $CQ(targetForm).find("div.comment-error");
+
 		if (!errorElem) {
 			alert(errorMessage);
 		} else {
@@ -92,15 +94,19 @@
 		}
 	};
 
-	CQ.soco.comments.validateCommentForm = function(targetForm, defaultMessage,
-			enterCommentError) {
+	CQ.soco.comments.validateCommentForm = function(targetForm, defaultMessage, enterCommentError) {
+
 		var form = $CQ(targetForm), idPrefix = "#" + form.attr("id");
-		var message = form.find("textarea").first().val();
-		if (message === undefined || message === "" || message === defaultMessage) {
-			CQ.soco.comments.showError(targetForm, enterCommentError);
-			return false;
+		var message = form.find("textarea").first().val().trim();
+
+		if (message === undefined || message === "" || message === "Type your comment here." || message === defaultMessage) {
+
+                CQ.soco.comments.showError(targetForm, CQ_collab_comments_enterComment);
+				return false;
+
 		}
 		try {
+
 			var check = form.find(idPrefix + "-id");
 			if (check.length === 0) {
 				check = document.createElement("input");
@@ -111,9 +117,13 @@
 				form.append(check);
 			}
 		} catch (e) {
+
 			return false;
+
 		}
-		return true;
+
+        $CQ(targetForm).find("div.comment-error").hide();
+        return true;
 	};
 
 	var refreshReplyCount = function(jqComment) {
