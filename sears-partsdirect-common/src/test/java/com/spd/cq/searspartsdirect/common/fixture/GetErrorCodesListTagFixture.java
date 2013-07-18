@@ -56,7 +56,13 @@ public class GetErrorCodesListTagFixture {
 		hits.add(createATestHit("/baz"));
 		hits.add(createATestHit("/foo"));
 		hits.add(createAPropertylessTestHit("/quux"));
+		hits.add(createATestHitMissingPagesProp("/quux"));
+		hits.add(createATestHitWithNoBrand("/quux"));
 		hits.add(createExplodingTestHit("/quux"));
+	}
+
+	public String getCategoryPath() {
+		return "/dummyCategory";
 	}
 	
 	private Hit createATestHit(String pathAndTitle) throws RepositoryException {
@@ -76,11 +82,26 @@ public class GetErrorCodesListTagFixture {
 		return testHit;
 	}
 	
+	private Hit createATestHitMissingPagesProp(String pathAndTitle) throws RepositoryException {
+		Hit testHit = createATestHit(pathAndTitle);
+		ValueMap props = testHit.getProperties();
+		when(props.get("pages", String[].class)).thenReturn(null);
+		return testHit;
+	}
+	
 	private Hit createAPropertylessTestHit(String pathAndTitle) throws RepositoryException {
 		Hit testHit = createATestHit(pathAndTitle);
 		when(testHit.getProperties()).thenReturn(null);
 		return testHit;
 	}
+	
+	private Hit createATestHitWithNoBrand(String pathAndTitle) throws RepositoryException {
+		Hit testHit = createATestHit(pathAndTitle);
+		ValueMap props = testHit.getProperties();
+		when(props.get("pages", String[].class)).thenReturn(new String[]{pathAndTitle});
+		return testHit;
+	}
+
 	
 	private Hit createExplodingTestHit(String pathAndTitle) throws RepositoryException {
 		Hit testHit = createATestHit(pathAndTitle);
@@ -96,8 +117,5 @@ public class GetErrorCodesListTagFixture {
 	private String getBrandPagePath(String pathAndTitle) {
 		return Constants.ASSETS_PATH+"/brand"+pathAndTitle;
 	}
-	
-	public String getCategoryPath() {
-		return "/dummyCategory";
-	}
+
 }

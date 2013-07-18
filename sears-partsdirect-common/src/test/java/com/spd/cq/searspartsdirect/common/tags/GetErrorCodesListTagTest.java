@@ -25,6 +25,9 @@ public class GetErrorCodesListTagTest extends MocksTag {
 	
 	@Test
 	public void testNoCategory() {
+		tag.setCategoryName("foo");
+		assertThat(tag.getCategoryName(),is("foo"));
+		tag.setCategoryName(null); // tests apparently unused property's accessors ...
 		runTagSkipsBodyEvalsPage();
 	}
 	
