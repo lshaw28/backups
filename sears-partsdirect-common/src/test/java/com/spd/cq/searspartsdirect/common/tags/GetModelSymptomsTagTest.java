@@ -48,6 +48,21 @@ public class GetModelSymptomsTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testWithWrongArguments() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		createQueryWithNoHitsYet();
+		
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		
+		tag.setBrandName("Kenmoar");
+		tag.setCategoryName("Dishcleaner");
+		tag.setModelNumber("665135931024600");
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
 	public void testWithArgumentsButNoProperties() throws Exception {
 		tag = new GetModelSymptomsTag();
 		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
