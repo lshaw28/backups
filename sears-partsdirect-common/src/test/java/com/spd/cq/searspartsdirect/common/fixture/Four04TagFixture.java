@@ -68,11 +68,15 @@ public class Four04TagFixture {
 	
 	public void setupToRequireAuthorization() {
 		when(request.getRequestURI()).thenReturn("/system/console/bundles");
-		when(request.getHeader("User-Agent")).thenReturn("MMMozillaaaa");
+		setUserAgent("MMMozillaaaa");
+	}
+	
+	public void setUserAgent(String userAgent) {
+		when(request.getHeader("User-Agent")).thenReturn(userAgent);
 	}
 	
 	public void setupNotBrowser() {
-		when(request.getHeader("User-Agent")).thenReturn("GGGodzillaaa");
+		setUserAgent("GGGodzillaaa");
 	}
 	
 	public void setupToDoUsualRedirect() {
@@ -99,8 +103,14 @@ public class Four04TagFixture {
 		when(request.getAuthType()).thenReturn("Divine fiat");
 		when(request.getRemoteUser()).thenReturn("ESR");
 	}
+	
+	public void setupAuthorizedAnonymous() {
+		when(request.getAuthType()).thenReturn("Divine fiat");
+		when(request.getRemoteUser()).thenReturn(null);
+	}
 
 	public void setupRequested404Page() {
 		when(request.getRequestURI()).thenReturn(EnvironmentSettings.get404HandlerURL());
 	}
+
 }

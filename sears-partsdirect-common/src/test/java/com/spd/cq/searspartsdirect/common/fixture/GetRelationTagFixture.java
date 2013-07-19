@@ -24,6 +24,7 @@ public class GetRelationTagFixture {
 		this.pageManager = pageManager;
 		Page thatPage = mock(Page.class);
 		when(pageManager.getPage(getThatPagepath())).thenReturn(thatPage);
+		when(pageManager.getPage(getThisPagepath())).thenReturn(currentPage);
 		setUpProperties(currentPage);
 		setUpProperties(thatPage);
 	}
@@ -61,6 +62,12 @@ public class GetRelationTagFixture {
 	
 	public String getThisPagepath() {
 		return "/content/searspartsdirect/en/this";
+	}
+
+	public void breakThisPageRelations() {
+		Page currentPage = pageManager.getPage(getThisPagepath());
+		ValueMap properties = currentPage.getProperties();
+		when(properties.get("pages",empty)).thenReturn(new String[0]);
 	}
 	
 //ASSETS_PATH = ident("/etc/spdAssets/scaffolding");

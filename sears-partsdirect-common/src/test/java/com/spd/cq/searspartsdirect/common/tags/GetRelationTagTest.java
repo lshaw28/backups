@@ -55,6 +55,26 @@ public class GetRelationTagTest extends MocksTag {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	@Test
+	public void testSingleThisPageWhenNoneAreSetUp() {
+		fixture.breakThisPageRelations();
+		try {
+			AssetType[] allTypes = AssetType.values();
+			for (AssetType aType : allTypes) {
+				
+				tag.setPageContext(pageContext);
+				String assetTypeName = aType.getMixedCaseName();
+				tag.setAssetType(assetTypeName);
+				tag.setSingle("true");
+				doStartAndEnd();
+				Object modeled = pageContext.getAttribute(assetTypeName+"Relation");
+				assertThat(modeled,is(nullValue()));
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	@Test
 	public void testSingleThatPage() {
@@ -86,7 +106,7 @@ public class GetRelationTagTest extends MocksTag {
 				tag.setPageContext(pageContext);
 				String assetTypeName = aType.getMixedCaseName();
 				tag.setAssetType(assetTypeName);
-				tag.setSingle("false");
+				//tag.setSingle("false");
 				doStartAndEnd();
 				List<?> modeled = (List<?>)pageContext.getAttribute(assetTypeName+"RelationList");
 				assertThat(modeled,is(not(nullValue())));
