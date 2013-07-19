@@ -43,17 +43,6 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>getNameByNodePath</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetNameByNodePathTag</tag-class>
-		<info>returns the name of a node given its path</info>
-		<attribute>
-			<name>nodePath</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-	<tag>
 		<name>getCategory101Models</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCategory101PagesTag</tag-class>
 		<info>returns the product category Model Objects that have a Category 101 Tag</info>
