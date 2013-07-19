@@ -79,9 +79,12 @@ public class GetCategoryArticleListFixture {
 			when(resourceResolver.getResource(imagePath)).thenReturn(imageResource);
 			Node imageNode = mock(Node.class);
 			when(imageResource.adaptTo(Node.class)).thenReturn(imageNode);
-			if (viewCount < 200) {
+			if (viewCount < 100) {
 				when(imageNode.hasProperty("fileReference")).thenReturn(true);
+			} else if (viewCount < 200) {
+				when(imageNode.hasNode("file")).thenReturn(true);
 			} else if (viewCount > 1000) {
+				when(imageNode.hasProperty("fileReference")).thenReturn(true);
 				when(imageNode.hasNode("file")).thenReturn(true);
 			}
 		}
