@@ -41,6 +41,28 @@ public class Four04TagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testIsAnonymousUser() {
+		assertThat(tag.isAnonymousUser(fixture.getRequest()),is(true));
+		fixture.setupAlreadyLoggedIn();
+		assertThat(tag.isAnonymousUser(fixture.getRequest()),is(false));
+		fixture.setupAuthorizedAnonymous();
+		assertThat(tag.isAnonymousUser(fixture.getRequest()),is(true));
+	}
+	
+	@Test
+	public void testIsBrowserRequest() {
+		assertThat(tag.isBrowserRequest(fixture.getRequest()),is(false));
+		fixture.setUserAgent("Mozilla");
+		assertThat(tag.isBrowserRequest(fixture.getRequest()),is(true));
+		fixture.setUserAgent("Opera");
+		assertThat(tag.isBrowserRequest(fixture.getRequest()),is(true));
+		fixture.setUserAgent("Jakarta Commons-HttpClient");
+		assertThat(tag.isBrowserRequest(fixture.getRequest()),is(true));
+		fixture.setUserAgent("curl");
+		assertThat(tag.isBrowserRequest(fixture.getRequest()),is(false));
+	}
+	
+	@Test
 	public void testIsTargetedExtension() {
 		assertThat(tag.isTargetedExtension("/404.html"),is(true));
 		assertThat(tag.isTargetedExtension("/404.jsp"),is(true));
