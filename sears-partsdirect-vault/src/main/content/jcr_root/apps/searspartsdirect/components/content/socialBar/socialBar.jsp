@@ -1,4 +1,11 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
+<script type="text/javascript">
+var newURL = window.location.protocol + "//"  + window.location.host + "" + window.location.pathname;
+
+var addthis_share = {
+    url:  newURL
+}
+</script>
 
  <div class="socialBar-item-icons">
 	<a class="addthis_button_facebook"><i class="icon-facebook"></i></a>
