@@ -84,7 +84,7 @@ var modelNumberSearch = Class.extend(function () {
 				count = 0;
 
 			try {
-				su.validNumber(data.count);
+				count = su.validNumber(data.count);
 			} catch(e) {
 			}
 
