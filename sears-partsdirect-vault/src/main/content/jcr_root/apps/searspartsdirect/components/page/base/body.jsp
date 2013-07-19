@@ -1,5 +1,19 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<c:set var="pageClientLib"><cq:text property="pageClientLib" placeholder="" /></c:set><body class="<cq:text property="pageCssClassName" placeholder="" />">
+<c:choose>
+	<c:when test="${isEditMode}">
+		<c:set var="cqCssClass" value="edit_cq" />
+	</c:when>
+	<c:when test="${isDesignMode}">
+		<c:set var="cqCssClass" value="design_cq" />
+	</c:when>
+	<c:when test="${isPreviewMode}">
+		<c:set var="cqCssClass" value="preview_cq" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="cqCssClass" value="publish_cq" />
+	</c:otherwise>
+</c:choose>
+<c:set var="pageClientLib"><cq:text property="pageClientLib" placeholder="" /></c:set><body class="<cq:text property="pageCssClassName" placeholder="" /> ${cqCssClass}">
 	<cq:include path="clientcontext" resourceType="cq/personalization/components/clientcontext" />
 	<cq:include path="brandBar" resourceType="/apps/searspartsdirect/components/base/brandBar" />
 	<div id="viewport">
