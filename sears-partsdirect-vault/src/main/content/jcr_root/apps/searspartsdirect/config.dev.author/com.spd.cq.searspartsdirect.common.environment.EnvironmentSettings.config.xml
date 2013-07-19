@@ -3,7 +3,7 @@
 	jcr:primaryType="sling:OsgiConfig"
 	searspartsdirect.url = "http://partsbetavip.qa.ch3.s.com"
 	searspartsdirect.error.404.url = "/content/searspartsdirect/en/404.html"
-	searspartsdirect.sitemap.paths.start = "/content/searspartsdirect/en"
+	searspartsdirect.sitemap.paths.start = "/content/searspartsdirect/en/dev/author"
 	searspartsdirect.sitemap.paths.stop=""
 	searspartsdirect.external.added.prefix="http://www.searspartsdirect.com"
 	searspartsdirect.external.added.suffix=".html"
