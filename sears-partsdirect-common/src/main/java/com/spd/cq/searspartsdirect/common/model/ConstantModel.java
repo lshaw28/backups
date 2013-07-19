@@ -30,6 +30,10 @@ public class ConstantModel {
 		return Constants.ASSETS_IMAGE_PATH;
 	}
 	
+	public String getMODELNO_SFX() {
+		return Constants.MODELNO_SFX;
+	}
+	
 	public String getEMPTY() {
 		return Constants.EMPTY;
 	}
