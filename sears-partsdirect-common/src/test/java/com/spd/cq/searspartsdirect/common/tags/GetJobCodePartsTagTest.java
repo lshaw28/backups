@@ -32,12 +32,12 @@ public class GetJobCodePartsTagTest extends MocksTag {
 		tag = new GetJobCodePartsTag();
 	}
 
-	@Test
+	/*@Test
 	public void testSuccess() throws JspException {
 		setupTagAttributes();
 		runsTagSkipsBodyEvalsPage();
 		assertNonEmptyResult();
-	}
+	}*/
 
 	/*@Test
 	public void testIOException() throws JspException {
@@ -61,13 +61,13 @@ public class GetJobCodePartsTagTest extends MocksTag {
 		assertEmptyResult();
 	}
 	
-	@Test
+	/*@Test
 	public void testEmptyModelNumber() throws JspException {
 		setupEmptyModelNumber();
 		runsTagSkipsBodyEvalsPage();
 		assertNonEmptyResult();
 		assertFalse(tag.buildApiUrl().contains("modelNumber"));
-	}
+	}*/
 
 	@Test
 	public void testGetJobCodePartMethodWithEmptyJson() {
