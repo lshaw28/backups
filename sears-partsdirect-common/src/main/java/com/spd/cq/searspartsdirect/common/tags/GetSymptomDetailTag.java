@@ -73,10 +73,10 @@ public class GetSymptomDetailTag extends CQBaseTag {
 								if (jobCodePage != null) {
 
 									ValueMap jobCodeProps = jobCodePage.getProperties();
-									String id = (String) jobCodeProps.get("id");
-									JobCodeModel jobCodeModel = new JobCodeModel(id, jobCodePage.getPath(), jobCodePage.getTitle(), jobCodePage.getDescription());
-
 									if (jobCodeProps != null) {
+										String id = (String) jobCodeProps.get("id");
+										JobCodeModel jobCodeModel = new JobCodeModel(id, jobCodePage.getPath(), jobCodePage.getTitle(), jobCodePage.getDescription());
+
 										String partType = (String) jobCodeProps.get(PART_TYPE);
 										Page partTypePage = pageManager.getPage(partType);
 

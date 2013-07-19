@@ -22,5 +22,13 @@ public class SqlReservedWordTest extends TestCase {
 	public void testGetWords() {
 		assertThat(SqlReservedWord.getWords(),isA(Set.class));
 	}
+	
+	@Test
+	public void testInstantiationWhichNeverHappens() {
+		SqlReservedWord noOneWouldEverDoThis = new SqlReservedWord();
+		SqlReservedWord theyAreUnlikelyEnoughToUseTheStaticMethod = new SqlReservedWord();
+		assertThat(noOneWouldEverDoThis,isA(SqlReservedWord.class));
+		assertTrue(noOneWouldEverDoThis != theyAreUnlikelyEnoughToUseTheStaticMethod);
+	}
 
 }

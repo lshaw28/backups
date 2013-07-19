@@ -22,28 +22,26 @@
 			<tr>
 				<td>${model.code}</td>
 				<td>${model.condition}</td>
-				<c:choose>
-					<c:when test='${fn:contains(model.repairPath, "/")}'>
-						<spd:linkResolver value="${model.repairPath}" />
-						<td>
-							<a href="${url}">Repair or Installation guide link</a>
-						</td>
-					</c:when>
-					<c:otherwise>
-						<td>${model.repairPath}</td>
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when test='${fn:contains(model.shopPartsLink, "/")}'>
+				<td>
+					<c:choose>
+						<c:when test="${not empty model.repairPath}">
+							<spd:linkResolver value="${model.repairPath}" />
+								<a href="${url}">Repair or Installation guide link</a>
+						</c:when>
+						<c:otherwise>
+							${model.repairText}
+						</c:otherwise>
+					</c:choose>
+				</td>
+				<td>
+					<c:if test="${not empty model.shopPartsText}">
+						${model.shopPartsText}&nbsp;
+					</c:if>
+					<c:if test="${not empty model.shopPartsLink}">
 						<spd:linkResolver value="${model.shopPartsLink}" />
-						<td>
-							<a href="${url}">Repair or Installation guide link</a>
-						</td>
-					</c:when>
-					<c:otherwise>
-						<td>${model.shopPartsLink}</td>
-					</c:otherwise>
-				</c:choose>
+						<a href="${url}">Browse for Parts</a>
+					</c:if>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

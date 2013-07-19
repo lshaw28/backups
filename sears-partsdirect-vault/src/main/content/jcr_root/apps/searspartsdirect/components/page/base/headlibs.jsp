@@ -9,8 +9,6 @@
 <c:if test="${isEditMode or isDesignMode}">
 	<cq:includeClientLib css="apps.searspartsdirect.cq.edit" />
 </c:if>
-<%-- <cq:includeClientLib css="cq.collab.comments" />
-<cq:includeClientLib css="cq.social.commons" /> --%>
 <cq:includeClientLib css="apps.searspartsdirect.social" />
 <cq:include script="templatelibs.jsp" />
 <cq:include script="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp"/>

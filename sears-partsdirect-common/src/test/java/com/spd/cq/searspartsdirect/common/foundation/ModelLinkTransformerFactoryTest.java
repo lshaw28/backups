@@ -79,10 +79,21 @@ public class ModelLinkTransformerFactoryTest extends TestCase {
 	}
 	
 	@Test
-	public void testTransformNontransformable() throws IOException, SAXException {
+	public void testTransformNontransformableNoHrefValue() throws IOException, SAXException {
 		Transformer transformer = factory.createTransformer();
 		// "/(.*)/(.*)/model-(.*)-repair(.*)"
 		fixture.setRequestUri("/one/two/mooodel-three-repairfour");
+		transformer.init(fixture.getProcessingContext(), fixture.getProcessingComponentConfiguration());
+		transformer.startElement(fixture.getElUri(), fixture.getElLocalName(), fixture.getElQName(), fixture.getElAttributes());
+		transformer.dispose();
+	}
+	
+	@Test
+	public void testTransformTransformableAlreadyTransformed() throws IOException, SAXException {
+		Transformer transformer = factory.createTransformer();
+		// "/(.*)/(.*)/model-(.*)-repair(.*)"
+		fixture.setRequestUri("/one/two/model-three-repairfour");
+		fixture.setHrefValue("/one/two/model-three-repair/four.html");
 		transformer.init(fixture.getProcessingContext(), fixture.getProcessingComponentConfiguration());
 		transformer.startElement(fixture.getElUri(), fixture.getElLocalName(), fixture.getElQName(), fixture.getElAttributes());
 		transformer.dispose();

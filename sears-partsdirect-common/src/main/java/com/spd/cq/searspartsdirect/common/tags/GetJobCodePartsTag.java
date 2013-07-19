@@ -7,11 +7,13 @@ import java.util.Map;
 
 import javax.servlet.jsp.JspException;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectAPIHelper;
@@ -54,41 +56,49 @@ public class GetJobCodePartsTag extends CQBaseTag {
 		return EVAL_PAGE;
 	}
 
-	private String buildApiUrl() {
+	protected String buildApiUrl() {
 
-		StringBuilder apiUrl = new StringBuilder(EnvironmentSettings.getPDJobCodePartsApiUrl());
+		StringBuilder apiUrlStrBuilder = null;
 
-		apiUrl.append("?");
-		for (int i = 0; i < jobCodes.size(); i++) {
-			if (i > 0) {
-				apiUrl.append("&");
+		if (CollectionUtils.isNotEmpty(jobCodes)) {
+			apiUrlStrBuilder = new StringBuilder(EnvironmentSettings.getPDJobCodePartsApiUrl());
+			apiUrlStrBuilder.append("?");
+			for (int i = 0; i < jobCodes.size(); i++) {
+				if (i > 0) {
+					apiUrlStrBuilder.append("&");
+				}
+				apiUrlStrBuilder.append("jobCodeList=" + ((JobCodeModel)jobCodes.get(i)).getId());
 			}
-			apiUrl.append("jobCodeList=" + ((JobCodeModel)jobCodes.get(i)).getId());
-		}
-		if (StringUtils.isNotBlank(modelNumber)) {
-			apiUrl.append("&modelNumber=");
-			apiUrl.append(modelNumber);
+			if (StringUtils.isNotBlank(modelNumber)) {
+				apiUrlStrBuilder.append("&modelNumber=");
+				apiUrlStrBuilder.append(modelNumber);
+			}
+
+			log.debug("API for fetching parts associated with jobCodes: " + apiUrlStrBuilder.toString());
 		}
 
-		log.debug("API for fetching parts associated with jobCodes: " + apiUrl.toString());
 
-		return apiUrl.toString();
+		return apiUrlStrBuilder != null ? apiUrlStrBuilder.toString() : null;
 	}
 
-	private Map<String, List<JobCodePartModel>> getJobCodeParts(String jsonResponse) {
+	protected Map<String, List<JobCodePartModel>> getJobCodeParts(String jsonResponse) {
 
-		log.debug("getJobCodeParts.... start");
 		Map<String, List<JobCodePartModel>> jobCodeParts = new HashMap<String, List<JobCodePartModel>>();
-		try {
-			Gson gson = new Gson();
-			List<RecoveryJobCodePartModel> recoveryJobCodePartModels = gson.fromJson(jsonResponse, new TypeToken<List<RecoveryJobCodePartModel>>(){}.getType());
 
-			for (RecoveryJobCodePartModel recoveryJobCodePartModel : recoveryJobCodePartModels) {
-				jobCodeParts.put(recoveryJobCodePartModel.getJobCode(), recoveryJobCodePartModel.getJobCodePartModels());
+		if (StringUtils.isNotBlank(jsonResponse)) {
+			try {
+				Gson gson = new Gson();
+				List<RecoveryJobCodePartModel> recoveryJobCodePartModels = gson.fromJson(jsonResponse, new TypeToken<List<RecoveryJobCodePartModel>>(){}.getType());
+
+				for (RecoveryJobCodePartModel recoveryJobCodePartModel : recoveryJobCodePartModels) {
+					jobCodeParts.put(recoveryJobCodePartModel.getJobCode(), recoveryJobCodePartModel.getJobCodePartModels());
+				}
+
+			} catch (JsonParseException jpe) {
+				log.error("Error parsing: " + jsonResponse + ", ", jpe.getMessage());
+			} catch (Exception e) {
+				log.error(e.getMessage());
 			}
-
-		} catch (Exception e) {
-			log.error("Error parsing: " + jsonResponse + ", ", e.getMessage());
 		}
 
 		return jobCodeParts;

@@ -1,27 +1,36 @@
 /* Components
  * Applies Author-only styling so components can be edited */
-/* Minimum Heights to Avoid Placeholders */
-.category101, .responsiveImage, .video, .relatedGuides, .relatedArticles, .commonSymptoms, .errorCodesTable, .errorCodesList {
-	min-height: 75px;
-}
-.responsiveImage {
-	div[data-desktopimage] {
+.cq-wcm-edit {
+	/* Minimum Heights to Avoid Placeholders */
+	.category101, .responsiveImage, .video, .relatedGuides, .relatedArticles, .commonSymptoms, .errorCodesTable, .errorCodesList {
 		min-height: 75px;
 	}
-}
-.hazardPrefix, .tipPrefix, .warningPrefix {
-	min-height: 25px;
-}
+	.responsiveImage {
+		div[data-desktopimage] {
+			min-height: 75px;
+		}
+	}
+	.hazardPrefix, .tipPrefix, .warningPrefix {
+		min-height: 25px;
+	}
 
-/* Padding To Provide Editable Space */
-.videoIframe {
-	margin: 10px 0;
-}
+	/* Padding To Provide Editable Space */
+	.videoIframe {
+		margin: 10px 0;
+	}
 
-/* Display a Message */
-.authorDisplay {
-	.authorMessage:before {
-		content: 'Edit the Page Properties: Page Associations to add authors.';
-		font-weight: bold;
+	/* Display a Message */
+	.authorDisplay {
+		.authorMessage:before {
+			content: 'Edit the Page Properties: Page Associations to add authors.';
+			font-weight: bold;
+		}
+	}
+}
+.cq-wcm-preview, .cq-wcm-design {
+	.authorDisplay {
+		.authorMessage {
+			display: none;
+		}
 	}
 }

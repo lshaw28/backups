@@ -99,4 +99,16 @@ public class PageImpressionsComparatorFixture {
 		return testPages.get(path);
 	}
 
+	public Page createExplodingTestPage(String string, int i) throws RepositoryException {
+		Page testPage = createTestPage(string,i);
+		
+		String statsPath = Constants.STATS_PAGE_PREFIX + testPage.getPath() + Constants.STATS_PAGE_SUFFIX;
+		when(resourceResolver.getResource(statsPath)).thenThrow(new RuntimeException());
+		//Resource allYearsResource = resourceResolver.getResource(statsPath);
+		//when(allYearsResource.adaptTo(Node.class)).thenThrow(new RuntimeException());
+		//when(allYearsNode.getNodes()).thenThrow(new RepositoryException());
+		
+		return testPage;
+	}
+
 }

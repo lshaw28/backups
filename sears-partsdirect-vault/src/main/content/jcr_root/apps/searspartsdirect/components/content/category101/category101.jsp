@@ -5,7 +5,6 @@
 <c:if test="${empty productCategoryRelation}">
 	<spd:getUrlRelation relationType="productCategory" />
 </c:if>
-<spd:getNameByNodePath nodePath="${productCategoryRelation.path}" />
 <spd:getMultifieldArticles  categoryPath="${productCategoryRelation.path}" />
 
 <br/>
@@ -45,7 +44,7 @@
 					<c:if test="${fn:length(category101linkText) gt 0}">
 						<c:set var="suffix" value="-repair/repair-articles" />
 						<spd:linkResolver
-							value="${Constants.CATEGORIES_ROOT}/${nodeName}${suffix}" />
+							value="${Constants.CATEGORIES_ROOT}/${productCategoryRelation.trueName}${suffix}" />
 						<a href="${url}" class="new-btn-small accordion-inner-btn">${category101linkText}</a>
 					</c:if>
 				</div>

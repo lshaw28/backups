@@ -37,7 +37,7 @@
 			</c:choose>
 		</div>
 	</li>
-	<li class="cartNavItem">
+	<li id="cartModels" class="cartNavItem">
 		<div class="btn-group">
 			<a data-toggle="dropdown" href="#">My Models
 			<c:choose>
@@ -51,19 +51,22 @@
 					<span class="count-badge parentheses">0</span>
 				</c:otherwise>
 			</c:choose>
-			<i class="icon-caret-down hidden-phone">&nbsp;</i></a>
+			<i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
 				<c:choose>
 					<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 0}">
+						<li id="cartModelItems">
 						<c:forEach var="model" items="${myProfileModels}">
-							<li><input type="checkbox" value="${model.modelNumber}" /><a href="${mainSitePath}${model.itemURL}">${model.brandName} ${model.categoryName} model #${model.modelNumber}</a></li>
+							<span class="cartModelItem"><input type="checkbox" value="${model.modelNumber}" /><a href="${mainSitePath}${model.itemURL}">${model.brandName} ${model.categoryName} model #${model.modelNumber}</a></span>
 						</c:forEach>
+						</li>
 						<c:choose>
 							<c:when test="${loggedIn}">
-								<li>Registered user edit</li>
+								<li><a class="new-btn" href="${mainSitePath}/partsdirect/">Edit List</a></li>
 							</c:when>
 							<c:otherwise>
-								<li>Guest user edit</li>
+								<li id="cartGuestEdit"><button type="button" class="new-btn edit_js">Edit List</button></li>
+								<li id="cartGuestControls"><button type="button" class="new-btn new-btn-edit remove_js">Remove</button><button type="button" class="new-btn new-btn-borderless pull-right cancel_js">Cancel</button></li>
 							</c:otherwise>
 						</c:choose>
 					</c:when>

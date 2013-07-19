@@ -43,17 +43,6 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>getNameByNodePath</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetNameByNodePathTag</tag-class>
-		<info>returns the name of a node given its path</info>
-		<attribute>
-			<name>nodePath</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-	<tag>
 		<name>getCategory101Models</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCategory101PagesTag</tag-class>
 		<info>returns the product category Model Objects that have a Category 101 Tag</info>
@@ -107,16 +96,6 @@
 		<name>getTopicJump</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetTopicJumpTag</tag-class>
 		<info>Gets the contents of the topics jump menu</info>
-	</tag>
-	<tag>
-		<name>getParentPage</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.ParentPageTag</tag-class>
-		<info>Creates path to parent url</info>
-	</tag>
-	<tag>
-		<name>getProductCategoryName</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetProductCategoryNameTag</tag-class>
-		<info>Provides the product category name</info>
 	</tag>
 	<tag>
 		<name>getRecentlyViewed</name>
@@ -205,13 +184,13 @@
 		<attribute>
 			<name>categoryPath</name>
 			<type>java.lang.String</type>
-			<required>false</required>
+			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
 			<name>categoryName</name>
 			<type>java.lang.String</type>
-			<required>false</required>
+			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>

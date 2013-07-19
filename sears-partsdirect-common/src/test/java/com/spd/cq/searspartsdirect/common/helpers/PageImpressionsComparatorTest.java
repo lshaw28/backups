@@ -130,4 +130,18 @@ public class PageImpressionsComparatorTest extends MocksTag {
 		assertThat(pages.get(2).getPath(),is("/baz"));
 		assertThat(Collections.max(pages,new PageImpressionsComparator(resourceResolver)),is(fixture.getTestPage("/baz")));
 	}
+	
+	@Test
+	public void testOneExploding() {
+		List<Page> pages = new ArrayList<Page>();
+		try {
+			pages.add(fixture.createExplodingTestPage("/foo",20));
+			pages.add(fixture.createExplodingTestPage("/bar",10));
+		} catch (RepositoryException re) {
+			fail("Mock threw unexpected exception");
+		}
+		Collections.sort(pages,new PageImpressionsComparator(resourceResolver));
+		assertThat(pages.get(0).getPath(),is("/foo"));
+		assertThat(pages.get(1).getPath(),is("/bar"));
+	}
 }
