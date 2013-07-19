@@ -16,7 +16,7 @@
 				</div>
 				<div class="iownsection span5">
 					<div class="span5">
-						<button class="btn"><i class="icon-ok"></i> I own this</button>
+						<button type="button" class="btn"><i class="icon-ok"></i> I own this</button>
 					</div>
 					<div class="span7">This model has been added to "My Models."</div>
 				</div>

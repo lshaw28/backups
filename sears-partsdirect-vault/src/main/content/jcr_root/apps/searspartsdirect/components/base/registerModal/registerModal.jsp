@@ -21,7 +21,7 @@
 		</fieldset>
 		<p>By clicking register, I agree to the <span><a href="#">terms of use</a></span> and <span><a href="#">privacy policy</a></span>.</p>
 		<div class="pull-right">
-			<button class="new-btn" data-dismiss="modal" data-cancel="true" aria-hidden="true">Cancel</button>
+			<button type="button" class="new-btn" data-dismiss="modal" data-cancel="true" aria-hidden="true">Cancel</button>
 			<button class="new-btn new-btn-search" data-submit="true">Register</button>
 		</div>
 	</form>
