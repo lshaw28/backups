@@ -43,6 +43,17 @@
 		</attribute>
 	</tag>
 	<tag>
+		<name>getIcon</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetIconTag</tag-class>
+		<info>Returns the icon corresponding to the given category</info>
+		<attribute>
+			<name>category</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
 		<name>getCategory101Models</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCategory101PagesTag</tag-class>
 		<info>returns the product category Model Objects that have a Category 101 Tag</info>

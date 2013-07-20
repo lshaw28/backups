@@ -62,7 +62,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 				if (props != null) {
 					SymptomModel symptomModel  = new SymptomModel(p.getPath(), props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("id", String.class));
 
-					// now get the jobcode and gudes info
+					// now get the jobcode and guides info
 					String[] pages = (String[]) props.get("pages", String[].class);
 					if (pages != null) {
 						jobCodeModels = new ArrayList<JobCodeModel>();
@@ -71,7 +71,6 @@ public class GetSymptomDetailTag extends CQBaseTag {
 							if (pages[i].indexOf(Constants.ASSETS_PATH.concat("/jobCode")) > -1) {
 								Page jobCodePage = pageManager.getPage(pages[i]);
 								if (jobCodePage != null) {
-
 									ValueMap jobCodeProps = jobCodePage.getProperties();
 									if (jobCodeProps != null) {
 										String id = (String) jobCodeProps.get("id");

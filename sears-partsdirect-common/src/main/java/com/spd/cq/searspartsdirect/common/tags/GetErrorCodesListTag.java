@@ -93,7 +93,7 @@ public class GetErrorCodesListTag extends CQBaseTag {
 						log.debug("props is null");
 					}
 				} catch (RepositoryException e) {
-					log.error("Failure building results, ", e);
+					log.error("Error while getting the error code list data, ", e.fillInStackTrace());
 				}
 			}
 

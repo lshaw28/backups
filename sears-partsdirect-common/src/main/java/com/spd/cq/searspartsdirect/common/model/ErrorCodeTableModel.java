@@ -9,7 +9,6 @@ public class ErrorCodeTableModel {
 	private String errorCodeType;
 	private List<ErrorCodeModel> errorCodes;
 	
-	
 	public List<ErrorCodeModel> getErrorCodes() {
 		return errorCodes;
 	}
