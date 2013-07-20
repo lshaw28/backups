@@ -43,19 +43,25 @@ public class GetImagePathTag extends CQBaseTag {
 		
 		try {
 			Image desktopImageObj = new Image(resource, DESKTOP_IMAGE);
-			desktopImage = repairHref(desktopImageObj.getHref(), DESKTOP_IMAGE);
+			if (desktopImageObj != null && desktopImageObj.getHref() != null) {
+				desktopImage = repairHref(desktopImageObj.getHref(), DESKTOP_IMAGE);
+			}
 		} catch (Exception desktopEx) {
-			log.debug("Desktop image error:", desktopEx);
+			log.error("Desktop image error:", desktopEx);
 		}
 		try {
 			Image tabletImageObj = new Image(resource, TABLET_IMAGE);
-			tabletImage = repairHref(tabletImageObj.getHref(), TABLET_IMAGE);
+			if (tabletImageObj != null && tabletImageObj.getHref() != null) {
+				tabletImage = repairHref(tabletImageObj.getHref(), TABLET_IMAGE);
+			}
 		} catch (Exception tabletEx) {
-			log.debug("Tablet image error:", tabletEx);
+			log.error("Tablet image error:", tabletEx);
 		}
 		try {
 			Image mobileImageObj = new Image(resource, MOBILE_IMAGE);
-			mobileImage = repairHref(mobileImageObj.getHref(), MOBILE_IMAGE);
+			if (mobileImageObj != null && mobileImageObj.getHref() != null) {
+				mobileImage = repairHref(mobileImageObj.getHref(), MOBILE_IMAGE);
+			}
 		} catch (Exception mobileEx) {
 			log.debug("Mobile image error:", mobileEx);
 		}

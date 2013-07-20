@@ -15,6 +15,8 @@ var findThisPart = Class.extend(function () {
             this.parentID = "parent_"+this.uniqueID;
             // set uniqueIDs on Accordion;
             this.setAccordionIDs();
+            // default accordions to closed
+            this.initAccordion();
 
         },
 
@@ -28,8 +30,18 @@ var findThisPart = Class.extend(function () {
 
             $('div.accordion', self.el).attr('id', self.parentID);
             $('div.accordion-body', self.el).attr('id', self.uniqueID);
-            $('a.accordion-toggle', self.el).attr('data-parent', "#"+self.parentID);
-            $('a.accordion-toggle', self.el).attr('href', "#"+self.uniqueID);
+            $('a.accordion-toggle', self.el).attr('data-target', "#"+self.uniqueID);
+        },
+
+        /**
+         * removes the class 'in' from the accordion-body
+         * to ensure that the accordion defaults to closed.
+         * @return {void}
+         */
+        initAccordion: function () {
+            var self = this;
+
+            $('div.accordion-body', self.el).removeClass('in');
         }
     }
 }());

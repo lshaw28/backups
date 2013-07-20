@@ -1,7 +1,8 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
+
 <spd:errorCodeTable/>
 
-<c:if test='${errorCodeTableData.errorCodeType != null}'>
+<c:if test="${not empty errorCodeTableData.errorCodeType}">
 	<div class="errorCodesTable-header">
 		${errorCodeTableData.errorCodeType}
 	</div>
@@ -18,32 +19,32 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="model" items="${errorCodeTableData.errorCodes}">
-			<tr>
-				<td>${model.code}</td>
-				<td>${model.condition}</td>
-				<td>
-					<c:choose>
-						<c:when test="${not empty model.repairPath}">
-							<spd:linkResolver value="${model.repairPath}" />
-								<a href="${url}">Repair or Installation guide link</a>
-						</c:when>
-						<c:otherwise>
-							${model.repairText}
-						</c:otherwise>
-					</c:choose>
-				</td>
-				<td>
-					<c:if test="${not empty model.shopPartsText}">
-						${model.shopPartsText}&nbsp;
-					</c:if>
-					<c:if test="${not empty model.shopPartsLink}">
-						<spd:linkResolver value="${model.shopPartsLink}" />
-						<a href="${url}">Browse for Parts</a>
-					</c:if>
-				</td>
-			</tr>
-		</c:forEach>
+			<c:forEach var="errorCode" items="${errorCodeTableData.errorCodes}">
+				<tr>
+					<td>${errorCode.code}</td>
+					<td>${errorCode.condition}</td>
+					<td>
+						<c:choose>
+							<c:when test="${not empty errorCode.repairPath}">
+								<spd:linkResolver value="${errorCode.repairPath}" />
+									<a href="${url}">Repair or Installation guide link</a>
+							</c:when>
+							<c:otherwise>
+								${errorCode.repairText}
+							</c:otherwise>
+						</c:choose>
+					</td>
+					<td>
+						<c:if test="${not empty errorCode.shopPartsText}">
+							${errorCode.shopPartsText}&nbsp;
+						</c:if>
+						<c:if test="${not empty errorCode.shopPartsLink}">
+							<spd:linkResolver value="${errorCode.shopPartsLink}" />
+							<a href="${url}">Browse for Parts</a>
+						</c:if>
+					</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </div>

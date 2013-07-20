@@ -43,11 +43,11 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>getNameByNodePath</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetNameByNodePathTag</tag-class>
-		<info>returns the name of a node given its path</info>
+		<name>getIcon</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetIconTag</tag-class>
+		<info>Returns the icon corresponding to the given category</info>
 		<attribute>
-			<name>nodePath</name>
+			<name>category</name>
 			<type>java.lang.String</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -195,13 +195,13 @@
 		<attribute>
 			<name>categoryPath</name>
 			<type>java.lang.String</type>
-			<required>false</required>
+			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
 			<name>categoryName</name>
 			<type>java.lang.String</type>
-			<required>false</required>
+			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>

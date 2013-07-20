@@ -26,14 +26,16 @@ public class ErrorCodeTableTag extends CQBaseTag {
 			errorCodeTableModel.setErrorCodeType(codeType);
 			
 			String[]  multiJsons = properties.get("errorCodeTable",new String[0]);
-				List<ErrorCodeModel> codes = new ArrayList<ErrorCodeModel>();
-				for (String json : multiJsons) {
-					JSONObject jsob = new JSONObject(json);
-					ErrorCodeModel model = new ErrorCodeModel("", jsob.getString("code"), jsob.getString("condition"), jsob.getString("checkRepairLink"), 
-											jsob.getString("checkRepairText"), jsob.getString("shopPartsLink"), jsob.getString("shopPartsText"));
-					codes.add(model);
-				}
-			errorCodeTableModel.setErrorCodes(codes);
+			List<ErrorCodeModel> errorCodes = new ArrayList<ErrorCodeModel>();
+			
+			for (String json : multiJsons) {
+				JSONObject jsob = new JSONObject(json);
+				ErrorCodeModel model = new ErrorCodeModel("", jsob.getString("code"), jsob.getString("condition"), 
+										jsob.getString("checkRepairLink"), jsob.getString("checkRepairText"), 
+										jsob.getString("shopPartsLink"), jsob.getString("shopPartsText"));
+				errorCodes.add(model);
+			}
+			errorCodeTableModel.setErrorCodes(errorCodes);
 			pageContext.setAttribute("errorCodeTableData", errorCodeTableModel);
 		}
 		catch (Exception e) {
