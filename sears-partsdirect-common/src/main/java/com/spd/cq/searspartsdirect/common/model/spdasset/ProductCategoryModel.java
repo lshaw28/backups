@@ -1,5 +1,7 @@
 package com.spd.cq.searspartsdirect.common.model.spdasset;
 
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
+
 public class ProductCategoryModel {
 	
 	private String trueName;
@@ -8,17 +10,19 @@ public class ProductCategoryModel {
 	private String description;
 	private String articleIndexCopy;
 	private String category101;
-	private String imagePath;
+	//private String imagePath;
+	private String iconClass;
 	private String path;
 	
-	public ProductCategoryModel(String trueName, String path, String title, String pluralTitle, String description, String articleIndexCopy, String category101, String imagePath) {
+	public ProductCategoryModel(String trueName, String path, String title, String pluralTitle, String description, String articleIndexCopy, String category101, String iconClass) {
 		this.trueName = trueName;
 		this.title = title;
 		this.pluralTitle = pluralTitle;
 		this.description = description;
 		this.articleIndexCopy = articleIndexCopy;
 		this.category101 = category101;
-		this.imagePath = imagePath;
+		//this.imagePath = imagePath;
+		this.iconClass = iconClass;
 		this.path = path;
 	}
 	
@@ -67,11 +71,11 @@ public class ProductCategoryModel {
 		this.category101 = category101;
 	}
 
-	public String getImagePath() {
-		return imagePath;
+	public String getIconClass() {
+		return iconClass;
 	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setIconClass(String iconClass) {
+		this.iconClass = iconClass;
 	}
 
 	public String getPath() {

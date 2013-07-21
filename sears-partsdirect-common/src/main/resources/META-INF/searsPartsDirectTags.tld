@@ -45,11 +45,17 @@
 	<tag>
 		<name>getIcon</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetIconTag</tag-class>
-		<info>Returns the icon corresponding to the given category</info>
+		<info>Returns the icon corresponding to the given category, overrideable based on the current or given page</info>
 		<attribute>
 			<name>category</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>pagePath</name>
 			<type>java.lang.String</type>
-			<required>true</required>
+			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
