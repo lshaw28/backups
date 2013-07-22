@@ -5,7 +5,15 @@
 	 * Global functionality instantiation
 	 */
 	$(document).ready(function () {
-         /**
+		/* Fix Twitter Bootstrap Dropdown Issue */
+		$('.dropdown-menu li').click(function(e) {
+			if (e.cancelBubble) {
+				e.cancelBubble = true;
+			} else {
+				e.stopPropagation();
+			}
+		});
+        /**
 		 * model section
 		 */
 		var modelsection = new modelsectionHeader();
