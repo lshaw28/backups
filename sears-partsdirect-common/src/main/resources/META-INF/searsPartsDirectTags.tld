@@ -547,7 +547,7 @@
 	</tag>
 	<tag>
 		<name>getMyProfileModelCookie</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMyProfileModelCookieTag</tag-class>
-		<info>Gets the My Profile Model Cookie for guest user</info>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetHeaderHelperTag</tag-class>
+		<info>Gets the My Profile Model Cookie for guest user and the api root information</info>
 	</tag>
 </taglib>
