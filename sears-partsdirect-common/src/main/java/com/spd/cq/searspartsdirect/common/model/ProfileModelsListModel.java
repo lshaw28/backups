@@ -7,18 +7,22 @@ public class ProfileModelsListModel {
 	private String modelNumber;
 	private String itemURL;
 	private String modelDescription;
+	private long categoryId;
+	private long brandId;
 	
 	public ProfileModelsListModel() {
 	}
 
 	public ProfileModelsListModel(String brandName, String categoryName,
-			String modelNumber, String itemURL, String modelDescription) {
+			String modelNumber, String itemURL, String modelDescription, long categoryId, long brandId) {
 		super();
 		this.brandName = brandName;
 		this.categoryName = categoryName;
 		this.modelNumber = modelNumber;
 		this.itemURL = itemURL;
 		this.modelDescription = modelDescription;
+		this.categoryId = categoryId;
+		this.brandId = brandId;
 	}
 
 	public String getBrand() {
@@ -67,12 +71,29 @@ public class ProfileModelsListModel {
 		this.modelDescription = modelDescription;
 	}
 
+	public long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public long getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(long brandId) {
+		this.brandId = brandId;
+	}
+
 	@Override
 	public String toString() {
 		return "ProfileModelsListModel [brandName=" + brandName
 				+ ", categoryName=" + categoryName + ", modelNumber="
 				+ modelNumber + ", itemURL=" + itemURL + ", modelDescription="
-				+ modelDescription + "]";
+				+ modelDescription + ", categoryId=" + categoryId
+				+ ", brandId=" + brandId + "]";
 	}
 
 }
