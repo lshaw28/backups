@@ -95,6 +95,9 @@ var responsiveImage = Class.extend(function () {
 			var self = this;
 			self.fw = self.el.width();
 			self.fh = self.el.height();
+
+			console.log(self.fw);
+			console.log(self.fh);
 		},
 		/**
 		 * Determines the correct rendering method
@@ -132,10 +135,7 @@ var responsiveImage = Class.extend(function () {
 				img.attr('src', imageURL)
 					.attr('alt', self.linkAlt)
 					.addClass('responsiveImage_js')
-					.css({
-						'width': self.fw,
-						'height': self.fh
-					});
+					.css('max-width', '100%');
 				self.targetEl.append(img);
 			}
 
@@ -201,7 +201,7 @@ var responsiveImage = Class.extend(function () {
 		 */
 		bindEvent: function () {
 			var self = this;
-			
+
 			shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
 				self.render();
 			});
