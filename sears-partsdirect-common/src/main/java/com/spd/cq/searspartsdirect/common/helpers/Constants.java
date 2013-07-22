@@ -25,6 +25,7 @@ public final class Constants {
 	public static final String ASSETS_LOGO_PATH = ident("/jcr:content/logo");
 	public static final String ASSETS_IMAGE_PATH = ident("/jcr:content/image");
 	public static final String ASSETS_IMAGE_REL_PATH = ident("jcr:content/image");
+	public static final String ASSETS_ICON_ATTR = ident("iconImages");
 	public static final String ASSETS_PRODUCT_CATEGORY_PATH = ident("productCategory");
 	public static final String ASSETS_SYMPTOM_PATH = ident("symptom");
 	public static final String ASSETS_ID_REL_PATH = ident("jcr:content/id");

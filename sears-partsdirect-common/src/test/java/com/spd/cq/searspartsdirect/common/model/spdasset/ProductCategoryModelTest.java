@@ -15,17 +15,17 @@ public class ProductCategoryModelTest extends TestCase {
 	private String description = "description";
 	private String articleIndexCopy = "articleIndexCopy";
 	private String category101 = "category101";
-	private String imagePath = "imagePath";
+	private String iconClass = "iconClass";
 	private String path2 = "path2";
 	private String title2 = "title2";
 	private String singular2 = "singular2";
 	private String description2 = "description2";
-	private String imagePath2 = "imagePath2";
+	private String iconClass2 = "iconClass2";
 	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		productCategoryModel = new ProductCategoryModel(path,path,title,singular,description,articleIndexCopy,category101,imagePath);
+		productCategoryModel = new ProductCategoryModel(path,path,title,singular,description,articleIndexCopy,category101,iconClass);
 	}
 	
 	@Test
@@ -35,17 +35,17 @@ public class ProductCategoryModelTest extends TestCase {
 			assertThat(productCategoryModel.getTitle(),is(title));
 			assertThat(productCategoryModel.getPluralTitle(),is(singular));
 			assertThat(productCategoryModel.getDescription(),is(description));
-			assertThat(productCategoryModel.getImagePath(),is(imagePath));
+			assertThat(productCategoryModel.getIconClass(),is(iconClass));
 			productCategoryModel.setPath(path2);
 			productCategoryModel.setTitle(title2);
 			productCategoryModel.setPluralTitle(singular2);
 			productCategoryModel.setDescription(description2);
-			productCategoryModel.setImagePath(imagePath2);
+			productCategoryModel.setIconClass(iconClass2);
 			assertThat(productCategoryModel.getPath(),is(path2));
 			assertThat(productCategoryModel.getTitle(),is(title2));
 			assertThat(productCategoryModel.getPluralTitle(),is(singular2));
 			assertThat(productCategoryModel.getDescription(),is(description2));
-			assertThat(productCategoryModel.getImagePath(),is(imagePath2));
+			assertThat(productCategoryModel.getIconClass(),is(iconClass2));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

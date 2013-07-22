@@ -11,50 +11,51 @@
     border-left: 2px solid @secondaryHueLight;
     border-right: 2px solid @secondaryHueLight;
     border-top: 2px solid @secondaryHueLight;
-    padding-bottom: 15px;
-
-  }
-
-  .csd-image {
-    border: 2px solid @secondaryHueLight;
     margin-left: 10px;
-    margin-right: 10px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    h3 {
+      color: @secondaryHueDark;
+    }
+
+
+    .csd-image {
+      border: 2px solid @secondaryHueLight;
+    }
+
+    .csd-content {
+
+      a {
+        border-top: 2px solid @secondaryHueLight;
+        border-bottom: 2px solid @secondaryHueLight;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        line-height: 41px;
+      }
+
+      a[href]:hover {
+        text-decoration: none;
+      }
+
+    }
+
+
   }
 
-
-   h3 {
-     color: @secondaryHueDark;
-     margin: 5px 10px;
-   }
 
    p {
      color: @secondaryHueDark;
      font-size: @pSize;
-     margin: 10px;
    }
 
-  .arrow-link {
-    border: 2px solid @secondaryHueLight;
-    margin-bottom: -2px;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  .arrow-link i {
-    color: @primaryHueNormal;
-    right: 10px;
-  }
-
-  a[href]:hover {
-    text-decoration: none;
-  }
 
 
 
 }
 
 @import "categorySymptomDetail.mobile.less";
+@import "categorySymptomDetail.tablet.less";

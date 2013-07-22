@@ -20,12 +20,13 @@
                     fieldLabel="Description"
                     xtype="textarea"
                     name="./jcr:content/jcr:description"/>
-                 <resType
+                <!-- <resType
                     jcr:primaryType="cq:Widget"
                     ignoreData="{Boolean}true"
                     name="./jcr:content/image/sling:resourceType"
                     value="foundation/components/image"
                     xtype="hidden"/>
+                -->
                 <articleIndexCopy
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Article Index Copy"
@@ -34,7 +35,7 @@
                     xtype="textarea"/>
             </items>
         </tab1>
-        <tab2
+        <!-- <tab2
             jcr:primaryType="cq:Panel"
             title="Image">
             <items jcr:primaryType="cq:WidgetCollection">
@@ -52,6 +53,35 @@
 		            xtype="html5smartimage"/>
             </items>
         </tab2>
+        -->
+        <!-- Aside from first line, following is copy from tab_page_icons.xml
+        Also removed width="500" and added jcr:content to iconImages path name -->
+        <icons
+			jcr:primaryType="cq:Panel"
+
+			title="Icons">
+			<items jcr:primaryType="cq:WidgetCollection">
+		        <subcontainer2
+					jcr:primaryType="cq:Widget"
+		                  flex="{Long}1"
+		                  height="250"
+		                  xtype="dialogfieldset">
+		        	<items jcr:primaryType="cq:WidgetCollection">
+			        	<iconImages
+				            jcr:primaryType="nt:unstructured"
+				            fieldLabel="Choose Icon(s)"
+				            name="./jcr:content/iconImages"
+				            type="select"
+				            xtype="selection">
+				            <options jcr:primaryType="cq:WidgetCollection"
+		                   		path="/apps/searspartsdirect/components/page/base/list_page_icons.infinity.json"
+		                    	xtype="cqinclude"/>
+						</iconImages>
+					</items>
+		        </subcontainer2>
+			</items>
+		</icons>
+		<!-- End copy from tab_page_icons.xml -->
         <tab3
         	jcr:primaryType="cq:Panel"
         	title="Category 101">
