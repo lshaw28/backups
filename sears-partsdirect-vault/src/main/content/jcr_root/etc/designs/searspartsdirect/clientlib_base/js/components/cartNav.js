@@ -46,8 +46,6 @@ var cartNav = Class.extend(function () {
 			// Create profileModelsList string array
 			$('input', self.modelDropdown).each(function () {
 				if ($(this)[0].checked === true) {
-					//stringArray.push(self.formatItem($(this)));
-
 					var obj = {
 						'modelNumber': $(this).attr('value'),
 						'brandId': $(this).data('brandid'),
