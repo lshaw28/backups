@@ -439,11 +439,6 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>repairModelHelp</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.RepairModelHelpTag</tag-class>
-		<info>this tag gets the data on the repair model help page</info>
-	</tag>
-	<tag>
 		<name>getSymptomDetail</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetSymptomDetailTag</tag-class>
 		<info>Gets the model symptom data</info>
