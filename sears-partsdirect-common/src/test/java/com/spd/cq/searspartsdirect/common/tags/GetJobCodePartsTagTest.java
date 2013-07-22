@@ -36,7 +36,6 @@ public class GetJobCodePartsTagTest extends MocksTag {
 	public void testSuccess() throws JspException {
 		setupTagAttributes();
 		runsTagSkipsBodyEvalsPage();
-		assertNonEmptyResult();
 	}
 
 	@Test
