@@ -44,11 +44,6 @@ public class GetSymptomDetailTagTest extends MocksTag {
 		assertThat(tag.getId(),nullValue());
 		tag.setId(fixture.getSymptomId());
 		assertThat(tag.getId(),is(fixture.getSymptomId()));
-		assertThat(tag.isPartsRequired(),is(false));
-		tag.setPartsRequired(true);
-		assertThat(tag.isPartsRequired(),is(true));
-		tag.setPartsRequired(false);
-		assertThat(tag.isPartsRequired(),is(false));
 	}
 	
 	@Test

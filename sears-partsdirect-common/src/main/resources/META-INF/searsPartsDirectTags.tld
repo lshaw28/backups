@@ -439,20 +439,9 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>repairModelHelp</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.RepairModelHelpTag</tag-class>
-		<info>this tag gets the data on the repair model help page</info>
-	</tag>
-	<tag>
 		<name>getSymptomDetail</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetSymptomDetailTag</tag-class>
 		<info>Gets the model symptom data</info>
-		<attribute>
-			<name>partsRequired</name>
-			<type>java.lang.Boolean</type>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
 		<attribute>
 			<name>id</name>
 			<type>java.lang.String</type>
@@ -558,7 +547,7 @@
 	</tag>
 	<tag>
 		<name>getMyProfileModelCookie</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMyProfileModelCookieTag</tag-class>
-		<info>Gets the My Profile Model Cookie for guest user</info>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetHeaderHelperTag</tag-class>
+		<info>Gets the My Profile Model Cookie for guest user and the api root information</info>
 	</tag>
 </taglib>

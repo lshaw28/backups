@@ -33,8 +33,6 @@ public class GetSymptomDetailTag extends CQBaseTag {
 	private Query query;
 	ModelSymptomModel modelSymptomModel;
 	List<JobCodeModel> jobCodeModels;
-	private boolean partsRequired;
-
 	public static final Logger log = LoggerFactory.getLogger(GetSymptomDetailTag.class);
 	private static final String PART_TYPE = "partType";
 	private static final String GUIDES = "guides";
@@ -118,14 +116,6 @@ public class GetSymptomDetailTag extends CQBaseTag {
 	@Override
 	public int doEndTag() throws JspException {
 		return EVAL_PAGE;
-	}
-
-	public boolean isPartsRequired() {
-		return partsRequired;
-	}
-
-	public void setPartsRequired(boolean partsRequired) {
-		this.partsRequired = partsRequired;
 	}
 
 	public String getId() {
