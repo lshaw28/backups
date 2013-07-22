@@ -9,19 +9,19 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.spd.cq.searspartsdirect.common.fixture.GetMyProfileModelCookieTagFixture;
+import com.spd.cq.searspartsdirect.common.fixture.GetHeaderHelperTagFixture;
 
-public class GetMyProfileModelCookieTagTest extends MocksTag {
+public class GetHeaderHelperTagTest extends MocksTag {
 
 	private static final long serialVersionUID = 1L;
-	private GetMyProfileModelCookieTagFixture fixture;
-	private GetMyProfileModelCookieTag tag;
+	private GetHeaderHelperTagFixture fixture;
+	private GetHeaderHelperTag tag;
 	
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetMyProfileModelCookieTagFixture(request);
-		tag = new GetMyProfileModelCookieTag();
+		fixture = new GetHeaderHelperTagFixture(request);
+		tag = new GetHeaderHelperTag();
 	}
 
 	@Test

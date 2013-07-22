@@ -3,10 +3,11 @@ package com.spd.cq.searspartsdirect.common.tags;
 import javax.servlet.http.Cookie;
 import javax.servlet.jsp.JspException;
 
+import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectCookieHelper;
 
-public class GetMyProfileModelCookieTag extends CQBaseTag {
+public class GetHeaderHelperTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -24,7 +25,9 @@ public class GetMyProfileModelCookieTag extends CQBaseTag {
 				pageContext.setAttribute("myProfileModelCookie", "");
 			}
 		}
-		 return SKIP_BODY;
+		
+		pageContext.setAttribute("PdApiRoot", EnvironmentSettings.getPDApiRoot());
+		return SKIP_BODY;
 	}
 	
 	@Override

@@ -14,14 +14,14 @@ import org.mockito.stubbing.Answer;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
-public class GetMyProfileModelCookieTagFixture {
+public class GetHeaderHelperTagFixture {
 	
 	private HttpServletRequest request;
 	
 	private List<Cookie> cookies;
 	private final static Cookie[] emptyCookies = new Cookie[]{};
 	
-	public GetMyProfileModelCookieTagFixture(HttpServletRequest request) throws Exception {
+	public GetHeaderHelperTagFixture(HttpServletRequest request) throws Exception {
 		this.request = request;
 	}
 

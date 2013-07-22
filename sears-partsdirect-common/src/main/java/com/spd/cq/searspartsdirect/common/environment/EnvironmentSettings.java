@@ -121,6 +121,15 @@ public class EnvironmentSettings {
 	public static String getPDJobCodePartsApiUrl() {
 		return getProperty(PD_JOBCODE_PARTS_API, Constants.EMPTY);
 	}
+	
+	@Property(label = "PartsDirect API Root",
+			description = "PartsDirect API Root",
+			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/")
+	public static final String PD_API_ROOT = "searspartsdirect.api.root";
+	public static String getPDApiRoot() {
+		return getProperty(PD_API_ROOT, Constants.EMPTY);
+	}
+	
 	// ---- for testing ----
 	public void externalActivateForTesting(final ComponentContext context) throws Exception {
 		activate(context);
