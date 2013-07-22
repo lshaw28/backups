@@ -6,6 +6,7 @@ var cartNav = Class.extend(function () {
 		/**
 		 * @singleton cartNav
 		 * Singleton class for the cartNav component
+		 * Handles Recently Viewed, My Models and Cart
 		 *
 		 * init: On page load events to fire
 		 */
@@ -33,32 +34,55 @@ var cartNav = Class.extend(function () {
 			self.modelDropdown.toggleClass('guest-edit');
 		},
 		/**
-		 * Determine whether or not the Remove button should appear actionable
-		 * @return {void}
-		 */
-		setRemoveState: function () {
-			var self = this,
-				checkedItems = $('input[checked="checked"]', self.modelDropdown);
-
-			if (checkedItems.length > 0) {
-				// Set editable class
-			} else {
-				// Set ineditable class
-			}
-		},
-		/**
 		 * Handle the remove button click event
 		 * @return {void}
 		 */
 		removeItems: function () {
 			var self = this,
-				checkedItems = $('input[checked="checked"]', self.modelDropdown);
+				deleteAddress = apiPath + 'profile/models/delete',
+				stringArray = new Array();
 
-			if (checkedItems.length > 0) {
-				// Make AJAX call(s)
+			// Create profileModelsList string array
+			$('input', self.modelDropdown).each(function () {
+				if ($(this)[0].checked === true) {
+					stringArray.push(self.formatItem($(this)));
+				}
+			});
+			// Attempt AJAX call
+			if (stringArray.length > 0) {
+				$.ajax({
+					type: 'POST',
+					url: deleteAddress,
+					async: false,
+					contentType: 'application/json',
+					dataType: 'JSON',
+					data: {
+						cookieId: guestCookieId,
+						profileModelsList: '[' + stringArray.join(',') + ']'
+					}
+				})
+				.success(function (data) {
+					self.handleResponse(data);
+				})
+				.fail(function (e) {
+					console.log('Error', e);
+				});
 			} else {
 				// Handle error
 			}
+		},
+		/**
+		 * Creates a string representation of an item
+		 * @param {object} cb Checkbox element to mine
+		 * @return {string} String representation of object
+		 */
+		formatItem: function (cb) {
+			var self = this,
+				output = '';
+
+			output = '{ "modelNumber":"' + cb.attr('value') + '", "brandId":"' + cb.data('brandid') + '", "categoryId":"' + cb.data('categoryid') + '" }';
+
+			return output;
 		},
 		/**
 		 * Handle AJAX call
@@ -67,6 +91,8 @@ var cartNav = Class.extend(function () {
 		 */
 		handleResponse: function (data) {
 			var self = this;
+
+			console.log('Response', data);
 
 			// Check the data object for success paramters
 			// If successful, find the parent node of the inputs and remove them
