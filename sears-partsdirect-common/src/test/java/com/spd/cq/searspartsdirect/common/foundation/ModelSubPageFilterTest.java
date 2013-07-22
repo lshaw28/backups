@@ -46,6 +46,22 @@ public class ModelSubPageFilterTest extends TestCase {
 	}
 	
 	@Test
+	public void testAlreadyHasCatRepairWithPrefix() throws ServletException, IOException {
+		fixture.setUpPath("/acme/portable_hole/"+Constants.MODELNO_PFX+"0"+Constants.MODELNO_SFX+Constants.CATEGORIES_ROOT+"/portable_hole"+Constants.MODELNO_SFX+"/repair-articles.html");
+		fixture.setUpDispatcher(Constants.CATEGORIES_ROOT+"/portable_hole"+Constants.MODELNO_SFX+"/repair-articles.acme.portable_hole.0.html");
+		runFilter();
+		shouldForward();
+	}
+	
+	@Test
+	public void testLongCat() throws ServletException, IOException {
+		fixture.setUpPath("/acme/portable_hole_looooooooooooooooooong/"+Constants.MODELNO_PFX+"0"+Constants.MODELNO_SFX+Constants.CATEGORIES_ROOT+"/portable_hole_looooooooooooooooooong"+Constants.MODELNO_SFX+"/repair-articles.html");
+		fixture.setUpDispatcher(Constants.CATEGORIES_ROOT+"/portable_hole_looooo"+Constants.MODELNO_SFX+"/repair-articles.acme.portable_hole_looooo.0.html");
+		runFilter();
+		shouldForward();
+	}
+	
+	@Test
 	public void testNonHtmlPath() throws ServletException, IOException {
 		fixture.setUpPath(Constants.CATEGORIES_ROOT+"/chainsaw"+Constants.MODELNO_SFX+"/repair-articles");
 		runFilter();
