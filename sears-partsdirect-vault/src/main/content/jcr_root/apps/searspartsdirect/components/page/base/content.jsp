@@ -1,4 +1,8 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <article id="content">
-	<cq:include path="parsys" resourceType="foundation/components/parsys" />
+	<div class="row-fluid">
+		<div class="span10 offset1">
+			<cq:include path="parsys" resourceType="foundation/components/parsys" />
+		</div>
+	</div>
 </article>
