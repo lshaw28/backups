@@ -545,4 +545,15 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetRepairGuideJobCodeTag</tag-class>
 		<info>Gets the job code associated with the current repair guide page.</info>
 	</tag>
+	<tag>
+		<name>cleanText</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.CleanTextTag</tag-class>
+		<info>Strips inline styles and outputs cleaned text</info>
+		<attribute>
+			<name>text</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>
