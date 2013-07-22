@@ -28,20 +28,6 @@ public enum AssetType {
 					p.getPath() + Constants.ASSETS_LOGO_PATH);
 		}
 	},
-	ERRORCODE(ErrorCodeModel.class,"errorCode") {
-		@Override
-		public Object createModelInstance(Page p, ValueMap properties) {
-			String title = properties.get(Constants.ASSETS_TITLE_PATH,"");
-			String description = properties.get(Constants.ASSETS_DESCRIPTION_PATH,"");
-			return new ErrorCodeModel(p.getPath(),
-					title,
-					description,
-					properties.get("repairPath",""),
-					properties.get("shopPartsLink",""),
-					properties.get("repairPathText", ""),
-					properties.get("shopPartsText", ""));
-		}
-	},
 	// Not sure why these aren't updated to use icons here. Possible TODO.
 	HAZARD(HazardModel.class) {
 		@Override
