@@ -443,12 +443,6 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetSymptomDetailTag</tag-class>
 		<info>Gets the model symptom data</info>
 		<attribute>
-			<name>partsRequired</name>
-			<type>java.lang.Boolean</type>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
 			<name>id</name>
 			<type>java.lang.String</type>
 			<required>true</required>
