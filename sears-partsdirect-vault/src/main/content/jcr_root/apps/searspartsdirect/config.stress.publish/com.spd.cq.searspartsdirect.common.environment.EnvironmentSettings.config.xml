@@ -10,4 +10,5 @@
 	searspartsdirect.userdata.api="http://partsvip.stress.ch3.s.com/pd-services/v1/userservice/retrive?username="
 	searspartsdirect.topparts.api="http://partsvip.stress.ch3.s.com/pd-services/v1/modelTop/topParts"
 	searspartsdirect.jobcode.parts.api="http://partsvip.stress.ch3.s.com/pd-services/v1/commonSymptoms/jobcodelist/partlist"
+	searspartsdirect.modelsub.api="http://partsapivip.stress.ch3.s.com/pd-services/v1/commonSymptoms/modelInfo"
 	searspartsdirect.api.root="http://partsapivip.stress.ch3.s.com/pd-services/v1/" />
