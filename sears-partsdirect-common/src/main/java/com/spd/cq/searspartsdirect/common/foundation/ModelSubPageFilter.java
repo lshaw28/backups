@@ -80,16 +80,24 @@ public class ModelSubPageFilter implements Filter {
 	        	//String forwardUrl = m.group(2) + "?model=" + m.group(1);
 	            //Resource Resolver gets overzealous here
 	        	selectors.add(mBcm.group(1));
-	        	selectors.add(mBcm.group(2));
+	        	String catName = mBcm.group(2);
+	        	if (catName.length() > Constants.MAX_TRUENAME_LENGTH) {
+	        		catName = catName.substring(0,Constants.MAX_TRUENAME_LENGTH);
+				}
+	        	selectors.add(catName);
 	        	selectors.add(mBcm.group(3));
 	        	resPath = mBcm.group(4);
 	        	mustForward = true;
 	        	if (resPath.equals(".html")) {
 	        		resPath = Constants.MODEL_REPAIR_PAGE_NO_EXT + resPath;
 	        	} else if (!hasRepairGuide(resPath)) {
-	        		String catRepair = "/" + mBcm.group(2) + Constants.MODELNO_SFX;
-	        		if (!resPath.startsWith(catRepair)) {
+	        		String catRepair = "/" + catName + Constants.MODELNO_SFX;
+	        		String checkCatRepairEx = "^/" + catName +"[^-/]*"+ Constants.MODELNO_SFX ;
+	        		Pattern checkCatRepair = Pattern.compile(checkCatRepairEx);
+	        		if (!checkCatRepair.matcher(resPath).find()) {
 	        			resPath = catRepair + resPath;
+	        		} else {
+	        			resPath = resPath.replaceFirst(checkCatRepairEx, catRepair);
 	        		}
 	        	}
 	        }
@@ -112,6 +120,7 @@ public class ModelSubPageFilter implements Filter {
         	String forwardUrl = addSelectors(authorPrepend + resPath,Constants.MARKUP_EXT,selectors);
         	RequestDispatcher requestDispatcher = request.getRequestDispatcher(forwardUrl);
         	
+        	//if (requestDispatcher == null) throw new RuntimeException("No dispatcher for "+forwardUrl);
         	log.debug("Forwarding to "+forwardUrl);
         	requestDispatcher.forward(request, response);
         	
