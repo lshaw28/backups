@@ -1,0 +1,62 @@
+package com.spd.cq.searspartsdirect.common.fixture;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
+
+public class GetMyProfileModelCookieTagFixture {
+	
+	private HttpServletRequest request;
+	
+	private List<Cookie> cookies;
+	private final static Cookie[] emptyCookies = new Cookie[]{};
+	
+	public GetMyProfileModelCookieTagFixture(HttpServletRequest request) throws Exception {
+		this.request = request;
+	}
+
+	public void setUpEmptyCookies() {
+		setUpRequestCookies();
+		cookies.clear();
+	}
+	
+	private void setUpRequestCookies() {
+		if (cookies == null) {
+			cookies = new ArrayList<Cookie>();
+			when(request.getCookies()).thenAnswer(new Answer<Cookie[]>() {
+				public Cookie[] answer(InvocationOnMock invocation)
+						throws Throwable {
+					return cookies.toArray(emptyCookies);
+				}
+			});
+		}
+	}
+	
+	public void setUpPopulatedModelCookie() {
+		setUpRequestCookies();
+		Cookie modelCookie = makeEmptyModelCookie();
+		when(modelCookie.getValue()).thenReturn(getModelCookieValue());
+		cookies.add(modelCookie);
+	}
+	
+	public String getModelCookieValue() {
+		return "e83db321-034a-41c6-9885-15dc9d655e9b";
+	}
+	
+	private Cookie makeEmptyModelCookie() {
+		Cookie modelCookie = mock(Cookie.class);
+		when(modelCookie.getName()).thenReturn(Constants.MY_MODEL_COOKIE);
+		return modelCookie;
+	}
+}
+

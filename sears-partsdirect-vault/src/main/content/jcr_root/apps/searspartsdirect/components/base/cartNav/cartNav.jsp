@@ -57,7 +57,7 @@
 					<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 0}">
 						<li id="cartModelItems">
 						<c:forEach var="model" items="${myProfileModels}">
-							<span class="cartModelItem"><input type="checkbox" value="${model.modelNumber}" /><a href="${mainSitePath}${model.itemURL}">${model.brandName} ${model.categoryName} model #${model.modelNumber}</a></span>
+							<span class="cartModelItem"><input type="checkbox" value="${model.modelNumber}" data-categoryid="1" data-brandId="2" /><a href="${mainSitePath}${model.itemURL}">${model.brandName} ${model.categoryName} model #${model.modelNumber}</a></span>
 						</c:forEach>
 						</li>
 						<c:choose>

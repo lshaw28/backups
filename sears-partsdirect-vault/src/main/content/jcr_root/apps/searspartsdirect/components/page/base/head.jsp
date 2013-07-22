@@ -13,6 +13,8 @@
 	<meta name="global-mainSitePath" content="${mainSitePath}" />
 	<meta name="global-apiPath" content="http://partsapivip.qa.ch3.s.com/pd-services/v1/" />
 	<meta name="global-modelSearchServletPath" content="bin/searspartsdirect/modelsearch" />
+	<spd:getMyProfileModelCookie />
+	<meta name="global-guestCookieId" content="${myProfileModelCookie}" />
 	<!-- Metadata -->
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta name="author" content="Sears PartsDirect" />
