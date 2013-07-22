@@ -32,19 +32,12 @@ public class GetJobCodePartsTagTest extends MocksTag {
 		tag = new GetJobCodePartsTag();
 	}
 
-	/*@Test
+	@Test
 	public void testSuccess() throws JspException {
 		setupTagAttributes();
 		runsTagSkipsBodyEvalsPage();
 		assertNonEmptyResult();
-	}*/
-
-	/*@Test
-	public void testIOException() throws JspException {
-		setupTagAttributes();
-		runsTagSkipsBodyEvalsPage();
-		assertEmptyResult();
-	}*/
+	}
 
 	@Test
 	public void testEmptyJobCodes() throws JspException {
@@ -60,14 +53,22 @@ public class GetJobCodePartsTagTest extends MocksTag {
 		runsTagSkipsBodyEvalsPage();
 		assertEmptyResult();
 	}
-	
-	/*@Test
+
+	@Test
 	public void testEmptyModelNumber() throws JspException {
 		setupEmptyModelNumber();
 		runsTagSkipsBodyEvalsPage();
 		assertNonEmptyResult();
 		assertFalse(tag.buildApiUrl().contains("modelNumber"));
-	}*/
+	}
+
+	@Test
+	public void testGetJobCodePartMethodWithValidJson() {
+		String jsonResponse = fixture.getSuccessfulJsonResponse();
+		Map<String, List<JobCodePartModel>> jobCodeParts = tag.getJobCodeParts(jsonResponse);
+		assertThat(jobCodeParts, not(nullValue()));
+		assertEquals(jobCodeParts.size(), 2);
+	}
 
 	@Test
 	public void testGetJobCodePartMethodWithEmptyJson() {
