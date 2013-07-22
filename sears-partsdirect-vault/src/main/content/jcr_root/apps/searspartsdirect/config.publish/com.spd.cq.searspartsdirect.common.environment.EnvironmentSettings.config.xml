@@ -8,6 +8,5 @@
 	searspartsdirect.external.added.prefix="http://www.searspartsdirect.com"
 	searspartsdirect.external.added.suffix=".html"
 	searspartsdirect.userdata.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username="
-	searspartsdirect.jobcode.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcode/parts"
 	searspartsdirect.topparts.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/modelTop/topParts"
 	searspartsdirect.jobcode.parts.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcodelist/partlist" />
