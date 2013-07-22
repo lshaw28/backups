@@ -5,6 +5,10 @@
 		jcr:primaryType="nt:unstructured"
 		text="(none specified)"
 		value=""/>
+	<iconNoIconAtAll
+		jcr:primaryType="nt:unstructured"
+		text="No Icon"
+		value="none"/><!-- Must match Constants.NO_ICON -->
     <iconChainsaw
         jcr:primaryType="nt:unstructured"
         text="Chainsaw"
