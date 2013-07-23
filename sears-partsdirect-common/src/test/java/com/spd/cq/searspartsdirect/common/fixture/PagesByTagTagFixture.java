@@ -18,8 +18,10 @@ import com.day.cq.wcm.api.Page;
 
 public class PagesByTagTagFixture {
 
+	private TagManager tagManager;
+	
 	public PagesByTagTagFixture(ResourceResolver resourceResolver) {
-		TagManager tagManager = mock(TagManager.class);
+		tagManager = mock(TagManager.class);
 		when(resourceResolver.adaptTo(TagManager.class)).thenReturn(tagManager);
 		//Tag finderTag = tm.resolve(tag);
 		String testTag = getTestTag();
@@ -30,6 +32,7 @@ public class PagesByTagTagFixture {
 		Page page1 = mock(Page.class);
 		tagged.add(makeContentResourceFor(page1));
 		tagged.add(makeContentResourceFor(null));
+		tagged.add(null);
 		Page page2 = mock(Page.class);
 		tagged.add(makeContentResourceFor(page2));
 		when(finderTag.find()).thenAnswer(new Answer<Iterator<Resource>>() {
@@ -54,6 +57,11 @@ public class PagesByTagTagFixture {
 	
 	public String getTestTag() {
 		return "test_tag";
+	}
+
+	public void breakTestTag() {
+		when(tagManager.resolve(getTestTag())).thenReturn(null);
+		
 	}
 
 }

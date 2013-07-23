@@ -35,7 +35,7 @@ public class GetIconTag extends CQBaseTag {
 		iconName = overridePage.getProperties().get(Constants.ASSETS_ICON_ATTR,iconName);
 
 		if(StringUtils.isEmpty(iconName)){
-			iconName = "svg-icon-er";
+			iconName = Constants.DEFAULT_ICON;
 		}
 		pageContext.setAttribute("iconName", iconName);
 		return SKIP_BODY;

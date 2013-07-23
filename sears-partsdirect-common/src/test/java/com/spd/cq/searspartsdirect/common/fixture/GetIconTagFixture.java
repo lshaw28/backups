@@ -6,6 +6,7 @@ import org.mockito.stubbing.Answer;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 import static org.mockito.Mockito.mock;
@@ -24,7 +25,7 @@ public class GetIconTagFixture {
 	}
 	
 	public String getDefaultIcon() {
-		return "svg-icon-er";
+		return Constants.DEFAULT_ICON;
 	}
 	
 	public String getCategoryIcon() {

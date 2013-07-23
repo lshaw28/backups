@@ -37,4 +37,8 @@ public class ConstantModel {
 	public String getEMPTY() {
 		return Constants.EMPTY;
 	}
+	
+	public String getNO_ICON() {
+		return Constants.NO_ICON;
+	}
 }
