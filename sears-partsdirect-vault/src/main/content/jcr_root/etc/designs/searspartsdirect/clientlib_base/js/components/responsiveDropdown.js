@@ -79,6 +79,7 @@ var responsiveDropdown = Class.extend(function () {
 			self.renderItems();
 			self.buttonGroup.append(self.dropdownItems);
 			// Hide the select element
+			self.el.attr('multiple', 'false');
 			self.el.addClass('responsiveDropdownHidden');
 			self.buttonGroup.insertBefore(self.el);
 		},
@@ -143,7 +144,6 @@ var responsiveDropdown = Class.extend(function () {
 		 */
 		handleButton: function () {
 			var self = this;
-
 			self.el.focus();
 			self.dropdownItems.toggleClass('active');
 		},
@@ -154,8 +154,7 @@ var responsiveDropdown = Class.extend(function () {
 		 * @return {void}
 		 */
 		selectValue: function (val, sel) {
-			var self = this,
-				navigated = false;
+			var self = this;
 
 			// Update the Bootstrap dropdown items
 			$('li', self.dropdownItems).removeClass('selected');
@@ -174,13 +173,28 @@ var responsiveDropdown = Class.extend(function () {
 				}
 				window.scrollTo($(window).scrollTop() - self.button.height());
 			}
+			// Close the dropdown
+			self.dropdownItems.removeClass('active');
 		},
 		bindEvent: function () {
 			var self = this;
 
-			self.el.bind('change', function () {
+			self.el.bind('blur', function () {
+				console.log('blur');
 				var val = $('option:selected', self.el).attr('value');
 				self.selectValue(val, true);
+			}).bind('change', function () {
+				console.log('change');
+				var val = $('option:selected', self.el).attr('value');
+				self.selectValue(val, true);
+			}).bind('select', function () {
+				console.log('select');
+				var val = $('option:selected', self.el).attr('value');
+				self.selectValue(val, true);
+			}).bind('focus', function () {
+				console.log('focus');
+				var val = $('option:selected', self.el).attr('value');
+				//self.selectValue(val, true);
 			});
 		}
 	};
