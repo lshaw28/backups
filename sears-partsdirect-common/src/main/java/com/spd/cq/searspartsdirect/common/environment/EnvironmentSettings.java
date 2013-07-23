@@ -11,6 +11,8 @@ import org.osgi.service.component.ComponentContext;
 
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
+// We must make use of the raw type for 'props' to meet OSGi's requirements
+@SuppressWarnings("rawtypes")
 @Component(label="Sears PartsDirect Environment Settings",description="Environment specific variables",immediate=true,metatype=true)
 @Service(value=com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings.class)
 
@@ -135,6 +137,9 @@ public class EnvironmentSettings {
 	protected void deactivate( ComponentContext context ) {
 	}
 
+	// A note - we do depend here on the properties being the correct types, which contract
+	// we maintain elsewhere. In all cases so far, these are Strings.
+	@SuppressWarnings("unchecked")
 	private static <T> T getProperty(String prop, T defaultValue) {
 		if (props.get(prop) == null) {
 			return defaultValue;
