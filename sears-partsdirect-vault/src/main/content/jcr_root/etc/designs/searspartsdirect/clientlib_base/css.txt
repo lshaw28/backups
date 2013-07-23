@@ -36,6 +36,7 @@ category101/category101.less
 categoryArticleList/categoryArticleList.less
 categoryListing/categoryListing.less
 categorySymptomDetail/categorySymptomDetail.less
+categorySymptoms/categorySymptoms.less
 difficultyRating/difficultyRating.less
 errorCodeChecker/errorCodeChecker.less
 errorCodeTable/errorCodeTable.less

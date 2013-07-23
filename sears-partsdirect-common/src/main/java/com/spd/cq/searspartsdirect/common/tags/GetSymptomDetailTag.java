@@ -91,8 +91,10 @@ public class GetSymptomDetailTag extends CQBaseTag {
 											List<GuideModel> guideList = new ArrayList<GuideModel>();
 											for (int j = 0; j<guides.length; j++) {
 												Page guidePage = pageManager.getPage(guides[j]);
-												GuideModel guide = new GuideModel(guidePage.getPath(), null, guidePage.getTitle());
-												guideList.add(guide);
+												if (guidePage != null) {
+													GuideModel guide = new GuideModel(guidePage.getPath(), null, guidePage.getTitle());
+													guideList.add(guide);
+												}
 											}
 											jobCodeModel.setGuides(guideList);
 										}
