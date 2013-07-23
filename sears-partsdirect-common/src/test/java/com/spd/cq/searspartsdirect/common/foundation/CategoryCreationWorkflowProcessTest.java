@@ -3,7 +3,6 @@ package com.spd.cq.searspartsdirect.common.foundation;
 
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +10,6 @@ import org.junit.Test;
 import com.adobe.granite.workflow.WorkflowException;
 import com.day.cq.wcm.api.WCMException;
 import com.spd.cq.searspartsdirect.common.fixture.CategoryCreationWorkflowProcessFixture;
-import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 import junit.framework.TestCase;
 

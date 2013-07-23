@@ -5,6 +5,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
 
 import java.util.List;
 import java.util.StringTokenizer;
@@ -23,13 +25,19 @@ import com.spd.cq.searspartsdirect.common.model.PartCookieModel;
 public class PartsDirectCookieHelperTest extends TestCase {
 
 	private PartsDirectCookieHelperFixture fixture;
-	private PartsDirectCookieHelper cookieHelper;
 	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
 		fixture = new PartsDirectCookieHelperFixture();
-		cookieHelper = new PartsDirectCookieHelper();
+		
+	}
+	
+	@Test
+	public void testCoverInstantiation() {
+		// All methods are static, but we want complete coverage.
+		PartsDirectCookieHelper cookieHelper = new PartsDirectCookieHelper();
+		assertThat(cookieHelper,is(not(nullValue())));
 	}
 	
 	@Test

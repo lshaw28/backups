@@ -75,7 +75,7 @@ public class ModelSubcomponentAPIHelperTest extends TestCase {
 	@Test
 	public void testGetModelSubcomponentsFromApi() {
 		setExampleParameters();
-		PDModelSubcomponentModel subcomponents = helper.getModelSubcomponentsFromApi();
+		// PDModelSubcomponentModel subcomponents = helper.getModelSubcomponentsFromApi();
 		// assertThat(subcomponents,is(not(nullValue())));
 		// We cannot assert the above, or we allow API to fail our builds
 	}
