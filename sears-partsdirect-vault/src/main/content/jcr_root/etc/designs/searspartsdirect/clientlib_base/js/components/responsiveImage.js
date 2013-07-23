@@ -95,9 +95,6 @@ var responsiveImage = Class.extend(function () {
 			var self = this;
 			self.fw = self.el.width();
 			self.fh = self.el.height();
-
-			console.log(self.fw);
-			console.log(self.fh);
 		},
 		/**
 		 * Determines the correct rendering method
