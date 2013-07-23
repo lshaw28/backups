@@ -30,6 +30,8 @@ public class JobCodePartModel {
 
 	@SerializedName("partImage")
 	private PartImageModel image;
+	
+	private boolean returnable;
 
 	public String getName() {
 		return name;
@@ -112,6 +114,14 @@ public class JobCodePartModel {
 
 	public void setImage(PartImageModel image) {
 		this.image = image;
+	}
+	
+	public boolean isReturnable() {
+		return returnable;
+	}
+
+	public void setReturnable(boolean returnable) {
+		this.returnable = returnable;
 	}
 
 	@Override
