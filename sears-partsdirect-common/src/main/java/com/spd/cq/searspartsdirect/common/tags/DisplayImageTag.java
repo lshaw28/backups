@@ -16,6 +16,7 @@ import com.day.cq.wcm.foundation.Image;
  * @author Joseph
  *
  */
+@SuppressWarnings("serial")
 public class DisplayImageTag extends CQBaseTag {
 	protected final static Logger log = LoggerFactory.getLogger(DisplayImageTag.class);
 	

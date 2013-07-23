@@ -18,6 +18,7 @@ import com.day.cq.wcm.api.Page;
  * @author Joseph
  *
  */
+@SuppressWarnings("serial")
 public class PagesByTagTag extends CQBaseTag {
 	
 	protected static Logger log = LoggerFactory.getLogger(PagesByTagTag.class);

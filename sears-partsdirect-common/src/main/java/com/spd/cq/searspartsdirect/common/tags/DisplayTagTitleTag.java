@@ -14,6 +14,7 @@ import com.day.cq.tagging.TagManager;
  * @author Ben
  *
  */
+@SuppressWarnings("serial")
 public class DisplayTagTitleTag extends CQBaseTag {
 	protected final static Logger log = LoggerFactory.getLogger(DisplayTagTitleTag.class);
 	

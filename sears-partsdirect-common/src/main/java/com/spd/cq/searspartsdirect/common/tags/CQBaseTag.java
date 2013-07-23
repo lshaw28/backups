@@ -29,6 +29,7 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
  * @extends TagSupport
  *
  */
+@SuppressWarnings("serial")
 public class CQBaseTag extends TagSupport {
 	
 	
