@@ -107,7 +107,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 					modelSymptomModel.setSymptomModel(symptomModel);
 				}
 			} catch (RepositoryException e) {
-				log.error("Failure building results, ",e);
+				log.error("Failure to get the symptom details ",e.fillInStackTrace());
 			}
 		}
 
