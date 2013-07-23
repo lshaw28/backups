@@ -6,58 +6,52 @@
 	<items jcr:primaryType="cq:WidgetCollection">
 		<tabpanel jcr:primaryType="cq:TabPanel">
 			<items jcr:primaryType="cq:WidgetCollection">
-			
 				<tab1
 					jcr:primaryType="cq:Widget"
 					title="Model Number Search"
 					xtype="panel">
 					<items jcr:primaryType="cq:WidgetCollection">
 						<searchInstructions
-								jcr:primaryType="cq:Widget"
-							   	fieldLabel="Search Instructions"
-							   	fieldDescription="Enter text to replace default instrucitons. Character limit is 140"
-							   	name="./searchInstructions"
-							   	xtype="textfield" />
-						
+							jcr:primaryType="cq:Widget"
+							fieldLabel="Search Instructions"
+							fieldDescription="Enter text to replace default instrucitons. Character limit is 140"
+							name="./searchInstructions"
+							xtype="textfield" />
 						<buttonTitle jcr:primaryType="cq:Widget"
-							   fieldLabel="Search Button Title"
-							   fieldDescription="Enter text to replace default button text. Character limit is 42"
-							   name="./buttonTitle"
-							   xtype="textfield"
-							   maxLength="42" />
-					
+							fieldLabel="Search Button Title"
+							fieldDescription="Enter text to replace default button text. Character limit is 42"
+							name="./buttonTitle"
+							xtype="textfield"
+							maxLength="42" />
 						<linkText
-								jcr:primaryType="cq:Widget"
-							   	fieldLabel="Link Text"
-							   	fieldDescription="Enter text to replace default link text. Character limit is 42"
-							   	maxLength="42"
-							   	name="./linkText"
-							   	xtype="textfield" />
-							   
+							jcr:primaryType="cq:Widget"
+							fieldLabel="Link Text"
+							fieldDescription="Enter text to replace default link text. Character limit is 42"
+							maxLength="42"
+							name="./linkText"
+							xtype="textfield" />
 					</items>
 				</tab1>
-				
-				<tab2	jcr:primaryType="cq:Widget"
-						title="Optional"
-						xtype="panel">
-						<items jcr:primaryType="cq:WidgetCollection">
+				<tab2
+					jcr:primaryType="cq:Widget"
+					title="Optional"
+					xtype="panel">
+					<items jcr:primaryType="cq:WidgetCollection">
 						<QuestionText
-								jcr:primaryType="cq:Widget"
-							   	fieldLabel="Search Instructions"
-							   	fieldDescription="Character limit is 42"
-							   	name="./QuestionText"
-							   	xtype="textfield" />
-					
+							jcr:primaryType="cq:Widget"
+							fieldLabel="Search Instructions"
+							fieldDescription="Character limit is 42"
+							name="./QuestionText"
+							xtype="textfield" />
 						<linkText2
-								jcr:primaryType="cq:Widget"
-							   	fieldLabel="Link Text"
-							   	fieldDescription="Enter text to for new link. Character limit is 42"
-							   	name="./linkText2"
-							   	xtype="textfield" 
-							   	maxLength="42" />
-						</items>
+							jcr:primaryType="cq:Widget"
+							fieldLabel="Link Text"
+							fieldDescription="Enter text to for new link. Character limit is 42"
+							name="./linkText2"
+							xtype="textfield"
+							maxLength="42" />
+					</items>
 				</tab2>
-				
 			</items>
 		</tabpanel>
 	</items>

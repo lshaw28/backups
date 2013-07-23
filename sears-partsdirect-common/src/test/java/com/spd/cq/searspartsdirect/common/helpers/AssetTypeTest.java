@@ -41,9 +41,7 @@ public class AssetTypeTest extends TestCase {
 	@Test
 	public void testGetMixedCaseName() {
 		assertThat(AssetType.ACCESSORY.getMixedCaseName(),is("accessory"));
-		assertThat(AssetType.AUTHOR.getMixedCaseName(),is("author"));
 		assertThat(AssetType.BRAND.getMixedCaseName(),is("brand"));
-		assertThat(AssetType.ERRORCODE.getMixedCaseName(),is("errorCode"));
 		assertThat(AssetType.HAZARD.getMixedCaseName(),is("hazard"));
 		assertThat(AssetType.JOBCODE.getMixedCaseName(),is("jobCode"));
 		assertThat(AssetType.PARTTYPE.getMixedCaseName(),is("partType"));
@@ -57,9 +55,7 @@ public class AssetTypeTest extends TestCase {
 	public void testGetModelClass() {
 		// we use olde-style assertEquals here since hamcrest gives special treatment to Class for "is"
 		assertEquals(AssetType.ACCESSORY.getModelClass(),AccessoryModel.class);
-		assertEquals(AssetType.AUTHOR.getModelClass(),AuthorModel.class);
 		assertEquals(AssetType.BRAND.getModelClass(),BrandModel.class);
-		assertEquals(AssetType.ERRORCODE.getModelClass(),ErrorCodeModel.class);
 		assertEquals(AssetType.HAZARD.getModelClass(),HazardModel.class);
 		assertEquals(AssetType.JOBCODE.getModelClass(),JobCodeModel.class);
 		assertEquals(AssetType.PARTTYPE.getModelClass(),PartTypeModel.class);

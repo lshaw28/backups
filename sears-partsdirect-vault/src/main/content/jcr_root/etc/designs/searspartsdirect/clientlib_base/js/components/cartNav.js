@@ -6,6 +6,7 @@ var cartNav = Class.extend(function () {
 		/**
 		 * @singleton cartNav
 		 * Singleton class for the cartNav component
+		 * Handles Recently Viewed, My Models and Cart
 		 *
 		 * init: On page load events to fire
 		 */
@@ -33,29 +34,48 @@ var cartNav = Class.extend(function () {
 			self.modelDropdown.toggleClass('guest-edit');
 		},
 		/**
-		 * Determine whether or not the Remove button should appear actionable
-		 * @return {void}
-		 */
-		setRemoveState: function () {
-			var self = this,
-				checkedItems = $('input[checked="checked"]', self.modelDropdown);
-
-			if (checkedItems.length > 0) {
-				// Set editable class
-			} else {
-				// Set ineditable class
-			}
-		},
-		/**
 		 * Handle the remove button click event
 		 * @return {void}
 		 */
 		removeItems: function () {
 			var self = this,
-				checkedItems = $('input[checked="checked"]', self.modelDropdown);
+				deleteAddress = apiPath + 'profile/models/delete',
+				objArray = new Array(),
+				jsonData = {};
 
-			if (checkedItems.length > 0) {
-				// Make AJAX call(s)
+			// Create profileModelsList string array
+			$('input', self.modelDropdown).each(function () {
+				if ($(this)[0].checked === true) {
+					var obj = {
+						'modelNumber': $(this).attr('value'),
+						'brandId': $(this).data('brandid'),
+						'categoryId': $(this).data('categoryid')
+					}
+					objArray.push(obj);
+				}
+			});
+			// Attempt AJAX call
+			if (objArray.length > 0) {
+				jsonData.cookieId = guestCookieId;
+				jsonData.profileModelsList = objArray;
+
+				$.ajax({
+					type: 'POST',
+					url: deleteAddress,
+					async: false,
+					contentType: 'application/json',
+					dataType: 'JSON',
+					mimeType: 'application/json;charset=UTF-8',
+					data: {
+						ownedModels: JSON.stringify(jsonData)
+					}
+				})
+				.success(function (data) {
+					self.handleResponse(data);
+				})
+				.fail(function (e) {
+					console.log('Error', e);
+				});
 			} else {
 				// Handle error
 			}
@@ -67,6 +87,8 @@ var cartNav = Class.extend(function () {
 		 */
 		handleResponse: function (data) {
 			var self = this;
+
+			console.log('Response', data);
 
 			// Check the data object for success paramters
 			// If successful, find the parent node of the inputs and remove them
