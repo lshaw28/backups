@@ -20,6 +20,8 @@
 			<br />
 			<c:out value="${part.restriction}" />
 			<br />
+			<c:out value="${part.returnable}" />
+			<br />
 		</c:forEach>
 	</c:forEach>
 </c:if>
