@@ -2,9 +2,26 @@
 @import "base.mixins.less";
 
 @media (max-width: 768px) {
+	html {
+		overflow-x: hidden;
+		width: 100%;
+	}
+
+	body {
+		overflow-x: hidden;
+		width: 100%;
+	}
+
+	#viewport {
+		overflow-x: hidden;
+		width: 100%;
+	}
+
 	// # Quarter on desktop, third on tablet, half on mobile
-	.new-span-responsive {
-		width: 31.623931623931625%;
-		*width: 31.570740134569924%;
+	.row-fluid {
+		.new-span-responsive {
+			width: 31.623931623931625%;
+			*width: 31.570740134569924%;
+		}
 	}
 }
