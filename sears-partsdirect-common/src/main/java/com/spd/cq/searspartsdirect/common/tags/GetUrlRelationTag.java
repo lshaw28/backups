@@ -84,19 +84,15 @@ public class GetUrlRelationTag extends CQBaseTag {
 		abstract String resolveToPath(String relationValue, ResourceResolver resourceResolver);
 	}
 	
-	private static class TruncatingResolver extends RelationPathResolver {
+	private static class IdentityResolver extends RelationPathResolver {
 		private final String relationType;
 		
-		TruncatingResolver(String relationType) {
+		IdentityResolver(String relationType) {
 			this.relationType = relationType;
 		}
 		
 		@Override
 		String resolveToPath(String relationValue, ResourceResolver unused) {
-			if (relationValue.length() > Constants.MAX_TRUENAME_LENGTH) {
-				relationValue = relationValue.substring(0,Constants.MAX_TRUENAME_LENGTH);
-			}
-			
 			return Constants.ASSETS_PATH + "/" + relationType + "/" + relationValue;
 		}
 	}
@@ -133,8 +129,8 @@ public class GetUrlRelationTag extends CQBaseTag {
 	private static final Map<String,RelationPathResolver> initRelationToPathResolver() {
 		Map<String,RelationPathResolver> relationToResolver = new HashMap<String,RelationPathResolver>();
 		
-		relationToResolver.put(CATEGORY, new TruncatingResolver(CATEGORY));
-		relationToResolver.put(BRAND, new TruncatingResolver(BRAND));
+		relationToResolver.put(CATEGORY, new IdentityResolver(CATEGORY));
+		relationToResolver.put(BRAND, new IdentityResolver(BRAND));
 		relationToResolver.put(SYMPTOM, new SymptomResolver());
 		
 		return relationToResolver;

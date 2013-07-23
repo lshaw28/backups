@@ -55,8 +55,10 @@ public class ModelSubPageFilterTest extends TestCase {
 	
 	@Test
 	public void testLongCat() throws ServletException, IOException {
-		fixture.setUpPath("/acme/portable_hole_looooooooooooooooooong/"+Constants.MODELNO_PFX+"0"+Constants.MODELNO_SFX+Constants.CATEGORIES_ROOT+"/portable_hole_looooooooooooooooooong"+Constants.MODELNO_SFX+"/repair-articles.html");
-		fixture.setUpDispatcher(Constants.CATEGORIES_ROOT+"/portable_hole_looooo"+Constants.MODELNO_SFX+"/repair-articles.acme.portable_hole_looooo.0.html");
+		final String longCat = "portable_hole_looooooooooooooooooong";
+		// truncation is no longer performed
+		fixture.setUpPath("/acme/"+longCat+"/"+Constants.MODELNO_PFX+"0"+Constants.MODELNO_SFX+Constants.CATEGORIES_ROOT+"/"+longCat+Constants.MODELNO_SFX+"/repair-articles.html");
+		fixture.setUpDispatcher(Constants.CATEGORIES_ROOT+"/"+longCat+Constants.MODELNO_SFX+"/repair-articles.acme."+longCat+".0.html");
 		runFilter();
 		shouldForward();
 	}

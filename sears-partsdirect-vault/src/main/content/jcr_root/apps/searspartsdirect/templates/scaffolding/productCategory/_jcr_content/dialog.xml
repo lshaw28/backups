@@ -20,13 +20,6 @@
                     fieldLabel="Description"
                     xtype="textarea"
                     name="./jcr:content/jcr:description"/>
-                <!-- <resType
-                    jcr:primaryType="cq:Widget"
-                    ignoreData="{Boolean}true"
-                    name="./jcr:content/image/sling:resourceType"
-                    value="foundation/components/image"
-                    xtype="hidden"/>
-                -->
                 <articleIndexCopy
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Article Index Copy"
@@ -35,27 +28,6 @@
                     xtype="textarea"/>
             </items>
         </tab1>
-        <!-- <tab2
-            jcr:primaryType="cq:Panel"
-            title="Image">
-            <items jcr:primaryType="cq:WidgetCollection">
-	 		    <image
-		            jcr:primaryType="cq:Widget"
-		            cropParameter="./jcr:content/image/imageCrop"
-		            ddGroups="[media]"
-		            fileNameParameter="./jcr:content/image/fileName"
-		            fileReferenceParameter="./jcr:content/image/fileReference"
-		            mapParameter="./jcr:content/image/imageMap"
-		            name="./jcr:content/image/file"
-		            requestSuffix="/jcr:content/image.img.png"
-		            rotateParameter="./jcr:content/image/imageRotate"
-		            height="400"
-		            xtype="html5smartimage"/>
-            </items>
-        </tab2>
-        -->
-        <!-- Aside from first line, following is copy from tab_page_icons.xml
-        Also removed width="500" and added jcr:content to iconImages path name -->
         <icons
 			jcr:primaryType="cq:Panel"
 
@@ -81,7 +53,6 @@
 		        </subcontainer2>
 			</items>
 		</icons>
-		<!-- End copy from tab_page_icons.xml -->
         <tab3
         	jcr:primaryType="cq:Panel"
         	title="Category 101">

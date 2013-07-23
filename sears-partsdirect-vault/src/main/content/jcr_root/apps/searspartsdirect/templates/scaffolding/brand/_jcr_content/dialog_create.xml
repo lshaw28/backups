@@ -9,13 +9,12 @@
             <items jcr:primaryType="cq:WidgetCollection">
             	<trueName
             		jcr:primaryType="cq:Widget"
-                    fieldLabel="Brand True Name"
+                    fieldLabel="Category True Name"
                     allowBlank="false"
                     blankText="True name is required"
-                    maxLength="20"
-                    regex="/^[a-z][a-z0-9_]*$/"
-                    regexText="True name must be all lowercase, and may also contain (but not start with) digits or underscores"
-                    name=":nameHint"/>
+                    regex="/^[a-zA-Z0-9_-]*$/"
+                    regexText="True name may only contain letters, digits, hyphens, or underscores"
+                    name=":name"/>
                 <title
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title"

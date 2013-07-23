@@ -112,7 +112,7 @@ public class GetUrlRelationTagFixture {
 	}
 	
 	public void setUpLongBrand() {
-		String relatedAssetPath = Constants.ASSETS_PATH + "/brand/" + (BRAND+BRAND+BRAND+BRAND+BRAND).substring(0,Constants.MAX_TRUENAME_LENGTH);
+		String relatedAssetPath = Constants.ASSETS_PATH + "/brand/" + (BRAND+BRAND+BRAND+BRAND+BRAND);
 		Page p = mock(Page.class);
 		when(pageManager.getPage(relatedAssetPath)).thenReturn(p);
 		ValueMap properties = mock(ValueMap.class);

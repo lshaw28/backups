@@ -31,18 +31,19 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
 	public Transformer createTransformer() {
         return new RestrictedLinkTransformer();  //To change body of implemented methods use File | Settings | File Templates.
     }
-    public class RestrictedLinkTransformer extends org.apache.cocoon.xml.sax.AbstractSAXPipe implements Transformer {
+    public static class RestrictedLinkTransformer extends org.apache.cocoon.xml.sax.AbstractSAXPipe implements Transformer {
 
         private final Logger log = LoggerFactory.getLogger(getClass());
-
-        private PageManager pm;
+        private final static Pattern p = Pattern.compile("/([^/]*)/([^/]*)/model-([^-]*)-repair(.*)");
         private Matcher m;
+        
+        private PageManager pm;
         private boolean found;
 
         public void init(ProcessingContext processingContext, ProcessingComponentConfiguration processingComponentConfiguration) throws IOException {
             pm = processingContext.getRequest().getResourceResolver().adaptTo(PageManager.class);
             String requestURI = processingContext.getRequest().getRequestURI();
-            Pattern p = Pattern.compile("/([^/]*)/([^/]*)/model-([^-]*)-repair(.*)");
+            
             m = p.matcher(requestURI);
             found = m.find();
         }
@@ -57,7 +58,7 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
                 try{
                     String href = attributes.getValue("href");
                     if (href != null && href.startsWith("/") && href.indexOf(".html") >0) {
-                        Pattern p = Pattern.compile("/([^/]*)/([^/]*)/model-([^-]*)-repair(.*)");
+
                     	Matcher linkMatch = p.matcher(href);
                     	if (!linkMatch.find()) {
 	                    	StringBuilder sb = new StringBuilder();
