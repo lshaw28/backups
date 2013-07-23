@@ -5,7 +5,6 @@
 
 <h2>Checking these parts may help solve your problem:</h2>
 <c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
-
     <div class="csd-border">
         <h3>${jobCode.title}</h3>
         <div class="row-fluid">
@@ -36,6 +35,4 @@
         </div>
     </div>
     <cq:include path="findThisPart" resourceType="searspartsdirect/components/content/findThisPart" />
-
-	
 </c:forEach>

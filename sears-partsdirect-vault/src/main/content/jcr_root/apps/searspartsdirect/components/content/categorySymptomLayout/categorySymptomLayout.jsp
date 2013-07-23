@@ -10,8 +10,7 @@
 </div>
 <div class="row-fluid">
 	<div class="span9">
-		<cq:include path="overviewImage" resourceType="searspartsdirect/components/content/categoryIcon" />
-		${modelSymptom.symptomModel.description}
+		<p><cq:include path="overviewImage" resourceType="searspartsdirect/components/content/categoryIcon" />${modelSymptom.symptomModel.description}</p>
 	</div>
 	<div class="span3">
 		<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />
