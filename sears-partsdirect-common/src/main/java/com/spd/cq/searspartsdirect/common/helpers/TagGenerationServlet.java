@@ -26,11 +26,11 @@ import com.day.text.csv.Csv;
  *
  */
 
+@SuppressWarnings("serial")
 @SlingServlet(paths="/bin/searspartsdirect/taggeneration", methods = "POST", metatype=true)
 
 public class TagGenerationServlet extends SlingAllMethodsServlet {
 	private static final Logger log = LoggerFactory.getLogger(TagGenerationServlet.class);
-    private static final String ENCODING = "UTF-8";
     
 	@Reference
     private SlingRepository repository;
@@ -40,7 +40,7 @@ public class TagGenerationServlet extends SlingAllMethodsServlet {
     {
     	ResourceResolver resourceResolver = request.getResourceResolver();
         Csv csv = new Csv();
-        Iterator<String[]> rows = csv.read(request.getRequestParameter("file").getInputStream(), ENCODING);
+        Iterator<String[]> rows = csv.read(request.getRequestParameter("file").getInputStream(), Constants.ENCODING);
         
 		TagManager tm = resourceResolver.adaptTo(TagManager.class);
 		Tag namespaceCheck = tm.resolve("searspartsdirect:");

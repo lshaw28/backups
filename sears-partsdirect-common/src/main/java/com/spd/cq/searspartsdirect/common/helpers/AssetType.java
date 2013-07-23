@@ -6,7 +6,6 @@ import org.apache.sling.api.resource.ValueMap;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.model.spdasset.AccessoryModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.HazardModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
