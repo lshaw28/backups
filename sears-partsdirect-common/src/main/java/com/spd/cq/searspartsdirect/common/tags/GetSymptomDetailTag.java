@@ -44,13 +44,12 @@ public class GetSymptomDetailTag extends CQBaseTag {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("path", Constants.ASSETS_PATH + "/symptom");
 		map.put("type", Constants.CQ_PAGE);
-		map.put("property", "jcr:content/id");
+		map.put("property", Constants.ASSETS_ID_REL_PATH);
 		map.put("property.value", id);
 
 		builder = resourceResolver.adaptTo(QueryBuilder.class);
 		query = builder.createQuery(PredicateGroup.create(map), session);
 		SearchResult result = query.getResult();
-
 		modelSymptomModel = new ModelSymptomModel();
 
 		for (Hit hit : result.getHits()) {
@@ -58,20 +57,20 @@ public class GetSymptomDetailTag extends CQBaseTag {
 				ValueMap props = hit.getProperties();
 				Page p = pageManager.getPage(hit.getPath());
 				if (props != null) {
-					SymptomModel symptomModel  = new SymptomModel(p.getPath(), props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("id", String.class));
+					SymptomModel symptomModel  = new SymptomModel(p.getPath(), props.get(Constants.ASSETS_TITLE_PATH, String.class), props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class), props.get(Constants.ASSETS_ID, String.class));
 
-					// now get the jobcode and guides info
+					// now get the jobcodes, part types and guides info
 					String[] pages = (String[]) props.get("pages", String[].class);
 					if (pages != null) {
 						jobCodeModels = new ArrayList<JobCodeModel>();
 						for(int i = 0; i< pages.length; i++) {
-							log.debug("**********pages[" + i + "]: " + pages[i]);
+							log.debug("**pages[" + i + "]: " + pages[i]);
 							if (pages[i].indexOf(Constants.ASSETS_PATH.concat("/jobCode")) > -1) {
 								Page jobCodePage = pageManager.getPage(pages[i]);
 								if (jobCodePage != null) {
 									ValueMap jobCodeProps = jobCodePage.getProperties();
 									if (jobCodeProps != null) {
-										String id = (String) jobCodeProps.get("id");
+										String id = (String) jobCodeProps.get(Constants.ASSETS_ID);
 										JobCodeModel jobCodeModel = new JobCodeModel(id, jobCodePage.getPath(), jobCodePage.getTitle(), jobCodePage.getDescription());
 
 										String partType = (String) jobCodeProps.get(PART_TYPE);
@@ -82,6 +81,8 @@ public class GetSymptomDetailTag extends CQBaseTag {
 													partTypePage.getTitle(), partTypePage.getDescription(),
 													partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH);
 											jobCodeModel.setPartTypeModel(partTypeModel);
+										} else {
+											log.debug("part type page is null");
 										}
 										jobCodeModels.add(jobCodeModel);
 
@@ -94,14 +95,22 @@ public class GetSymptomDetailTag extends CQBaseTag {
 												if (guidePage != null) {
 													GuideModel guide = new GuideModel(guidePage.getPath(), null, guidePage.getTitle());
 													guideList.add(guide);
+												} else {
+													log.debug("Guide page is null");
 												}
 											}
 											jobCodeModel.setGuides(guideList);
+										} else {
+											log.debug("no guides for this jobcode");
 										}
+									} else {
+										log.debug("no properties for jobcode");
 									}
 								}
 							}
 						}
+					} else {
+						log.debug("no pages found for the symptom");
 					}
 					modelSymptomModel.setJobCodeModels(jobCodeModels);
 					modelSymptomModel.setSymptomModel(symptomModel);
