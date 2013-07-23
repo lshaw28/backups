@@ -26,9 +26,21 @@ public class PartsDirectCookieHelperFixture {
 	public String getModelItemsString() {
 		return "n1|d1|u1|n2|d2|u2|n3|d3|u3|n4|d4|u4";
 	}
+	
+	public String getShortModelItemsString() {
+		return "n1|d1";
+	}
 
 	public String getPartItemsString() {
 		return "n1|d1|u1|iu1|n2|d2|u2|iu2|n3|d3|u3|iu3|n4|d4|u4|iu4";
+	}
+	
+	public String getShortPartItemsString() {
+		return "n1|d1|u1";
+	}
+	
+	public String getThirteen() {
+		return "0|1|2|3|4|5|6|7|8|9|10|11|12";
 	}
 	
 }
