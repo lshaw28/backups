@@ -12,7 +12,6 @@ import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.jcr.api.SlingRepository;
@@ -32,11 +31,11 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
  *
  */
 
+@SuppressWarnings("serial")
 @SlingServlet(paths="/bin/searspartsdirect/modelsearch", methods = "GET", metatype=true)
 
 public class ModelSearchServlet extends SlingAllMethodsServlet {
 	private static final Logger log = LoggerFactory.getLogger(ModelSearchServlet.class);
-    private static final String ENCODING = "UTF-8";
     
 	@Reference
     private SlingRepository repository;

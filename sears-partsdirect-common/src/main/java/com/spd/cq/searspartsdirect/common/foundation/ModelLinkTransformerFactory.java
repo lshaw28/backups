@@ -18,8 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-import com.day.cq.wcm.api.PageManager;
-
 @Component(enabled=true)
 @Service
 @Properties({
@@ -29,7 +27,7 @@ import com.day.cq.wcm.api.PageManager;
 public class ModelLinkTransformerFactory implements TransformerFactory {
 	
 	public Transformer createTransformer() {
-        return new RestrictedLinkTransformer();  //To change body of implemented methods use File | Settings | File Templates.
+        return new RestrictedLinkTransformer();  
     }
     public static class RestrictedLinkTransformer extends org.apache.cocoon.xml.sax.AbstractSAXPipe implements Transformer {
 
@@ -37,11 +35,9 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
         private final static Pattern p = Pattern.compile("/([^/]*)/([^/]*)/model-([^-]*)-repair(.*)");
         private Matcher m;
         
-        private PageManager pm;
         private boolean found;
 
         public void init(ProcessingContext processingContext, ProcessingComponentConfiguration processingComponentConfiguration) throws IOException {
-            pm = processingContext.getRequest().getResourceResolver().adaptTo(PageManager.class);
             String requestURI = processingContext.getRequest().getRequestURI();
             
             m = p.matcher(requestURI);
@@ -49,7 +45,7 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
         }
 
         public void dispose() {
-            //To change body of implemented methods use File | Settings | File Templates.
+            // currently NOOP
         }
 
         public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
