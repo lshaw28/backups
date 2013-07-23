@@ -37,7 +37,6 @@ public class GetModelSymptomsTag extends CQBaseTag {
 	private String brandName;
 	private String categoryName;
 	private String modelNumber;
-	
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -56,7 +55,7 @@ public class GetModelSymptomsTag extends CQBaseTag {
 					Map<String, String> map = new HashMap<String, String>();
 					map.put("path", Constants.ASSETS_PATH + "/symptom");
 					map.put("type", Constants.CQ_PAGE);
-					map.put("property", "jcr:content/id");
+					map.put("property", Constants.ASSETS_ID_REL_PATH);
 					map.put("property.value", subcomponents.getSymptomsArr()[i].getId());
 					
 					builder = resourceResolver.adaptTo(QueryBuilder.class);
@@ -66,19 +65,25 @@ public class GetModelSymptomsTag extends CQBaseTag {
 					for (Hit hit : result.getHits()) {
 					       try {
 								ValueMap props = hit.getProperties();
-								Page p = pageManager.getPage(hit.getPath());
 								if (props != null) {
-									SymptomModel symptomModel  = new SymptomModel(p.getPath(), props.get("jcr:title", String.class), props.get("jcr:description", String.class), props.get("id", String.class));
-									if (subcomponents.getSymptomsArr()[i].getSuccessfulFrequency() != null) {
-										symptomModel.setFrequency(Math.round(subcomponents.getSymptomsArr()[i].getSuccessfulFrequency().doubleValue()));
+									Page symptomPage = pageManager.getPage(hit.getPath());
+									if (symptomPage != null) {
+										SymptomModel symptomModel  = new SymptomModel(symptomPage.getPath(), props.get(Constants.ASSETS_TITLE_PATH, String.class), props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class), props.get(Constants.ASSETS_ID, String.class));
+										if (subcomponents.getSymptomsArr()[i].getSuccessfulFrequency() != null) {
+											symptomModel.setFrequency(Math.round(subcomponents.getSymptomsArr()[i].getSuccessfulFrequency().doubleValue()));
+										} 
+										symptoms.add(symptomModel);
+									} else {
+										log.debug("symptom page is not found");
 									}
-									symptoms.add(symptomModel);
 								}
 					       } catch (RepositoryException e) {
 								log.error("error while getting model symptoms, ",e.fillInStackTrace());
 							}
 					}  
 				 }
+			 } else {
+				 log.debug("no subcomponent data found from the model api call");
 			 }
 			pageContext.setAttribute("modelSymptoms", symptoms);
 		}
