@@ -15,7 +15,7 @@
             <c:choose>
                 <c:when test="${jobCode.partTypeModel != null && jobCode.partTypeModel.imagePath != null}">
                     <div class="span3 csd-image">
-                        <spd:displayImage path="${jobCode.partTypeModel.imagePath}"/>
+                        <spd:displayImage path="${jobCode.partTypeModel.imagePath}" altText="${jobCode.partTypeModel.title}"/>
                     </div>
                     <c:set var="textClass" value="span9" />
                 </c:when>
