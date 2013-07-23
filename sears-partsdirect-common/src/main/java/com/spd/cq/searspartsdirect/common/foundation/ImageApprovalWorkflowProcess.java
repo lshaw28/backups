@@ -3,7 +3,6 @@ package com.spd.cq.searspartsdirect.common.foundation;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import javax.jcr.Workspace;
 
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Property;
@@ -44,7 +43,6 @@ public class ImageApprovalWorkflowProcess implements WorkflowProcess {
             String path = workflowData.getPayload().toString();
             try {
                 Session jcrSession = session.adaptTo(Session.class); 
-                Workspace workspace = jcrSession.getWorkspace();
                 Node node = (Node) jcrSession.getItem(path);
                 if (node != null) {
                 	jcrSession.move(node.getPath(), node.getPath().replace(Constants.DAM_PENDING_APPROVAL_PATH, Constants.DAM_APPROVED_PATH));
