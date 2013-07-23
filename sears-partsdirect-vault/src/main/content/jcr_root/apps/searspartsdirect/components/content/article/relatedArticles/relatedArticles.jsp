@@ -13,7 +13,7 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 
 <c:if test="${not empty articles && not empty productCategoryRelation}">
 	<h2>
-		<cq:text property="newHeader" placeholder="Most Viewed Articles" />
+		<cq:text property="newHeader" placeholder="Related Articles" />
 	</h2>
 
 	<div class="carousel-mobile-only">
@@ -22,8 +22,8 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 				<div class="carousel-mobile-item span3">
 					<spd:linkResolver value="${article.url}" />
 					<a href="${url}"><spd:displayImage path="${article.imagePath}" /></a>
-					<a href="${url}">${article.title}</a>
-					<p>${article.description}</p>
+					<a href="${url}"><c:out value="${article.title}" /></a>
+					<p><c:out value="${article.description}" /></p>
 				</div>
 			</c:forEach>
 		</div>

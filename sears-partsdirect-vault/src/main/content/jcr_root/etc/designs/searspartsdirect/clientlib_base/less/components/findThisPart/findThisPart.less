@@ -14,13 +14,15 @@
 
   .accordion-toggle,
   .accordion-inner {
-    padding: 0;
     border: 0;
+    padding: 0;
+
   }
 
   .accordion-inner {
     background-color: @secondaryHueLight;
-    padding-top: 0px;
+    padding: 10px;
+    width: inherit;
   }
 
   .accordion-group {
@@ -31,18 +33,19 @@
   .accordion-toggle {
     background-color: @secondaryHueLight;
     color: @secondaryHueDark;
-    text-decoration: none;
     padding-left: 15px;
+    text-decoration: none;
+
 
     h4 {
       display: inline-block;
     }
 
     i {
-      display: inline-block;
-      margin-right: 20px;
       color: @primaryHueNormal;
+      display: inline-block;
       font-size: 20px;
+      margin-right: 20px;
       vertical-align: middle;
     }
 
