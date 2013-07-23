@@ -57,8 +57,6 @@ public class CategoryCreationWorkflowProcess implements WorkflowProcess {
                 jcrSession = session.adaptTo(Session.class);
                 resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
                 PageManager pm = resourceResolver.adaptTo(PageManager.class);
-                TagManager tm = resourceResolver.adaptTo(TagManager.class);
-                Workspace workspace = jcrSession.getWorkspace();
                 Node node = (Node) jcrSession.getItem(path);
                 
                 String nodePath = node.getPath();
