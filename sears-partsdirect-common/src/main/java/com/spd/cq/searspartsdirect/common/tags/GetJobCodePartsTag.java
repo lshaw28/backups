@@ -1,6 +1,8 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectAPIHelper;
 import com.spd.cq.searspartsdirect.common.model.JobCodePartModel;
 import com.spd.cq.searspartsdirect.common.model.RecoveryJobCodePartModel;
@@ -67,11 +70,15 @@ public class GetJobCodePartsTag extends CQBaseTag {
 				if (i > 0) {
 					apiUrlStrBuilder.append("&");
 				}
-				apiUrlStrBuilder.append("jobCodeList=" + ((JobCodeModel)jobCodes.get(i)).getId());
+				try {
+					apiUrlStrBuilder.append("jobCodeList=" + URLEncoder.encode(((JobCodeModel)jobCodes.get(i)).getId(), Constants.ENCODING));
+				} catch (UnsupportedEncodingException e) {} // CANTHAPPEN - we are using a guaranteed encoding.
 			}
 			if (StringUtils.isNotBlank(modelNumber)) {
-				apiUrlStrBuilder.append("&modelNumber=");
-				apiUrlStrBuilder.append(modelNumber);
+				try {
+					apiUrlStrBuilder.append("&modelNumber=");
+					apiUrlStrBuilder.append(URLEncoder.encode(modelNumber, Constants.ENCODING));
+				} catch (UnsupportedEncodingException e) {} // CANTHAPPEN - we are using a guaranteed encoding.
 			}
 
 			log.debug("API for fetching parts associated with jobCodes: " + apiUrlStrBuilder.toString());

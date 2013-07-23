@@ -1,6 +1,8 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.jsp.JspException;
@@ -24,51 +26,50 @@ public class GetUserDataTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		Cookie[] cookies = request.getCookies();
 		StringBuilder apiUrl = new StringBuilder(EnvironmentSettings.getPDUserDataApiUrl());
-		
+
 		Cookie userNameCookie = null;
 		Cookie myModelsCookie = null;
 		Cookie shoppingCartCookie = null;
 		boolean cookieFound = false;
 
 		if (cookies != null) {
-			userNameCookie = PartsDirectCookieHelper.getCookieInfo(cookies,
-					Constants.USER_NAME_COOKIE);
+			userNameCookie = PartsDirectCookieHelper.getCookieInfo(cookies, Constants.USER_NAME_COOKIE);
+			try {
 			if (userNameCookie != null && userNameCookie.getValue() != null) {
-				apiUrl.append(userNameCookie.getValue());
+				apiUrl.append(URLEncoder.encode(userNameCookie.getValue(), Constants.ENCODING));
 				cookieFound = true;
 			} else {
-				myModelsCookie = PartsDirectCookieHelper.getCookieInfo(cookies,
-						Constants.MY_MODEL_COOKIE);
+				myModelsCookie = PartsDirectCookieHelper.getCookieInfo(cookies, Constants.MY_MODEL_COOKIE);
 				if (myModelsCookie != null && myModelsCookie.getValue() != null) {
-					apiUrl.append("&profileid="+myModelsCookie.getValue());
+					apiUrl.append("&profileid=" + URLEncoder.encode(myModelsCookie.getValue(), Constants.ENCODING));
 					cookieFound = true;
 				}
 
-				shoppingCartCookie = PartsDirectCookieHelper.getCookieInfo(
-						cookies, Constants.SHOPPING_CART_COOKIE);
+				shoppingCartCookie = PartsDirectCookieHelper.getCookieInfo(cookies, Constants.SHOPPING_CART_COOKIE);
 				if (shoppingCartCookie != null && shoppingCartCookie.getValue() != null) {
-					apiUrl.append("&cartid="+ shoppingCartCookie.getValue());
+					apiUrl.append("&cartid=" + URLEncoder.encode(shoppingCartCookie.getValue(), Constants.ENCODING));
 					cookieFound = true;
 				}
 			}
+			} catch(UnsupportedEncodingException e) {}// CANTHAPPEN - we are using a guaranteed encoding.
 		}
-		
+
 		if (cookieFound) {
 			PartsDirectAPIHelper apiHelper = new PartsDirectAPIHelper();
 			try {
 				String jsonString = apiHelper.readJsonData(apiUrl.toString());
 				Gson gson = new Gson();
-		        PDUserDataModel userData = gson.fromJson(jsonString, PDUserDataModel.class);
-		        log.debug("JSON Parsing"+ userData.toString());
-				log.debug("json.toString() "+jsonString);
+				PDUserDataModel userData = gson.fromJson(jsonString, PDUserDataModel.class);
+				log.debug("JSON Parsing" + userData.toString());
+				log.debug("json.toString() " + jsonString);
 				if (userData.getUserName() != null) {
 					userData.setLoggedIn(true);
 				}
 				pageContext.setAttribute("userData", userData);
-	
+
 			} catch (IOException e) {
 				log.error("I/O Exception while getting data from PD API ", e);
-			} 
+			}
 		}
 		return SKIP_BODY;
 	}
