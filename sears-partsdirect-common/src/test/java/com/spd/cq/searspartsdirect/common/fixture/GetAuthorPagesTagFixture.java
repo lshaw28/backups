@@ -4,7 +4,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import javax.jcr.Node;
-import javax.jcr.Property;
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
 import javax.jcr.ValueFormatException;
@@ -20,8 +19,6 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 public class GetAuthorPagesTagFixture {
 
 	private Page authorPage;
-	private ValueMap pageProperties;
-	private Property authorsProp;
 	private ResourceResolver resourceResolver;
 	private ValueMap authorProps;
 	private Page currentPage;
@@ -29,7 +26,6 @@ public class GetAuthorPagesTagFixture {
 	public GetAuthorPagesTagFixture(Page currentPage, PageManager pageManager, ResourceResolver resourceResolver) throws ValueFormatException, IllegalStateException, RepositoryException {
 
 		ValueMap pageProperties = mock(ValueMap.class);
-		authorsProp = mock(Property.class);
 		when(currentPage.getProperties()).thenReturn(pageProperties);
 		String authorPathName = "someAuthor";
 		Value[] authorValues = new Value[1];

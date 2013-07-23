@@ -21,13 +21,11 @@ import com.spd.cq.searspartsdirect.common.tags.GetTopicJumpTag;
 
 public class GetTopicJumpTagFixture {
 
-	private Page currentPage;
 	private Resource pageContent;
 	private List<Resource> pageChildren;
 	private List<Resource> parsysChildren;
 	
 	public GetTopicJumpTagFixture(Page currentPage) {
-		this.currentPage = currentPage;
 		pageContent = mock(Resource.class);
 		when(currentPage.getContentResource()).thenReturn(pageContent);
 		pageChildren = new ArrayList<Resource>();

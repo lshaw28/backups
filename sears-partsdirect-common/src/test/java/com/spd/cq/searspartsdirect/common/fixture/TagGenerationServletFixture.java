@@ -121,9 +121,6 @@ public class TagGenerationServletFixture {
 		
 		tm = mock(TagManager.class);
 		when(resourceResolver.adaptTo(TagManager.class)).thenReturn(tm);
-		Tag topLevel = mock(Tag.class);
-		Tag parentCategories = mock(Tag.class);
-		Tag subcategories = mock(Tag.class);
 		when(tm.resolve("searspartsdirect:")).thenReturn(null);
 		when(tm.resolve("searspartsdirect:parent_categories")).thenReturn(null);
 		when(tm.resolve("searspartsdirect:subcategories")).thenReturn(null);
@@ -149,8 +146,6 @@ public class TagGenerationServletFixture {
 		tm = mock(TagManager.class);
 		when(resourceResolver.adaptTo(TagManager.class)).thenReturn(tm);
 		Tag topLevel = mock(Tag.class);
-		Tag parentCategories = mock(Tag.class);
-		Tag subcategories = mock(Tag.class);
 		when(tm.resolve("searspartsdirect:")).thenReturn(null);
 		when(tm.resolve("searspartsdirect:parent_categories")).thenReturn(null);
 		when(tm.resolve("searspartsdirect:subcategories")).thenReturn(null);
@@ -178,7 +173,6 @@ public class TagGenerationServletFixture {
 		when(resourceResolver.adaptTo(TagManager.class)).thenReturn(tm);
 		Tag topLevel = mock(Tag.class);
 		Tag parentCategories = mock(Tag.class);
-		Tag subcategories = mock(Tag.class);
 		when(tm.resolve("searspartsdirect:")).thenReturn(null);
 		when(tm.resolve("searspartsdirect:parent_categories")).thenReturn(null);
 		when(tm.resolve("searspartsdirect:subcategories")).thenReturn(null);
