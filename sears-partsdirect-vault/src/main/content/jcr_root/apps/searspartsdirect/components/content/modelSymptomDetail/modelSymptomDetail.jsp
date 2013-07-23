@@ -19,7 +19,7 @@
 
 <c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
 		<c:if test="${jobCode.partTypeModel != null &&  jobCode.partTypeModel.imagePath != null}">
-			<spd:displayImage path="${jobCode.partTypeModel.imagePath}"/>
+			<spd:displayImage path="${jobCode.partTypeModel.imagePath}" altText="${jobCode.partTypeModel.title}"/>
 		</c:if>
 	<h3>${jobCode.title}</h3>
 	<p>${jobCode.description}</p>
