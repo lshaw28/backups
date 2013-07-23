@@ -137,7 +137,9 @@ public final class Constants {
 	public static final String ERROR_CODE_TEMPLATE = ident("/apps/searspartsdirect/templates/errorCodesBrands");
 	public static final String REPAIR_GUIDE_TEMPLATE = ident("/apps/searspartsdirect/templates/repairGuide");
 
-
+	public static final String DEFAULT_ICON = ident("svg-icon-er");
+	public static final String NO_ICON = ident("none");
+	
 	/**
 	 * This method returns its argument - this is to keep what would otherwise be literals
 	 * from being compiled into client code. If you want to be able to change a constant here

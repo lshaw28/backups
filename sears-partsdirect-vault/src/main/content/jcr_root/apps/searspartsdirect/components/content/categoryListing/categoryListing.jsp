@@ -30,7 +30,9 @@
 				<%-- diplay the icon --%>
 				<span class="category-item-inner">
 				<spd:getIcon category="${category}" pagePath="${Constants.CATEGORIES_ROOT}/${category.trueName}${Constants.MODELNO_SFX}"/>
-				<i class="${iconName}"></i><br />				
+				<c:if test="${iconName != Constants.NO_ICON}">
+					<i class="${iconName}"></i><br />	
+				</c:if>			
 				
 				
 		 

@@ -57,7 +57,6 @@ public class GetJobCodePartsTagTest extends MocksTag {
 	public void testEmptyModelNumber() throws JspException {
 		setupEmptyModelNumber();
 		runsTagSkipsBodyEvalsPage();
-		assertNonEmptyResult();
 		assertFalse(tag.buildApiUrl().contains("modelNumber"));
 	}
 

@@ -40,25 +40,34 @@ var cartNav = Class.extend(function () {
 		removeItems: function () {
 			var self = this,
 				deleteAddress = apiPath + 'profile/models/delete',
-				stringArray = new Array();
+				objArray = new Array(),
+				jsonData = {};
 
 			// Create profileModelsList string array
 			$('input', self.modelDropdown).each(function () {
 				if ($(this)[0].checked === true) {
-					stringArray.push(self.formatItem($(this)));
+					var obj = {
+						'modelNumber': $(this).attr('value'),
+						'brandId': $(this).data('brandid'),
+						'categoryId': $(this).data('categoryid')
+					}
+					objArray.push(obj);
 				}
 			});
 			// Attempt AJAX call
-			if (stringArray.length > 0) {
+			if (objArray.length > 0) {
+				jsonData.cookieId = guestCookieId;
+				jsonData.profileModelsList = objArray;
+
 				$.ajax({
 					type: 'POST',
 					url: deleteAddress,
 					async: false,
 					contentType: 'application/json',
 					dataType: 'JSON',
+					mimeType: 'application/json;charset=UTF-8',
 					data: {
-						cookieId: guestCookieId,
-						profileModelsList: '[' + stringArray.join(',') + ']'
+						ownedModels: JSON.stringify(jsonData)
 					}
 				})
 				.success(function (data) {
@@ -70,19 +79,6 @@ var cartNav = Class.extend(function () {
 			} else {
 				// Handle error
 			}
-		},
-		/**
-		 * Creates a string representation of an item
-		 * @param {object} cb Checkbox element to mine
-		 * @return {string} String representation of object
-		 */
-		formatItem: function (cb) {
-			var self = this,
-				output = '';
-
-			output = '{ "modelNumber":"' + cb.attr('value') + '", "brandId":"' + cb.data('brandid') + '", "categoryId":"' + cb.data('categoryid') + '" }';
-
-			return output;
 		},
 		/**
 		 * Handle AJAX call

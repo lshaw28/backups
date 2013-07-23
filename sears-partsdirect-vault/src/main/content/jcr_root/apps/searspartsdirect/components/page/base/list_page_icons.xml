@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		jcr:primaryType="cq:WidgetCollection">
-	<iconNoIcon
+	<iconNoneSpecified
+		jcr:primaryType="nt:unstructured"
+		text="(none specified)"
+		value=""/>
+	<iconNoIconAtAll
 		jcr:primaryType="nt:unstructured"
 		text="No Icon"
-		value=""/>
+		value="none"/><!-- Must match Constants.NO_ICON -->
     <iconChainsaw
         jcr:primaryType="nt:unstructured"
         text="Chainsaw"

@@ -4,4 +4,6 @@
 	<spd:getUrlRelation relationType="productCategory" />
 </c:if>
 <spd:getIcon category="${productCategoryRelation}" />
-<i class="${iconName}"></i>
+<c:if test="${iconName != Constants.NO_ICON}">
+	<i class="${iconName}"></i>
+</c:if>
