@@ -68,7 +68,7 @@ public class GetUserDataTag extends CQBaseTag {
 				pageContext.setAttribute("userData", userData);
 
 			} catch (IOException e) {
-				log.error("I/O Exception while getting data from PD API ", e);
+				log.error("I/O Exception while getting data from PD API ", e.fillInStackTrace());
 			}
 		}
 		return SKIP_BODY;

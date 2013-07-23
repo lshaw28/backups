@@ -29,6 +29,7 @@ public final class Constants {
 	public static final String ASSETS_PRODUCT_CATEGORY_PATH = ident("productCategory");
 	public static final String ASSETS_SYMPTOM_PATH = ident("symptom");
 	public static final String ASSETS_ID_REL_PATH = ident("jcr:content/id");
+	public static final String ASSETS_ID = ident("id");
 	// Removed due to direct naming (:name v :nameHint)
 	//public static final int MAX_TRUENAME_LENGTH = ident(20);
 	
