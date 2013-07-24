@@ -97,6 +97,12 @@
 		$('.video div[data-youtubeid]').each(function () {
 			var newVideo = new video($(this));
 		});
+		/**
+		 * addToCart class component setup
+		 */
+		$('.addToCart_js').each(function () {
+			var newAddToCart = new addToCart($(this), $('.addToCartQuantity_js', $(this).parent()));
+		});
         /**
 		 * guideNavigation component setup
 		 */
