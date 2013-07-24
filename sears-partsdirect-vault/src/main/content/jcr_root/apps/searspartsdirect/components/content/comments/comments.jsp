@@ -81,13 +81,28 @@
 
     String signedInText = cs.getProperty("signedInText", i18n.get("You are signed in as:"));
 
-    if (WCMMode.fromRequest(request) == WCMMode.EDIT) {
-          %><cq:includeClientLib categories="cq.social.author"/><%
-    }
+	if (WCMMode.fromRequest(request) == WCMMode.EDIT) {
+		%><cq:includeClientLib categories="cq.social.author"/><%
+	}
+	Iterator<Comment> commentsIter = cs.getComments();
+	int commentsCount = 0;
+	while(commentsIter.hasNext()) {
+		Comment singleComment = commentsIter.next();
+		if (!(singleComment.isSpam() || singleComment.isDenied())) {
+			commentsCount++;
+		}
+	}
+	String displayType = "";
+	if(currentPage.getTemplate().getPath().contains("article")) {
+		displayType = "Article";
+	}
+	else {
+		displayType = "Repair Guide";
+	}
 %><div id="<%= cs.getId() %>">
 <div class="articleComments-wrapper span9">
 	<div class="articleComments-loader">
-	    <h2>3 Article Comments</h2>
+	    <h2><%=commentsCount%> <%=displayType%> Comments</h2>
 	    <button type="button" class="new-btn" data-path="<%=currentPage.getPath()%>">Load Comments</button>
 	</div>
 	<div class="comments-target"></div>
