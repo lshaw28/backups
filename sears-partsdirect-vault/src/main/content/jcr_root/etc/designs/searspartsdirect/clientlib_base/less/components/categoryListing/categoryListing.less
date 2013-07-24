@@ -2,66 +2,59 @@
 @import "../../base.mixins.less";
 
 .categoryListing {
+	.category-title {
+		border-bottom: 1px solid @secondaryHueDark;
+		clear:both;
+		margin-top: 10px;
+		margin-bottom: 40px;
 
-    .category-title {
-        border-bottom: 1px solid @secondaryHueDark;
-        clear:both;
-        margin-top: 10px;
-        margin-bottom: 40px;
+		h4 {
+			margin-bottom: 10px;
+		}
+	}
 
-        h4 {
-            margin-bottom: 10px;
-        }
-    }
+	.category-container {
+		width: 100%;
+	}
 
-    .category-container {
-        
-        width: 100%;
-    }
+	.category-item {
+		display: inline-block;
+		height: @repairHelpIconHeight;
+		margin: 0 1% 1% 0;
+		min-width: 150px;
+		position: relative;
+		width: 15%;
 
-    .category-item {
-        display: inline-block;
-        height: @repairHelpIconHeight;
-        margin: 0 1% 1% 0;
-        min-width: 150px;
-        position: relative;
-        width: 15%;
-        
-        a {
-            clear: both;
-            height: 100%;
-            text-align: center;
-            text-decoration: none;
-            width: 100%;
-            
-            .category-item-inner {
-                  display: inline-block;
-                  margin-top: @repairHelpIconHeight/-2;
-                  position: absolute;
-                  top: 50%;
-                  width: 100%;
+		a {
+			clear: both;
+			height: 100%;
+			text-align: center;
+			text-decoration: none;
+			width: 100%;
 
-                  .icon-camera {
-                    color: @secondaryHueDark;
-                    font-size: @largeSize;
-                }
-            }
+			.category-item-inner {
+				display: inline-block;
+				margin-top: @repairHelpIconHeight/-2;
+				position: absolute;
+				top: 50%;
+				width: 100%;
 
-              
-              &:hover {
-                       .icon-camera {
-                            color: @primaryHueDarker;
-                        }
-                    }
-            
-            }
+				[class*="svg-icon-"], [class^=" svg-icon-"] {
+					height: @iconSizeLarge;
+					width: @iconSizeLarge;
+				}
+				[class*="icon-"], [class^=" icon-"] {
+					font-size: @iconSizeLarge;
+				}
+			}
 
-
-    }
-    
-   
-    
-
+			&:hover {
+				.icon-camera {
+					color: @primaryHueDarker;
+				}
+			}
+		}
+	}
 }
 
 @import "categoryListing.tablet.less";
