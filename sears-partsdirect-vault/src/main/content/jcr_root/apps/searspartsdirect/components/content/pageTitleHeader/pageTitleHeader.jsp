@@ -1,2 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<h1><cq:text property="header" placeholder="${currentPage.title}"/></h1>
+<c:set var="pageTitle"><cq:text property="header" placeholder="${currentPage.title}"/></c:set>
+<c:if test="${empty pageTitle}"><c:set var="pageTitle">${currentPage.title}</c:set></c:if>
+<h1>${pageTitle}</h1>
