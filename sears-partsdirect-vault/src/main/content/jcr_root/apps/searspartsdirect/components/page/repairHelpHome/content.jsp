@@ -10,7 +10,7 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span9">
-					<cq:include path="overviewImage" resourceType="searspartsdirect/components/content/responsiveImage" />
+					<cq:include path="overviewIcon" resourceType="searspartsdirect/components/content/categoryIcon" />
 					<cq:include path="overview" resourceType="searspartsdirect/components/content/text" />
 				</div>
 				<div class="span3">
