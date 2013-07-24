@@ -14,6 +14,7 @@
 		},
 		/*
 		 * Creates a console stub for unsupported browsers
+		 * @return {void}
 		 */
 		checkConsole: function () {
 			if (!console) {
@@ -25,6 +26,7 @@
 		},
 		/**
 		 * Retrieve and set global variables
+		 * @return {void}
 		 */
 		getGlobalVariables: function () {
 			$('meta[name^="global-"]').each(function () {
@@ -36,34 +38,42 @@
 		},
 		/**
 		 * Check that an object resolves to a valid string
-		 * @param {Object} obj Object to validate
+		 * @param {object} obj Object to validate
+		 * @param {string} retval Optional return value
 		 */
-		validString: function (obj) {
+		validString: function (obj, retval) {
 			// Type checking ensures faster validation
 			if (typeof obj === 'string') {
 				return obj;
+			} else if (typeof retval === 'string') {
+				return retval;
 			} else {
 				return '';
 			}
 		},
 		/**
 		 * Check that an object resolves to a valid number
-		 * @param {Object} obj Object to validate
+		 * @param {object} obj Object to validate
+		 * @param {number} retval Optional return value
 		 */
-		validNumber: function (obj) {
+		validNumber: function (obj, retval) {
 			// Type checking ensures faster validation
 			// but also allow string representations through
 			if (typeof obj === 'number') {
 				return obj;
 			} else if (isNaN(parseInt(obj, 10)) === false) {
 				return parseInt(obj, 10);
+			} else if (typeof retval === 'number') {
+				return retval;
+			} else if (isNaN(parseInt(retval, 10)) === false) {
+				return parseInt(retval, 10);
 			} else {
 				return 0;
 			}
 		},
 		/**
 		 * Check if the screen is currently sized at an internally-defined mobile breakpoint
-		 * @return {Boolean} Check result
+		 * @return {boolean} Check result
 		 */
 		isMobileBreakpoint: function () {
 			var currentWidth = parseInt($(window).width(), 10);
@@ -76,7 +86,7 @@
 		},
 		/**
 		 * Check if the screen is currently sized at an internally-defined tablet breakpoint
-		 * @return {Boolean} Check result
+		 * @return {boolean} Check result
 		 */
 		isTabletBreakpoint: function () {
 			var currentWidth = parseInt($(window).width(), 10);
