@@ -179,22 +179,12 @@ var responsiveDropdown = Class.extend(function () {
 		bindEvent: function () {
 			var self = this;
 
-			self.el.bind('blur', function () {
-				console.log('blur');
-				var val = $('option:selected', self.el).attr('value');
-				self.selectValue(val, true);
-			}).bind('change', function () {
-				console.log('change');
-				var val = $('option:selected', self.el).attr('value');
-				self.selectValue(val, true);
-			}).bind('select', function () {
-				console.log('select');
+			self.el.one('blur change', function () {
+				console.log('blur or change');
 				var val = $('option:selected', self.el).attr('value');
 				self.selectValue(val, true);
 			}).bind('focus', function () {
 				console.log('focus');
-				var val = $('option:selected', self.el).attr('value');
-				//self.selectValue(val, true);
 			});
 		}
 	};
