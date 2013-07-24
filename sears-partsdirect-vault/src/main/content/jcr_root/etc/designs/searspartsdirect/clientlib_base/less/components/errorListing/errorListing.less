@@ -1,21 +1,37 @@
 @import "../../base.variables.less";
 
-.errorListing-header {
-	background: @secondaryHueLightest;
-	padding: 15px 40px;
-	font: 18px/40px @bodyFont;
+.errorCodesList {
+    width: 100%;
 
-	img {
-		display: inline-block;
-		background: #fff;
-		min-height: 40px;
-		min-width: 40px;
-	}
-}
+  .row-fluid {
+    width: auto;
+  }
 
-.errorListing-item {
-	margin: 0 40px;
-	padding: 12px 0;
-	font: 14px/16px @bodyFont;
-	border-top: solid 1px @secondaryHueDarker;
+  .errorListing-header {
+    background: @secondaryHueLightest;
+    padding: 15px 20px 15px 40px;
+    display: block;
+
+    h4 {
+      display: inline-block;
+    }
+
+    div {
+      display: inline-block;
+      img {
+        display: inline-block;
+        background: @bodyColor;
+        min-height: 40px;
+        min-width: 40px;
+      }
+    }
+
+  }
+
+  .errorListing-item {
+    margin: 0 40px;
+    padding: 12px 0;
+    font: 14px/16px @bodyFont;
+    border-top: solid 1px @secondaryHueNormal;
+  }
 }
