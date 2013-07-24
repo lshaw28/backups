@@ -220,6 +220,16 @@ public class GuideNavigationTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testZeroCommentsInCommentSystem() {
+		try {
+			fixture.alterCommentsSystemForZeroComments();
+			runTagSkipsBodyEvalsPage();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
 	public void testLabelIsBlank() {
 		assertThat(GuideNavigationTag.labelIsBlank(null),is(true));
 		assertThat(GuideNavigationTag.labelIsBlank(""),is(true));

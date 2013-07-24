@@ -25,6 +25,7 @@ import com.adobe.cq.social.commons.CommentSystem;
 import com.day.cq.wcm.api.WCMMode;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.AnchorLinkModel;
+import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 
 @SuppressWarnings("serial")
 public class GuideNavigationTag extends CQBaseTag {
@@ -52,7 +53,7 @@ public class GuideNavigationTag extends CQBaseTag {
 		try {
             jumpToString = pageNode.getProperty(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR).getString();
 	    } catch (Exception e) {
-	            log.error("exception getting jump to text",e);
+	            log.warn("exception getting jump to text",e);
 	    }
 		pageContext.setAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR,
 				jumpToString);
@@ -271,7 +272,10 @@ public class GuideNavigationTag extends CQBaseTag {
 				CommentSystem thatCs = null;
 				thatCs = thoseComments.adaptTo(CommentSystem.class);
 				if (thatCs != null) {
-					label.append(" (").append(thatCs.countComments()).append(")");
+					int count = PDUtils.countCommentsCorrectly(thatCs);
+					if (count > 0) {
+						label.append(" (").append(count).append(")");
+					}
 				} else {
 					log.warn("Could not retrieve a CommentsSystem from "+thoseComments);
 				}

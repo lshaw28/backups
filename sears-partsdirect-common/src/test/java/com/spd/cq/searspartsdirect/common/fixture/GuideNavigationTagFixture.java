@@ -4,6 +4,10 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.jcr.Node;
 import javax.jcr.PathNotFoundException;
 import javax.jcr.Property;
@@ -21,6 +25,7 @@ import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import com.adobe.cq.social.commons.Comment;
 import com.adobe.cq.social.commons.CommentSystem;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMMode;
@@ -108,9 +113,25 @@ public class GuideNavigationTagFixture {
 		when(resourceResolver.resolve(Constants.USERGEN_ROOT+getCurrentPagePath()+Constants.GUIDE_COMMENTS_PATH)).thenReturn(commentsResource);
 		CommentSystem commentSystem = mock(CommentSystem.class);
 		when(commentsResource.adaptTo(CommentSystem.class)).thenReturn(commentSystem);
-		when(commentSystem.countComments()).thenReturn(getCommentCount());
+		// replaced since countComments is not trustworthy
+		//when(commentSystem.countComments()).thenReturn(getCommentCount());
+		when(commentSystem.countComments()).thenThrow(new RuntimeException("This method cannot be trusted and should not be used"));
+		setUpSomeComments(commentSystem,getCommentCount());
 	}
 	
+	private void setUpSomeComments(CommentSystem commentSystem, int commentCount) {
+		final List<Comment> commentsList = new ArrayList<Comment>(commentCount);
+		for (int i = 0; i < commentCount; i++) {
+			Comment singleComment = mock(Comment.class);
+			commentsList.add(singleComment);
+		}
+		when(commentSystem.getComments()).thenAnswer(new Answer<Iterator<Comment>>() {
+			public Iterator<Comment> answer(InvocationOnMock invocation) {
+				return commentsList.iterator();
+			}	
+		});
+	}
+
 	public void breakCommentsResource() {
 		when(resourceResolver.resolve(Constants.USERGEN_ROOT+getCurrentPagePath()+Constants.GUIDE_COMMENTS_PATH)).thenReturn(null);
 		
@@ -119,6 +140,13 @@ public class GuideNavigationTagFixture {
 	public void breakCommentsSystem() {
 		Resource commentsResource = resourceResolver.resolve(Constants.USERGEN_ROOT+getCurrentPagePath()+Constants.GUIDE_COMMENTS_PATH);
 		when(commentsResource.adaptTo(CommentSystem.class)).thenReturn(null);
+	}
+	
+	public void alterCommentsSystemForZeroComments() {
+		Resource commentsResource = resourceResolver.resolve(Constants.USERGEN_ROOT+getCurrentPagePath()+Constants.GUIDE_COMMENTS_PATH);
+		CommentSystem emptyComments = mock(CommentSystem.class);
+		when(commentsResource.adaptTo(CommentSystem.class)).thenReturn(emptyComments);
+		setUpSomeComments(emptyComments,0);
 	}
 	
 	public void setupSingleTypeAndLabel() throws RepositoryException {
@@ -236,5 +264,7 @@ public class GuideNavigationTagFixture {
 	private static class OneStringArrayHolder {
 		public String[] held = null;
 	}
+
+	
 
 }
