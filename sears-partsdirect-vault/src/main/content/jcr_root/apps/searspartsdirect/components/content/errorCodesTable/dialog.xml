@@ -1,58 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-	jcr:primaryType="cq:TabPanel"
-	xtype="panel"
+	jcr:primaryType="cq:Dialog"
+	xtype="dialog"
 	title="Error Code Table">
 	<items jcr:primaryType="cq:WidgetCollection">
+		<Panel jcr:primaryType="cq:Widget"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">	
+				<codeType jcr:primaryType="cq:Widget"
+				fieldLabel="Error Code Type"
+				name="./codeType"
+				xtype="textfield"/>
 			
-			<codeType jcr:primaryType="cq:Widget"
-			fieldLabel="Error Code Type"
-			name="./codeType"
-			xtype="textfield"/>
-			
-			<multi jcr:primaryType="cq:Widget"
-	            fieldLabel="Add/Edit Error codes"
-	            name="./errorCodeTable"
-	            xtype="multifield">
-	            <fieldConfig
-	                jcr:primaryType="cq:Widget"
-	                xtype="multicustom">
-		                <items jcr:primaryType="cq:WidgetCollection">
-		                     <code
-		                        jcr:primaryType="cq:Widget"
-		                        fieldLabel="Error Code"
-		                        name="code"
-		                        xtype="textfield"/>
-		                     <condition
-		                        jcr:primaryType="cq:Widget"
-		                        fieldLabel="Condition"
-		                        name="condition"
-		                        xtype="textfield"/>
-		                      <checkRepairText
-		                        jcr:primaryType="cq:Widget"
-		                        fieldLabel="Check/Repair"
-		                        name="checkRepairText"
-		                        xtype="textfield"/>  
-		                      <checkRepairLink
-		                        jcr:primaryType="cq:Widget"
-		                        name="checkRepairLink"
-		                        xtype="pathfield"
-		                        rootPath="/content/searspartsdirect/en/repair-guide" />
-		                     
-		                     <shopPartsText
-		                        jcr:primaryType="cq:Widget"
-		                        fieldLabel="Shop parts Text"
-		                        name="shopPartsText"
-		                        xtype="textfield"/>    
-		                     <shopPartsLink
-		                        jcr:primaryType="cq:Widget"
-		                        fieldLabel="Shop Parts link"
-		                        fieldDescription="Must be a valid link"
-		                        name="shopPartsLink"
-		                        regex="Shc.components.extsrc.regex.ValidationPatterns.url"
-		                        xtype="textfield"/>             
-		                </items>
-	            </fieldConfig>
-	        </multi>
+				<multi jcr:primaryType="cq:Widget"
+		            fieldLabel="Add/Edit Error codes"
+		            name="./errorCodeTable"
+		            xtype="multifield">
+		            <fieldConfig
+		                jcr:primaryType="cq:Widget"
+		                xtype="multicustom">
+			                <items jcr:primaryType="cq:WidgetCollection">
+			                     <code
+			                        jcr:primaryType="cq:Widget"
+			                        fieldLabel="Error Code"
+			                        name="code"
+			                        xtype="textfield"/>
+			                     <condition
+			                        jcr:primaryType="cq:Widget"
+			                        fieldLabel="Condition"
+			                        name="condition"
+			                        xtype="textfield"/>
+			                      <checkRepairText
+			                        jcr:primaryType="cq:Widget"
+			                        fieldLabel="Check/Repair"
+			                        name="checkRepairText"
+			                        xtype="textfield"/>  
+			                      <checkRepairLink
+			                        jcr:primaryType="cq:Widget"
+			                        name="checkRepairLink"
+			                        xtype="pathfield"
+			                        rootPath="/content/searspartsdirect/en/repair-guide" />
+			                     
+			                     <shopPartsText
+			                        jcr:primaryType="cq:Widget"
+			                        fieldLabel="Shop parts Text"
+			                        name="shopPartsText"
+			                        xtype="textfield"/>    
+			                     <shopPartsLink
+			                        jcr:primaryType="cq:Widget"
+			                        fieldLabel="Shop Parts link"
+			                        fieldDescription="Must be a valid link"
+			                        name="shopPartsLink"
+			                        regex="Shc.components.extsrc.regex.ValidationPatterns.url"
+			                        xtype="textfield"/>             
+			                </items>
+		            </fieldConfig>
+		        </multi>
+	       </items>
+	    </Panel>
       </items> 
 </jcr:root>
