@@ -38,7 +38,8 @@
                      java.util.Iterator,
                      java.util.ResourceBundle,
                      org.apache.sling.api.resource.ResourceUtil,
-                     org.apache.commons.lang3.StringEscapeUtils" %><%
+                     org.apache.commons.lang3.StringEscapeUtils,
+                     com.spd.cq.searspartsdirect.common.helpers.PDUtils" %><%
 %><%@taglib uri="http://www.day.com/taglibs/cq/personalization/1.0" prefix="personalization" %>
 <%@include file="/libs/social/commons/commons.jsp"%>
 	<%
@@ -84,14 +85,7 @@
 	if (WCMMode.fromRequest(request) == WCMMode.EDIT) {
 		%><cq:includeClientLib categories="cq.social.author"/><%
 	}
-	Iterator<Comment> commentsIter = cs.getComments();
-	int commentsCount = 0;
-	while(commentsIter.hasNext()) {
-		Comment singleComment = commentsIter.next();
-		if (!(singleComment.isSpam() || singleComment.isDenied())) {
-			commentsCount++;
-		}
-	}
+	int commentsCount = PDUtils.countCommentsCorrectly(cs);
 	String displayType = "";
 	if(currentPage.getTemplate().getPath().contains("article")) {
 		displayType = "Article";
@@ -100,15 +94,17 @@
 		displayType = "Repair Guide";
 	}
 %><div id="<%= cs.getId() %>">
+<c:set var="commentsCount"><%=commentsCount%></c:set>
 <div class="articleComments-wrapper span9">
 	<div class="articleComments-loader">
-	    <h2><%=commentsCount%> <%=displayType%> Comments</h2>
+		<c:if test="${commentsCount gt 0}">
+	    	<h2><%=commentsCount%> <%=displayType%> Comment<c:if test="${commentsCount gt 1}">s</c:if></h2>
+	    </c:if>
 	    <button type="button" class="new-btn" data-path="<%=currentPage.getPath()%>">Load Comments</button>
 	</div>
 	<div class="comments-target"></div>
 
 <div class="articleComments-form" >
-
 	<c:choose>
 		<c:when test="${not empty firstName}">
 		<h2>Got Something to Say?</h2>
@@ -144,7 +140,7 @@ $CQ(function(){
         }
     };
 
-    var commentCount = <%=cs.countComments(WCMMode.fromRequest(request))%>;
+    var commentCount = <%=PDUtils.countCommentsCorrectly(cs)%>;
     <%if( isRTEenabled) {%>
     CQ.soco.commons.activateRTE($CQ("#<%=cs.getId()%>").find("form").first());
     <%}%>

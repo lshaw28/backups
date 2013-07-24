@@ -48,6 +48,12 @@ public class PDUtilsTest extends TestCase {
 	}
 	
 	@Test
+	public void testCountCommentsCorrectly() {
+		int commentsCount = PDUtils.countCommentsCorrectly(fixture.getCommentsSystem());
+		assertThat(commentsCount,is(1));
+	}
+	
+	@Test
 	public void testUselessNullaryConstructor() {
 		PDUtils whyWouldAnyoneDoThis = new PDUtils();
 		assertThat(whyWouldAnyoneDoThis,isA(PDUtils.class));
