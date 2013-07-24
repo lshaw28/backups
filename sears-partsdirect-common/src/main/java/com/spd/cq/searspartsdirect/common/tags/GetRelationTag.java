@@ -42,8 +42,12 @@ public class GetRelationTag extends CQBaseTag {
 		for (int i = 0; i < relations.length; i++) {
 			if (Pattern.matches(Constants.ASSETS_PATH + "/" + assetType + "/[^/]+", relations[i])) {
 				Page p = pageManager.getPage(relations[i]);
-				ValueMap properties = p.getProperties();
-				result.add(assetTypeEnum.createModelInstance(p,properties));
+				if (p != null) {
+					ValueMap properties = p.getProperties();
+					result.add(assetTypeEnum.createModelInstance(p,properties));
+				} else {
+					log.warn("Could not resolve relation "+relations[i]);
+				}
 			}
 		}
 		if (isSingle) {
