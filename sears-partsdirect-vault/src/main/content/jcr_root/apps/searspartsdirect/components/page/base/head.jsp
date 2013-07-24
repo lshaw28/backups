@@ -15,6 +15,8 @@
 	<spd:getMyProfileModelCookie />
 	<meta name="global-apiPath" content="${PdApiRoot}" />
 	<meta name="global-guestCookieId" content="${myProfileModelCookie}" />
+	<meta name="global-registeredUserId" content="12345" />
+	<meta name="global-cartId" content="12345" />
 	<!-- Metadata -->
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta name="author" content="Sears PartsDirect" />
