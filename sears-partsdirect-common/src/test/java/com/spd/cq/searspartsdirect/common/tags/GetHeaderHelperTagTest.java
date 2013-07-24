@@ -13,7 +13,6 @@ import com.spd.cq.searspartsdirect.common.fixture.GetHeaderHelperTagFixture;
 
 public class GetHeaderHelperTagTest extends MocksTag {
 
-	private static final long serialVersionUID = 1L;
 	private GetHeaderHelperTagFixture fixture;
 	private GetHeaderHelperTag tag;
 	

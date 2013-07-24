@@ -1,17 +1,14 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import com.spd.cq.searspartsdirect.common.fixture.GetModelHeaderTagFixture;
 import com.spd.cq.searspartsdirect.common.fixture.GetPartsLinkTagFixture;
-import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 public class GetPartsLinkTagTest extends MocksTag {
 	private GetPartsLinkTagFixture fixture;
@@ -26,14 +23,15 @@ public class GetPartsLinkTagTest extends MocksTag {
 
 	@Test
 	public void testDoStart() throws JspException {
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
-		tag.setModelNumber("66513593K600");
+		tag.setBrandName(fixture.getBrandName());
+		tag.setCategoryName(fixture.getCategoryName());
+		tag.setModelNumber(fixture.getModelNumber());
 		tag.setPageContext(pageContext);
-		assertThat(tag.getBrandName(),is("Kenmore"));
-		assertThat(tag.getCategoryName(),is("Dishwasher"));
-		assertThat(tag.getModelNumber(),is("66513593K600"));
+		assertThat(tag.getBrandName(),is(fixture.getBrandName()));
+		assertThat(tag.getCategoryName(),is(fixture.getCategoryName()));
+		assertThat(tag.getModelNumber(),is(fixture.getModelNumber()));
 		int startResult  = tag.doStartTag();
+		@SuppressWarnings("unused")
 		String findPartsUrl = (String) pageContext.getAttribute("findPartUrl");
 		// Removed this assertion since it fails if the API is unreachable/etc.
 		// Assert.assertNotNull(findPartsUrl);

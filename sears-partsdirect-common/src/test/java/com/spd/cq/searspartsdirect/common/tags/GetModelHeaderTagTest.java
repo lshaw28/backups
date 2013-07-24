@@ -10,26 +10,24 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetModelHeaderTagFixture;
-import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 public class GetModelHeaderTagTest extends MocksTag {
 	
+	private GetModelHeaderTag tag;
 	private GetModelHeaderTagFixture fixture;
-	private GetModelHeaderTag tag; // tag
 	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetModelHeaderTagFixture(slingRequest, pageContext);
+		fixture = new GetModelHeaderTagFixture();
 		tag = new GetModelHeaderTag();
 	}
 	
 	@Test
 	public void testWithArguments() throws JspException {
-		tag.setBrand(new BrandModel("0","a","Kenmore","c","d"));
-		tag.setProductCategory(new ProductCategoryModel("a","b","Dishwasher", "d", "e", "f", "g", "h"));
-		tag.setModel("66513593K600");
+		tag.setBrand(fixture.getBrand());
+		tag.setProductCategory(fixture.getProductCategory());
+		tag.setModel(fixture.getModel());
 		runTagShouldSkipBodyEvalPage();
 	}
 	
