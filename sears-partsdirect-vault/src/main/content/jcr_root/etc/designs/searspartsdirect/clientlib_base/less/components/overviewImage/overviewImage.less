@@ -7,10 +7,14 @@
 	vertical-align: top;
 	width: 15%;
 
-	[class^="svg-icon-"] {
+	[class*="svg-icon-"], [class^=" svg-icon-"] {
 		color: @primaryHueDarker;
 		height: 115px;
 		width: 115px;
+	}
+	[class*="icon-"], [class^=" icon-"] {
+		color: @primaryHueDarker;
+		font-size: @iconSize;
 	}
 }
 .overview {
