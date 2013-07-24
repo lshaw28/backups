@@ -1,27 +1,28 @@
 @import "../../base.mixins.less";
 @import "../../base.variables.less";
 
-.overviewImage {
+.overviewImage, .overviewIcon {
 	display: inline-block;
 	margin: 0 3% 50px 0;
 	vertical-align: top;
-	width: 15%;
+	width: auto;
 
 	[class*="svg-icon-"], [class^=" svg-icon-"] {
 		color: @primaryHueDarker;
-		height: 115px;
-		width: 115px;
+		height: @iconSizeLarge;
+		width: @iconSizeLarge;
 	}
 	[class*="icon-"], [class^=" icon-"] {
 		color: @primaryHueDarker;
-		font-size: @iconSize;
+		font-size: @iconSizeLarge;
 	}
 }
+
 .overview {
 	display: inline-block;
 	margin: 0 0 50px;
 	vertical-align: top;
-	width: 80%;
+	width: auto;
 }
 
 .categorySymptomLayout {
