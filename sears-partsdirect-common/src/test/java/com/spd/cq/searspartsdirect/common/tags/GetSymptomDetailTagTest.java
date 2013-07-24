@@ -1,5 +1,11 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+
 import java.util.List;
 
 import javax.servlet.jsp.JspException;
@@ -9,15 +15,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetSymptomDetailTagFixture;
-import com.spd.cq.searspartsdirect.common.model.ModelSymptomModel;
+import com.spd.cq.searspartsdirect.common.model.SymptomDetailsModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.hasSize;
 
 public class GetSymptomDetailTagTest extends MocksTag {
 
@@ -116,43 +115,43 @@ public class GetSymptomDetailTagTest extends MocksTag {
 	}
 	
 	private void validEmptyResult() {
-		ModelSymptomModel modelSymptom = (ModelSymptomModel)pageContext.getAttribute("modelSymptom");
-		assertThat(modelSymptom,not(nullValue()));
-		List<JobCodeModel> jobCodeModels = modelSymptom.getJobCodeModels();
+		SymptomDetailsModel symptomDetailsModel = (SymptomDetailsModel)pageContext.getAttribute("symptom");
+		assertThat(symptomDetailsModel,not(nullValue()));
+		List<JobCodeModel> jobCodeModels = symptomDetailsModel.getJobCodeModels();
 		assertThat(jobCodeModels,nullValue());
-		SymptomModel symptomModel = modelSymptom.getSymptomModel();
-		assertThat(symptomModel,nullValue());
+		assertThat(symptomDetailsModel.getTitle(),nullValue());
+		assertThat(symptomDetailsModel.getDescription(), nullValue());
 	}
 	
 	private void validCompleteResult() {
-		ModelSymptomModel modelSymptom = (ModelSymptomModel)pageContext.getAttribute("modelSymptom");
-		assertThat(modelSymptom,not(nullValue()));
-		List<JobCodeModel> jobCodeModels = modelSymptom.getJobCodeModels();
+		SymptomDetailsModel symptomDetailsModel = (SymptomDetailsModel)pageContext.getAttribute("symptom");
+		assertThat(symptomDetailsModel,not(nullValue()));
+		List<JobCodeModel> jobCodeModels = symptomDetailsModel.getJobCodeModels();
 		assertThat(jobCodeModels,not(nullValue()));
 		assertThat(jobCodeModels,hasSize(1));
 		JobCodeModel jobCode = jobCodeModels.get(0);
 		assertThat(jobCode,not(nullValue()));
-		SymptomModel symptomModel = modelSymptom.getSymptomModel();
-		assertThat(symptomModel,not(nullValue()));
+		assertThat(symptomDetailsModel.getTitle(),not(nullValue()));
+		assertThat(symptomDetailsModel.getDescription(),not(nullValue()));
 	}
 	
 	private void validResultNullJobCodes() {
-		ModelSymptomModel modelSymptom = (ModelSymptomModel)pageContext.getAttribute("modelSymptom");
-		assertThat(modelSymptom,not(nullValue()));
-		List<JobCodeModel> jobCodeModels = modelSymptom.getJobCodeModels();
+		SymptomDetailsModel symptomDetailsModel = (SymptomDetailsModel)pageContext.getAttribute("symptom");
+		assertThat(symptomDetailsModel,not(nullValue()));
+		List<JobCodeModel> jobCodeModels = symptomDetailsModel.getJobCodeModels();
 		assertThat(jobCodeModels,nullValue());
-		SymptomModel symptomModel = modelSymptom.getSymptomModel();
-		assertThat(symptomModel,not(nullValue()));
+		assertThat(symptomDetailsModel.getTitle(),not(nullValue()));
+		assertThat(symptomDetailsModel.getDescription(),not(nullValue()));
 	}
 	
 	private void validResultNoJobCodes() {
-		ModelSymptomModel modelSymptom = (ModelSymptomModel)pageContext.getAttribute("modelSymptom");
-		assertThat(modelSymptom,not(nullValue()));
-		List<JobCodeModel> jobCodeModels = modelSymptom.getJobCodeModels();
+		SymptomDetailsModel symptomDetailsModel = (SymptomDetailsModel)pageContext.getAttribute("symptom");
+		assertThat(symptomDetailsModel,not(nullValue()));
+		List<JobCodeModel> jobCodeModels = symptomDetailsModel.getJobCodeModels();
 		assertThat(jobCodeModels,not(nullValue()));
 		assertThat(jobCodeModels,hasSize(0));
-		SymptomModel symptomModel = modelSymptom.getSymptomModel();
-		assertThat(symptomModel,not(nullValue()));
+		assertThat(symptomDetailsModel.getTitle(),not(nullValue()));
+		assertThat(symptomDetailsModel.getDescription(),not(nullValue()));
 	}
 
 	private void runTagSkipsBodyEvalsPage() throws JspException {

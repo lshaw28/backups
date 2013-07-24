@@ -4,7 +4,7 @@
 <spd:getSymptomDetail id ="${symptomRelation.id}" />
 
 <h2>Checking these parts may help solve your problem:</h2>
-<c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
+<c:forEach var="jobCode" items="${symptom.jobCodeModels}">
     <div class="csd-border">
         <h3>${jobCode.title}</h3>
         <div class="row-fluid">
