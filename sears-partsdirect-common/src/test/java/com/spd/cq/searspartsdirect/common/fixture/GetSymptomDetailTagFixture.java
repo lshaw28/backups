@@ -121,6 +121,7 @@ public class GetSymptomDetailTagFixture {
 		when(hitProps.get("id", String.class)).thenReturn(getSymptomId());
 		when(hitProps.get("pages", String[].class)).thenReturn(new String[]{getJobCodePage(pathTitleDesc)});
 		when(hitProps.get("jcr:title", String.class)).thenReturn(pathTitleDesc);
+		when(hitProps.get("jcr:description", String.class)).thenReturn(pathTitleDesc);
 		
 		Page partTypePage = mock(Page.class);
 		when(pageManager.getPage(getPartTypePage(pathTitleDesc))).thenReturn(partTypePage);

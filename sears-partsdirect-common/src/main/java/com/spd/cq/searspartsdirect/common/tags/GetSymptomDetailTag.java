@@ -21,17 +21,16 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.GuideModel;
-import com.spd.cq.searspartsdirect.common.model.ModelSymptomModel;
+import com.spd.cq.searspartsdirect.common.model.SymptomDetailsModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.SymptomModel;
 
 public class GetSymptomDetailTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	private Session session;
 	private QueryBuilder builder;
 	private Query query;
-	ModelSymptomModel modelSymptomModel;
+	SymptomDetailsModel symptomDetailsModel;
 	List<JobCodeModel> jobCodeModels;
 	public static final Logger log = LoggerFactory.getLogger(GetSymptomDetailTag.class);
 	private static final String PART_TYPE = "partType";
@@ -50,14 +49,14 @@ public class GetSymptomDetailTag extends CQBaseTag {
 		builder = resourceResolver.adaptTo(QueryBuilder.class);
 		query = builder.createQuery(PredicateGroup.create(map), session);
 		SearchResult result = query.getResult();
-		modelSymptomModel = new ModelSymptomModel();
+		symptomDetailsModel = new SymptomDetailsModel();
 
 		for (Hit hit : result.getHits()) {
 		try {
 				ValueMap props = hit.getProperties();
-				Page p = pageManager.getPage(hit.getPath());
 				if (props != null) {
-					SymptomModel symptomModel  = new SymptomModel(p.getPath(), props.get(Constants.ASSETS_TITLE_PATH, String.class), props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class), props.get(Constants.ASSETS_ID, String.class));
+					symptomDetailsModel.setTitle(props.get(Constants.ASSETS_TITLE_PATH, String.class));
+					symptomDetailsModel.setDescription(props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class));
 
 					// now get the jobcodes, part types and guides info
 					String[] pages = (String[]) props.get("pages", String[].class);
@@ -112,15 +111,14 @@ public class GetSymptomDetailTag extends CQBaseTag {
 					} else {
 						log.debug("no pages found for the symptom");
 					}
-					modelSymptomModel.setJobCodeModels(jobCodeModels);
-					modelSymptomModel.setSymptomModel(symptomModel);
+					symptomDetailsModel.setJobCodeModels(jobCodeModels);
 				}
 			} catch (RepositoryException e) {
 				log.error("Failure to get the symptom details ",e.fillInStackTrace());
 			}
 		}
 
-		pageContext.setAttribute("modelSymptom", modelSymptomModel);
+		pageContext.setAttribute("symptom", symptomDetailsModel);
 		return SKIP_BODY;
 	}
 
