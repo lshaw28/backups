@@ -86,19 +86,12 @@
 		%><cq:includeClientLib categories="cq.social.author"/><%
 	}
 	int commentsCount = PDUtils.countCommentsCorrectly(cs);
-	String displayType = "";
-	if(currentPage.getTemplate().getPath().contains("article")) {
-		displayType = "Article";
-	}
-	else {
-		displayType = "Repair Guide";
-	}
 %><div id="<%= cs.getId() %>">
 <c:set var="commentsCount"><%=commentsCount%></c:set>
 <div class="articleComments-wrapper span9">
 	<div class="articleComments-loader">
 		<c:if test="${commentsCount gt 0}">
-	    	<h2><%=commentsCount%> <%=displayType%> Comment<c:if test="${commentsCount gt 1}">s</c:if></h2>
+	    	<h2><%=commentsCount%> ${displayedCommentsType} Comment<c:if test="${commentsCount gt 1}">s</c:if></h2>
 	    </c:if>
 	    <button type="button" class="new-btn" data-path="<%=currentPage.getPath()%>">Load Comments</button>
 	</div>
