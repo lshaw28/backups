@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 

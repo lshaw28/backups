@@ -3,7 +3,6 @@ package com.spd.cq.searspartsdirect.common.foundation;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import javax.jcr.Workspace;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.felix.scr.annotations.Component;
@@ -21,7 +20,6 @@ import com.adobe.granite.workflow.exec.WorkItem;
 import com.adobe.granite.workflow.exec.WorkflowData;
 import com.adobe.granite.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.metadata.MetaDataMap;
-import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.WCMException;
@@ -57,8 +55,6 @@ public class CategoryCreationWorkflowProcess implements WorkflowProcess {
                 jcrSession = session.adaptTo(Session.class);
                 resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
                 PageManager pm = resourceResolver.adaptTo(PageManager.class);
-                TagManager tm = resourceResolver.adaptTo(TagManager.class);
-                Workspace workspace = jcrSession.getWorkspace();
                 Node node = (Node) jcrSession.getItem(path);
                 
                 String nodePath = node.getPath();

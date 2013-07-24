@@ -10,10 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.AssetTypeFixture;
+
 import com.spd.cq.searspartsdirect.common.model.spdasset.AccessoryModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.AuthorModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel;
-import com.spd.cq.searspartsdirect.common.model.spdasset.ErrorCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.HazardModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.JobCodeModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;

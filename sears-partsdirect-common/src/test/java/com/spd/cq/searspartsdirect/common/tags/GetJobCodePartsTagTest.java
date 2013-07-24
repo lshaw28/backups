@@ -95,13 +95,6 @@ public class GetJobCodePartsTagTest extends MocksTag {
 		assertEquals(jobCodeParts.size(), 0);
 	}
 
-	private void assertNonEmptyResult() {
-		@SuppressWarnings("unchecked")
-		Map<String, List<JobCodePartModel>> jobCodeParts = (Map<String, List<JobCodePartModel>>) pageContext.getAttribute("jobCodeParts");
-		assertThat(jobCodeParts, not(nullValue()));
-		assertEquals(jobCodeParts.size(), 2);
-	}
-
 	private void setupTagAttributes() {
 		List<JobCodeModel> jobCodes = fixture.mockValidJobCodes();
 		tag.setJobCodes(jobCodes);

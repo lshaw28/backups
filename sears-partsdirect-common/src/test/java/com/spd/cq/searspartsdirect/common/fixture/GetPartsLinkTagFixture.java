@@ -12,4 +12,16 @@ public class GetPartsLinkTagFixture {
 		new EnvironmentSettingsFixture().setUpRealDefaults(new EnvironmentSettings());
 	}
 
+	public String getBrandName() {
+		return "Kenmore";
+	}
+
+	public String getCategoryName() {
+		return "Dishwasher";
+	}
+
+	public String getModelNumber() {
+		return "66513593K600";
+	}
+
 }

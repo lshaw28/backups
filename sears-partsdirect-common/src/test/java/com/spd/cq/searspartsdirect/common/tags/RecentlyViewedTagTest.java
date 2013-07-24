@@ -57,13 +57,8 @@ public class RecentlyViewedTagTest extends MocksTag {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testWithMatchingCookies() throws JspException {
-		LinkedList<ModelCookieModel> modelList = recentlyViewedFixture.getModelList();
-		LinkedList<PartCookieModel> partList = recentlyViewedFixture.getPartList();
-
 		Mockito.when(pageContext.getRequest()).thenReturn(request);
 		Mockito.when(request.getCookies()).thenReturn(recentlyViewedFixture.getPartAndModelCookie());
-		//Mockito.when(pageContext.getAttribute("rvModelList")).thenReturn(modelList);
-		//Mockito.when(pageContext.getAttribute("rvPartList")).thenReturn(partList);
 
 		recentlyViewedTag.setPageContext(pageContext);
 		recentlyViewedTag.doStartTag();

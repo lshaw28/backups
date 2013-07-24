@@ -24,6 +24,7 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
  * @author Joseph
  *
  */
+@SuppressWarnings("serial")
 public class GetAssetsTag extends CQBaseTag {
 
 	protected static Logger log = LoggerFactory.getLogger(GetAssetsTag.class);

@@ -6,7 +6,7 @@
 <h1>
 	<c:if test="${not empty productCategoryRelation}">
 		<c:out value="${productCategoryRelation.title}" />
-		&nbsp; Error Codes
+		&nbsp;Error Codes
 	</c:if>
 </h1>
 

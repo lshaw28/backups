@@ -13,8 +13,6 @@ import javax.jcr.Session;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;

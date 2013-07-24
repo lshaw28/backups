@@ -33,6 +33,7 @@ public class GetRelatedArticlesTagTest extends MocksTag {
 	public void testNothing() throws JspException {
 		runsSkipsBodyEvalsPage();
 		
+		@SuppressWarnings("unchecked")
 		List<Object> result = (List<Object>)pageContext.getAttribute("articles");
 		assertThat(result,isA(List.class));
 		assertThat(result,is(empty()));
@@ -47,6 +48,7 @@ public class GetRelatedArticlesTagTest extends MocksTag {
 		
 		runsSkipsBodyEvalsPage();
 		
+		@SuppressWarnings("unchecked")
 		List<Object> result = (List<Object>)pageContext.getAttribute("articles");
 		assertThat(result,isA(List.class));
 		assertThat(result,is(empty()));

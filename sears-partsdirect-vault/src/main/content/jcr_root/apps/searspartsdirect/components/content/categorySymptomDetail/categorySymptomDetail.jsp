@@ -3,12 +3,8 @@
 <spd:getUrlRelation relationType="symptom" />
 <spd:getSymptomDetail id ="${symptomRelation.id}" />
 
-<h1>${modelSymptom.symptomModel.title}</h1>
-<p>${modelSymptom.symptomModel.description}</p>
-
 <h2>Checking these parts may help solve your problem:</h2>
 <c:forEach var="jobCode" items="${modelSymptom.jobCodeModels}">
-
     <div class="csd-border">
         <h3>${jobCode.title}</h3>
         <div class="row-fluid">
@@ -23,7 +19,6 @@
                     <c:set var="textClass" value="span12" />
                 </c:otherwise>
             </c:choose>
-
 
             <div class="csd-content ${textClass}">
                 <p>${jobCode.description}</p>
@@ -40,6 +35,4 @@
         </div>
     </div>
     <cq:include path="findThisPart" resourceType="searspartsdirect/components/content/findThisPart" />
-
-	
 </c:forEach>

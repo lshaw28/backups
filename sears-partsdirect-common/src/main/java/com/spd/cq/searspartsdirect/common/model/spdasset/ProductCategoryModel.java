@@ -1,7 +1,5 @@
 package com.spd.cq.searspartsdirect.common.model.spdasset;
 
-import com.spd.cq.searspartsdirect.common.helpers.Constants;
-
 public class ProductCategoryModel {
 	
 	private String trueName;

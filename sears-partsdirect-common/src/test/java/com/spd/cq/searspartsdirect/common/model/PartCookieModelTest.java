@@ -12,7 +12,8 @@ import org.junit.Test;
 public class PartCookieModelTest extends TestCase {
 
 	private final static String ITEM_DESC = "itemDescription";
-	private final static String ITEM_IMG_URL = "itemImageURL";
+	// The equals/hashcode methods do not include this field - but its value depends on other fields. c/o for now
+	//private final static String ITEM_IMG_URL = "itemImageURL";
 	private final static String ITEM_NAME = "itemName";
 	private static final String ITEM_URL = "itemURL";
 	

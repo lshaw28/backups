@@ -16,7 +16,6 @@ public class EnvironmentSettingsTest extends TestCase {
 
 	private EnvironmentSettingsFixture fixture;
 
-	@SuppressWarnings("unchecked")
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();

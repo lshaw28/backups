@@ -16,6 +16,7 @@ import com.spd.cq.searspartsdirect.common.model.ToolModel;
  * @author Joseph
  *
  */
+@SuppressWarnings("serial")
 public class RequiredToolsTag extends CQBaseTag {
 
 	protected static Logger log = LoggerFactory.getLogger(RequiredToolsTag.class);

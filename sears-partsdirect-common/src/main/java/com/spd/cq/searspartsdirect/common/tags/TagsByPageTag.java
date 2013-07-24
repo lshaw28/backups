@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.cq.tagging.Tag;
-import com.day.cq.tagging.TagManager;
 
 /**
  * Custom tag to draw out a list of Tag objects when given a Page path
@@ -28,7 +27,6 @@ public class TagsByPageTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		ArrayList<Tag> tags = new ArrayList<Tag>();
 		
-		TagManager tm = resourceResolver.adaptTo(TagManager.class);
 		Tag[] pageTags = null;
 		if (pagepath != null) {
 			pageTags = pageManager.getPage(pagepath).getTags();

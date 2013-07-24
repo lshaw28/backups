@@ -20,6 +20,7 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
  * @author Joseph
  *
  */
+@SuppressWarnings("serial")
 public class GetModelHeaderTag extends CQBaseTag {
 	
 	protected final static Logger log = LoggerFactory.getLogger(GetModelHeaderTag.class);

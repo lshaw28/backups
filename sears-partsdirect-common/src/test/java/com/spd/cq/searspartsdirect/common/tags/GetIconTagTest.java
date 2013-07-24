@@ -11,7 +11,6 @@ import com.spd.cq.searspartsdirect.common.fixture.GetIconTagFixture;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
 
 public class GetIconTagTest extends MocksTag {
 
