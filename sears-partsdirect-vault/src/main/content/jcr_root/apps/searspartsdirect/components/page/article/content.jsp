@@ -26,6 +26,7 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
+					<c:set var="displayedCommentsType" scope="request">Article</c:set>
 					<cq:include path="comments" resourceType="searspartsdirect/components/content/comments" />
 				</div>
 			</div>
