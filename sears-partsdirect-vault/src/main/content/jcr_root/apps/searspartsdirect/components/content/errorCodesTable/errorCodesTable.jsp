@@ -21,7 +21,7 @@
 		<tbody>
 			<c:forEach var="errorCode" items="${errorCodeTableData.errorCodes}">
 				<tr>
-					<td><c:out value="${errorCode.code}" /></td>
+					<td><c:out value="${errorCode.code}" /><i class="icon-chevron-up"></i><i class="icon-chevron-down"></i></td>
 					<td><c:out value="${errorCode.condition}" /></td>
 					<td>
 						<c:choose>
