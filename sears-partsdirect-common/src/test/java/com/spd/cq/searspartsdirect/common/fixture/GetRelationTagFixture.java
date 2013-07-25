@@ -51,6 +51,7 @@ public class GetRelationTagFixture {
 				when(relPageProperties.get(Constants.ASSETS_TITLE_PATH,"")).thenReturn(s + " title");
 				when(relPageProperties.get(Constants.ASSETS_DESCRIPTION_PATH,"")).thenReturn(s + " description");
 			}
+			relatedPaths.add(Constants.ASSETS_PATH + "/" + mixedCaseName + "/clinker");
 		}
 		when(pagesProperties.get("pages",empty)).thenReturn(relatedPaths.toArray(empty));
 		return pagesProperties;
