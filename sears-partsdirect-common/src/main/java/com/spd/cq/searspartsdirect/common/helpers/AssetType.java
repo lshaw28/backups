@@ -54,7 +54,7 @@ public enum AssetType {
 			return new PartTypeModel(p.getPath(),
 					title,
 					description,
-					p.getPath() + Constants.ASSETS_IMAGE_PATH);
+					p.getPath() + Constants.ASSETS_IMAGE_PATH, properties.get("titlePlural",""));
 		}
 	},
 	PRODUCTCATEGORY(ProductCategoryModel.class,"productCategory") {

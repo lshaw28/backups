@@ -68,7 +68,7 @@ public class CategoryCreationWorkflowProcess implements WorkflowProcess {
                 createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "symptom", "/apps/searspartsdirect/templates/categorySymptom", "Symptoms", tag);
                 createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "error-codes", "/apps/searspartsdirect/templates/errorCodes", "Error Codes", tag);
                 createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "repair-guides", "/apps/searspartsdirect/templates/categoryGuideList", categoryTitle + " Guide List", tag);
-                
+                createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", categoryTrueName+"-common-parts", "/apps/searspartsdirect/templates/commonParts", categoryTitle + " Common Parts", tag);
                 jcrSession.save();
 	        }
         } catch (Exception e) {

@@ -49,7 +49,7 @@ public class GuideNavigationTagTest extends MocksTag {
 				assertThat(link.getAnchorName(),not(nullValue()));
 				assertThat(link.getAnchorName(),not(""));
 				assertThat(link.getAnchorName(),containsString("_"));
-				assertTrue(!link.getAnchorName().startsWith("#"));
+				assertTrue((link.getAnchorName().length() == 0 || link.getAnchorName().charAt(0) != '#'));
 			}
 			assertThat(result.get(0).getLinkText(),is(Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK));
 			assertThat(result.get(1).getLinkText(),is(Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK));
