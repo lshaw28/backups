@@ -59,7 +59,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 					symptomDetailsModel.setDescription(props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class));
 
 					// now get the jobcodes, part types and guides info
-					String[] pages = (String[]) props.get("pages", String[].class);
+					String[] pages = props.get("pages", String[].class);
 					if (pages != null) {
 						jobCodeModels = new ArrayList<JobCodeModel>();
 						for(int i = 0; i< pages.length; i++) {
@@ -86,7 +86,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 										jobCodeModels.add(jobCodeModel);
 
 										//getting guides
-										String[] guides = (String[]) jobCodeProps.get(GUIDES, String[].class);
+										String[] guides = jobCodeProps.get(GUIDES, String[].class);
 										if (guides != null) {
 											List<GuideModel> guideList = new ArrayList<GuideModel>();
 											for (int j = 0; j<guides.length; j++) {
@@ -135,5 +135,5 @@ public class GetSymptomDetailTag extends CQBaseTag {
 		this.id = id;
 	}
 
-	
+
 }

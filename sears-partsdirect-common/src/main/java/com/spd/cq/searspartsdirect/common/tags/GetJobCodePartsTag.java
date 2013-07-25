@@ -71,7 +71,7 @@ public class GetJobCodePartsTag extends CQBaseTag {
 					apiUrlStrBuilder.append('&');
 				}
 				try {
-					apiUrlStrBuilder.append("jobCodeList=" + URLEncoder.encode(((JobCodeModel)jobCodes.get(i)).getId(), Constants.ENCODING));
+					apiUrlStrBuilder.append("jobCodeList=" + URLEncoder.encode((jobCodes.get(i)).getId(), Constants.ENCODING));
 				} catch (UnsupportedEncodingException e) {} // CANTHAPPEN - we are using a guaranteed encoding.
 			}
 			if (StringUtils.isNotBlank(modelNumber)) {

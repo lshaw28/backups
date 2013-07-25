@@ -66,7 +66,7 @@ public class GetErrorCodesListTag extends CQBaseTag {
 
 					if (props != null) {
 						ErrorCodeListModel model = new ErrorCodeListModel(props.get("jcr:title", String.class), p.getPath());
-						String[] pages = (String[]) props.get("pages", String[].class);
+						String[] pages = props.get("pages", String[].class);
 
 						if (pages != null) {
 							log.debug("pages.length " + pages.length);
