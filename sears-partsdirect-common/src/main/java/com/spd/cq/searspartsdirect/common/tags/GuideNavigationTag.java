@@ -29,38 +29,38 @@ import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 
 @SuppressWarnings("serial")
 public class GuideNavigationTag extends CQBaseTag {
-	
+
 	public final static String BEFORE_YOU_BEGIN = Constants.ident("beforeYouBegin");
-	
+
 	protected static Logger log = LoggerFactory.getLogger(GuideNavigationTag.class);
 
 	@Override
 	public int doStartTag() throws JspException {
 		// output list containing lists [linktext,sectionlink]
 		List<AnchorLinkModel> sections = new ArrayList<AnchorLinkModel>();
-		
+
 		// in a template, currentNode is not populated - so we find the page content node
 		Node pageNode = currentPage.getContentResource().adaptTo(Node.class);
-		
+
 		// we may need to set up configuration
 		maybeSetupDefaultConfig(pageNode);
-		
+
 		// we read our configuration into a map
 		Map<String,String> typesAndLabels = readTypesAndLabelsFromConfig(pageNode);
-		
+
 		// We find the jump-to text for the select and place it in context
 		String jumpToString = Constants.GUIDE_NAV_DEF_JUMPTO_TEXT;
 		try {
-            jumpToString = pageNode.getProperty(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR).getString();
-	    } catch (Exception e) {
-	            log.warn("exception getting jump to text",e);
-	    }
+			jumpToString = pageNode.getProperty(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR).getString();
+		} catch (Exception e) {
+				log.warn("exception getting jump to text",e);
+		}
 		pageContext.setAttribute(Constants.GUIDE_NAV_JUMPTO_TEXT_PAGE_ATTR,
 				jumpToString);
-		
+
 		// we populate this with ways of creating links
 		List<LinkGenerator> generators = new ArrayList<LinkGenerator>();
-		
+
 		// We create our template components that precede the parsys.
 		// We do this explicitly to avoid needing to look at the template at publish time
 		if (typesAndLabels.containsKey(Constants.TOOLS_REQ_R_COMPONENT)) {
@@ -69,18 +69,18 @@ public class GuideNavigationTag extends CQBaseTag {
 				labelFound = Constants.TOOLS_REQ_DEF_GUIDE_NAV_LINK;
 			}
 			generators.add(new FixedLabelTemplateLinkGenerator(Constants.TOOLS_REQ_R_COMPONENT,labelFound));
-		} 
+		}
 		if (typesAndLabels.containsKey(Constants.PARTS_REQ_R_COMPONENT)) {
 			String labelFound = typesAndLabels.get(Constants.PARTS_REQ_R_COMPONENT);
 			if (labelIsBlank(labelFound)) {
 				labelFound = Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK;
 			}
 			generators.add(new FixedLabelTemplateLinkGenerator(Constants.PARTS_REQ_R_COMPONENT,labelFound));
-		} 
-		
+		}
+
 		// We no longer have any actual dynamic content here.
 		// All elements linked to are now part of the template
-		
+
 		// We only want to generate a link to Before you begin if we find a header there.
 		if (typesAndLabels.containsKey(Constants.TEXT_COMPONENT)) {
 			Resource beforeYouBegin = currentPage.getContentResource(BEFORE_YOU_BEGIN);
@@ -90,7 +90,7 @@ public class GuideNavigationTag extends CQBaseTag {
 				generators.add(beforeYouBeginGenerator);
 			}
 		}
-		
+
 		if (typesAndLabels.containsKey(Constants.INSTRUCTIONS_COMPONENT)) {
 			String labelFound = typesAndLabels.get(Constants.INSTRUCTIONS_COMPONENT);
 			if (labelIsBlank(labelFound)) {
@@ -98,10 +98,10 @@ public class GuideNavigationTag extends CQBaseTag {
 			}
 			generators.add(new FixedLabelTemplateLinkGenerator(Constants.INSTRUCTIONS_COMPONENT,labelFound));
 		}
-		
+
 		// Comments link is unconditional
 		generators.add(new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));
-		
+
 		// We iterate over our generators and create our output
 		for (LinkGenerator linkGen : generators) {
 			String label = linkGen.generateLabel();
@@ -111,18 +111,18 @@ public class GuideNavigationTag extends CQBaseTag {
 			}
 		}
 		pageContext.setAttribute(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR, sections);
-		
+
 		return SKIP_BODY;
 	}
-	
+
 	public static boolean labelIsBlank(String label) {
 		return label == null || label.matches(" *");
 	}
-	
+
 	public static boolean resourceExists(Resource resource) {
 		return resource != null && !resource.isResourceType(Resource.RESOURCE_TYPE_NON_EXISTING);
 	}
-	
+
 	private void maybeSetupDefaultConfig(Node pageNode) {
 		WCMMode wcmMode = WCMMode.fromRequest(slingRequest);
 		if (wcmMode != WCMMode.READ_ONLY && wcmMode != WCMMode.DISABLED) {
@@ -140,7 +140,7 @@ public class GuideNavigationTag extends CQBaseTag {
 				} else {
 					setupNode = pageNode.getNode(Constants.GUIDE_NAV_PATH);
 				}
-				if (!setupNode.hasProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR) 
+				if (!setupNode.hasProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR)
 						|| setupNode.getProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR).isNew()) {
 					setupNode.setProperty(Constants.SLINGTYPE, Constants.GUIDE_NAV_COMPONENT);
 					setupNode.setProperty(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR,
@@ -152,7 +152,7 @@ public class GuideNavigationTag extends CQBaseTag {
 						}
 						,PropertyType.STRING);
 					anyChanges = true;
-				} 
+				}
 				if (anyChanges) {
 					jcr.save();
 				}
@@ -161,7 +161,7 @@ public class GuideNavigationTag extends CQBaseTag {
 			}
 		}
 	}
-	
+
 	private Map<String, String> readTypesAndLabelsFromConfig(Node pageNode) {
 		Map<String, String> typesAndLabels = new HashMap<String, String>();
 		try {
@@ -182,20 +182,20 @@ public class GuideNavigationTag extends CQBaseTag {
 		} catch (Exception e) {
 			log.error("Could not retrieve configuration", e);
 		}
-		return typesAndLabels; 
+		return typesAndLabels;
 	}
-	
+
 	private void addTuplesFromJson(Map<String,String> toAddTo, String jsonString) {
 		try {
-            JSONObject menuItemConfig = new JSONObject(jsonString);
-            toAddTo.put(
-            		menuItemConfig.getString(Constants.GUIDE_CFG_RESTYPE),
-            		menuItemConfig.getString(Constants.GUIDE_CFG_TEXT));
-	    } catch (Exception e) {
-	    	log.error("JSON error", e);
-	    }
+			JSONObject menuItemConfig = new JSONObject(jsonString);
+			toAddTo.put(
+					menuItemConfig.getString(Constants.GUIDE_CFG_RESTYPE),
+					menuItemConfig.getString(Constants.GUIDE_CFG_TEXT));
+		} catch (Exception e) {
+			log.error("JSON error", e);
+		}
 	}
-	
+
 	private String constructCommentsPath() {
 		StringBuilder commentsPath = new StringBuilder(Constants.USERGEN_ROOT);
 		commentsPath.append(currentPage.getPath());
@@ -219,11 +219,11 @@ public class GuideNavigationTag extends CQBaseTag {
 	// Template links won't usually have a resource associated when they are built
 	private static abstract class TemplateLinkGenerator extends LinkGenerator {
 		private String componentName;
-		
+
 		public void setComponentName(String componentName) {
 			this.componentName = componentName;
 		}
-		
+
 		public String getComponentName() {
 			if (componentName == null) {
 				String fullType = getComponentType();
@@ -236,7 +236,7 @@ public class GuideNavigationTag extends CQBaseTag {
 			return "template_" + getComponentName();
 		}
 	}
-	
+
 	// Some template components always have the same label
 	private static class FixedLabelTemplateLinkGenerator extends TemplateLinkGenerator {
 		final String label;
@@ -247,15 +247,15 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 		@Override
 		public final String generateLabel() {
-			return label;	
+			return label;
 		}
 	}
-	
+
 	// But comments have a dynamically generated label
 	private static class CommentsLinkGenerator extends TemplateLinkGenerator {
 		private final String commentsPath;
 		private final ResourceResolver rr;
-		
+
 		public CommentsLinkGenerator(final String commentsPath, final ResourceResolver rr) {
 			super();
 			setComponentType(Constants.COMMENTS_COMPONENT);
@@ -274,7 +274,7 @@ public class GuideNavigationTag extends CQBaseTag {
 				if (thatCs != null) {
 					int count = PDUtils.countCommentsCorrectly(thatCs);
 					if (count > 0) {
-						label.append(" (").append(count).append(")");
+						label.append(" (").append(count).append(')');
 					}
 				} else {
 					log.warn("Could not retrieve a CommentsSystem from "+thoseComments);
@@ -285,7 +285,7 @@ public class GuideNavigationTag extends CQBaseTag {
 			return label.toString();
 		}
 	}
-	
+
 	// Some template links are based on actual resources
 	private static abstract class ResourceTemplateLinkGenerator extends TemplateLinkGenerator {
 		private Resource beingLinkedTo;
@@ -293,20 +293,20 @@ public class GuideNavigationTag extends CQBaseTag {
 		protected void setBeingLinkedTo(Resource beingLinkedTo) {
 			this.beingLinkedTo = beingLinkedTo;
 		}
-		
+
 		protected Resource getBeingLinkedTo() {
 			return beingLinkedTo;
 		}
-		
+
 	}
-	
+
 	private static class TextHeaderLinkGenerator extends ResourceTemplateLinkGenerator {
-		
+
 		private static final Pattern headerPattern = initHeaderPattern();
 		private static final Pattern initHeaderPattern() {
 			return Pattern.compile("<h([1-6])[^>]*>(.+?)</h\\1>",  Pattern.CASE_INSENSITIVE|Pattern.DOTALL);
 		}
-		
+
 		public TextHeaderLinkGenerator(Resource textResource) {
 			setBeingLinkedTo(textResource);
 		}
@@ -319,7 +319,7 @@ public class GuideNavigationTag extends CQBaseTag {
 				String html = textResource.adaptTo(Node.class).getProperty(Constants.GUIDE_TEXT_LABEL_PROP).getString();
 				Matcher pageMatcher = headerPattern.matcher(html);
 				if (pageMatcher.find()){
-				    hContents.append(pageMatcher.group(2));
+					hContents.append(pageMatcher.group(2));
 				}
 			} catch (Exception e) {
 				log.error("retrieving text label: ", e);

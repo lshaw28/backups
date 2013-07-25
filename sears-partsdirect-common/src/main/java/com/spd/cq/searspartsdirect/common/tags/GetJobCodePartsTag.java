@@ -65,10 +65,10 @@ public class GetJobCodePartsTag extends CQBaseTag {
 
 		if (CollectionUtils.isNotEmpty(jobCodes)) {
 			apiUrlStrBuilder = new StringBuilder(EnvironmentSettings.getPDJobCodePartsApiUrl());
-			apiUrlStrBuilder.append("?");
+			apiUrlStrBuilder.append('?');
 			for (int i = 0; i < jobCodes.size(); i++) {
 				if (i > 0) {
-					apiUrlStrBuilder.append("&");
+					apiUrlStrBuilder.append('&');
 				}
 				try {
 					apiUrlStrBuilder.append("jobCodeList=" + URLEncoder.encode(((JobCodeModel)jobCodes.get(i)).getId(), Constants.ENCODING));
