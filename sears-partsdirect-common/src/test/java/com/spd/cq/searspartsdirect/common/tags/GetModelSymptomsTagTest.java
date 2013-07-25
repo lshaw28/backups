@@ -39,7 +39,22 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		createQueryWithNoHitsYet();
 		
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
+		
+		tag.setBrandName("Kenmore");
+		tag.setCategoryName("Dishwasher");
+		tag.setModelNumber("66513593K600");
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithArgumentsButHitUnresolvable() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		createQueryWithNoHitsYet();
+		
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),false)));
 		
 		tag.setBrandName("Kenmore");
 		tag.setCategoryName("Dishwasher");
@@ -54,7 +69,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		createQueryWithNoHitsYet();
 		
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
 		
 		tag.setBrandName("Kenmoar");
 		tag.setCategoryName("Dishcleaner");
@@ -101,7 +116,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		createQueryWithNoHitsYet();
 		
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
 		
 		tag.setBrandName("Kenmore");
 		tag.setCategoryName("Dishwasher");
@@ -116,7 +131,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		createQueryWithNoHitsYet();
 		
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
 		
 		tag.setBrandName("Kenmore");
 		assertThat(tag.getCategoryName(),nullValue());
@@ -131,7 +146,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		createQueryWithNoHitsYet();
 		
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
 		
 		assertThat(tag.getBrandName(),nullValue());
 		assertThat(tag.getCategoryName(),nullValue());
@@ -164,12 +179,14 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		return testHit;
 	}
 	
-	private Hit createTestHitProps(Hit testHit) throws RepositoryException {
+	private Hit createTestHitProps(Hit testHit, boolean resolvable) throws RepositoryException {
 		String titleAndDesc = testHit.getPath();
 		ValueMap props = mock(ValueMap.class);
 		when(testHit.getProperties()).thenReturn(props);
 		Page testPage = mock(Page.class);
-		when(pageManager.getPage(titleAndDesc)).thenReturn(testPage);
+		if (resolvable) {
+			when(pageManager.getPage(titleAndDesc)).thenReturn(testPage);
+		}
 		when(testPage.getTitle()).thenReturn(titleAndDesc);
 		when(testPage.getDescription()).thenReturn(titleAndDesc);
 		return testHit;
