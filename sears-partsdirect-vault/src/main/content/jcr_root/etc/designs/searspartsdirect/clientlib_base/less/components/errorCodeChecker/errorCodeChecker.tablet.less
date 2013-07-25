@@ -1,13 +1,12 @@
-@import "../../base.variables.less";
-@import "../../base.mixins.less";
-
 @media (max-width: 767px) {
 	.errorCodeChecker {
+      p {
 		.primary-content {
-			display: block;
+			display: inline-block;
 			position: relative;
 			padding: 5px 0 15px 90px;
 			font-size: 18px;
+            max-width: 200px;
 			min-height: 46px;
 			line-height: 20px;
 		}
@@ -24,9 +23,9 @@
 
 		.new-btn {
 			margin: 0 17px;
-			display: block;
+			display: inline-block;
 			text-align: center;
-			float: none;
+			float: right;
 		}
 
 		.icon-container {
@@ -34,5 +33,6 @@
 			top: 0;
 			left: 0;
 		}
-	}
+	  }
+    }
 }
