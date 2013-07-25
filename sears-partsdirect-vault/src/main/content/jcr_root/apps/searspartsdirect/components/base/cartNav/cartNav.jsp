@@ -11,8 +11,8 @@
 
 						<!-- Model List -->
 						<c:forEach var="model" items="${rvModelList}">
-							<li>Model <a href="${model.itemURL}">${model.itemName}</a><br />
-							<a href="${model.itemURL}">${model.itemDescription}</a></li>
+							<li>Model <a href="${model.itemURL}"><c:out value="${model.itemName}" /></a><br />
+							<a href="${model.itemURL}"><c:out value="${model.itemDescription}" /></a></li>
 						</c:forEach>
 						<!-- Part List -->
 						<c:forEach var="part" items="${rvPartList}">
@@ -26,7 +26,7 @@
 										<img src="/assets/img/images/no_part_100x100.gif" alt="No part image available" />
 									</c:otherwise>
 								</c:choose>
-								${part.itemName}<br />${part.itemDescription}</a>
+								<c:out value="${part.itemName}" /><br /><c:out value="${part.itemDescription}" /></a>
 							</li>
 						</c:forEach>
 					</ul>
@@ -45,7 +45,7 @@
 					<span class="count-badge parentheses">99+</span>
 				</c:when>
 				<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 0 && fn:length(myProfileModels) lt 100}">
-					<span class="count-badge parentheses">${fn:length(myProfileModels)}</span>
+					<span class="count-badge parentheses"><c:out value="${fn:length(myProfileModels)}" /></span>
 				</c:when>
 				<c:otherwise>
 					<span class="count-badge parentheses">0</span>
@@ -57,7 +57,7 @@
 					<c:when test="${not empty myProfileModels && fn:length(myProfileModels) gt 0}">
 						<li id="cartModelItems">
 						<c:forEach var="model" items="${myProfileModels}">
-							<span class="cartModelItem"><input type="checkbox" value="${model.modelNumber}" data-categoryid="${model.categoryId}" data-brandId="${model.brandId}" /><a href="${mainSitePath}${model.itemURL}">${model.brandName} ${model.categoryName} model #${model.modelNumber}</a></span>
+							<span class="cartModelItem"><input type="checkbox" value="${model.modelNumber}" data-categoryid="${model.categoryId}" data-brandId="${model.brandId}" /><a href="${mainSitePath}${model.itemURL}"><c:out value="${model.brandName}" /> <c:out value="${model.categoryName}"/> model #<c:out value="${model.modelNumber}" /></a></span>
 						</c:forEach>
 						</li>
 						<c:choose>
@@ -85,7 +85,7 @@
 					<span class="count-badge">99+</span>
 				</c:when>
 				<c:when test="${not empty shoppingCart && fn:length(shoppingCart) gt 0 && fn:length(shoppingCart) lt 100}">
-					<span class="count-badge">${fn:length(shoppingCart)}</span>
+					<span class="count-badge"><c:out value="${fn:length(shoppingCart)}" /></span>
 				</c:when>
 				<c:otherwise>
 					<span class="count-badge">0</span>
@@ -99,19 +99,18 @@
 						<li><a class="new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
 						<c:forEach var="cartItem" items="${shoppingCart}">
 							<li class="cart-item">
-								<span class="cart-part"><a href="${mainSitePath}/partsdirect/part-number/${cartItem.part.partNumber}/${cartItem.part.productGroupId}/${cartItem.part.supplierId}">${cartItem.part.partNumber}</a><br />
 								<c:choose>
 									<c:when test="${fn:length(cartItem.part.description) > 17}">
-										${fn:substring(cartItem.part.description, 0, 17)}...
+										<c:out value="${fn:substring(cartItem.part.description, 0, 17)}" />...
 									</c:when>
 									<c:otherwise>
-										${cartItem.part.description}
+										<c:out value="${cartItem.part.description}" />
 									</c:otherwise>
 								</c:choose></span>
-								<span class="cart-quantity">${cartItem.quantity}</span>
+								<span class="cart-quantity"><c:out value="${cartItem.quantity}" /></span>
 							</li>
 						</c:forEach>
-						<li><strong>Total items: ${fn:length(shoppingCart)}</strong></li>
+						<li><strong>Total items: <c:out value="${fn:length(shoppingCart)}" /></strong></li>
 						<li><a class="new-btn" href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</a></li>
 					</c:when>
 					<c:otherwise>

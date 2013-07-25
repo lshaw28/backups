@@ -1,13 +1,13 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <spd:getUrlRelation />
 <c:if test="${not empty brandRelation and not empty productCategoryRelation and not empty modelRelation}">
-    <spd:getModelHeader brand="${brandRelation}" productCategory="${productCategoryRelation}" model="${modelRelation}" />
-    <c:if test="${not empty pseudoTabs}">
-	    <div class="row-fluid">
-	        <div class="span8">
-	            <h1>Model # ${modelRelation} ${brandRelation.title} ${productCategoryRelation.title}</h1>
-	        </div>
-	        <%-- <div class="span2 offset2 modelInfo">Model Info <i class="icon-chevron-up"></i></div>
+	<spd:getModelHeader brand="${brandRelation}" productCategory="${productCategoryRelation}" model="${modelRelation}" />
+	<c:if test="${not empty pseudoTabs}">
+		<div class="row-fluid">
+			<div class="span8">
+				<h1>Model # <c:out value="${modelRelation}" /> <c:out value="${brandRelation.title}" /> <c:out value="${productCategoryRelation.title}" /></h1>
+			</div>
+			<%-- <div class="span2 offset2 modelInfo">Model Info <i class="icon-chevron-up"></i></div>
 			<div class="span9 pull-left" id="modelSection">
 				<div class="pull-left span3" > <a href="#."><img src="http://s7.sears.com/is/image/Sears/04678543000?hei=150&wid=150&op_sharpen=1&qlt=100" class="thumbnail" alt="refrigirator" title=""></a> </div>
 				<div class="span3">
@@ -27,12 +27,12 @@
 			</div>
 			--%>
 			<div class="span12">
-			    <ul class="nav nav-tabs">
-			        <c:forEach items="${pseudoTabs}" var="tab">
-			            <li<c:if test="${tab.linkText eq 'Repair Help'}"> class="active"</c:if>><a href="${tab.href}">${tab.linkText}</a></li>
-			        </c:forEach>
-			    </ul>
+				<ul class="nav nav-tabs">
+					<c:forEach items="${pseudoTabs}" var="tab">
+						<li<c:if test="${tab.linkText eq 'Repair Help'}"> class="active"</c:if>><a href="${tab.href}"><c:out value="${tab.linkText} "/></a></li>
+					</c:forEach>
+				</ul>
 			</div>
-	    </div>
-    </c:if>
+		</div>
+	</c:if>
 </c:if>

@@ -6,7 +6,7 @@
 	<c:when test="${empty localTitle}">
 		<cq:include path="/etc/spdAssets/globalConfig/instructionsTitle" resourceType="searspartsdirect/components/content/globalInstructionsTitle" />
 	</c:when>
-	<c:otherwise>${localTitle}</c:otherwise>
+	<c:otherwise><c:out value="${localTitle}" /></c:otherwise>
 </c:choose></h3>
 
 <div class="row-fluid">

@@ -22,7 +22,7 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 					<div class="carousel-item span3">
 						<spd:linkResolver value="${guide.url}" />
 						<a href="${url}"><spd:displayImage path="${guide.imagePath}" /></a>
-						<a href="${url}">${guide.title}</a>
+						<a href="${url}"><c:out value="${guide.title}" /></a>
 					</div>
 				</c:forEach>
 			</div>

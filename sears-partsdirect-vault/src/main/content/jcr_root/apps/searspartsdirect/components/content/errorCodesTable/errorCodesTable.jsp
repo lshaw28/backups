@@ -7,7 +7,7 @@
 		${errorCodeTableData.errorCodeType}
 	</div>
 </c:if>
-	
+
 <div class="table-wrapper">
 	<table class="responsive-table">
 		<thead>
@@ -21,8 +21,8 @@
 		<tbody>
 			<c:forEach var="errorCode" items="${errorCodeTableData.errorCodes}">
 				<tr>
-					<td>${errorCode.code}</td>
-					<td>${errorCode.condition}</td>
+					<td><c:out value="${errorCode.code}" /></td>
+					<td><c:out value="${errorCode.condition}" /></td>
 					<td>
 						<c:choose>
 							<c:when test="${not empty errorCode.repairPath}">

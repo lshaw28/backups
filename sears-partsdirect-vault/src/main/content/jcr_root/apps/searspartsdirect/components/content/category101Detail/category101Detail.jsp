@@ -29,9 +29,9 @@
 		<a href="${url}" ><spd:displayImage path="${category101Model.imagePath}" decorated="false" /></a>
 	</c:if>
 	<h4>
-		<a href="${url}">${category101Model.title}</a>
+		<a href="${url}"><c:out value="${category101Model.title} "/></a>
 	</h4>
-	<p>${category101Model.description}</p>
+	<p><c:out value="${category101Model.description} "/></p>
 	</div>
 	<c:choose>
 		<c:when test="${currentItem.count % 2 eq 0 or currentItem.last}">
