@@ -81,7 +81,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 													partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH);
 											jobCodeModel.setPartTypeModel(partTypeModel);
 										} else {
-											log.debug("part type page is null");
+											log.warn("Could not resolve "+partType+" to a part type page.");
 										}
 										jobCodeModels.add(jobCodeModel);
 
@@ -95,7 +95,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 													GuideModel guide = new GuideModel(guidePage.getPath(), null, guidePage.getTitle());
 													guideList.add(guide);
 												} else {
-													log.debug("Guide page is null");
+													log.warn("Could not resolve "+guides[j]+" to a guide page.");
 												}
 											}
 											jobCodeModel.setGuides(guideList);
@@ -105,6 +105,8 @@ public class GetSymptomDetailTag extends CQBaseTag {
 									} else {
 										log.debug("no properties for jobcode");
 									}
+								} else {
+									log.warn("Could not resolve "+pages[i]+" to a job code.");
 								}
 							}
 						}

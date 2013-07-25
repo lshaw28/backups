@@ -145,7 +145,7 @@ public class GetSymptomDetailTagFixture {
 		when(jobCodePage.getProperties()).thenReturn(jobCodeProps);
 		when(jobCodeProps.get("id", String.class)).thenReturn(getJobCodeId());
 		when(jobCodeProps.get("partType")).thenReturn(getPartTypePage(pathTitleDesc));
-		when(jobCodeProps.get("guides", String[].class)).thenReturn(new String[]{getGuidePage(pathTitleDesc)});
+		when(jobCodeProps.get("guides", String[].class)).thenReturn(new String[]{getGuidePage(pathTitleDesc),"clinker"});
 	}
 
 	private void createQueryNoHitsYet() {
