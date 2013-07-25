@@ -3,6 +3,8 @@ package com.spd.cq.searspartsdirect.common.fixture;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import javax.servlet.jsp.PageContext;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -11,11 +13,12 @@ import com.day.cq.wcm.api.Page;
 
 public class GetRepairGuideJobCodeTagFixture {
 
+	private PageContext pageContext;
 	private ResourceResolver resourceResolver;
 	private Page currentPage;
 
-	public GetRepairGuideJobCodeTagFixture(ResourceResolver resourceResolver, Page currentPage) {
-
+	public GetRepairGuideJobCodeTagFixture(PageContext pageContext, ResourceResolver resourceResolver, Page currentPage) {
+		this.pageContext = pageContext;
 		this.resourceResolver = resourceResolver;
 		this.currentPage = currentPage;
 	}
@@ -32,6 +35,10 @@ public class GetRepairGuideJobCodeTagFixture {
 
 	public void setupNullCurrentPagePath() {
 		when(currentPage.getPath()).thenReturn(null);
+	}
+	
+	public void setupNullCurrentPage() {
+		when(pageContext.findAttribute("currentPage")).thenReturn(null);
 	}
 
 	public void setupCurrentPageWithNullProperties() {

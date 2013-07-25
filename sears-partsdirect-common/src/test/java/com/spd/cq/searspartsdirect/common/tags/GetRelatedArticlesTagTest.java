@@ -56,7 +56,7 @@ public class GetRelatedArticlesTagTest extends MocksTag {
 	
 	@Test
 	public void testTwoHits() throws RepositoryException, JspException {
-		
+		fixture.setCurrentPage(currentPage);
 		fixture.makeNHits(2, resourceResolver);
 
 		tag.setCategoryPath("/content/searspartsdirect/en/somepage");

@@ -25,7 +25,7 @@ public class GetRepairGuideJobCodeTagTest extends MocksTag{
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetRepairGuideJobCodeTagFixture(resourceResolver, currentPage);
+		fixture = new GetRepairGuideJobCodeTagFixture(pageContext, resourceResolver, currentPage);
 		tag = new GetRepairGuideJobCodeTag();
 	}
 
@@ -60,8 +60,8 @@ public class GetRepairGuideJobCodeTagTest extends MocksTag{
 	}
 
 	@Test
-	public void testTagWithNullCurrentPageAndProperties() throws JspException {
-		fixture.setupCurrentPageWithNullProperties();
+	public void testTagWithNullCurrentPage() throws JspException {
+		fixture.setupNullCurrentPage();
 		runsTagSkipsBodyEvalsPage();
 		assertEmptyResult();
 	}

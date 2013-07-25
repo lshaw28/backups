@@ -25,6 +25,10 @@ public class GetHeaderHelperTagFixture {
 		this.request = request;
 	}
 
+	public void setUpNoCookies() {
+		// noop - to have no cookies, we refrain from setting any up.
+	}
+	
 	public void setUpEmptyCookies() {
 		setUpRequestCookies();
 		cookies.clear();
@@ -58,5 +62,7 @@ public class GetHeaderHelperTagFixture {
 		when(modelCookie.getName()).thenReturn(Constants.MY_MODEL_COOKIE);
 		return modelCookie;
 	}
+
+
 }
 
