@@ -10,6 +10,7 @@
 					<cq:include path="commonPartsIntro" resourceType="searspartsdirect/components/content/text" />
 					<cq:include path="commonPartsTopicJump" resourceType="searspartsdirect/components/content/jumpTopicMenu" />
 					<cq:include path="parsys" resourceType="foundation/components/parsys" />
+					<cq:include path="commonParts" resourceType="searspartsdirect/components/content/commonParts" />
 				</div>
 				<div class="span3 offset1 pull-right">
 					<div class="row-fluid">

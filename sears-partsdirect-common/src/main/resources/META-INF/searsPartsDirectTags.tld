@@ -545,4 +545,15 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetHeaderHelperTag</tag-class>
 		<info>Gets the My Profile Model Cookie for guest user and the api root information</info>
 	</tag>
+	<tag>
+		<name>getCommonParts</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCommonPartsTag</tag-class>
+		<info>Gets the Common Category Parts</info>
+		<attribute>
+			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>

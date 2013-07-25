@@ -78,7 +78,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 										if (partTypePage != null) {
 											PartTypeModel partTypeModel = new PartTypeModel(partTypePage.getPath(),
 													partTypePage.getTitle(), partTypePage.getDescription(),
-													partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH);
+													partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH, null);
 											jobCodeModel.setPartTypeModel(partTypeModel);
 										} else {
 											log.warn("Could not resolve "+partType+" to a part type page.");

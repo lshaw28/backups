@@ -1,17 +1,24 @@
 package com.spd.cq.searspartsdirect.common.model.spdasset;
 
+import java.util.List;
+
+import com.spd.cq.searspartsdirect.common.model.GuideModel;
+
 public class PartTypeModel {
 	
 	private String title;
 	private String description;
+	private String pluralTitle;
 	private String imagePath;
 	private String path;
+	private List<GuideModel> guides;
 	
-	public PartTypeModel(String path, String title, String description, String imagePath) {
+	public PartTypeModel(String path, String title, String description, String imagePath, String pluralTitle) {
 		this.title = title;
 		this.description = description;
 		this.imagePath = imagePath;
 		this.path = path;
+		this.pluralTitle = pluralTitle;
 	}
 	
 	public String getTitle() {
@@ -46,5 +53,21 @@ public class PartTypeModel {
 	public String toString() {
 		return "PartTypeModel [title=" + title + ", description=" + description
 				+ ", imagePath=" + imagePath + ", path=" + path + "]";
+	}
+
+	public String getPluralTitle() {
+		return pluralTitle;
+	}
+
+	public void setPluralTitle(String pluralTitle) {
+		this.pluralTitle = pluralTitle;
+	}
+
+	public List<GuideModel> getGuides() {
+		return guides;
+	}
+
+	public void setGuides(List<GuideModel> guides) {
+		this.guides = guides;
 	}
 }
