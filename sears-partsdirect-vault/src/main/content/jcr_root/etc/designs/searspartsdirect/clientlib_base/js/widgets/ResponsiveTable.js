@@ -11,8 +11,10 @@ NS('shc.pd.base.widgets').ResponsiveTable = (function () {
 		init: function (tables) {
 			
 			tables.each(function () {
-				var tableHeaders = [];
-				
+				var tableHeaders = [],
+                    uniqueID;
+
+
 				// get headers
 				$('thead th', this).each(function () {
 					tableHeaders.push($(this).text());
@@ -20,9 +22,23 @@ NS('shc.pd.base.widgets').ResponsiveTable = (function () {
 				
 				// insert on each content td
 				$('tbody td', this).each(function () {
-					$(this).prepend('<div class="column-label ' + TD_LABEL_CLASSNAME +'">' + tableHeaders[$(this).index()] + '</div>');
+                    // if the first td, it will be shown - the others are collapsed
+                    if ($(this).index() === 0) {
+                        uniqueID = window.SPDUtils.getGUID();
+                        $(this).attr('id', uniqueID);
+                    } else {
+                        $(this).addClass('td-hideable hidden-phone');
+                    };
+                    $(this).prepend('<div class="column-label ' + TD_LABEL_CLASSNAME +'">' + tableHeaders[$(this).index()] + '</div>');
 				});
+
+                // add hide/show toggle for collapsible elements
+                $('tbody').on('click','td',function(){
+                    $(this).toggleClass('td-open');
+                    $('#'+this.id+' ~ .td-hideable').toggleClass('hidden-phone');
+                });
+
 			});
 		}
-	};
+     };
 }());
