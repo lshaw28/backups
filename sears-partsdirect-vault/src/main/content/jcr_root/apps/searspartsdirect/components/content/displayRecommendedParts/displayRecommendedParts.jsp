@@ -15,12 +15,9 @@
                         <img src="${part.image.url}" altText="${part.name}"/>
                     </c:when>
                     <c:otherwise>
-                        <img src="http://s.sears.com/is/image/Sears/PD_0071_500_499486S" altText="${part.name}"/>
-
+                          <img src="http://www.searspartsdirect.com/partsdirect/assets/img/images/no_part.gif" altText="${part.name}"/>
                     </c:otherwise>
                         </c:choose>
-
-
                         </span>
                 <span class="span3">
 
