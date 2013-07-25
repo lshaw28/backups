@@ -15,16 +15,16 @@
 				<spd:linkResolver value="${author.path}" />
 				<c:choose>
 					<c:when test="${(fn:length(authors) - currentItem.count) gt 1}">
-						<a href="${url}">${author.title}</a>,
+						<a href="${url}"><c:out value="${author.title}" /></a>,
 					</c:when>
 					<c:when test="${(fn:length(authors) - currentItem.count) eq 1}">
-						<a href="${url}">${author.title}</a> and
+						<a href="${url}"><c:out value="${author.title}" /></a> and
 					</c:when>
 					<c:when test="${hideTitle}">
-						<a href="${url}">${author.title}</a>
+						<a href="${url}"><c:out value="${author.title}" /></a>
 					</c:when>
 					<c:otherwise>
-						<a href="${url}">${author.title}</a>,
+						<a href="${url}"><c:out value="${author.title}"/></a>,
 						<c:set var="s" value="${fn:length(authors) gt 1? 's':''}" />
 						<cq:text property="authorPosition"
 							placeholder="Sears Home Services repair technician${s}" />

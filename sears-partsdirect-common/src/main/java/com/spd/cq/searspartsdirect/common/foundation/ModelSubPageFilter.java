@@ -29,15 +29,15 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 @Component
 @Service
 @Properties({
-        @Property(name = org.osgi.framework.Constants.SERVICE_DESCRIPTION, value = "Loads guides as sub-pages of a model if the path exists below the model."),
-        @Property(name = org.osgi.framework.Constants.SERVICE_VENDOR, value = "Siteworx"),
-        @Property(name = "process.label", value = "Model Sub Page Filter"),
-        @Property(name = "sling.filter.scope", value = "request"),
-        @Property(name = "service.ranking", value = "500")})
+		@Property(name = org.osgi.framework.Constants.SERVICE_DESCRIPTION, value = "Loads guides as sub-pages of a model if the path exists below the model."),
+		@Property(name = org.osgi.framework.Constants.SERVICE_VENDOR, value = "Siteworx"),
+		@Property(name = "process.label", value = "Model Sub Page Filter"),
+		@Property(name = "sling.filter.scope", value = "request"),
+		@Property(name = "service.ranking", value = "500")})
 public class ModelSubPageFilter implements Filter {
 
 	private static final Logger log = LoggerFactory.getLogger(ModelSubPageFilter.class);
-	
+
 	private final static Pattern authorModeRoot = Pattern.compile(Constants.SPD_ROOT + "[^\\./]*");
 	private final static Pattern brandCatModelRest = Pattern
 			.compile("^/([^/]*)/([^/]*)/" + Constants.MODELNO_PFX + "([^/]*)"
@@ -48,94 +48,94 @@ public class ModelSubPageFilter implements Filter {
 			+ Constants.MODELNO_SFX + "[\\./]");
 	private final static Pattern symptomatic = Pattern
 			.compile(Constants.SYMPTOM_ROOT + "([^\\./]+)");
-	
+
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain fc) throws IOException, ServletException {
 
 		SlingHttpServletRequest request = (SlingHttpServletRequest)servletRequest;
-        SlingHttpServletResponse response = (SlingHttpServletResponse)servletResponse;
-        
-        RequestPathInfo rpi = request.getRequestPathInfo();      
+		SlingHttpServletResponse response = (SlingHttpServletResponse)servletResponse;
 
-        String resPath = rpi.getResourcePath();
-        List<String> selectors = new LinkedList<String>();
-        boolean mustForward = false;
-        String authorPrepend = "";
-        
-        if (resPath.endsWith(Constants.MARKUP_EXT)) {
-	        // We'd rather strip content/searspartsdirect/en/ immediately to get cleaner matches.
-	        // We need to remember whether we did so and prepend.
-	        // resPath = resPath.replace("/content/searspartsdirect/en","");
-	        Matcher authorFix = authorModeRoot.matcher(resPath); 
-	        if (authorFix.find()) {
-	        	authorPrepend = authorFix.group(0);
-	        	resPath = resPath.substring(0,authorFix.start())+resPath.substring(authorFix.end());
-	        }
-	        
-	        // We just strip this.. we restore it as needed further along
-	        resPath = resPath.replace("/categories","");
-	
-	        Matcher mBcm = brandCatModelRest.matcher(resPath);
-	        if (mBcm.find()) {
-	        	//String forwardUrl = m.group(2) + "?model=" + m.group(1);
-	            //Resource Resolver gets overzealous here
-	        	selectors.add(mBcm.group(1));
-	        	String catName = mBcm.group(2);
-	        	selectors.add(catName);
-	        	selectors.add(mBcm.group(3));
-	        	resPath = mBcm.group(4);
-	        	mustForward = true;
-	        	if (resPath.equals(".html")) {
-	        		resPath = Constants.MODEL_REPAIR_PAGE_NO_EXT + resPath;
-	        	} else if (!hasRepairGuide(resPath)) {
-	        		String catRepair = "/" + catName + Constants.MODELNO_SFX;
-	        		if (!resPath.startsWith(catRepair)) {
-	        			resPath = catRepair + resPath;
-	        		}
-	        	}
-	        }
-	        
-	        Matcher symptom = symptomatic.matcher(resPath);
-	        if (symptom.find()) {
-	        	// start of symptom-id group, - 1 to remove the slash or .
-	        	resPath = resPath.substring(0,symptom.start(1) - 1)+Constants.MARKUP_EXT;
-	        	selectors.add(symptom.group(1));
-	        	mustForward = true;
-	        }
-	        
-	        if (hasCategoryRepair(resPath)) {
-	        	resPath = Constants.CATEGORIES_PFX + resPath;
-	        	mustForward = true;
-	        }
+		RequestPathInfo rpi = request.getRequestPathInfo();
+
+		String resPath = rpi.getResourcePath();
+		List<String> selectors = new LinkedList<String>();
+		boolean mustForward = false;
+		String authorPrepend = "";
+
+		if (resPath.endsWith(Constants.MARKUP_EXT)) {
+			// We'd rather strip content/searspartsdirect/en/ immediately to get cleaner matches.
+			// We need to remember whether we did so and prepend.
+			// resPath = resPath.replace("/content/searspartsdirect/en","");
+			Matcher authorFix = authorModeRoot.matcher(resPath);
+			if (authorFix.find()) {
+				authorPrepend = authorFix.group(0);
+				resPath = resPath.substring(0,authorFix.start())+resPath.substring(authorFix.end());
+			}
+
+			// We just strip this.. we restore it as needed further along
+			resPath = resPath.replace("/categories","");
+
+			Matcher mBcm = brandCatModelRest.matcher(resPath);
+			if (mBcm.find()) {
+				//String forwardUrl = m.group(2) + "?model=" + m.group(1);
+				//Resource Resolver gets overzealous here
+				selectors.add(mBcm.group(1));
+				String catName = mBcm.group(2);
+				selectors.add(catName);
+				selectors.add(mBcm.group(3));
+				resPath = mBcm.group(4);
+				mustForward = true;
+				if (resPath.equals(".html")) {
+					resPath = Constants.MODEL_REPAIR_PAGE_NO_EXT + resPath;
+				} else if (!hasRepairGuide(resPath)) {
+					String catRepair = "/" + catName + Constants.MODELNO_SFX;
+					if (!resPath.startsWith(catRepair)) {
+						resPath = catRepair + resPath;
+					}
+				}
+			}
+
+			Matcher symptom = symptomatic.matcher(resPath);
+			if (symptom.find()) {
+				// start of symptom-id group, - 1 to remove the slash or .
+				resPath = resPath.substring(0,symptom.start(1) - 1)+Constants.MARKUP_EXT;
+				selectors.add(symptom.group(1));
+				mustForward = true;
+			}
+
+			if (hasCategoryRepair(resPath)) {
+				resPath = Constants.CATEGORIES_PFX + resPath;
+				mustForward = true;
+			}
 		}
-        
-        if (mustForward) {
-        	String forwardUrl = addSelectors(authorPrepend + resPath,Constants.MARKUP_EXT,selectors);
-        	RequestDispatcher requestDispatcher = request.getRequestDispatcher(forwardUrl);
-        	
-        	if (requestDispatcher == null) throw new RuntimeException("No dispatcher for "+forwardUrl);
-        	log.debug("Forwarding to "+forwardUrl);
-        	requestDispatcher.forward(request, response);
-        	
-        } else {
-        	fc.doFilter(request, response);
-        }
-	    return;
-		
+
+		if (mustForward) {
+			String forwardUrl = addSelectors(authorPrepend + resPath,Constants.MARKUP_EXT,selectors);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(forwardUrl);
+
+			if (requestDispatcher == null) throw new RuntimeException("No dispatcher for "+forwardUrl);
+			log.debug("Forwarding to "+forwardUrl);
+			requestDispatcher.forward(request, response);
+
+		} else {
+			fc.doFilter(request, response);
+		}
+		return;
+
 	}
-	
+
 	boolean hasRepairGuide(String path) {
 		return repairGuide.matcher(path).find();
 	}
-	
+
 	boolean hasCategoryRepair(String path) {
 		return !path.startsWith(Constants.MODEL_REPAIR_PAGE_NO_EXT) && categoryRepair.matcher(path).find();
 	}
-	
+
 	String addSelectors(String inUrl, String extension, List<String> selectors) {
 		StringBuilder outUrl = new StringBuilder(inUrl.substring(0,inUrl.length()-extension.length()));
 		for (String selector : selectors) {
-			outUrl.append(".").append(selector);
+			outUrl.append('.').append(selector);
 		}
 		//outUrl.setLength(outUrl.length() - 1);
 		outUrl.append(extension);
@@ -147,5 +147,5 @@ public class ModelSubPageFilter implements Filter {
 
 	public void destroy() {
 	}
-	
+
 }

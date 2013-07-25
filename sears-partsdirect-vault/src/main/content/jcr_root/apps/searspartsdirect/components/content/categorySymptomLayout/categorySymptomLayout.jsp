@@ -5,12 +5,12 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<h1>${symptom.title}</h1>
+		<h1><c:out value="${symptom.title} "/></h1>
 	</div>
 </div>
 <div class="row-fluid">
 	<div class="span9">
-		<p><cq:include path="overviewImage" resourceType="searspartsdirect/components/content/categoryIcon" />${symptom.description}</p>
+		<p><cq:include path="overviewImage" resourceType="searspartsdirect/components/content/categoryIcon" /><c:out value="${symptom.description} "/></p>
 	</div>
 	<div class="span3">
 		<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />

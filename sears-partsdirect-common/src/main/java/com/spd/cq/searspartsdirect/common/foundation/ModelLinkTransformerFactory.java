@@ -21,59 +21,59 @@ import org.xml.sax.SAXException;
 @Component(enabled=true)
 @Service
 @Properties({
-    @Property(name="pipeline.mode", value="global"),
-    @Property(name="service.ranking", intValue=999)})
+	@Property(name="pipeline.mode", value="global"),
+	@Property(name="service.ranking", intValue=999)})
 
 public class ModelLinkTransformerFactory implements TransformerFactory {
-	
+
 	public Transformer createTransformer() {
-        return new RestrictedLinkTransformer();  
-    }
-    public static class RestrictedLinkTransformer extends org.apache.cocoon.xml.sax.AbstractSAXPipe implements Transformer {
+		return new RestrictedLinkTransformer();
+	}
+	public static class RestrictedLinkTransformer extends org.apache.cocoon.xml.sax.AbstractSAXPipe implements Transformer {
 
-        private final Logger log = LoggerFactory.getLogger(getClass());
-        private final static Pattern p = Pattern.compile("/([^/]*)/([^/]*)/model-([^-]*)-repair(.*)");
-        private Matcher m;
-        
-        private boolean found;
+		private final Logger log = LoggerFactory.getLogger(getClass());
+		private final static Pattern p = Pattern.compile("/([^/]*)/([^/]*)/model-([^-]*)-repair(.*)");
+		private Matcher m;
 
-        public void init(ProcessingContext processingContext, ProcessingComponentConfiguration processingComponentConfiguration) throws IOException {
-            String requestURI = processingContext.getRequest().getRequestURI();
-            
-            m = p.matcher(requestURI);
-            found = m.find();
-        }
+		private boolean found;
 
-        public void dispose() {
-            // currently NOOP
-        }
+		public void init(ProcessingContext processingContext, ProcessingComponentConfiguration processingComponentConfiguration) throws IOException {
+			String requestURI = processingContext.getRequest().getRequestURI();
 
-        public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
-            AttributesImpl attributes = new AttributesImpl(atts);
-            if (found && localName.equalsIgnoreCase("a")){
-                try{
-                    String href = attributes.getValue("href");
-                    if (href != null && href.startsWith("/") && href.indexOf(".html") >0) {
+			m = p.matcher(requestURI);
+			found = m.find();
+		}
 
-                    	Matcher linkMatch = p.matcher(href);
-                    	if (!linkMatch.find()) {
-	                    	StringBuilder sb = new StringBuilder();
-	                    	sb.append("/").append(m.group(1)).append("/").append(m.group(2));
-	                    	sb.append("/").append("model-" + m.group(3) + "-repair");
-	                    	sb.append(href);
-	                    	href = sb.toString();
-	                    	for (int i = 0; i<attributes.getLength(); i++) {
-	                            if (attributes.getQName(i).equalsIgnoreCase("href")) {
-	                                attributes.setValue(i, href);
-	                            }
-	                    	}
-                    	}
-                    }
-                } catch (Exception e){
-                    log.error("Exception in RestrictedLinkTransformer, ", e);
-                }
-            }
-            super.startElement(uri, localName, qName, attributes);
-        }
-    }
+		public void dispose() {
+			// currently NOOP
+		}
+
+		public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
+			AttributesImpl attributes = new AttributesImpl(atts);
+			if (found && localName.equalsIgnoreCase("a")){
+				try{
+					String href = attributes.getValue("href");
+					if (href != null && href.startsWith("/") && href.indexOf(".html") >0) {
+
+						Matcher linkMatch = p.matcher(href);
+						if (!linkMatch.find()) {
+							StringBuilder sb = new StringBuilder();
+							sb.append('/').append(m.group(1)).append('/').append(m.group(2));
+							sb.append('/').append("model-" + m.group(3) + "-repair");
+							sb.append(href);
+							href = sb.toString();
+							for (int i = 0; i<attributes.getLength(); i++) {
+								if (attributes.getQName(i).equalsIgnoreCase("href")) {
+									attributes.setValue(i, href);
+								}
+							}
+						}
+					}
+				} catch (Exception e){
+					log.error("Exception in RestrictedLinkTransformer, ", e);
+				}
+			}
+			super.startElement(uri, localName, qName, attributes);
+		}
+	}
 }

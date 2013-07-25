@@ -97,8 +97,8 @@
 		$('.video div[data-youtubeid]').each(function () {
 			var newVideo = new video($(this));
 		});
-		/**
-		 * addToCart class component setup
+        /**
+* addToCart class component setup
 		 */
 		$('.addToCart_js').each(function () {
 			var newAddToCart = new addToCart($(this), $('.addToCartQuantity_js', $(this).parent()));
@@ -137,6 +137,11 @@
         // find this part component setup
         $('.findThisPart').each(function() {
             var newFindThisPart = new findThisPart($(this));
+        });
+
+        // recomended parts component setup
+        $('.recomendedParts').each(function() {
+            var newrecomendedParts = new recomendedParts($(this));
         });
 
 		// desktop carousel initialization

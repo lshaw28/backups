@@ -6,10 +6,10 @@
 	<c:choose>
 		<c:when test="${fn:length(tool.url) gt 0}">
 			<spd:linkResolver value="${tool.url}" />
-			<li data-toolid="${tool.id}"><a href="${url}">${tool.text}</a></li>
+			<li data-toolid="${tool.id}"><a href="${url}"><c:out value="${tool.text}" /></a></li>
 		</c:when>
 		<c:otherwise>
-			<li data-toolid="${tool.id}">${tool.text}</li>
+			<li data-toolid="${tool.id}"><c:out value="${tool.text}" /></li>
 		</c:otherwise>
 	</c:choose>
 </c:forEach>

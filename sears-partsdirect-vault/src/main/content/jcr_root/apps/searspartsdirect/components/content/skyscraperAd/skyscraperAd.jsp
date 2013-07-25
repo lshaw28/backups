@@ -7,11 +7,11 @@
 <c:if test="${not empty productCategoryRelation}">
 	<div class="responsiveImage">
 		<spd:getImagePathTag resourcePath="${productCategoryRelation.path}" />
-		
+
 		<div data-desktopimage="${desktopImage}" data-tabletimage="${tabletImage}" data-mobileimage="${mobileImage}" data-width="${displayWidth}" data-height="${displayHeight}" data-linkalt="${linkAlt}" data-linkurl="${linkURL}" data-linktarget="${linkTarget}"></div>
-		
+
 		<c:if test="${imageCaption ne ''}">
-			<p>${imageCaption}</p>
+			<p><c:out value="${imageCaption}" /></p>
 		</c:if>
 	</div>
 </c:if>
