@@ -18,10 +18,12 @@
                 <title
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title"
+                    allowBlank="false"
                     name="./jcr:content/jcr:title"/>
                 <titlePlural
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title Plural Form"
+                    allowBlank="false"
                     name="./jcr:content/titlePlural"/>
                 <description
                     jcr:primaryType="cq:Widget"
