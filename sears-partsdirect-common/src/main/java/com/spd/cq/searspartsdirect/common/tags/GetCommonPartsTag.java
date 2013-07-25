@@ -43,7 +43,7 @@ public class GetCommonPartsTag extends CQBaseTag {
 			map.put("type", Constants.CQ_PAGE);
 			map.put("property", Constants.ASSETS_PAGES_REL_PATH);
 			map.put("property.value", categoryPath);
-			map.put("orderby", "@"+"ASSETS_TITLE_REL_PATH");
+			map.put("orderby", "@"+ Constants.ASSETS_TITLE_REL_PATH);
 			map.put("orderby.index","true");
 			map.put("orderby.sort", "asc");
 			
