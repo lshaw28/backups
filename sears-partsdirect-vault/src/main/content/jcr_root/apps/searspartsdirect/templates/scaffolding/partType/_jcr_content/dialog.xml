@@ -11,6 +11,10 @@
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title"
                     name="./jcr:content/jcr:title"/>
+                <titlePlural
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Title Plural Form"
+                    name="./jcr:content/titlePlural"/>   
                 <description
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Description"
@@ -42,5 +46,33 @@
 		            xtype="html5smartimage"/>
             </items>
         </tab2>
+        
+        <tab3
+        	jcr:primaryType="cq:Panel"
+        	title="Related Product Catetories">
+        	<items jcr:primaryType="cq:WidgetCollection">
+        		<pages
+        			jcr:primaryType="cq:Widget"
+        			name="./jcr:content/pages"
+					treeRootPath="/etc/spdAssets/scaffolding/productCategory"
+        			hideLabel="{Boolean}false"
+        			fieldLabel="Product Category Associations"
+        			xtype="scaffoldingpagemapper"/>
+        	</items>
+       	</tab3>
+       	
+       	<tab4
+       		jcr:primaryType ="cq:Panel"
+       		title="Related Guides">
+       		<items jcr:primaryType="cq:WidgetCollection">
+	       		<guides jcr:primaryType="cq:Widget"
+						fieldLabel="Guides"
+						fieldDescription="Guides"
+						hideLabel="{Boolean}false"
+						treeRootPath="/content/searspartsdirect/en/repair-guide"
+						name="./jcr:content/guides"
+						xtype="scaffoldingpagemapper"/>
+			</items>
+       	</tab4>
     </items>
 </jcr:root>
