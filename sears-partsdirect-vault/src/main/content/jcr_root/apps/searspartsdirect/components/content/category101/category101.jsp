@@ -7,7 +7,7 @@
 </c:if>
 <spd:getMultifieldArticles  categoryPath="${productCategoryRelation.path}" />
 
-<br/>
+<br />
 
 <c:if test="${not empty articles}">
 	<div class="accordion" id="parent_${uniqueId}">

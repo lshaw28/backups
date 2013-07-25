@@ -59,7 +59,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 					symptomDetailsModel.setDescription(props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class));
 
 					// now get the jobcodes, part types and guides info
-					String[] pages = (String[]) props.get("pages", String[].class);
+					String[] pages = props.get("pages", String[].class);
 					if (pages != null) {
 						jobCodeModels = new ArrayList<JobCodeModel>();
 						for(int i = 0; i< pages.length; i++) {
@@ -78,15 +78,15 @@ public class GetSymptomDetailTag extends CQBaseTag {
 										if (partTypePage != null) {
 											PartTypeModel partTypeModel = new PartTypeModel(partTypePage.getPath(),
 													partTypePage.getTitle(), partTypePage.getDescription(),
-													partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH);
+													partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH, null);
 											jobCodeModel.setPartTypeModel(partTypeModel);
 										} else {
-											log.debug("part type page is null");
+											log.warn("Could not resolve "+partType+" to a part type page.");
 										}
 										jobCodeModels.add(jobCodeModel);
 
 										//getting guides
-										String[] guides = (String[]) jobCodeProps.get(GUIDES, String[].class);
+										String[] guides = jobCodeProps.get(GUIDES, String[].class);
 										if (guides != null) {
 											List<GuideModel> guideList = new ArrayList<GuideModel>();
 											for (int j = 0; j<guides.length; j++) {
@@ -95,7 +95,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 													GuideModel guide = new GuideModel(guidePage.getPath(), null, guidePage.getTitle());
 													guideList.add(guide);
 												} else {
-													log.debug("Guide page is null");
+													log.warn("Could not resolve "+guides[j]+" to a guide page.");
 												}
 											}
 											jobCodeModel.setGuides(guideList);
@@ -105,6 +105,8 @@ public class GetSymptomDetailTag extends CQBaseTag {
 									} else {
 										log.debug("no properties for jobcode");
 									}
+								} else {
+									log.warn("Could not resolve "+pages[i]+" to a job code.");
 								}
 							}
 						}
@@ -135,5 +137,5 @@ public class GetSymptomDetailTag extends CQBaseTag {
 		this.id = id;
 	}
 
-	
+
 }

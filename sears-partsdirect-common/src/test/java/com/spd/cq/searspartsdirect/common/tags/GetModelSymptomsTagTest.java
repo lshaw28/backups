@@ -7,6 +7,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
@@ -26,6 +28,9 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
+import com.spd.cq.searspartsdirect.common.helpers.ModelSubcomponentAPIHelper;
+import com.spd.cq.searspartsdirect.common.model.PDModelSubcomponentModel;
+import com.spd.cq.searspartsdirect.common.model.PDSymptom;
 
 public class GetModelSymptomsTagTest extends MocksTag {
 	
@@ -39,7 +44,70 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		createQueryWithNoHitsYet();
 		
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
+		
+		tag.setBrandName("Kenmore");
+		tag.setCategoryName("Dishwasher");
+		tag.setModelNumber("66513593K600");
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithArgumentsAndFakeResult() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		setUpFakeCompleteResult(slingRequest);
+		createQueryWithNoHitsYet();
+		
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
+		
+		tag.setBrandName("Kenmore");
+		tag.setCategoryName("Dishwasher");
+		tag.setModelNumber("66513593K600");
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithArgumentsAndFakeResultNoFrequency() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		setUpFakeResultOneSymptom(slingRequest);
+		createQueryWithNoHitsYet();
+		
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
+		
+		tag.setBrandName("Kenmore");
+		tag.setCategoryName("Dishwasher");
+		tag.setModelNumber("66513593K600");
+		runTagShouldSkipBodyEvalPage();
+	}
+
+	@Test
+	public void testWithArgumentsButHitUnresolvable() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		createQueryWithNoHitsYet();
+		
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),false)));
+		
+		tag.setBrandName("Kenmore");
+		tag.setCategoryName("Dishwasher");
+		tag.setModelNumber("66513593K600");
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithArgumentsAndFakeResultButHitUnresolvable() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		setUpFakeCompleteResult(slingRequest);
+		createQueryWithNoHitsYet();
+		
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),false)));
 		
 		tag.setBrandName("Kenmore");
 		tag.setCategoryName("Dishwasher");
@@ -54,7 +122,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		createQueryWithNoHitsYet();
 		
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
 		
 		tag.setBrandName("Kenmoar");
 		tag.setCategoryName("Dishcleaner");
@@ -67,6 +135,22 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		tag = new GetModelSymptomsTag();
 		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
 		
+		createQueryWithNoHitsYet();
+		
+		hits.add(createATestHit("/foo"));
+		
+		tag.setBrandName("Kenmore");
+		tag.setCategoryName("Dishwasher");
+		tag.setModelNumber("66513593K600");
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithArgumentsAndFakeResultButNoProperties() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		setUpFakeCompleteResult(slingRequest);
 		createQueryWithNoHitsYet();
 		
 		hits.add(createATestHit("/foo"));
@@ -95,13 +179,31 @@ public class GetModelSymptomsTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testWithArgumentsAndFakeResultButExplodes() throws Exception {
+		tag = new GetModelSymptomsTag();
+		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
+		
+		setUpFakeCompleteResult(slingRequest);
+		createQueryWithNoHitsYet();
+		
+		Hit explodingHit = createATestHit("/foo");
+		when(explodingHit.getProperties()).thenThrow(new RepositoryException());
+		hits.add(explodingHit);
+		
+		tag.setBrandName("Kenmore");
+		tag.setCategoryName("Dishwasher");
+		tag.setModelNumber("66513593K600");
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
 	public void testWithMissingModel() throws Exception {
 		tag = new GetModelSymptomsTag();
 		//fixture = new GetModelSymptomsTagFixture(slingRequest, pageContext);
 		
 		createQueryWithNoHitsYet();
 		
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
 		
 		tag.setBrandName("Kenmore");
 		tag.setCategoryName("Dishwasher");
@@ -116,7 +218,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		createQueryWithNoHitsYet();
 		
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
 		
 		tag.setBrandName("Kenmore");
 		assertThat(tag.getCategoryName(),nullValue());
@@ -131,7 +233,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		createQueryWithNoHitsYet();
 		
-		hits.add(popProps(createTestHitProps(createATestHit("/foo"))));
+		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
 		
 		assertThat(tag.getBrandName(),nullValue());
 		assertThat(tag.getCategoryName(),nullValue());
@@ -164,12 +266,14 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		return testHit;
 	}
 	
-	private Hit createTestHitProps(Hit testHit) throws RepositoryException {
+	private Hit createTestHitProps(Hit testHit, boolean resolvable) throws RepositoryException {
 		String titleAndDesc = testHit.getPath();
 		ValueMap props = mock(ValueMap.class);
 		when(testHit.getProperties()).thenReturn(props);
 		Page testPage = mock(Page.class);
-		when(pageManager.getPage(titleAndDesc)).thenReturn(testPage);
+		if (resolvable) {
+			when(pageManager.getPage(titleAndDesc)).thenReturn(testPage);
+		}
 		when(testPage.getTitle()).thenReturn(titleAndDesc);
 		when(testPage.getDescription()).thenReturn(titleAndDesc);
 		return testHit;
@@ -194,5 +298,25 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		when(props.get("jcr:title", String.class)).thenReturn(titleAndDesc);
 		when(props.get("jcr:description", String.class)).thenReturn(titleAndDesc);
 		when(props.get("id", String.class)).thenReturn(titleAndDesc);
+	}
+	
+	private void setUpFakeCompleteResult(SlingHttpServletRequest slingRequest) {
+		PDSymptom symptom = setUpFakeResultOneSymptom(slingRequest);
+		when(symptom.getSuccessfulFrequency()).thenReturn(new BigDecimal("0.3"));
+	}
+	
+	private PDSymptom setUpFakeResultOneSymptom(SlingHttpServletRequest slingRequest) {
+		PDModelSubcomponentModel fakeResult = setUpFakeResult(slingRequest);
+		PDSymptom[] symptomsArr = new PDSymptom[1];
+		when(fakeResult.getSymptomsArr()).thenReturn(symptomsArr);
+		PDSymptom symptom = mock(PDSymptom.class);
+		symptomsArr[0] = symptom;
+		return symptom;
+	}
+	
+	private PDModelSubcomponentModel setUpFakeResult(SlingHttpServletRequest slingRequest) {
+		PDModelSubcomponentModel fakeResult = mock(PDModelSubcomponentModel.class);
+		when(slingRequest.getAttribute(ModelSubcomponentAPIHelper.MODELSUB_REQATTR)).thenReturn(fakeResult);
+		return fakeResult;
 	}
 }

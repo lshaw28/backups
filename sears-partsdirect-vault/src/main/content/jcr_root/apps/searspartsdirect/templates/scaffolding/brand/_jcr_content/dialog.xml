@@ -10,6 +10,7 @@
                 <title
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title"
+                    allowBlank="false"
                     name="./jcr:content/jcr:title"/>
                 <description
                     jcr:primaryType="cq:Widget"

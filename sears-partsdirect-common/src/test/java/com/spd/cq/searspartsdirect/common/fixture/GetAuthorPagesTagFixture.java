@@ -28,9 +28,11 @@ public class GetAuthorPagesTagFixture {
 		ValueMap pageProperties = mock(ValueMap.class);
 		when(currentPage.getProperties()).thenReturn(pageProperties);
 		String authorPathName = "someAuthor";
-		Value[] authorValues = new Value[1];
+		Value[] authorValues = new Value[2];
 		authorValues[0] = mock(Value.class);
 		when(authorValues[0].getString()).thenReturn(authorPathName);
+		authorValues[1] = mock(Value.class);
+		when(authorValues[1].getString()).thenReturn("clinker");
 		when(pageProperties.get("authors", new Value[0])).thenReturn(authorValues);
 		
 		//Page p = pageManager.getPage(path.getString());

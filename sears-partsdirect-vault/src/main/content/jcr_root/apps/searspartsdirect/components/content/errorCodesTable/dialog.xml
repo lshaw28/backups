@@ -16,43 +16,47 @@
 		            fieldLabel="Add/Edit Error codes"
 		            name="./errorCodeTable"
 		            xtype="multifield">
-		            <fieldConfig
-		                jcr:primaryType="cq:Widget"
+		            <fieldConfig jcr:primaryType="cq:Widget"
 		                xtype="multicustom">
-			                <items jcr:primaryType="cq:WidgetCollection">
-			                     <code
-			                        jcr:primaryType="cq:Widget"
+		                	<items jcr:primaryType="cq:WidgetCollection">
+			                     <code jcr:primaryType="cq:Widget"
 			                        fieldLabel="Error Code"
 			                        name="code"
-			                        xtype="textfield"/>
-			                     <condition
+			                        xtype="textarea"
+			                        width="600"/>
+			                 	<condition
 			                        jcr:primaryType="cq:Widget"
 			                        fieldLabel="Condition"
 			                        name="condition"
-			                        xtype="textfield"/>
-			                      <checkRepairText
+			                        xtype="textarea"
+			                        width="600"/>
+			                     <checkRepairText
 			                        jcr:primaryType="cq:Widget"
 			                        fieldLabel="Check/Repair"
 			                        name="checkRepairText"
-			                        xtype="textfield"/>  
-			                      <checkRepairLink
+			                        xtype="textarea"
+			                        width="600"/>
+			                  <checkRepairLink
 			                        jcr:primaryType="cq:Widget"
 			                        name="checkRepairLink"
 			                        xtype="pathfield"
-			                        rootPath="/content/searspartsdirect/en/repair-guide" />
-			                     
+			                        fieldLabel="Shop Parts link"
+			                        rootPath="/content/searspartsdirect/en/repair-guide"
+			                        width="400"/>
 			                     <shopPartsText
 			                        jcr:primaryType="cq:Widget"
 			                        fieldLabel="Shop parts Text"
 			                        name="shopPartsText"
-			                        xtype="textfield"/>    
-			                     <shopPartsLink
+			                        xtype="textarea"
+			                        width="600"/>
+			                  <shopPartsLink
 			                        jcr:primaryType="cq:Widget"
 			                        fieldLabel="Shop Parts link"
 			                        fieldDescription="Must be a valid link"
 			                        name="shopPartsLink"
 			                        regex="Shc.components.extsrc.regex.ValidationPatterns.url"
-			                        xtype="textfield"/>             
+			                        xtype="textfield"
+			                        width="400"/> 
 			                </items>
 		            </fieldConfig>
 		        </multi>

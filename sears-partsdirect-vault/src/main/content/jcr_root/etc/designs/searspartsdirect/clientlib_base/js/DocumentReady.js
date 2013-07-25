@@ -98,10 +98,10 @@
 			var newVideo = new video($(this));
 		});
         /**
-* addToCart class component setup
+		 * addToCart class component setup
 		 */
 		$('.addToCart_js').each(function () {
-			var newAddToCart = new addToCart($(this), $('.addToCartQuantity_js', $(this).parent()));
+			var newAddToCart = new addToCart($(this), $('.addToCartQuantity_js', $(this).parent().parent()));
 		});
         /**
 		 * guideNavigation component setup
@@ -139,9 +139,9 @@
             var newFindThisPart = new findThisPart($(this));
         });
 
-        // recomended parts component setup
-        $('.recomendedParts').each(function() {
-            var newrecomendedParts = new recomendedParts($(this));
+        // recommended parts component setup
+        $('.recommendedParts').each(function() {
+            var newrecommendedParts = new recommendedParts($(this));
         });
 
 		// desktop carousel initialization

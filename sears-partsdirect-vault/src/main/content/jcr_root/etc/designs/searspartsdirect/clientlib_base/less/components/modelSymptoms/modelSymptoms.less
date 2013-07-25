@@ -2,78 +2,82 @@
 @import "../../base.mixins.less";
 
 .modelSymptomDetail {
- margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 25px;
-  padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 25px;
+    padding: 10px;
 
-  .csd-border {
-    border: 2px solid @secondaryHueLight;
-    margin: 0 0 15px 0;
-    padding-bottom: 15px;
-    padding-left: 10px;
-    padding-right: 10px;
+    .csd-border {
+        border: 2px solid @secondaryHueLight;
+        margin: 0 0 15px 0;
+        padding-bottom: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
 
-    h3 {
-      color: @secondaryHueDark;
-    }
+        h3 {
+            color: @secondaryHueDark;
+        }
 
 
-    .csd-image {
-      border: 1px solid @secondaryHueLight;
-    }
+        .csd-image {
+            border: 1px solid @secondaryHueLight;
+        }
 
-    .csd-content {
+        .csd-content {
 
-      a {
-        border-top: 1px solid @secondaryHueLight;
-        padding-top: 10px;
-        padding-left: 15px;
-        padding-right: 15px;
-        line-height: 20px;
-        display: inherit;
-        width: 40%;
-      }
-            &:first-child {
-						border-bottom: 1px solid @secondaryHueLight;
-					}
-
-      a[href]:hover {
-        text-decoration: none;
-      }
-
-    }
-
-  }
-    .shopParts{
-        
             a {
-        border-top: 1px solid @secondaryHueLight;
-        border-bottom: 1px solid @secondaryHueLight;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 15px;
-        padding-right: 15px;
-        line-height: 41px;
-      }
+                border-top: 1px solid @secondaryHueLight;
+                padding-top: 10px;
+                padding-left: 15px;
+                padding-right: 15px;
+                line-height: 20px;
+                display: inherit;
+                width: 40%;
+            }
+            &:first-child {
+                border-bottom: 1px solid @secondaryHueLight;
+            }
 
-      a[href]:hover {
-        text-decoration: none;
-      }
-
+            a[href]:hover {
+                text-decoration: none;
+            }
 
         }
-        .displayRecommendedParts{
-            display: inline-block;
-        	border: 10px solid @secondaryHueLight;
 
-            .row-fluid{
-                margin: 0;
-                border-bottom: 1px solid @secondaryHueLight;
+    }
+    .shopParts{
+
+        a {
+            border-top: 1px solid @secondaryHueLight;
+            border-bottom: 1px solid @secondaryHueLight;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            line-height: 41px;
+        }
+
+        a[href]:hover {
+            text-decoration: none;
+        }
+
+
+    }
+    .displayRecommendedParts{
+        display: inline-block;
+        border: 10px solid @secondaryHueLight;
+
+        .row-fluid{
+            margin: 0;
+            border-bottom: 1px solid @secondaryHueLight;
             padding: 15px;
             .span2 span.partsfrequency{
                 font-size: @h2Size;
                 font-weight: bold;
+            }
+            span.span10.offset2{
+                margin-left:35%;
+
             }
             .span2 img{
                 width: 100px;
@@ -85,7 +89,14 @@
             .span2 span.partsPrice{
                 font-size: @h2Size;
                 font-weight: bold;
+                margin: 0;
+           }
+             input.span3{
+                    width: 30%;
 
+                }
+            .span2 span.Qty{
+                font-weight: bold;
             }
             .row-fluid .span1{
                 width: 7%;
@@ -97,16 +108,11 @@
         }
     }
 
-
-
-
-   p {
-     color: @secondaryHueDark;
-     font-size: @pSize;
-   }
-
-
-
+    p {
+        color: @secondaryHueDark;
+        font-size: @pSize;
+    }
 
 }
 
+@import "modelSymptoms.tablet.less";

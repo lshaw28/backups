@@ -35,8 +35,8 @@
     var localEvents = {};
     localEvents.CLEAR = "lcl.cq.soco.events.clear";
     CQ.soco.commons.handleOnBlur = function(el, message) {
-        //Apparently the RTE reports a <br/> as it's empty text
-        if(($CQ(el).val() === "") || ($CQ(el).val() === "<br/>")) {
+        //Apparently the RTE reports a <br /> as it's empty text
+        if(($CQ(el).val() === "") || ($CQ(el).val() === "<br />")) {
             $CQ(el).val(message);
         }
     };

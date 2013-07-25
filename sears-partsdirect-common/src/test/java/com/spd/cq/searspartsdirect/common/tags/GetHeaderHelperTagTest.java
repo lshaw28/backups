@@ -30,6 +30,12 @@ public class GetHeaderHelperTagTest extends MocksTag {
 	}
 	
 	@Test
+	public void testWithNoCookies() throws JspException {
+		fixture.setUpNoCookies();
+		runTagShouldSkipBodyAndEvalPage();
+	}
+	
+	@Test
 	public void testWithMyProfileModelCookie() throws JspException {
 		fixture.setUpPopulatedModelCookie();
 		runTagShouldSkipBodyAndEvalPage();
