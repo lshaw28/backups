@@ -5,7 +5,7 @@
 	<c:when test="${not empty carouselImages}">
 		<c:set var="titleText"><cq:text property="./titleText" placeholder="" /></c:set>
 		<c:if test="${not empty titleText}">
-			<h2>${titleText}</h2>
+			<h2><c:out value="${titleText} "/></h2>
 		</c:if>
 		<div class="hide-onload desktop-carousel touch-carousel">
 			<div class="carousel-wrapper">

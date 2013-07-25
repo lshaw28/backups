@@ -1,9 +1,13 @@
 package com.spd.cq.searspartsdirect.common.helpers;
 
+import java.util.Iterator;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.adobe.cq.social.commons.Comment;
+import com.adobe.cq.social.commons.CommentSystem;
 import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 
@@ -23,6 +27,18 @@ public class PDUtils {
     		}
 		}
 		return subcategoryID;
+	}
+	
+	public static int countCommentsCorrectly(CommentSystem cs) {
+		Iterator<Comment> commentsIter = cs.getComments();
+		int commentsCount = 0;
+		while(commentsIter.hasNext()) {
+			Comment singleComment = commentsIter.next();
+			if (!(singleComment.isSpam() || singleComment.isDenied())) {
+				commentsCount++;
+			}
+		}
+		return commentsCount;
 	}
 
 }

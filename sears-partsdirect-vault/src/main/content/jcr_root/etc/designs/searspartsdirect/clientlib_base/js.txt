@@ -26,6 +26,7 @@ DocumentReady.js
 WindowResize.js
 
 #base=js/components/.
+addToCart.js
 cartNav.js
 category101.js
 collapse101.js
@@ -40,3 +41,4 @@ searchPanel.js
 video.js
 comments.js
 modelHeader.js
+recomendedParts.js

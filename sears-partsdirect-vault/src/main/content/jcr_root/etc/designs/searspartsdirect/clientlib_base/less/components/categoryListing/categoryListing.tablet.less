@@ -2,9 +2,20 @@
 @import "../../base.mixins.less";
 
 @media (max-width: 1024px) {
+	.category-item {
+		margin: 0 2% 2% 0;
+		width: 23%;
 
-    .category-item {
-        margin: 0 2% 2% 0;
-        width: 23%;
-    }
+		a {
+			.category-item-inner {
+				[class*="svg-icon-"], [class^=" svg-icon-"] {
+					height: @iconSizeNormal;
+					width: @iconSizeNormal;
+				}
+				[class*="icon-"], [class^=" icon-"] {
+					font-size: @iconSizeNormal;
+				}
+			}
+		}
+	}
 }

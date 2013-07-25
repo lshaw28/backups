@@ -14,14 +14,14 @@
 						<div class="topAccessories-item">
 							<spd:displayImage path="${accessory.imagePath}"
 								altText="${accessory.description}" decorated="false" />
-							<a href="${accessory.linkUrl}">${accessory.title}</a>
+							<a href="${accessory.linkUrl}"><c:out value="${accessory.title}" /></a>
 						</div>
 					</c:forEach>
 				</div>
 			</c:when>
 			<c:otherwise>
 				<c:if test="${isEditMode or isDesignMode}">
-					<p>No accessories defined for this category. Add accessories at ${productCategoryRelation.path}</p>
+					<p>No accessories defined for this category. Add accessories at <c:out value="${productCategoryRelation.path}" /></p>
 				</c:if>
 			</c:otherwise>
 		</c:choose>

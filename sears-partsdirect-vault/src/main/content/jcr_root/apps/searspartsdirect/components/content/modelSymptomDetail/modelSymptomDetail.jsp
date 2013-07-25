@@ -8,45 +8,67 @@
 <spd:getUrlRelation relationType="model" />
 
 <c:set var="modelRepairUrl" value="/content/searspartsdirect/en/${brandRelation.trueName}/${productCategoryRelation.trueName}/model-${modelRelation}-repair.html"/>
-<a href="${modelRepairUrl}">Return to Repair help for model #${modelRelation}</a>
+<a href="${modelRepairUrl}">Return to Repair help for model #<c:out value="${modelRelation}" /></a>
 
 <c:set var="jobCodes" value="${symptom.jobCodeModels}" scope="request" />
 <c:set var="modelNumber" value="${modelRelation}" scope="request" />
 <cq:include path="jobCodePartsFinder" resourceType="searspartsdirect/components/content/jobCodePartsFinder" />
 
-<h1>${symptom.title}</h1>
-<p>${symptom.description}</p>
+<h1><c:out value="${symptom.title}" /></h1>
+<p><c:out value="${symptom.description}" /> </p>
 
 <c:forEach var="jobCode" items="${symptom.jobCodeModels}">
-	<c:if test="${jobCode.partTypeModel != null &&  jobCode.partTypeModel.imagePath != null}">
-		<spd:displayImage path="${jobCode.partTypeModel.imagePath}" altText="${jobCode.partTypeModel.title}"/>
-	</c:if>
+    <div class="csd-border">
+
 	<h3>${jobCode.title}</h3>
-	<p>${jobCode.description}</p>
-	
+
+		 <div class="row-fluid">
+            <c:choose>
+                <c:when test="${jobCode.partTypeModel != null && jobCode.partTypeModel.imagePath != null}">
+                    <div class="span3 csd-image">
+                        <spd:displayImage path="${jobCode.partTypeModel.imagePath}" altText="${jobCode.partTypeModel.title}"/>
+                    </div>
+                    <c:set var="textClass" value="span9" />
+                </c:when>
+                <c:otherwise>
+                    <c:set var="textClass" value="span12" />
+                </c:otherwise>
+            </c:choose>
+             <div class="csd-content ${textClass}">
+				<p>${jobCode.description}</p>
+
 	<!--  Guides:- -->
 	<c:if test="${not empty jobCode.guides}">
 		<c:forEach var="guide" items="${jobCode.guides}">
 			<spd:linkResolver value="${guide.url}"/>
-			<p><a href="${url}">${guide.title}</a></p>
+			<p><a href="${url}"><c:out value="${guide.title}" /></a></p>
 		</c:forEach>
 	</c:if>
-	
+
+
+           <spd:getPartsLinkTag brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}"/>
+                <c:if test="${!not empty recommendedParts && not empty findPartUrl && not empty jobCode.partTypeModel}">
+                    <p class="shopParts">
+                        <a href="${findPartUrl}">Shop ${jobCode.partTypeModel.title} in this model</a>
+                    </p>
+                </c:if>
+
+
+</div>
+        </div>
+
+    </div>
 	<c:set var="recommendedParts" value="${jobCodeParts[jobCode.id]}" scope="request" />
 	<c:choose>
 		<c:when test="${not empty recommendedParts}">
-			<cq:include path="displayRecommendedParts" resourceType="searspartsdirect/components/content/displayRecommendedParts" />
-		</c:when>
+            <cq:include path="recomendedParts" resourceType="searspartsdirect/components/content/recomendedParts" />
+				</c:when>
 		<c:otherwise>
 			<!--  no parts found then show the following block -->
-			<spd:getPartsLinkTag brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}"/>
-			<c:if test="${not empty findPartUrl && not empty jobCode.partTypeModel}">
-				<p>
-					<a href="${findPartUrl}">Find ${jobCode.partTypeModel.title} in this model</a>
-				</p>
-			</c:if>
+
 		</c:otherwise>
 	</c:choose>
+
 </c:forEach>
 
 

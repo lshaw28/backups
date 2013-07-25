@@ -10,24 +10,24 @@
 	<c:set var="titleText"><cq:text property="allGuidestitle" placeholder="" /></c:set>
 	<c:choose>
 		<c:when test="${not empty titleText}">
-			<h4>${titleText}</h4>
+			<h4><c:out value="${titleText}" /></h4>
 		</c:when>
 		<c:otherwise>
 			<h4>All Guides</h4>
 		</c:otherwise>
 	</c:choose>
-			
+
 	<c:choose>
 		<c:when test="${not empty guides}">
 			<div class="guideListing-listing">
 				<c:forEach items="${guides}" var="row">
-					<%-- Design does not show this 
+					<%-- Design does not show this
 					<spd:displayTagTitle tagId="${row.key}" />
 					--%>
 					<c:forEach var="guide" items="${row.value}">
 						<spd:linkResolver value="${guide.url}" />
 							<div class="item">
-								<h4><a href="${url}">${guide.title}</a></h4>
+								<h4><a href="${url}"><c:out value="${guide.title}" /></a></h4>
 
 								<div class="wrapper">
 									<div class="image-wrapper">

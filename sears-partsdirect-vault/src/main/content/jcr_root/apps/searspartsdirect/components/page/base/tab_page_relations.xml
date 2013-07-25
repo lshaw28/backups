@@ -4,11 +4,9 @@
 	width="500"
 	title="Page Relations">
 	<items jcr:primaryType="cq:WidgetCollection">
-		
         <pageRelations jcr:primaryType="cq:Widget"
         	name="./pages"
         	treeRootPath="/etc/spdAssets/scaffolding"
         	xtype="pagemapper"/>
-        
 	</items>
 </jcr:root>
