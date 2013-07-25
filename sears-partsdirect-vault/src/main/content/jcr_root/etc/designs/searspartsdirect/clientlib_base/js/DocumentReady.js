@@ -98,10 +98,10 @@
 			var newVideo = new video($(this));
 		});
         /**
-* addToCart class component setup
+		 * addToCart class component setup
 		 */
 		$('.addToCart_js').each(function () {
-			var newAddToCart = new addToCart($(this), $('.addToCartQuantity_js', $(this).parent()));
+			var newAddToCart = new addToCart($(this), $('.addToCartQuantity_js', $(this).parent().parent()));
 		});
         /**
 		 * guideNavigation component setup
