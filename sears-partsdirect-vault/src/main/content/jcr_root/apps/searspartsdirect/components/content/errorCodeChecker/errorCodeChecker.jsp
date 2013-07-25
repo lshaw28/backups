@@ -8,10 +8,6 @@
 		<c:set var="numErrorCodes" value="${fn:length(errorCodeList)}" />
 		<c:set var="catRepairUrl" value="/content/searspartsdirect/en/categories/${productCategoryRelation.trueName}-repair/error-codes.html" />
 		<p>
-			<a class="new-btn" href="${fn:toLowerCase(catRepairUrl)}">
-			View <c:out value="${productCategoryRelation.title}" /> Error Code<c:if test="${numErrorCodes gt 1}">s</c:if>
-			</a>
-			
 			<span class="primary-content">
 				<span class="icon-container">
 					<i class="svg-icon-er"></i>
@@ -19,6 +15,10 @@
 				</span>
 				<c:out value="${productCategoryRelation.title}" /> returning an error code? 
 			</span>
+
+            <a class="new-btn" href="${fn:toLowerCase(catRepairUrl)}">
+            View <c:out value="${productCategoryRelation.title}" /> Error Code<c:if test="${numErrorCodes gt 1}">s</c:if>
+            </a>
 		</p>
 	</c:if>
 </c:if>

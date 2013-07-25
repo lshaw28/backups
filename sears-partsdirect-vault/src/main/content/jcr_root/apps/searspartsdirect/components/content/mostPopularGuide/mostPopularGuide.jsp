@@ -15,7 +15,7 @@
 			<h2>Most Popular Guide</h2>
 		</c:otherwise>
 	</c:choose>
-			
+
 	<div class="guideListing-popular-view">
 		<c:choose>
 			<c:when test="${not empty guides}">
@@ -30,10 +30,10 @@
 						<div class="wrench-symbol">
 							<i class="icon-wrench"></i>
 						</div>
-								
+
 						<div class="guideListing-popular-text">
 							<div class="wrapper">
-								<h3>${popularGuide.title}</h3>
+								<h3><c:out value="${popularGuide.title}" /></h3>
 								<p>
 									Refrigerator help overview Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam interdum pulvinar nibh. aecenas eget nunc in justo rhoncus.
 								</p>
@@ -57,7 +57,7 @@
 
 									</div>
 								</div>
-										
+
 
 								<c:set var="viewText"><cq:text property="viewThisText" placeholder="" /></c:set>
 								<c:choose>

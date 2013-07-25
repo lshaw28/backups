@@ -41,3 +41,4 @@ searchPanel.js
 video.js
 comments.js
 modelHeader.js
+recomendedParts.js

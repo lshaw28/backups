@@ -5,6 +5,6 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<p><i class="${noticeIcon} pull-left">&nbsp;</i><em>${tipPrefix}</em> ${htwText}</p>
+		<p><i class="${noticeIcon} pull-left">&nbsp;</i><em><c:out value="${tipPrefix}" /></em> <c:out value="${htwText}" /></p>
 	</div>
 </div>
