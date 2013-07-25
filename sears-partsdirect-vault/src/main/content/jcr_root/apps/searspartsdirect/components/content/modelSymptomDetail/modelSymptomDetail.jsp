@@ -61,7 +61,7 @@
     <c:set var="recommendedParts" value="${jobCodeParts[jobCode.id]}" scope="request" />
     <c:choose>
         <c:when test="${not empty recommendedParts}">
-            <cq:include path="recomendedParts" resourceType="searspartsdirect/components/content/recomendedParts" />
+            <cq:include path="recommendedParts" resourceType="searspartsdirect/components/content/recommendedParts" />
         </c:when>
         <c:otherwise>
             <!--  no parts found then show the following block -->

@@ -139,9 +139,9 @@
             var newFindThisPart = new findThisPart($(this));
         });
 
-        // recomended parts component setup
-        $('.recomendedParts').each(function() {
-            var newrecomendedParts = new recomendedParts($(this));
+        // recommended parts component setup
+        $('.recommendedParts').each(function() {
+            var newrecommendedParts = new recommendedParts($(this));
         });
 
 		// desktop carousel initialization
