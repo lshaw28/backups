@@ -113,7 +113,7 @@ public class ModelSubPageFilter implements Filter {
 			String forwardUrl = addSelectors(authorPrepend + resPath,Constants.MARKUP_EXT,selectors);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher(forwardUrl);
 
-			if (requestDispatcher == null) throw new RuntimeException("No dispatcher for "+forwardUrl);
+			//if (requestDispatcher == null) throw new RuntimeException("No dispatcher for "+forwardUrl);
 			log.debug("Forwarding to "+forwardUrl);
 			requestDispatcher.forward(request, response);
 
