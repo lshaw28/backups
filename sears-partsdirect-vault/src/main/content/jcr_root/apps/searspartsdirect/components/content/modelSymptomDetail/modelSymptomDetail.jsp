@@ -20,9 +20,9 @@
 <c:forEach var="jobCode" items="${symptom.jobCodeModels}">
     <div class="csd-border">
 
-	<h3>${jobCode.title}</h3>
+        <h3>${jobCode.title}</h3>
 
-		 <div class="row-fluid">
+        <div class="row-fluid">
             <c:choose>
                 <c:when test="${jobCode.partTypeModel != null && jobCode.partTypeModel.imagePath != null}">
                     <div class="span3 csd-image">
@@ -34,41 +34,40 @@
                     <c:set var="textClass" value="span12" />
                 </c:otherwise>
             </c:choose>
-             <div class="csd-content ${textClass}">
-				<p>${jobCode.description}</p>
+            <div class="csd-content ${textClass}">
+                <p>${jobCode.description}</p>
 
-	<!--  Guides:- -->
-	<c:if test="${not empty jobCode.guides}">
-		<c:forEach var="guide" items="${jobCode.guides}">
-			<spd:linkResolver value="${guide.url}"/>
-			<p><a href="${url}"><c:out value="${guide.title}" /></a></p>
-		</c:forEach>
-	</c:if>
+                <!--  Guides:- -->
+                <c:if test="${not empty jobCode.guides}">
+                    <c:forEach var="guide" items="${jobCode.guides}">
+                        <spd:linkResolver value="${guide.url}"/>
+                        <p><a href="${url}"><c:out value="${guide.title}" /></a></p>
+                    </c:forEach>
+                </c:if>
 
 
-           <spd:getPartsLinkTag brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}"/>
-                <c:if test="${!not empty recommendedParts && not empty findPartUrl && not empty jobCode.partTypeModel}">
+                <spd:getPartsLinkTag brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}"/>
+                <c:if test="${empty recommendedParts && not empty findPartUrl && not empty jobCode.partTypeModel}">
                     <p class="shopParts">
                         <a href="${findPartUrl}">Shop ${jobCode.partTypeModel.title} in this model</a>
                     </p>
                 </c:if>
 
 
-</div>
+            </div>
         </div>
 
     </div>
-	<c:set var="recommendedParts" value="${jobCodeParts[jobCode.id]}" scope="request" />
-	<c:choose>
-		<c:when test="${not empty recommendedParts}">
+    <c:set var="recommendedParts" value="${jobCodeParts[jobCode.id]}" scope="request" />
+    <c:choose>
+        <c:when test="${not empty recommendedParts}">
             <cq:include path="recomendedParts" resourceType="searspartsdirect/components/content/recomendedParts" />
-				</c:when>
-		<c:otherwise>
-			<!--  no parts found then show the following block -->
+        </c:when>
+        <c:otherwise>
+            <!--  no parts found then show the following block -->
 
-		</c:otherwise>
-	</c:choose>
+        </c:otherwise>
+    </c:choose>
 
 </c:forEach>
-
 
