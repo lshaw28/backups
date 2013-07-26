@@ -24,19 +24,19 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
 public class GetCommonPartsTag extends CQBaseTag {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Session session;
 	private QueryBuilder builder;
 	private Query query;
 	private String categoryPath;
 	List<PartTypeModel> partTypes;
 	private static final String GUIDES = "guides";
-	
+
 	@Override
 	public int doStartTag() throws JspException {
 		if (!StringUtils.isEmpty(categoryPath)) {
 			partTypes = new ArrayList<PartTypeModel>();
-			
+
 			session = slingRequest.getResourceResolver().adaptTo(Session.class);
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("path", Constants.ASSETS_PATH + "/partType");
@@ -46,21 +46,21 @@ public class GetCommonPartsTag extends CQBaseTag {
 			map.put("orderby", "@"+ Constants.ASSETS_TITLE_REL_PATH);
 			map.put("orderby.index","true");
 			map.put("orderby.sort", "asc");
-			
+
 			builder = resourceResolver.adaptTo(QueryBuilder.class);
 			query = builder.createQuery(PredicateGroup.create(map), session);
 			SearchResult result = query.getResult();
-			
+
 			for (Hit hit : result.getHits()) {
 				try {
 					ValueMap props = hit.getProperties();
 					Page partTypePage = pageManager.getPage(hit.getPath());
 					if (props != null) {
 						PartTypeModel partType = new PartTypeModel(partTypePage.getPath(), props.get(Constants.ASSETS_TITLE_PATH, String.class), props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class), partTypePage.getPath() +  Constants.ASSETS_IMAGE_PATH,  props.get("titlePlural", String.class));
-						
+
 						ValueMap partTypesProps = partTypePage.getProperties();
-						String[] guides = (String[]) partTypesProps.get(GUIDES, String[].class);
-						
+						String[] guides = partTypesProps.get(GUIDES, String[].class);
+
 						if (guides != null) {
 							List<GuideModel> guideList = new ArrayList<GuideModel>();
 							for (int i = 0; i < guides.length; i++) {
@@ -88,7 +88,7 @@ public class GetCommonPartsTag extends CQBaseTag {
 		}
 		return SKIP_BODY;
 	}
-	
+
 	@Override
 	public int doEndTag() throws JspException {
 		return EVAL_PAGE;
