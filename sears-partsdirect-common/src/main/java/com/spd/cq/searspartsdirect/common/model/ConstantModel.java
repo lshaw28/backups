@@ -41,4 +41,8 @@ public class ConstantModel {
 	public String getNO_ICON() {
 		return Constants.NO_ICON;
 	}
+	
+	public String getINSTRUCTIONS_DEF_GUIDE_NAV_LINK() {
+		return Constants.INSTRUCTIONS_DEF_GUIDE_NAV_LINK;
+	}
 }
