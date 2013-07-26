@@ -73,6 +73,10 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	treeRootPath: '/content',
 	/**
+	 * @type {Array}
+	 */
+	allowedNodes: '',
+	/**
 	 * @type {CQ.Ext.data.Store}
 	 * Model reference
 	 */
@@ -83,30 +87,26 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	dataStore: null,
 	/**
-	 * @type {String}
-	 */
-	multipleRootPaths: [],
-	/**
 	 * Initializer event
 	 * @return {undefined}
 	 */
 	initComponent: function () {
 		// instantiate parent constructor
 		Shc.components.extsrc.PageMapper.superclass.initComponent.call(this);
-		
+
 		// form key resolver
 		if (typeof this.getName().toString() === 'string') {
 			this.formName = this.getName();
 		}
-		
+
 		// set type to to store as String[] on JCR property
 		this.setDataType('String[]');
-		
+
 		// wrapper to store components
 		this.containerPanel = new CQ.Ext.Panel({
 			layout: 'column'
 		});
-		
+
 		// create colletions model
 		this.dataStore = new CQ.Ext.data.ArrayStore({
 			// store configs
@@ -116,13 +116,13 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 			idIndex: 0,
 			fields: ['path']
 		});
-		
+
 		// configures parent data
 		this.parentStoreBootup();
-		
+
 		// tree configs
 		this.initTreePanel();
-		
+
 		// grid configs
 		this.initGridPanel();
 
@@ -135,7 +135,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	parentStoreBootup: function () {
 		var _this = this;
-		
+
 		// get parent reference
 		this.parentDialog = this.findParentByType('dialog');
 
@@ -155,7 +155,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	initTreePanel: function () {
 		var _this = this;
-		
+
 		this.treePanel = new CQ.Ext.tree.TreePanel({
 			ddGroup: Shc.components.extsrc.PAGE_MAPPER_GROUPDD,
 			width: 240,
@@ -195,24 +195,31 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 				}
 			},
 
-		//Commenting this out. Dale will pick this up
-		//	multi: _this.multipleRootPaths,
-		//	for (var i = 0; i < multi.length; i++) {
-			    root: {
-					nodeType: 'async',
-					// we don't show the root, no need to have text
-					text: '',
-					//name: _this.treeRootPath + '/' + multi[i].val(),
-					name: _this.treeRootPath,
-					expanded: true,
-					// no root dragging (its not like u can see it when its disabled anyways)
-					draggable: false
-				}
-		//	}
 			// CQ.Ext.tree.TreeNode config
-			
+			root: {
+				nodeType: 'async',
+				// we don't show the root, no need to have text
+				text: '',
+				name: _this.treeRootPath,
+				expanded: true,
+				// no root dragging (its not like u can see it when its disabled anyways)
+				draggable: false
+			},
+
+			listeners: {
+				beforeappend: function (tree, panel, node) {
+					var nodeName = node.attributes.name;
+
+					if (_this.allowedNodes.trim() !== '') {
+						if (_this.allowedNodes.indexOf(nodeName) === -1) {
+							node.hidden = true;
+							node.disabled = true;
+						}
+					}
+				}
+			},
 		});
-		
+
 		// append to wrapper
 		this.containerPanel.add(this.treePanel);
 	},
@@ -223,7 +230,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	initGridPanel: function () {
 		var _this = this;
-		
+
 		this.gridPanel = new CQ.Ext.grid.GridPanel({
 			border: false,
 			columnWidth: 1,
@@ -249,7 +256,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 			}
 			])
 		});
-		
+
 		// enable drop configs and actions
 		this.gridPanel.on('render', function () {
 			return new CQ.Ext.dd.DropTarget(this.getEl(), {
@@ -270,15 +277,15 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 				}
 			});
 		});
-		
+
 		// config for right click > delete
 		this.gridPanel.on('rowcontextmenu', function (grid, index, e) {
 			var xy = e.getXY(),
 				menu,
 				items = [];
-			
+
 			// build context menu
-			
+
 			// move up
 			if (index > 0) {
 				items.push({
@@ -306,7 +313,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 					}
 				});
 			}
-			
+
 			// move down
 			if (index < _this.dataStore.getCount() - 1) {
 				items.push({
@@ -334,7 +341,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 					}
 				});
 			}
-			
+
 			// remove
 			items.push({
 				text: 'Remove',
@@ -346,19 +353,30 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 					_this.removeValue(path);
 				}
 			});
-			
+
 			menu = new CQ.Ext.menu.Menu({
 				items: items
 			});
-			
+
 			// location of ext context menu
 			menu.showAt(xy);
-			
+
 			// preventDefault
 			e.stopEvent();
 		});
-		
+
 		this.containerPanel.add(this.gridPanel);
+	},
+	/**
+	 * Modifies a list of child nodes based on a string array of allowed paths
+	 * @param {array} node Original node
+	 * @return {void}
+	 */
+	cleanChildNodes: function (node) {
+		var _this = this;
+
+		console.log(_this.allowedNodes);
+		console.log(node.childNodes);
 	},
 	/**
 	 * Populates grid from parent data
@@ -370,7 +388,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 			// get mapper data from parent
 			data = this.parentStore.getAt(0).get(mapperProperty),
 			i;
-			
+
 		// sometimes property isn't present like on first component use
 		if (typeof data !== 'undefined') {
 			// clear our current store so data isn't duplicated
@@ -403,15 +421,15 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	removeAllHiddenFields: function () {
 		var i;
-		
+
 		// itertate over fields
 		for (i = 0; i < this.hiddenFields.length; ++i) {
 			this.hiddenFields[i].remove();
 		}
-		
+
 		// clear
 		this.hiddenFields = [];
-		
+
 		// render
 		this.doLayout();
 	},
@@ -425,15 +443,15 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		if (this.pathExists(path) === true) {
 			throw new CQ.Ext.Error('Path already exists.');
 		}
-		
+
 		// record data to collections
 		this.insert({
 			path: path
 		});
-		
+
 		// add hidden value for POST support
 		this.addHiddenValue(path);
-		
+
 		// make sure emptyField is disabled
 		if (this.hiddenFields.length > 0 && this.emptyField.disabled === false) {
 			this.emptyField.disable();
@@ -446,10 +464,10 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	removeValue: function (path) {
 		this.remove('path', path);
-		
+
 		// remove hidden value for POST support
 		this.removeHiddenValue(path);
-		
+
 		// if no more items enable empty field
 		if (this.hiddenFields.length === 0) {
 			this.emptyField.enable();
@@ -471,13 +489,13 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	remove: function (key, value) {
 		var recordIndex = -1;
-		
+
 		this.dataStore.each(function (item, index) {
 			if (this.data[key] !== 'undefined' && this.data[key] === value) {
 				recordIndex = index;
 			}
 		});
-		
+
 		this.dataStore.remove(this.dataStore.getAt(recordIndex));
 	},
 	/**
@@ -487,13 +505,13 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	pathExists: function (path) {
 		var output = false;
-		
+
 		this.dataStore.each(function () {
 			if (this.data.path !== 'undefined' && this.data.path === path) {
 				output = true;
 			}
 		});
-		
+
 		return output;
 	},
 	/**
@@ -504,20 +522,20 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	setDataType: function (type) {
 		// name of field
 		var name = this.formName;
-		
+
 		// field config
 		this.typeField = new CQ.Ext.form.Hidden({
 			name: name + CQ.Sling.TYPEHINT_SUFFIX,
 			value: type
 		});
-		
+
 		// field config
 		this.emptyField = new CQ.Ext.form.Hidden({
 			name: name,
 			value: '',
 			disabled: true
 		});
-		
+
 		// append to form to be collected on dialog submit
 		this.add(this.typeField);
 		this.add(this.emptyField);
@@ -532,13 +550,13 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		var name = this.formName,
 			// hidden form to store value
 			field = $CQ('<input type="hidden" name="' + name + '" value="' + value + '" />');
-		
+
 		// save reference
 		this.hiddenFields.push(field);
-		
+
 		// add to component
 		$CQ(this.el.dom).append(field);
-		
+
 		// render
 		this.doLayout();
 	},
@@ -549,7 +567,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	removeHiddenValue: function (value) {
 		var i;
-		
+
 		// itertate over fields
 		for (i = 0; i < this.hiddenFields.length; ++i) {
 			// match?
@@ -557,12 +575,12 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 				// remove!
 				this.hiddenFields[i].remove();
 				this.hiddenFields.splice(i, 1);
-				
+
 				// end
 				break;
 			}
 		}
-		
+
 		// render
 		this.doLayout();
 	},
@@ -573,15 +591,15 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	removeAllHiddenValues: function () {
 		var i;
-		
+
 		// itertate over fields
 		for (i = 0; i < this.hiddenFields.length; ++i) {
 			this.hiddenFields[i].remove();
 		}
-		
+
 		// reset
 		this.hiddenFields = [];
-		
+
 		// render
 		this.doLayout();
 	}
