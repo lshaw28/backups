@@ -23,6 +23,13 @@ public class ArticleModel {
 				page.getTitle(),
 				page.getProperties().get("abstracttext", Constants.EMPTY).toString());
 	}
+	
+	public ArticleModel(Page page, String imagePath) {
+		this(page.getPath() + ".html",
+				imagePath,
+				page.getTitle(),
+				page.getProperties().get("abstracttext", Constants.EMPTY).toString());
+	}
 
 	public String getUrl() {
 		return url;

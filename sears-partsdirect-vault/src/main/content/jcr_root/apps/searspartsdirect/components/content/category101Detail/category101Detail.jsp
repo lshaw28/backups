@@ -15,7 +15,7 @@
 	</c:choose>
 </h2>
 
-<spd:getCategory101Models categoryPath="${productCategoryRelation.path}" categoryName="${productCategoryRelation.title}"/>
+<spd:getCategory101Models category="${productCategoryRelation}" />
 
 <c:forEach var="category101Model" items="${category101Models}" varStatus="currentItem">
 	<c:choose>

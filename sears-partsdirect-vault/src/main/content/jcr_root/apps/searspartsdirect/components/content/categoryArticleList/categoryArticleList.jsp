@@ -5,7 +5,7 @@
 </c:if>
 <c:choose>
 	<c:when test="${not empty productCategoryRelation}">
-		<spd:getCategoryArticleList categoryPath="${productCategoryRelation.path}" categoryName="${productCategoryRelation.trueName}" />
+		<spd:getCategoryArticleList category="${productCategoryRelation}" />
 
 		<h2><c:out value="${productCategoryRelation.title} "/></h2>
 		<c:choose>

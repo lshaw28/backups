@@ -38,6 +38,21 @@ public class GetCategoryArticleListTagTest extends MocksTag {
 		Map<String,List<ArticleModel>> articles = (Map<String,List<ArticleModel>>)pageContext.getAttribute("articles");
 		assertThat(articles,is(instanceOf(Map.class)));
 		List<ArticleModel> articleList = articles.get(Constants.SUBCATEGORY_TAG+"/hasFour");
+		assertThat(articleList,hasSize(5));
+		ArticleModel first = articleList.get(0);
+		assertThat(first.getUrl(),is("/baz.html"));
+		ArticleModel last = articleList.get(3);
+		assertThat(last.getUrl(),is("/foo.html"));
+	}
+	
+	@Test
+	public void testAuxPagesBroken() {
+		fixture.breakAuxPages();
+		runTheTag();
+		@SuppressWarnings("unchecked")
+		Map<String,List<ArticleModel>> articles = (Map<String,List<ArticleModel>>)pageContext.getAttribute("articles");
+		assertThat(articles,is(instanceOf(Map.class)));
+		List<ArticleModel> articleList = articles.get(Constants.SUBCATEGORY_TAG+"/hasFour");
 		assertThat(articleList,hasSize(4));
 		ArticleModel first = articleList.get(0);
 		assertThat(first.getUrl(),is("/baz.html"));
@@ -60,7 +75,7 @@ public class GetCategoryArticleListTagTest extends MocksTag {
 		int endResult = Integer.MIN_VALUE;
 		try {
 			tag.setPageContext(pageContext);
-			tag.setCategoryPath("/category");
+			tag.setCategory(fixture.getCategory());
 			startResult = tag.doStartTag();
 			endResult = tag.doEndTag();
 		} catch (Exception e) {

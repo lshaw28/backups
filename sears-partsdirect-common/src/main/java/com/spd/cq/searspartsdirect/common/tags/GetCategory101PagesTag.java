@@ -23,6 +23,7 @@ import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.ArticleModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 /**
  * custom tag to return all the article Models
@@ -36,8 +37,7 @@ public class GetCategory101PagesTag extends CQBaseTag {
 
 	protected final static Logger log = LoggerFactory.getLogger(GetCategory101PagesTag.class);
 
-	protected String categoryPath;
-	protected String categoryName;
+	protected ProductCategoryModel category;
 	private String category101TagID = Constants.TAGS_FEATURES_PATH + "/category_101";
 
 	@Override
@@ -56,14 +56,13 @@ public class GetCategory101PagesTag extends CQBaseTag {
 			props.put("type", "cq:Page");
 			props.put("path", Constants.ARTICLES_ROOT);
 			props.put("property", Constants.ASSETS_PAGES_REL_PATH);
-			props.put("property.value", categoryPath);
+			props.put("property.value", category.getPath());
 
 			List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
 
 			for (Hit hit: hits) {
 				result.add(pageManager.getPage(hit.getPath()));
 			}
-			String description = "";
 			for(Page page: result){
 				pageTags = page.getTags();
 				List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
@@ -85,68 +84,50 @@ public class GetCategory101PagesTag extends CQBaseTag {
 						}
 					}
 
-					if(page.getProperties().containsKey("abstracttext")){
-						description = page.getProperties().get("abstracttext").toString();
-					} else {
-						description = "";
-					}
 					// turn pages to models
-					category101Models.add(new ArticleModel(
-							page.getPath(),
-							imagePath,
-							page.getTitle(),
-							description));
-					
-					
+					category101Models.add(new ArticleModel(page,imagePath));
 					
 				}
 			}
 			ValueMap assetProperties = null;
-			if(StringUtils.isNotEmpty(categoryPath)){ // check that categoryPath is not empty b/c page blows up otherwise
-				assetProperties = pageManager.getPage(categoryPath).getProperties();
+			if(StringUtils.isNotEmpty(category.getPath())){ // check that categoryPath is not empty b/c page blows up otherwise
+				assetProperties = pageManager.getPage(category.getPath()).getProperties();
 				String includeCommonParts = assetProperties.get("includeCommonParts", "");
 				String includeMaintenanceTips = assetProperties.get("includeMaintenanceTips", "");
 				String includeCommonQuestions = assetProperties.get("includeCommonQuestions", "");
 				
+				String categoryName = category.getTrueName();
+
 				if (includeCommonParts.equals("true") 
-							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
-					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX);
+							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
+					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX);
+
 					pageTags = page.getTags();
 					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
 					if(pageTagsArray.contains(cat101Tag)){
-						category101Models.add(new ArticleModel(
-								page.getPath(),
-								null,
-								page.getTitle(),
-								page.getDescription()));
+						category101Models.add(new ArticleModel(page,Constants.EMPTY));
 					}
 				}
 				
 				if (includeMaintenanceTips.equals("true") 
-							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
-					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX);
+							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
+					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX);
+
 					pageTags = page.getTags();
 					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
 					if(pageTagsArray.contains(cat101Tag)){
-						category101Models.add(new ArticleModel(
-								page.getPath(),
-								null,
-								page.getTitle(),
-								page.getDescription()));
+						category101Models.add(new ArticleModel(page,Constants.EMPTY));
 					}
 				}
 				
 				if (includeCommonQuestions.equals("true") 
-							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX +categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
-					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX +categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX);
+							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
+					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX);
+
 					pageTags = page.getTags();
 					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
 					if(pageTagsArray.contains(cat101Tag)){
-						category101Models.add(new ArticleModel(
-								page.getPath(),
-								null,
-								page.getTitle(),
-								page.getDescription()));
+						category101Models.add(new ArticleModel(page,Constants.EMPTY));
 					}
 				}
 			}
@@ -165,8 +146,8 @@ public class GetCategory101PagesTag extends CQBaseTag {
 		return EVAL_PAGE;
 	}
 
-	public void setCategoryPath(String categoryPath) {
-		this.categoryPath = categoryPath;
+	public void setCategory(ProductCategoryModel category) {
+		this.category = category;
 	}
 	
 	private boolean getPageByPath(String pagePath) {
@@ -185,9 +166,5 @@ public class GetCategory101PagesTag extends CQBaseTag {
         	}
         }
         return false;
-	}
-
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
 	}
 }

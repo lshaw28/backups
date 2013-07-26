@@ -26,6 +26,7 @@ import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 public class GetCategoryArticleListFixture {
 	
@@ -54,8 +55,36 @@ public class GetCategoryArticleListFixture {
 		when(hitCurrent.getPath()).thenReturn("/");
 		Page currentPage = (Page)pageContext.findAttribute("currentPage");
 		when(pageManager.getPage("/")).thenReturn(currentPage);
+		String categoryName = getCategory().getTrueName();
+		Page commonParts = createTestPage(getCommonPartsPath(categoryName),7);
+		ValueMap commonPartsProps = commonParts.getProperties();
+		when(commonPartsProps.get("pages", String[].class)).thenReturn(new String[]{"/productCategory"});
+		Page commonQuestions = createTestPage(getCommonQnsPath(categoryName),7);
+		ValueMap commonQnProps = commonQuestions.getProperties();
+		when(commonQnProps.get("pages", String[].class)).thenReturn(new String[]{"/productScattergory"});
+		createTestPage(getMaintTipsPath(categoryName),7);
+		
 		hits.add(hitCurrent);
 		when(result.getHits()).thenReturn(hits);
+	}
+	
+	public void breakAuxPages() {
+		String categoryName = getCategory().getTrueName();
+		when(pageManager.getPage(getCommonPartsPath(categoryName))).thenReturn(null);
+		when(pageManager.getPage(getCommonQnsPath(categoryName))).thenReturn(null);
+		when(pageManager.getPage(getMaintTipsPath(categoryName))).thenReturn(null);
+	}
+	
+	String getCommonPartsPath(String categoryName) {
+		return Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +categoryName+Constants.COMMON_PARTS_PATH_SUFFIX;
+	}
+	
+	String getCommonQnsPath(String categoryName) {
+		return Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +categoryName+Constants.COMMON_QUESTIONS_PATH_SUFFIX;
+	}
+	
+	String getMaintTipsPath(String categoryName) {
+		return Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +categoryName+Constants.MAINTENANCE_TIPS_PATH_SUFFIX;
 	}
 	
 	Hit createTestHitAndPage(String path, int viewCount) throws RepositoryException {
@@ -101,5 +130,12 @@ public class GetCategoryArticleListFixture {
 
 	public void setUpToThrow() {
 		when(pageManager.getPage(anyString())).thenThrow(new RuntimeException("Computer Over."));
+	}
+
+	public ProductCategoryModel getCategory() {
+		ProductCategoryModel category = mock(ProductCategoryModel.class);
+		when(category.getTrueName()).thenReturn("foo");
+		when(category.getPath()).thenReturn("ignored");
+		return category;
 	}
 }

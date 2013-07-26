@@ -64,14 +64,8 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCategory101PagesTag</tag-class>
 		<info>returns the product category Model Objects that have a Category 101 Tag</info>
 		<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>categoryName</name>
-			<type>java.lang.String</type>
+			<name>category</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -189,14 +183,8 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCategoryArticleListTag</tag-class>
 		<info>Retrieves articles in a given category for the Category Article List component</info>
 		<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>categoryName</name>
-			<type>java.lang.String</type>
+			<name>category</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
