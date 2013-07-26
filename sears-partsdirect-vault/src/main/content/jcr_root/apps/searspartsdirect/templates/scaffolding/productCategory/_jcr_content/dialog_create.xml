@@ -113,7 +113,7 @@
                     
                  <includeCommonQuestions
                     jcr:primaryType="cq:Widget"
-                    fieldLabel="Include Maintenance Tips"
+                    fieldLabel="Include Common Questions"
                     name="./jcr:content/includeCommonQuestions"
                     type="checkbox"
                     xtype="selection"/>    
