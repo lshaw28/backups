@@ -9,7 +9,9 @@ import javax.jcr.Node;
 import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +36,8 @@ public class GetCategory101PagesTag extends CQBaseTag {
 
 	protected final static Logger log = LoggerFactory.getLogger(GetCategory101PagesTag.class);
 
-	protected String category;
+	protected String categoryPath;
+	protected String categoryName;
 	private String category101TagID = Constants.TAGS_FEATURES_PATH + "/category_101";
 
 	@Override
@@ -53,7 +56,7 @@ public class GetCategory101PagesTag extends CQBaseTag {
 			props.put("type", "cq:Page");
 			props.put("path", Constants.ARTICLES_ROOT);
 			props.put("property", Constants.ASSETS_PAGES_REL_PATH);
-			props.put("property.value", category);
+			props.put("property.value", categoryPath);
 
 			List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
 
@@ -93,6 +96,55 @@ public class GetCategory101PagesTag extends CQBaseTag {
 							imagePath,
 							page.getTitle(),
 							description));
+					
+					
+					
+				}
+			}
+			ValueMap assetProperties = null;
+			if(StringUtils.isNotEmpty(categoryPath)){ // check that categoryPath is not empty b/c page blows up otherwise
+				assetProperties = pageManager.getPage(categoryPath).getProperties();
+				String includeCommonParts = assetProperties.get("includeCommonParts", "");
+				String includeMaintenanceTips = assetProperties.get("includeMaintenanceTips", "");
+				String includeCommonQuestions = assetProperties.get("includeCommonQuestions", "");
+				
+				if (includeCommonParts.equals("true") && getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-parts")) {
+					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-parts");
+					pageTags = page.getTags();
+					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
+					if(pageTagsArray.contains(cat101Tag)){
+						category101Models.add(new ArticleModel(
+								page.getPath(),
+								null,
+								page.getTitle(),
+								page.getDescription()));
+					}
+				}
+				
+				if (includeMaintenanceTips.equals("true") && getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-maintenance-tips")) {
+					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-maintenance-tips");
+					pageTags = page.getTags();
+					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
+					if(pageTagsArray.contains(cat101Tag)){
+						category101Models.add(new ArticleModel(
+								page.getPath(),
+								null,
+								page.getTitle(),
+								page.getDescription()));
+					}
+				}
+				
+				if (includeCommonQuestions.equals("true") && getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-questions")) {
+					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-questions");
+					pageTags = page.getTags();
+					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
+					if(pageTagsArray.contains(cat101Tag)){
+						category101Models.add(new ArticleModel(
+								page.getPath(),
+								null,
+								page.getTitle(),
+								page.getDescription()));
+					}
 				}
 			}
 
@@ -110,7 +162,29 @@ public class GetCategory101PagesTag extends CQBaseTag {
 		return EVAL_PAGE;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategoryPath(String categoryPath) {
+		this.categoryPath = categoryPath;
+	}
+	
+	private boolean getPageByPath(String pagePath) {
+		log.debug("page path is "+pagePath);
+        Page commonPartsPage = pageManager.getPage(pagePath);
+        if (commonPartsPage != null) {
+        	log.debug("***Page is not null");
+        	ValueMap commonPartsPageProp = commonPartsPage.getProperties();
+        	String[] pages = commonPartsPageProp.get("pages", String[].class);
+        	if (pages != null) {
+	        	for (int i =0; i< pages.length; i++) {
+	        		if (pages[i].contains("/productCategory")) {
+	        			return true;
+	        		}
+	        	}
+        	}
+        }
+        return false;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 }

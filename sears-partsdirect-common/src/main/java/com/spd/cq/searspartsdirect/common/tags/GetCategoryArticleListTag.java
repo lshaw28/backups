@@ -56,7 +56,7 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	        }
 	        
 	        String[] relatedPageUrls = new String[] {Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-parts",
-	        		Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-questions",
+	        		Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-maintenance-tips",
 	        		Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-questions"};
 	        
 	        for (int i=0; i<relatedPageUrls.length; i++) {
@@ -64,7 +64,6 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 		        	result.add(pageManager.getPage(relatedPageUrls[i]));
 		        }
 	        }
-	        
 	        
 	        Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
 	          
