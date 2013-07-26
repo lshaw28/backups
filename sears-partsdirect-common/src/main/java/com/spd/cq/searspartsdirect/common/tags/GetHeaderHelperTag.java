@@ -29,7 +29,7 @@ public class GetHeaderHelperTag extends CQBaseTag {
 			}
 			
 			if (shoppingCartCookie != null) {
-				pageContext.setAttribute("shoppingCartCookieId", myProfileModelCookie.getValue());
+				pageContext.setAttribute("shoppingCartCookieId", shoppingCartCookie.getValue());
 			} else {
 				pageContext.setAttribute("shoppingCartCookieId", "");
 			}

@@ -16,8 +16,6 @@ public class BrowseGlossaryTag extends CQBaseTag {
 
 	@Override
 	public int doStartTag() throws JspException {
-		//ErrorCodeTableModel errorCodeTableModel = new ErrorCodeTableModel();
-		
 		try {
 			String[]  multiJsons = properties.get("Glossary",new String[0]);
 			List<String> glossary = new ArrayList<String>();

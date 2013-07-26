@@ -95,24 +95,14 @@ public class GetCategory101PagesTag extends CQBaseTag {
 				String includeCommonParts = assetProperties.get("includeCommonParts", "");
 				String includeMaintenanceTips = assetProperties.get("includeMaintenanceTips", "");
 				String includeCommonQuestions = assetProperties.get("includeCommonQuestions", "");
-				
 				String categoryName = category.getTrueName();
 
-				if (includeCommonParts.equals("true") 
-							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
-					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX);
-
-					pageTags = page.getTags();
-					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
-					if(pageTagsArray.contains(cat101Tag)){
-						category101Models.add(new ArticleModel(page,Constants.EMPTY));
-					}
-				}
+				log.debug("includeCommonParts is "+includeCommonParts);
+				log.debug("common parts url would be "+Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +  categoryName + Constants.COMMON_PARTS_PATH_SUFFIX);
 				
-				if (includeMaintenanceTips.equals("true") 
-							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
-					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX);
-
+				if (includeCommonParts.equals("true") 
+							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +  categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
+					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX);
 					pageTags = page.getTags();
 					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
 					if(pageTagsArray.contains(cat101Tag)){
@@ -121,9 +111,21 @@ public class GetCategory101PagesTag extends CQBaseTag {
 				}
 				
 				if (includeCommonQuestions.equals("true") 
-							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
-					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX);
-
+						&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
+				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX);
+				pageTags = page.getTags();
+				List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
+				if(pageTagsArray.contains(cat101Tag)){
+					category101Models.add(new ArticleModel(
+							page.getPath(),
+							null,
+							page.getTitle(),
+							page.getDescription()));
+				}
+			}
+				if (includeMaintenanceTips.equals("true") 
+							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
+					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX);
 					pageTags = page.getTags();
 					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
 					if(pageTagsArray.contains(cat101Tag)){
@@ -151,10 +153,10 @@ public class GetCategory101PagesTag extends CQBaseTag {
 	}
 	
 	private boolean getPageByPath(String pagePath) {
-		log.debug("page path is "+pagePath);
+		log.debug("101page path is "+pagePath);
         Page commonPartsPage = pageManager.getPage(pagePath);
         if (commonPartsPage != null) {
-        	log.debug("***Page is not null");
+        	log.debug("***101Page is not null");
         	ValueMap commonPartsPageProp = commonPartsPage.getProperties();
         	String[] pages = commonPartsPageProp.get("pages", String[].class);
         	if (pages != null) {
