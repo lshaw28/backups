@@ -5,6 +5,6 @@
 
 <c:forEach var="glossary" items="${glossary}">
 	<select>
-	  <option value="${glossary}"><c:out value="${glossary}"/></option>
+	  <option value="${fn:substring(glossary, 0, 1)}"><c:out value="${glossary}"/></option>
 	</select>
 </c:forEach>
