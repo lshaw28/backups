@@ -12,7 +12,8 @@
 	<!-- Environment Variables -->
 	<meta name="global-mainSitePath" content="${mainSitePath}" />
 	<meta name="global-modelSearchServletPath" content="bin/searspartsdirect/modelsearch" />
-	<spd:getMyProfileModelCookie />
+	<spd:getHeaderHelperData />
+	<!-- ${shoppingCartCookieId} -->
 	<meta name="global-apiPath" content="${PdApiRoot}" />
 	<meta name="global-guestCookieId" content="${myProfileModelCookie}" />
 	<meta name="global-registeredUserId" content="12345" />
