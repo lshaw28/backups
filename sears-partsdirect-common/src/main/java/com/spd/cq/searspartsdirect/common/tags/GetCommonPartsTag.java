@@ -30,7 +30,6 @@ public class GetCommonPartsTag extends CQBaseTag {
 	private Query query;
 	private String categoryPath;
 	List<PartTypeModel> partTypes;
-	private static final String GUIDES = "guides";
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -56,10 +55,10 @@ public class GetCommonPartsTag extends CQBaseTag {
 					ValueMap props = hit.getProperties();
 					Page partTypePage = pageManager.getPage(hit.getPath());
 					if (props != null) {
-						PartTypeModel partType = new PartTypeModel(partTypePage.getPath(), props.get(Constants.ASSETS_TITLE_PATH, String.class), props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class), partTypePage.getPath() +  Constants.ASSETS_IMAGE_PATH,  props.get("titlePlural", String.class));
+						PartTypeModel partType = new PartTypeModel(partTypePage.getPath(), props.get(Constants.ASSETS_TITLE_PATH, String.class), props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class), partTypePage.getPath() +  Constants.ASSETS_IMAGE_PATH,  props.get(Constants.ASSETS_TITLE_PLURAL, String.class));
 
 						ValueMap partTypesProps = partTypePage.getProperties();
-						String[] guides = partTypesProps.get(GUIDES, String[].class);
+						String[] guides = partTypesProps.get(Constants.ASSETS_GUIDES, String[].class);
 
 						if (guides != null) {
 							List<GuideModel> guideList = new ArrayList<GuideModel>();

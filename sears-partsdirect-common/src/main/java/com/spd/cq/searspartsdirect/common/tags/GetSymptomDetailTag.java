@@ -34,7 +34,6 @@ public class GetSymptomDetailTag extends CQBaseTag {
 	List<JobCodeModel> jobCodeModels;
 	public static final Logger log = LoggerFactory.getLogger(GetSymptomDetailTag.class);
 	private static final String PART_TYPE = "partType";
-	private static final String GUIDES = "guides";
 	private String id;
 
 	@Override
@@ -86,7 +85,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 										jobCodeModels.add(jobCodeModel);
 
 										//getting guides
-										String[] guides = jobCodeProps.get(GUIDES, String[].class);
+										String[] guides = jobCodeProps.get(Constants.ASSETS_GUIDES, String[].class);
 										if (guides != null) {
 											List<GuideModel> guideList = new ArrayList<GuideModel>();
 											for (int j = 0; j<guides.length; j++) {
