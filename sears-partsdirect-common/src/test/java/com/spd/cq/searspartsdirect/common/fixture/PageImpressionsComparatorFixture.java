@@ -17,6 +17,7 @@ import javax.jcr.RepositoryException;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.wrappers.ValueMapDecorator;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -46,7 +47,12 @@ public class PageImpressionsComparatorFixture {
 		Page testPage = mock(Page.class);
 		when(testPage.getPath()).thenReturn(path);
 		when(testPage.getTitle()).thenReturn(title);
-		when(testPage.getProperties()).thenReturn(new ValueMapDecorator(properties));
+		ValueMap pageProperties = mock(ValueMap.class);
+		when(testPage.getProperties()).thenReturn(pageProperties);
+		if (properties != null) for (Map.Entry<String,Object> entry : properties.entrySet()) {
+			when(pageProperties.get(entry.getKey())).thenReturn(entry.getValue());
+			when(pageProperties.get(entry.getKey(),Constants.EMPTY)).thenReturn(entry.getValue().toString());
+		}
 
 		int split = random.nextInt(allTimeCount);
 
