@@ -45,13 +45,13 @@ public class GetMostPopularGuideTag extends CQBaseTag{
 				result.add(pageManager.getPage(hit.getPath()));
 			}
 
-			Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
+			//Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
 
-			guides.add( new ArticleModel(
-					result.get(0).getPath() + ".html",
-					result.get(0).getPath() + Constants.ASSETS_IMAGE_PATH,
-					result.get(0).getTitle(),
-					result.get(0).getDescription()));
+			guides.add( new ArticleModel(Collections.max(result,new PageImpressionsComparator(resourceResolver))));
+//					result.get(0).getPath() + ".html",
+//					result.get(0).getPath() + Constants.ASSETS_IMAGE_PATH,
+//					result.get(0).getTitle(),
+//					result.get(0).getDescription()));
 
 			pageContext.setAttribute("guides", guides);
 			

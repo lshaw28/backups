@@ -40,7 +40,7 @@
 									</div>
 
 									<p>
-										Article description goes here. Aenean feugiat fringilla odio. Donec  lorem porttitor volutpat elit. Proin metus justo, accumsan vitae, egestas nec.
+										${guide.description}
 									</p>
 								</div>
 							</div>

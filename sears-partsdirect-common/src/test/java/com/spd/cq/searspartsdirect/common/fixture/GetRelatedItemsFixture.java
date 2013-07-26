@@ -19,6 +19,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 public class GetRelatedItemsFixture {
 	
@@ -88,6 +89,9 @@ public class GetRelatedItemsFixture {
 			if (i % 2 == 0) {
 				when(properties.containsKey("abstracttext")).thenReturn(true);
 				when(properties.get("abstracttext")).thenReturn("abstract "+i);
+				when(properties.get("abstracttext",Constants.EMPTY)).thenReturn("abstract "+i);
+			} else {
+				when(properties.get("abstracttext",Constants.EMPTY)).thenReturn(Constants.EMPTY);
 			}
 			when(page.getProperties()).thenReturn(properties);
 			when(pageManager.getPage(hitPath)).thenReturn(page);
