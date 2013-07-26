@@ -131,7 +131,8 @@
         		<pages
         			jcr:primaryType="cq:Widget"
         			name="./jcr:content/pages"
-					treeRootPath="/etc/spdAssets/scaffolding/accessory"
+					treeRootPath="/etc/spdAssets/scaffolding"
+					multipleRootPaths="[accessory]"
         			hideLabel="{Boolean}false"
         			fieldLabel="Page Associations"
         			xtype="scaffoldingpagemapper"/>

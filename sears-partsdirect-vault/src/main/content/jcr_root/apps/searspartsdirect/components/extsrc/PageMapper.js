@@ -83,6 +83,10 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	dataStore: null,
 	/**
+	 * @type {String}
+	 */
+	multipleRootPaths: [],
+	/**
 	 * Initializer event
 	 * @return {undefined}
 	 */
@@ -191,16 +195,22 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 				}
 			},
 
+		//Commenting this out. Dale will pick this up
+		//	multi: _this.multipleRootPaths,
+		//	for (var i = 0; i < multi.length; i++) {
+			    root: {
+					nodeType: 'async',
+					// we don't show the root, no need to have text
+					text: '',
+					//name: _this.treeRootPath + '/' + multi[i].val(),
+					name: _this.treeRootPath,
+					expanded: true,
+					// no root dragging (its not like u can see it when its disabled anyways)
+					draggable: false
+				}
+		//	}
 			// CQ.Ext.tree.TreeNode config
-			root: {
-				nodeType: 'async',
-				// we don't show the root, no need to have text
-				text: '',
-				name: _this.treeRootPath,
-				expanded: true,
-				// no root dragging (its not like u can see it when its disabled anyways)
-				draggable: false
-			}
+			
 		});
 		
 		// append to wrapper
