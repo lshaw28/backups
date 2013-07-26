@@ -3,11 +3,14 @@
 <%-- get all the parent categories found on current page, based on tags.
 	returns arraylist of tags --%>
 <spd:tagsByPage tagType="parent_categories" />
-<cq:text property="componentHeader" placeholder="Select your product type for repair help" />
+<c:set var="defaultTitle" value="Select your product type for repair help" />
+<c:set var="actualTitle"><cq:text property="componentHeader" placeholder="${defaultTitle}" /></c:set>
+<c:if test="${empty actualTitle}"><c:set var="actualTitle" value="${defaultTitle}" /></c:if>
+<c:out value="${actualTitle}" />
 
 <%-- iterate through each parent category tag --%>
 <c:forEach var="parentCategory" items="${parent_categoriesList}">
-	<div class="category-title"><h4> <c:out value="${parentCategory.title} "/></h4></div>
+	<div class="category-title"><h4><c:out value="${parentCategory.title} Repair Help" /></h4></div>
 	<div class="category-container">
 
 		<%-- get the list of all the product categories that correspond to the current parent category
