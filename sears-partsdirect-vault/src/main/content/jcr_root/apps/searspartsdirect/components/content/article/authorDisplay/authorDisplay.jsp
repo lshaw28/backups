@@ -24,10 +24,12 @@
 						<a href="${url}"><c:out value="${author.title}" /></a>
 					</c:when>
 					<c:otherwise>
-						<a href="${url}"><c:out value="${author.title}"/></a>,
-						<c:set var="s" value="${fn:length(authors) gt 1? 's':''}" />
-						<cq:text property="authorPosition"
-							placeholder="Sears Home Services repair technician${s}" />
+						<a href="${url}"><c:out value="${author.title}"/></a>, <%-- 
+						--%><c:set var="s" value="${fn:length(authors) gt 1? 's':''}" /><%-- 
+						--%><c:set var="defaultPosition">Sears Home Services repair technician${s}</c:set><%-- 
+						--%><c:set var="actualPosition"><cq:text property="authorPosition" placeholder="" /></c:set><%-- 
+						--%><c:if test="${empty actualPosition}"><c:set var="actualPosition" value="${defaultPosition}" /></c:if>
+						${actualPosition}
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
