@@ -46,7 +46,7 @@
 							<span class="Qty">Qty</span><input type="text" class="span3 addToCartQuantity_js" value="1" />
 						</div>
 						<div class="span2">
-							<button type="button" data-partnumber="12345" data-divid="12345" data-plsid="12345" class="new-btn addToCart_js">Add to Cart</button>
+							<button type="button" data-partnumber="${part.number}" data-divid="${part.productGroupId}" data-plsid="${part.supplierId}" class="new-btn addToCart_js">Add to Cart</button>
 						</div>
 					</div>
 				</div>

@@ -108,8 +108,9 @@ public class GetCategory101PagesTag extends CQBaseTag {
 				String includeMaintenanceTips = assetProperties.get("includeMaintenanceTips", "");
 				String includeCommonQuestions = assetProperties.get("includeCommonQuestions", "");
 				
-				if (includeCommonParts.equals("true") && getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-parts")) {
-					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-parts");
+				if (includeCommonParts.equals("true") 
+							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
+					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX);
 					pageTags = page.getTags();
 					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
 					if(pageTagsArray.contains(cat101Tag)){
@@ -121,8 +122,9 @@ public class GetCategory101PagesTag extends CQBaseTag {
 					}
 				}
 				
-				if (includeMaintenanceTips.equals("true") && getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-maintenance-tips")) {
-					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-maintenance-tips");
+				if (includeMaintenanceTips.equals("true") 
+							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
+					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX);
 					pageTags = page.getTags();
 					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
 					if(pageTagsArray.contains(cat101Tag)){
@@ -134,8 +136,9 @@ public class GetCategory101PagesTag extends CQBaseTag {
 					}
 				}
 				
-				if (includeCommonQuestions.equals("true") && getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-questions")) {
-					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-questions");
+				if (includeCommonQuestions.equals("true") 
+							&& getPageByPath(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX +categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
+					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX +categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX);
 					pageTags = page.getTags();
 					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
 					if(pageTagsArray.contains(cat101Tag)){
