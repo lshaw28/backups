@@ -1,7 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <div id="registerModal" class="modal hide fade" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
 	<h1 id="registerModalLabel">Register<span class="pull-right">Existing Customer? <a data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Sign In</a></span></h1>
-	<form method="post" action="${registerPath}" data-constraints='@EmailsMatch(field1="registerEmail", field2="registerEmailConfirm", groups=[registerModal])' data-regulagroup="registerModal">
+	<form method="post" action="${mainSitePath}/partsdirect/register.pd" data-constraints='@EmailsMatch(field1="registerEmail", field2="registerEmailConfirm", groups=[registerModal])' data-regulagroup="registerModal">
 		<div class="alert alert-error hidden">&nbsp;</div>
 		<fieldset>
 			<label>First Name<span>Required</span></label>
@@ -18,11 +18,13 @@
 				<input type="checkbox" name="emailOptin" value="true" checked="checked" data-checkfield="#emailOptinHidden"> Send me promos, discounts and other special information from SearsPartsDirect.com
 			</label>
 			<input type="hidden" name="__checkbox_emailOptin" id="emailOptinHidden" value="true">
+			<input type="hidden" name="currentPageURL" id="currentPageURL" value="" />
+			<input type="hidden" name="successfulRegistrationURL" value="" />
 		</fieldset>
 		<p>By clicking register, I agree to the <span><a href="#">terms of use</a></span> and <span><a href="#">privacy policy</a></span>.</p>
 		<div class="pull-right">
 			<button type="button" class="new-btn" data-dismiss="modal" data-cancel="true" aria-hidden="true">Cancel</button>
-			<button class="new-btn new-btn-search" data-submit="true">Register</button>
+			<button type="button" class="new-btn new-btn-search" data-submit="true">Register</button>
 		</div>
 	</form>
 </div>

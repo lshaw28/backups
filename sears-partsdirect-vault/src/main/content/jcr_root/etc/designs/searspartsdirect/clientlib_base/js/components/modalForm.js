@@ -23,9 +23,8 @@ var modalForm = Class.extend(function () {
 		bindSubmit: function () {
 			var self = this;
 
-			$('[data-submit]', self.el).bind('click', function () {
-				return false;
-			}).bind('click', function () {
+			$('[data-submit=true]', self.el).bind('click', function (e) {
+				e.preventDefault();
 				self.validate();
 			});
 		},
@@ -52,8 +51,7 @@ var modalForm = Class.extend(function () {
 			// Display errors or submit the form
 			if (errorMessage.length > 0) {
 				$('.alert', self.el).removeClass('hidden');
-			} else if ($('.alert', self.el).hasClass('hidden') === false) {
-				self.resetFields();
+			} else {
 				$('form', self.el)[0].submit();
 			}
 		},
