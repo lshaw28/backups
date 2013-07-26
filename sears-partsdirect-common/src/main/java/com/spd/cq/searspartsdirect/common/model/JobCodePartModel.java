@@ -32,6 +32,10 @@ public class JobCodePartModel {
 	private PartImageModel image;
 	
 	private boolean returnable;
+	
+	private String productGroupId;
+	
+	private String supplierId;
 
 	public String getName() {
 		return name;
@@ -132,5 +136,21 @@ public class JobCodePartModel {
 				+ " || availabilityStatus: " + availabilityStatus
 				+ " || imageUrl: " + image.getUrl()
 				+ " || restriction: " + restriction	+ "]";
+	}
+
+	public String getProductGroupId() {
+		return productGroupId;
+	}
+
+	public void setProductGroupId(String productGroupId) {
+		this.productGroupId = productGroupId;
+	}
+
+	public String getSupplierId() {
+		return supplierId;
+	}
+
+	public void setSupplierId(String supplierId) {
+		this.supplierId = supplierId;
 	}
 }
