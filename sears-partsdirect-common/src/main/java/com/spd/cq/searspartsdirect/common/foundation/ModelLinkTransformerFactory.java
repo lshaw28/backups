@@ -53,7 +53,7 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
 			if (found && localName.equalsIgnoreCase("a")){
 				try{
 					String href = attributes.getValue("href");
-					if (href != null && href.startsWith("/") && href.indexOf(".html") >0) {
+					if (href != null && (href.length() > 0 && href.charAt(0) == '/') && href.indexOf(".html") >0) {
 
 						Matcher linkMatch = p.matcher(href);
 						if (!linkMatch.find()) {
