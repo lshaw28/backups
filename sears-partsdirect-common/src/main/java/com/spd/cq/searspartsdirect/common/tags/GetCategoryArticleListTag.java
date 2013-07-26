@@ -13,6 +13,7 @@ import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +30,7 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(GetCategoryArticleListTag.class);
 	protected String categoryPath;
+	protected String categoryName;
 	
 	@Override
 	public int doStartTag() throws JspException {
@@ -52,6 +54,17 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	        for (Hit hit: hits) {
 	        	result.add(pageManager.getPage(hit.getPath()));
 	        }
+	        
+	        String[] relatedPageUrls = new String[] {Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-parts",
+	        		Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-questions",
+	        		Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-questions"};
+	        
+	        for (int i=0; i<relatedPageUrls.length; i++) {
+	        	if (getPageByPath(relatedPageUrls[i])) {
+		        	result.add(pageManager.getPage(relatedPageUrls[i]));
+		        }
+	        }
+	        
 	        
 	        Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
 	          
@@ -97,5 +110,28 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	
 	public void setCategoryPath(String categoryPath) {
 		this.categoryPath = categoryPath;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	
+	
+	private boolean getPageByPath(String pagePath) {
+		log.debug("page path is "+pagePath);
+        Page commonPartsPage = pageManager.getPage(pagePath);
+        if (commonPartsPage != null) {
+        	log.debug("***Page is not null");
+        	ValueMap commonPartsPageProp = commonPartsPage.getProperties();
+        	String[] pages = commonPartsPageProp.get("pages", String[].class);
+        	if (pages != null) {
+	        	for (int i =0; i< pages.length; i++) {
+	        		if (pages[i].contains("/productCategory")) {
+	        			return true;
+	        		}
+	        	}
+        	}
+        }
+        return false;
 	}
 }

@@ -1,6 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
-This is a test
+<cq:include path="browseGlossary" resourceType="searspartsdirect/components/content/browseGlossary" />
 
 <spd:getUrlRelation relationType="productCategory" />
 <spd:getCommonParts categoryPath="${productCategoryRelation.path}"/>

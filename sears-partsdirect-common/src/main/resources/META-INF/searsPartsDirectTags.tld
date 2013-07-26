@@ -188,6 +188,12 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+		<attribute>
+			<name>categoryName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 	<tag>
 		<name>getErrorCodesList</name>
@@ -555,5 +561,10 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+	</tag>
+	<tag>
+		<name>getBrowseGlossary</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.BrowseGlossaryTag</tag-class>
+		<info>Gets the Common Category Parts</info>
 	</tag>
 </taglib>
