@@ -145,6 +145,14 @@ public final class Constants {
 	public static final String DEFAULT_ICON = ident("svg-icon-er");
 	public static final String NO_ICON = ident("none");
 	
+	//constants for page path urls
+	public static final String COMMON_PARTS_PATH_SUFFIX = ident("-common-parts");
+	public static final String COMMON_QUESTIONS_PATH_SUFFIX = ident("-common-questions");
+	public static final String MAINTENANCE_TIPS_PATH_SUFFIX = ident("-maintenance-tips");
+	public static final String CATEGORY_PATH_SUFFIX = ident("-repair");
+	
+	
+	
 	/**
 	 * This method returns its argument - this is to keep what would otherwise be literals
 	 * from being compiled into client code. If you want to be able to change a constant here

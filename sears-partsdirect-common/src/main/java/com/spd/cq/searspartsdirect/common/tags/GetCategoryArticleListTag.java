@@ -55,9 +55,9 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	        	result.add(pageManager.getPage(hit.getPath()));
 	        }
 	        
-	        String[] relatedPageUrls = new String[] {Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-parts",
-	        		Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-maintenance-tips",
-	        		Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/"+categoryName+"-common-questions"};
+	        String[] relatedPageUrls = new String[] { Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX,
+	        		Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX,
+	        		Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX +categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX };
 	        
 	        for (int i=0; i<relatedPageUrls.length; i++) {
 	        	if (getPageByPath(relatedPageUrls[i])) {
