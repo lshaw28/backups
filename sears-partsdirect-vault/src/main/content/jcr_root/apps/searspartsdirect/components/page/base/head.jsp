@@ -13,11 +13,10 @@
 	<meta name="global-mainSitePath" content="${mainSitePath}" />
 	<meta name="global-modelSearchServletPath" content="bin/searspartsdirect/modelsearch" />
 	<spd:getHeaderHelperData />
-	<!-- ${shoppingCartCookieId} -->
 	<meta name="global-apiPath" content="${PdApiRoot}" />
 	<meta name="global-guestCookieId" content="${myProfileModelCookie}" />
-	<meta name="global-registeredUserId" content="12345" />
-	<meta name="global-cartId" content="12345" />
+	<meta name="global-registeredUserId" content="${userId}" />
+	<meta name="global-cartId" content="${shoppingCartCookieId}" />
 	<!-- Metadata -->
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta name="author" content="Sears PartsDirect" />
