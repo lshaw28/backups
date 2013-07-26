@@ -55,18 +55,18 @@ public class GetGuideListingTag extends CQBaseTag{
 
 					if (!(guides.isEmpty()) && guides.containsKey(subcategoryName)){
 						List<ArticleModel> tmp = guides.get(subcategoryName);
-						tmp.add( new ArticleModel(
-								page.getPath() + ".html",
-								page.getPath() + Constants.ASSETS_IMAGE_PATH,
-								page.getTitle(),
-								page.getDescription()));
+						tmp.add( new ArticleModel(page));
+//								page.getPath() + ".html",
+//								page.getPath() + Constants.ASSETS_IMAGE_PATH,
+//								page.getTitle(),
+//								page.getDescription()));
 					}else{
 						List<ArticleModel> tmpGuides = new ArrayList<ArticleModel>();
-						tmpGuides.add( new ArticleModel(
-								page.getPath() + ".html",
-								page.getPath() + Constants.ASSETS_IMAGE_PATH,
-								page.getTitle(),
-								page.getDescription()));
+						tmpGuides.add( new ArticleModel(page));
+//								page.getPath() + ".html",
+//								page.getPath() + Constants.ASSETS_IMAGE_PATH,
+//								page.getTitle(),
+//								page.getDescription()));
 							//Add the guides to the list
 						guides.put(subcategoryName, tmpGuides);
 					}

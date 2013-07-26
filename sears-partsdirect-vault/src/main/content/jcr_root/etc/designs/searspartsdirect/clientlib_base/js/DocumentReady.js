@@ -170,6 +170,9 @@
 		var registerForm = new modalForm($('#registerModal')),
 			loginForm = new modalForm($('#loginModal'));
 
+		// Dynamically populate current page field
+		$('#currentPageURL').attr('value', document.location.href);
+
 		// Custom validation for matching email fields
 		regula.custom({
 			name: "EmailsMatch",

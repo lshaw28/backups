@@ -34,6 +34,9 @@ public class GetMostPopularGuideTagTest extends MocksTag {
 	public void testDoStartTagWithResults() throws JspException, RepositoryException {
 		fixture.setUpResults(resourceResolver,pageManager);
 		runsSkipsBodyEvalsPage();
+		assertThat(pageContext.getAttribute("guides"),is(not(nullValue())));
+		assertThat(pageContext.getAttribute("difficultyLevel"),is(not(nullValue())));
+		assertThat(pageContext.getAttribute("timeRequired"),is(not(nullValue())));
 	}
 
 	@Test

@@ -12,6 +12,7 @@ import javax.jcr.Session;
 import javax.servlet.jsp.PageContext;
 
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
@@ -21,6 +22,7 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 public class GetGuideListingTagFixture {
 	private ResourceResolver resourceResolver;
@@ -60,6 +62,9 @@ public class GetGuideListingTagFixture {
 		
 		Tag[] tags = {testTagInType};
 		when(testPage.getTags()).thenReturn(tags);
+		ValueMap properties = mock(ValueMap.class);
+		when(testPage.getProperties()).thenReturn(properties);
+		when(properties.get("abstracttext",Constants.EMPTY)).thenReturn(Constants.EMPTY);
 	}
 	
 	Hit createTestHitAndPage(String path, int viewCount) throws RepositoryException {
@@ -72,6 +77,8 @@ public class GetGuideListingTagFixture {
 	Page createTestPage(String path, int viewCount) throws RepositoryException {
 		Page created = testPages.createTestPage(path, viewCount);
 		when(pageManager.getPage(path)).thenReturn(created);
+		ValueMap properties = created.getProperties();
+		when(properties.get("abstracttext", Constants.EMPTY)).thenReturn(path+" description");
 		return created;
 	}
 	

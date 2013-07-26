@@ -26,6 +26,7 @@ resp.mobile.less
 accordionItem/accordionItem.less
 articleComments/articleComments.less
 authorArticle/authorArticles.less
+authorDetails/authorDetails.less
 authorDisplay/authorDisplay.less
 boxed-callout/boxed-callout.less
 brandBar/brandBar.less

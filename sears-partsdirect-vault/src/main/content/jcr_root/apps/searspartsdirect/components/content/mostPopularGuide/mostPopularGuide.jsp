@@ -35,7 +35,7 @@
 							<div class="wrapper">
 								<h3><c:out value="${popularGuide.title}" /></h3>
 								<p>
-									Refrigerator help overview Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam interdum pulvinar nibh. aecenas eget nunc in justo rhoncus.
+									${popularGuide.description}
 								</p>
 								<div class="container">
 									<div class="pull-left repair-difficulty">
