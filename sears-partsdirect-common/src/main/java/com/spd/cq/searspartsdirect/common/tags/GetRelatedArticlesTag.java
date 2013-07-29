@@ -53,7 +53,6 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 
 			Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
 
-			String description = "";
 			for (int i = 0; i < result.size(); i++) {
 				articles.add(new ArticleModel(result.get(i))); 
 			}
