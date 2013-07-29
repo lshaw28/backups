@@ -10,6 +10,8 @@ import javax.servlet.jsp.JspException;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.ValueMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
@@ -24,6 +26,7 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
 public class GetCommonPartsTag extends CQBaseTag {
 
 	private static final long serialVersionUID = 1L;
+	protected static Logger log = LoggerFactory.getLogger(GetCommonPartsTag.class);
 
 	private Session session;
 	private QueryBuilder builder;
@@ -68,17 +71,17 @@ public class GetCommonPartsTag extends CQBaseTag {
 									GuideModel guide = new GuideModel(guidePage.getPath(), null, guidePage.getTitle());
 									guideList.add(guide);
 								} else {
-									log.warn("Guide page is null");
+									log.warn("Could not resolve "+guides[i]+" to a repair guide");
 								}
 							}
 							partType.setGuides(guideList);
 						} else {
-							log.warn("no guides for this part typee");
+							log.info("no guides for the part type at "+partType.getPath());
 						}
 						partTypes.add(partType);
 					}
 				} catch(Exception e) {
-					e.printStackTrace();
+					log.error("Retrieving common parts, ", e);
 				}
 			}
 			pageContext.setAttribute("commonParts", partTypes);

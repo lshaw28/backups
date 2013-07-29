@@ -69,6 +69,32 @@ public class GetCommonPartsTagFixture {
 		when(guide.getPath()).thenReturn(pathTitleDesc);
 	}
 	
+	public void removeHitProperties() throws RepositoryException {
+		for (Hit hit : hits) {
+			when(hit.getProperties()).thenReturn(null);
+		}
+	}
+	
+	public void breakHitProperties() throws RepositoryException {
+		for (Hit hit : hits) {
+			when(hit.getProperties()).thenThrow(new RepositoryException());
+		}
+	}
+	
+	public void removeHitPageGuidesProperties() throws RepositoryException {
+		for (Hit hit : hits) {
+			Page hitPage = pageManager.getPage(hit.getPath());
+			ValueMap pageProps = hitPage.getProperties();
+			when(pageProps.get(Constants.ASSETS_GUIDES, String[].class)).thenReturn(null);
+		}
+	}
+	
+	public void removeHitGuidesGuidePages() throws RepositoryException {
+		for (Hit hit : hits) {
+			when(pageManager.getPage(getGuidePage(hit.getPath()))).thenReturn(null);
+		}
+	}
+	
 	private void createQueryNoHitsYet() {
 		when(slingRequest.getResourceResolver()).thenReturn(resourceResolver);
 		Session session = mock(Session.class);
@@ -88,7 +114,7 @@ public class GetCommonPartsTagFixture {
 	}
 	
 	private String[] getGuides(String pathTitleDesc) {
-		return new String[] {pathTitleDesc};
+		return new String[] {getGuidePage(pathTitleDesc)};
 	}
 
 }
