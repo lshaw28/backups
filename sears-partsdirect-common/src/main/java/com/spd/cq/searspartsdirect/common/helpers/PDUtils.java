@@ -3,6 +3,7 @@ package com.spd.cq.searspartsdirect.common.helpers;
 import java.util.Iterator;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,6 +11,7 @@ import com.adobe.cq.social.commons.Comment;
 import com.adobe.cq.social.commons.CommentSystem;
 import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 
 public class PDUtils {
 
@@ -40,5 +42,20 @@ public class PDUtils {
 		}
 		return commentsCount;
 	}
-
+	
+	public static boolean getPageForCategoryByPath(PageManager pageManager, String pagePath) {
+        Page commonPartsPage = pageManager.getPage(pagePath);
+        if (commonPartsPage != null) {
+        	ValueMap commonPartsPageProp = commonPartsPage.getProperties();
+        	String[] pages = commonPartsPageProp.get("pages", String[].class);
+        	if (pages != null) {
+	        	for (int i =0; i< pages.length; i++) {
+	        		if (pages[i].contains("/productCategory")) {
+	        			return true;
+	        		}
+	        	}
+        	}
+        }
+        return false;
+	}
 }

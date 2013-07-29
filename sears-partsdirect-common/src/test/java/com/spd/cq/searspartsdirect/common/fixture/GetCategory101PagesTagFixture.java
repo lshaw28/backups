@@ -114,22 +114,6 @@ public class GetCategory101PagesTagFixture {
 		when(imageNode.hasProperty("fileReference")).thenReturn(true);
 	}
 	
-	public void setUpAuxNotTrue() {
-		Page page = pageManager.getPage(getCategoryWithPath().getPath());
-		ValueMap assetProperties = page.getProperties();
-		when(assetProperties.get("includeCommonParts", "")).thenReturn("maybe");
-		when(assetProperties.get("includeMaintenanceTips", "")).thenReturn("sometimes");
-		when(assetProperties.get("includeCommonQuestions", "")).thenReturn("kinda");
-	}
-	
-	public void setUpAuxTrue() {
-		Page page = pageManager.getPage(getCategoryWithPath().getPath());
-		ValueMap assetProperties = page.getProperties();
-		when(assetProperties.get("includeCommonParts", "")).thenReturn("true");
-		when(assetProperties.get("includeMaintenanceTips", "")).thenReturn("true");
-		when(assetProperties.get("includeCommonQuestions", "")).thenReturn("true");
-	}
-	
 	public Page setUpAuxPagesExist() {
 		// TODO Auto-generated method stub
 		String categoryName = getCategoryWithPath().getTrueName();
@@ -205,5 +189,4 @@ public class GetCategory101PagesTagFixture {
 	public String getCategory101TagId() {
 		return Constants.TAGS_FEATURES_PATH + "/category_101";
 	}
-
 }

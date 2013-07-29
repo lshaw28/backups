@@ -13,6 +13,8 @@ import org.apache.sling.api.resource.ValueMap;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 public class GetMultifieldArticlesTagFixture {
 
@@ -24,7 +26,7 @@ public class GetMultifieldArticlesTagFixture {
 		this.resourceResolver = resourceResolver;
 		
 		Page categoryPage = mock(Page.class);
-		when(pageManager.getPage(getCategoryPath())).thenReturn(categoryPage);
+		when(pageManager.getPage(getCategory().getPath())).thenReturn(categoryPage);
 		ValueMap categoryProps = mock(ValueMap.class);
 		when(categoryPage.getProperties()).thenReturn(categoryProps);
 		
@@ -86,6 +88,7 @@ public class GetMultifieldArticlesTagFixture {
 		Page page = mock(Page.class);
 		when(pageManager.getPage(path)).thenReturn(page);
 		when(page.getPath()).thenReturn(path);
+		
 		//page.getProperties().get("abstracttext").toString()
 		ValueMap pageProperties = mock(ValueMap.class);
 		when(page.getProperties()).thenReturn(pageProperties);
@@ -93,6 +96,7 @@ public class GetMultifieldArticlesTagFixture {
 			when(pageProperties.containsKey("abstracttext")).thenReturn(true);
 			when(pageProperties.get("abstracttext")).thenReturn("description");
 		}
+		
 		String imagePath = path + Constants.ASSETS_IMAGE_PATH;
 		//Resource imageResource = resourceResolver.getResource(imagePath);
 		Resource imageResource = mock(Resource.class);
@@ -111,9 +115,33 @@ public class GetMultifieldArticlesTagFixture {
 		
 		return page;
 	}
+	
+	public void setupAuxPages() {
+		Page categoryPage = mock(Page.class);
+		when(pageManager.getPage(getCategory().getPath())).thenReturn(categoryPage);
+		ValueMap categoryProps = mock(ValueMap.class);
+		when(categoryPage.getProperties()).thenReturn(categoryProps);
+		when(categoryProps.get("includeCommonParts", "")).thenReturn("true");
+		when(categoryProps.get("includeMaintenanceTips", "")).thenReturn("true");
+		when(categoryProps.get("includeCommonQuestions", "")).thenReturn("true");
+		
+		Page auxPage = mock(Page.class);
+		when(pageManager.getPage(getCommonPartsPath(getCategory().getTrueName()))).thenReturn(auxPage);
+		when(pageManager.getPage(getCommonQnsPath(getCategory().getTrueName()))).thenReturn(auxPage);
+		when(pageManager.getPage(getMaintTipsPath(getCategory().getTrueName()))).thenReturn(auxPage);
+		when(PDUtils.getPageForCategoryByPath(pageManager, getCommonPartsPath(getCategory().getTrueName()))).thenReturn(true);
+		when(PDUtils.getPageForCategoryByPath(pageManager, getCommonQnsPath(getCategory().getTrueName()))).thenReturn(true);
+		when(PDUtils.getPageForCategoryByPath(pageManager, getMaintTipsPath(getCategory().getTrueName()))).thenReturn(true);
+		
+		ValueMap auxPageProps = mock(ValueMap.class);
+		when(auxPage.getProperties()).thenReturn(auxPageProps);
+		when(auxPageProps.get("pages", String[].class)).thenReturn(new String[]{"clinker"});
+	}
 
-	public String getCategoryPath() {
-		return Constants.ASSETS_PATH+"/"+Constants.ASSETS_PRODUCT_CATEGORY_PATH+"/reciprobopulator";
+	public ProductCategoryModel getCategory() {
+		ProductCategoryModel category = new ProductCategoryModel("category", Constants.ASSETS_PATH+"/"+Constants.ASSETS_PRODUCT_CATEGORY_PATH+"/reciprobopulator", 
+						"Category", "Categories", "description", null, null, null);
+		return category;
 	}
 	
 	public String getHeader() {
@@ -123,5 +151,15 @@ public class GetMultifieldArticlesTagFixture {
 	public String getViewAllLinkText() {
 		return "View All";
 	}
+	String getCommonPartsPath(String categoryName) {
+		return Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +categoryName+Constants.COMMON_PARTS_PATH_SUFFIX;
+	}
 	
+	String getCommonQnsPath(String categoryName) {
+		return Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +categoryName+Constants.COMMON_QUESTIONS_PATH_SUFFIX;
+	}
+	
+	String getMaintTipsPath(String categoryName) {
+		return Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +categoryName+Constants.MAINTENANCE_TIPS_PATH_SUFFIX;
+	}
 }
