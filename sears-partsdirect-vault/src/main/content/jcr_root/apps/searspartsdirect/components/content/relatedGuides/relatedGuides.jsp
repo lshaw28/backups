@@ -1,10 +1,10 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-
 <%--
+
 Make sure h1 and footer link are configurable!
 Carousel Shows at max 5 items, component spec sets max to display at 4
---%>
 
+--%>
 <spd:getRelation single="true" assetType="productCategory" />
 <c:if test="${empty productCategoryRelation}">
 	<spd:getUrlRelation relationType="productCategory" />
@@ -13,7 +13,7 @@ Carousel Shows at max 5 items, component spec sets max to display at 4
 
 <c:if test="${not empty guides && not empty productCategoryRelation}">
 	<h2>
-		<cq:text property="newHeader" placeholder="Most Viewed Guides" />
+		<cq:text property="newHeader" placeholder="Most Viewed Guides" default="Most Viewed Guides"/>
 	</h2>
 	<div class="touch-carousel hide-onload">
 		<div class="carousel-wrapper row-fluid">

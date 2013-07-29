@@ -1,6 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <spd:resolveHazardTipWarning adhocField="noticeText" choiceField="warningChosen" placeholder=""/>
-<c:set var="noticeIcon"><cq:text property="noticeIcon" placeholder="icon-warning-sign"/></c:set>
+<c:set var="noticeIcon"><cq:text property="noticeIcon" placeholder="icon-warning-sign" default="icon-warning-sign"/></c:set>
 <cq:include path="/etc/spdAssets/globalConfig/warningPrefix" resourceType="searspartsdirect/components/content/warningPrefix" />
 
 <div class="row-fluid">

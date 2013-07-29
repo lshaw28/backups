@@ -1,5 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<c:set var="difficultyLevel"><cq:text property="difficultyLevel" placeholder="level-one" /></c:set>
+<c:set var="difficultyLevel"><cq:text property="difficultyLevel" placeholder="" /></c:set>
+<c:if test="${empty difficultyLevel}"><c:set var="difficultyLevel" value="level-one" /></c:if>
 
 <div class="row-fluid">
 	<div class="span12">
