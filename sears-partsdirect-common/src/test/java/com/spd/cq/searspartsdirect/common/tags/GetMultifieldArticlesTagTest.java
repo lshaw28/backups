@@ -33,7 +33,7 @@ public class GetMultifieldArticlesTagTest  extends MocksTag {
 	
 	@Test
 	public void testDoStartTagNoPages() throws JspException {
-		tag.setCategoryPath(fixture.getCategoryPath());
+		tag.setCategory(fixture.getCategory());
 		runsSkipsBodyEvalsPage();
 		@SuppressWarnings("unchecked")
 		List<Object> result = (List<Object>)pageContext.getAttribute("articles");
@@ -43,7 +43,8 @@ public class GetMultifieldArticlesTagTest  extends MocksTag {
 	@Test
 	public void testDoStartTagWithPages() throws JspException, RepositoryException {
 		fixture.setUpTestPages();
-		tag.setCategoryPath(fixture.getCategoryPath());
+		//fixture.setupAuxPages();
+		tag.setCategory(fixture.getCategory());
 		runsSkipsBodyEvalsPage();
 		@SuppressWarnings("unchecked")
 		List<Object> result = (List<Object>)pageContext.getAttribute("articles");

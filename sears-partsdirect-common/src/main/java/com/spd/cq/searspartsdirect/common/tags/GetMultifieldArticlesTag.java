@@ -15,20 +15,22 @@ import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 import com.spd.cq.searspartsdirect.common.model.CategoryModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 public class GetMultifieldArticlesTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(GetMultifieldArticlesTag.class);
-	protected String categoryPath;
+	protected ProductCategoryModel category;
 	
 	@Override
 	public int doStartTag() throws JspException {
 		ArrayList<CategoryModel> articles = new ArrayList<CategoryModel>();
 		List<Page> pages = new ArrayList<Page>();
 		ValueMap assetProperties = null;
-		if(StringUtils.isNotEmpty(categoryPath)){ // check that categoryPath is not empty b/c page blows up otherwise
-			assetProperties = pageManager.getPage(categoryPath).getProperties();
+		if(category != null && StringUtils.isNotEmpty(category.getPath())){ // check that categoryPath is not empty b/c page blows up otherwise
+			assetProperties = pageManager.getPage(category.getPath()).getProperties();
 		}
 		
 		try {
@@ -67,6 +69,31 @@ public class GetMultifieldArticlesTag extends CQBaseTag {
 				articles.add(category);
 			}
 			
+			String categoryName = category.getTrueName();
+			String includeCommonParts = assetProperties.get("includeCommonParts", "");
+			String includeMaintenanceTips = assetProperties.get("includeMaintenanceTips", "");
+			String includeCommonQuestions = assetProperties.get("includeCommonQuestions", "");
+			
+			if ("true".equals(includeCommonParts) 
+					&& PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +  categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
+				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX);
+				CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
+				articles.add(category);
+			}
+			
+			if ("true".equals(includeCommonQuestions) 
+					&& PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
+				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX);
+				CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
+				articles.add(category);
+			}
+			if ("true".equals(includeMaintenanceTips) 
+						&& PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
+				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX);
+				CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
+				articles.add(category);
+			}
+			
 			String header = assetProperties.get("header", "");
 			String link = assetProperties.get("viewAllLinkText", "");
 
@@ -85,8 +112,10 @@ public class GetMultifieldArticlesTag extends CQBaseTag {
         return EVAL_PAGE;
 	}
 	
-	public void setCategoryPath(String categoryPath) {
-		this.categoryPath = categoryPath;
+	public void setCategory(ProductCategoryModel category) {
+		this.category = category;
 	}
+	
+
 	
 }
