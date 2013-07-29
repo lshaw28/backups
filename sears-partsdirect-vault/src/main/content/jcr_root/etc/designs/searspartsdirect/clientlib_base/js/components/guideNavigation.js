@@ -15,6 +15,19 @@ var guideNavigation = Class.extend(function () {
 			this.dir = '';
 			this.maxScroll = false;
 			this.callback = '';
+
+            // set scroll offsets for links
+            $(".guideNavigation li a").each( function (index, element) {
+                $( element ).on("click", function() {
+                    var $href = $(this).attr('href');
+                    var name = $href.substring(1);
+                    var anchor = $('[name='+name+']').offset();
+                    $('html,body').animate({scrollTop: anchor.top-25 } );
+                })
+
+            });
+
+
 		},
 		/**
 		 * Given scroll position of parent window,
