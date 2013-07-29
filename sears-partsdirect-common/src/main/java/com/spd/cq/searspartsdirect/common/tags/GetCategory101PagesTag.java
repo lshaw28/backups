@@ -116,11 +116,7 @@ public class GetCategory101PagesTag extends CQBaseTag {
 				pageTags = page.getTags();
 				List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
 				if(pageTagsArray.contains(cat101Tag)){
-					category101Models.add(new ArticleModel(
-							page.getPath(),
-							null,
-							page.getTitle(),
-							page.getDescription()));
+					category101Models.add(new ArticleModel(page,Constants.EMPTY));
 				}
 			}
 				if (includeMaintenanceTips.equals("true") 

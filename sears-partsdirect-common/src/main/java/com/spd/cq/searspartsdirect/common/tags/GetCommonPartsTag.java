@@ -93,10 +93,6 @@ public class GetCommonPartsTag extends CQBaseTag {
 		return EVAL_PAGE;
 	}
 
-	public String getCategoryPath() {
-		return categoryPath;
-	}
-
 	public void setCategoryPath(String categoryPath) {
 		this.categoryPath = categoryPath;
 	}
