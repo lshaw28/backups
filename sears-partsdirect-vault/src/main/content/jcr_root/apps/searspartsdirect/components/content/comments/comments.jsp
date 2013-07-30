@@ -92,8 +92,8 @@ Includes all child resources (comments).
 	<div class="articleComments-loader">
 		<c:if test="${commentsCount gt 0}">
 			<h2><c:out value="${commentsCount}" /> <c:out value="${displayedCommentsType} "/> Comment<c:if test="${commentsCount gt 1}">s</c:if></h2>
+			<button type="button" class="new-btn" data-path="<%=currentPage.getPath()%>">Load Comments</button>
 		</c:if>
-		<button type="button" class="new-btn" data-path="<%=currentPage.getPath()%>">Load Comments</button>
 	</div>
 	<div class="comments-target"></div>
 
