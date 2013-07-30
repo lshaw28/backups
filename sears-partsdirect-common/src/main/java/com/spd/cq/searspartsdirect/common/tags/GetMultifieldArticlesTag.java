@@ -77,21 +77,27 @@ public class GetMultifieldArticlesTag extends CQBaseTag {
 			if ("true".equals(includeCommonParts) 
 					&& PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +  categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
 				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX);
-				CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
-				articles.add(category);
+				if (currentPage.getPath().compareTo(page.getPath()) != 0) {
+					CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
+					articles.add(category);
+				}
 			}
 			
 			if ("true".equals(includeCommonQuestions) 
 					&& PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
 				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX);
-				CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
-				articles.add(category);
+				if (currentPage.getPath().compareTo(page.getPath()) != 0) {
+					CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
+					articles.add(category);
+				}
 			}
 			if ("true".equals(includeMaintenanceTips) 
 						&& PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
 				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX);
-				CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
-				articles.add(category);
+				if (currentPage.getPath().compareTo(page.getPath()) != 0) {
+					CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
+					articles.add(category);
+				}
 			}
 			
 			String header = assetProperties.get("header", "");

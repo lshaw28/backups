@@ -127,6 +127,12 @@
 			<type>jar</type>
 		</dependency>
 		<dependency>
+			<groupId>com.adobe.granite</groupId>
+			<artifactId>com.adobe.granite.replication.core</artifactId>
+			<version>5.5.38</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>com.day.cq.dam</groupId>
 			<artifactId>cq-dam-api</artifactId>
 			<version>5.5.0</version>
