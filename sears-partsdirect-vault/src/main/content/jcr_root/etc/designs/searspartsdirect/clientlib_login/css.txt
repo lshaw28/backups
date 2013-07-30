@@ -1,0 +1,16 @@
+#base=/etc/designs/searspartsdirect/clientlib_base/less/.
+bootstrap.less
+bootstrap-responsive.less
+font-awesome.less
+font-awesome-ie7.less
+core.standardtags.less
+core.textclasses.less
+core.helperclasses.less
+core.grid.less
+core.buttons.less
+core.buttons.tablet.less
+core.forms.less
+core.tables.less
+
+@base=less/.
+secureLogin.less

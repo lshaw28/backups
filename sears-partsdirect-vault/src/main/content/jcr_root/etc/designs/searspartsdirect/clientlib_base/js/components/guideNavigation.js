@@ -48,8 +48,7 @@ var guideNavigation = Class.extend(function () {
 			}
 		},
 		/**
-		 * sets max scrolling distance for
-		 * sticky nav functionality.
+		 * Sets max scrolling distance for sticky nav functionality
 		 * @param {int} max Optional maxscroll value
 		 */
 		maxScroll: function (max) {
