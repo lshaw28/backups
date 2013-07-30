@@ -19,7 +19,11 @@
 					</li>
 				</ul>
 			</div><button id="searchModelsParts" class="new-btn new-btn-search">Search</button>
-			<p>Can't locate your model number? <a data-toggle="reveal" data-target="#findMyModel" id="newFinderModel">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
+			
+			
+			<p class="search-panel-finder-close-only">Can't locate your model number? <a href="" class="search-panel-finder-trigger">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
+			<p class="search-panel-finder-open-only"><a href="" class="search-panel-finder-trigger">Close the finder</a></p>
+			
 			<input name="pathTaken" id="pathTaken" type="hidden"/>
 			<input name="prst" id="prst" type="hidden"/>
 			<input name="shdMod" id="shdMod" type="hidden"/>
@@ -85,5 +89,67 @@
 			</ul>
 		</div>
 		<div id="searchRightShadow" class="search-shadow"></div>
+		
+		<%--
+		Search Panel Finder UI
+		The following markup are different templates based on what the user selects
+		Selection and data are provided by APIs or from a static source provided by JavaScript
+		--%>
+		<div class="search-panel-finder">
+			<div class="search-panel-finder-wrapper">
+				<div class="search-critera">
+					<h3>Choose your product type</h3>
+					<div class="product-type-selection dropdown-reskin">
+						<i class="icon-angle-down"></i>
+						<select></select><%-- this gets populated by JS --%>
+					</div>
+				</div>
+
+				<%-- UI for that toggles details and plate finder of a search result --%>
+				<div class="search-critera-pane-manager">
+					<div class="item"><a href="">Plate location</a></div>
+					<div class="item"><a href="">Common number model plates</a></div>
+				</div>
+
+				<%-- search result UI --%>
+				<div class="search-critera-output">
+
+				</div>
+
+				<%-- plate helper --%>
+				<div class="search-critera-helper">
+					<h3>Common model number plates</h3>
+					<%-- @TODO there should be a context var for root img paths --%>
+					<div class="model-number-plates">
+						<img class="model-number-plates-img-1" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help1.png" />
+						<img class="model-number-plates-img-2" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help2.png" />
+						<img class="model-number-plates-img-3" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help3.png" />
+					</div>
+
+					<%-- After a search, pane-manager triggers the display of this UI --%>
+					<div class="search-critera-plate-finder">
+						<p>
+							<strong>View sample model numbers by selecting your product brand</strong>
+						</p>
+
+						<%-- Plate finder selection, based on the search-critera output --%>
+						<div class="plate-finder-selection dropdown-reskin">
+							<i class="icon-angle-down"></i>
+							<select></select><%-- this gets populated by JS --%>
+						</div>
+
+						<%-- --%>
+						<div class="search-critera-plate-output">
+
+						</div>
+					</div>
+				</div>
+
+				<div class="search-critera-close">
+					<a href="" class="search-panel-finder-trigger">Close</a>
+				</div>
+			</div>
+		</div>
+				
 	</div>
 </form>
