@@ -15,7 +15,8 @@ public class GetPartsDirectUrl extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 		log.debug("PDUrl is "+EnvironmentSettings.getPDUrl());
-		pageContext.setAttribute("PDUrl", EnvironmentSettings.getPDUrl());
+		pageContext.setAttribute("nonSecurePDUrl", "http://"+ EnvironmentSettings.getPDUrl());
+		pageContext.setAttribute("securePDUrl", "https://"+ EnvironmentSettings.getPDUrl());
 		return SKIP_BODY;
 	}
 
