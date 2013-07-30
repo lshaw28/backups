@@ -1,7 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <div id="registerModal" class="modal hide fade" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
 	<h1 id="registerModalLabel">Register<span class="pull-right">Existing Customer? <a data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Sign In</a></span></h1>
-	<form method="post" action="${registerPath}" data-constraints='@EmailsMatch(field1="registerEmail", field2="registerEmailConfirm", groups=[registerModal])' data-regulagroup="registerModal">
+	<form method="post" action="${secureMainSitePath}/partsdirect/register.pd" data-constraints='@EmailsMatch(field1="registerEmail", field2="registerEmailConfirm", groups=[registerModal])' data-regulagroup="registerModal">
 		<div class="alert alert-error hidden">&nbsp;</div>
 		<fieldset>
 			<label>First Name<span>Required</span></label>
