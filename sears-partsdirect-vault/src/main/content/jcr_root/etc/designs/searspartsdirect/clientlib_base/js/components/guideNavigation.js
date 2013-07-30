@@ -15,6 +15,21 @@ var guideNavigation = Class.extend(function () {
 			this.maxScroll = false;
 			// Bind Events
 			this.bindEvents();
+			this.callback = '';
+
+            // set scroll offsets for links
+            $(".guideNavigation li a").each( function (index, element) {
+                $( element ).on("click", function() {
+                    var $href = $(this).attr('href');
+                    var name = $href.substring(1);
+                    var anchor = $('[name='+name+']').offset();
+                    // add 5 to account for shadow under sticky nav
+                    var stickyHeight = $('.guideNavigation ul').height()+5;
+                    $('html,body').animate({scrollTop: anchor.top-stickyHeight } );
+                })
+
+            });
+
 		},
 		/**
 		 * Given scroll position of parent window, applies and removes "sticky" css classes
