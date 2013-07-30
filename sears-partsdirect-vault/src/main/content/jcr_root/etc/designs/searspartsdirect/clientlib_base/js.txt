@@ -21,6 +21,8 @@ src/Carousel.js
 widgets/DesktopCarousel.js
 widgets/TouchCarousel.js
 widgets/ResponsiveTable.js
+widgets/SearchPanelFinder.js
+widgets/SearchPanelFinderResult.js
 Utilities.js
 DocumentReady.js
 WindowResize.js

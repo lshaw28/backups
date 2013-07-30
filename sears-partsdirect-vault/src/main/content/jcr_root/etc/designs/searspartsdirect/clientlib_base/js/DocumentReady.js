@@ -195,5 +195,10 @@
 		 * Responsive table initializer
 		 */
 		shc.pd.base.widgets.ResponsiveTable.init($('table.responsive-table'));
+		
+		/*
+		 * Search panel finder widget
+		 */
+		shc.pd.base.widgets.SearchPanelFinder.init($('.search-panel-finder'));
 	});
 }(window));
