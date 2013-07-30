@@ -42,3 +42,4 @@ video.js
 comments.js
 modelHeader.js
 recommendedParts.js
+signinIFrame.js

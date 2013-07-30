@@ -52,7 +52,15 @@ var modalForm = Class.extend(function () {
 			if (errorMessage.length > 0) {
 				$('.alert', self.el).removeClass('hidden');
 			} else {
-				$('form', self.el)[0].submit();
+                if (self.group === 'loginModal') {
+                    var userName = $('[name=loginId]', self.el).val();
+                    var password = $('[name=logonPassword]', self.el).val();
+                    if (!window.loginIFrame) window.loginIFrame = new signinIFrame();
+                    window.loginIFrame.submitFormModal( userName, password );
+                } else {
+                    $('form', self.el)[0].submit();
+                }
+
 			}
 		},
 
