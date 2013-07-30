@@ -23,12 +23,12 @@
                         PART NUMBER: <c:out value="${part.number}" /></p>
                 </div>
                 <div class="span4">
-                    <c:if test="${!part.restriction}">
+                    <c:if test="${!part.returnable}">
                         <p>This product is not returnable.</p>
                     </c:if>
                 </div>
                 <div class="span4">
-                    <c:if test="${!part.availabilityStatus}">
+                    <c:if test="${!part.availableInStore}">
                         <p><a href="#.">Available online only.</a></p>
                     </c:if>
                 </div>

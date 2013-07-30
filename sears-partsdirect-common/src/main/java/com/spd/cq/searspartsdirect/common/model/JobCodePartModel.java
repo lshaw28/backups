@@ -36,6 +36,8 @@ public class JobCodePartModel {
 	private String productGroupId;
 	
 	private String supplierId;
+	
+	private boolean availableInStore;
 
 	public String getName() {
 		return name;
@@ -152,5 +154,13 @@ public class JobCodePartModel {
 
 	public void setSupplierId(String supplierId) {
 		this.supplierId = supplierId;
+	}
+
+	public boolean isAvailableInStore() {
+		return availableInStore;
+	}
+
+	public void setAvailableInStore(boolean availableInStore) {
+		this.availableInStore = availableInStore;
 	}
 }
