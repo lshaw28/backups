@@ -24,13 +24,13 @@
 	</c:choose>
 	<div class="span6">
 		<spd:linkResolver value="${category101Model.url}" />
-	<c:if test="${not empty category101Model.imagePath}">
-		<a href="${url}" ><spd:displayImage path="${category101Model.imagePath}" decorated="false" /></a>
-	</c:if>
-	<h4>
-		<a href="${url}"><c:out value="${category101Model.title} "/></a>
-	</h4>
-	<p><c:out value="${category101Model.description} "/></p>
+		<h4>
+			<a href="${url}"><c:out value="${category101Model.title} "/></a>
+		</h4>
+		<c:if test="${not empty category101Model.imagePath}">
+			<a href="${url}" ><spd:displayImage path="${category101Model.imagePath}" decorated="false" /></a>
+		</c:if>
+		<p><c:out value="${category101Model.description} "/></p>
 	</div>
 	<c:choose>
 		<c:when test="${currentItem.count % 2 eq 0 or currentItem.last}">

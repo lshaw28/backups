@@ -19,10 +19,10 @@
 						</c:if>
 						<div class="span6">
 							<spd:linkResolver value="${article.url}" />
+							<h4><a href="${url}"><c:out value="${article.title} "/></a></h4>
 							<c:if test="${not empty article.imagePath}">
 								<a href="${url}"><spd:displayImage path="${article.imagePath}" decorated="false" /></a>
 							</c:if>
-							<h4><a href="${url}"><c:out value="${article.title} "/></a></h4>
 							<p><c:out value="${article.description} "/></p>
 						</div>
 						<c:if test="${currentItem.count % 2 eq 0 or currentItem.last}">
