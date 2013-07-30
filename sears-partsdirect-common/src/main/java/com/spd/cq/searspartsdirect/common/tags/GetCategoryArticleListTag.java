@@ -13,7 +13,6 @@ import javax.jcr.Session;
 import javax.servlet.jsp.JspException;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,8 +61,7 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	        		Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX};
 	        
 	        for (int i=0; i<relatedPageUrls.length; i++) {
-	        	if (getPageByPath(relatedPageUrls[i])) {
-	        		log.debug("this page should be added " + relatedPageUrls[i]);
+	        	if (PDUtils.getPageForCategoryByPath(pageManager, relatedPageUrls[i])) {
 		        	result.add(pageManager.getPage(relatedPageUrls[i]));
 		        }
 	        }
@@ -108,23 +106,5 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	
 	public void setCategory(ProductCategoryModel category) {
 		this.category = category;
-	}
-
-	private boolean getPageByPath(String pagePath) {
-		log.debug("page path is "+pagePath);
-        Page commonPartsPage = pageManager.getPage(pagePath);
-        if (commonPartsPage != null) {
-        	log.debug("***Page is not null" + pagePath);
-        	ValueMap commonPartsPageProp = commonPartsPage.getProperties();
-        	String[] pages = commonPartsPageProp.get("pages", String[].class);
-        	if (pages != null) {
-	        	for (int i =0; i< pages.length; i++) {
-	        		if (pages[i].contains("/productCategory")) {
-	        			return true;
-	        		}
-	        	}
-        	}
-        }
-        return false;
 	}
 }

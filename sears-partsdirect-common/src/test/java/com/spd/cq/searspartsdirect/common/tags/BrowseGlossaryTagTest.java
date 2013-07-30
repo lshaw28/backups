@@ -30,7 +30,8 @@ public class BrowseGlossaryTagTest extends MocksTag {
 		tag.doEndTag();
 		
 		Assert.assertNotNull(pageContext.getAttribute("glossary"));
-		List<String> glossary = (List) pageContext.getAttribute("glossary");
+		@SuppressWarnings("unchecked")
+		List<String> glossary = (List<String>) pageContext.getAttribute("glossary");
 		Assert.assertNotNull(glossary);
 		Assert.assertTrue(glossary.size() > 0);
 	}

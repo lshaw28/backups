@@ -41,6 +41,19 @@ public class GetHeaderHelperTagTest extends MocksTag {
 		runTagShouldSkipBodyAndEvalPage();
 	}
 	
+	@Test
+	public void testWithShoppingCartCookie() throws JspException {
+		fixture.setUpPopulatedShoppingCartCookie();
+		runTagShouldSkipBodyAndEvalPage();
+	}
+	
+	@Test
+	public void testWithAllCookies() throws JspException {
+		fixture.setUpPopulatedModelCookie();
+		fixture.setUpPopulatedShoppingCartCookie();
+		runTagShouldSkipBodyAndEvalPage();
+	}
+	
 	private void runTagShouldSkipBodyAndEvalPage() throws JspException {
 		tag.setPageContext(pageContext);
 		int startResult = tag.doStartTag();

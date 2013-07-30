@@ -14,7 +14,8 @@ public class GetPartsDirectUrlTest  extends MocksTag{
 		getPartsDirectUrl.setPageContext(pageContext);
 		getPartsDirectUrl.doStartTag();
 		getPartsDirectUrl.doEndTag();
-		Assert.assertNotNull(pageContext.getAttribute("PDUrl"));
+		Assert.assertNotNull(pageContext.getAttribute("nonSecurePDUrl"));
+		Assert.assertNotNull(pageContext.getAttribute("securePDUrl"));
 	}
 
 }

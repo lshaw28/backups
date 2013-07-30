@@ -144,8 +144,8 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMultifieldArticlesTag</tag-class>
 		<info>Sets page context information required for Category 101 multifield articles</info>
 		<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
+			<name>category</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>

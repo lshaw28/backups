@@ -27,12 +27,55 @@ public class GetCommonPartsTagTest extends MocksTag {
 		super.setUp();
 		tag = new GetCommonPartsTag();
 		fixture = new GetCommonPartsTagFixture(slingRequest, resourceResolver, pageManager);
-		tag.setCategoryPath("categoryPath");
 	}
 
 	@Test
 	public void testDoStart() throws RepositoryException, JspException {
 		fixture.setUpComplete();
+		tag.setCategoryPath("categoryPath");
+		runTagSkipsBodyEvalsPage();
+		validCompleteResultWithDetails();
+	}
+	
+	@Test
+	public void testDoStartWithNoCategorySet() throws RepositoryException, JspException {
+		fixture.setUpComplete();
+		runTagSkipsBodyEvalsPage();
+		noResult();
+	}
+	
+	@Test
+	public void testDoStartNoHitProperties() throws RepositoryException, JspException {
+		fixture.setUpComplete();
+		fixture.removeHitProperties();
+		tag.setCategoryPath("categoryPath");
+		runTagSkipsBodyEvalsPage();
+		validEmptyResult();
+	}
+	
+	@Test
+	public void testDoStartHitPropertiesThrows() throws RepositoryException, JspException {
+		fixture.setUpComplete();
+		fixture.breakHitProperties();
+		tag.setCategoryPath("categoryPath");
+		runTagSkipsBodyEvalsPage();
+		validEmptyResult();
+	}
+	
+	@Test
+	public void testDoStartNoHitPageGuidesProperties() throws RepositoryException, JspException {
+		fixture.setUpComplete();
+		fixture.removeHitPageGuidesProperties();
+		tag.setCategoryPath("categoryPath");
+		runTagSkipsBodyEvalsPage();
+		validCompleteResultWithDetails();
+	}
+	
+	@Test
+	public void testDoStartNoGuidesResolve() throws RepositoryException, JspException {
+		fixture.setUpComplete();
+		fixture.removeHitGuidesGuidePages();
+		tag.setCategoryPath("categoryPath");
 		runTagSkipsBodyEvalsPage();
 		validCompleteResultWithDetails();
 	}
@@ -51,9 +94,22 @@ public class GetCommonPartsTagTest extends MocksTag {
 	
 	private void validCompleteResultWithDetails() {
 		Assert.assertNotNull(pageContext.getAttribute("commonParts"));
+		@SuppressWarnings("unchecked")
 		List<PartTypeModel> partTypes = (List<PartTypeModel>) pageContext.getAttribute("commonParts");
 		Assert.assertNotNull(partTypes);
 		Assert.assertTrue(partTypes.size() > 0);
+	}
+	
+	private void noResult() {
+		Assert.assertNull(pageContext.getAttribute("commonParts"));
+	}
+	
+	private void validEmptyResult() {
+		Assert.assertNotNull(pageContext.getAttribute("commonParts"));
+		@SuppressWarnings("unchecked")
+		List<PartTypeModel> partTypes = (List<PartTypeModel>) pageContext.getAttribute("commonParts");
+		Assert.assertNotNull(partTypes);
+		Assert.assertTrue(partTypes.size() == 0);
 	}
 
 }

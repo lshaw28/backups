@@ -2,7 +2,7 @@
 
 <spd:requiredParts/>
 
-<h3><cq:text property="partsRequiredTitle" placeholder="Parts Required:" /></h3>
+<h3><cq:text property="partsRequiredTitle" placeholder="Parts Required:" default="Parts Required:"/></h3>
 <ul>
 <c:forEach var="part" items="${parts}">
 	<c:choose>

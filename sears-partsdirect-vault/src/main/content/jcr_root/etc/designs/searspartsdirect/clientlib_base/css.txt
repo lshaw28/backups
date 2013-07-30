@@ -31,6 +31,7 @@ authorDisplay/authorDisplay.less
 boxed-callout/boxed-callout.less
 brandBar/brandBar.less
 breadcrumbNavigation/breadcrumbNavigation.less
+browseGlossary/browseGlossary.less
 carousel/desktopImageCarousel/desktopImageCarousel.less
 carousel/touchImageCarousel/touchImageCarousel.less
 cartNav/cartNav.less

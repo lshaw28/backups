@@ -108,15 +108,6 @@
 		 */
 		$('.guideNavigation').each(function() {
 			var newGuideNavigation = new guideNavigation($(this));
-			newGuideNavigation.setBreakPoint($(this).offset()['top']);
-			newGuideNavigation.setClassToggles('gn-sticky', 'gn-unsticky');
-
-			return $(window).scroll(function() {
-				var scrollDist;
-				scrollDist = $(window).scrollTop();
-				newGuideNavigation.checkState(scrollDist);
-			});
-
 		});
         /**
          * collapse101 component setup
@@ -178,6 +169,7 @@
 
 		// Dynamically populate current page field
 		$('#currentPageURL').attr('value', document.location.href);
+		$('#successfulRegistrationURL').attr('value', document.location.href);
 
 		// Custom validation for matching email fields
 		regula.custom({

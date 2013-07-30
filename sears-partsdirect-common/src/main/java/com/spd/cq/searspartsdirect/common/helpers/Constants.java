@@ -34,7 +34,7 @@ public final class Constants {
 	public static final String ASSETS_GUIDES = ident("guides");
 	// Removed due to direct naming (:name v :nameHint)
 	//public static final int MAX_TRUENAME_LENGTH = ident(20);
-	
+
 	//Model Search Constants
 	public static final String MODEL_NOT_FOUND = ident("Not Found");
 
@@ -138,21 +138,22 @@ public final class Constants {
 	public static final String TAGS_FEATURES_PATH = "searspartsdirect:features";
 
 	// Constants for Templates
+	public static final String CATEGORY_TEMPLATE = ident("/apps/searspartsdirect/templates/category");
 	public static final String ERROR_CODE_TEMPLATE = ident("/apps/searspartsdirect/templates/errorCodesBrands");
 	public static final String REPAIR_GUIDE_TEMPLATE = ident("/apps/searspartsdirect/templates/repairGuide");
 	public static final String COMMON_PARTS_TEMPLATE = ident("/apps/searspartsdirect/templates/commonParts");
 
 	public static final String DEFAULT_ICON = ident("svg-icon-er");
 	public static final String NO_ICON = ident("none");
-	
+
 	//constants for page path urls
 	public static final String COMMON_PARTS_PATH_SUFFIX = ident("-common-parts");
 	public static final String COMMON_QUESTIONS_PATH_SUFFIX = ident("-common-questions");
 	public static final String MAINTENANCE_TIPS_PATH_SUFFIX = ident("-maintenance-tips");
 	public static final String CATEGORY_PATH_SUFFIX = ident("-repair");
-	
-	
-	
+
+
+
 	/**
 	 * This method returns its argument - this is to keep what would otherwise be literals
 	 * from being compiled into client code. If you want to be able to change a constant here
