@@ -94,7 +94,7 @@ public class GetCategory101PagesTag extends CQBaseTag {
 			if(StringUtils.isNotEmpty(category.getPath())) { // check that categoryPath is not empty b/c page blows up otherwise
 				String categoryName = category.getTrueName();
 				
-				if (PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +  categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
+				if (PDUtils.doesPageContainCategoryAsset(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +  categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
 					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX);
 					pageTags = page.getTags();
 					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
@@ -103,7 +103,7 @@ public class GetCategory101PagesTag extends CQBaseTag {
 					}
 				}
 				
-				if (PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
+				if (PDUtils.doesPageContainCategoryAsset(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
 				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX);
 				pageTags = page.getTags();
 				List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
@@ -112,7 +112,7 @@ public class GetCategory101PagesTag extends CQBaseTag {
 					}
 				}
 				
-				if (PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
+				if (PDUtils.doesPageContainCategoryAsset(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
 					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX);
 					pageTags = page.getTags();
 					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));

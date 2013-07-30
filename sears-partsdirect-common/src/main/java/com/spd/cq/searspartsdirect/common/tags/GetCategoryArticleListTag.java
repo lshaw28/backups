@@ -61,7 +61,7 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	        		Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX};
 	        
 	        for (int i=0; i<relatedPageUrls.length; i++) {
-	        	if (PDUtils.getPageForCategoryByPath(pageManager, relatedPageUrls[i])) {
+	        	if (PDUtils.doesPageContainCategoryAsset(pageManager, relatedPageUrls[i])) {
 		        	result.add(pageManager.getPage(relatedPageUrls[i]));
 		        }
 	        }

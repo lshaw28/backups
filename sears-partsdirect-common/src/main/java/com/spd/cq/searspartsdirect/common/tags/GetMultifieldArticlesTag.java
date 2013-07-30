@@ -24,49 +24,50 @@ public class GetMultifieldArticlesTag extends CQBaseTag {
 	protected static Logger log = LoggerFactory.getLogger(GetMultifieldArticlesTag.class);
 	protected ProductCategoryModel category;
 	
+	
 	@Override
 	public int doStartTag() throws JspException {
 		ArrayList<CategoryModel> articles = new ArrayList<CategoryModel>();
 		List<Page> pages = new ArrayList<Page>();
 		ValueMap assetProperties = null;
 		if(category != null && StringUtils.isNotEmpty(category.getPath())){ // check that categoryPath is not empty b/c page blows up otherwise
+			try {
 			assetProperties = pageManager.getPage(category.getPath()).getProperties();
-		}
-		
-		try {
 			String[]  multiJsons = assetProperties.get("multipaths",new String[0]);
 			for (String json : multiJsons) {
 				JSONObject jsob = new JSONObject(json);
 				pages.add(pageManager.getPage(jsob.getString("url")));
 			}
 			String description = "";
-			for (Page page: pages){
-				// We need to resolve the image path, and hand out a blank for image if the image does not exist
-        		String imagePath = page.getPath() + Constants.ASSETS_IMAGE_PATH;
-        		Resource imageResource = resourceResolver.getResource(imagePath);
-        		if (imageResource == null) {
-        			// If we cannot resolve to an image, we return a blank string
-        			imagePath = Constants.EMPTY;
-        		} else {
-        			Node imageNode = imageResource.adaptTo(Node.class);
-        			if (!(imageNode.hasProperty("fileReference") || imageNode.hasNode("file"))) {
-        				// If the image is not set up one way or another, we return a blank string
-        				imagePath = Constants.EMPTY;
-        			}
-        		}
-				
-        		if(page.getProperties().containsKey("abstracttext")){
-	        		description = page.getProperties().get("abstracttext").toString();
-	        	} else {
-	        		description = "";
-	        	}
-        		
-				CategoryModel category = new CategoryModel(
-						page.getPath(),
-						imagePath,
-						page.getTitle(),
-						description);
-				articles.add(category);
+			for (Page page: pages) {
+					if (page != null) {
+					// We need to resolve the image path, and hand out a blank for image if the image does not exist
+	        		String imagePath = page.getPath() + Constants.ASSETS_IMAGE_PATH;
+	        		Resource imageResource = resourceResolver.getResource(imagePath);
+	        		if (imageResource == null) {
+	        			// If we cannot resolve to an image, we return a blank string
+	        			imagePath = Constants.EMPTY;
+	        		} else {
+	        			Node imageNode = imageResource.adaptTo(Node.class);
+	        			if (!(imageNode.hasProperty("fileReference") || imageNode.hasNode("file"))) {
+	        				// If the image is not set up one way or another, we return a blank string
+	        				imagePath = Constants.EMPTY;
+	        			}
+	        		}
+					
+	        		if(page.getProperties().containsKey("abstracttext")){
+		        		description = page.getProperties().get("abstracttext").toString();
+		        	} else {
+		        		description = "";
+		        	}
+	        		
+					CategoryModel category = new CategoryModel(
+							page.getPath(),
+							imagePath,
+							page.getTitle(),
+							description);
+					articles.add(category);
+				}
 			}
 			
 			String categoryName = category.getTrueName();
@@ -75,7 +76,7 @@ public class GetMultifieldArticlesTag extends CQBaseTag {
 			String includeCommonQuestions = assetProperties.get("includeCommonQuestions", "");
 			
 			if ("true".equals(includeCommonParts) 
-					&& PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +  categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
+					&& PDUtils.doesPageContainCategoryAsset(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +  categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
 				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX);
 				if (currentPage.getPath().compareTo(page.getPath()) != 0) {
 					CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
@@ -84,7 +85,7 @@ public class GetMultifieldArticlesTag extends CQBaseTag {
 			}
 			
 			if ("true".equals(includeCommonQuestions) 
-					&& PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
+					&& PDUtils.doesPageContainCategoryAsset(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
 				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX);
 				if (currentPage.getPath().compareTo(page.getPath()) != 0) {
 					CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
@@ -92,7 +93,7 @@ public class GetMultifieldArticlesTag extends CQBaseTag {
 				}
 			}
 			if ("true".equals(includeMaintenanceTips) 
-						&& PDUtils.getPageForCategoryByPath(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
+						&& PDUtils.doesPageContainCategoryAsset(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
 				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX);
 				if (currentPage.getPath().compareTo(page.getPath()) != 0) {
 					CategoryModel category = new CategoryModel(page.getPath(), null, page.getTitle(), null);
@@ -109,6 +110,8 @@ public class GetMultifieldArticlesTag extends CQBaseTag {
 		}
 		catch (Exception e) {
 			log.error("Error creating multifield categories", e);
+			e.printStackTrace();
+		}
 		}
         return SKIP_BODY;
 	}

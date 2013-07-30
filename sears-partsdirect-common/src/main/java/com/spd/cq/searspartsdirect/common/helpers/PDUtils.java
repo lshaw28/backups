@@ -43,14 +43,20 @@ public class PDUtils {
 		return commentsCount;
 	}
 	
-	public static boolean getPageForCategoryByPath(PageManager pageManager, String pagePath) {
-        Page commonPartsPage = pageManager.getPage(pagePath);
-        if (commonPartsPage != null) {
-        	ValueMap commonPartsPageProp = commonPartsPage.getProperties();
-        	String[] pages = commonPartsPageProp.get("pages", String[].class);
+	
+	/**
+	 * @param pageManager
+	 * @param pagePath
+	 * @return true if page contains product category page as an attribute - pages, false otherwise
+	 */
+	public static boolean doesPageContainCategoryAsset(PageManager pageManager, String pagePath) {
+        Page page = pageManager.getPage(pagePath);
+        if (page != null) {
+        	ValueMap pageProp = page.getProperties();
+        	String[] pages = pageProp.get(Constants.ASSETS_PAGES_PATH, String[].class);
         	if (pages != null) {
 	        	for (int i =0; i< pages.length; i++) {
-	        		if (pages[i].contains("/productCategory")) {
+	        		if (pages[i].contains("/"+Constants.ASSETS_PRODUCT_CATEGORY_PATH)) {
 	        			return true;
 	        		}
 	        	}
