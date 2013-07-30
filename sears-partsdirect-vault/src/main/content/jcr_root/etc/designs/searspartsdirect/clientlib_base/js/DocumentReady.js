@@ -155,6 +155,12 @@
 				obj: new shc.pd.base.widgets.TouchCarousel(carouselElement)
 			}));
 		});
+
+        /**
+         * Required for login modal
+         */
+        window.loginIFrame = new signinIFrame();
+
 		/**
 		 * Form validation
 		 */
