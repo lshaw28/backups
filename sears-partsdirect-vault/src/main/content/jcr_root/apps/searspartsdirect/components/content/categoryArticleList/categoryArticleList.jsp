@@ -6,10 +6,9 @@
 <c:choose>
 	<c:when test="${not empty productCategoryRelation}">
 		<spd:getCategoryArticleList category="${productCategoryRelation}" />
-
-		<h2><c:out value="${productCategoryRelation.title} "/></h2>
 		<c:choose>
 			<c:when test="${not empty articles}">
+				<h2> More Articles<!--  <c:out value="${productCategoryRelation.title} "/>--></h2>
 				<%-- Becomes iteration over article.value --%>
 				<c:forEach var="articlesEntry" items="${articles}" varStatus="currentSubcat">
 					<h3><spd:displayTagTitle tagId="${articlesEntry.key}" /></h3>
