@@ -46,7 +46,7 @@
 					--%><c:if test="${empty header1}"><c:set var="header1" value="Get Manuals" /></c:if><%-- 
 					--%><c:set var="subheader1"><cq:text property="subheader1" placeholder="Find &amp; Download" /></c:set><%-- 
 					--%><c:if test="${empty subheader1}"><c:set var="subheader1" value="Find &amp; Download" /></c:if>
-					<h4><a href="${url1}" target="${urlTarget1}">${header1}<br /><span class="hidden-phone">${subheader1}</span></h4>
+					<h4><a href="${url1}" target="${urlTarget1}">${header1}<br /><span class="hidden-phone">${subheader1}</span></a></h4>
 				</li>
 				<li>
 					<span class="icon-stack pull-left">
@@ -63,7 +63,7 @@
 					--%><c:if test="${empty header2}"><c:set var="header2" value="Lawn &amp; Garden" /></c:if><%-- 
 					--%><c:set var="subheader2"><cq:text property="subheader2" placeholder="Repair &amp; Care Tips" /></c:set><%-- 
 					--%><c:if test="${empty subheader2}"><c:set var="subheader2" value="Repair &amp; Care Tips" /></c:if>
-					<h4><a href="${url2}" target="${urlTarget2}">${header2}<br /><span class="hidden-phone">${subheader2}</span></h4>
+					<h4><a href="${url2}" target="${urlTarget2}">${header2}<br /><span class="hidden-phone">${subheader2}</span></a></h4>
 				</li>
 				<li>
 					<span class="icon-stack pull-left">
