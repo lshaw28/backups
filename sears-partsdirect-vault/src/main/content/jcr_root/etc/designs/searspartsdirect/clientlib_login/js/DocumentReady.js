@@ -5,23 +5,23 @@
      * Global functionality instantiation
      */
     $(document).ready(function () {
-
-
-
+		/**
+		 * Set window message domain
+		 */
+		window['parentDomain'] = document.location.hash.replace('#', '');
         /**
          * Form validation
          */
         var loginForm = new secureLogin($('#secureLoginModal'));
+		loginForm.postMessage({ 'closeModal': '#loginModal' });
 
-
-        // check if we need to show modal with error code
+        // Check if we need to show modal with error code
         if (window.location.search.indexOf('errorCode') > 0) {
-            // trigger invalid authentication messaging
+            // Trigger invalid authentication messaging
             loginForm.showUnauthorizedMessage();
         } else {
             loginForm.resetFields();
         }
-
 
         // Custom validation for matching email fields
         regula.custom({
@@ -42,7 +42,5 @@
             }
         });
         regula.bind();
-
-
     });
 }(window));

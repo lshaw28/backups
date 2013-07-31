@@ -34,6 +34,7 @@ category101.js
 collapse101.js
 findThisPart.js
 guideNavigation.js
+messageHandler.js
 modalForm.js
 modelNumberSearch.js
 responsiveDropdown.js
