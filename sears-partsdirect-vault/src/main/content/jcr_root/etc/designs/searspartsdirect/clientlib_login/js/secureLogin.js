@@ -53,12 +53,10 @@ var secureLogin = Class.extend(function () {
 				$('.alert', self.el).removeClass('hidden');
 			} else {
 
-				var userName = $('[name=loginId]', self.el).val();
-				var password = $('[name=logonPassword]', self.el).val();
-				var action = $('#loginFormModal').attr('action');
-				var renew = $('[name=renew]', self.el).val();
+                var userName = $('[name=loginId]', self.el).val();
+                var prepareLoginService = 'http://partsbetavip.qa.ch3.s.com/partsdirect/prepareLogin.pd';
 
-				self.submitLoginForm( userName, password, action, renew );
+				self.prepareLogin( userName, prepareLoginService);
 			}
 		},
 		/**
@@ -115,54 +113,63 @@ var secureLogin = Class.extend(function () {
 		/**
 		 * Handles a successful callback
 		 */
-		successCallback: function (isUserConsumer) {
-			var self = this,
-				commercial_Url = 'https://commercial.searspartsdirect.com';
 
-			// NOT authenticated at this point...
-			if (!isUserConsumer) {
-				// redirect to commercial PD site
-				$('[name=loginId]', self.el).attr('name', 'j_username');
-				$('[name=logonPassword]', self.el).attr('name', 'j_password');
-				//logonPassword.name = "j_password";
-				//loginId.name = "j_username";
-				document.secureLoginFormModal.action = commercial_Url+"/partsdirect/commercialLogin.pd?email=" + $('[name=loginId]', self.el).val();
-				$('.alert', self.el).html("Our records show you're a member of our commercial parts website. We're automatically redirecting you to Sears Commercial Parts.");
-				$('.alert', self.el).removeClass('hidden');
-				setTimeout(function(){document.loginFormModal.submit();}, 3000);
-			} else {
-				// They're a normal user
-				// submit the form and reload page
-				$('form', self.el)[0].submit();
-			}
-		},
-		unAuthCallback: function (errors) {
-		   // this ajax call should never fail
-		},
-		submitLoginForm: function(username, password, serviceURL, renew) {
-			var self = this;
 
-			$.ajax({
-				type: "POST",
-				url: actionURL,
-				data: {loginID: username, logonPassword: password, service:serviceURL, renew: renew },
-				success: self.successCallback,
-				error: self.unAuthCallback
-			});
-			return false;
-		},
-		showUnauthorizedMessage: function () {
-			var self = this,
-				i = 0,
-				errorMessage = 'Unauthorized credentials. Please re-enter.';
+        successCallback: function (obj) {
+            var self = this,
+                commercial_Url = 'https://commercial.searspartsdirect.com';
 
-			// Populate the alert field with the errors
-			$('.alert', self.el).html(errorMessage);
-			$('.alert', self.el).removeClass('hidden');
-			// blank out input fields
-			$('input', self.el).each(function() {
-				$(this).val('');
-			});
+            // NOT authenticated at this point...
+            if (!obj.isUserConsumer) {
+                // redirect to commercial PD site
+                $('[name=loginId]', self.el).attr('name', 'j_username');
+                //$('[name=logonPassword]', self.el).attr('name', 'j_password');
+                //logonPassword.name = "j_password";
+                //loginId.name = "j_username";
+                document.secureLoginFormModal.action = commercial_Url+"/partsdirect/commercialLogin.pd?email=" + $('[name=loginId]', self.el).val();
+                $('.alert', self.el).html("Our records show you're a member of our commercial parts website. We're automatically redirecting you to Sears Commercial Parts.");
+                $('.alert', self.el).removeClass('hidden');
+                setTimeout(function(){document.loginFormModal.submit();}, 3000);
+            } else {
+                // They're a normal user
+                // submit to SSO
+                $('form', self.el)[0].submit();
+            }
+        },
+
+        failCallback: function (errors) {
+               // this ajax call should never fail
+        },
+
+        prepareLogin: function(username, prepareLoginURL) {
+            var self = this;
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: prepareLoginURL,
+                data: { userName: username,
+                        authSuccessURL: encodeURI('https://localhost:5433/content/searspartsdirect/en/login_form.html?authSuccessURL=true'),
+                        authFailureURL:encodeURI('https://localhost:5433/content/searspartsdirect/en/login_form.html?errorCode=300')
+                },
+                success: self.successCallback,
+                error: self.failCallback
+            });
+            return false;
+        },
+
+        showUnauthorizedMessage: function () {
+            var self = this,
+                i = 0,
+                errorMessage = 'Unauthorized credentials. Please re-enter.';
+
+            // Populate the alert field with the errors
+            $('.alert', self.el).html(errorMessage);
+            $('.alert', self.el).removeClass('hidden');
+            // blank out input fields
+            $('input', self.el).each(function() {
+                $(this).val('');
+            });
 		},
 		/**
 		 * Posts a message to the parent page via JavaScript
@@ -173,7 +180,7 @@ var secureLogin = Class.extend(function () {
 
 			if (typeof window['parentDomain'] === 'string') {
 				domain = window['parentDomain'];
-			}
+            }
 
 			top.window.postMessage(message, domain);
 		}

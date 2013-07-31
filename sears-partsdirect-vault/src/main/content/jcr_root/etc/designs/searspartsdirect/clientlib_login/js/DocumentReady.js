@@ -23,6 +23,10 @@
             loginForm.resetFields();
         }
 
+        if(window.location.search.indexOf('authSuccessURL') > 0){
+            loginForm.postMessage({'reload':true});
+        }
+
         // Custom validation for matching email fields
         regula.custom({
             name: "EmailsMatch",
@@ -42,5 +46,7 @@
             }
         });
         regula.bind();
+
+
     });
 }(window));
