@@ -33,54 +33,24 @@
 			<ul>
 				<li>
 					<span class="icon-stack pull-left">
-						<i class="icon-circle icon-stack-base"></i><%-- 
-						--%><c:set var="panelIcon1"><cq:text property="panelIcon1" placeholder="icon-file-alt" /></c:set><%-- 
-						--%><c:if test="${empty panelIcon1}"><c:set var="panelIcon1" value="icon-file-alt" /></c:if>
-						<i class="${panelIcon1} icon-light"></i>
-					</span><%-- 
-					--%><c:set var="url1"><cq:text property="url1" placeholder="#" /></c:set><%-- 
-					--%><c:if test="${empty url1}"><c:set var="url1" value="#" /></c:if><%-- 
-					--%><c:set var="urlTarget1"><cq:text property="urlTarget1" placeholder="_blank" /></c:set><%-- 
-					--%><c:if test="${empty urlTarget1}"><c:set var="urlTarget1" value="_blank" /></c:if><%-- 
-					--%><c:set var="header1"><cq:text property="header1" placeholder="Get Manuals" /></c:set><%-- 
-					--%><c:if test="${empty header1}"><c:set var="header1" value="Get Manuals" /></c:if><%-- 
-					--%><c:set var="subheader1"><cq:text property="subheader1" placeholder="Find &amp; Download" /></c:set><%-- 
-					--%><c:if test="${empty subheader1}"><c:set var="subheader1" value="Find &amp; Download" /></c:if>
-					<h4><a href="${url1}" target="${urlTarget1}">${header1}<br /><span class="hidden-phone">${subheader1}</span></h4>
+						<i class="icon-circle icon-stack-base"></i>
+						<i class="<cq:text property="panelIcon1" placeholder="icon-file-alt" /> icon-light"></i>
+					</span>
+					<h4><a href="<cq:text property="url1" placeholder="#" />" target="<cq:text property="urlTarget1" placeholder="_blank" />"><cq:text property="header1" placeholder="Get Manuals" /><br /><span class="hidden-phone"><cq:text property="subheader1" placeholder="Find &amp; Download" /></span></h4>
 				</li>
 				<li>
 					<span class="icon-stack pull-left">
-						<i class="icon-circle icon-stack-base"></i><%-- 
-						--%><c:set var="panelIcon2"><cq:text property="panelIcon2" placeholder="icon-file-alt" /></c:set><%-- 
-						--%><c:if test="${empty panelIcon2}"><c:set var="panelIcon2" value="icon-file-alt" /></c:if>
-						<i class="${panelIcon2} icon-light"></i>
-					</span><%-- 
-					--%><c:set var="url2"><cq:text property="url2" placeholder="#" /></c:set><%-- 
-					--%><c:if test="${empty url2}"><c:set var="url2" value="#" /></c:if><%-- 
-					--%><c:set var="urlTarget2"><cq:text property="urlTarget2" placeholder="_blank" /></c:set><%-- 
-					--%><c:if test="${empty urlTarget2}"><c:set var="urlTarget2" value="_blank" /></c:if><%-- 
-					--%><c:set var="header2"><cq:text property="header2" placeholder="Lawn &amp; Garden" /></c:set><%-- 
-					--%><c:if test="${empty header2}"><c:set var="header2" value="Lawn &amp; Garden" /></c:if><%-- 
-					--%><c:set var="subheader2"><cq:text property="subheader2" placeholder="Repair &amp; Care Tips" /></c:set><%-- 
-					--%><c:if test="${empty subheader2}"><c:set var="subheader2" value="Repair &amp; Care Tips" /></c:if>
-					<h4><a href="${url2}" target="${urlTarget2}">${header2}<br /><span class="hidden-phone">${subheader2}</span></h4>
+						<i class="icon-circle icon-stack-base"></i>
+						<i class="<cq:text property="panelIcon2" placeholder="icon-file-alt" /> icon-light"></i>
+					</span>
+					<h4><a href="<cq:text property="url2" placeholder="#" />" target="<cq:text property="urlTarget2" placeholder="_blank" />"><cq:text property="header2" placeholder="Lawn &amp; Garden" /><br /><span class="hidden-phone"><cq:text property="subheader2" placeholder="Repair &amp; Care Tips" /></span></h4>
 				</li>
 				<li>
 					<span class="icon-stack pull-left">
-						<i class="icon-circle icon-stack-base"></i><%-- 
-						--%><c:set var="panelIcon3"><cq:text property="panelIcon3" placeholder="icon-file-alt" /></c:set><%-- 
-						--%><c:if test="${empty panelIcon3}"><c:set var="panelIcon3" value="icon-file-alt" /></c:if>
-						<i class="${panelIcon3} icon-light"></i>
-					</span><%-- 
-					--%><c:set var="url3"><cq:text property="url3" placeholder="#" /></c:set><%-- 
-					--%><c:if test="${empty url3}"><c:set var="url3" value="#" /></c:if><%-- 
-					--%><c:set var="urlTarget3"><cq:text property="urlTarget3" placeholder="_blank" /></c:set><%-- 
-					--%><c:if test="${empty urlTarget3}"><c:set var="urlTarget3" value="_blank" /></c:if><%-- 
-					--%><c:set var="header3"><cq:text property="header3" placeholder="Ask An Expert" /></c:set><%-- 
-					--%><c:if test="${empty header3}"><c:set var="header3" value="Ask An Expert" /></c:if><%-- 
-					--%><c:set var="subheader3"><cq:text property="subheader3" placeholder="Have Questions?" /></c:set><%-- 
-					--%><c:if test="${empty subheader3}"><c:set var="subheader3" value="Have Questions?" /></c:if>
-					<h4><a href="${url3}" target="${urlTarget3}">${header3}<br /><span class="hidden-phone">${subheader3}</span></a></h4>
+						<i class="icon-circle icon-stack-base"></i>
+						<i class="<cq:text property="panelIcon3" placeholder="icon-file-alt" /> icon-light"></i>
+					</span>
+					<h4><a href="<cq:text property="url3" placeholder="#" />" target="<cq:text property="urlTarget3" placeholder="_blank" />"><cq:text property="header3" placeholder="Ask An Expert" /><br /><span class="hidden-phone"><cq:text property="subheader3" placeholder="Have Questions?" /></span></a></h4>
 				</li>
 			</ul>
 		</div>
