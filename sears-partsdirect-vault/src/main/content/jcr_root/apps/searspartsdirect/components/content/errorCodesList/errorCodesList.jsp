@@ -3,12 +3,6 @@
 <spd:getUrlRelation relationType="productCategory" />
 <spd:getUrlRelation relationType="brand" />
 
-<h1>
-	<c:if test="${not empty productCategoryRelation}">
-		<c:out value="${productCategoryRelation.title}" />
-		&nbsp;Error Codes
-	</c:if>
-</h1>
 <spd:getErrorCodesList categoryPath="${productCategoryRelation.path}" categoryName="${productCategoryRelation.trueName}" />
 <c:choose>
 	<c:when test="${not empty brandRelation}">
