@@ -27,3 +27,4 @@ build.xml
 # Other Files #
 ###############
 *.*~
+org.apache.felix.http.xml
