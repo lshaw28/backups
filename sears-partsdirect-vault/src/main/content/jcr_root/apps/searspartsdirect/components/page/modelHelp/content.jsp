@@ -8,7 +8,7 @@
 				<div class="span8">
 					<cq:include path="modelSymptoms" resourceType="searspartsdirect/components/content/modelSymptoms" />
 					<cq:include path="errorCodeChecker" resourceType="searspartsdirect/components/content/errorCodeChecker" />
-					<cq:include path="mostViewedGuides" resourceType="searspartsdirect/components/content/mostViewedGuides" />
+					<cq:include path="relatedGuides" resourceType="searspartsdirect/components/content/relatedGuides" />
 				</div>
 				<div class="span3 offset1">
 					<div class="row-fluid">
