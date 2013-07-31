@@ -411,6 +411,11 @@
 		<info>this tag will fetch the PD (QA, Stress, Production) url</info>
 	</tag>
 	<tag>
+		<name>getLocalUrl</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetLocalUrl</tag-class>
+		<info>this tag will fetch the url prefix for the local installation</info>
+	</tag>
+	<tag>
 		<name>getModelHeader</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelHeaderTag</tag-class>
 		<info>Pulls API information for display in Model Header</info>
