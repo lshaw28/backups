@@ -146,7 +146,7 @@
 				</div>
 
 				<div class="search-critera-close">
-					<a href="" class="search-panel-finder-trigger">Close</a>
+					<a href="" class="search-panel-finder-trigger">Close <i class="icon-angle-up"></i></a>
 				</div>
 			</div>
 		</div>
