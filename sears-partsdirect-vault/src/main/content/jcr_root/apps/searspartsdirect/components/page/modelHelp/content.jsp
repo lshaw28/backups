@@ -18,11 +18,6 @@
 					</div>
 					<div class="row-fluid">
 						<div class="span12 ad-span">
-							<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
-						</div>
-					</div>
-					<div class="row-fluid">
-						<div class="span12 ad-span">
 							<cq:include path="topParts" resourceType="searspartsdirect/components/content/topParts" />
 						</div>
 					</div>
