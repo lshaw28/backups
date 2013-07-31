@@ -156,10 +156,7 @@
 			}));
 		});
 
-        /**
-         * Required for login modal
-         */
-        window.loginIFrame = new signinIFrame();
+
 
 		/**
 		 * Form validation

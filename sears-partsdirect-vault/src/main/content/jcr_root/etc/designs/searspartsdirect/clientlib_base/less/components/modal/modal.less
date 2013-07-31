@@ -2,10 +2,20 @@
 @import "../../base.mixins.less";
 
 .modal {
-	.borderRadius(0);
-	padding: 40px 70px 30px 70px;
-	width: 366px;
-	z-index: 9999;
+  .borderRadius(0);
+  padding: 40px 70px 30px 70px;
+  min-width: 366px;
+  z-index: 9999;
+
+  iframe {
+    border: none;
+    min-width: 508px;
+    min-height: 320px;
+  }
+
+  #loginModal.modal {
+    padding: 0px;
+  }
 
 	h1 {
 		color: @secondaryHueDark;
