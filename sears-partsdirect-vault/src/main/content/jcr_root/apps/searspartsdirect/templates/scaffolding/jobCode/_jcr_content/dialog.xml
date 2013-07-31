@@ -10,7 +10,8 @@
                 <title
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Title"
-                    name="./jcr:content/jcr:title"/>
+                    name="./jcr:content/jcr:title"
+                    allowBlank="false"/>
                 <description
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Description"
@@ -20,7 +21,8 @@
                     jcr:primaryType="cq:Widget"
                     fieldLabel="ID"
                     xtype="textfield"
-                    name="./jcr:content/id"/>
+                    name="./jcr:content/id"
+                    allowBlank="false"/>
             </items>
         </tab1>
         

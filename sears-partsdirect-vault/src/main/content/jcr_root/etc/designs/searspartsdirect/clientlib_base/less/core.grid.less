@@ -1,6 +1,11 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
+article {
+	margin: 0 20px;
+	background-color: @bodyColor;
+}
+
 #viewport {
 	max-width: 1280px;
 	margin: 0 auto;
@@ -64,6 +69,11 @@
 	.new-span-five-sixths {
 		width: 82.97872340425532%;
 		*width: 82.92553191489361%;
+	}
+	[class*="span"], [class^=" span"], [class*="new-span-"], [class^=" new-span-"] {
+		&.desktop-offset1 {
+			margin-left: 8.547008547008547%;
+		}
 	}
 }
 
