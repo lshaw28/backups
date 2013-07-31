@@ -14,7 +14,7 @@
 				<div class="span3 offset1 pull-right">
 					<div class="row-fluid">
 						<div class="span12">
-							<cq:include path="topAccessories" resourceType="searspartsdirect/components/content/topAccessories" />
+							<%-- <cq:include path="topAccessories" resourceType="searspartsdirect/components/content/topAccessories" />--%>
 						</div>
 					</div>
 					<div class="row-fluid">
