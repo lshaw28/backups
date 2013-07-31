@@ -13,11 +13,11 @@
 </head>
 
 <body>
-    <div class="row-fluid">
+    <div class="row-fluid" id="secureLoginModal">
         <div class="span6 offset3">
             <!-- Start Form -->
             <h1 id="loginModalLabel">Sign In<span class="pull-right">New Customer? <a data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Register</a></span></h1>
-            <form id="loginFormModal" name="loginFormModal" method="post" action="https://sso.shld.net/shccas/shcLogin" data-regulagroup="loginModal">
+            <form id="secureLoginFormModal" name="secureLoginFormModal" method="post" action="https://sso.shld.net/shccas/shcLogin" data-regulagroup="loginModal">
                 <div class="alert alert-error hidden">&nbsp;</div>
                 <fieldset>
                     <label>Email<span>Required</span></label>

@@ -13,7 +13,7 @@
 					jcr:primaryType="cq:Widget"
 					fieldLabel="Text"
 					name="./text"
-					xtype="textfield" />
+					xtype="textarea" />
 			</items>
 		</tab1>
 	</items>

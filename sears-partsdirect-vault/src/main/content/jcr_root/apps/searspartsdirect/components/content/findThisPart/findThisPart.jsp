@@ -1,6 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<%@ page import="com.day.cq.commons.jcr.JcrConstants" %>
-
 <div class="accordion">
     <div class="accordion-group">
         <div class="accordion-heading">
