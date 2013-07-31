@@ -146,7 +146,9 @@ var secureLogin = Class.extend(function () {
 
             $.ajax({
                 type: "GET",
-                dataType: "json",
+                async: false,
+                contentType: 'application/json',
+                dataType: 'JSON',
                 url: prepareLoginURL,
                 data: { userName: username,
                         authSuccessURL: encodeURI('https://localhost:5433/content/searspartsdirect/en/login_form.html?authSuccessURL=true'),
