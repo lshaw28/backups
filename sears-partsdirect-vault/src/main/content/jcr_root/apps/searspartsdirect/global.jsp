@@ -6,7 +6,7 @@
 <spd:getPDUrl />
 <spd:getConstants />
 
-<c:set var="mainSitePath" scope="request">${PDUrl}</c:set>
+<c:set var="mainSitePath" scope="request">${nonSecurePDUrl}</c:set>
 <c:set var="secureMainSitePath" scope="request">${securePDUrl}</c:set>
 <c:set var="loginPath" scope="request" value="https://sso.shld.net/shccas/shcLogin"></c:set>
 <c:set var="registerPath" scope="request" value="http://partsbetavip.qa.ch3.s.com/partsdirect/register.pd"></c:set>

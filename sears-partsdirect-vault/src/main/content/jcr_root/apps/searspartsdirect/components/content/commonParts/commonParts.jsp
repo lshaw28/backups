@@ -7,6 +7,7 @@
 
 <c:forEach var="commonPart" items="${commonParts}">
 	<h2><c:out value="${commonPart.title}"/></h2>
+<div class="commonPartsContainerIndent">
 	<p><c:out value="${commonPart.description}"/></p>
 	
 		<c:if test="${not empty commonPart.guides}">
@@ -37,4 +38,5 @@
 				</c:choose>
 			</a>
 		</h3>
+</div>
 </c:forEach>

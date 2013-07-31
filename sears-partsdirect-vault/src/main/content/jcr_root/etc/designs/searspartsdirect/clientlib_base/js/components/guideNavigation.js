@@ -11,7 +11,6 @@ var guideNavigation = Class.extend(function () {
 			this.el = el;
 			this.classOn = 'gn-sticky';
 			this.classOff = 'gn-unsticky';
-			this.breakPoint = el.offset().top;
 			this.maxScroll = false;
 			// Bind Events
 			this.bindEvents();
@@ -20,12 +19,13 @@ var guideNavigation = Class.extend(function () {
             // set scroll offsets for links
             $(".guideNavigation li a").each( function (index, element) {
                 $( element ).on("click", function() {
-                    var $href = $(this).attr('href');
-                    var name = $href.substring(1);
-                    var anchor = $('[name='+name+']').offset();
-                    // add 5 to account for shadow under sticky nav
-                    var stickyHeight = $('.guideNavigation ul').height()+5;
-                    $('html,body').animate({scrollTop: anchor.top-stickyHeight } );
+                    var $href = $(this).attr('href'),
+						name = $href.substring(1),
+						anchor = $('[name='+name+']').offset(),
+						stickyHeight = $('.guideNavigation')[0].offsetHeight + 5;
+                    $('html,body').animate({
+						scrollTop: anchor.top - stickyHeight
+					});
                 })
 
             });
@@ -37,12 +37,13 @@ var guideNavigation = Class.extend(function () {
 		 * @return {void}
 		 */
 		checkState: function(val) {
-			var self = this;
+			var self = this,
+				breakpoint = self.el.prev().offset().top + self.el.prev()[0].offsetHeight;
 
 			if (self.el !== false) {
-				if (val > self.breakPoint && !self.el.hasClass(self.classOn)) {
+				if (val > breakpoint && !self.el.hasClass(self.classOn)) {
 					self.el.removeClass(self.classOff).addClass(self.classOn);
-				} else if (val <= self.breakPoint && !self.el.hasClass(self.classOff)) {
+				} else if (val <= breakpoint && !self.el.hasClass(self.classOff)) {
 					self.el.removeClass(self.classOn).addClass(self.classOff);
 				}
 			}

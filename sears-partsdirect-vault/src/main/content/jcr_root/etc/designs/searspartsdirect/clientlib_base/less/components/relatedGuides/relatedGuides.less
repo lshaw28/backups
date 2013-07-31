@@ -1,0 +1,67 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.relatedGuides{
+    .carousel-wrapper{
+        .carousel-list-wrapper{
+            .carousel-item {
+                float: left;
+                width: 20%;
+            }
+            
+            .wrapperGuide {
+                position: relative;
+                min-height: 140px;
+                
+            }
+            
+            .image-wrapper {
+                height: auto;
+                width: 160px;
+                overflow: hidden;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: @secondaryHueLight;
+                
+                .image {
+                    max-height: 90px;
+                    overflow: hidden;
+                    border-bottom: solid 2px #fff;
+                }
+                
+            }
+            
+            .wrench-symbol {
+                position: absolute;
+                width: 28px;
+                height: 28px;
+                top: 75px;
+                line-height: 24px;
+                left: 45%;
+                margin-left: -9px;
+                border: solid 2px #fff;
+                
+                i {
+                    font-size: 12px;
+                    .flipHorizontally();
+                }
+            }
+            .guideURL{
+                position: relative;
+                display: block;
+                text-align: center;
+                margin: 10px;
+                a{
+                    text-decoration: none;
+                    
+                }
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+@import "relatedGuides.tablet.less";

@@ -78,3 +78,6 @@ text/text.less
 topAccessories/topAccessories.less
 topParts/topParts.less
 toolsRequiredRepair/toolsRequiredRepair.less
+search-panel-finder/search-panel-finder.less
+relatedGuides/relatedGuides.less
+commonParts/commonParts.less

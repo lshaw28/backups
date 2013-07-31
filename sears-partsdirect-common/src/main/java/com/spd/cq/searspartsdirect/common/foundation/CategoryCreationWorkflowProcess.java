@@ -64,7 +64,7 @@ public class CategoryCreationWorkflowProcess implements WorkflowProcess {
                 tag[0] = node.getPath();
                 
                 createPage(pm, "/content/searspartsdirect/en/categories", categoryTrueName + "-repair", "/apps/searspartsdirect/templates/category", categoryTitle, tag);
-                createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "repair-articles", "/apps/searspartsdirect/templates/articleIndex", "Article Index", tag);
+                createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "repair-articles", "/apps/searspartsdirect/templates/articleIndex",  categoryTitle + " Article Index", tag);
                 createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "symptom", "/apps/searspartsdirect/templates/categorySymptom", "Symptoms", tag);
                 createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "error-codes", "/apps/searspartsdirect/templates/errorCodes", "Error Codes", tag);
                 createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", "repair-guides", "/apps/searspartsdirect/templates/categoryGuideList", categoryTitle + " Guide List", tag);
