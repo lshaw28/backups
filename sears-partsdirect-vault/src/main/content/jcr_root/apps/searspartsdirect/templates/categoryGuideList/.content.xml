@@ -7,6 +7,7 @@
 	jcr:title="Sears PartsDirect Category Guide List Template"
 	jcr:description="Category guide list template for the Sears PartsDirect site."
 	allowedPaths="[/content/searspartsdirect(/.*)?]"
+	allowedParents="[/apps/searspartsdirect/templates/category]"
 	ranking="30">
 	<jcr:content
 		jcr:primaryType="cq:PageContent"

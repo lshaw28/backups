@@ -7,6 +7,7 @@
 	jcr:title="Sears PartsDirect Article Index Template"
 	jcr:description="Article index template for Sears PartsDirect site."
 	allowedPaths="[/content/searspartsdirect(/.*)?]"
+	allowedParents="[/apps/searspartsdirect/templates/category]"
 	ranking="71">
 	<jcr:content
 		jcr:primaryType="cq:PageContent"

@@ -6,7 +6,7 @@
 	jcr:primaryType="cq:Template"
 	jcr:title="Sears PartsDirect Disassembly Guide/How It Works/Maintenance Project Template"
 	jcr:description="Disassembly guide/how it works/maintenance project template for the Sears PartsDirect site."
-	allowedPaths="[/content/searspartsdirect(/.*)?]"
+	allowedPaths="[/content/searspartsdirect/en/article(/.*)?]"
 	ranking="50">
 	<jcr:content
 		jcr:primaryType="cq:PageContent"
