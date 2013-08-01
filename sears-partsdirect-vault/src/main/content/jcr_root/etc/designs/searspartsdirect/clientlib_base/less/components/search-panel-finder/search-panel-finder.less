@@ -3,25 +3,31 @@
 .search-panel-finder-wrapper {
 	border-left: solid 4px @primaryHueDarkest;
 	border-right: solid 4px @primaryHueDarkest;
-	border-bottom: solid 4px @primaryHueDarkest;
-	padding: 20px 20px 0 20px;
+	padding: 0 20px;
 	background: #fff;
+	height: 0px;
+	overflow: hidden;
 }
 
 .search-panel-finder {
-	display: none;
 	width: 100%;
 	position: absolute;
+	overflow: hidden;
+
+	&.is-open {
+		.search-panel-finder-wrapper {
+			border-bottom: solid 4px @primaryHueDarkest;
+		}
+	}
 
 	.dropdown-reskin {
-		padding-left: 15px;
 		position: relative;
 		overflow: hidden;
 		border: solid 1px @secondaryHueLight;
 
 		select {
 			border: 0;
-			padding: 0;
+			padding: 0 0 0 15px;
 			height: 45px;
 			width: 110%;
 			margin: 0;
@@ -48,11 +54,26 @@
 	.model-number-plates-img-2 {
 		margin-right: 15px;
 	}
+
+	.CMNP_center,
+	.CMNP_left {
+		float: left;
+	}
+
+	.CMNP_left {
+		width: 188px;
+		padding-right: 20px;
+	}
+
+	.CMNP_right {
+		float: right;
+	}
 }
 
 .search-critera-pane-manager {
 	padding-top: 20px;
 	overflow: hidden;
+	display: none;
 	
 	.item {
 		float: left;
@@ -82,6 +103,10 @@
 	}
 }
 
-.search-critera-output {
+.search-critera-plate-finder {
+	display: none;
+}
 
+.search-critera-output {
+	overflow: hidden;
 }
