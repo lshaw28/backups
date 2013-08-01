@@ -13,8 +13,7 @@ var secureLogin = Class.extend(function () {
 			this.group = $('form', el).attr('data-regulagroup').toString();
 			this.bindSubmit();
 			this.bindCancel();
-            this.bindRegisterLink();
-            this.bindForgotPasswordLink();
+            this.bindLinks();
 			this.bindCheckField();
 			this.resetFields();
 		},
@@ -72,20 +71,16 @@ var secureLogin = Class.extend(function () {
 				self.postMessage({ 'closeModal': '#loginModal' });
 			});
 		},
-        /**
-         * Binds forgot password link
-         */
-        bindForgotPasswordLink: function () {
 
-        },
         /**
          * Binds register link to close login modal and open register modal
          */
-        bindRegisterLink: function () {
+        bindLinks: function () {
             var self = this;
 
             $('[data-target]', self.el).bind('click', function() {
-                self.postMessage({ 'closeModal': '#loginModal', 'openModal': '#registerModal'});
+                var target = $(this).data('target');
+                self.postMessage({ 'closeModal': '#loginModal', 'openModal': target});
             });
         },
 		/**
