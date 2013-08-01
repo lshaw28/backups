@@ -7,7 +7,7 @@
 	jcr:title="Sears PartsDirect Two Column Layout"
 	jcr:description=""
 	allowedPaths="[/content/searspartsdirect(/.*)?]"
-	ranking="70">
+	ranking="72">
 	<jcr:content
 		jcr:primaryType="cq:PageContent"
 		sling:resourceType="searspartsdirect/components/page/twoColumns"
