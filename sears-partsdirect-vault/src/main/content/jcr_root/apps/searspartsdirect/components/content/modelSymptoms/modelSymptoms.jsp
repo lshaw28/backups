@@ -9,9 +9,8 @@
 Here are the most common symptoms we've seen for this model. Select a symptom to view which parts have been used to fix that problem.<br/>
 <spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryRelation.path}" />
 
-<!-- check the api for model symptoms if yes, then display otherwise make the call to the following tag-->
 <spd:getModelSymptoms brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}" />
-<!--  if no category symptoms then display the featured guide -->
+
 		<c:choose>
 			<c:when test="${not empty modelSymptoms}">
 				<table class="table table-striped">
@@ -42,6 +41,7 @@ Here are the most common symptoms we've seen for this model. Select a symptom to
 				</table>
 			</c:when>
 			<c:otherwise>
+				<%--  if no symptoms then display the featured guide --%>
 				<cq:include path="mostPopularGuide" resourceType="searspartsdirect/components/content/mostPopularGuide" />
 			</c:otherwise>
 		</c:choose>
