@@ -13,6 +13,8 @@ var secureLogin = Class.extend(function () {
 			this.group = $('form', el).attr('data-regulagroup').toString();
 			this.bindSubmit();
 			this.bindCancel();
+            this.bindRegisterLink();
+            this.bindForgotPasswordLink();
 			this.bindCheckField();
 			this.resetFields();
 		},
@@ -70,6 +72,22 @@ var secureLogin = Class.extend(function () {
 				self.postMessage({ 'closeModal': '#loginModal' });
 			});
 		},
+        /**
+         * Binds forgot password link
+         */
+        bindForgotPasswordLink: function () {
+
+        },
+        /**
+         * Binds register link to close login modal and open register modal
+         */
+        bindRegisterLink: function () {
+            var self = this;
+
+            $('[data-target]', self.el).bind('click', function() {
+                self.postMessage({ 'closeModal': '#loginModal', 'openModal': '#registerModal'});
+            });
+        },
 		/**
 		 * Creates validation object literal
 		 * @return {object}
@@ -142,7 +160,8 @@ var secureLogin = Class.extend(function () {
         },
 
         prepareLogin: function(username, prepareLoginURL) {
-            var self = this;
+            var self = this,
+                hostName = window.SPDUtils.getLocationDetails().fullAddress;
 
             $.ajax({
                 type: "GET",
@@ -151,8 +170,8 @@ var secureLogin = Class.extend(function () {
                 dataType: 'JSON',
                 url: prepareLoginURL,
                 data: { userName: username,
-                        authSuccessURL: encodeURI('https://localhost:5433/content/searspartsdirect/en/login_form.html?authSuccessURL=true'),
-                        authFailureURL:encodeURI('https://localhost:5433/content/searspartsdirect/en/login_form.html?errorCode=300')
+                        authSuccessURL: encodeURI(hostName+'/content/searspartsdirect/en/login_form.html?authSuccessURL=true'),
+                        authFailureURL:encodeURI(hostName+'/content/searspartsdirect/en/login_form.html?errorCode=300')
                 },
                 success: self.successCallback,
                 error: self.failCallback
