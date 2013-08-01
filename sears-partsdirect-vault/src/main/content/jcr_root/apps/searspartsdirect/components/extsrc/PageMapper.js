@@ -217,7 +217,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 						}
 					}
 				}
-			},
+			}
 		});
 
 		// append to wrapper
@@ -306,7 +306,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 							// rebuild
 							store.each(function (record) {
 								_this.addHiddenValue(record.get('path'));
-							})
+							});
 						} else {
 							CQ.Ext.Msg.alert('Page Mapper' , 'Item is already on the top.');
 						}
@@ -334,7 +334,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 							// rebuild
 							store.each(function (record) {
 								_this.addHiddenValue(record.get('path'));
-							})
+							});
 						} else {
 							CQ.Ext.Msg.alert('Page Mapper' , 'Item is already on the bottom.');
 						}
