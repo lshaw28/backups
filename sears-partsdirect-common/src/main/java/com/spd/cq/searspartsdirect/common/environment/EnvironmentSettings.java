@@ -123,6 +123,22 @@ public class EnvironmentSettings {
 		return getProperty(PD_API_ROOT, Constants.EMPTY);
 	}
 	
+	@Property(label = "HTTP local host name and port",
+			description = "HTTP local host name and port",
+			value = "localhost:4502")
+	public static final String LOCAL_HTTP_N_PORT = "searspartsdirect.local.http";
+	public static String getLocalHttpAndPort() {
+		return getProperty(LOCAL_HTTP_N_PORT, Constants.EMPTY);
+	}
+	
+	@Property(label = "HTTPS local host name and port",
+			description = "HTTPS local host name and port",
+			value = "localhost:5433")
+	public static final String LOCAL_HTTPS_N_PORT = "searspartsdirect.local.https";
+	public static String getLocalHttpsAndPort() {
+		return getProperty(LOCAL_HTTPS_N_PORT, Constants.EMPTY);
+	}
+	
 	// ---- for testing ----
 	public void externalActivateForTesting(final ComponentContext context) throws Exception {
 		activate(context);
