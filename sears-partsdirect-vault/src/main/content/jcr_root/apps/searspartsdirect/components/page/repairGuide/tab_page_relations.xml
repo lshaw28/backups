@@ -4,13 +4,12 @@
 	width="500"
 	title="Page Relations">
 	<items jcr:primaryType="cq:WidgetCollection">
-		
         <pageRelations jcr:primaryType="cq:Widget"
         	fieldLabel="Related Asset Pages"
         	name="./pages"
         	treeRootPath="/etc/spdAssets/scaffolding"
+			allowedNodes="brand,productCategory"
         	xtype="pagemapper"/>
-        
         <!-- treeRootPath here must match GUIDES_ROOT defn in Constants.java -->
         <!-- name here must match REL_GUIDES_ATTR defn in GetRelatedGuidesTag (./ disregarded) -->
         <guidesRelations jcr:primaryType="cq:Widget"
@@ -18,6 +17,5 @@
         	name="./relatedGuides"
         	treeRootPath="/content/searspartsdirect/en/repair-guide"
         	xtype="pagemapper"/>
-        
 	</items>
 </jcr:root>
