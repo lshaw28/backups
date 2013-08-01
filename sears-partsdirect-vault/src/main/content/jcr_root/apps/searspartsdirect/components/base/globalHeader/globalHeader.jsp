@@ -12,7 +12,7 @@
 		<c:set var="firstName" scope="request" value="${userData.firstName}"/>
 		<c:set var="lastName" scope="request" value="${userData.lastName}"/>
 	</c:if>
-
+	<c:set var="cartCount" scope="request" value="${cartCount}"/>
 	<div id="headerNavigation">
 		<div class="trigger"></div>
 		<cq:include path="loginNav" resourceType="/apps/searspartsdirect/components/base/loginNav" />

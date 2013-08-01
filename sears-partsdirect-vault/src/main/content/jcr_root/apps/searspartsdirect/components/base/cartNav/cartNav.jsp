@@ -81,11 +81,11 @@
 		<div class="btn-group">
 			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i><span class="hidden-phone"> Cart</span>
 			<c:choose>
-				<c:when test="${not empty shoppingCart && fn:length(shoppingCart) gt 99}">
+				<c:when test="${cartCount gt 99}">
 					<span class="count-badge">99+</span>
 				</c:when>
-				<c:when test="${not empty shoppingCart && fn:length(shoppingCart) gt 0 && fn:length(shoppingCart) lt 100}">
-					<span class="count-badge"><c:out value="${fn:length(shoppingCart)}" /></span>
+				<c:when test="${cartCount gt 0 && cartCount lt 100}">
+					<span class="count-badge"><c:out value="${cartCount}" /></span>
 				</c:when>
 				<c:otherwise>
 					<span class="count-badge">0</span>
@@ -120,7 +120,7 @@
 						</li>
 					</c:forEach>
 				</c:if>
-				<li class="cartShopTotals_js${cartClass}"><strong>Total items: <span class="cartShopCount_js"><c:out value="${fn:length(shoppingCart)}" /></span></strong></li>
+				<li class="cartShopTotals_js${cartClass}"><strong>Total items: <span class="cartShopCount_js"><c:out value="${cartCount}" /></span></strong></li>
 				<li class="cartShopView_js${cartClass}"><a class="new-btn" href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</a></li>
 				<li class="cartShopEmpty_js${cartNoItemsClass}">Your shopping cart is empty.</li>
 			</ul>
