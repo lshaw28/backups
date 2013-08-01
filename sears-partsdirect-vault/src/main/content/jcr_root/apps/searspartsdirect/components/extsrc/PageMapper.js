@@ -368,17 +368,6 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		this.containerPanel.add(this.gridPanel);
 	},
 	/**
-	 * Modifies a list of child nodes based on a string array of allowed paths
-	 * @param {array} node Original node
-	 * @return {void}
-	 */
-	cleanChildNodes: function (node) {
-		var _this = this;
-
-		console.log(_this.allowedNodes);
-		console.log(node.childNodes);
-	},
-	/**
 	 * Populates grid from parent data
 	 * @return {undefined}
 	 */
