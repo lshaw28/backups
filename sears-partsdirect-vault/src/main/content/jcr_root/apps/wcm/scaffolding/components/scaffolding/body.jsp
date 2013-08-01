@@ -78,7 +78,7 @@
     		initCategoryForm();
     	}
     	else {
-    		initForm("<%=formUrl%>");
+    		initForm("<%=formUrl%>","");
     	}
         window.scrollTo(0,0);
     });
@@ -135,7 +135,7 @@
                 	category = fields[name][0].getValue();
                 }
                 myForm.destroy();
-        		initForm("/etc/spdAssets/scaffolding/<%=currentPage.getName()%>/" + category + "/*");
+        		initForm("/etc/spdAssets/scaffolding/<%=currentPage.getName()%>/" + category + "/*", category);
             }
         });
         myForm.render("dlg");
@@ -145,7 +145,7 @@
         myForm.fireEvent("activate", myForm);
         myForm.getForm().findField(0).focus();
 	}
-    function initForm(path) {
+    function initForm(path, category) {
         /**
          * An array containing the xtype of widgets that need to call
          * their processRecord function even when creating a new page
@@ -368,6 +368,13 @@
 
         myForm.fireEvent("activate", myForm);
         myForm.getForm().findField(0).focus();
+        $CQ.each(myForm.getForm().items.items, function(i, v) {
+        	if (v.name == "./jcr:content/pages" && v.disabled != true) {
+        		if (category != "") {
+        			v.addValue("/etc/spdAssets/scaffolding/productCategory/" + category);
+        		}
+        	}
+        });
     };
 </script>
 </body>
