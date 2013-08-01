@@ -556,4 +556,9 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>getCategoryJSON</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCategoryJSONTag</tag-class>
+		<info>Gets the categories in the form of JSON text</info>
+	</tag>
 </taglib>
