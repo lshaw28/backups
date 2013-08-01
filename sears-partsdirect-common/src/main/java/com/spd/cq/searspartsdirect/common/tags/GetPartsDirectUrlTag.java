@@ -7,15 +7,16 @@ import org.slf4j.LoggerFactory;
 
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 
-public class GetLocalUrl extends CQBaseTag {
+public class GetPartsDirectUrlTag extends CQBaseTag {
 
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = LoggerFactory.getLogger(GetLocalUrl.class);
+	protected static Logger log = LoggerFactory.getLogger(GetPartsDirectUrlTag.class);
 
 	@Override
 	public int doStartTag() throws JspException {
-		pageContext.setAttribute("nonSecureLocalUrl", "http://"+ EnvironmentSettings.getLocalHttpAndPort());
-		pageContext.setAttribute("secureLocalUrl", "https://"+ EnvironmentSettings.getLocalHttpsAndPort());
+		log.debug("PDUrl is "+EnvironmentSettings.getPDUrl());
+		pageContext.setAttribute("nonSecurePDUrl", "http://"+ EnvironmentSettings.getPDUrl());
+		pageContext.setAttribute("securePDUrl", "https://"+ EnvironmentSettings.getPDUrl());
 		return SKIP_BODY;
 	}
 

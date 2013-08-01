@@ -10,7 +10,7 @@ public class GetPartsDirectUrlTest  extends MocksTag{
 
 	@Test
 	public void testDoStartTag() throws JspException {
-		GetPartsDirectUrl getPartsDirectUrl = new GetPartsDirectUrl();
+		GetPartsDirectUrlTag getPartsDirectUrl = new GetPartsDirectUrlTag();
 		getPartsDirectUrl.setPageContext(pageContext);
 		getPartsDirectUrl.doStartTag();
 		getPartsDirectUrl.doEndTag();
