@@ -46,12 +46,10 @@ public class GetCategoryJSONTag extends CQBaseTag {
 	    			Node child = catIter.next();
 	    			Node content = child.getNode("jcr:content");
 	    			sb.append("{\"value\":\"" + child.getName() + "\", \"text\":\"" + content.getProperty("jcr:title").getString() + "\"}");
-	    			if (catIter.hasNext()) {
-	    				sb.append(",");
-	    			}
+	    			sb.append(",");
 	    		}
 	    	}
-	    	sb.append("]");
+	    	sb.setCharAt(sb.length()-1, ']');
 	    	Writer out = pageContext.getOut();
 	    	out.append(sb.toString());
 	    	out.flush();
