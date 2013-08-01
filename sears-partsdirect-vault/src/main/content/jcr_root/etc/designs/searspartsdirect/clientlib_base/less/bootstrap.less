@@ -2273,7 +2273,7 @@ table th[class*="span"],
 	border-bottom: 1px solid @bodyColor;
 }
 
-.dropdown-menu > li > a:not(.new-btn) {
+.dropdown-menu > li > a[class=""] {
 	display: block;
 	padding: 3px 20px;
 	clear: both;
@@ -2283,10 +2283,10 @@ table th[class*="span"],
 	white-space: nowrap;
 }
 
-.dropdown-menu > li > a:not(.new-btn):hover,
-.dropdown-menu > li > a:not(.new-btn):focus,
-.dropdown-submenu:hover > a:not(.new-btn),
-.dropdown-submenu:focus > a:not(.new-btn) {
+.dropdown-menu > li > a[class=""]:hover,
+.dropdown-menu > li > a[class=""]:focus,
+.dropdown-submenu:hover > a[class=""],
+.dropdown-submenu:focus > a[class=""] {
 	color: @bodyColor;
 	text-decoration: none;
 	background-color: #0081c2;
@@ -2299,9 +2299,9 @@ table th[class*="span"],
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
 }
 
-.dropdown-menu > .active > a:not(.new-btn),
-.dropdown-menu > .active > a:not(.new-btn):hover,
-.dropdown-menu > .active > a:not(.new-btn):focus {
+.dropdown-menu > .active > a[class=""],
+.dropdown-menu > .active > a[class=""]:hover,
+.dropdown-menu > .active > a[class=""]:focus {
 	color: @bodyColor;
 	text-decoration: none;
 	background-color: #0081c2;
@@ -2315,14 +2315,14 @@ table th[class*="span"],
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
 }
 
-.dropdown-menu > .disabled > a:not(.new-btn),
-.dropdown-menu > .disabled > a:not(.new-btn):hover,
-.dropdown-menu > .disabled > a:not(.new-btn):focus {
+.dropdown-menu > .disabled > a[class=""],
+.dropdown-menu > .disabled > a[class=""]:hover,
+.dropdown-menu > .disabled > a[class=""]:focus {
 	color: #999;
 }
 
-.dropdown-menu > .disabled > a:not(.new-btn):hover,
-.dropdown-menu > .disabled > a:not(.new-btn):focus {
+.dropdown-menu > .disabled > a[class=""]:hover,
+.dropdown-menu > .disabled > a[class=""]:focus {
 	text-decoration: none;
 	cursor: default;
 	background-color: transparent;

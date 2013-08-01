@@ -95,28 +95,34 @@
 				<li class="cart-title"><strong>Your Shopping Cart</strong></li>
 				<c:choose>
 					<c:when test="${fn:length(shoppingCart) gt 0}">
-						<li><strong><span class="cart-part">Parts</span><span class="cart-quantity">Quantity</span></strong></li>
-						<li><a class="new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
-						<c:forEach var="cartItem" items="${shoppingCart}">
-							<li class="cart-item">
-								<c:choose>
-									<c:when test="${fn:length(cartItem.part.description) > 17}">
-										<c:out value="${fn:substring(cartItem.part.description, 0, 17)}" />...
-									</c:when>
-									<c:otherwise>
-										<c:out value="${cartItem.part.description}" />
-									</c:otherwise>
-								</c:choose></span>
-								<span class="cart-quantity"><c:out value="${cartItem.quantity}" /></span>
-							</li>
-						</c:forEach>
-						<li><strong>Total items: <c:out value="${fn:length(shoppingCart)}" /></strong></li>
-						<li><a class="new-btn" href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</a></li>
+						<c:set var="cartClass" value="" />
+						<c:set var="cartNoItemsClass" value=" inactive" />
 					</c:when>
 					<c:otherwise>
-						<li>Your shopping cart is empty</li>
+						<c:set var="cartClass" value=" inactive" />
+						<c:set var="cartNoItemsClass" value="" />
 					</c:otherwise>
 				</c:choose>
+				<li class="cartShopCheckout_js${cartClass}"><a class="new-btn new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
+				<li class="cartShopHeader_js${cartClass}"><strong><span class="cart-part">Parts</span><span class="cart-quantity">Quantity</span></strong></li>
+				<c:if test="${fn:length(shoppingCart) gt 0}">
+					<c:forEach var="cartItem" items="${shoppingCart}">
+						<li class="cart-item">
+							<c:choose>
+								<c:when test="${fn:length(cartItem.part.description) > 17}">
+									<span class="cart-part"><c:out value="${fn:substring(cartItem.part.description, 0, 17)}" />...</span>
+								</c:when>
+								<c:otherwise>
+									<span class="cart-part"><c:out value="${cartItem.part.description}" /></span>
+								</c:otherwise>
+							</c:choose></span>
+							<span class="cart-quantity"><c:out value="${cartItem.quantity}" /></span>
+						</li>
+					</c:forEach>
+				</c:if>
+				<li class="cartShopTotals_js${cartClass}"><strong>Total items: <span class="cartShopCount_js"><c:out value="${fn:length(shoppingCart)}" /></span></strong></li>
+				<li class="cartShopView_js${cartClass}"><a class="new-btn" href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</a></li>
+				<li class="cartShopEmpty_js${cartNoItemsClass}">Your shopping cart is empty.</li>
 			</ul>
 		</div>
 	</li>
