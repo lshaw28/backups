@@ -103,20 +103,20 @@
                     name="./jcr:content/includeCommonParts"
                     type="checkbox"
                     xtype="selection"/>
-                    
+
                  <includeMaintenanceTips
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Include Maintenance Tips"
                     name="./jcr:content/includeMaintenanceTips"
                     type="checkbox"
                     xtype="selection"/>
-                    
+
                  <includeCommonQuestions
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Include Common Questions"
                     name="./jcr:content/includeCommonQuestions"
                     type="checkbox"
-                    xtype="selection"/>    
+                    xtype="selection"/>
 	    	</items>
 	    </tab3>
         <tab4
@@ -131,7 +131,7 @@
         		<pages
         			jcr:primaryType="cq:Widget"
         			name="./jcr:content/pages"
-					treeRootPath="/etc/spdAssets/scaffolding"
+					treeRootPath="/etc/spdAssets/scaffolding/accessory"
 					multipleRootPaths="[accessory]"
         			hideLabel="{Boolean}false"
         			fieldLabel="Page Associations"
@@ -278,13 +278,13 @@
 					name="./jcr:content/mobileImage/sling:resourceType"
 					value="foundation/components/image"
 					xtype="hidden" />
-				<caption jcr:primaryType="cq:Widget" 
+				<caption jcr:primaryType="cq:Widget"
 					fieldLabel="Caption"
-					name="./jcr:content/imageCaption" 
+					name="./jcr:content/imageCaption"
 					xtype="textfield" />
-				<credit jcr:primaryType="cq:Widget" 
+				<credit jcr:primaryType="cq:Widget"
 					fieldLabel="Photo Credit"
-					name="./jcr:content/photoCredit" 
+					name="./jcr:content/photoCredit"
 					xtype="textfield" />
 			</items>
 		</imageDetails>
