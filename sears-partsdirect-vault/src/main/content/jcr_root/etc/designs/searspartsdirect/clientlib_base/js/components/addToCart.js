@@ -95,7 +95,6 @@ var addToCart = Class.extend(function () {
 				})
 				.fail(function (e) {
 					// Handle error
-					console.log(e);
 				});
 			} else {
 				// Handle error
@@ -139,9 +138,11 @@ var addToCart = Class.extend(function () {
 					self.cartItems[i].removeClass('active').addClass('inactive');
 				}
 				self.cartEmpty.removeClass('inactive').addClass('active');
-			}
 
-			console.log(data);
+				// Set total item count
+				self.cartItems.count.text('0');
+				self.cartItems.countBadge.text('0');
+			}
 		},
 		/**
 		 * Render a shopping cart item and insert it in the drop down
