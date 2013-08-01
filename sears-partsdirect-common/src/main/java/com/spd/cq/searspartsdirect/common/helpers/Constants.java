@@ -29,6 +29,7 @@ public final class Constants {
 	public static final String ASSETS_PRODUCT_CATEGORY_PATH = ident("productCategory");
 	public static final String ASSETS_PAGES_PATH = ident("pages");
 	public static final String ASSETS_SYMPTOM_PATH = ident("symptom");
+	public static final String ASSETS_PART_TYPE_PATH = ident("partType");
 	public static final String ASSETS_ID_REL_PATH = ident("jcr:content/id");
 	public static final String ASSETS_ID = ident("id");
 	public static final String ASSETS_TITLE_PLURAL = ident("titlePlural");

@@ -5,6 +5,14 @@
 	 * Global functionality instantiation
 	 */
 	$(document).ready(function () {
+		/**
+		 * Cross-Domain Window Message Handling
+		 */
+		var newMessageHandler = new messageHandler();
+		$(window).bind('message', function (e) {
+			e.preventDefault();
+			newMessageHandler.handleMessage(e.originalEvent);
+		});
 		/* Fix Twitter Bootstrap Dropdown Issue */
 		$('.dropdown-menu li').click(function(e) {
 			if (e.cancelBubble) {
@@ -155,12 +163,6 @@
 				obj: new shc.pd.base.widgets.TouchCarousel(carouselElement)
 			}));
 		});
-
-        /**
-         * Required for login modal
-         */
-        window.loginIFrame = new signinIFrame();
-
 		/**
 		 * Form validation
 		 */
@@ -190,12 +192,10 @@
 			}
 		});
 		regula.bind();
-
 		/*
 		 * Responsive table initializer
 		 */
 		shc.pd.base.widgets.ResponsiveTable.init($('table.responsive-table'));
-		
 		/*
 		 * Search panel finder widget
 		 */

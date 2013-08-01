@@ -58,7 +58,11 @@ public class GetCommonPartsTag extends CQBaseTag {
 					ValueMap props = hit.getProperties();
 					Page partTypePage = pageManager.getPage(hit.getPath());
 					if (props != null) {
-						PartTypeModel partType = new PartTypeModel(partTypePage.getPath(), props.get(Constants.ASSETS_TITLE_PATH, String.class), props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class), partTypePage.getPath() +  Constants.ASSETS_IMAGE_PATH,  props.get(Constants.ASSETS_TITLE_PLURAL, String.class));
+						PartTypeModel partType = new PartTypeModel(partTypePage.getPath(), 
+								props.get(Constants.ASSETS_TITLE_PATH, String.class), 
+								props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class), 
+								partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH,  
+								props.get(Constants.ASSETS_TITLE_PLURAL, String.class));
 
 						ValueMap partTypesProps = partTypePage.getProperties();
 						String[] guides = partTypesProps.get(Constants.ASSETS_GUIDES, String[].class);

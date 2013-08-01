@@ -1,7 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <article id="content">
 	<div class="row-fluid">
-		<div class="span10 offset1">
+		<div class="span10 desktop-offset1">
 			<cq:include path="/content/searspartsdirect/en/jcr:content/breadcrumbNavigation" resourceType="/apps/searspartsdirect/components/base/breadcrumbNavigation" />
 			<div class="row-fluid">
 				<div class="span12">
@@ -10,8 +10,8 @@
 						<div class="span8">
 							<div class="row-fluid">
 								<div class="span12">
-									<cq:include path="overviewIcon" resourceType="searspartsdirect/components/content/categoryIcon" />
-									<cq:include path="overview" resourceType="searspartsdirect/components/content/categoryDescription" />
+									<div class="span3"><cq:include path="overviewIcon" resourceType="searspartsdirect/components/content/categoryIcon" /></div>
+									<div class="span9"><cq:include path="overview" resourceType="searspartsdirect/components/content/categoryDescription" /></div>
 								</div>
 							</div>
 							<div class="row-fluid">

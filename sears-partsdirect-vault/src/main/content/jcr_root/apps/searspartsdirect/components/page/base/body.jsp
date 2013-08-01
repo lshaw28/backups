@@ -27,4 +27,5 @@
 	<cq:include path="cloudservices" resourceType="cq/cloudserviceconfigs/components/servicecomponents" />
 	<cq:include path="loginModal" resourceType="searspartsdirect/components/base/loginModal" />
 	<cq:include path="registerModal" resourceType="searspartsdirect/components/base/registerModal" />
+    <cq:include path="forgotPasswordModal" resourceType="searspartsdirect/components/base/forgotPasswordModal" />
 </body>

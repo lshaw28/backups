@@ -407,8 +407,13 @@
 	</tag>
 	<tag>
 		<name>getPDUrl</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetPartsDirectUrl</tag-class>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetPartsDirectUrlTag</tag-class>
 		<info>this tag will fetch the PD (QA, Stress, Production) url</info>
+	</tag>
+	<tag>
+		<name>getLocalUrl</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetLocalUrlTag</tag-class>
+		<info>this tag will fetch the url prefix for the local installation</info>
 	</tag>
 	<tag>
 		<name>getModelHeader</name>
@@ -555,6 +560,11 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+	</tag>
+	<tag>
+		<name>getCategoryJSON</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCategoryJSONTag</tag-class>
+		<info>Gets the categories in the form of JSON text</info>
 	</tag>
 	<tag>
 		<name>getBrowseGlossary</name>

@@ -6,7 +6,7 @@
 	jcr:primaryType="cq:Template"
 	jcr:title="Sears PartsDirect Maintenance Tips Index Template"
 	jcr:description="Maintenance tips index template for the Sears PartsDirect site."
-	allowedPaths="[/content/searspartsdirect(/.*)?]"
+	allowedPaths="[/content/searspartsdirect/en/article(/.*)?]"
 	ranking="50">
 	<jcr:content
 		jcr:primaryType="cq:PageContent"

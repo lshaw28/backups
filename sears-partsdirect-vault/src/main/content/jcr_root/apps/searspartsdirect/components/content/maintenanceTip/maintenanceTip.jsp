@@ -1,7 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
 
-<div class="row-fluid maintenanceTipSection">
+<div class="maintenanceTipSection">
 
         <h4 class="headerFontSemiBold"><cq:text property="tipTitle" placeholder="Maintenance tip question goes here" /></h4>
         

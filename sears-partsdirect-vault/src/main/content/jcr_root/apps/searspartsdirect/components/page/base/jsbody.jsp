@@ -5,16 +5,16 @@
 <script type="text/javascript" src="http://www.searspartsdirect.com/partsdirect/dwr/engine.js"></script>
 <script type="text/javascript" src="http://www.searspartsdirect.com/partsdirect/dwr/interface/LoginAction.js" charset="utf-8"></script>
 <script type="text/javascript">
-    var isSSOEnabled = false;
-    var authURL = "";
-    var authFailureURL = "";
+    var isSSOEnabled = false,
+		authURL = '',
+		authFailureURL = '';
 
-    if(document.referrer.indexOf("?") > -1 ){
-    authURL = document.referrer + "&modal=true";
+    if (document.referrer.indexOf('?') > -1 ) {
+		authURL = document.referrer + '&modal=true';
     } else {
-    authURL = document.referrer + "?modal=true";
+		authURL = document.referrer + '?modal=true';
     }
-    authFailureURL =  authURL;
+    authFailureURL = authURL;
 </script>
 <cq:includeClientLib js="apps.searspartsdirect" />
 <%-- <cq:includeClientLib js="cq.collab.comments" />

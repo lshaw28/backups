@@ -45,12 +45,13 @@ public class GetMostPopularGuideTag extends CQBaseTag{
 				result.add(pageManager.getPage(hit.getPath()));
 			}
 
-			guides.add( new ArticleModel(Collections.max(result,new PageImpressionsComparator(resourceResolver))));
+			Page maxResult = Collections.max(result,new PageImpressionsComparator(resourceResolver));
+			guides.add( new ArticleModel(maxResult));
 
 			pageContext.setAttribute("guides", guides);
 			
 			//Get the difficulty level from the repair guide page
-			resource = resourceResolver.getResource(result.get(0).getPath());
+			resource = resourceResolver.getResource(maxResult.getPath());
 			Node resourceNode = resource.adaptTo(Node.class);
 			String difficultyLevel = resourceNode.getNode(Constants.GUIDES_REL_PATH).getProperty("difficultyLevel").getString();
 			pageContext.setAttribute("difficultyLevel", difficultyLevel);

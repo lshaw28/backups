@@ -126,7 +126,12 @@ var modelNumberSearch = Class.extend(function () {
 				brandName = encodeURI(su.validString(data.brandName));
 				categoryName = encodeURI(su.validString(data.categoryName));
 				modelNumber = encodeURI(su.validString(data.modelNumber));
-				modelUrl = encodeURI(mainSitePath + '/partsdirect' + su.validString(data.modelURL));
+
+				if (su.validString(data.modelURL) !== '') {
+					modelUrl = encodeURI(mainSitePath + '/partsdirect' + su.validString(data.modelURL));
+				} else {
+					modelUrl = encodeURI(mainSitePath + '/partsdirect' + su.validString(data.csrURL));
+				}
 
 				query += '?brand=' + brandName;
 				query += '&category=' + categoryName;

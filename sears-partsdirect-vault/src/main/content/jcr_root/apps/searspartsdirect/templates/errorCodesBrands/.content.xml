@@ -7,6 +7,7 @@
 	jcr:title="Sears PartsDirect Error Codes For Brands Template"
 	jcr:description="Error codes for brands template for the Sears PartsDirect site."
 	allowedPaths="[/content/searspartsdirect(/.*)?]"
+	allowedParents="[/apps/searspartsdirect/templates/errorCodes]"
 	ranking="20">
 	<jcr:content
 		jcr:primaryType="cq:PageContent"

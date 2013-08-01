@@ -7,6 +7,7 @@
 	jcr:title="Sears PartsDirect Category Symptom Help Template"
 	jcr:description="Category symptom help template for the Sears PartsDirect site."
 	allowedPaths="[/content/searspartsdirect(/.*)?]"
+	allowedParents="[/apps/searspartsdirect/templates/category]"
 	ranking="50">
 	<jcr:content
 		jcr:primaryType="cq:PageContent"

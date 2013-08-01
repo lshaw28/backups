@@ -55,8 +55,10 @@ var modalForm = Class.extend(function () {
                 if (self.group === 'loginModal') {
                     var userName = $('[name=loginId]', self.el).val();
                     var password = $('[name=logonPassword]', self.el).val();
-                    if (!window.loginIFrame) window.loginIFrame = new signinIFrame();
-                    window.loginIFrame.submitFormModal( userName, password );
+                    var action = $('#loginFormModal').attr('action');
+                    var renew = $('[name=renew]', self.el).val();
+                    if (!window.secureLoginModal) window.secureLoginModal = new secureLoginModal();
+                    window.secureLoginModal.submitLoginForm( userName, password, action, renew );
                 } else {
                     $('form', self.el)[0].submit();
                 }

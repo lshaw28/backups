@@ -33,7 +33,6 @@ public class GetSymptomDetailTag extends CQBaseTag {
 	SymptomDetailsModel symptomDetailsModel;
 	List<JobCodeModel> jobCodeModels;
 	public static final Logger log = LoggerFactory.getLogger(GetSymptomDetailTag.class);
-	private static final String PART_TYPE = "partType";
 	private String id;
 
 	@Override
@@ -62,7 +61,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 					if (pages != null) {
 						jobCodeModels = new ArrayList<JobCodeModel>();
 						for(int i = 0; i< pages.length; i++) {
-							log.debug("**pages[" + i + "]: " + pages[i]);
+							log.debug("job code pages[" + i + "]: " + pages[i]);
 							if (pages[i].indexOf(Constants.ASSETS_PATH.concat("/jobCode")) > -1) {
 								Page jobCodePage = pageManager.getPage(pages[i]);
 								if (jobCodePage != null) {
@@ -71,7 +70,7 @@ public class GetSymptomDetailTag extends CQBaseTag {
 										String id = (String) jobCodeProps.get(Constants.ASSETS_ID);
 										JobCodeModel jobCodeModel = new JobCodeModel(id, jobCodePage.getPath(), jobCodePage.getTitle(), jobCodePage.getDescription());
 
-										String partType = (String) jobCodeProps.get(PART_TYPE);
+										String partType = (String) jobCodeProps.get(Constants.ASSETS_PART_TYPE_PATH);
 										Page partTypePage = pageManager.getPage(partType);
 
 										if (partTypePage != null) {

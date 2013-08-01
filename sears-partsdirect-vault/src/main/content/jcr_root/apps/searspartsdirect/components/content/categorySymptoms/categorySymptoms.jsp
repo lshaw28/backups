@@ -2,13 +2,11 @@
 
 <spd:getRelation single="true" assetType="productCategory" />
 <h2>
-	<cq:text property="text1" placeholder=""/>&nbsp;
+	<cq:text property="text1" placeholder=""/>
 	<spd:tagsByPage tagType="subcategories"/>
-	<c:if test="${fn:length(subcategoriesList) eq 1}">
-			&nbsp;${subcategoriesList[0].title}
-	</c:if>
-	${productCategoryRelation.title}
-	&nbsp;<cq:text property="text2" placeholder=""/>
+	<c:if test="${fn:length(subcategoriesList) eq 1}"> ${subcategoriesList[0].title} </c:if>
+	${productCategoryRelation.title} 
+	<cq:text property="text2" placeholder=""/>
 	<p><cq:text property="optionalDescription" placeholder=""/></p>
 </h2>
 
