@@ -12,4 +12,5 @@ Utilities.js
 
 #base=js/.
 secureLogin.js
+secureForgotPassword.js
 DocumentReady.js

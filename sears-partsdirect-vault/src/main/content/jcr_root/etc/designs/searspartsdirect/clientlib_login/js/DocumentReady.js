@@ -15,6 +15,9 @@
         var loginForm = new secureLogin($('#secureLoginModal'));
 		loginForm.postMessage({ 'closeModal': '#loginModal' });
 
+        var forgotPasswordForm = new secureForgotPassword($('#secureForgotPasswordModal'));
+
+
         // Check if we need to show modal with error code
         if (window.location.search.indexOf('errorCode') > 0) {
             // Trigger invalid authentication messaging
