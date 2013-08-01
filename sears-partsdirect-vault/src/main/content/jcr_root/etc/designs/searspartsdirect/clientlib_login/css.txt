@@ -14,3 +14,4 @@ core.tables.less
 
 #base=less/.
 secureLogin.less
+secureForgotPassword.less
