@@ -142,7 +142,8 @@ var secureLogin = Class.extend(function () {
         },
 
         prepareLogin: function(username, prepareLoginURL) {
-            var self = this;
+            var self = this,
+                hostName = window.SPDUtils.getLocationDetails().fullAddress;
 
             $.ajax({
                 type: "GET",
@@ -151,8 +152,8 @@ var secureLogin = Class.extend(function () {
                 dataType: 'JSON',
                 url: prepareLoginURL,
                 data: { userName: username,
-                        authSuccessURL: encodeURI('https://localhost:5433/content/searspartsdirect/en/login_form.html?authSuccessURL=true'),
-                        authFailureURL:encodeURI('https://localhost:5433/content/searspartsdirect/en/login_form.html?errorCode=300')
+                        authSuccessURL: encodeURI(hostName+'/content/searspartsdirect/en/login_form.html?authSuccessURL=true'),
+                        authFailureURL:encodeURI(hostName+'/content/searspartsdirect/en/login_form.html?errorCode=300')
                 },
                 success: self.successCallback,
                 error: self.failCallback
