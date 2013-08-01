@@ -1,0 +1,15 @@
+#base=js/.
+jquery-1.9.1.min.js
+
+#base=/etc/designs/searspartsdirect/clientlib_base/js/.
+Compatibility.js
+bootstrap.min.js
+modernizr.custom.50282-2.6.2.min.js
+plugins/regula-1.2.3.min.js
+Class.js
+core/Namespace.js
+Utilities.js
+
+#base=js/.
+secureLogin.js
+DocumentReady.js

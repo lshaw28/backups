@@ -21,6 +21,8 @@ src/Carousel.js
 widgets/DesktopCarousel.js
 widgets/TouchCarousel.js
 widgets/ResponsiveTable.js
+widgets/SearchPanelFinder.js
+widgets/SearchPanelFinderResult.js
 Utilities.js
 DocumentReady.js
 WindowResize.js
@@ -32,6 +34,7 @@ category101.js
 collapse101.js
 findThisPart.js
 guideNavigation.js
+messageHandler.js
 modalForm.js
 modelNumberSearch.js
 responsiveDropdown.js
@@ -42,3 +45,4 @@ video.js
 comments.js
 modelHeader.js
 recommendedParts.js
+secureLoginModal.js

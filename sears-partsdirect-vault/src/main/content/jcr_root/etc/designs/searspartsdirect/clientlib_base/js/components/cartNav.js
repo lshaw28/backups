@@ -19,6 +19,7 @@ var cartNav = Class.extend(function () {
 			this.removeButton = $('#cartModels .remove_js');
 			this.cancelButton = $('#cartModels .cancel_js');
 			this.cartDropdown = $('#cartShop .dropdown-menu');
+			this.removedModels = new Array();
 			// Initialize events
 			this.bindEvents();
 			this.toggleTray();
@@ -39,36 +40,27 @@ var cartNav = Class.extend(function () {
 		 */
 		removeItems: function () {
 			var self = this,
-				deleteAddress = apiPath + 'profile/models/delete',
-				objArray = new Array(),
-				jsonData = {};
+				deleteAddress = apiPath + 'profile/models/delete?cookieId=' + guestCookieId,
+				itemCount = 0;
 
-			// Create profileModelsList string array
+			// Create query string parameters
+			// API listens for multiple instances of modelId rather than a comma-separated string
 			$('input', self.modelDropdown).each(function () {
 				if ($(this)[0].checked === true) {
-					var obj = {
-						'modelNumber': $(this).attr('value'),
-						'brandId': $(this).data('brandid'),
-						'categoryId': $(this).data('categoryid')
-					}
-					objArray.push(obj);
+					deleteAddress += '&modelId=' + $(this).attr('value');
+					self.removedModels.push($(this).attr('value'));
+					itemCount = itemCount + 1;
 				}
 			});
 			// Attempt AJAX call
-			if (objArray.length > 0) {
-				jsonData.cookieId = guestCookieId;
-				jsonData.profileModelsList = objArray;
-
+			if (itemCount > 0) {
 				$.ajax({
-					type: 'POST',
+					type: 'GET',
 					url: deleteAddress,
 					async: false,
 					contentType: 'application/json',
 					dataType: 'JSON',
-					mimeType: 'application/json;charset=UTF-8',
-					data: {
-						ownedModels: JSON.stringify(jsonData)
-					}
+					mimeType: 'application/json;charset=UTF-8'
 				})
 				.success(function (data) {
 					self.handleResponse(data);
@@ -86,12 +78,20 @@ var cartNav = Class.extend(function () {
 		 * @return {void}
 		 */
 		handleResponse: function (data) {
-			var self = this;
+			var self = this,
+				totalCount = $('input', self.modelDropdown).length,
+				removedCount = self.removedModels.length,
+				returnedCount = data.profileModelsList.length,
+				i = 0;
 
-			console.log('Response', data);
-
-			// Check the data object for success paramters
-			// If successful, find the parent node of the inputs and remove them
+			// Compare lengths and remove elements
+			if ((removedCount + returnedCount) === totalCount) {
+				// Remove each item based on its ID
+				for (i = 0; i < self.removedModels.length; i = i + 1) {
+					$('input[value="' + self.removedModels[i] + '"]', self.modelDropdown).parent().remove();
+				}
+				self.removedModels = new Array();
+			}
 		},
 		/**
 		 * Toggle data-toggle action

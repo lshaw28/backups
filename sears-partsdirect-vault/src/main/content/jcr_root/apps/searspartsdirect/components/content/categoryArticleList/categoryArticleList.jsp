@@ -5,11 +5,10 @@
 </c:if>
 <c:choose>
 	<c:when test="${not empty productCategoryRelation}">
-		<spd:getCategoryArticleList categoryPath="${productCategoryRelation.path}" />
-
-		<h2><c:out value="${productCategoryRelation.title} "/></h2>
+		<spd:getCategoryArticleList category="${productCategoryRelation}" />
 		<c:choose>
 			<c:when test="${not empty articles}">
+				<h2>More Articles<%--  <c:out value="${productCategoryRelation.title} "/>--%></h2>
 				<%-- Becomes iteration over article.value --%>
 				<c:forEach var="articlesEntry" items="${articles}" varStatus="currentSubcat">
 					<h3><spd:displayTagTitle tagId="${articlesEntry.key}" /></h3>
@@ -19,10 +18,10 @@
 						</c:if>
 						<div class="span6">
 							<spd:linkResolver value="${article.url}" />
+							<h4><a href="${url}"><c:out value="${article.title} "/></a></h4>
 							<c:if test="${not empty article.imagePath}">
 								<a href="${url}"><spd:displayImage path="${article.imagePath}" decorated="false" /></a>
 							</c:if>
-							<h4><a href="${url}"><c:out value="${article.title} "/></a></h4>
 							<p><c:out value="${article.description} "/></p>
 						</div>
 						<c:if test="${currentItem.count % 2 eq 0 or currentItem.last}">

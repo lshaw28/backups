@@ -89,7 +89,28 @@
 			            fieldLabel="Enter link text"
 			            fieldDescription="Enter Text to display link"
 			            name="./jcr:content/viewAllLinkText"
-			            xtype="textfield"/>	
+			            xtype="textfield"/>
+			     
+			     <includeCommonParts
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Include Common Parts"
+                    name="./jcr:content/includeCommonParts"
+                    type="checkbox"
+                    xtype="selection"/>
+                    
+                 <includeMaintenanceTips
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Include Maintenance Tips"
+                    name="./jcr:content/includeMaintenanceTips"
+                    type="checkbox"
+                    xtype="selection"/>
+                    
+                 <includeCommonQuestions
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Include Common Questions"
+                    name="./jcr:content/includeCommonQuestions"
+                    type="checkbox"
+                    xtype="selection"/>  	
 	    	</items>
 	    </tab3>
         <tab4

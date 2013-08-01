@@ -1,6 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <spd:guideNavigation />
-
+<h3><c:out value="${pageTitle}" /></h3><%-- Since needs to be consistent, depends on pageTitleHeader component having set this.  --%>
 <c:choose>
 	<c:when test="${empty sections}">
 		<p>No sections found.</p>

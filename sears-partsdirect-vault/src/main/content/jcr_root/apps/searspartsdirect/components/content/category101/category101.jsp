@@ -5,7 +5,7 @@
 <c:if test="${empty productCategoryRelation}">
 	<spd:getUrlRelation relationType="productCategory" />
 </c:if>
-<spd:getMultifieldArticles  categoryPath="${productCategoryRelation.path}" />
+<spd:getMultifieldArticles  category="${productCategoryRelation}" />
 
 <br />
 

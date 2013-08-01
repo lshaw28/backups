@@ -1,5 +1,8 @@
 package com.spd.cq.searspartsdirect.common.model;
 
+import com.day.cq.wcm.api.Page;
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
+
 public class ArticleModel {
 
 	private String url;
@@ -12,6 +15,20 @@ public class ArticleModel {
 		this.imagePath = imagePath;
 		this.title = title;
 		this.description = description;
+	}
+	
+	public ArticleModel(Page page) {
+		this(page.getPath() + ".html",
+				page.getPath() + Constants.ASSETS_IMAGE_PATH,
+				page.getTitle(),
+				page.getProperties().get("abstracttext", Constants.EMPTY).toString());
+	}
+	
+	public ArticleModel(Page page, String imagePath) {
+		this(page.getPath() + ".html",
+				imagePath,
+				page.getTitle(),
+				page.getProperties().get("abstracttext", Constants.EMPTY).toString());
 	}
 
 	public String getUrl() {

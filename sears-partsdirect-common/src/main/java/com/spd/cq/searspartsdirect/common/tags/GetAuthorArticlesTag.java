@@ -52,10 +52,7 @@ public class GetAuthorArticlesTag extends CQBaseTag {
 			// reusing RelatedArticleModel
 			for (Page page : results) {
 
-				articles.add(new ArticleModel(page.getPath() + ".html",
-												page.getPath() + Constants.ASSETS_IMAGE_PATH,
-												page.getTitle(),
-												page.getProperties().get("abstracttext", Constants.EMPTY).toString()));
+				articles.add(new ArticleModel(page));
 			}
 
 			pageContext.setAttribute("articles", articles);

@@ -1,17 +1,35 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
+@media (max-width: 1024px) {
+	// # Page margins snap out on tablet
+	article {
+		padding: 0 20px;
+	}
+	.row-fluid {
+		[class*="span"], [class^=" span"], [class*="new-span-"], [class^=" new-span-"] {
+			&.desktop-offset1 {
+				margin-left: 0;
+				width: 100% !important;
+			}
+		}
+	}
+}
+
 @media (max-width: 768px) {
 	html {
 		overflow-x: hidden;
 		width: 100%;
 	}
-
 	body {
 		overflow-x: hidden;
+		padding: 0;
 		width: 100%;
 	}
-
+	article {
+		margin: -19px 0 0;
+		background: @bodyColor;
+	}
 	#viewport {
 		overflow-x: hidden;
 		width: 100%;
@@ -22,6 +40,11 @@
 		.new-span-responsive {
 			width: 31.623931623931625%;
 			*width: 31.570740134569924%;
+		}
+		[class*="new-span-"], [class^=" new-span-"] {
+			&[class*="offset"], &[class^=" offset"] {
+				margin-left: 0;
+			}
 		}
 	}
 }

@@ -25,6 +25,7 @@ import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 public class GetCategory101PagesTagFixture {
 
@@ -45,8 +46,16 @@ public class GetCategory101PagesTagFixture {
 		when(resourceResolver.adaptTo(QueryBuilder.class)).thenReturn(qb);
 	}
 
-	public String getCategory() {
-		return "Category";
+	public ProductCategoryModel getCategory() {
+		ProductCategoryModel productCategory = mock(ProductCategoryModel.class);
+		when(productCategory.getTrueName()).thenReturn("foo");
+		return productCategory;
+	}
+	
+	public ProductCategoryModel getCategoryWithPath() {
+		ProductCategoryModel productCategory = getCategory();
+		when(productCategory.getPath()).thenReturn("foo");
+		return productCategory;
 	}
 
 	public void setUpEmptyResults() {
@@ -80,6 +89,7 @@ public class GetCategory101PagesTagFixture {
     	//description = page.getProperties().get("abstracttext").toString();
 		when(props.containsKey("abstracttext")).thenReturn(true);
 		when(props.get("abstracttext")).thenReturn(path+path+path);
+		when(props.get("abstracttext",Constants.EMPTY)).thenReturn(path+path+path);
 		String imagePath = page.getPath() + Constants.ASSETS_IMAGE_PATH;
 		//Resource imageResource = resourceResolver.getResource(imagePath);
 		Resource imageResource = mock(Resource.class);
@@ -87,6 +97,11 @@ public class GetCategory101PagesTagFixture {
 		Node imageNode = mock(Node.class);
 		when(imageResource.adaptTo(Node.class)).thenReturn(imageNode);
 		return imageNode;
+	}
+	
+	public void setUpOneResultWithAbstractButNoImage(String path) throws RepositoryException {
+		setUpOneResultWithAbstractAndEmptyImage(path);
+		when(resourceResolver.getResource(path+Constants.ASSETS_IMAGE_PATH)).thenReturn(null);
 	}
 	
 	public void setUpOneResultWithFileImage(String path) throws RepositoryException {
@@ -99,12 +114,73 @@ public class GetCategory101PagesTagFixture {
 		when(imageNode.hasProperty("fileReference")).thenReturn(true);
 	}
 	
+	public Page setUpAuxPagesExist() {
+		// TODO Auto-generated method stub
+		String categoryName = getCategoryWithPath().getTrueName();
+		Page auxPage = mock(Page.class);
+		when(pageManager.getPage(getCommonPartsPath(categoryName))).thenReturn(auxPage);
+		when(pageManager.getPage(getCommonQnsPath(categoryName))).thenReturn(auxPage);
+		when(pageManager.getPage(getMaintTipsPath(categoryName))).thenReturn(auxPage);
+		return auxPage;
+	}
+	
+	public void setUpValidAuxPagesExist() {
+		Page auxPage = setUpAuxPagesExist();
+		ValueMap auxPageProp = mock(ValueMap.class);
+		when(auxPage.getProperties()).thenReturn(auxPageProp);
+    	when(auxPageProp.get("pages", String[].class)).thenReturn(null);
+	}
+
+	public void setUpValidAuxPagesExistWithEmptyPages() {
+		Page auxPage = setUpAuxPagesExist();
+		ValueMap auxPageProp = mock(ValueMap.class);
+		when(auxPage.getProperties()).thenReturn(auxPageProp);
+    	when(auxPageProp.get("pages", String[].class)).thenReturn(new String[0]);
+	}
+	
+	public void setUpValidAuxPagesExistWithUnrelatedPages() {
+		Page auxPage = setUpAuxPagesExist();
+		ValueMap auxPageProp = mock(ValueMap.class);
+		when(auxPage.getProperties()).thenReturn(auxPageProp);
+    	when(auxPageProp.get("pages", String[].class)).thenReturn(new String[]{"clinker"});
+	}
+	
+	public void setUpValidAuxPagesExistWithRelatedPages() {
+		Page auxPage = setUpAuxPagesExist();
+		ValueMap auxPageProp = mock(ValueMap.class);
+		when(auxPage.getProperties()).thenReturn(auxPageProp);
+    	when(auxPageProp.get("pages", String[].class)).thenReturn(new String[]{"/productCategory"});
+    	when(auxPage.getTags()).thenReturn(new Tag[0]);
+	}
+	
+	public void setUpValidAuxPagesExistWithRelatedTaggedPages() {
+		Page auxPage = setUpAuxPagesExist();
+		ValueMap auxPageProp = mock(ValueMap.class);
+		when(auxPage.getProperties()).thenReturn(auxPageProp);
+    	when(auxPageProp.get("pages", String[].class)).thenReturn(new String[]{"/productCategory"});
+    	when(auxPage.getTags()).thenReturn(new Tag[]{category101Tag});
+    	when(auxPageProp.get("abstracttext",Constants.EMPTY)).thenReturn("abstract text");
+	}
+	
+	String getCommonPartsPath(String categoryName) {
+		return Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +categoryName+Constants.COMMON_PARTS_PATH_SUFFIX;
+	}
+	
+	String getCommonQnsPath(String categoryName) {
+		return Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +categoryName+Constants.COMMON_QUESTIONS_PATH_SUFFIX;
+	}
+	
+	String getMaintTipsPath(String categoryName) {
+		return Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +categoryName+Constants.MAINTENANCE_TIPS_PATH_SUFFIX;
+	}
+	
 	private Page makeOneResult(String path) throws RepositoryException {
 		Hit hit = mock(Hit.class);
 		hits.add(hit);
 		when(hit.getPath()).thenReturn(path);
 		Page page = mock(Page.class);
 		when(pageManager.getPage(path)).thenReturn(page);
+		when(page.getPath()).thenReturn(path);
 		ValueMap props = mock(ValueMap.class);
 		when(page.getProperties()).thenReturn(props);
 		return page;
@@ -113,5 +189,4 @@ public class GetCategory101PagesTagFixture {
 	public String getCategory101TagId() {
 		return Constants.TAGS_FEATURES_PATH + "/category_101";
 	}
-
 }

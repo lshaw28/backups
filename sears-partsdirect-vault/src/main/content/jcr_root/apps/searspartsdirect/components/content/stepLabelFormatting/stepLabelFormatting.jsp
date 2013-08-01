@@ -1,2 +1,2 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<cq:text property="./stepLabelPrefix" placeholder="Step " />${stepCounter}<cq:text property="./stepLabelSuffix" placeholder=":" />
+<cq:text property="./stepLabelPrefix" placeholder="Step " default="Step "/>${stepCounter}<cq:text property="./stepLabelSuffix" placeholder=":" default=":"/>

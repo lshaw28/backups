@@ -27,12 +27,15 @@ public final class Constants {
 	public static final String ASSETS_IMAGE_REL_PATH = ident("jcr:content/image");
 	public static final String ASSETS_ICON_ATTR = ident("iconImages");
 	public static final String ASSETS_PRODUCT_CATEGORY_PATH = ident("productCategory");
+	public static final String ASSETS_PAGES_PATH = ident("pages");
 	public static final String ASSETS_SYMPTOM_PATH = ident("symptom");
 	public static final String ASSETS_ID_REL_PATH = ident("jcr:content/id");
 	public static final String ASSETS_ID = ident("id");
+	public static final String ASSETS_TITLE_PLURAL = ident("titlePlural");
+	public static final String ASSETS_GUIDES = ident("guides");
 	// Removed due to direct naming (:name v :nameHint)
 	//public static final int MAX_TRUENAME_LENGTH = ident(20);
-	
+
 	//Model Search Constants
 	public static final String MODEL_NOT_FOUND = ident("Not Found");
 
@@ -136,12 +139,22 @@ public final class Constants {
 	public static final String TAGS_FEATURES_PATH = "searspartsdirect:features";
 
 	// Constants for Templates
+	public static final String CATEGORY_TEMPLATE = ident("/apps/searspartsdirect/templates/category");
 	public static final String ERROR_CODE_TEMPLATE = ident("/apps/searspartsdirect/templates/errorCodesBrands");
 	public static final String REPAIR_GUIDE_TEMPLATE = ident("/apps/searspartsdirect/templates/repairGuide");
+	public static final String COMMON_PARTS_TEMPLATE = ident("/apps/searspartsdirect/templates/commonParts");
 
 	public static final String DEFAULT_ICON = ident("svg-icon-er");
 	public static final String NO_ICON = ident("none");
-	
+
+	//constants for page path urls
+	public static final String COMMON_PARTS_PATH_SUFFIX = ident("-common-parts");
+	public static final String COMMON_QUESTIONS_PATH_SUFFIX = ident("-common-questions");
+	public static final String MAINTENANCE_TIPS_PATH_SUFFIX = ident("-maintenance-tips");
+	public static final String CATEGORY_PATH_SUFFIX = ident("-repair");
+
+
+
 	/**
 	 * This method returns its argument - this is to keep what would otherwise be literals
 	 * from being compiled into client code. If you want to be able to change a constant here

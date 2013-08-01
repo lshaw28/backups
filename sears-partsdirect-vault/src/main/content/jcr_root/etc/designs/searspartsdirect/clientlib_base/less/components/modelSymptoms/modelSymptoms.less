@@ -75,32 +75,39 @@
                 font-size: @h2Size;
                 font-weight: bold;
             }
-            span.span10.offset2{
-                margin-left:35%;
 
-            }
             .span2 img{
                 width: 100px;
                 height: 100px;
                 border: 1px solid @secondaryHueLight;
 
             }
+            .addToCartQuantity_js{
+                width: 20px;
+                white-space: nowrap;
 
+            }
             .span2 span.partsPrice{
                 font-size: @h2Size;
                 font-weight: bold;
                 margin: 0;
-           }
-             input.span3{
-                    width: 30%;
+            }
+            input.span3{
+                width: 30%;
 
-                }
+            }
             .span2 span.Qty{
                 font-weight: bold;
             }
             .row-fluid .span1{
                 width: 7%;
 
+            }
+            button.new-btn{
+                background-color: @highlightHueLight;
+                border: 1px solid @highlightHueLight;
+                color: @bodyColor;
+                text-shadow: 1px 1px 1px @secondaryHueDarkest;
             }
             .span4 p{
                 color: @highlightHueNormal;
@@ -116,3 +123,4 @@
 }
 
 @import "modelSymptoms.tablet.less";
+@import "modelSymptoms.mobile.less";

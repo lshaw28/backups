@@ -39,8 +39,70 @@ public class GetCategory101PagesTagTest extends MocksTag {
 	
 	@Test
 	public void testWithAResult() throws JspException, RepositoryException {
-		fixture.setUpOneResult("foo");
+		fixture.setUpOneResultWithAbstractAndEmptyImage("foo");
 		tag.setCategory(fixture.getCategory());
+		runsTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testWithAPathAndAuxNotTrue() throws JspException, RepositoryException {
+		fixture.setUpOneResultWithAbstractAndEmptyImage("foo");
+		tag.setCategory(fixture.getCategoryWithPath());
+		runsTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testWithAPathAndAuxTrue() throws JspException, RepositoryException {
+		fixture.setUpOneResultWithAbstractAndEmptyImage("foo");
+		tag.setCategory(fixture.getCategoryWithPath());
+		runsTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testWithAPathAndAuxTrueWithExistingPages() throws JspException, RepositoryException {
+		fixture.setUpOneResultWithAbstractAndEmptyImage("foo");
+		fixture.setUpAuxPagesExist();
+		tag.setCategory(fixture.getCategoryWithPath());
+		runsTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testWithAPathAndAuxTrueWithExistingValidPages() throws JspException, RepositoryException {
+		fixture.setUpOneResultWithAbstractAndEmptyImage("foo");
+		fixture.setUpValidAuxPagesExist();
+		tag.setCategory(fixture.getCategoryWithPath());
+		runsTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testWithAPathAndAuxTrueWithExistingNonrelatedPages() throws JspException, RepositoryException {
+		fixture.setUpOneResultWithAbstractAndEmptyImage("foo");
+		fixture.setUpValidAuxPagesExistWithEmptyPages();
+		tag.setCategory(fixture.getCategoryWithPath());
+		runsTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testWithAPathAndAuxTrueWithExistingUnrelatedPages() throws JspException, RepositoryException {
+		fixture.setUpOneResultWithAbstractAndEmptyImage("foo");
+		fixture.setUpValidAuxPagesExistWithUnrelatedPages();
+		tag.setCategory(fixture.getCategoryWithPath());
+		runsTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testWithAPathAndAuxTrueWithExistingRelatedPages() throws JspException, RepositoryException {
+		fixture.setUpOneResultWithAbstractAndEmptyImage("foo");
+		fixture.setUpValidAuxPagesExistWithRelatedPages();
+		tag.setCategory(fixture.getCategoryWithPath());
+		runsTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testWithAPathAndAuxTrueWithRelatedTaggedPages() throws JspException, RepositoryException {
+		fixture.setUpOneResultWithAbstractAndEmptyImage("foo");
+		fixture.setUpValidAuxPagesExistWithRelatedTaggedPages();
+		tag.setCategory(fixture.getCategoryWithPath());
 		runsTagSkipsBodyEvalsPage();
 	}
 	
@@ -54,6 +116,13 @@ public class GetCategory101PagesTagTest extends MocksTag {
 	@Test
 	public void testWithAResultWithAbstractAndEmptyImage() throws JspException, RepositoryException {
 		fixture.setUpOneResultWithAbstractAndEmptyImage("baz");
+		tag.setCategory(fixture.getCategory());
+		runsTagSkipsBodyEvalsPage();
+	}
+	
+	@Test
+	public void testWithAResultWithAbstractButNoImage() throws JspException, RepositoryException {
+		fixture.setUpOneResultWithAbstractButNoImage("baz");
 		tag.setCategory(fixture.getCategory());
 		runsTagSkipsBodyEvalsPage();
 	}

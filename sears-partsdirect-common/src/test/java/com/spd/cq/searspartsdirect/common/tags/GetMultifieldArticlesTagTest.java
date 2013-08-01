@@ -22,7 +22,7 @@ public class GetMultifieldArticlesTagTest  extends MocksTag {
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetMultifieldArticlesTagFixture(properties, pageManager, resourceResolver);
+		fixture = new GetMultifieldArticlesTagFixture(properties, pageManager, resourceResolver, currentPage);
 		tag = new GetMultifieldArticlesTag();
 	}
 
@@ -33,22 +33,25 @@ public class GetMultifieldArticlesTagTest  extends MocksTag {
 	
 	@Test
 	public void testDoStartTagNoPages() throws JspException {
-		tag.setCategoryPath(fixture.getCategoryPath());
+		tag.setCategory(fixture.getCategory());
 		runsSkipsBodyEvalsPage();
 		@SuppressWarnings("unchecked")
 		List<Object> result = (List<Object>)pageContext.getAttribute("articles");
-		assertNull(result);			
+		assertTrue(result.isEmpty());			
 	}
 	
 	@Test
 	public void testDoStartTagWithPages() throws JspException, RepositoryException {
 		fixture.setUpTestPages();
-		tag.setCategoryPath(fixture.getCategoryPath());
+		fixture.setupAuxPages();
+		fixture.setCurrentPagePath();
+		tag.setCategory(fixture.getCategory());
 		runsSkipsBodyEvalsPage();
+		
 		@SuppressWarnings("unchecked")
 		List<Object> result = (List<Object>)pageContext.getAttribute("articles");
-		assertThat(result,isA(List.class));
-		assertThat(result,hasSize(5));		
+		assertTrue(result.size() > 0);
+		assertEquals(result.size(), 8);
 		String cat101Header = (String)pageContext.getAttribute("category101header");
 		assertThat(cat101Header,is(fixture.getHeader()));
 		String cat101ViewAllLinkText = (String)pageContext.getAttribute("category101linkText");
@@ -56,7 +59,7 @@ public class GetMultifieldArticlesTagTest  extends MocksTag {
 	}
 
 	private void runsSkipsBodyEvalsPage() throws JspException {
-		tag.setPageContext(pageContext);
+		tag.setPageContext(pageContext); 
 		int startResult = tag.doStartTag();
 		assertThat(startResult,is(TagSupport.SKIP_BODY));
 		int endResult = tag.doEndTag();

@@ -9,6 +9,8 @@ import com.spd.cq.searspartsdirect.common.fixture.GetPartsLinkTagFixture;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
 
 public class GetPartsLinkTagTest extends MocksTag {
 	private GetPartsLinkTagFixture fixture;
@@ -45,6 +47,26 @@ public class GetPartsLinkTagTest extends MocksTag {
 		int startResult  = tag.doStartTag();
 		String findPartsUrl = (String) pageContext.getAttribute("findPartUrl");
 		Assert.assertNull(findPartsUrl);
+		assertThat(startResult,is(TagSupport.SKIP_BODY));
+	}
+	
+	@Test
+	public void testDoStartFakeCompleteResult() throws JspException {
+		fixture.setUpFakeCompleteApiResult();
+		tag.setPageContext(pageContext);
+		int startResult  = tag.doStartTag();
+		String findPartsUrl = (String) pageContext.getAttribute("findPartUrl");
+		assertThat(findPartsUrl,is(not(nullValue())));
+		assertThat(startResult,is(TagSupport.SKIP_BODY));
+	}
+	
+	@Test
+	public void testDoStartFakeEmptyResult() throws JspException {
+		fixture.setUpFakeEmptyApiResult();
+		tag.setPageContext(pageContext);
+		int startResult  = tag.doStartTag();
+		String findPartsUrl = (String) pageContext.getAttribute("findPartUrl");
+		assertThat(findPartsUrl,is(nullValue()));
 		assertThat(startResult,is(TagSupport.SKIP_BODY));
 	}
 }

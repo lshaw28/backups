@@ -1,6 +1,11 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
+article {
+	margin: 0 20px;
+	background-color: @bodyColor;
+}
+
 #viewport {
 	max-width: 1280px;
 	margin: 0 auto;
@@ -22,8 +27,17 @@
 		width: 100%;
 		*width: 99.94680851063829%;
 
+		&.offset2 {
+			margin-left: 23.076923076923077%;
+			*margin-left: 23.023731587561375%;
+		}
+
 		&:first-child {
 			margin-left: 0;
+		}
+
+		img {
+			width: 100%;
 		}
 	}
 
@@ -47,15 +61,20 @@
 		*width: 65.75877432260411%;
 	}
 
-    .new-span-sixth {
-        width: 14.293617021276595%;
-        *width: 14.240425531914894%;
-    }
+	.new-span-sixth {
+		width: 14.293617021276595%;
+		*width: 14.240425531914894%;
+	}
 
-    .new-span-five-sixths {
-        width: 82.97872340425532%;
-        *width: 82.92553191489361%;
-    }
+	.new-span-five-sixths {
+		width: 82.97872340425532%;
+		*width: 82.92553191489361%;
+	}
+	[class*="span"], [class^=" span"], [class*="new-span-"], [class^=" new-span-"] {
+		&.desktop-offset1 {
+			margin-left: 8.547008547008547%;
+		}
+	}
 }
 
 @import "core.grid.tablet.less";

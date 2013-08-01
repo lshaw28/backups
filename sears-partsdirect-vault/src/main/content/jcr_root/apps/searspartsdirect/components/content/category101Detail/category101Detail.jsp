@@ -5,17 +5,16 @@
 	<spd:getRelation single="true" assetType="productCategory" />
 </c:if>
 <h2>
-<c:choose>
-	<c:when test="${fn:length(productCategoryRelation.title) lt 38 }">
-		<cq:text property="header" placeholder="${productCategoryRelation.title} 101" />
-	</c:when>
-	<c:otherwise>
-		<cq:text property="header" placeholder="${fn:substring(productCategoryRelation.title,0,37)} 101" />
-	</c:otherwise>
-	</c:choose>
+	<c:set var="derivedTitle" value="${productCategoryRelation.title}" />
+	<c:if test="${fn:length(derivedTitle) gt 37}">
+		<c:set var="derivedTitle" value="${fn:substring(derivedTitle,0,37)}" />
+	</c:if>
+	<c:set var="actualTitle"><cq:text property="header" placeholder="" /></c:set>
+	<c:if test="${empty actualTitle}"><c:set var="actualTitle" value="${derivedTitle} 101" /></c:if>	
+	<c:out value="${actualTitle}" />
 </h2>
 
-<spd:getCategory101Models category="${productCategoryRelation.path}"/>
+<spd:getCategory101Models category="${productCategoryRelation}" />
 
 <c:forEach var="category101Model" items="${category101Models}" varStatus="currentItem">
 	<c:choose>
@@ -25,13 +24,13 @@
 	</c:choose>
 	<div class="span6">
 		<spd:linkResolver value="${category101Model.url}" />
-	<c:if test="${not empty category101Model.imagePath}">
-		<a href="${url}" ><spd:displayImage path="${category101Model.imagePath}" decorated="false" /></a>
-	</c:if>
-	<h4>
-		<a href="${url}"><c:out value="${category101Model.title} "/></a>
-	</h4>
-	<p><c:out value="${category101Model.description} "/></p>
+		<h4>
+			<a href="${url}"><c:out value="${category101Model.title} "/></a>
+		</h4>
+		<c:if test="${not empty category101Model.imagePath}">
+			<a href="${url}" ><spd:displayImage path="${category101Model.imagePath}" decorated="false" /></a>
+		</c:if>
+		<p><c:out value="${category101Model.description} "/></p>
 	</div>
 	<c:choose>
 		<c:when test="${currentItem.count % 2 eq 0 or currentItem.last}">

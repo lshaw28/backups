@@ -24,11 +24,12 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
 import com.spd.cq.searspartsdirect.common.model.ArticleModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 public class GetCategoryArticleListTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(GetCategoryArticleListTag.class);
-	protected String categoryPath;
+	protected ProductCategoryModel category;
 	
 	@Override
 	public int doStartTag() throws JspException {
@@ -43,7 +44,7 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	        props.put("type", Constants.CQ_PAGE);
 	        props.put("path", Constants.ARTICLES_ROOT);
 	        props.put("property", Constants.ASSETS_PAGES_REL_PATH);
-	        props.put("property.value", categoryPath);
+	        props.put("property.value", category.getPath());
 	        
 	        List<Hit> hits = qb.createQuery(
 	        			PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)
@@ -51,6 +52,18 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 
 	        for (Hit hit: hits) {
 	        	result.add(pageManager.getPage(hit.getPath()));
+	        }
+	        
+	        String categoryName = category.getTrueName();
+
+	        String[] relatedPageUrls = new String[] { Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX,
+	        		Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX,
+	        		Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX};
+	        
+	        for (int i=0; i<relatedPageUrls.length; i++) {
+	        	if (PDUtils.doesPageContainCategoryAsset(pageManager, relatedPageUrls[i])) {
+		        	result.add(pageManager.getPage(relatedPageUrls[i]));
+		        }
 	        }
 	        
 	        Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
@@ -88,14 +101,10 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 				imagePath = Constants.EMPTY;
 			}
 		}
-		return new ArticleModel(
-				page.getPath() + ".html", 
-				imagePath, 
-				page.getTitle(), 
-				page.getProperties().get("abstracttext",Constants.EMPTY).toString());
+		return new ArticleModel(page,imagePath);
 	}
 	
-	public void setCategoryPath(String categoryPath) {
-		this.categoryPath = categoryPath;
+	public void setCategory(ProductCategoryModel category) {
+		this.category = category;
 	}
 }

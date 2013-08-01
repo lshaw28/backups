@@ -5,6 +5,14 @@
 	 * Global functionality instantiation
 	 */
 	$(document).ready(function () {
+		/**
+		 * Cross-Domain Window Message Handling
+		 */
+		var newMessageHandler = new messageHandler();
+		$(window).bind('message', function (e) {
+			e.preventDefault();
+			newMessageHandler.handleMessage(e.originalEvent);
+		});
 		/* Fix Twitter Bootstrap Dropdown Issue */
 		$('.dropdown-menu li').click(function(e) {
 			if (e.cancelBubble) {
@@ -98,25 +106,16 @@
 			var newVideo = new video($(this));
 		});
         /**
-* addToCart class component setup
+		 * addToCart class component setup
 		 */
 		$('.addToCart_js').each(function () {
-			var newAddToCart = new addToCart($(this), $('.addToCartQuantity_js', $(this).parent()));
+			var newAddToCart = new addToCart($(this), $('.addToCartQuantity_js', $(this).parent().parent()));
 		});
         /**
 		 * guideNavigation component setup
 		 */
 		$('.guideNavigation').each(function() {
 			var newGuideNavigation = new guideNavigation($(this));
-			newGuideNavigation.setBreakPoint($(this).offset()['top']);
-			newGuideNavigation.setClassToggles('gn-sticky', 'gn-unsticky');
-
-			return $(window).scroll(function() {
-				var scrollDist;
-				scrollDist = $(window).scrollTop();
-				newGuideNavigation.checkState(scrollDist);
-			});
-
 		});
         /**
          * collapse101 component setup
@@ -170,6 +169,10 @@
 		var registerForm = new modalForm($('#registerModal')),
 			loginForm = new modalForm($('#loginModal'));
 
+		// Dynamically populate current page field
+		$('#currentPageURL').attr('value', document.location.href);
+		$('#successfulRegistrationURL').attr('value', document.location.href);
+
 		// Custom validation for matching email fields
 		regula.custom({
 			name: "EmailsMatch",
@@ -189,10 +192,13 @@
 			}
 		});
 		regula.bind();
-
 		/*
 		 * Responsive table initializer
 		 */
 		shc.pd.base.widgets.ResponsiveTable.init($('table.responsive-table'));
+		/*
+		 * Search panel finder widget
+		 */
+		shc.pd.base.widgets.SearchPanelFinder.init($('.search-panel-finder'));
 	});
 }(window));

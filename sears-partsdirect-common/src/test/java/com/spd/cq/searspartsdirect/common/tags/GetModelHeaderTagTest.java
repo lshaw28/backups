@@ -19,12 +19,30 @@ public class GetModelHeaderTagTest extends MocksTag {
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
-		fixture = new GetModelHeaderTagFixture();
+		fixture = new GetModelHeaderTagFixture(slingRequest);
 		tag = new GetModelHeaderTag();
 	}
 	
 	@Test
 	public void testWithArguments() throws JspException {
+		tag.setBrand(fixture.getBrand());
+		tag.setProductCategory(fixture.getProductCategory());
+		tag.setModel(fixture.getModel());
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithArgumentsAndFakeCompleteResult() throws JspException {
+		fixture.setUpFakeCompleteResult();
+		tag.setBrand(fixture.getBrand());
+		tag.setProductCategory(fixture.getProductCategory());
+		tag.setModel(fixture.getModel());
+		runTagShouldSkipBodyEvalPage();
+	}
+	
+	@Test
+	public void testWithArgumentsAndFakeEmptyResult() throws JspException {
+		fixture.setUpFakeEmptyResult();
 		tag.setBrand(fixture.getBrand());
 		tag.setProductCategory(fixture.getProductCategory());
 		tag.setModel(fixture.getModel());

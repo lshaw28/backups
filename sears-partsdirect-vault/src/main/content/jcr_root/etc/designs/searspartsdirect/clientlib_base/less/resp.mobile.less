@@ -1,21 +1,9 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-@media (max-width: 767px) {
-	body {
-		padding: 0 20px;
-	}
-	article {
-		margin: -19px 0 0;
-		background: @bodyColor;
-		padding: 0 20px;
-	}
-}
-
 @media (max-width: 650px) {
 	body {
 		overflow-x: hidden;
-		padding: 0;
 		width: 100%;
 
 		&.loginNav-open {
@@ -41,20 +29,8 @@
 		background: @secondaryHueLighter url('../img/menu_shadow.png') repeat-y 577px 0;
 		.boxShadow(0 0 3px 3px @secondaryHueLight);
 	}
-	.container-fluid {
-		-webkit-transition-property: -webkit-transform;
-		-webkit-transform: translate3d(0, 0, 0);
-	}
-	body.menu-opening .container-fluid, body.menu-closing .container-fluid {
-		-webkit-transition-duration: 200ms;
-		-webkit-transition-timing-function: ease-in;
-	}
-	body.menu-moving .container-fluid {
-		-webkit-tap-highlight-color: rgba(0,0,0,0);
-		-webkit-user-select: none;
-	}
 	.mani_search_panel {
-		padding: 0 0 0 0;
+		padding: 0;
 	}
 	.body_shadow_left {
 		display: none;
@@ -67,10 +43,6 @@
 		background: url('../img/cart_icon.png') no-repeat 11px 13px;
 		height: 34px;
 		width: 30px;
-	}
-	article {
-		padding: 15px 10px;
-		margin: -19px 0 0 0;
 	}
 	.offset-small {
 		padding-left: 0;

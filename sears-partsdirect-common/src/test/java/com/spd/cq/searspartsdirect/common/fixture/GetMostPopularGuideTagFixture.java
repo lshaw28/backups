@@ -10,6 +10,7 @@ import javax.jcr.Session;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
@@ -74,6 +75,8 @@ public class GetMostPopularGuideTagFixture {
 		Property time = mock(Property.class);
 		when(guidesNode.getProperty("timeRequired")).thenReturn(time);
 		when(time.getString()).thenReturn("Infinite");
+		ValueMap properties = created.getProperties();
+		when(properties.get("abstracttext",Constants.EMPTY)).thenReturn(Constants.EMPTY);
 		return created;
 	}
 }

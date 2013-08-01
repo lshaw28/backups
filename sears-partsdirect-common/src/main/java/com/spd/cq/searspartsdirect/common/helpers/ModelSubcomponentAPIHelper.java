@@ -17,7 +17,7 @@ public class ModelSubcomponentAPIHelper {
 
 	protected static Logger log = LoggerFactory.getLogger(ModelSubcomponentAPIHelper.class);
 
-	final static String MODELSUB_REQATTR = Constants.ident("spd.model.subcomponents");
+	public final static String MODELSUB_REQATTR = Constants.ident("spd.model.subcomponents");
 
 	private final static String BRAND_PARAM = "brandName";
 	private final static String CATEGORY_PARAM = "categoryName";

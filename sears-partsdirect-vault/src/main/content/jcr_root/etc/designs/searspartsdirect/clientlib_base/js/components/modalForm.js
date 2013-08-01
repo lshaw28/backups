@@ -23,9 +23,8 @@ var modalForm = Class.extend(function () {
 		bindSubmit: function () {
 			var self = this;
 
-			$('[data-submit]', self.el).bind('click', function () {
-				return false;
-			}).bind('click', function () {
+			$('[data-submit=true]', self.el).bind('click', function (e) {
+				e.preventDefault();
 				self.validate();
 			});
 		},
@@ -52,9 +51,18 @@ var modalForm = Class.extend(function () {
 			// Display errors or submit the form
 			if (errorMessage.length > 0) {
 				$('.alert', self.el).removeClass('hidden');
-			} else if ($('.alert', self.el).hasClass('hidden') === false) {
-				self.resetFields();
-				$('form', self.el)[0].submit();
+			} else {
+                if (self.group === 'loginModal') {
+                    var userName = $('[name=loginId]', self.el).val();
+                    var password = $('[name=logonPassword]', self.el).val();
+                    var action = $('#loginFormModal').attr('action');
+                    var renew = $('[name=renew]', self.el).val();
+                    if (!window.secureLoginModal) window.secureLoginModal = new secureLoginModal();
+                    window.secureLoginModal.submitLoginForm( userName, password, action, renew );
+                } else {
+                    $('form', self.el)[0].submit();
+                }
+
 			}
 		},
 

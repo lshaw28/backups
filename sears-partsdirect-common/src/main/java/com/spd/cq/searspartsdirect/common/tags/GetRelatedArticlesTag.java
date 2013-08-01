@@ -53,17 +53,8 @@ public class GetRelatedArticlesTag extends CQBaseTag {
 
 			Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
 
-			String description = "";
 			for (int i = 0; i < result.size(); i++) {
-				if (result.get(i).getProperties().containsKey("abstracttext")) {
-					description = result.get(i).getProperties().get("abstracttext").toString();
-				} else {
-					description = "";
-				}
-				articles.add(new ArticleModel(result.get(i).getPath() + ".html",
-													result.get(i).getPath() + Constants.ASSETS_IMAGE_PATH,
-													result.get(i).getTitle(),
-													description));
+				articles.add(new ArticleModel(result.get(i))); 
 			}
 
 		} catch (Exception e) {

@@ -82,7 +82,7 @@ public class EnvironmentSettings {
 
 	@Property(label = "PartsDirect URL",
 			description = "Configurable PartsDirect Url for QA, Stress and production env",
-			value = "http://partsbetavip.qa.ch3.s.com")
+			value = "partsbetavip.qa.ch3.s.com")
 	public static final String PD_URL = "searspartsdirect.url";
 	public static String getPDUrl() {
 		return getProperty(PD_URL,Constants.EMPTY);

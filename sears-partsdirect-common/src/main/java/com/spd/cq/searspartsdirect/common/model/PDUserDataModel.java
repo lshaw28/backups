@@ -9,6 +9,8 @@ public class PDUserDataModel {
 	private String firstName;
 	private String lastName;
 	
+	private String userId;
+	
 	@SerializedName("username")
 	private String userName;
 	
@@ -60,11 +62,17 @@ public class PDUserDataModel {
 		this.userName = userName;
 	}
 	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	@Override
 	public String toString() {
 		return "PDUserDataModel [firstName=" + firstName + ", lastName="
-				+ lastName + ", userName=" + userName + ", myProfileModels="
-				+ myProfileModels + ", cart=" + cart + ", loggedIn=" + loggedIn
-				+ "]";
+				+ lastName + ", userId=" + userId + ", userName=" + userName
+				+ ", myProfileModels=" + myProfileModels + ", cart=" + cart
+				+ ", loggedIn=" + loggedIn + "]";
 	}
 }

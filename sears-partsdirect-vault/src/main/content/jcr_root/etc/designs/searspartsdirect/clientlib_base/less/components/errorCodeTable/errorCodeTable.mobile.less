@@ -5,8 +5,43 @@
 	}
 
 	.errorCodesTable {
-		.table-wrapper {	
-			padding: 0;
+	  .table-wrapper {
+		  padding: 0;
+	  }
+
+	  td {
+		i {
+		  color: @primaryHueNormal;
+		  display: inline-block;
+		  float: right;
+		  font-size: 20px;
+		  margin-right: 20px;
+		  vertical-align: middle;
+
 		}
+
+		.icon-chevron-down {
+		  display: inline-block;
+		}
+
+		.icon-chevron-up {
+		  color: @secondaryHueDark;
+		  display: none;
+		}
+
+		&.td-open {
+		  .icon-chevron-down {
+			display: none;
+		  }
+
+		  .icon-chevron-up {
+			display: inline-block;
+		  }
+		}
+	  }
+
+
 	}
+
+
 }

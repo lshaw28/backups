@@ -154,7 +154,9 @@ var responsiveDropdown = Class.extend(function () {
 		 * @return {void}
 		 */
 		selectValue: function (val, sel) {
-			var self = this;
+			var self = this,
+				valStripped = val.replace('#', ''),
+				scrollPos = $('a[name="' + valStripped + '"]')[0].offsetTop;
 
 			// Update the Bootstrap dropdown items
 			$('li', self.dropdownItems).removeClass('selected');
@@ -168,10 +170,7 @@ var responsiveDropdown = Class.extend(function () {
 			}
 			// Navigate
 			if (self.navigate === true) {
-				if (sel === true) {
-					document.location.hash = val;
-				}
-				window.scrollTo($(window).scrollTop() - self.button.height());
+				window.scrollTo(scrollPos - self.button.height());
 			}
 			// Close the dropdown
 			self.dropdownItems.removeClass('active');

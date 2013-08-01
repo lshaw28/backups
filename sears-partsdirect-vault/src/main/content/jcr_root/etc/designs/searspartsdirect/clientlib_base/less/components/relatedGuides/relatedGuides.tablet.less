@@ -1,0 +1,83 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+@media (max-width: 768px) {
+    .relatedGuides{
+        .carousel-wrapper{
+            width: 100%;
+            .carousel-list-wrapper{
+                
+                
+                div.carousel-item.span3 {
+                    
+                    width: 22%;
+                    padding-right: 2.5%;
+                    
+                }
+                
+                
+                div.wrapperGuide {
+                    position: relative;
+                    min-height: 140px;
+                    width: 100px;
+                    background: none;
+                    
+                    
+                }
+                
+                .image-wrapper {
+                    height: auto;
+                    width: 100%;
+                    overflow: hidden;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background: @secondaryHueLight;
+                    .image {
+                        max-height: 90px;
+                        overflow: hidden;
+                        border-bottom: solid 2px #fff;
+                    }
+                    
+                }
+                
+                .wrench-symbol {
+                    position: absolute;
+                    width: 28px;
+                    height: 28px;
+                    top: 63px;
+                    line-height: 24px;
+                    left: 45%;
+                    margin-left: -9px;
+                    border: solid 2px #fff;
+                    
+                    i {
+                        font-size: 12px;
+                        .flipHorizontally();
+                    }
+                }
+                .guideURL{
+                    position: relative;
+                    display: block;
+                    text-align: center;
+                    margin: 10px;
+                    a{
+                        text-decoration: none;
+                        
+                    }
+                    &:hover{
+                        text-decoration: none;
+                    }
+                }
+            }
+            
+        }
+        .accordion-inner-btn {
+		font-size: @smallestPSize;
+		margin-top: 5px;
+	}
+        
+    }
+    
+    
+}

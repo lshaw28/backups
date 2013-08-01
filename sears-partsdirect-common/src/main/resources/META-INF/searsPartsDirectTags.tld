@@ -65,7 +65,7 @@
 		<info>returns the product category Model Objects that have a Category 101 Tag</info>
 		<attribute>
 			<name>category</name>
-			<type>java.lang.String</type>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -144,8 +144,8 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetMultifieldArticlesTag</tag-class>
 		<info>Sets page context information required for Category 101 multifield articles</info>
 		<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
+			<name>category</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -183,8 +183,8 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCategoryArticleListTag</tag-class>
 		<info>Retrieves articles in a given category for the Category Article List component</info>
 		<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
+			<name>category</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -541,7 +541,7 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>getMyProfileModelCookie</name>
+		<name>getHeaderHelperData</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetHeaderHelperTag</tag-class>
 		<info>Gets the My Profile Model Cookie for guest user and the api root information</info>
 	</tag>
@@ -560,5 +560,10 @@
 		<name>getCategoryJSON</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCategoryJSONTag</tag-class>
 		<info>Gets the categories in the form of JSON text</info>
+	</tag>
+	<tag>
+		<name>getBrowseGlossary</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.BrowseGlossaryTag</tag-class>
+		<info>Gets the Common Category Parts</info>
 	</tag>
 </taglib>

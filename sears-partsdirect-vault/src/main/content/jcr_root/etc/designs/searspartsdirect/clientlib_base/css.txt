@@ -26,10 +26,12 @@ resp.mobile.less
 accordionItem/accordionItem.less
 articleComments/articleComments.less
 authorArticle/authorArticles.less
+authorDetails/authorDetails.less
 authorDisplay/authorDisplay.less
 boxed-callout/boxed-callout.less
 brandBar/brandBar.less
 breadcrumbNavigation/breadcrumbNavigation.less
+browseGlossary/browseGlossary.less
 carousel/desktopImageCarousel/desktopImageCarousel.less
 carousel/touchImageCarousel/touchImageCarousel.less
 cartNav/cartNav.less
@@ -76,3 +78,6 @@ text/text.less
 topAccessories/topAccessories.less
 topParts/topParts.less
 toolsRequiredRepair/toolsRequiredRepair.less
+search-panel-finder/search-panel-finder.less
+relatedGuides/relatedGuides.less
+commonParts/commonParts.less
