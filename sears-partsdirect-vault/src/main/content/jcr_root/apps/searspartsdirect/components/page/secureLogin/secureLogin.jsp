@@ -27,7 +27,7 @@
                     <input type="hidden" value="https://www.searspartdirect.com/partsdirect/j_acegi_cas_security_check" name="service" id="service">
                     <input type="hidden" value="true" name="renew" id="renew">
                     <br />
-                    <a href="#">Forgot Password?</a>
+                    <a data-toggle="modal" data-dismiss="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
                 </fieldset>
                 <div class="pull-right">
                     <button type="button" class="new-btn" data-dismiss="modal" data-cancel="true"aria-hidden="true">Cancel</button>
