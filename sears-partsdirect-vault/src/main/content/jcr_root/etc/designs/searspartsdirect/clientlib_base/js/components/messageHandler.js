@@ -25,6 +25,12 @@ var messageHandler = Class.extend(function () {
 				if (message.data.closeModal) {
 					$(message.data.closeModal).modal('hide');
 				}
+                if (message.data.openModal) {
+                    $(message.data.openModal).modal('show');
+                }
+                if (message.data.redirect) {
+                    document.location.href = message.data.redirect;
+                }
 				if (message.data.reload) {
 					document.location.reload();
 				}
