@@ -11,8 +11,9 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<div class="span3"><cq:include path="overviewImage" resourceType="searspartsdirect/components/content/categoryIcon" /></div>
-		<div class="span9"><c:out value="${symptom.description} "/></div>
+		<div class="categoryDescription">
+			<p><cq:include path="categoryIcon" resourceType="searspartsdirect/components/content/categoryIcon" /><c:out value="${symptom.description} "/></p>
+		</div>
 	</div>
 	<div class="span3">
 		<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />

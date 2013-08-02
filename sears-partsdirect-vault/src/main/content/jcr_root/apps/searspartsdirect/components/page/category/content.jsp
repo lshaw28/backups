@@ -10,8 +10,7 @@
 						<div class="span8">
 							<div class="row-fluid">
 								<div class="span12">
-									<div class="span3"><cq:include path="overviewIcon" resourceType="searspartsdirect/components/content/categoryIcon" /></div>
-									<div class="span9"><cq:include path="overview" resourceType="searspartsdirect/components/content/categoryDescription" /></div>
+									<cq:include path="categoryDescription" resourceType="searspartsdirect/components/content/categoryDescription" />
 								</div>
 							</div>
 							<div class="row-fluid">
