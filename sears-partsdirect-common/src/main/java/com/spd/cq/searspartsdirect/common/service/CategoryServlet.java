@@ -49,14 +49,14 @@ public class CategoryServlet extends SlingSafeMethodsServlet {
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException,
 			IOException {
 
-		Map<String, Boolean> categories = new HashMap<String, Boolean>();
+		Map<String, String> categories = new HashMap<String, String>();
 		String[] categoryNames = request.getParameterValues(CATEGORY_NAMES);
 
 		response.setHeader("Content-Type", "application/json");
 		if (categoryNames != null && categoryNames.length > 0) {
 			for (String categoryName : categoryNames) {
 				if (StringUtils.isNotBlank(categoryName)) {
-					categories.put(categoryName, checkIfCategoryExists(request, categoryName));
+					categories.put(categoryName, getCategoryPath(request, categoryName));
 				}
 			}
 		}
@@ -67,9 +67,9 @@ public class CategoryServlet extends SlingSafeMethodsServlet {
 		response.getWriter().print(jsonString);
 	}
 
-	private Boolean checkIfCategoryExists(SlingHttpServletRequest slingRequest, String categoryName) {
+	private String getCategoryPath(SlingHttpServletRequest slingRequest, String categoryName) {
 
-		boolean isActive = false;
+		String result = null;
 
 		ResourceResolver resourceResolver = slingRequest.getResourceResolver();
 		Session session = resourceResolver.adaptTo(Session.class);
@@ -85,23 +85,24 @@ public class CategoryServlet extends SlingSafeMethodsServlet {
 		QueryBuilder builder = resourceResolver.adaptTo(QueryBuilder.class);
 		Query query = builder.createQuery(PredicateGroup.create(map), session);
 
-		SearchResult result = query.getResult();
+		SearchResult queryResult = query.getResult();
 
-		for (Hit hit : result.getHits()) {
-			PageManager pageManager;
+		for (Hit hit : queryResult.getHits()) {
 			Page page;
 			try {
-				pageManager = resourceResolver.adaptTo(PageManager.class);
+				PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
 				page = pageManager.getPage(hit.getPath());
 				if (page != null) {
 					ReplicationStatus replicationStatus = page.adaptTo(ReplicationStatus.class);
-					isActive = replicationStatus.isActivated();
+					if (replicationStatus.isActivated()) {
+						result = page.getPath();
+					}
 				}
 			} catch (RepositoryException e) {
 				log.error("Error while checking replicationStatus of " + categoryName + " page: " + e.getMessage());
 			}
 		}
 
-		return isActive;
+		return result;
 	}
 }
