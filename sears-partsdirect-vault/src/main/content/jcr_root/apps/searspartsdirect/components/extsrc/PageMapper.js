@@ -211,7 +211,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 					var nodeName = node.attributes.name;
 
 					if (_this.allowedNodes.trim() !== '') {
-						if (_this.allowedNodes.indexOf(nodeName) === -1) {
+						if (_this.allowedNodes.indexOf(nodeName) === -1 && node.leaf !== true) {
 							node.hidden = true;
 							node.disabled = true;
 						}
