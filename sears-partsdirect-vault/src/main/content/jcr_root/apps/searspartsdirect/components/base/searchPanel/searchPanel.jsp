@@ -20,9 +20,9 @@
 				</ul>
 			</div><button id="searchModelsParts" class="new-btn new-btn-search">Search</button>
 			
-			
 			<p class="search-panel-finder-close-only">Can't locate your model number? <a href="" class="search-panel-finder-trigger">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
 			<p class="search-panel-finder-open-only"><a href="" class="search-panel-finder-trigger">Close the finder</a></p>
+			
 			
 			<input name="pathTaken" id="pathTaken" type="hidden"/>
 			<input name="prst" id="prst" type="hidden"/>
@@ -120,6 +120,5 @@
 				</div>
 			</div>
 		</div>
-				
 	</div>
 </form>

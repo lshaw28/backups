@@ -217,7 +217,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 						}
 					}
 				}
-			},
+			}
 		});
 
 		// append to wrapper
@@ -306,7 +306,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 							// rebuild
 							store.each(function (record) {
 								_this.addHiddenValue(record.get('path'));
-							})
+							});
 						} else {
 							CQ.Ext.Msg.alert('Page Mapper' , 'Item is already on the top.');
 						}
@@ -334,7 +334,7 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 							// rebuild
 							store.each(function (record) {
 								_this.addHiddenValue(record.get('path'));
-							})
+							});
 						} else {
 							CQ.Ext.Msg.alert('Page Mapper' , 'Item is already on the bottom.');
 						}
@@ -366,17 +366,6 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 		});
 
 		this.containerPanel.add(this.gridPanel);
-	},
-	/**
-	 * Modifies a list of child nodes based on a string array of allowed paths
-	 * @param {array} node Original node
-	 * @return {void}
-	 */
-	cleanChildNodes: function (node) {
-		var _this = this;
-
-		console.log(_this.allowedNodes);
-		console.log(node.childNodes);
 	},
 	/**
 	 * Populates grid from parent data

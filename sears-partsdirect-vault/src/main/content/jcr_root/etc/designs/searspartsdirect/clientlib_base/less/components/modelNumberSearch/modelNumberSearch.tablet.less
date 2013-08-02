@@ -1,6 +1,8 @@
 @import "../../base.variables.less";
 @import "../../base.mixins.less";
 
+@media (max-width: 1024px) {
+
 .modelNumberSearchcategory{
     .modelNumberSearch {
         
@@ -31,7 +33,7 @@
             background-color: @secondaryHueLightest;
         }
         div#cq-gen24.width-33{
-            width: 40%;
+            width: 50%;
             float: left;
             border-right: 1px solid @secondaryHueLight;
             margin-right: 20px;
@@ -70,6 +72,4 @@
         font-size: @smallPSize;
     }
 }
-
-@import "modelNumberSearch.tablet.less";
-@import "modelNumberSearch.mobile.less";
+}
