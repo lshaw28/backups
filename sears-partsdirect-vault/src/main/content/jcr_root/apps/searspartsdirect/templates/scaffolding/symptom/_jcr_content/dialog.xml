@@ -33,7 +33,7 @@
 					jcr:primaryType="cq:Widget"
 					name="./jcr:content/pages"
 					treeRootPath="/etc/spdAssets/scaffolding"
-					allowedNodes="jobCode,partType,productCategory"
+					allowedNodes="jobCode,productCategory"
 					hideLabel="{Boolean}false"
 					fieldLabel="Page Associations"
 					xtype="scaffoldingpagemapper"/>
