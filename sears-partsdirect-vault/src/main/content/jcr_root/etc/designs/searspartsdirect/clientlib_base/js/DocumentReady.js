@@ -166,8 +166,7 @@
 		/**
 		 * Form validation
 		 */
-		var registerForm = new modalForm($('#registerModal')),
-			loginForm = new modalForm($('#loginModal'));
+		var registerForm = new modalForm($('#registerModal'));
 
 		// Dynamically populate current page field
 		$('#currentPageURL').attr('value', document.location.href);

@@ -10,7 +10,6 @@ var secureLogin = Class.extend(function () {
 		 */
 		init: function (el) {
 			this.el = el;
-			this.group = $('form', el).attr('data-regulagroup').toString();
 			this.bindSubmit();
 			this.bindCancel();
             this.bindLinks();
@@ -38,7 +37,7 @@ var secureLogin = Class.extend(function () {
 				i = 0,
 				errorMessage = '',
 				divider = '',
-				regulaResponse = regula.validate(self.createValidationObject());
+				regulaResponse = regula.validate();
 
 			// Parse the error messages
 			for (i = 0; i < regulaResponse.length; i = i + 1) {
@@ -83,17 +82,6 @@ var secureLogin = Class.extend(function () {
                 self.postMessage({ 'closeModal': '#loginModal', 'openModal': target});
             });
         },
-		/**
-		 * Creates validation object literal
-		 * @return {object}
-		 */
-		createValidationObject: function () {
-			var self = this;
-
-			return {
-				groups: [regula.Group[self.group]]
-			};
-		},
 		/**
 		 * Binds any related fields so changing one affects the other
 		 */

@@ -52,18 +52,9 @@ var modalForm = Class.extend(function () {
 			if (errorMessage.length > 0) {
 				$('.alert', self.el).removeClass('hidden');
 			} else {
-                if (self.group === 'loginModal') {
-                    var userName = $('[name=loginId]', self.el).val();
-                    var password = $('[name=logonPassword]', self.el).val();
-                    var action = $('#loginFormModal').attr('action');
-                    var renew = $('[name=renew]', self.el).val();
-                    if (!window.secureLoginModal) window.secureLoginModal = new secureLoginModal();
-                    window.secureLoginModal.submitLoginForm( userName, password, action, renew );
-                } else {
-                    $('form', self.el)[0].submit();
-                }
+                $('form', self.el)[0].submit();
+            }
 
-			}
 		},
 
         bindCancel: function () {

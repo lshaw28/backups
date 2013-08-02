@@ -53,7 +53,8 @@ var secureForgotPassword = Class.extend(function () {
             } else {
 
                 var userName = $('[name=loginId]', self.el).val();
-                var forgotPasswordService = 'https://www.searspartsdirect.com/partsdirect/ssoForgotPasswordEmailModal.action';
+                //var forgotPasswordService = 'https://www.searspartsdirect.com/partsdirect/ssoForgotPasswordEmailModal.action';
+                var forgotPasswordService = 'http://partsbetavip.qa.ch3.s.com/partsdirect/ssoForgotPasswordEmailModal.action';
 
                 self.submitForgotPassword( userName, forgotPasswordService);
             }
@@ -83,7 +84,7 @@ var secureForgotPassword = Class.extend(function () {
          */
         successCallback: function (obj) {
             var self = this;
-
+            console.log('forgotPassword success callback');
             if (obj.Status === "success") {
                 // if successful, change h1 text and show success paragraph
                 $('h1', self.el).html('Email Sent');
@@ -118,6 +119,20 @@ var secureForgotPassword = Class.extend(function () {
                 error: self.errorCallback
             });
             return false;
+        },
+
+        /**
+         * Posts a message to the parent page via JavaScript
+         * @param {object} message The object to post
+         */
+        postMessage: function (message) {
+            var domain = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port;
+
+            if (typeof window['parentDomain'] === 'string') {
+                domain = window['parentDomain'];
+            }
+
+            top.window.postMessage(message, domain);
         }
     };
 }());
