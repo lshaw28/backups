@@ -2,7 +2,15 @@
 @import "../../base.mixins.less";
 
 .backToTop {
-	
-}
+	background-color: @bodyColor;
+	padding: 10px 0;
+	text-align: center;
 
-@import "backToTop.mobile.less";
+	a {
+		color: @secondaryHueNormal;
+
+		&:hover {
+			color: @secondaryHueNormal;
+		}
+	}
+}
