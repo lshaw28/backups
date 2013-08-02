@@ -100,7 +100,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 				itemWrapper.append($('<a />'));
 			}
 			
-			container.addClass('carousel-master-control');
+			container.addClass('carousel-master-control-desktop');
 			itemWrapper.addClass('cmc-wrapper');
 			
 			// append to container, and append to document

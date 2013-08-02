@@ -16,6 +16,13 @@ NS('shc.pd.base.widgets').TouchCarousel = shc.pd.base.render.Breakpoint.extend(f
 		},
 		deactivate: function () {
 			this.parent.removeClass(enablerClassName);
+		},
+		/**
+		 * Generate master controller
+		 * @return {undefined}
+		 */
+		bindMasterController: function () {
+			
 		}
 	};
 }());
