@@ -38,6 +38,7 @@ carousel/touchImageCarousel/touchImageCarousel.less
 cartNav/cartNav.less
 category101/category101.less
 categoryArticleList/categoryArticleList.less
+categoryDescription/categoryDescription.less
 categoryListing/categoryListing.less
 categorySymptomDetail/categorySymptomDetail.less
 categorySymptoms/categorySymptoms.less
