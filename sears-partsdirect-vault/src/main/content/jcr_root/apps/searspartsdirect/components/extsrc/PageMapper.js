@@ -155,6 +155,13 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 	 */
 	initTreePanel: function () {
 		var _this = this;
+        var _restrictRegex = function() {
+                if (_this.allowedNodes.trim() !== '') {
+                    return new RegExp(_this.allowedNodes.replace(/ *, */g,'|'));
+                } else {
+                    return /.*/;
+                }
+        }();
 
 		this.treePanel = new CQ.Ext.tree.TreePanel({
 			ddGroup: Shc.components.extsrc.PAGE_MAPPER_GROUPDD,
@@ -203,17 +210,12 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 				name: _this.treeRootPath,
 				expanded: true,
 				// no root dragging (its not like u can see it when its disabled anyways)
-				draggable: false
-			},
-
-			listeners: {
-				beforeappend: function (tree, panel, node) {
-					var nodeName = node.attributes.name;
-
-					if (_this.allowedNodes.trim() !== '') {
-						if (_this.allowedNodes.indexOf(nodeName) === -1 && node.leaf !== true) {
-							node.hidden = true;
-							node.disabled = true;
+				draggable: false,
+				listeners: {
+					beforeappend: function (tree, ins, childNode) {
+						if (_restrictRegex.test(childNode.attributes.name) === false) {
+							childNode.hidden = true;
+							childNode.disabled = true;
 						}
 					}
 				}
