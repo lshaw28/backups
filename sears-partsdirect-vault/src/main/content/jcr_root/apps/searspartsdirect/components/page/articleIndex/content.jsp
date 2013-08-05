@@ -15,7 +15,7 @@
 					<cq:include path="category101Detail" resourceType="searspartsdirect/components/content/category101Detail" />
 					<cq:include path="categoryArticleList" resourceType="searspartsdirect/components/content/categoryArticleList" />
 				</div>
-				<div class="span3 offset1 pull-right">
+				<div class="span3 offset1 pull-right ad-span">
 					<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
 				</div>
 			</div>
