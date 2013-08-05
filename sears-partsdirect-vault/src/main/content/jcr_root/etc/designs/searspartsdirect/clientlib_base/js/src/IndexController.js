@@ -19,25 +19,29 @@ NS('shc.pd.base.src').IndexController = Class.extend(function () {
 		/**
 		 * Proceeds to next index value going forward, invokes `setIndex`
 		 * Does nothing if conditions aren't met
-		 * @return {undefined}
+		 * @return {Boolean}
 		 */
 		next: function () {
 			if (this.index < this.maxIndex) {
 				this.setIndex(this.index + 1, shc.pd.base.util.Enums.Direction.Right);
 			} else if (this.isInfinite === true) {
 				this.setIndex(0, shc.pd.base.util.Enums.Direction.Right);
+			} else {
+				return false;
 			}
 		},
 		/**
 		 * Proceeds to next index value going backwards, invokes `setIndex`
 		 * Does nothing if conditions aren't met
-		 * @return {undefined}
+		 * @return {Boolean}
 		 */
 		back: function () {
 			if (this.index > 0) {
 				this.setIndex(this.index - 1, shc.pd.base.util.Enums.Direction.Left);
 			} else if (this.isInfinite === true) {
 				this.setIndex(this.maxIndex, shc.pd.base.util.Enums.Direction.Left);
+			} else {
+				return false;
 			}
 		},
 		/**
