@@ -11,7 +11,6 @@
 					   title="Guide Details"
 					   xtype="panel">
 					<items jcr:primaryType="cq:WidgetCollection">
-					
 						<text jcr:primaryType="cq:Widget"
 								fieldLabel="Long Description"
 								name="./longDescription"
@@ -80,7 +79,7 @@
 				                    value="Less than 120 min."/>
 				            </options>
 				        </timeRequired>
-						
+
 					</items>
 				</tab1>
 			</items>
