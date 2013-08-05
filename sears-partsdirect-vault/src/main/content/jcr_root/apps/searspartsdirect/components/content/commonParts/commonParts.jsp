@@ -63,7 +63,16 @@
 			</div>
 			<div id="${uniqueId}${uniquer}" class="accordion-body collapse">
 				<div class="accordion-inner">
-					<a href="${mainSitePath}/partsdirect/product-types/${productCategoryRelation.title}-Parts">Shop compressors</a>,
+					<a href="${mainSitePath}/partsdirect/product-types/${productCategoryRelation.title}-Parts">Shop 
+					<c:choose> 
+							<c:when test="${not empty commonPart.pluralTitle}">
+								<c:out value="${fn:toLowerCase(commonPart.pluralTitle)}"/>
+							</c:when>
+							<c:otherwise>
+								<c:out value="${fn:toLowerCase(commonPart.title)}"/>
+							</c:otherwise>
+						</c:choose>
+					</a>,
 					or for best results, search using your model number.
 					<a href="#Idonotknow">Can't find your model number? Use our finder.</a>
 				</div>
