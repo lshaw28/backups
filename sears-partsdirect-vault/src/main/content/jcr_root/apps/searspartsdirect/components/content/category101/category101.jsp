@@ -1,5 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-
 <spd:uniqueID />
 <spd:getRelation single="true" assetType="productCategory" />
 <c:if test="${empty productCategoryRelation}">
@@ -7,30 +6,22 @@
 </c:if>
 <spd:getMultifieldArticles  category="${productCategoryRelation}" />
 
-<br />
-
 <c:if test="${not empty articles}">
 	<div class="accordion" id="parent_${uniqueId}">
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse101"
-					data-parent="#parent_${uniqueId}" href="#${uniqueId}">
+				<a class="accordion-toggle" data-toggle="collapse101" data-parent="#parent_${uniqueId}" href="#${uniqueId}">
 					<c:choose>
-
 						<c:when test="${fn:length(productCategoryRelation.title) lt 38 && fn:length(category101header) eq 0}">
 							${productCategoryRelation.title} 101
 						</c:when>
-
 						<c:when test="${fn:length(category101header) eq 0}">
 							${fn:substring(productCategoryRelation.title,0,37)} 101
 						</c:when>
-
 						<c:otherwise>
 							${category101header}
 						</c:otherwise>
-
-					</c:choose> <i class="icon-chevron-up pull-right"></i> <i
-					class="icon-chevron-down pull-right"></i>
+					</c:choose><i class="icon-chevron-up pull-right"></i> <i class="icon-chevron-down pull-right"></i>
 				</a>
 			</div>
 			<div id="${uniqueId}" class="accordion-body collapse in">
@@ -43,8 +34,7 @@
 					</ul>
 					<c:if test="${fn:length(category101linkText) gt 0}">
 						<c:set var="suffix" value="-repair/repair-articles" />
-						<spd:linkResolver
-							value="${Constants.CATEGORIES_ROOT}/${productCategoryRelation.trueName}${suffix}" />
+						<spd:linkResolver value="${Constants.CATEGORIES_ROOT}/${productCategoryRelation.trueName}${suffix}" />
 						<a href="${url}" class="new-btn-small accordion-inner-btn"><c:out value="${category101linkText} "/></a>
 					</c:if>
 				</div>
