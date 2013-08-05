@@ -10,13 +10,13 @@
 		<p><cq:text property="longDescription" /></p>
 	</div>
 	<div class="span9 tablet-snap">
-		<div class="new-span-third">
+		<div class="new-span-half">
 			<h5>Repair difficulty:</h5>
 			<div class="difficulty-rating ${difficultyLevel}">
 				<i class="icon-wrench rating-one">&nbsp;</i><i class="icon-wrench rating-two">&nbsp;</i><i class="icon-wrench rating-three">&nbsp;</i><i class="icon-wrench rating-four">&nbsp;</i><i class="icon-wrench rating-five">&nbsp;</i>
 			</div>
 		</div>
-		<div class="new-span-third">
+		<div class="new-span-half">
 			<h5>Time required:</h5>
 			<p><cq:text property="timeRequired" /></p>
 		</div>
