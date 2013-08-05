@@ -4,7 +4,7 @@ var secureLogin = Class.extend(function () {
 
 	return {
 		/**
-		 * Initializes modalForm class
+		 * Initializes secureLogin class
 		 * Uses Regula validation
 		 * See documentation: https://github.com/vivin/regula/wiki
 		 */
