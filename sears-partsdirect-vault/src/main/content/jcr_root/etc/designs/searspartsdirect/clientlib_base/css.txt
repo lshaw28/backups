@@ -74,6 +74,7 @@ relatedArticles/relatedArticles.less
 relatedGuides/relatedGuides.less
 repairStep/repairStep.less
 responsiveDropdown/responsiveDropdown.less
+responsiveImage/responsiveImage.less
 responsive-table/responsive-table.less
 searchPanel/searchPanel.less
 search-panel-finder/search-panel-finder.less
