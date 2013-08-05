@@ -6,5 +6,5 @@
 
 <div data-youtubeid="${youTubeID}" data-width="${displayWidth}" data-height="${displayHeight}"></div>
 <c:if test="${caption ne '' and caption ne Constants.EMPTY and caption ne null}">
-	<p><c:out value="${caption}" /></p>
+	<p class="caption"><c:out value="${caption}" /></p>
 </c:if>

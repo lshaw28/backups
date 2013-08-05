@@ -2,11 +2,21 @@
 @import "../../base.mixins.less";
 
 .commonParts {
-	.commonPartsContainerIndent {
-		margin-left: 40px;
-	}
+
+  a {
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .commonPartsContainerIndent {
+      margin-left: 40px;
+  }
 	
-	.accordion-group,
+  .accordion-group,
   .accordion-inner {
 	border: 0;
   }
@@ -30,19 +40,26 @@
   }
 
   .accordion-toggle {
-	
+
+    border-top: 2px solid @secondaryHueLight;
+    border-bottom: 2px solid @secondaryHueLight;
+    display: block;
 	padding-left: 15px;
 	text-decoration: none;
 
 
-	h3 {
-	  display: inline-block;
+
+	p {
+	  display: inline;
+      line-height: 40px;
 	}
 
 	i {
 	  color: @primaryHueNormal;
 	  display: inline-block;
+      float: right;
 	  font-size: 20px;
+      line-height: 40px;
 	  margin-right: 20px;
 	  vertical-align: middle;
 	}

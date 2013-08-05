@@ -1,0 +1,20 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.responsiveImage {
+	[data-desktopimage] {
+		position: relative;
+		text-align: center;
+
+		.credit {
+			bottom: 0;
+			color: @bodyColor;
+			font-size: @smallPSize;
+			position: absolute;
+			right: 0;
+			text-align: right;
+			.textShadow(1px 1px 0 @secondaryHueDarkest);
+			z-index: 100;
+		}
+	}
+}

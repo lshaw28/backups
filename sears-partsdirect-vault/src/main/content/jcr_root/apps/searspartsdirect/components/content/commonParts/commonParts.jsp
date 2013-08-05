@@ -18,7 +18,7 @@
 			<div class="accordion-group">
 				<div class="accordion-heading">
 					<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#parent_${uniqueId}${uniquer}" href="#${uniqueId}${uniquer}">
-						<h3>Common repairs using
+						<p>Common repairs using
 						<c:choose> 
 							<c:when test="${not empty commonPart.pluralTitle}">
 								<c:out value="${fn:toLowerCase(commonPart.pluralTitle)}"/>
@@ -27,7 +27,7 @@
 								<c:out value="${fn:toLowerCase(commonPart.title)}"/>
 							</c:otherwise>
 						</c:choose>
-						</h3>
+						</p>
 						<i class="icon-chevron-up"></i><i class="icon-chevron-down"></i>
 					</a>
 				</div>
@@ -48,7 +48,7 @@
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#parent_${uniqueId}${uniquer}" href="#${uniqueId}${uniquer}">
-					<h3>Shop for
+					<p>Shop for
 				 		<c:choose> 
 							<c:when test="${not empty commonPart.pluralTitle}">
 								<c:out value="${fn:toLowerCase(commonPart.pluralTitle)}"/>
@@ -57,15 +57,24 @@
 								<c:out value="${fn:toLowerCase(commonPart.title)}"/>
 							</c:otherwise>
 						</c:choose>
-					</h3>
+					</p>
 					<i class="icon-chevron-up"></i><i class="icon-chevron-down"></i>
 				</a>
 			</div>
 			<div id="${uniqueId}${uniquer}" class="accordion-body collapse">
 				<div class="accordion-inner">
-					<a href="${mainSitePath}/partsdirect/product-types/${productCategoryRelation.title}-Parts">Shop compressors</a>,
+					<a href="${mainSitePath}/partsdirect/product-types/${productCategoryRelation.title}-Parts">Shop 
+					<c:choose> 
+							<c:when test="${not empty commonPart.pluralTitle}">
+								<c:out value="${fn:toLowerCase(commonPart.pluralTitle)}"/>
+							</c:when>
+							<c:otherwise>
+								<c:out value="${fn:toLowerCase(commonPart.title)}"/>
+							</c:otherwise>
+						</c:choose>
+					</a>,
 					or for best results, search using your model number.
-					<a href="#Idonotknow">Can't find your model number? Use our finder.</a>
+					<a data-toggle="reveal" data-target="#findMyModel" id="newFinderModel">Can't find your model number? Use our finder.</a>
 				</div>
 			</div>
 		</div>

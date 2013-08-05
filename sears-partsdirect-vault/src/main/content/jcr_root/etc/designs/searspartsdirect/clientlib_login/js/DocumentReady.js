@@ -10,12 +10,17 @@
 		 */
 		window['parentDomain'] = document.location.hash.replace('#', '');
         /**
-         * Form validation
+         * Define secure modals:
+         * 1. login
+         * 2. forgot pw
+         * 3. register
          */
         var loginForm = new secureLogin($('#secureLoginModal'));
 		loginForm.postMessage({ 'closeModal': '#loginModal' });
 
         var forgotPasswordForm = new secureForgotPassword($('#secureForgotPasswordModal'));
+
+        var registerForm = new secureRegister($('#secureRegisterModal'));
 
 
         // Check if we need to show modal with error code
