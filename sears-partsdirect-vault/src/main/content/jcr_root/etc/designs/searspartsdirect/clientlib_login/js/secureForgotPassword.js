@@ -4,7 +4,7 @@ var secureForgotPassword = Class.extend(function () {
 
     return {
         /**
-         * Initializes modalForm class
+         * Initializes secureForgotPassword class
          * Uses Regula validation
          * See documentation: https://github.com/vivin/regula/wiki
          */
