@@ -7,25 +7,16 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<cq:include path="pageTitleHeader" resourceType="searspartsdirect/components/content/pageTitleHeader" />
-					<cq:include path="articleIndexCopy" resourceType="searspartsdirect/components/content/articleIndexCopy" />
 				</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span8">
+					<cq:include path="articleIndexCopy" resourceType="searspartsdirect/components/content/articleIndexCopy" />
 					<cq:include path="category101Detail" resourceType="searspartsdirect/components/content/category101Detail" />
 					<cq:include path="categoryArticleList" resourceType="searspartsdirect/components/content/categoryArticleList" />
 				</div>
-				<div class="span3 offset1 pull-right">
-					<div class="row-fluid">
-						<div class="span12">
-							<%-- <cq:include path="topAccessories" resourceType="searspartsdirect/components/content/topAccessories" /> --%>
-						</div>
-					</div>
-					<div class="row-fluid">
-						<div class="span12 ad-span">
-							<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
-						</div>
-					</div>
+				<div class="span3 offset1 pull-right ad-span">
+					<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
 				</div>
 			</div>
 		</div>
