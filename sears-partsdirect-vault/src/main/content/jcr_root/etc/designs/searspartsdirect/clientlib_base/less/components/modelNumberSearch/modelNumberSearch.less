@@ -1,76 +1,93 @@
 @import "../../base.variables.less";
 @import "../../base.mixins.less";
 
-.modelNumberSearchcategory{
-    .modelNumberSearch {
-        
-        p {
-            font-size: @smallPSize;
-            
-            a {
-                font-size: @smallPSize;
-            }
-        }
-        p.display-message {
-            display: none;
-            
-            &.error, &.success {
-                display: block;
-            }
-            &.error {
-                color: @highlightHueNormal;
-            }
-        }
-        
-        input#modelNumberSearchInput{
-            
-            background-color: @secondaryHueLightest;
-            
-        }
-        span.add-on{
-            background-color: @secondaryHueLightest;
-        }
-        div#cq-gen24.width-33{
-            width: 40%;
-            float: left;
-            border-right: 1px solid @secondaryHueLight;
-            margin-right: 20px;
-            height: 70px;
-            padding-right: 15px;
-            
-        }
-        
-        
-    }
-    
 
-    .findThisPart {
+// # Base Styles
+.modelNumberSearch {
+	background-color: @secondaryHueLighter;
+	padding: 10px;
 
-        .modelNumberSearch {
-            div.width-33 {
-                display: inline-block;
-                margin: 10px;
-                vertical-align: top;
-                width: 33%;
-            }
-            
-            form {
-                margin: 0 0 10px;
-            }
-        }
-        
-    }
+	p {
+		font-size: @smallPSize;
+
+		a {
+			font-size: @smallPSize;
+		}
+	}
+	p.display-message {
+		display: none;
+
+		&.error, &.success {
+			display: block;
+		}
+		&.error {
+			color: @highlightHueNormal;
+		}
+	}
+	input#modelNumberSearchInput{
+		background-color: @bodyColor;
+		width: 69%;
+	}
+	span.add-on{
+		background-color: @bodyColor;
+	}
+	modelNumberSearchContent {
+		display: none;
+	}
 }
-.contentText{
-    p{
-        font-size: @smallPSize;
-        p#cq-gen27{
-            font-style: italic;
-        }
-        a{
-            font-size: @smallPSize;
-        }
-    }
+
+// # Find This Part Overrides
+.findThisPart {
+	.modelNumberSearch {
+		.modelNumberSearchIntro, .modelNumberSearchInputs, .modelNumberSearchContent {
+			display: inline-block;
+			margin-left: 2.564102564102564%;
+			*margin-left: 2.5109110747408616%;
+			min-height: 30px;
+		}
+		.modelNumberSearchIntro {
+			margin-left: 0;
+			width: 23.076923076923077%;
+			*width: 23.023731587561375%;
+		}
+		.modelNumberSearchInputs {
+			width: 40.17094017094017%;
+			*width: 40.11774868157847%;
+		}
+		.modelNumberSearchContent {
+			width: 23.076923076923077%;
+			*width: 23.023731587561375%;
+		}
+	}
+}
+
+// # Category Template Overrides
+.categorySearch {
+	.modelNumberSearch {
+		background-color: @bodyColor;
+
+		input#modelNumberSearchInput{
+			background-color: @secondaryHueLighter;
+		}
+		span.add-on{
+			background-color: @secondaryHueLighter;
+		}
+
+		.modelNumberSearchIntro, .modelNumberSearchInputs, .modelNumberSearchContent {
+			display: inline-block;
+		}
+		.modelNumberSearchIntro {
+			width: 100%;
+		}
+		.modelNumberSearchInputs {
+			width: 40.17094017094017%;
+			*width: 40.11774868157847%;
+		}
+		.modelNumberSearchContent {
+			width: 40.17094017094017%;
+			*width: 40.11774868157847%;
+		}
+	}
 }
 @import "modelNumberSearch.tablet.less";
 @import "modelNumberSearch.mobile.less";
