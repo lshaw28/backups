@@ -70,6 +70,13 @@
 	-ms-box-shadow: @v;
 	box-shadow: @v;
 }
+.textShadow(@v: 0 0 0 @bodyColor) {
+	-webkit-text-shadow: @v;
+	-moz-text-shadow: @v;
+	-o-text-shadow: @v;
+	-ms-text-shadow: @v;
+	text-shadow: @v;
+}
 .transition(@v: all 1s ease-out) {
 	-webkit-transition: @v;
 	-moz-transition: @v;
@@ -83,7 +90,6 @@
 	-o-box-sizing: @v;
 	box-sizing: @v;
 }
-
 .flipHorizontally() {
 	-moz-transform: scaleX(-1);
 	-o-transform: scaleX(-1);

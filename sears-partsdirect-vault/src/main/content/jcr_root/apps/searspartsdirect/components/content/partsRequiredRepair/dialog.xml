@@ -10,7 +10,6 @@
 				<title jcr:primaryType="cq:Widget"
 					fieldLabel="Parts Required Title"
 					fieldDescription="Character limit is 50"
-					allowBlank="{Boolean}false"
 					name="./partsRequiredTitle"
 					xtype="textfield"
 					maxLength="50" />

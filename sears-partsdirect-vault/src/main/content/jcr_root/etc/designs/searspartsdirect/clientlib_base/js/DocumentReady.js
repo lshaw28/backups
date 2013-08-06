@@ -168,34 +168,7 @@
 				obj: new shc.pd.base.widgets.TouchCarousel(carouselElement)
 			}));
 		});
-		/**
-		 * Form validation
-		 */
-		var registerForm = new modalForm($('#registerModal'));
 
-		// Dynamically populate current page field
-		$('#currentPageURL').attr('value', document.location.href);
-		$('#successfulRegistrationURL').attr('value', document.location.href);
-
-		// Custom validation for matching email fields
-		regula.custom({
-			name: "EmailsMatch",
-			formSpecific: true,
-			defaultMessage: "Email addresses do not match!",
-			params: ["field1", "field2"],
-			validator: function(params) {
-				var failingElements = [],
-					emailField1 = document.getElementById(params["field1"]),
-					emailField2 = document.getElementById(params["field2"]);
-
-				if (emailField1.value != emailField2.value) {
-					failingElements = [emailField1, emailField2];
-				}
-
-				return failingElements;
-			}
-		});
-		regula.bind();
 		/*
 		 * Responsive table initializer
 		 */

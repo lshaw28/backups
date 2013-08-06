@@ -8,13 +8,10 @@
 				<c:when test="${not empty rvModelList and not empty rvPartList}">
 					<a data-toggle="dropdown" href="#">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
 					<ul class="dropdown-menu">
-
-						<!-- Model List -->
 						<c:forEach var="model" items="${rvModelList}">
 							<li>Model <a href="${model.itemURL}"><c:out value="${model.itemName}" /></a><br />
 							<a href="${model.itemURL}"><c:out value="${model.itemDescription}" /></a></li>
 						</c:forEach>
-						<!-- Part List -->
 						<c:forEach var="part" items="${rvPartList}">
 							<li>
 								<a href="${part.itemURL}">

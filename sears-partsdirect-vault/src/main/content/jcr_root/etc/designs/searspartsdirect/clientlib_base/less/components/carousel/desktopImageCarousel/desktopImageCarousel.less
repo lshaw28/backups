@@ -51,10 +51,11 @@
 		margin: 0 auto;
 		overflow: hidden;
 	}
+
 	div.analyzable.parbase.image small{
-			margin-top: 10px;
-            text-align: center;
-        }
+		margin-top: 10px;
+		text-align: center;
+	}
 
 	[class*="carousel-trigger"] {
 		width: 50px;
@@ -89,12 +90,13 @@
 		right: 0;
 	}
 
-	.carousel-master-control {
+	.carousel-master-control-desktop {
 		display: block;
 	}
 }
 
-.carousel-master-control {
+// shared on touch carousel
+[class*="carousel-master-control"] {
 	display: none;
 	position: absolute;
 	bottom: 5px;

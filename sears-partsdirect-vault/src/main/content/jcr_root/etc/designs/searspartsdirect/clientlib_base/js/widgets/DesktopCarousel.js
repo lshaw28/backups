@@ -1,14 +1,15 @@
 NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend(function () {
 	'use strict';
 	
-	var enablerClassName = 'desktop-carousel-enabled';
-	
 	return {
 		/**
 		 * @constructor
 		 * @param {jQuery} parent {HTMLElement}
 		 */
 		init: function (parent) {
+			this.enablerClassName = 'desktop-carousel-enabled';
+			this.masterCtrClassName = 'carousel-master-control-desktop';
+			
 			try {
 				var items = $('.carousel-item', parent);
 				
@@ -37,7 +38,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 		 * @return {undefined}
 		 */
 		activate: function () {
-			this.parent.addClass(enablerClassName);
+			this.parent.addClass(this.enablerClassName);
 			this.carousel.enableAction();
 		},
 		/**
@@ -45,7 +46,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 		 * @return {undefined}
 		 */
 		deactivate: function () {
-			this.parent.removeClass(enablerClassName);
+			this.parent.removeClass(this.enablerClassName);
 			
 			// disable animation
 			this.carousel.disableAction();
@@ -100,7 +101,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 				itemWrapper.append($('<a />'));
 			}
 			
-			container.addClass('carousel-master-control');
+			container.addClass(this.masterCtrClassName);
 			itemWrapper.addClass('cmc-wrapper');
 			
 			// append to container, and append to document
