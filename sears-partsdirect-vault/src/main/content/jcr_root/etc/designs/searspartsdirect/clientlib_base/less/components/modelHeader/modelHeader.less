@@ -1,16 +1,15 @@
 @import "../../base.variables.less";
 @import "../../base.mixins.less";
 
-.row-fluid {
-	margin: 0;
-
-	a.modelInfo {
-		font-weight: bold;
-		line-height: 65px;
+.modelHeader {
+	a {
+		&.modelInfo {
+			font-weight: bold;
+			line-height: 65px;
+		}
 	}
 
-
-ul.nav.nav-tabs {
+	.nav {
 		border-bottom: 1px solid @secondaryHueLight;
 		left: -40px;
 		margin-top: 30px;
@@ -30,7 +29,7 @@ ul.nav.nav-tabs {
 			font-size: @h4Size;
 			font-weight: bold;
 			height: 30px;
-			line-height: 32px;
+			line-height: @largeSize;
 			padding: 8px 10px;
 			text-align: center;
 			text-decoration: none;
@@ -42,12 +41,12 @@ ul.nav.nav-tabs {
 		.borderRadius(4px);
 		padding: 10px;
 
-		span.span5 {
+		.span5 {
 			position: relative;
 			text-align: center;
 			top: 5px;
-			}
 		}
 	}
+}
 @import "modelHeader.tablet.less";
 @import "modelHeader.mobile.less";
