@@ -2,74 +2,17 @@
 @import "../../base.mixins.less";
 
 @media (max-width: 1024px) {
-
-.modelNumberSearchcategory{
-    .modelNumberSearch {
-        
-        p {
-            font-size: @smallPSize;
-            
-            a {
-                font-size: @smallPSize;
-            }
-        }
-        p.display-message {
-            display: none;
-            
-            &.error, &.success {
-                display: block;
-            }
-            &.error {
-                color: @highlightHueNormal;
-            }
-        }
-        
-        input#modelNumberSearchInput{
-            
-            background-color: @secondaryHueLightest;
-            
-        }
-        span.add-on{
-            background-color: @secondaryHueLightest;
-        }
-        div#cq-gen24.width-33{
-            width: 50%;
-            float: left;
-            border-right: 1px solid @secondaryHueLight;
-            margin-right: 20px;
-            height: 70px;
-            padding-right: 15px;
-            
-        }
-        
-        
-    }
-    
-
-    .findThisPart {
-
-        .modelNumberSearch {
-            div.width-33 {
-                display: inline-block;
-                margin: 10px;
-                vertical-align: top;
-                width: 33%;
-            }
-            
-            form {
-                margin: 0 0 10px;
-            }
-        }
-        
-    }
+	.modelNumberSearch {
+		input#modelNumberSearchInput{
+			width: 58%;
+		}
+	}
 }
-.contentText{
-    p#cq-gen27{
-        font-size: @smallPSize;
-        font-style: italic;
-    }
-    p#cq-gen28 a{
-        font-size: @smallPSize;
-    }
-}
+
+@media (max-width: 768px) {
+	.modelNumberSearch {
+		input#modelNumberSearchInput{
+			width: 80%;
+		}
+	}
 }

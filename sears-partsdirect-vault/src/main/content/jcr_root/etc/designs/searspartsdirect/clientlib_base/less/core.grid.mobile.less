@@ -2,6 +2,46 @@
 @import "base.mixins.less";
 
 @media (max-width: 650px) {
+	html {
+		max-width: 100%;
+		overflow-x: hidden;
+		width: 100%;
+	}
+	body {
+		max-width: 100%;
+		overflow-x: hidden;
+		width: 100%;
+
+		#viewport {
+			background: @secondaryHueLighter url('../img/menu_shadow.png') repeat-y 577px 0;
+			.boxShadow(0 0 3px 3px @secondaryHueLight);
+			overflow-x: hidden;
+		}
+
+		&.loginNav-open {
+			background-color: @secondaryHueLighter;
+			background-image: none;
+
+			#viewport {
+				left: 276px;
+				overflow-x: visible;
+				position: absolute;
+			}
+		}
+		&.cartNav-open {
+			background-color: @bodyColor;
+			background-image: none;
+
+			#viewport {
+				overflow-x: visible;
+				position: absolute;
+				right: 276px;
+			}
+		}
+	}
+	.body_shadow_left, .body_shadow_right {
+		display: none;
+	}
 	article {
 		margin: -19px 0 0 0;
 		padding: 15px 10px;
