@@ -267,9 +267,16 @@ Shc.components.extsrc.PageMapper = CQ.Ext.extend(CQ.form.CompositeField, {
 				// drop event callback
 				notifyDrop: function(dd, e, data) {
 					// clean up path
-					var path = data.node.attributes.loader.baseParams.path.toString().substr(1) +
-						'/' + data.node.attributes.name;
-
+					var path = '';
+					// Use the ownerTree.selectedPath if available, cleaner data
+					try {
+						path = data.node.ownerTree.selectedPath.replace('//', '/');
+						if (typeof path !== 'string') {
+							path = data.node.attributes.loader.baseParams.path.toString().substr(1) + '/' + data.node.attributes.name;
+						}
+					} catch (e) {
+						path = data.node.attributes.loader.baseParams.path.toString().substr(1) + '/' + data.node.attributes.name;
+					}
 					// add value
 					try {
 						_this.addValue(path);
