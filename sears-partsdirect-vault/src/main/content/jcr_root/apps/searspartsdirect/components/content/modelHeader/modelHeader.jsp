@@ -23,7 +23,7 @@
 			</div>
 		</div>
 		--%>
-		<ul class="nav visible-desktop visible-tablet">
+		<ul class="visible-desktop visible-tablet">
 			<c:forEach items="${pseudoTabs}" var="tab">
 				<li<c:if test="${tab.linkText eq 'Repair Help'}"> class="active"</c:if>><a href="${tab.href}"><c:out value="${tab.linkText} "/></a></li>
 			</c:forEach>
