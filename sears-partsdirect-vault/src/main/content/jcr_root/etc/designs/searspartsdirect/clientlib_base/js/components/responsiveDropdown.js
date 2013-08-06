@@ -19,6 +19,7 @@ var responsiveDropdown = Class.extend(function () {
 			this.buttonContent = 'Select';
 			this.groupClass = '';
 			this.hiddenField = null;
+			this.link = false;
 			this.navigate = false;
 			// Retrieve data
 			this.setProperties();
@@ -48,6 +49,10 @@ var responsiveDropdown = Class.extend(function () {
 			// Set optional hidden field to update
 			if (self.el.data('hiddenfield')) {
 				self.hiddenfield = $(self.el.data('hiddenfield'));
+			}
+			// Enable selection hyperlink
+			if (su.validString(self.el.data('link')) !== '') {
+				self.link = true;
 			}
 			// Enable selection navigation
 			if (su.validString(self.el.data('navigate')) !== '') {
@@ -168,6 +173,10 @@ var responsiveDropdown = Class.extend(function () {
 			if (self.hiddenField !== null) {
 				self.hiddenField.attr('value', val);
 			}
+			// Hyperlink
+			if (self.link === true) {
+				document.location.href = val;
+			}
 			// Navigate
 			if (self.navigate === true) {
 				window.scrollTo(scrollPos - self.button.height());
@@ -179,11 +188,9 @@ var responsiveDropdown = Class.extend(function () {
 			var self = this;
 
 			self.el.one('blur change', function () {
-				console.log('blur or change');
 				var val = $('option:selected', self.el).attr('value');
 				self.selectValue(val, true);
 			}).bind('focus', function () {
-				console.log('focus');
 			});
 		}
 	};
