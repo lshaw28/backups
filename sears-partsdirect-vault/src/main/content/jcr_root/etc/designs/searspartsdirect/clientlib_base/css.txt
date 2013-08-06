@@ -12,7 +12,6 @@ core.buttons.tablet.less
 core.forms.less
 core.tables.less
 core.svgIcons.less
-resp.mobile.less
 
 #base=less/components/.
 accordionItem/accordionItem.less
