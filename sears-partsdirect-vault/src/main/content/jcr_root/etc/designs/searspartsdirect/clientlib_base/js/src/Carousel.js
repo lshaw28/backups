@@ -43,7 +43,7 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 		 */
 		action: function () {
 			if (this.hasAction === true) {
-				this.moveFx.animateX(this.movementPx * this.index * -1, 'px', ANIMATION_SPEED, this.callback);
+				this.moveFx.animateX(this.movementPx * this.index * -1, 'px', this.animationSpeedMs || ANIMATION_SPEED, this.callback);
 			}
 		},
 		/**
@@ -77,6 +77,21 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 		 */
 		disableAction: function () {
 			this.hasAction = false;
+		},
+		/**
+		 * Overrides default animation
+		 * @param {Number} ms
+		 * @returns {undefined}
+		 */
+		setAnimationSpeed: function (ms) {
+			this.animationSpeedMs = ms;
+		},
+		/**
+		 * Returns animation object
+		 * @returns {shc.pd.base.fx.Translate3dResolver}
+		 */
+		getFx: function () {
+			return this.moveFx;
 		}
 	};
 }());
