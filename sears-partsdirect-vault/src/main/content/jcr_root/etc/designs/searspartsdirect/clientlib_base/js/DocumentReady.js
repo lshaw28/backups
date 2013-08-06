@@ -138,6 +138,11 @@
             var newFindThisPart = new findThisPart($(this));
         });
 
+        // common parts component setup
+        $('.commonParts').each(function() {
+            var newCommonParts = new commonParts($(this));
+        });
+
         // recommended parts component setup
         $('.recommendedParts').each(function() {
             var newrecommendedParts = new recommendedParts($(this));

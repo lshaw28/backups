@@ -46,3 +46,5 @@ comments.js
 modelHeader.js
 recommendedParts.js
 secureLoginModal.js
+commonParts.js
+
