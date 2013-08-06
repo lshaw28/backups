@@ -120,13 +120,14 @@ var responsiveDropdown = Class.extend(function () {
 
 			a.html(text);
 			a.attr('data-value', value);
+
 			// Make hyperlinks function
-			if (value.indexOf('#') === 0) {
+			if (value !== '' && value !== '#') {
 				a.attr('href', value);
-				a.bind('click', function (e) {
-					self.dropdownItems.toggleClass('active');
-				});
 			}
+			a.bind('click', function (e) {
+				self.dropdownItems.toggleClass('active');
+			});
 			self.bindItem(a);
 			li.append(a);
 			self.dropdownItems.append(li);
