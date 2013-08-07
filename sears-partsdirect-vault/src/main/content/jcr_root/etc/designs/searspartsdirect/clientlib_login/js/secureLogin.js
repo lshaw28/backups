@@ -12,9 +12,9 @@ var secureLogin = Class.extend(function () {
 			this.el = el;
 			this.bindSubmit();
 			this.bindCancel();
-            this.bindLinks();
+			this.bindLinks();
 			this.bindCheckField();
-            this.resetFields();
+			this.resetFields();
 		},
 		/**
 		 * Binds the submit button to perform Regula validation
@@ -52,9 +52,9 @@ var secureLogin = Class.extend(function () {
 			if (errorMessage.length > 0) {
 				$('.alert', self.el).removeClass('hidden');
 			} else {
-                var serverAddress = window.SPDUtils.getLocationDetails().fullAddress;
-                var userName = $('[name=loginId]', self.el).val();
-                var prepareLoginService = 'http://partsbetavip.qa.ch3.s.com/partsdirect/prepareLogin.pd';
+				var serverAddress = window.SPDUtils.getLocationDetails().fullAddress,
+					userName = $('[name=loginId]', self.el).val(),
+					prepareLoginService = mainSitePath + '/partsdirect/prepareLogin.pd';
 
 				self.prepareLogin( userName, prepareLoginService);
 			}
@@ -71,17 +71,17 @@ var secureLogin = Class.extend(function () {
 			});
 		},
 
-        /**
-         * Binds register link to close login modal and open register modal
-         */
-        bindLinks: function () {
-            var self = this;
+		/**
+		 * Binds register link to close login modal and open register modal
+		 */
+		bindLinks: function () {
+			var self = this;
 
-            $('[data-target]', self.el).bind('click', function() {
-                var target = $(this).data('target');
-                self.postMessage({ 'closeModal': '#loginModal', 'openModal': target});
-            });
-        },
+			$('[data-target]', self.el).bind('click', function() {
+				var target = $(this).data('target');
+				self.postMessage({ 'closeModal': '#loginModal', 'openModal': target});
+			});
+		},
 
 		/**
 		 * Binds any related fields so changing one affects the other
@@ -116,69 +116,67 @@ var secureLogin = Class.extend(function () {
 		/**
 		 * Handles a successful callback
 		 */
+		successCallback: function (obj) {
+			var self = this,
+				commercial_Url = 'https://commercial.searspartsdirect.com';
 
+			// NOT authenticated at this point...
+			if (!obj.isUserConsumer) {
+				// redirect to commercial PD site
+				$('[name=loginId]', self.el).attr('name', 'j_username');
+				//$('[name=logonPassword]', self.el).attr('name', 'j_password');
+				//logonPassword.name = "j_password";
+				//loginId.name = "j_username";
+				document.secureLoginFormModal.action = commercial_Url+"/partsdirect/commercialLogin.pd?email=" + $('[name=loginId]', self.el).val();
+				$('.alert', self.el).html("Our records show you're a member of our commercial parts website. We're automatically redirecting you to Sears Commercial Parts.");
+				$('.alert', self.el).removeClass('hidden');
+				setTimeout(function(){document.loginFormModal.submit();}, 3000);
+			} else {
+				// They're a normal user
+				// submit to SSO
+				$('form', self.el)[0].submit();
+			}
+		},
 
-        successCallback: function (obj) {
-            var self = this,
-                commercial_Url = 'https://commercial.searspartsdirect.com';
+		failCallback: function (errors) {
+			   // this ajax call should never fail
+		},
 
-            // NOT authenticated at this point...
-            if (!obj.isUserConsumer) {
-                // redirect to commercial PD site
-                $('[name=loginId]', self.el).attr('name', 'j_username');
-                //$('[name=logonPassword]', self.el).attr('name', 'j_password');
-                //logonPassword.name = "j_password";
-                //loginId.name = "j_username";
-                document.secureLoginFormModal.action = commercial_Url+"/partsdirect/commercialLogin.pd?email=" + $('[name=loginId]', self.el).val();
-                $('.alert', self.el).html("Our records show you're a member of our commercial parts website. We're automatically redirecting you to Sears Commercial Parts.");
-                $('.alert', self.el).removeClass('hidden');
-                setTimeout(function(){document.loginFormModal.submit();}, 3000);
-            } else {
-                // They're a normal user
-                // submit to SSO
-                $('form', self.el)[0].submit();
-            }
-        },
+		prepareLogin: function(username, prepareLoginURL) {
+			var self = this,
+				hostName = window.SPDUtils.getLocationDetails().fullAddress;
 
-        failCallback: function (errors) {
-               // this ajax call should never fail
-        },
+			$.ajax({
+				type: "GET",
+				async: false,
+				contentType: 'application/json',
+				dataType: 'JSON',
+				url: prepareLoginURL,
+				data: { userName: username,
+						authSuccessURL: encodeURI(hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true'),
+						authFailureURL:encodeURI(hostName+'content/searspartsdirect/en/login_form.html?errorCode=300')
+				},
+				xhrFields: {
+					withCredentials: true
+				},
+				success: self.successCallback,
+				error: self.failCallback
+			});
+			return false;
+		},
 
-        prepareLogin: function(username, prepareLoginURL) {
-            var self = this,
-                hostName = window.SPDUtils.getLocationDetails().fullAddress;
+		showUnauthorizedMessage: function () {
+			var self = this,
+				i = 0,
+				errorMessage = 'Unauthorized credentials. Please re-enter.';
 
-            $.ajax({
-                type: "GET",
-                async: false,
-                contentType: 'application/json',
-                dataType: 'JSON',
-                url: prepareLoginURL,
-                data: { userName: username,
-                        authSuccessURL: encodeURI(hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true'),
-                        authFailureURL:encodeURI(hostName+'content/searspartsdirect/en/login_form.html?errorCode=300')
-                },
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: self.successCallback,
-                error: self.failCallback
-            });
-            return false;
-        },
-
-        showUnauthorizedMessage: function () {
-            var self = this,
-                i = 0,
-                errorMessage = 'Unauthorized credentials. Please re-enter.';
-
-            // Populate the alert field with the errors
-            $('.alert', self.el).html(errorMessage);
-            $('.alert', self.el).removeClass('hidden');
-            // blank out input fields
-            $('input', self.el).each(function() {
-                $(this).val('');
-            });
+			// Populate the alert field with the errors
+			$('.alert', self.el).html(errorMessage);
+			$('.alert', self.el).removeClass('hidden');
+			// blank out input fields
+			$('input', self.el).each(function() {
+				$(this).val('');
+			});
 		},
 		/**
 		 * Posts a message to the parent page via JavaScript
@@ -189,7 +187,7 @@ var secureLogin = Class.extend(function () {
 
 			if (typeof window['parentDomain'] === 'string') {
 				domain = window['parentDomain'];
-            }
+			}
 
 			top.window.postMessage(message, domain);
 		}
