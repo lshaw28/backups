@@ -82,6 +82,7 @@ var secureLogin = Class.extend(function () {
                 self.postMessage({ 'closeModal': '#loginModal', 'openModal': target});
             });
         },
+
 		/**
 		 * Binds any related fields so changing one affects the other
 		 */
@@ -154,8 +155,11 @@ var secureLogin = Class.extend(function () {
                 dataType: 'JSON',
                 url: prepareLoginURL,
                 data: { userName: username,
-                        authSuccessURL: encodeURI(hostName+'/content/searspartsdirect/en/login_form.html?authSuccessURL=true'),
-                        authFailureURL:encodeURI(hostName+'/content/searspartsdirect/en/login_form.html?errorCode=300')
+                        authSuccessURL: encodeURI(hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true'),
+                        authFailureURL:encodeURI(hostName+'content/searspartsdirect/en/login_form.html?errorCode=300')
+                },
+                xhrFields: {
+                    withCredentials: true
                 },
                 success: self.successCallback,
                 error: self.failCallback
