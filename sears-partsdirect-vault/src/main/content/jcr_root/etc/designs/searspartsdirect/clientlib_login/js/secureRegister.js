@@ -10,6 +10,7 @@ var secureRegister = Class.extend(function () {
          */
         init: function (el) {
             this.el = el;
+            //this.group = $('form', el).attr('data-regulagroup').toString();
             this.bindSubmit();
             this.bindCancel();
             this.bindLinks();
@@ -53,10 +54,10 @@ var secureRegister = Class.extend(function () {
                 $('.alert', self.el).removeClass('hidden');
             } else {
 
-                var userName = $('[name=loginId]', self.el).val();
-                var prepareRegisterService = 'http://partsbetavip.qa.ch3.s.com/partsdirect/prepareLogin.pd';
+                // for the register modal, just submit the form
+                // (no need for ajax calls)
+                $('form', self.el)[0].submit();
 
-                self.prepareRegister( userName, prepareRegisterService);
             }
         },
         /**
@@ -112,37 +113,18 @@ var secureRegister = Class.extend(function () {
             });
         },
         /**
-         * Handles a successful callback
+         * Creates validation object literal
+         * @return {object}
          */
+        createValidationObject: function () {
+            var self = this;
 
-
-        successCallback: function (obj) {
-            var self = this,
-                commercial_Url = 'https://commercial.searspartsdirect.com';
-
-            // NOT authenticated at this point...
-            if (!obj.isUserConsumer) {
-                // redirect to commercial PD site
-                $('[name=loginId]', self.el).attr('name', 'j_username');
-                //$('[name=logonPassword]', self.el).attr('name', 'j_password');
-                //logonPassword.name = "j_password";
-                //loginId.name = "j_username";
-                document.secureLoginFormModal.action = commercial_Url+"/partsdirect/commercialLogin.pd?email=" + $('[name=loginId]', self.el).val();
-                $('.alert', self.el).html("Our records show you're a member of our commercial parts website. We're automatically redirecting you to Sears Commercial Parts.");
-                $('.alert', self.el).removeClass('hidden');
-                setTimeout(function(){document.loginFormModal.submit();}, 3000);
-            } else {
-                // They're a normal user
-                // submit to SSO
-                $('form', self.el)[0].submit();
-            }
+            return {
+                groups: [regula.Group[self.group]]
+            };
         },
 
-        failCallback: function (errors) {
-            // this ajax call should never fail
-        },
-
-        prepareRegister: function(username, prepareLoginURL) {
+        registerUser: function(username, registerURL) {
             var self = this,
                 hostName = window.SPDUtils.getLocationDetails().fullAddress;
 
@@ -152,15 +134,31 @@ var secureRegister = Class.extend(function () {
                 contentType: 'application/json',
                 dataType: 'JSON',
                 url: prepareLoginURL,
-                data: { userName: username,
-                    registrationSuccessURL: encodeURI(hostName+'/content/searspartsdirect/en/register_form.html?authSuccessURL=true'),
-                    registrationFailureURL:encodeURI(hostName+'/content/searspartsdirect/en/register_form.html?errorCode=300')
+                data: { firstName: username,
+                        lastName: lastName,
+                        email: email,
+                        password: password
                 },
                 success: self.successCallback,
                 error: self.failCallback
             });
             return false;
         },
+
+        successCallback: function (obj) {
+            var self = this
+            // hit the login service with username/pw
+            // (as if user entered their credentials in login modal)
+            // absolutely the same flow as login
+            // so
+
+        },
+
+        failCallback: function (errors) {
+            // this ajax call should never fail
+        },
+
+
 
         showUnauthorizedMessage: function () {
             var self = this,

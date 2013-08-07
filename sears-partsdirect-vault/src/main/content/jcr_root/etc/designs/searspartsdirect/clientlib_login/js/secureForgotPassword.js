@@ -98,6 +98,8 @@ var secureForgotPassword = Class.extend(function () {
                     self.resetFields();
                     self.postMessage({ 'closeModal': '#forgotPasswordModal' });
                 });
+            } else {
+                console.log(obj.Status+" is what came back from forgotPassword service");
             }
         },
 
