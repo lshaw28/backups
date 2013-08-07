@@ -1,6 +1,5 @@
 NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
-
-	var API_PREFIX = 'http://www.searspartsdirect.com/partsdirect/newModelLocatorAction!',
+	var API_PREFIX = $('meta[name="global-mainSitePath"]').attr('content') + '/partsdirect/newModelLocatorAction!',
 		PRODUCT_URI = API_PREFIX + 'fetchNewFilterOptionsBasedOnProductType.pd',
 		PRODUCT_SWITCHER_URI = API_PREFIX + 'fetchPlateLocationsAndImageForStyle.pd',
 		MODEL_BRANDS = API_PREFIX + 'fetchBrandsListBasedOnStyle.pd',
@@ -22,7 +21,7 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 		 */
 		init: function (parent) {
 			var _this = this;
-			
+
 			// container reference
 			this.parent = parent;
 			// UI that handles going from model brand search and product output
@@ -35,17 +34,14 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 			this.$modelHelperSearch = $('.search-critera-plate-finder', this.parent);
 			// UI that outputs model numbers
 			this.$modelNumbersResult = $('.search-critera-plate-output', this.parent);
-			
 			// brand selector
 			this.$modelHelperBrandSelect = $('select', this.$modelHelperSearch);
-			
 			// bind manager anchor links
 			this.bindViewManagerEvents();
-			
 			// event for brand select
 			this.$modelHelperBrandSelect.change(function () {
 				var value = $(this).val();
-				
+
 				if (value !== 0) {
 					_this.requestModelNumbers($(this).val(), function (html) {
 						_this.showModelNumbers(html);
@@ -71,10 +67,10 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 			this.clearProductSearch();
 			this.clearModelHelperSearch();
 			this.$paneManager.hide();
-			
+
 			// unset style type
 			this.setStyleType(null);
-			
+
 			// set product
 			this.productType = productType;
 		},
@@ -89,22 +85,22 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 				data = {},
 				callback,
 				url = PRODUCT_URI;
-		
+
 			this.setProductType(product);
 			data.productType = product;
-			
+
 			// this assumes the initial UI has been established
 			if (typeof style !== 'undefined') {
 				url = PRODUCT_SWITCHER_URI;
 				data.selectedStyle = style;
-				
+
 				this.setStyleType(style);
-				
+
 				// set UI response callback
 				callback = function (data) {
 					_this.clearProductSearch(true);
 					_this.$productOutput.prepend(data);
-					
+
 					// ui show/hide dance
 					_this.$productOutput.show();
 					_this.$paneManager.show();
@@ -114,7 +110,7 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 				callback = function (data) {
 					_this.clearProductSearch();
 					_this.$productOutput.html(data);
-					
+
 					// tango!
 					_this.$productOutput.show();
 					_this.$paneManager.show();
@@ -154,12 +150,12 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 				dataType: 'html'
 			}).done(function (data) {
 				var output = [];
-				
+
 				$(data).find('a').each(function () {
 					var a = $(this);
 					output.push({key: a.text(), value: a.text()});
 				});
-				
+
 				callback(output);
 			}).fail(function () {
 				_this.logRequestError(MODEL_BRANDS);
@@ -223,20 +219,20 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 		 */
 		setModelHelperSearch: function (options) {
 			var i;
-			
+
 			this.$modelHelperBrandSelect.empty('option');
-			
+
 			// add select
 			options.unshift({
 				key: 'Select',
 				value: 0
 			});
-			
+
 			// append new items
 			for (i = 0; i < options.length; ++i) {
 				this.$modelHelperBrandSelect.append('<option value="' + options[i].value + '">' + options[i].key + '</option>');
 			}
-			
+
 			// reset selected index
 			this.$modelHelperBrandSelect[0].selectedIndex = 0;
 		},
@@ -254,34 +250,34 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 		 */
 		bindViewManagerEvents: function () {
 			var _this = this;
-			
+
 			// @TODO use class names
 			$('div:first-child a', this.$paneManager).click(function (e) {
 				e.preventDefault();
-				
+
 				$('a', this.$paneManager).removeClass('active');
 				$(this).addClass('active');
-				
+
 				// show the helper search dropdown
 				_this.$modelHelper.show();
 				_this.$modelHelperSearch.show();
 				_this.requestModelBrands(function (data) {
 					_this.setModelHelperSearch(data);
 				});
-				
+
 				_this.$productOutput.hide();
 			});
-			
+
 			// @TODO use class names
 			$('div:last-child a', this.$paneManager).click(function (e) {
 				e.preventDefault();
-				
+
 				$('a', this.$paneManager).removeClass('active');
 				$(this).addClass('active');
-				
+
 				// clear model search
 				_this.clearModelHelperSearch();
-				
+
 				// open result
 				_this.$productOutput.show();
 				_this.$modelHelperSearch.hide();
