@@ -99,9 +99,9 @@ var cartNav = Class.extend(function () {
 		 */
 		toggleTray: function () {
 			var self = this,
-				isMobileBreakpoint = window.SPDUtils.isMobileBreakpoint();
+				viewportWidth = $('#viewport').width();
 
-			if (isMobileBreakpoint === true) {
+			if (viewportWidth < 651) {
 				$('#cartShop [data-toggle]').data('toggle', 'false');
 				self.cartDropdown.removeClass('dropdown-menu')
 				.addClass('cart-canvas');

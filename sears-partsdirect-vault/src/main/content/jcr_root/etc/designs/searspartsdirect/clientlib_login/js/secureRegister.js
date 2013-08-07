@@ -67,7 +67,7 @@ var secureRegister = Class.extend(function () {
 
             $('[data-cancel]', self.el).bind('click', function () {
                 self.resetFields();
-                self.postMessage({ 'closeModal': '#loginModal' });
+                self.postMessage({ 'closeModal': '#registerModal' });
             });
         },
 
@@ -107,7 +107,7 @@ var secureRegister = Class.extend(function () {
             var self = this;
 
             $('.alert', self.el).addClass('hidden');
-            $('input', self.el).each(function() {
+            $('input[type!="hidden"]', self.el).each(function() {
                 $(this).val('');
             });
         },

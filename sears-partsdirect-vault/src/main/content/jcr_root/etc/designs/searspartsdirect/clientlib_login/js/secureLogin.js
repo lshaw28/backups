@@ -14,7 +14,7 @@ var secureLogin = Class.extend(function () {
 			this.bindCancel();
             this.bindLinks();
 			this.bindCheckField();
-			this.resetFields();
+            this.resetFields();
 		},
 		/**
 		 * Binds the submit button to perform Regula validation
@@ -52,7 +52,7 @@ var secureLogin = Class.extend(function () {
 			if (errorMessage.length > 0) {
 				$('.alert', self.el).removeClass('hidden');
 			} else {
-
+                var serverAddress = window.SPDUtils.getLocationDetails().fullAddress;
                 var userName = $('[name=loginId]', self.el).val();
                 var prepareLoginService = 'http://partsbetavip.qa.ch3.s.com/partsdirect/prepareLogin.pd';
 
@@ -107,9 +107,10 @@ var secureLogin = Class.extend(function () {
 			var self = this;
 
 			$('.alert', self.el).addClass('hidden');
-			$('input', self.el).each(function() {
+			$('input[type!="hidden"]', self.el).each(function() {
 				$(this).val('');
 			});
+
 		},
 		/**
 		 * Handles a successful callback

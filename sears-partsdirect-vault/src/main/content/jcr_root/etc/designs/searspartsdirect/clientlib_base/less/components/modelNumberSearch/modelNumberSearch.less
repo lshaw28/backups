@@ -23,7 +23,7 @@
 			color: @highlightHueNormal;
 		}
 	}
-	input#modelNumberSearchInput{
+	input[type="text"] {
 		background-color: @bodyColor;
 		width: 69%;
 	}
@@ -38,11 +38,15 @@
 // # Find This Part Overrides
 .findThisPart {
 	.modelNumberSearch {
+		background-color: @secondaryHueLight;
+		padding: 0px;
+
 		.modelNumberSearchIntro, .modelNumberSearchInputs, .modelNumberSearchContent {
 			display: inline-block;
 			margin-left: 2.564102564102564%;
 			*margin-left: 2.5109110747408616%;
 			min-height: 30px;
+			vertical-align: top;
 		}
 		.modelNumberSearchIntro {
 			margin-left: 0;
@@ -65,7 +69,7 @@
 	.modelNumberSearch {
 		background-color: @bodyColor;
 
-		input#modelNumberSearchInput{
+		input[type="text"] {
 			background-color: @secondaryHueLighter;
 		}
 		span.add-on{
@@ -79,12 +83,12 @@
 			width: 100%;
 		}
 		.modelNumberSearchInputs {
-			width: 40.17094017094017%;
-			*width: 40.11774868157847%;
+			width: 48.717948717948715%;
+			*width: 48.664757228587014%;
 		}
 		.modelNumberSearchContent {
-			width: 40.17094017094017%;
-			*width: 40.11774868157847%;
+			width: 48.717948717948715%;
+			*width: 48.664757228587014%;
 		}
 	}
 }
