@@ -100,6 +100,10 @@ var secureForgotPassword = Class.extend(function () {
                 });
             } else {
                 console.log(obj.Status+" is what came back from forgotPassword service");
+                // display error message that email was not found
+                var errorMsg = "We are sorry. We cannot find the email address you entered. Please verfiy and enter again.";
+                $('.alert', self.el).html(errorMessage);
+                $('.alert', self.el).removeClass('hidden');
             }
         },
 
