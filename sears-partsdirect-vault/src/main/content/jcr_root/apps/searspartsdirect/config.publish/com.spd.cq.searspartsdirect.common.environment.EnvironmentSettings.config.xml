@@ -10,6 +10,6 @@
 	searspartsdirect.userdata.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username="
 	searspartsdirect.topparts.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/modelTop/topParts"
 	searspartsdirect.modelsub.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/modelInfo"
-	searspartsdirect.jobcode.parts.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcodelist/partlist" 
-	searspartsdirect.local.http="localhost:4502"
+	searspartsdirect.jobcode.parts.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcodelist/partlist"
+	searspartsdirect.local.http="localhost:4503"
 	searspartsdirect.local.https="localhost:5433" />
