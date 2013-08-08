@@ -16,7 +16,7 @@
 <meta name="global-registeredUserId" content="${userId}" />
 <meta name="global-cartId" content="${shoppingCartCookieId}" />
 <title>Log In</title>
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,600" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,600" rel="stylesheet" type="text/css">
 <cq:includeClientLib css="apps.searspartsdirect.login" />
 </head>
 

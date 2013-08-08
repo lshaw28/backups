@@ -11,6 +11,7 @@
 	searspartsdirect.topparts.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/modelTop/topParts"
 	searspartsdirect.jobcode.parts.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcodelist/partlist"
 	searspartsdirect.modelsub.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/modelInfo"
-	searspartsdirect.api.root="http://partsapivip.qa.ch3.s.com/pd-services/v1/" 
+	searspartsdirect.api.root="http://partsapivip.qa.ch3.s.com/pd-services/v1/"
+	searspartsdirect.api.root.secure="https://partsapivip.qa.ch3.s.com/pd-services/v1/"
 	searspartsdirect.local.http="cqapp301p.dev.ch3.s.com:5002"
-	searspartsdirect.local.https="cqapp301p.dev.ch3.s.com:433" />
+	searspartsdirect.local.https="cqapp301p.dev.ch3.s.com:5633" />
