@@ -10,10 +10,14 @@
 	ExternalLinks externalLinks = new ExternalLinks(slingRequest);
 %><head>
 	<%-- Environment Variables --%>
-	<meta name="global-mainSitePath" content="${mainSitePath}" />
+	<spd:getPDUrl />
+	<spd:getLocalUrl />
+	<meta name="global-mainSitePath" content="${nonSecurePDUrl}" />
+	<meta name="global-mainSitePathSecure" content="${securePDUrl}" />
 	<meta name="global-modelSearchServletPath" content="bin/searspartsdirect/modelsearch" />
 	<spd:getHeaderHelperData />
 	<meta name="global-apiPath" content="${PdApiRoot}" />
+	<meta name="global-apiPathSecure" content="${PdApiRootSecure}" />
 	<meta name="global-guestCookieId" content="${myProfileModelCookie}" />
 	<meta name="global-registeredUserId" content="${userId}" />
 	<meta name="global-cartId" content="${shoppingCartCookieId}" />
