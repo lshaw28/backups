@@ -132,18 +132,16 @@
         $('.category101').each(function() {
             var newCategory101 = new category101($(this));
         });
-
-        // find this part component setup
+        // findThisPart component setup
         $('.findThisPart').each(function() {
             var newFindThisPart = new findThisPart($(this));
         });
-
-        // common parts component setup
+        // commonParts component setup
         $('.commonParts').each(function() {
             var newCommonParts = new commonParts($(this));
         });
 
-        // recommended parts component setup
+        // recommendedParts component setup
         $('.recommendedParts').each(function() {
             var newrecommendedParts = new recommendedParts($(this));
         });
@@ -168,7 +166,6 @@
 				obj: new shc.pd.base.widgets.TouchCarousel(carouselElement)
 			}));
 		});
-
 		/*
 		 * Responsive table initializer
 		 */

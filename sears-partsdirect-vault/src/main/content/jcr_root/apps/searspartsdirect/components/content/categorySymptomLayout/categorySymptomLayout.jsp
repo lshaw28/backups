@@ -10,7 +10,7 @@
 </div>
 
 <div class="row-fluid">
-	<div class="span12">
+	<div class="span9">
 		<div class="categoryDescription">
 			<p><cq:include path="categoryIcon" resourceType="searspartsdirect/components/content/categoryIcon" /><c:out value="${symptom.description} "/></p>
 		</div>

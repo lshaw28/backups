@@ -21,7 +21,7 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
-					<cq:include path="relatedArticles" resourceType="searspartsdirect/components/content/relatedArticles" />
+					<cq:include path="relatedArticles" resourceType="searspartsdirect/components/content/article/relatedArticles" />
 				</div>
 			</div>
 			<div class="row-fluid">
