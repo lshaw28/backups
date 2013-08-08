@@ -41,9 +41,9 @@
     // #26898 - line breaks in comments
     // xss protection will remove line breaks before we can format them
     // for the output, so it is done here a a workaround:
-    // first remove the CR, then replace the LF with <BR>
+    // first remove the CR, then replace the LF with <br />
     message = message.replaceAll("\\r", "");
-    message = message.replaceAll("\\n", "<br>");
+    message = message.replaceAll("\\n", "<br />");
 
     %>
     <div class="articleComments-item">

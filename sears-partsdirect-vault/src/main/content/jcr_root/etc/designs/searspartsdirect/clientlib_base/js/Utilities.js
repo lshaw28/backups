@@ -11,6 +11,7 @@
 		init: function () {
 			window.SPDUtils.checkConsole();
 			window.SPDUtils.getGlobalVariables();
+			window.SPDUtils.setAddThisVariables();
 		},
 		/*
 		 * Creates a console stub for unsupported browsers
@@ -18,7 +19,7 @@
 		 */
 		checkConsole: function () {
 			if (!console) {
-				window.console = {
+				window['console'] = {
 					log: function () {
 					}
 				};
@@ -35,6 +36,17 @@
 
 				window[newName] = newContent;
 			});
+		},
+		/**
+		 * Creates objects required by AddThis
+		 */
+		setAddThisVariables: function () {
+			window['addthis_share'] = {
+				'url': document.location.href
+			};
+			window['addthis_config'] = {
+				'data_track_addressbar': false
+			};
 		},
 		/**
 		 * Check that an object resolves to a valid string

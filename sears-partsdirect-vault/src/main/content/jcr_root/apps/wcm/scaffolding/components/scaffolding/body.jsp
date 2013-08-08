@@ -41,25 +41,25 @@
     <h1><%= currentPage.getTitle() %></h1><%
     if (!isUpdate) {
         if (WCMMode.fromRequest(request) == WCMMode.DESIGN) {
-            %>You can edit this form using the <a target="_new" href="<%= dlgPath %>.html">dialog editor</a><br></body><%
+            %>You can edit this form using the <a target="_new" href="<%= dlgPath %>.html">dialog editor</a><br /></body><%
             return;
         }
         String descr = properties.get("jcr:description", "");
         if (descr.length() > 0) {
-            %><em><%= descr %></em><br><br><%
+            %><em><%= descr %></em><br /><br /><%
         }
         if (scaffoldPath.equals("/etc/scaffolding")) {
             %></body><%
             return;
         }
         if (contentPath.length() == 0 || templatePath.length() == 0) {
-            %>Please define the target path and a template in the page properties of this scaffolding.<br></body><%
+            %>Please define the target path and a template in the page properties of this scaffolding.<br /></body><%
             return;
         } else {
             %>Create pages below <a href="<%= contentPath %>.html"><%= contentPath %></a><ul id="linklist"></ul><%
         }
     }
-    %><br>
+    %><br />
 
 <div id="CQ">
     <div id="dlg"></div>
