@@ -2,7 +2,7 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 	jcr:primaryType="sling:OsgiConfig"
 	org.apache.felix.https.enable="{Boolean}true"
-	org.apache.felix.https.keystore="/opt/cqadm/aem5.6/partsdirect/publish/crx-quickstart/ssl/wildcard.dev.ch3.s.com.jks"
+	org.apache.felix.https.keystore="/opt/cqadm/aem5.6/partsdirect/publish/crx-quickstart/ssl/wildcard.qa.ch3.s.com.jks"
 	org.apache.felix.https.keystore.key="*.qa.ch3.s.com"
 	org.apache.felix.https.keystore.key.password="g04theau"
 	org.apache.felix.https.keystore.password="g04theau"
