@@ -68,7 +68,7 @@
 									</c:when>
 									<c:otherwise>
 										<a class="new-btn-large" href="${url}">
-											<i class="icon-chevron-right"></i>
+											<i class="icon-chevron-left"></i>
 											View This Repair Guide
 										</a>
 									</c:otherwise>
