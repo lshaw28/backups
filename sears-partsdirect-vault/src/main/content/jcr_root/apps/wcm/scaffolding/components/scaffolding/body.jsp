@@ -134,8 +134,13 @@
                 for (var name in fields) {
                 	category = fields[name][0].getValue();
                 }
-                myForm.destroy();
-        		initForm("/etc/spdAssets/scaffolding/<%=currentPage.getName()%>/" + category + "/*", category);
+                if (category != "select") {
+	                myForm.destroy();
+	        		initForm("/etc/spdAssets/scaffolding/<%=currentPage.getName()%>/" + category + "/*", category);
+                }
+                else {
+                	alert("Please select a category.");
+                }
             }
         });
         myForm.render("dlg");
@@ -347,6 +352,13 @@
                             var html = "<li><a href='"+ CQ.HTTP.externalize(contentPath + ".html")+"'>"+title+"</a></li>";
                             CQ.Ext.DomHelper.append("linklist", html);
                             frm.reset();
+                            $CQ.each(frm.items.items, function(i, v) {
+                            	if (v.name == "./jcr:content/pages" && v.disabled != true) {
+                            		if (category != "") {
+                            			v.addValue("/etc/spdAssets/scaffolding/productCategory/" + category);
+                            		}
+                            	}
+                            });
                             window.scrollTo(0,0);
                             frm.findField(0).focus();
                         }
