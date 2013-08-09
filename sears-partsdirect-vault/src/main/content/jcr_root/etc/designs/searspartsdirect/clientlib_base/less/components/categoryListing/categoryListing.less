@@ -31,27 +31,20 @@
 			text-align: center;
 			text-decoration: none;
 			width: 100%;
+		}
+		.category-item-inner {
+			display: inline-block;
+			margin-top: @repairHelpIconHeight/-2;
+			position: absolute;
+			top: 50%;
+			width: 100%;
 
-			.category-item-inner {
-				display: inline-block;
-				margin-top: @repairHelpIconHeight/-2;
-				position: absolute;
-				top: 50%;
-				width: 100%;
-
-				[class*="svg-icon-"], [class^=" svg-icon-"] {
-					height: @iconSizeLarge;
-					width: @iconSizeLarge;
-				}
-				[class*="icon-"], [class^=" icon-"] {
-					font-size: @iconSizeLarge;
-				}
+			[class*="svg-icon-"], [class^=" svg-icon-"] {
+				height: @iconSizeLarge;
+				width: @iconSizeLarge;
 			}
-
-			&:hover {
-				.icon-camera {
-					color: @primaryHueDarker;
-				}
+			[class*="icon-"], [class^=" icon-"] {
+				font-size: @iconSizeLarge;
 			}
 		}
 	}
