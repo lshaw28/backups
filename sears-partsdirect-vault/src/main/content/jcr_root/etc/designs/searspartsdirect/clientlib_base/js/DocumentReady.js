@@ -174,5 +174,13 @@
 		 * Search panel finder widget
 		 */
 		shc.pd.base.widgets.SearchPanelFinder.init($('.search-panel-finder'));
+		/*
+		 * SVG icon compatibility fix for legacy browsers
+		 */
+		if ($('html').hasClass('no-background-size')) {
+			$('[class^="svg-icon"]').each(function () {
+				var newSVGIcon = new svgIcon($(this));
+			});
+		}
 	});
 }(window));

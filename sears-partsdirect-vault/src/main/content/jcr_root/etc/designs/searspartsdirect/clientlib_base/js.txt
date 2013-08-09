@@ -41,6 +41,7 @@ responsiveDropdown.js
 responsiveImage.js
 revealPanel.js
 searchPanel.js
+svgIcon.js
 video.js
 comments.js
 modelHeader.js
