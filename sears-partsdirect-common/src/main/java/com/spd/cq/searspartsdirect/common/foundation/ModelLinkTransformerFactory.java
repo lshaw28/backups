@@ -9,6 +9,7 @@ import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Properties;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Service;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.rewriter.ProcessingComponentConfiguration;
 import org.apache.sling.rewriter.ProcessingContext;
 import org.apache.sling.rewriter.Transformer;
@@ -25,7 +26,7 @@ import org.xml.sax.SAXException;
 	@Property(name="service.ranking", intValue=999)})
 
 public class ModelLinkTransformerFactory implements TransformerFactory {
-
+    
 	public Transformer createTransformer() {
 		return new RestrictedLinkTransformer();
 	}
@@ -34,12 +35,14 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
 		private final Logger log = LoggerFactory.getLogger(getClass());
 		private final static Pattern p = Pattern.compile("/([^/]*)/([^/]*)/model-([^-]*)-repair(.*)");
 		private Matcher m;
-
+		private ResourceResolver resourceResolver;
+		
 		private boolean found;
-
+	    
 		public void init(ProcessingContext processingContext, ProcessingComponentConfiguration processingComponentConfiguration) throws IOException {
 			String requestURI = processingContext.getRequest().getRequestURI();
-
+			resourceResolver = processingContext.getRequest().getResourceResolver();
+			
 			m = p.matcher(requestURI);
 			found = m.find();
 		}
@@ -50,22 +53,23 @@ public class ModelLinkTransformerFactory implements TransformerFactory {
 
 		public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
 			AttributesImpl attributes = new AttributesImpl(atts);
-			if (found && localName.equalsIgnoreCase("a")){
+			if (localName.equalsIgnoreCase("a")){
 				try{
 					String href = attributes.getValue("href");
 					if (href != null && (href.length() > 0 && href.charAt(0) == '/') && href.indexOf(".html") >0) {
 
+						href = resourceResolver.map(href);
 						Matcher linkMatch = p.matcher(href);
-						if (!linkMatch.find()) {
+						if (found && !linkMatch.find()) {
 							StringBuilder sb = new StringBuilder();
 							sb.append('/').append(m.group(1)).append('/').append(m.group(2));
 							sb.append('/').append("model-" + m.group(3) + "-repair");
 							sb.append(href);
 							href = sb.toString();
-							for (int i = 0; i<attributes.getLength(); i++) {
-								if (attributes.getQName(i).equalsIgnoreCase("href")) {
-									attributes.setValue(i, href);
-								}
+						}
+						for (int i = 0; i<attributes.getLength(); i++) {
+							if (attributes.getQName(i).equalsIgnoreCase("href")) {
+								attributes.setValue(i, href);
 							}
 						}
 					}
