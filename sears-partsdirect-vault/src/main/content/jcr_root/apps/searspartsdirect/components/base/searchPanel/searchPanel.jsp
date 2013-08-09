@@ -6,7 +6,6 @@
 			<li id="searchTab" class="header-search-tab active"> <a data-toggle="tab" data-target="#searchContent"><i class="icon-search">&nbsp;</i> Search</a></li>
 			<li id="headerManualTab" class="header-search-tab"><a data-toggle="tab" data-target="#manualContent">Manuals & Repair Help</a></li>
 		</ul>
-
 		<div id="searchContent" class="search-content-pane active">
 			<input id="searchBarField" type="text" maxlength="100" tabindex="1" data-inputhelp="Enter model or part number" data-inputhelpmobile="Model/Part #" name="searchModPar"><span class="large">in</span><div class="btn-group ">
 				<a class="btn btn-type" href="#" data-toggle="dropdown"><span id="searchTypeLabel" data-texthelp="Select Type" data-texthelpmobile="Type">Select Type</span> <i class="icon-chevron-sign-down">&nbsp;</i></a>
@@ -19,16 +18,12 @@
 					</li>
 				</ul>
 			</div><button id="searchModelsParts" class="new-btn new-btn-search">Search</button>
-			
 			<p class="search-panel-finder-close-only">Can't locate your model number? <a href="" class="search-panel-finder-trigger">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
 			<p class="search-panel-finder-open-only"><a href="" class="search-panel-finder-trigger">Close the finder</a></p>
-			
-			
 			<input name="pathTaken" id="pathTaken" type="hidden"/>
 			<input name="prst" id="prst" type="hidden"/>
 			<input name="shdMod" id="shdMod" type="hidden"/>
 			<input name="shdPart" id="shdPart" type="hidden"/>
-
 			<div id="findMyModel">
 				<p>This is the Find My Model area.</p>
 			</div>
@@ -59,7 +54,6 @@
 			</ul>
 		</div>
 		<div id="searchRightShadow" class="search-shadow"></div>
-		
 		<%--
 		Search Panel Finder UI
 		The following markup are different templates based on what the user selects
@@ -74,18 +68,13 @@
 						<select></select><%-- this gets populated by JS --%>
 					</div>
 				</div>
-
 				<%-- UI for that toggles details and plate finder of a search result --%>
 				<div class="search-critera-pane-manager">
 					<div class="item"><a href="">Plate location</a></div>
 					<div class="item"><a href="">Common number model plates</a></div>
 				</div>
-
 				<%-- search result UI --%>
-				<div class="search-critera-output">
-
-				</div>
-
+				<div class="search-critera-output"></div>
 				<%-- plate helper --%>
 				<div class="search-critera-helper">
 					<h3>Common model number plates</h3>
@@ -95,26 +84,17 @@
 						<img class="model-number-plates-img-2" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help2.png" />
 						<img class="model-number-plates-img-3" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help3.png" />
 					</div>
-
 					<%-- After a search, pane-manager triggers the display of this UI --%>
 					<div class="search-critera-plate-finder">
-						<p>
-							<strong>View sample model numbers by selecting your product brand</strong>
-						</p>
-
+						<p><strong>View sample model numbers by selecting your product brand</strong></p>
 						<%-- Plate finder selection, based on the search-critera output --%>
 						<div class="plate-finder-selection dropdown-reskin">
 							<i class="icon-angle-down"></i>
 							<select></select><%-- this gets populated by JS --%>
 						</div>
-
-						<%-- --%>
-						<div class="search-critera-plate-output">
-
-						</div>
+						<div class="search-critera-plate-output"></div>
 					</div>
 				</div>
-
 				<div class="search-critera-close">
 					<a href="" class="search-panel-finder-trigger">Close <i class="icon-angle-up"></i></a>
 				</div>
