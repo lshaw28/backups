@@ -30,6 +30,7 @@ var responsiveImage = Class.extend(function () {
 			this.setProperties(fw, fh, iq);
 			// Render
 			this.render();
+			this.bindEvent();
 		},
 		/**
 		 * Retrieves data from attributes and parameters
@@ -135,11 +136,6 @@ var responsiveImage = Class.extend(function () {
 					.css('max-width', '100%');
 				self.targetEl.append(img);
 			}
-
-			// Bind event
-			if (self.isBound === false) {
-				self.bindEvent();
-			}
 		},
 		/**
 		 * Renders a Scene7 image and calls event binding
@@ -158,11 +154,6 @@ var responsiveImage = Class.extend(function () {
 				.attr('alt', self.linkAlt)
 				.addClass('responsiveImage_js');
 			self.targetEl.append(img);
-
-			// Bind event
-			if (self.isBound === false) {
-				self.bindEvent();
-			}
 		},
 		/**
 		 * Determine which responsive image to use and at which dimensions
@@ -170,13 +161,12 @@ var responsiveImage = Class.extend(function () {
 		 */
 		getResponsiveURL: function () {
 			var self = this,
-				isMobile = window.SPDUtils.isMobileBreakpoint(),
-				isTablet = window.SPDUtils.isTabletBreakpoint();
+				su = window.SPDUtils;
 
 			// Determine which image to display
-			if (isMobile) {
+			if (su.isMobileBreakpoint()) {
 				return self.mobileImage;
-			} else if (isTablet) {
+			} else if (su.isTabletBreakpoint()) {
 				return self.tabletImage;
 			} else {
 				return self.desktopImage;
@@ -193,7 +183,7 @@ var responsiveImage = Class.extend(function () {
 			return baseURL + '?wid=' + self.fw + '&hei=' + self.fh + '&op_sharpen=1' + '&qlt=' + self.iq;
 		},
 		/**
-		 * Bind the window resize event
+		 * Bind the window resize events
 		 * @return {void}
 		 */
 		bindEvent: function () {
@@ -202,8 +192,6 @@ var responsiveImage = Class.extend(function () {
 			shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
 				self.render();
 			});
-
-			this.isBound = true;
 		}
 	};
 }());
