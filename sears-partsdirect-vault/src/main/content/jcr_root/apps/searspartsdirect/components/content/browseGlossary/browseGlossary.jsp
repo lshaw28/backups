@@ -1,5 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-
 <h2>Browse Glossary</h2>
 <spd:getBrowseGlossary/>
 <c:if test="${not empty glossary}">

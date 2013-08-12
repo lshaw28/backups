@@ -14,7 +14,12 @@
 
 <c:set var="nonSecureCommercialUrl" scope="request">${nonSecureCommercialUrl}</c:set>
 <c:set var="secureCommercialUrl" scope="request">${secureCommercialUrl}</c:set>
-
 <c:set var="securedPage" scope="request">${securedPage}</c:set>
-
-
+<c:choose>
+	<c:when test="${securedPage eq true}">
+		<c:set var="messageDomain" scope="request" value="${secureMainSitePath}" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="messageDomain" scope="request" value="${mainSitePath}" />
+	</c:otherwise>
+</c:choose>
