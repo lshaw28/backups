@@ -6,7 +6,7 @@
 <c:set var="defaultTitle" value="Select your product type for repair help" />
 <c:set var="actualTitle"><cq:text property="componentHeader" placeholder="${defaultTitle}" /></c:set>
 <c:if test="${empty actualTitle}"><c:set var="actualTitle" value="${defaultTitle}" /></c:if>
-<c:out value="${actualTitle}" />
+<h2><c:out value="${actualTitle}" /></h2>
 
 <%-- iterate through each parent category tag --%>
 <c:forEach var="parentCategory" items="${parent_categoriesList}">

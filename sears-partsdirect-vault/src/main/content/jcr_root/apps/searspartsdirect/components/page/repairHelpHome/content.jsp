@@ -4,14 +4,20 @@
 		<div class="span10 desktop-offset1">
 			<%-- <cq:include path="/content/searspartsdirect/en/jcr:content/breadcrumbNavigation" resourceType="/apps/searspartsdirect/components/base/breadcrumbNavigation" /> --%>
 			<div class="row-fluid">
-				<div class="span12">
+				<div class="span12 repairHelpHomeTitle">
 					<cq:include path="pageTitleHeader" resourceType="searspartsdirect/components/content/pageTitleHeader" />
 				</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span9">
-					<cq:include path="overviewIcon" resourceType="searspartsdirect/components/content/categoryIcon" />
-					<cq:include path="overview" resourceType="searspartsdirect/components/content/text" />
+					<div class="repairHelpHomeIcon">
+						<span class="icon-stack pull-left">
+							<i class="icon-circle icon-stack-base"></i>
+							<i class="icon-wrench icon-light"></i>
+						</span>
+					</div>
+					<cq:include path="repairHelpHomeIntro" resourceType="searspartsdirect/components/content/text" />
+					<div class="clearfix"></div>
 				</div>
 				<div class="span3">
 					<cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />

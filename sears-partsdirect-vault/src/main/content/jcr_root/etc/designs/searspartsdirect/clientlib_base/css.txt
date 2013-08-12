@@ -76,3 +76,6 @@ toolsRequiredRepair/toolsRequiredRepair.less
 topAccessories/topAccessories.less
 topParts/topParts.less
 video/video.less
+
+#base=less/templates/.
+repairHelpHome/repairHelpHome.less
