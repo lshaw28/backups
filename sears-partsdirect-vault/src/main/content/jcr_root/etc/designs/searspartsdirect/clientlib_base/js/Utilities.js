@@ -118,7 +118,7 @@
 				protocol: document.location.protocol,
 				hostName: document.location.hostname,
 				port: document.location.port,
-				fullAddress: document.location.protocol + '//' + document.location.hostname + ':' + document.location.port + '/'
+				fullAddress: document.location.protocol + '//' + document.location.hostname + (document.location.port !== '' ? ':' + document.location.port : '') + '/'
 			};
 			return details;
 		},

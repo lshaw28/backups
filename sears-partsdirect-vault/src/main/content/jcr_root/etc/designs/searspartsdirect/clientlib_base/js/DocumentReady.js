@@ -182,5 +182,13 @@
 				var newSVGIcon = new svgIcon($(this));
 			});
 		}
+		/**
+		 * Cross-domain iframe fix
+		 */
+		$('iframe[data-src]').each(function () {
+			var newSrc = $(this).data('src') + window.SPDUtils.getLocationDetails().fullAddress;
+
+			$(this).attr('src', newSrc);
+		});
 	});
 }(window));
