@@ -1,14 +1,12 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-
 <spd:getUrlRelation relationType="symptom" />
 <spd:getSymptomDetail id ="${symptomRelation.id}" />
 
 <div class="row-fluid">
 	<div class="span12">
-		<h1><c:out value="${symptom.title} "/></h1>
+		<h1><c:out value="${symptom.title}" /></h1>
 	</div>
 </div>
-
 <div class="row-fluid">
 	<div class="span9">
 		<div class="categoryDescription">
