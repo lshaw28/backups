@@ -146,6 +146,14 @@ public class EnvironmentSettings {
 	public static String getLocalHttpsAndPort() {
 		return getProperty(LOCAL_HTTPS_N_PORT, Constants.EMPTY);
 	}
+	
+	@Property(label = "Commercial site Url",
+			description = "Commercial site url",
+			value = "partscommercialvip.stress.ch3.s.com")
+	public static final String PD_COMMERCIAL_URL = "searspartsdirect.commercial.url";
+	public static String getCommercialSiteUrl() {
+		return getProperty(PD_COMMERCIAL_URL, Constants.EMPTY);
+	}
 
 	// ---- for testing ----
 	public void externalActivateForTesting(final ComponentContext context) throws Exception {
