@@ -33,11 +33,13 @@ public class GetCommonPartsTag extends CQBaseTag {
 	private Query query;
 	private String categoryPath;
 	List<PartTypeModel> partTypes;
+	List<String> anchors;
 
 	@Override
 	public int doStartTag() throws JspException {
 		if (!StringUtils.isEmpty(categoryPath)) {
 			partTypes = new ArrayList<PartTypeModel>();
+			anchors = new ArrayList<String>();
 
 			session = slingRequest.getResourceResolver().adaptTo(Session.class);
 			Map<String, String> map = new HashMap<String, String>();
@@ -63,7 +65,12 @@ public class GetCommonPartsTag extends CQBaseTag {
 								props.get(Constants.ASSETS_DESCRIPTION_PATH, String.class), 
 								partTypePage.getPath() + Constants.ASSETS_IMAGE_PATH,  
 								props.get(Constants.ASSETS_TITLE_PLURAL, String.class));
-
+						
+						if (!StringUtils.isEmpty(partType.getTitle()) && !anchors.contains(partType.getTitle().substring(0, 1))) {
+							partType.setAnchor(partType.getTitle().substring(0, 1));
+							anchors.add(partType.getTitle().substring(0, 1));
+						}
+						
 						ValueMap partTypesProps = partTypePage.getProperties();
 						String[] guides = partTypesProps.get(Constants.ASSETS_GUIDES, String[].class);
 

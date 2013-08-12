@@ -11,7 +11,9 @@
 	<%-- @TODO: Check the first letter of the title --%>
 	<%-- If this is the first instance of the first letter in this title, make it the name of a named anchor --%>
 	<%-- So, replace A with whatever letter it is --%>
-	<a name="A"></a>
+	<c:if test="${not empty commonPart.anchor}">
+		<a name="${commonPart.anchor}"></a>
+	</c:if>
 	<%-- End If --%>
 	<h2><c:out value="${commonPart.title}"/></h2>
 	<div class="commonPartsContainerIndent">

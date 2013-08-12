@@ -12,6 +12,7 @@ public class PartTypeModel {
 	private String imagePath;
 	private String path;
 	private List<GuideModel> guides;
+	private String anchor;
 	
 	public PartTypeModel(String path, String title, String description, String imagePath, String pluralTitle) {
 		this.title = title;
@@ -69,5 +70,13 @@ public class PartTypeModel {
 
 	public void setGuides(List<GuideModel> guides) {
 		this.guides = guides;
+	}
+
+	public String getAnchor() {
+		return anchor;
+	}
+
+	public void setAnchor(String anchor) {
+		this.anchor = anchor;
 	}
 }
