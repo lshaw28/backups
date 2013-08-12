@@ -37,6 +37,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getPDApiRoot(), is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getLocalHttpAndPort(), is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getLocalHttpsAndPort(), is(instanceOf(String.class)));
+		assertThat(EnvironmentSettings.getCommercialSiteUrl(), is(instanceOf(String.class)));
 		fixture.setUpStubSettings(hook);
 		assertThat(EnvironmentSettings.get404HandlerURL(),is(EnvironmentSettings.HANDLE_404_URL));
 		assertThat(EnvironmentSettings.getSitemapStartPaths(),is(EnvironmentSettings.SITEMAP_START_PATHS));
@@ -51,6 +52,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getPDApiRoot(), is(EnvironmentSettings.PD_API_ROOT));
 		assertThat(EnvironmentSettings.getLocalHttpAndPort(), is(EnvironmentSettings.LOCAL_HTTP_N_PORT));
 		assertThat(EnvironmentSettings.getLocalHttpsAndPort(), is(EnvironmentSettings.LOCAL_HTTPS_N_PORT));
+		assertThat(EnvironmentSettings.getCommercialSiteUrl(), is(EnvironmentSettings.PD_COMMERCIAL_URL));
 		try {
 			hook.deactivate(fixture.getComponentContext());
 		} catch (Exception e) {

@@ -11,3 +11,7 @@
 <c:set var="secureMainSitePath" scope="request">${securePDUrl}</c:set>
 <c:set var="currentSitePath" scope="request">${nonSecureLocalUrl}</c:set>
 <c:set var="secureCurrentSitePath" scope="request">${secureLocalUrl}</c:set>
+
+<c:set var="nonSecureCommercialUrl" scope="request">${nonSecureCommercialUrl}</c:set>
+<c:set var="secureCommercialUrl" scope="request">${secureCommercialUrl}</c:set>
+
