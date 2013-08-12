@@ -36,6 +36,7 @@ public class EnvironmentSettingsFixture {
 		ourHash.put(EnvironmentSettings.PD_API_ROOT, EnvironmentSettings.PD_API_ROOT);
 		ourHash.put(EnvironmentSettings.LOCAL_HTTP_N_PORT, EnvironmentSettings.LOCAL_HTTP_N_PORT);
 		ourHash.put(EnvironmentSettings.LOCAL_HTTPS_N_PORT, EnvironmentSettings.LOCAL_HTTPS_N_PORT);
+		ourHash.put(EnvironmentSettings.PD_COMMERCIAL_URL, EnvironmentSettings.PD_COMMERCIAL_URL);
 		when(componentContext.getProperties()).thenReturn(ourHash);
 		env.externalActivateForTesting(componentContext);
 	}
@@ -57,6 +58,7 @@ public class EnvironmentSettingsFixture {
 		ourHash.put(EnvironmentSettings.PD_API_ROOT, "http://partsapivip.qa.ch3.s.com/pd-services/v1/");
 		ourHash.put(EnvironmentSettings.LOCAL_HTTP_N_PORT, "localhost:4502");
 		ourHash.put(EnvironmentSettings.LOCAL_HTTPS_N_PORT, "localhost:5433");
+		ourHash.put(EnvironmentSettings.PD_COMMERCIAL_URL, "searspartsdirect.commercial.url");
 		when(componentContext.getProperties()).thenReturn(ourHash);
 		env.externalActivateForTesting(componentContext);
 	}

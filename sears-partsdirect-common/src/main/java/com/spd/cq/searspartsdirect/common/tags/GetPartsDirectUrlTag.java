@@ -17,6 +17,10 @@ public class GetPartsDirectUrlTag extends CQBaseTag {
 		log.debug("PDUrl is "+EnvironmentSettings.getPDUrl());
 		pageContext.setAttribute("nonSecurePDUrl", "http://"+ EnvironmentSettings.getPDUrl());
 		pageContext.setAttribute("securePDUrl", "https://"+ EnvironmentSettings.getPDUrl());
+		
+		pageContext.setAttribute("nonSecureCommercialUrl", "http://"+ EnvironmentSettings.getCommercialSiteUrl());
+		pageContext.setAttribute("secureCommercialUrl", "https://"+ EnvironmentSettings.getCommercialSiteUrl());
+		
 		return SKIP_BODY;
 	}
 
