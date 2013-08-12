@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 	jcr:primaryType="sling:OsgiConfig"
-	searspartsdirect.url = "partsbetavip.qa.ch3.s.com"
+	searspartsdirect.url = "www.searspartsdirect.com"
 	searspartsdirect.error.404.url = "/content/searspartsdirect/en/404.html"
 	searspartsdirect.sitemap.paths.start = "/content/searspartsdirect/en"
 	searspartsdirect.sitemap.paths.stop=""
