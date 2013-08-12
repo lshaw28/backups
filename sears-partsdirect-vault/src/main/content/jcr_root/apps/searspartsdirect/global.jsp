@@ -15,3 +15,6 @@
 <c:set var="nonSecureCommercialUrl" scope="request">${nonSecureCommercialUrl}</c:set>
 <c:set var="secureCommercialUrl" scope="request">${secureCommercialUrl}</c:set>
 
+<c:set var="securedPage" scope="request">${securedPage}</c:set>
+
+

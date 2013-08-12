@@ -16,6 +16,12 @@ public class GetLocalUrlTag extends CQBaseTag {
 	public int doStartTag() throws JspException {
 		pageContext.setAttribute("nonSecureLocalUrl", "http://"+ EnvironmentSettings.getLocalHttpAndPort());
 		pageContext.setAttribute("secureLocalUrl", "https://"+ EnvironmentSettings.getLocalHttpsAndPort());
+		
+		if (currentPage.getPath() != null && currentPage.getPath().startsWith("https")) {
+			pageContext.setAttribute("securedPage", true);
+		} else {
+			pageContext.setAttribute("securedPage", false);
+		}
 		return SKIP_BODY;
 	}
 
