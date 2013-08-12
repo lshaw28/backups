@@ -21,6 +21,7 @@ var responsiveDropdown = Class.extend(function () {
 			this.hiddenField = null;
 			this.link = false;
 			this.navigate = false;
+			this.display = false;
 			// Retrieve data
 			this.setProperties();
 			// Render
@@ -34,6 +35,8 @@ var responsiveDropdown = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils;
 
+			// Kill multiple selections
+			self.el.removeAttr('multiple');
 			// Set button class
 			if (su.validString(self.el.data('buttonclass')) !== '') {
 				self.buttonClass = self.el.data('buttonclass');
@@ -50,6 +53,8 @@ var responsiveDropdown = Class.extend(function () {
 			if (self.el.data('hiddenfield')) {
 				self.hiddenfield = $(self.el.data('hiddenfield'));
 			}
+			// Update display text on selection
+			self.display = self.el.data('display');
 			// Enable selection hyperlink
 			if (su.validString(self.el.data('link')) !== '') {
 				self.link = true;
@@ -84,7 +89,6 @@ var responsiveDropdown = Class.extend(function () {
 			self.renderItems();
 			self.buttonGroup.append(self.dropdownItems);
 			// Hide the select element
-			self.el.attr('multiple', 'false');
 			self.el.addClass('responsiveDropdownHidden');
 			self.buttonGroup.insertBefore(self.el);
 		},
@@ -141,7 +145,7 @@ var responsiveDropdown = Class.extend(function () {
 			var self = this;
 
 			el.bind('click', function (e) {
-				self.selectValue($(this).data('value'));
+				self.selectValue($(this).data('value'), $(this).text());
 			});
 		},
 		/**
@@ -156,13 +160,20 @@ var responsiveDropdown = Class.extend(function () {
 		/**
 		 * Make a selection
 		 * @param {object} val Selected value
+		 * * @param {object} text Selected text
 		 * @param {boolean} sel Optional boolean to denote that the select made the call
 		 * @return {void}
 		 */
-		selectValue: function (val, sel) {
+		selectValue: function (val, text, sel) {
 			var self = this,
 				valStripped = val.replace('#', ''),
+				scrollPos = 0;
+
+			// Make sure the anchor exists
+			try {
 				scrollPos = $('a[name="' + valStripped + '"]')[0].offsetTop;
+			} catch (e) {
+			}
 
 			// Update the Bootstrap dropdown items
 			$('li', self.dropdownItems).removeClass('selected');
@@ -174,6 +185,10 @@ var responsiveDropdown = Class.extend(function () {
 			if (self.hiddenField !== null) {
 				self.hiddenField.attr('value', val);
 			}
+			// Display text
+			if (self.display === true && text !== '') {
+				self.button.html(text +  '<i class="icon-chevron-sign-down">&nbsp;</i>');
+			}
 			// Hyperlink
 			if (self.link === true) {
 				document.location.href = val;
@@ -182,6 +197,7 @@ var responsiveDropdown = Class.extend(function () {
 			if (self.navigate === true) {
 				window.scrollTo(scrollPos - self.button.height());
 			}
+
 			// Close the dropdown
 			self.dropdownItems.removeClass('active');
 		},
@@ -189,8 +205,9 @@ var responsiveDropdown = Class.extend(function () {
 			var self = this;
 
 			self.el.one('blur change', function () {
-				var val = $('option:selected', self.el).attr('value');
-				self.selectValue(val, true);
+				var val = $('option:selected', self.el).attr('value'),
+					text = $('option:selected', self.el).text();
+				self.selectValue(val, text, true);
 			}).bind('focus', function () {
 			});
 		}

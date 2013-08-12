@@ -13,11 +13,11 @@
 					<cq:include path="commonParts" resourceType="searspartsdirect/components/content/commonParts" />
 				</div>
 				<div class="span3 offset1 pull-right">
-					<div class="row-fluid">
+					<%-- <div class="row-fluid">
 						<div class="span12">
-							<%-- <cq:include path="topAccessories" resourceType="searspartsdirect/components/content/topAccessories" /> --%>
+							<cq:include path="topAccessories" resourceType="searspartsdirect/components/content/topAccessories" />
 						</div>
-					</div>
+					</div> --%>
 					<div class="row-fluid">
 						<div class="span12">
 							<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />
