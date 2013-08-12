@@ -3,7 +3,7 @@
 <spd:getUrlRelation relationType="symptom" />
 <spd:getSymptomDetail id ="${symptomRelation.id}" />
 
-<h2>Checking these parts may help solve your problem:</h2>
+<h2>These repairs may help solve your problem:</h2>
 <c:forEach var="jobCode" items="${symptom.jobCodeModels}">
 	<div class="csd-border">
 		<h3><c:out value="${jobCode.title} "/></h3>
