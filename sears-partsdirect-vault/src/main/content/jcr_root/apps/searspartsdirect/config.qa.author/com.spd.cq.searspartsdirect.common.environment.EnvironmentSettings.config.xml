@@ -15,4 +15,4 @@
 	searspartsdirect.api.root.secure="https://partsapivip.qa.ch3.s.com/pd-services/v1/"
 	searspartsdirect.local.http="cqapp301p.qa.ch3.s.com:4702"
 	searspartsdirect.local.https="cqapp301p.qa.ch3.s.com:5633"
-	searspartsdirect.commercial.url="partscommercialvip.stress.ch3.s.com"/>
+	searspartsdirect.commercial.url="partscommercialvip.qa.ch3.s.com"/>
