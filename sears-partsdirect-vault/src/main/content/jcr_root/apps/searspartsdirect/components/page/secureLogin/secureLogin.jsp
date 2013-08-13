@@ -35,7 +35,7 @@
 				<input type="text" name="loginId" data-constraints='@Required(message="Email is required.", groups=[loginModal]) @Required(message="A valid email address is required.", groups=[loginModal])' />
 				<label>Password<span>Required</span></label>
 				<input type="password" name="logonPassword" data-constraints='@Required(message="Please provide a password.", groups=[loginModal])' />
-				<input type="hidden" value="https://www.searspartdirect.com/partsdirect/j_acegi_cas_security_check" name="service" id="service" />
+				<input type="hidden" value="${secureMainSitePath}/partsdirect/j_acegi_cas_security_check" name="service" id="service" />
 				<input type="hidden" value="true" name="renew" id="renew" />
 				<br />
 				<a data-toggle="modal" data-dismiss="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
