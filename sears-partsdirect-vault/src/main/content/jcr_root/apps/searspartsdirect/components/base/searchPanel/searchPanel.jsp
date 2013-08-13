@@ -18,8 +18,8 @@
 					</li>
 				</ul>
 			</div><button id="searchModelsParts" class="new-btn new-btn-search">Search</button>
-			<p class="search-panel-finder-close-only">Can't locate your model number? <a href="" class="search-panel-finder-trigger">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
-			<p class="search-panel-finder-open-only"><a href="" class="search-panel-finder-trigger">Close the finder</a></p>
+			<p class="search-panel-finder-close-only">Can't locate your model number? <a class="searchPanelFinder_js">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
+			<p class="search-panel-finder-open-only"><a class="searchPanelFinder_js">Close the finder</a></p>
 			<input name="pathTaken" id="pathTaken" type="hidden"/>
 			<input name="prst" id="prst" type="hidden"/>
 			<input name="shdMod" id="shdMod" type="hidden"/>
@@ -96,7 +96,7 @@
 					</div>
 				</div>
 				<div class="search-critera-close">
-					<a href="" class="search-panel-finder-trigger">Close <i class="icon-angle-up"></i></a>
+					<a class="searchPanelFinder_js">Close <i class="icon-angle-up"></i></a>
 				</div>
 			</div>
 		</div>

@@ -130,7 +130,7 @@ NS('shc.pd.base.widgets').SearchPanelFinder = (function () {
 			var _this = this;
 			
 			// event handler for open/close triggers
-			$('.search-panel-finder-trigger').click(function (e) {
+			$('.searchPanelFinder_js').click(function (e) {
 				e.preventDefault();
 				
 				// determine action based on current visibiltiy state

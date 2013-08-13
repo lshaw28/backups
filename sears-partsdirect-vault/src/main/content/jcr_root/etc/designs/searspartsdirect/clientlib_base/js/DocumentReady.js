@@ -28,7 +28,7 @@
         /**
 		 * Comment Section
 		 */
-		var commentcheck = new commentCheck();
+		var newCommentCheck = new commentCheck();
 		/**
 		 * Search Panel
 		 */
