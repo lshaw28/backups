@@ -1,37 +1,16 @@
-@media (max-width: 480px) {
-  .errorCodeChecker {
-	p {
-	  .primary-content {
-		display: block;
-		position: relative;
-		padding: 5px 0 15px 90px;
-		font-size: 18px;
-		min-height: 46px;
-		line-height: 20px;
-	  }
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
 
-	  .divider {
-		vertical-align: middle;
-	  }
-
-	  [class^="svg-icon-"],
-	  [class*=" svg-icon-"] {
-		height: 50px;
-		width: 50px;
-	  }
-
-	  .new-btn {
-		margin: 0 17px;
-		display: block;
-		text-align: center;
-		float: none;
-	  }
-
-	  .icon-container {
-		position: absolute;
-		top: 0;
-		left: 0;
-	  }
+@media (max-width: 650px) {
+	.errorCodeChecker {
+		p {
+			.primary-content {
+				display: block;
+			}
+			.new-btn {
+				display: block;
+				float: none;
+			}
+		}
 	}
-  }
 }

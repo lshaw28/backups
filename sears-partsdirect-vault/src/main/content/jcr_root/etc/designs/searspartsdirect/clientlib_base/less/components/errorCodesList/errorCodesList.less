@@ -1,0 +1,41 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.errorCodesList {
+	width: 100%;
+
+	.new-span-sixth {
+		float: right;
+		height: 10%;
+		width: 10%;
+	}
+	.row-fluid {
+		width: auto;
+	}
+	.errorCodeListHeader {
+		background-color: @secondaryHueLightest;
+		display: block;
+		padding: 15px 20px 15px 40px;
+
+		h4 {
+			display: inline-block;
+		}
+		div {
+			display: inline-block;
+
+			img {
+				background: @bodyColor;
+				display: inline-block;
+				height: 40px;
+				width: 40px;
+			}
+		}
+	}
+	.errorCodeListItem {
+		border-top: solid 1px @secondaryHueNormal;
+		margin: 0 40px;
+		padding: 12px 0;
+	}
+}
+
+@import "errorCodesList.mobile.less";

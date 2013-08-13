@@ -38,7 +38,7 @@ difficultyRating/difficultyRating.less
 displayRecommendedParts/displayRecommendedParts.less
 errorCodeChecker/errorCodeChecker.less
 errorCodeTable/errorCodeTable.less
-errorListing/errorListing.less
+errorCodesList/errorCodesList.less
 findThisPart/findThisPart.less
 globalHeader/globalHeader.less
 globalFooter/globalFooter.less
