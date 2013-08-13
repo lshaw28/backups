@@ -15,6 +15,7 @@
 </c:choose>
 <c:set var="pageClientLib"><cq:text property="pageClientLib" placeholder="" /></c:set><body class="<cq:text property="pageCssClassName" placeholder="" /> ${cqCssClass}">
 	<cq:include path="clientcontext" resourceType="cq/personalization/components/clientcontext" />
+	<a name="brandBar"></a>
 	<cq:include path="brandBar" resourceType="/apps/searspartsdirect/components/base/brandBar" />
 	<div id="viewport">
 		<div role="main" class="container-fluid">

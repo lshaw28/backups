@@ -62,7 +62,7 @@
 							<c:otherwise>
 								<c:out value="${fn:toLowerCase(commonPart.title)}"/>
 							</c:otherwise>
-						</c:choose></a>, or for best results, search using your model number. <a class="searchPanelFinder_js">Can't find your model number? Use our finder.</a></p>
+						</c:choose></a>, or for best results, search using your model number. <a href="#brandBar" class="searchPanelFinder_js">Can't find your model number? Use our finder.</a></p>
 					</div>
 				</div>
 			</div>
