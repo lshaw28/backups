@@ -6,7 +6,6 @@
 
 <c:if test="${not empty productCategoryRelation}">
 	<spd:getErrorCodesList categoryPath="${productCategoryRelation.path}" categoryName="${productCategoryRelation.trueName}" />
-
 	<c:if test="${not empty errorCodeList}">
 		<c:set var="numErrorCodes" value="${fn:length(errorCodeList)}" />
 		<c:set var="catRepairUrl" value="/content/searspartsdirect/en/categories/${productCategoryRelation.trueName}-repair/error-codes.html" />

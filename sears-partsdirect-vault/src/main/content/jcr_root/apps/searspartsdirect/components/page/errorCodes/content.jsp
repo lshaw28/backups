@@ -12,7 +12,7 @@
 						&nbsp;Error Codes
 						</c:if>
 					</h1>
-					<div class="errorCodeChecker">
+					<div class="errorCodeChecker white">
 						<p>
 							<span class="primary-content">
 								<span class="icon-container">
@@ -23,7 +23,6 @@
 							</span>
 						</p>
 					</div>
-					
 					<cq:include path="errorCodesList" resourceType="searspartsdirect/components/content/errorCodesList" />
 				</div>
 			</div>
