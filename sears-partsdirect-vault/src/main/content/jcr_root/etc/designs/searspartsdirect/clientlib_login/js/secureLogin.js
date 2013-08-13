@@ -54,7 +54,7 @@ var secureLogin = Class.extend(function () {
 			} else {
 				var serverAddress = window.SPDUtils.getLocationDetails().fullAddress,
 					userName = $('[name=loginId]', self.el).val(),
-					prepareLoginService = secureMainSitePath + '/partsdirect/prepareLogin.pd';
+					prepareLoginService = mainSitePathSecure + '/partsdirect/prepareLogin.pd';
 
 				self.prepareLogin( userName, prepareLoginService);
 			}
