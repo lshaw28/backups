@@ -78,7 +78,7 @@
 								<c:out value="${fn:toLowerCase(commonPart.title)}"/>
 							</c:otherwise>
 						</c:choose></a>, or for best results, search using your model number.
-						<a data-toggle="reveal" data-target="#findMyModel" id="newFinderModel">Can't find your model number? Use our finder.</a>
+						<a class="searchPanelFinder_js">Can't find your model number? Use our finder.</a>
 					</div>
 				</div>
 			</div>
