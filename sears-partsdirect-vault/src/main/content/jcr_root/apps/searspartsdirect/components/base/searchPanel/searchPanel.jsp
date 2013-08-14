@@ -40,9 +40,9 @@
 				<li>
 					<span class="icon-stack pull-left">
 						<i class="icon-circle icon-stack-base"></i>
-						<i class="<cq:text property="panelIcon2" placeholder="icon-file-alt" default="icon-file-alt" /> icon-light"></i>
+						<i class="<cq:text property="panelIcon2" placeholder="icon-wrench" default="icon-wrench" /> icon-light"></i>
 					</span>
-					<h4><a href="<cq:text property="url2" placeholder="#" default="#" />" target="<cq:text property="urlTarget2" placeholder="_blank" default="_blank" />"><cq:text property="header2" placeholder="Lawn &amp; Garden" default="Lawn &amp; Garden" /><br /><span class="hidden-phone"><cq:text property="subheader2" placeholder="Repair &amp; Care Tips" default="Repair &amp; Care Tips" /></span></a></h4>
+					<h4><a href="<cq:text property="url2" placeholder="#" default="#" />" target="<cq:text property="urlTarget2" placeholder="_blank" default="_blank" />"><cq:text property="header2" placeholder="Repair Help" default="Repair Help" /><br /><span class="hidden-phone"><cq:text property="subheader2" placeholder="Guides &amp; Care Tips" default="Guides &amp; Care Tips" /></span></a></h4>
 				</li>
 				<li>
 					<span class="icon-stack pull-left">
