@@ -9,7 +9,7 @@
 				</div>
 			</div>
 			<div class="row-fluid">
-				<div class="span9">
+				<div class="span8">
 					<div class="repairHelpHomeIcon">
 						<span class="icon-stack pull-left">
 							<i class="icon-circle icon-stack-base"></i>
@@ -19,7 +19,7 @@
 					<cq:include path="repairHelpHomeIntro" resourceType="searspartsdirect/components/content/text" />
 					<div class="clearfix"></div>
 				</div>
-				<div class="span3">
+				<div class="span4">
 					<cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />
 				</div>
 			</div>
