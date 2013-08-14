@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		jcr:primaryType="cq:WidgetCollection">
+	<iconNoneSpecified
+		jcr:primaryType="nt:unstructured"
+		text="(none specified)"
+		value=""/>
+	<iconNoIconAtAll
+		jcr:primaryType="nt:unstructured"
+		text="No Icon"
+		value="none"/><!-- Must match Constants.NO_ICON -->
+	<iconAmana
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconBosch
+        jcr:primaryType="nt:unstructured"
+        text="Bosch"
+        value="svg-icon-bosch"/>
+	<iconBriggsStratton
+        jcr:primaryType="nt:unstructured"
+        text="Briggs and Stratton"
+        value="svg-icon-briggs-stratton"/>
+	<iconCraftsman
+        jcr:primaryType="nt:unstructured"
+        text="Craftsman"
+        value="svg-icon-craftsman"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconAmama
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+</jcr:root>
