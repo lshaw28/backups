@@ -6,7 +6,7 @@
         .carousel-list-wrapper{
             .carousel-item {
                 float: left;
-                width: 20%;
+                width: 25%;
 		    margin-bottom: 20px;
             }
             
@@ -18,7 +18,8 @@
             
             .image-wrapper {
                 height: auto;
-                width: 160px;
+		    	min-height:160px;
+                width: 170px;
                 overflow: hidden;
                 position: absolute;
                 left: 0;
@@ -28,7 +29,7 @@
                 .image {
                     max-height: 90px;
                     overflow: hidden;
-                    border-bottom: solid 2px #fff;
+                    border-bottom: solid 2px @bodyColor;
                 }
                 
             }
@@ -41,7 +42,7 @@
                 line-height: 24px;
                 left: 45%;
                 margin-left: -9px;
-                border: solid 2px #fff;
+                border: solid 2px @bodyColor;
                 
                 i {
                     font-size: 12px;
