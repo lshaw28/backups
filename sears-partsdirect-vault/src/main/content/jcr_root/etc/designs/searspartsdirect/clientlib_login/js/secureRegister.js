@@ -10,11 +10,11 @@ var secureRegister = Class.extend(function () {
          */
         init: function (el) {
             this.el = el;
-            //this.group = $('form', el).attr('data-regulagroup').toString();
             this.bindSubmit();
             this.bindCancel();
             this.bindLinks();
             this.bindCheckField();
+            this.bindPassword();
             this.resetFields();
         },
         /**
@@ -52,6 +52,7 @@ var secureRegister = Class.extend(function () {
             // Display errors or submit the form
             if (errorMessage.length > 0) {
                 $('.alert', self.el).removeClass('hidden');
+                console.log("my height is: "+window.height);
             } else {
                 var hostName = window.SPDUtils.getLocationDetails().fullAddress,
                     tempRedirectURL = hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true#'+window.parentDomain;
@@ -113,6 +114,14 @@ var secureRegister = Class.extend(function () {
                     }
                 });
             });
+        },
+        bindPassword: function () {
+            $('[data-focus]', self.el).bind('focus', function() {
+                    $('.passwordRules').removeClass('hidden');
+            }).bind('blur', function() {
+                    $('.passwordRules').addClass('hidden');
+            });
+
         },
         resetFields: function () {
             var self = this;
@@ -182,6 +191,7 @@ var secureRegister = Class.extend(function () {
             $('input', self.el).each(function() {
                 $(this).val('');
             });
+            console.log("my height is: "+window.height);
         },
         /**
          * Posts a message to the parent page via JavaScript

@@ -27,7 +27,7 @@
 <body>
 <div class="row-fluid" id="secureRegisterModal">
 	<div class="span6 offset3">
-		<h1 id="registerModalLabel">Register<span class="pull-right">Existing Customer? <a data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Sign In</a></span></h1>
+		<h1 id="registerModalLabel">Register<span class="pull-right"><p class="headline">Existing Customer?</p> <a data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Sign In</a></span></h1>
 		<form method="post" action="${secureMainSitePath}/partsdirect/register.pd" data-constraints='@EmailsMatch(field1="registerEmail", field2="registerEmailConfirm")' data-regulagroup="registerModal">
 			<div class="alert alert-error hidden">&nbsp;</div>
 			<fieldset>
@@ -38,8 +38,15 @@
 				<label>Confirm Email<span>Required</span></label>
 				<input type="text" id="registerEmailConfirm" name="user.confirmEmailAddress" data-constraints='@Required(message="Please confirm your email address.") @Required(message="A valid confirmation email address is required.")' />
 				<label>Password<span>Required</span></label>
-				<input type="password" name="user.password" data-constraints='@Required(message="Please provide a password.") @Pattern(regex=/(?=^.{6,15}$)(\w*(?=\w*\d)(?=\w*[a-zA-Z])\w*)/, message="Please match password rules.")' />
-				<label>
+				<input type="password" name="user.password" data-focus="true" data-constraints='@Required(message="Please provide a password.") @Pattern(regex=/(?=^.{6,15}$)(\w*(?=\w*\d)(?=\w*[a-zA-Z])\w*)/, message="Please match password rules.")' />
+				<ul class="passwordRules hidden">Password must include
+                    <li>At least 6 characters, no more than 15</li>
+                    <li>At least 1 letter (a-z)</li>
+                    <li>At least 1 number</li>
+                    <li>No special characters (i.e.%$#!@*)</li>
+                    <li>Passwords are CaSe SEnSiTivE</li>
+                </ul>
+                <label>
 				Zip Code<span>Required</span>
 				<label>
 				<input type="text" name="user.zip" data-constraints='@Required(message="Please provide a valid ZIP code.")' />
