@@ -56,7 +56,7 @@ var secureRegister = Class.extend(function () {
                 var hostName = window.SPDUtils.getLocationDetails().fullAddress,
                     tempRedirectURL = hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true#'+window.parentDomain;
 
-                tempRedirectURL = "www.google.com";
+                tempRedirectURL = "/index.pd?authSuccessURL=true#"+window.parentDomain;
                 // set the hidden form redirect url values
                 $('#currentPageURL').val(tempRedirectURL);
                 $('#successfulRegistrationURL').val(tempRedirectURL);
