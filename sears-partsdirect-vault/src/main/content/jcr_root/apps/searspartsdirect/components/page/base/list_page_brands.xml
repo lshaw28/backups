@@ -25,52 +25,52 @@
         jcr:primaryType="nt:unstructured"
         text="Craftsman"
         value="svg-icon-craftsman"/>
-	<iconAmama
+	<iconDewalt
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
-	<iconAmama
+        text="Dewalt"
+        value="svg-icon-dewalt"/>
+	<iconElectrolux
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
-	<iconAmama
+        text="Electrolux"
+        value="svg-icon-electrolux"/>
+	<iconFrigidaire
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
-	<iconAmama
+        text="Frigidaire"
+        value="svg-icon-frigidaire"/>
+	<iconGE
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
-	<iconAmama
+        text="GE"
+        value="svg-icon-ge"/>
+	<iconHusqvarna
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
-	<iconAmama
+        text="Husqvarna"
+        value="svg-icon-husqvarna"/>
+	<iconJennAir
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
-	<iconAmama
+        text="Jenn Air"
+        value="svg-icon-jenn-air"/>
+	<iconKenmore
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
-	<iconAmama
+        text="Kenmore"
+        value="svg-icon-kenmore"/>
+	<iconKenmoreElite
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
-	<iconAmama
+        text="Kenmore Elite"
+        value="svg-icon-kenmore-elite"/>
+	<iconKenmorePro
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
-	<iconAmama
+        text="Kenmore Pro"
+        value="svg-icon-kenmore-pro"/>
+	<iconMaytag
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
-	<iconAmama
+        text="Maytag"
+        value="svg-icon-maytag"/>
+	<iconSamsung
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
-	<iconAmama
+        text="Samsung"
+        value="svg-icon-samsung"/>
+	<iconWhirlpool
         jcr:primaryType="nt:unstructured"
-        text="Amana"
-        value="svg-icon-amana"/>
+        text="Whirlpool"
+        value="svg-icon-whirlpool"/>
 </jcr:root>
