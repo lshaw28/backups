@@ -26,58 +26,62 @@ import com.day.text.csv.Csv;
  *
  */
 
-@SuppressWarnings("serial")
-@SlingServlet(paths="/bin/searspartsdirect/taggeneration", methods = "POST", metatype=true)
+//NOTE: This class was developed as a one-time thing to create tags from a csv file. Commenting this out as it is not needed
+//but can be used for future reference.
+
+
+//@SuppressWarnings("serial")
+//@SlingServlet(paths="/bin/searspartsdirect/taggeneration", methods = "POST", metatype=true)
 
 public class TagGenerationServlet extends SlingAllMethodsServlet {
 	private static final Logger log = LoggerFactory.getLogger(TagGenerationServlet.class);
-    
+
 	@Reference
-    private SlingRepository repository;
- 
-    @Override
-    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException
-    {
-    	ResourceResolver resourceResolver = request.getResourceResolver();
-        Csv csv = new Csv();
-        Iterator<String[]> rows = csv.read(request.getRequestParameter("file").getInputStream(), Constants.ENCODING);
-        
-		TagManager tm = resourceResolver.adaptTo(TagManager.class);
-		Tag namespaceCheck = tm.resolve("searspartsdirect:");
-		if (namespaceCheck == null) {
-			try {
-				tm.createTag("searspartsdirect:", "Sears Parts Direct", "Namespace for Sears Parts Direct");
-			} catch (Exception e) {
-				log.error(e.toString());
-				return;
-			}
-		}
-		namespaceCheck = tm.resolve("searspartsdirect:parent_categories");
-		if (namespaceCheck == null) {
-			try {
-				tm.createTag("searspartsdirect:parent_categories", "Parent Categories", "Tag for Parent Categories");
-			} catch (Exception e) {
-				log.error(e.toString());
-				return;
-			}
-		}
-		namespaceCheck = tm.resolve("searspartsdirect:subcategories");
-		if (namespaceCheck == null) {
-			try {
-				tm.createTag("searspartsdirect:subcategories", "Subcategories", "Tag for Subcategories");
-			} catch (Exception e) {
-				log.error(e.toString());
-				return;
-			}
-		}
-        
-        while (rows.hasNext()) {
-            String [] row = rows.next();
-    		generateTags(resourceResolver, row);
-        }
-        
-        csv.close();
-    }
+	private SlingRepository repository;
+
+	@Override
+	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException
+	{
+//    	ResourceResolver resourceResolver = request.getResourceResolver();
+//        Csv csv = new Csv();
+//        Iterator<String[]> rows = csv.read(request.getRequestParameter("file").getInputStream(), Constants.ENCODING);
+//
+//		TagManager tm = resourceResolver.adaptTo(TagManager.class);
+//		Tag namespaceCheck = tm.resolve("searspartsdirect:");
+//		if (namespaceCheck == null) {
+//			try {
+//				tm.createTag("searspartsdirect:", "Sears Parts Direct", "Namespace for Sears Parts Direct");
+//			} catch (Exception e) {
+//				log.error(e.toString());
+//				return;
+//			}
+//		}
+//		namespaceCheck = tm.resolve("searspartsdirect:parent_categories");
+//		if (namespaceCheck == null) {
+//			try {
+//				tm.createTag("searspartsdirect:parent_categories", "Parent Categories", "Tag for Parent Categories");
+//			} catch (Exception e) {
+//				log.error(e.toString());
+//				return;
+//			}
+//		}
+//		namespaceCheck = tm.resolve("searspartsdirect:subcategories");
+//		if (namespaceCheck == null) {
+//			try {
+//				tm.createTag("searspartsdirect:subcategories", "Subcategories", "Tag for Subcategories");
+//			} catch (Exception e) {
+//				log.error(e.toString());
+//				return;
+//			}
+//		}
+//
+//        while (rows.hasNext()) {
+//            String [] row = rows.next();
+//    		generateTags(resourceResolver, row);
+//        }
+//
+//        csv.close();
+	}
 
 	private void generateTags(ResourceResolver resourceResolver, String[] row) {
 		TagManager tm = resourceResolver.adaptTo(TagManager.class);
@@ -87,30 +91,30 @@ public class TagGenerationServlet extends SlingAllMethodsServlet {
 			String tagName = JcrUtil.createValidName(tagTitle);
 			Tag check = tm.resolve(tagPath + tagName);
 			if (check == null)
-	        {
-	            try {
-	                check = tm.createTag(tagPath + tagName, tagTitle, "", true);
-	                tagPath = check.getTagID() + "/";
-                	log.info("Created tag with ID [" + check.getTagID() + "], title [" + tagTitle + "]");
-	            } catch (Exception e) {
-	            	log.error(e.toString());
-	            }
-	        }
+			{
+				try {
+					check = tm.createTag(tagPath + tagName, tagTitle, "", true);
+					tagPath = check.getTagID() + "/";
+					log.info("Created tag with ID [" + check.getTagID() + "], title [" + tagTitle + "]");
+				} catch (Exception e) {
+					log.error(e.toString());
+				}
+			}
 			tagPath = "searspartsdirect:subcategories/";
 			if (!row[3].equals("n/a")) {
 				tagTitle = row[3];
 				tagName = JcrUtil.createValidName(tagTitle);
 				check = tm.resolve(tagPath + tagName);
 				if (check == null)
-		        {
-		            try {
-		                check = tm.createTag(tagPath + tagName, tagTitle, "", true);
-		                tagPath = check.getTagID() + "/";
-	                	log.info("Created tag with ID [" + check.getTagID() + "], title [" + tagTitle + "]");
-		            } catch (Exception e) {
-		            	log.error(e.toString());
-		            }
-		        }
+				{
+					try {
+						check = tm.createTag(tagPath + tagName, tagTitle, "", true);
+						tagPath = check.getTagID() + "/";
+						log.info("Created tag with ID [" + check.getTagID() + "], title [" + tagTitle + "]");
+					} catch (Exception e) {
+						log.error(e.toString());
+					}
+				}
 			}
 		}
 	}
