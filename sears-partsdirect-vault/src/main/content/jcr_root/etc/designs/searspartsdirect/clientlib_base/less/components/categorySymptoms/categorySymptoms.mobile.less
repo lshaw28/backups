@@ -1,9 +1,14 @@
-@media (max-width: 480px) {
-  .categorySymptoms {
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
 
-	a {
-	   display: block;
-	 }
-  }
-
+@media (max-width: 650px) {
+	.categorySymptoms {
+		.row-fluid {
+			.span6 {
+				a {
+					display: block;
+				}
+			}
+		}
+	}
 }
