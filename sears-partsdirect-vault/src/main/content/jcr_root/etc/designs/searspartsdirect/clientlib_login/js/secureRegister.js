@@ -53,7 +53,8 @@ var secureRegister = Class.extend(function () {
             if (errorMessage.length > 0) {
                 $('.alert', self.el).removeClass('hidden');
             } else {
-                var tempRedirectURL = hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true#'+window.parentDomain;
+                var hostName = window.SPDUtils.getLocationDetails().fullAddress,
+                    tempRedirectURL = hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true#'+window.parentDomain;
                 // set the hidden form redirect url values
                 $('#currentPageURL').attr('value', tempRedirectURL);
                 $('#successfulRegistrationURL').attr('value', tempRedirectURL )
