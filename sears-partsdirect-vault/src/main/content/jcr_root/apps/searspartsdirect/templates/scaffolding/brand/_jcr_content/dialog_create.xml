@@ -35,7 +35,7 @@
         </tab1>
         <tab2
             jcr:primaryType="cq:Panel"
-            title="Logo">
+            title="Uploaded Logo">
             <items jcr:primaryType="cq:WidgetCollection">
 	 		    <logo
 		            jcr:primaryType="cq:Widget"
