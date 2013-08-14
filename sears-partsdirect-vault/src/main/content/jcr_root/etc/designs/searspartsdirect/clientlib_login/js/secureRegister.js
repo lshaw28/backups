@@ -10,11 +10,11 @@ var secureRegister = Class.extend(function () {
          */
         init: function (el) {
             this.el = el;
-            //this.group = $('form', el).attr('data-regulagroup').toString();
             this.bindSubmit();
             this.bindCancel();
             this.bindLinks();
             this.bindCheckField();
+            this.bindPassword();
             this.resetFields();
         },
         /**
@@ -114,6 +114,14 @@ var secureRegister = Class.extend(function () {
                     }
                 });
             });
+        },
+        bindPassword: function () {
+            $('[data-focus]', self.el).bind('focus', function() {
+                    $('.passwordRules').removeClass('hidden');
+            }).bind('blur', function() {
+                    $('.passwordRules').addClass('hidden');
+            });
+
         },
         resetFields: function () {
             var self = this;
