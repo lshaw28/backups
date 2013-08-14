@@ -15,7 +15,7 @@ ${productCategoryRelation.title}
 				<c:when test="${currentItem.count eq fn:length(symptomList) or currentItem.count + 1 eq fn:length(symptomList)}">
 					<c:set var="symptomRowClass" value=" last" />
 				</c:when>
-				<c:otherwise test="${currentItem.count eq fn:length(symptomList) or currentItem.count + 1 eq fn:length(symptomList)}">
+				<c:otherwise>
 					<c:set var="symptomRowClass" value="" />
 				</c:otherwise>
 			</c:choose>
