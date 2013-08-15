@@ -175,7 +175,7 @@ var secureLogin = Class.extend(function () {
 			$('.alert', self.el).html(errorMessage);
 			$('.alert', self.el).removeClass('hidden');
 			// blank out input fields
-			$('input', self.el).each(function() {
+			$('input[type!="hidden"]', self.el).each(function() {
 				$(this).val('');
 			});
 		},
