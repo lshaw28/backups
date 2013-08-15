@@ -154,8 +154,8 @@ var secureLogin = Class.extend(function () {
 				dataType: 'JSON',
 				url: prepareLoginURL,
 				data: { userName: username,
-						authSuccessURL: encodeURI("http://www.google.com"),
-						authFailureURL:encodeURI("http://www.yahoo.com")
+						authSuccessURL: encodeURI(hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true#'+window.parentDomain),
+						authFailureURL:encodeURI(hostName+'content/searspartsdirect/en/login_form.html?errorCode=300#'+window.parentDomain)
 				},
 				xhrFields: {
 					withCredentials: true
