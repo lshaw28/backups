@@ -140,6 +140,7 @@ var secureLogin = Class.extend(function () {
 
 		failCallback: function (errors) {
 			   // this ajax call should never fail
+               console.log("there were some errors: "+errors);
 		},
 
 		prepareLogin: function(username, prepareLoginURL) {
