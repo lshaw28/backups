@@ -8,5 +8,5 @@
 		<a class="addthis_button_email"><i class="icon-envelope-alt"></i><span class="socialBarMobile">Email this</span></a>
 	</div>
 </div>
-<a class="addthis_button_pdfmyurl"><i class="svg-icon-pdf"></i>Download as a PDF</a>
+<a class="addthis_button_pdfmyurl"><i class="svg-icon-pdf"></i>Download PDF</a>
 <a class="addthis_button_print"><i class="icon-print"></i>Print this</a>
