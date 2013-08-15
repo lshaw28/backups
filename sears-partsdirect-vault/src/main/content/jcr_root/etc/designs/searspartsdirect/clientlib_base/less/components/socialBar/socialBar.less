@@ -1,69 +1,48 @@
 @import "../../base.variables.less";
-
-@socialBar-height: 46px;
-@socialBar-item-left-sp: 27px;
-@socialBar-item-right-sp: 9px;
-@socialBar-item-top-sp: 9px;
-@socialBar-item-txt-ht: @socialBar-height - @socialBar-item-top-sp;
+@import "../../base.mixins.less";
 
 .socialBar {
-	overflow: hidden;
 	margin-bottom: 10px;
-}
-
-[class*="socialBar-item"] {
-	float: left;
-	line-height: 18px;
-	border-left: solid 1px @secondaryHueLighter;
-	display: block;
-	height: @socialBar-item-txt-ht;
-	padding: @socialBar-item-top-sp @socialBar-item-right-sp 0 @socialBar-item-left-sp;
-
-	&:first-child {
-		border-left: 0;
-	}
-}
-
-.socialBar-item-icons {
-	padding: 0 24px 0 15px;
-	line-height: @socialBar-height;
-	height: @socialBar-height;
-
-	&:first-child {
-		border-left: 0;
-	}
 
 	a {
-		float: left;
+		cursor: pointer;
 		display: inline-block;
-		font-size: 19px;
-		margin-left: 40px;
+		padding: 12px 15px 0 15px;
+		height: 34px;
 
-		&:first-child {
-			margin-left: 0;
+		[class*="icon-"], [class^=" icon-"], [class*="svg-icon-"], [class^=" svg-icon-"] {
+			display: inline-block;
+			font-size: @h3Size;
+			text-decoration: none;
+			vertical-align: middle;
+		}
+		[class*="svg-icon-"], [class^=" svg-icon-"] {
+			height: @h3Size;
+			width: @h3Size;
+		}
+		&:hover {
+			[class*="icon-"], [class^=" icon-"], [class*="svg-icon-"], [class^=" svg-icon-"] {
+				text-decoration: none;
+			}
 		}
 	}
-}
-
-.socialBar-item-pdf {
-	padding-left: 46px;
-	background: url("/@{IMAGE_PATH}icon-pdf.png") 20px 10px no-repeat;
-}
-
-.socialBar-item-email {
-	display: none;
-
-	i {
-		color: @secondaryHueDark;
+	.socialBarIcons {
+		display: inline-block;
 	}
-}
+	.addthis_button_pdfmyurl, .addthis_button_print {
+		border-left: 1px solid @secondaryHueLighter;
 
-.socialBar-item-email, .socialBar-item-print {
-	i {
-		float: left;
-		height: 30px;
-		margin-right: 8px;
-		line-height: 17px;
+		[class*="icon-"], [class^=" icon-"], [class*="svg-icon-"], [class^=" svg-icon-"] {
+			margin-right: 8px;
+		}
+
+		// # Kill bad styling from AddThis
+		.at300bs {
+			display: none !important;
+		}
+	}
+	.socialBarMobile {
+		display: none;
 	}
 }
 
