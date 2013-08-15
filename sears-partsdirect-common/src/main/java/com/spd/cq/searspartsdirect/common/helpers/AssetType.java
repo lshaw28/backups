@@ -20,11 +20,13 @@ public enum AssetType {
 		public Object createModelInstance(Page p, ValueMap properties) {
 			String title = properties.get(Constants.ASSETS_TITLE_PATH,"");
 			String description = properties.get(Constants.ASSETS_DESCRIPTION_PATH,"");
+			String brandLogo = properties.get(Constants.ASSETS_BRAND_LOGO_PATH,"");
 			return new BrandModel(p.getName(),
 					p.getPath(),
 					title,
 					description,
-					p.getPath() + Constants.ASSETS_LOGO_PATH);
+					p.getPath() + Constants.ASSETS_LOGO_PATH,
+					brandLogo);
 		}
 	},
 	// Not sure why these aren't updated to use icons here. Possible TODO.

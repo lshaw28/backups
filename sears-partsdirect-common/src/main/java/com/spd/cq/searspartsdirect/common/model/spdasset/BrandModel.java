@@ -7,13 +7,15 @@ public class BrandModel {
 	private String description;
 	private String logoPath;
 	private String path;
+	private String brandLogo;
 
-	public BrandModel(String trueName, String path, String title, String description, String logoPath) {
+	public BrandModel(String trueName, String path, String title, String description, String logoPath, String brandLogo) {
 		this.trueName = trueName;
 		this.title = title;
 		this.description = description;
 		this.logoPath = logoPath;
 		this.path = path;
+		this.brandLogo = brandLogo;
 	}
 
 	public String getTrueName() {
@@ -64,6 +66,7 @@ public class BrandModel {
 		result = prime * result + ((logoPath == null) ? 0 : logoPath.hashCode());
 		result = prime * result + ((path == null) ? 0 : path.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((brandLogo == null) ? 0 : brandLogo.hashCode());
 		return result;
 	}
 
@@ -110,6 +113,21 @@ public class BrandModel {
 		} else if (!title.equals(other.title)) {
 			return false;
 		}
+		if (brandLogo == null) {
+			if (other.brandLogo != null) {
+				return false;
+			}
+		} else if (!brandLogo.equals(other.brandLogo)) {
+			return false;
+		}
 		return true;
+	}
+
+	public String getBrandLogo() {
+		return brandLogo;
+	}
+
+	public void setBrandLogo(String brandLogo) {
+		this.brandLogo = brandLogo;
 	}
 }

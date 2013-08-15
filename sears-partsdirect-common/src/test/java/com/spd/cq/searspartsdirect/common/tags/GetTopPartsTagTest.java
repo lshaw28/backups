@@ -25,7 +25,7 @@ public class GetTopPartsTagTest extends MocksTag {
 
 	private GetTopPartsTag tag;
 
-	private final static BrandModel TEST_BRAND = new BrandModel("kenmore", null, "Kenmore", null, null);
+	private final static BrandModel TEST_BRAND = new BrandModel("kenmore", null, "Kenmore", null, null, null);
 	private final static ProductCategoryModel TEST_CATEGORY = new ProductCategoryModel("dishwasher", null, "Dishwasher", null, null, null, null, null);
 	private final static String TEST_MODEL = "66517722k900";
 	

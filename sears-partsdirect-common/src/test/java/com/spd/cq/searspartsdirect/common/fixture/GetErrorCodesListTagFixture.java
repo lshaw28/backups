@@ -79,6 +79,7 @@ public class GetErrorCodesListTagFixture {
 		Page brandPage = mock(Page.class);
 		when(pageManager.getPage(getBrandPagePath(pathAndTitle))).thenReturn(brandPage);
 		when(brandPage.getTitle()).thenReturn(pathAndTitle);
+		when(brandPage.getProperties()).thenReturn(props);
 		return testHit;
 	}
 	
