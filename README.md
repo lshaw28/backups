@@ -53,6 +53,10 @@ This is the repository for Sears PartsDirect migration project.
 - run `mvn install -P<SEARS_PARTS_DIRECT_PROFILE_NAME>` on `aempd/sears-partsdirect-parent`
 - the -P flag is optional if you only have one profile
 
+**Install phantomJS plugin - this plugin is used for js unit tests and vault built will fail if this plugin
+** is missing. Download it using the following url
+http://phantomjs.org/download.html
+
 **Run Sears Parts Direct File Vault**
 - run `mvn clean package content-package:install` on `aempd/sears-partsdirect-vault`
 
