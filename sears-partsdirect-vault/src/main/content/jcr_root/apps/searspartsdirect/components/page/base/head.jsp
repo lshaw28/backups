@@ -29,6 +29,11 @@
 	<meta name="robots" content="index, follow" />
 	<link rel="canonical" href="<%=externalLinks.getExternalUrlForPage(currentPage.getPath()) %>" />
 	<title><%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %></title>
+	<%-- Social Media --%>
+	<meta property="og:title" content="<%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %>" />
+	<meta property="og:type" content="business:business" />
+	<meta property="og:image" content="" />
+	<meta property="og:url" content="<%=externalLinks.getExternalUrlForPage(currentPage.getPath()) %>" />
 	<%-- Viewport and Styles --%>
 	<cq:include script="headlibs.jsp"/>
 	<cq:include script="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp"/>
