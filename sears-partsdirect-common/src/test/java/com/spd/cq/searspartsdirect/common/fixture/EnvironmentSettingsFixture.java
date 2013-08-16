@@ -14,11 +14,11 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 public class EnvironmentSettingsFixture {
 
 	private ComponentContext componentContext;
-	
+
 	public EnvironmentSettingsFixture() {
 		componentContext = mock(ComponentContext.class);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void setUpStubSettings(EnvironmentSettings env) throws Exception {
 		@SuppressWarnings("rawtypes")
@@ -50,11 +50,11 @@ public class EnvironmentSettingsFixture {
 		ourHash.put(EnvironmentSettings.SITEMAP_STOP_PATHS, Constants.EMPTY);
 		ourHash.put(EnvironmentSettings.EXTERNAL_ADDED_PREFIX, "http://www.searspartsdirect.com");
 		ourHash.put(EnvironmentSettings.EXTERNAL_ADDED_SUFFIX, ".html");
-		ourHash.put(EnvironmentSettings.PD_USERDATA_API, "http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username=");
+		ourHash.put(EnvironmentSettings.PD_USERDATA_API, "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/userservice/retrive?username=");
 		ourHash.put(EnvironmentSettings.PD_URL, "http://www.searspartsdirect.com");
-		ourHash.put(EnvironmentSettings.PD_TOPPARTS_API, "http://partsapivip.qa.ch3.s.com/pd-services/v1/modelTop/topParts");
-		ourHash.put(EnvironmentSettings.PD_MODELSUB_API, "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/modelInfo");
-		ourHash.put(EnvironmentSettings.PD_JOBCODE_PARTS_API, "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcodelist/partlist");
+		ourHash.put(EnvironmentSettings.PD_TOPPARTS_API, "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/modelTop/topParts");
+		ourHash.put(EnvironmentSettings.PD_MODELSUB_API, "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/modelInfo");
+		ourHash.put(EnvironmentSettings.PD_JOBCODE_PARTS_API, "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/jobcodelist/partlist");
 		ourHash.put(EnvironmentSettings.PD_API_ROOT, "http://partsapivip.qa.ch3.s.com/pd-services/v1/");
 		ourHash.put(EnvironmentSettings.LOCAL_HTTP_N_PORT, "localhost:4502");
 		ourHash.put(EnvironmentSettings.LOCAL_HTTPS_N_PORT, "localhost:5433");
@@ -62,7 +62,7 @@ public class EnvironmentSettingsFixture {
 		when(componentContext.getProperties()).thenReturn(ourHash);
 		env.externalActivateForTesting(componentContext);
 	}
-	
+
 	public ComponentContext getComponentContext() {
 		return componentContext;
 	}
