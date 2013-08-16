@@ -120,6 +120,8 @@ var secureLogin = Class.extend(function () {
 			var self = this,
 				commercial_Url = 'https://commercial.searspartsdirect.com';
 
+            obj = $.parseJSON($.trim(obj));
+
 			// NOT authenticated at this point...
 			if (!obj.isUserConsumer) {
 				// redirect to commercial PD site
@@ -150,8 +152,7 @@ var secureLogin = Class.extend(function () {
 			$.ajax({
 				type: "GET",
 				async: false,
-				contentType: 'application/json',
-				dataType: 'JSON',
+				dataType: 'text',
 				url: prepareLoginURL,
 				data: { userName: username,
 						authSuccessURL: encodeURI(hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true#'+window.parentDomain),

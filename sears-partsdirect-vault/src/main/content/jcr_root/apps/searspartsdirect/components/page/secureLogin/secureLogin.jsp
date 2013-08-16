@@ -27,7 +27,7 @@
 <body>
 <div class="row-fluid" id="secureLoginModal">
 	<div class="span6 offset3">
-		<h1 id="loginModalLabel">Sign In<span class="pull-right">New Customer? <a data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Register</a></span></h1>
+		<h1 id="loginModalLabel">Sign In<span class="pull-right"><p class="headline">New Customer?</p> <a data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Register</a></span></h1>
 		<form id="secureLoginFormModal" name="secureLoginFormModal" method="post" action="https://web301p.qa.ch3.s.com:5743/shccas/shcLogin" data-regulagroup="loginModal">
 			<div class="alert alert-error hidden">&nbsp;</div>
 			<fieldset>
