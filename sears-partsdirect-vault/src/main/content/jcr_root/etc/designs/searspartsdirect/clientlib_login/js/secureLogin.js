@@ -151,7 +151,6 @@ var secureLogin = Class.extend(function () {
 
 			$.ajax({
 				type: "GET",
-				async: false,
 				dataType: 'text',
 				url: prepareLoginURL,
 				data: { userName: username,
