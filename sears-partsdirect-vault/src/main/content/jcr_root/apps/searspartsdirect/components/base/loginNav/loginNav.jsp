@@ -2,7 +2,6 @@
 <ul>
 	<li class="loginNavHome"><a href="${mainSitePath}"><i class="icon-home">&nbsp;</i><span class="text-home">Home</span></a>
 	<li>
-	Logged In Value - ${loggedIn}
 		<c:choose>
 			<c:when test="${loggedIn}">
 				Hello, <strong><c:out value="${firstName} "/></strong>&nbsp;&nbsp;&nbsp;<a href="${mainSitePath}/partsdirect/myprofile/logout.action">Logout</a>
