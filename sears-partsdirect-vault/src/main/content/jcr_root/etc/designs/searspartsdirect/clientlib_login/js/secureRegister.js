@@ -52,7 +52,7 @@ var secureRegister = Class.extend(function () {
             // Display errors or submit the form
             if (errorMessage.length > 0) {
                 $('.alert', self.el).removeClass('hidden');
-                console.log("my height is: "+window.height);
+                console.log("my height is: "+$(window).height());
             } else {
                 var hostName = window.SPDUtils.getLocationDetails().fullAddress,
                     tempRedirectURL = hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true#'+window.parentDomain;
@@ -116,6 +116,7 @@ var secureRegister = Class.extend(function () {
         bindPassword: function () {
             $('[data-focus]', self.el).bind('focus', function() {
                     $('.passwordRules').removeClass('hidden');
+                    console.log("my height is: "+$(window).height());
             }).bind('blur', function() {
                     $('.passwordRules').addClass('hidden');
             });
@@ -189,7 +190,7 @@ var secureRegister = Class.extend(function () {
             $('input', self.el).each(function() {
                 $(this).val('');
             });
-            console.log("my height is: "+window.height);
+            console.log("my height is: "+$(window).height());
         },
         /**
          * Posts a message to the parent page via JavaScript
