@@ -34,6 +34,10 @@ var messageHandler = Class.extend(function () {
 				if (message.data.reload) {
 					document.location.reload();
 				}
+                if (message.data.heightChange) {
+                    var newHeight = $(message.data.affectedModal).height()-message.data.heightChange;
+                    $(message.data.affectedModal).height(newHeight);
+                }
 			}
 		}
 	}

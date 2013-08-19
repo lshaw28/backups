@@ -26,7 +26,7 @@
         if (window.location.search.indexOf('errorCode') > 0) {
             // Trigger invalid authentication messaging
             loginForm.showUnauthorizedMessage();
-            //loginForm.postMessage({ 'openModal': '#loginModal' });
+            loginForm.postMessage({ 'openModal': '#loginModal' });
         } else {
             loginForm.resetFields();
         }
