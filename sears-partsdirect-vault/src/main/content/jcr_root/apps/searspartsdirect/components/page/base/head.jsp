@@ -32,7 +32,7 @@
 	<%-- Social Media --%>
 	<meta property="og:title" content="<%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %>" />
 	<meta property="og:type" content="business:business" />
-	<meta property="og:image" content="" />
+	<meta property="og:image" content="<%=externalLinks.getExternalUrlForAsset("/etc/designs/searspartsdirect/clientlib_base/img/socialLogo.jpg") %>" />
 	<meta property="og:url" content="<%=externalLinks.getExternalUrlForPage(currentPage.getPath()) %>" />
 	<%-- Viewport and Styles --%>
 	<cq:include script="headlibs.jsp"/>
