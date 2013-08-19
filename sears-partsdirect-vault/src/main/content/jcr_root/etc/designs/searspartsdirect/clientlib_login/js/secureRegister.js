@@ -53,9 +53,9 @@ var secureRegister = Class.extend(function () {
 
             // Display errors or submit the form
             if (errorMessage.length > 0) {
-                prevHeight = $(window).height();
+                prevHeight = $(document.body).height();
                 $('.alert', self.el).removeClass('hidden');
-                heightDelta = prevHeight-$(window).height();
+                heightDelta = prevHeight-$(document.body).height();
                 console.log("height delta: "+heightDelta);
                 self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
             } else {
@@ -124,16 +124,16 @@ var secureRegister = Class.extend(function () {
                 heightDelta = 0;
 
             $('[data-focus]', self.el).bind('focus', function() {
-                    prevHeight = $(window).height();
+                    prevHeight = $(document.body).height();
                     $('.passwordRules').removeClass('hidden');
-                    heightDelta = prevHeight-$(window).height();
+                    heightDelta = prevHeight-$(document.body).height();
                     console.log("height delta: "+heightDelta);
                     self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
 
             }).bind('blur', function() {
-                    prevHeight = $(window).height();
+                    prevHeight = $(document.body).height();
                     $('.passwordRules').addClass('hidden');
-                    heightDelta = prevHeight-$(window).height();
+                    heightDelta = prevHeight-$(document.body).height();
                     console.log("height delta: "+heightDelta);
                     self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
             });
@@ -202,7 +202,7 @@ var secureRegister = Class.extend(function () {
                 heightDelta = 0,
                 errorMessage = 'Unauthorized credentials. Please re-enter.';
 
-            prevHeight = $(window).height();
+            prevHeight = $(document.body).height();
             // Populate the alert field with the errors
             $('.alert', self.el).html(errorMessage);
             $('.alert', self.el).removeClass('hidden');
@@ -210,7 +210,7 @@ var secureRegister = Class.extend(function () {
             $('input', self.el).each(function() {
                 $(this).val('');
             });
-            heightDelta = prevHeight-$(window).height();
+            heightDelta = prevHeight-$(document.body).height();
             console.log("height delta: "+heightDelta);
             self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
 
