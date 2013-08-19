@@ -7,11 +7,6 @@
 				Hello, <strong><c:out value="${firstName} "/></strong>&nbsp;&nbsp;&nbsp;<a href="${mainSitePath}/partsdirect/myprofile/logout.action">Logout</a>
 			</c:when>
 			<c:otherwise>
-				<c:choose>
-					<c:when test="${skipLoginModal}">
-						<a href="${mainSitePath}/partsdirect/login.pd">Login</a>
-					</c:when>
-					<c:otherwise>
 						<a data-toggle="modal" data-target="#loginModal">Login</a>
 					</c:otherwise>
 				</c:choose>
