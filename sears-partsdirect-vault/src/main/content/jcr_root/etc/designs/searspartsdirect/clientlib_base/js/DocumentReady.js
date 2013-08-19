@@ -168,7 +168,7 @@
 
 			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
 				min: 1,
-				max: 1023,
+				max: 650,
 				obj: new shc.pd.base.widgets.TouchCarousel(carouselElement)
 			}));
 		});

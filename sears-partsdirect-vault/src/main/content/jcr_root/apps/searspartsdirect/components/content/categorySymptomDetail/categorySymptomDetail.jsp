@@ -19,7 +19,7 @@
 				</c:otherwise>
 			</c:choose>
 			<div class="csd-content ${textClass}">
-				<p><c:out value="${jobCode.description} "/></p>
+				<p>${jobCode.description}</p>
 				<c:if test="${not empty jobCode.guides}">
 					<c:forEach var="guide" items="${jobCode.guides}">
 						<spd:linkResolver value="${guide.url}"/>

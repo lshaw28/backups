@@ -1,27 +1,40 @@
-@media (max-width: 577px) {
-	.socialBar-item-icons {
-		border: solid 1px @secondaryHueLighter;
-		float: none;
-		height: auto;
-		margin-bottom: 15px;
-		overflow: hidden;
-		padding: 0;
-		width: auto;
+@media (max-width: 650px) {
+	.socialBar {
+		.socialBarIcons {
+			height: 46px;
+			overflow: visible;
+			position: relative;
+			z-index: 999999;
 
-		&:first-child {
-			border-left: solid 1px @secondaryHueLighter;
-		}
-		a {
-			border: 0;
-			float: left;
-			height: 50px;
-			margin: 0;
-			text-align: center;
-			width: 25%;
-		}
-	}
+			.socialBarIconsInner {
+				background-color: @bodyColor;
+				border: solid 1px @secondaryHueLighter;
+				height: 46px;
+				margin-bottom: 15px;
+				overflow: hidden;
 
-	.socialBar-item-pdf, .socialBar-item-email {
-		border: 0;
+				&.active {
+					height: auto;
+				}
+				a {
+					width: 100%;
+
+					[class*="icon-"], [class^=" icon-"], [class*="svg-icon-"], [class^=" svg-icon-"] {
+						margin-right: 10px;
+						width: 25px;
+					}
+				}
+			}
+		}
+		.addthis_button_pdfmyurl {
+			border-left: 0 !important;
+
+			[class*="icon-"], [class^=" icon-"], [class*="svg-icon-"], [class^=" svg-icon-"] {
+				margin-right: 10px;
+			}
+		}
+		.socialBarMobile {
+			display: inherit !important;
+		}
 	}
 }

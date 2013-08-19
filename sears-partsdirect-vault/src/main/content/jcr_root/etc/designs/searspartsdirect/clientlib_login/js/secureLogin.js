@@ -120,6 +120,8 @@ var secureLogin = Class.extend(function () {
 			var self = this,
 				commercial_Url = 'https://commercial.searspartsdirect.com';
 
+            obj = $.parseJSON($.trim(obj));
+
 			// NOT authenticated at this point...
 			if (!obj.isUserConsumer) {
 				// redirect to commercial PD site
@@ -140,6 +142,7 @@ var secureLogin = Class.extend(function () {
 
 		failCallback: function (errors) {
 			   // this ajax call should never fail
+               console.log("there were some errors: "+errors);
 		},
 
 		prepareLogin: function(username, prepareLoginURL) {
@@ -148,9 +151,7 @@ var secureLogin = Class.extend(function () {
 
 			$.ajax({
 				type: "GET",
-				async: false,
-				contentType: 'application/json',
-				dataType: 'JSON',
+				dataType: 'text',
 				url: prepareLoginURL,
 				data: { userName: username,
 						authSuccessURL: encodeURI(hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true#'+window.parentDomain),
@@ -174,7 +175,7 @@ var secureLogin = Class.extend(function () {
 			$('.alert', self.el).html(errorMessage);
 			$('.alert', self.el).removeClass('hidden');
 			// blank out input fields
-			$('input', self.el).each(function() {
+			$('input[type!="hidden"]', self.el).each(function() {
 				$(this).val('');
 			});
 		},

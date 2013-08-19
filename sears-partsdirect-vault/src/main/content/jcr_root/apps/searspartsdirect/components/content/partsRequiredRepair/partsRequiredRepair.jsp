@@ -17,7 +17,7 @@
 </c:forEach>
 </ul>
 
-<c:set var="showSearchComponent" ><cq:text property="showSearch" /></c:set>
+<c:set var="showSearchComponent"><cq:text property="showSearch" /></c:set>
 <c:if test="${showSearchComponent}">
-	<cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />
+	<cq:include path="findThisPart" resourceType="searspartsdirect/components/content/findThisPart" />
 </c:if>

@@ -18,37 +18,37 @@ import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 public class ModelSubcomponentAPIHelperFixture {
 
 	private final SlingHttpServletRequest request;
-	
+
 	private final static String TEST_BRAND = "Kenmore";
 	private final static String TEST_CATEGORY = "Dishwasher";
 	private final static String TEST_MODEL = "66513593K600";
-	
+
 	public ModelSubcomponentAPIHelperFixture() throws Exception {
 		new EnvironmentSettingsFixture().setUpRealDefaults(new EnvironmentSettings());
 		final Map<String,Object> attributes = new HashMap<String,Object>();
 		request = mock(SlingHttpServletRequest.class);
 		doAnswer(new Answer<Void>() {
-		    //@Override
-		    public Void answer(InvocationOnMock invocation) throws Throwable {
-		        Object[] arguments = invocation.getArguments();
-		        if (arguments != null && arguments.length == 2 && arguments[0] != null) {
-		            attributes.put((String)arguments[0], arguments[1]);
-		        }
-		        return null;
-		    }
+			//@Override
+			public Void answer(InvocationOnMock invocation) throws Throwable {
+				Object[] arguments = invocation.getArguments();
+				if (arguments != null && arguments.length == 2 && arguments[0] != null) {
+					attributes.put((String)arguments[0], arguments[1]);
+				}
+				return null;
+			}
 		}).when(request).setAttribute(anyString(),anyObject());
 		when(request.getAttribute(anyString())).thenAnswer(new Answer<Object>() {
-		    //@Override
-		    public Object answer(InvocationOnMock invocation) throws Throwable {
-		        Object[] arguments = invocation.getArguments();
-		        if (arguments != null && arguments.length == 1 && arguments[0] != null) {
-		            String key = (String) arguments[0];
-		            if (attributes.containsKey(key)) {
-		                return attributes.get(key);
-		            }
-		        }
-		        return null;
-		    }
+			//@Override
+			public Object answer(InvocationOnMock invocation) throws Throwable {
+				Object[] arguments = invocation.getArguments();
+				if (arguments != null && arguments.length == 1 && arguments[0] != null) {
+					String key = (String) arguments[0];
+					if (attributes.containsKey(key)) {
+						return attributes.get(key);
+					}
+				}
+				return null;
+			}
 		});
 	}
 
@@ -57,21 +57,21 @@ public class ModelSubcomponentAPIHelperFixture {
 	}
 
 	public String getFiatUrl() {
-		return "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/modelInfo?modelNumber=66513593K600&categoryName=Dishwasher&brandName=Kenmore";
+		return "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/modelInfo?modelNumber=66513593K600&categoryName=Dishwasher&brandName=Kenmore";
 	}
 
 	public String getBrandName() {
 		return TEST_BRAND;
 	}
-	
+
 	public String getCategoryName() {
 		return TEST_CATEGORY;
 	}
-	
+
 	public String getModelNumber() {
 		return TEST_MODEL;
 	}
-	
+
 	public SlingHttpServletRequest getRequest() {
 		return request;
 	}

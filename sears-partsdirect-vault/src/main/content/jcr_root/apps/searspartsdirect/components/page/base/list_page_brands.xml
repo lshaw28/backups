@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		jcr:primaryType="cq:WidgetCollection">
+	<iconNoneSpecified
+		jcr:primaryType="nt:unstructured"
+		text="(none specified)"
+		value=""/>
+	<iconNoIconAtAll
+		jcr:primaryType="nt:unstructured"
+		text="No Icon"
+		value="none"/><!-- Must match Constants.NO_ICON -->
+	<iconAmana
+        jcr:primaryType="nt:unstructured"
+        text="Amana"
+        value="svg-icon-amana"/>
+	<iconBosch
+        jcr:primaryType="nt:unstructured"
+        text="Bosch"
+        value="svg-icon-bosch"/>
+	<iconBriggsStratton
+        jcr:primaryType="nt:unstructured"
+        text="Briggs and Stratton"
+        value="svg-icon-briggs-stratton"/>
+	<iconCraftsman
+        jcr:primaryType="nt:unstructured"
+        text="Craftsman"
+        value="svg-icon-craftsman"/>
+	<iconDewalt
+        jcr:primaryType="nt:unstructured"
+        text="Dewalt"
+        value="svg-icon-dewalt"/>
+	<iconElectrolux
+        jcr:primaryType="nt:unstructured"
+        text="Electrolux"
+        value="svg-icon-electrolux"/>
+	<iconFrigidaire
+        jcr:primaryType="nt:unstructured"
+        text="Frigidaire"
+        value="svg-icon-frigidaire"/>
+	<iconGE
+        jcr:primaryType="nt:unstructured"
+        text="GE"
+        value="svg-icon-ge"/>
+	<iconHusqvarna
+        jcr:primaryType="nt:unstructured"
+        text="Husqvarna"
+        value="svg-icon-husqvarna"/>
+	<iconJennAir
+        jcr:primaryType="nt:unstructured"
+        text="Jenn Air"
+        value="svg-icon-jenn-air"/>
+	<iconKenmore
+        jcr:primaryType="nt:unstructured"
+        text="Kenmore"
+        value="svg-icon-kenmore"/>
+	<iconKenmoreElite
+        jcr:primaryType="nt:unstructured"
+        text="Kenmore Elite"
+        value="svg-icon-kenmore-elite"/>
+	<iconKenmorePro
+        jcr:primaryType="nt:unstructured"
+        text="Kenmore Pro"
+        value="svg-icon-kenmore-pro"/>
+	<iconMaytag
+        jcr:primaryType="nt:unstructured"
+        text="Maytag"
+        value="svg-icon-maytag"/>
+	<iconSamsung
+        jcr:primaryType="nt:unstructured"
+        text="Samsung"
+        value="svg-icon-samsung"/>
+	<iconWhirlpool
+        jcr:primaryType="nt:unstructured"
+        text="Whirlpool"
+        value="svg-icon-whirlpool"/>
+</jcr:root>
