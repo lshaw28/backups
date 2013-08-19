@@ -7,9 +7,7 @@
 				Hello, <strong><c:out value="${firstName} "/></strong>&nbsp;&nbsp;&nbsp;<a href="${mainSitePath}/partsdirect/myprofile/logout.action">Logout</a>
 			</c:when>
 			<c:otherwise>
-						<a data-toggle="modal" data-target="#loginModal">Login</a>
-					</c:otherwise>
-				</c:choose>
+				<a data-toggle="modal" data-target="#loginModal">Login</a>
 			</c:otherwise>
 		</c:choose>
 	</li>
@@ -19,15 +17,7 @@
 				<a href="${mainSitePath}/partsdirect/myProfile.pd">My Profile</a>
 			</c:when>
 			<c:otherwise>
-				<c:choose>
-					<c:when test="${skipRegisterModal}">
-						<a href="${mainSitePath}/partsdirect/register.pd">Register</a>
-					</c:when>
-					<c:otherwise>
-						<a data-toggle="modal" data-target="#registerModal">Register</a>
-					</c:otherwise>
-				</c:choose>
-				
+				<a data-toggle="modal" data-target="#registerModal">Register</a>
 			</c:otherwise>
 		</c:choose>
 	</li>
