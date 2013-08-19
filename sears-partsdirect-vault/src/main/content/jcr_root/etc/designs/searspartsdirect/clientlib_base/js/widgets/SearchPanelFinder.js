@@ -94,7 +94,7 @@ NS('shc.pd.base.widgets').SearchPanelFinder = (function () {
 
 			$('.search-panel-finder-close-only').hide();
 			$('.search-panel-finder-open-only').show();
-			$('.search-critera-helper').show();
+			$('.search-criteria-helper').show();
 
 			// animate
 			// @TODO remove hard coded padding properties

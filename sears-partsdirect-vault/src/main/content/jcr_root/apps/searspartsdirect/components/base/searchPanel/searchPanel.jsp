@@ -59,9 +59,10 @@
 		The following markup are different templates based on what the user selects
 		Selection and data are provided by APIs or from a static source provided by JavaScript
 		--%>
+		<a name="findMyModel"></a>
 		<div class="search-panel-finder">
 			<div class="search-panel-finder-wrapper">
-				<div class="search-critera">
+				<div class="search-criteria">
 					<h3>Choose your product type</h3>
 					<div class="product-type-selection dropdown-reskin">
 						<i class="icon-angle-down"></i>
@@ -69,14 +70,14 @@
 					</div>
 				</div>
 				<%-- UI for that toggles details and plate finder of a search result --%>
-				<div class="search-critera-pane-manager">
+				<div class="search-criteria-pane-manager">
 					<div class="item"><a href="">Plate location</a></div>
 					<div class="item"><a href="">Common number model plates</a></div>
 				</div>
 				<%-- search result UI --%>
-				<div class="search-critera-output"></div>
+				<div class="search-criteria-output"></div>
 				<%-- plate helper --%>
-				<div class="search-critera-helper">
+				<div class="search-criteria-helper">
 					<h3>Common model number plates</h3>
 					<%-- @TODO there should be a context var for root img paths --%>
 					<div class="model-number-plates">
@@ -85,17 +86,17 @@
 						<img class="model-number-plates-img-3" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help3.png" />
 					</div>
 					<%-- After a search, pane-manager triggers the display of this UI --%>
-					<div class="search-critera-plate-finder">
+					<div class="search-criteria-plate-finder">
 						<p><strong>View sample model numbers by selecting your product brand</strong></p>
-						<%-- Plate finder selection, based on the search-critera output --%>
+						<%-- Plate finder selection, based on the search-criteria output --%>
 						<div class="plate-finder-selection dropdown-reskin">
 							<i class="icon-angle-down"></i>
 							<select></select><%-- this gets populated by JS --%>
 						</div>
-						<div class="search-critera-plate-output"></div>
+						<div class="search-criteria-plate-output"></div>
 					</div>
 				</div>
-				<div class="search-critera-close">
+				<div class="search-criteria-close">
 					<a class="searchPanelFinder_js">Close <i class="icon-angle-up"></i></a>
 				</div>
 			</div>
