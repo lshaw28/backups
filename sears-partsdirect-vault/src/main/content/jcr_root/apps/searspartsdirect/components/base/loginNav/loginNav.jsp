@@ -9,7 +9,7 @@
 			<c:otherwise>
 				<c:choose>
 					<c:when test="${skipLoginModal}">
-						<a href="${mainSitePath}/partsdirect/initiateLogin.pd">Login</a>
+						<a href="${mainSitePath}/partsdirect/login.pd">Login</a>
 					</c:when>
 					<c:otherwise>
 						<a data-toggle="modal" data-target="#loginModal">Login</a>
