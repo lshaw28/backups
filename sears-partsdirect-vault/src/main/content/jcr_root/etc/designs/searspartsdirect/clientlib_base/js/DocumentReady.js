@@ -64,6 +64,12 @@
 			$('body').toggleClass('cartNav-open');
 		});
 		/**
+		 * customAccordionForms component setup
+		 */
+		$('.customAccordionForms').each(function () {
+			var newCustomAccordionForms = new customAccordionForms($(this));
+		});
+		/**
 		 * Input help text listeners
 		 */
 		$('[data-inputhelp]').each(function () {

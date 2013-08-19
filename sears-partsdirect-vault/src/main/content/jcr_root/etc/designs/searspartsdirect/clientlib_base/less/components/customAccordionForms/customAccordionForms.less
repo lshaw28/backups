@@ -1,0 +1,58 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+// # Base Styles
+.customAccordionForms {
+	.accordion-group {
+		border: none;
+		.accordion-heading {
+			background-color: @secondaryHueLighter;
+			padding: 5px 0;
+			.accordion-toggle {
+				color: @secondaryHueDark;
+				font-size: @h3Size;
+			}
+		}
+		.accordion-heading.cafHeadingOpen {
+			background-color: @secondaryHueDark;
+			.accordion-toggle {
+				color: #ffffff;
+			}
+		}
+		.accordion-inner {
+			.cafField {
+				padding: 10px 0;
+			}
+			p {
+				font-weight: bold;
+				a {
+					font-weight: normal;
+				}
+			}
+			.radioOptions {
+				overflow: hidden;
+				input {
+					float: left;
+					margin: 4px 5px 0 20px;
+				}
+				input:first-child {
+					margin: 4px 5px 0 0;
+				}
+				label {
+					float: left;
+					font-weight: normal;
+					font-size: @pSize;
+				}
+			}
+			.cafSpacedInput {
+				color: @secondaryHueNormal;
+				margin: 10px 0;
+				padding: 2px 6px;
+			}
+			.cafQuantity {
+				width: 20px;
+				padding: 2px 6px;
+			}
+		}
+	}
+}

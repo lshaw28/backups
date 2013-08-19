@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+	xmlns:cq="http://www.day.com/jcr/cq/1.0" 
+	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
+	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
+	jcr:primaryType="cq:Component"
+	jcr:title="Custom Accordion Forms"
+	jcr:description="Custom component built for Water Filter Subscription Checkout that allows users to go through one form after another with the current one closed into an accordion and the next opened until all have been completed."
+	componentGroup="SearsPartsDirect" />
