@@ -6,7 +6,7 @@
                 <div class="span2">
                     <p>Used in this repair <span class="partsfrequency"><c:out value="${part.frequency}" />%</span> of the time.</p>
                 </div>
-                <div class="span2 csd-image">
+                <div class="span2 categorySymptomImage">
                     <c:choose>
                         <c:when test="${not empty part.image.url}">
                             <img src="${part.image.url}" altText="${part.name}"/>
@@ -29,14 +29,14 @@
                 </div>
                 <div class="span4">
                     <c:if test="${!part.availableInStore}">
-                        <p><a href="#.">Available online only.</a></p>
+                        <p><a href="#">Available online only.</a></p>
                     </c:if>
                 </div>
                 <div class="span8">
 
                     <div class="span5">
                         <p>Found in diagram:<br />
-                            <a href="#.">Chassis and enclosures</a></p>
+                            <a href="#">Chassis and enclosures</a></p>
                     </div>
                     <div class="span2">
                         <span class="partsPrice">$<c:out value="${part.price}" /></span><br />

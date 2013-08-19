@@ -13,12 +13,12 @@
 <h1><c:out value="${symptom.title}" /></h1>
 <p><c:out value="${symptom.description}" /></p>
 <c:forEach var="jobCode" items="${symptom.jobCodeModels}">
-    <div class="csd-border">
+    <div class="categorySymptomBorder">
         <h3>${jobCode.title}</h3>
         <div class="row-fluid">
             <c:choose>
                 <c:when test="${jobCode.partTypeModel != null && jobCode.partTypeModel.imagePath != null}">
-                    <div class="span3 csd-image">
+                    <div class="span3 categorySymptomImage">
                         <spd:displayImage path="${jobCode.partTypeModel.imagePath}" altText="${jobCode.partTypeModel.title}"/>
                     </div>
                     <c:set var="textClass" value="span9" />
@@ -27,7 +27,7 @@
                     <c:set var="textClass" value="span12" />
                 </c:otherwise>
             </c:choose>
-            <div class="csd-content ${textClass}">
+            <div class="categorySymptomContent ${textClass}">
                 <p>${jobCode.description}</p>
                 <c:if test="${not empty jobCode.guides}">
                     <c:forEach var="guide" items="${jobCode.guides}">
