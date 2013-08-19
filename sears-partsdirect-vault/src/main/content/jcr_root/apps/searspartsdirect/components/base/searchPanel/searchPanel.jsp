@@ -10,12 +10,8 @@
 			<input id="searchBarField" type="text" maxlength="100" tabindex="1" data-inputhelp="Enter model or part number" data-inputhelpmobile="Model/Part #" name="searchModPar"><span class="large">in</span><div class="btn-group ">
 				<a class="btn btn-type" href="#" data-toggle="dropdown"><span id="searchTypeLabel" data-texthelp="Select Type" data-texthelpmobile="Type">Select Type</span> <i class="icon-chevron-sign-down">&nbsp;</i></a>
 				<ul class="dropdown-menu">
-					<li>
-						<a data-postpath="part-model" data-pathtaken="modelSearch" data-label="Model #">Model #</a>
-					</li>
-					<li>
-						<a data-postpath="part-number" data-pathtaken="partSearch" data-label="Part #">Part #</a>
-					</li>
+					<li><a data-postpath="part-model" data-pathtaken="modelSearch" data-label="Model #">Model #</a></li>
+					<li><a data-postpath="part-number" data-pathtaken="partSearch" data-label="Part #">Part #</a></li>
 				</ul>
 			</div><button id="searchModelsParts" class="new-btn new-btn-search">Search</button>
 			<p class="search-panel-finder-close-only">Can't locate your model number? <a class="searchPanelFinder_js">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
@@ -24,9 +20,6 @@
 			<input name="prst" id="prst" type="hidden"/>
 			<input name="shdMod" id="shdMod" type="hidden"/>
 			<input name="shdPart" id="shdPart" type="hidden"/>
-			<div id="findMyModel">
-				<p>This is the Find My Model area.</p>
-			</div>
 		</div>
 		<div id="manualContent" class="search-content-pane">
 			<ul>
@@ -54,11 +47,6 @@
 			</ul>
 		</div>
 		<div id="searchRightShadow" class="search-shadow"></div>
-		<%--
-		Search Panel Finder UI
-		The following markup are different templates based on what the user selects
-		Selection and data are provided by APIs or from a static source provided by JavaScript
-		--%>
 		<a name="findMyModel"></a>
 		<div class="search-panel-finder">
 			<div class="search-panel-finder-wrapper">
