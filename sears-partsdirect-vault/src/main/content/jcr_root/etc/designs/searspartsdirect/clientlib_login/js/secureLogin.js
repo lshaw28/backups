@@ -26,7 +26,7 @@ var secureLogin = Class.extend(function () {
 		bindSubmit: function () {
 			var self = this;
 
-            if (!serviceCallPending) {
+            if (!self.serviceCallPending) {
 
                 self.serviceCallPending = true;
 
