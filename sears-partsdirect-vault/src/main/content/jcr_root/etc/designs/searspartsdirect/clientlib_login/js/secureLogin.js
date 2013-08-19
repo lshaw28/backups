@@ -10,6 +10,9 @@ var secureLogin = Class.extend(function () {
 		 */
 		init: function (el) {
 			this.el = el;
+            this.serviceCallPending = false;
+            this.maxRecallServiceTries = 5;
+            this.recallServiceTries = 0;
 			this.bindSubmit();
 			this.bindCancel();
 			this.bindLinks();
@@ -23,10 +26,15 @@ var secureLogin = Class.extend(function () {
 		bindSubmit: function () {
 			var self = this;
 
-			$('[data-submit=true]', self.el).bind('click', function (e) {
-				e.preventDefault();
-				self.validate();
-			});
+            if (!serviceCallPending) {
+
+                self.serviceCallPending = true;
+
+                $('[data-submit=true]', self.el).bind('click', function (e) {
+                    e.preventDefault();
+                    self.validate();
+                });
+            }
 		},
 		/**
 		 * Validates the registration form and displays friendly errors
@@ -120,24 +128,43 @@ var secureLogin = Class.extend(function () {
 			var self = this,
 				commercial_Url = 'https://commercial.searspartsdirect.com';
 
-            obj = $.parseJSON($.trim(obj));
 
-			// NOT authenticated at this point...
-			if (!obj.isUserConsumer) {
-				// redirect to commercial PD site
-				$('[name=loginId]', self.el).attr('name', 'j_username');
-				//$('[name=logonPassword]', self.el).attr('name', 'j_password');
-				//logonPassword.name = "j_password";
-				//loginId.name = "j_username";
-				document.secureLoginFormModal.action = commercial_Url+"/partsdirect/commercialLogin.pd?email=" + $('[name=loginId]', self.el).val();
-				$('.alert', self.el).html("Our records show you're a member of our commercial parts website. We're automatically redirecting you to Sears Commercial Parts.");
-				$('.alert', self.el).removeClass('hidden');
-				setTimeout(function(){document.loginFormModal.submit();}, 3000);
-			} else {
-				// They're a normal user
-				// submit to SSO
-				$('form', self.el)[0].submit();
-			}
+            self.serviceCallPending = false;
+
+            if (obj === "") {
+                // that jBoss bug...increment retry counter
+                self.recallServiceTries++;
+                if (self.recallServiceTries <= self.maxRecallServiceTries) {
+                    // if less than max, retry call
+                    console.log('recallServiceTries: '+self.recallServiceTries+' maxServiceTries:');
+                    self.validate();
+                } else {
+                    // else, show server error msg
+                    self.showServerErrorMsg();
+                }
+            } else {
+                // proceed normally
+                obj = $.parseJSON($.trim(obj));
+
+                // NOT authenticated at this point...
+                if (!obj.isUserConsumer) {
+                    // redirect to commercial PD site
+                    $('[name=loginId]', self.el).attr('name', 'j_username');
+                    //$('[name=logonPassword]', self.el).attr('name', 'j_password');
+                    //logonPassword.name = "j_password";
+                    //loginId.name = "j_username";
+                    document.secureLoginFormModal.action = commercial_Url+"/partsdirect/commercialLogin.pd?email=" + $('[name=loginId]', self.el).val();
+                    $('.alert', self.el).html("Our records show you're a member of our commercial parts website. We're automatically redirecting you to Sears Commercial Parts.");
+                    $('.alert', self.el).removeClass('hidden');
+                    setTimeout(function(){document.loginFormModal.submit();}, 3000);
+                } else {
+                    // They're a normal user
+                    // submit to SSO
+                    $('form', self.el)[0].submit();
+                }
+            }
+
+
 		},
 
 		failCallback: function (errors) {
@@ -148,6 +175,7 @@ var secureLogin = Class.extend(function () {
 		prepareLogin: function(username, prepareLoginURL) {
 			var self = this,
 				hostName = window.SPDUtils.getLocationDetails().fullAddress;
+
 
 			$.ajax({
 				type: "GET",
@@ -179,6 +207,19 @@ var secureLogin = Class.extend(function () {
 				$(this).val('');
 			});
 		},
+        showServerErrorMsg: function () {
+            var self = this,
+                errorMessage = "We're sorry. A server error has occurred. Please wait a moment and retry.";
+
+            // Populate the alert field with the errors
+            $('.alert', self.el).html(errorMessage);
+            $('.alert', self.el).removeClass('hidden');
+            // blank out input fields
+            $('input[type!="hidden"]', self.el).each(function() {
+                $(this).val('');
+            });
+            setTimeout(function(){self.recallServiceTries = 0;}, 3000);
+        },
 		/**
 		 * Posts a message to the parent page via JavaScript
 		 * @param {object} message The object to post
