@@ -16,7 +16,6 @@
          * 3. register
          */
         var loginForm = new secureLogin($('#secureLoginModal'));
-		loginForm.postMessage({ 'closeModal': '#loginModal' });
 
         var forgotPasswordForm = new secureForgotPassword($('#secureForgotPasswordModal'));
 
@@ -27,6 +26,7 @@
         if (window.location.search.indexOf('errorCode') > 0) {
             // Trigger invalid authentication messaging
             loginForm.showUnauthorizedMessage();
+            loginForm.postMessage({ 'openModal': '#loginModal' });
         } else {
             loginForm.resetFields();
         }

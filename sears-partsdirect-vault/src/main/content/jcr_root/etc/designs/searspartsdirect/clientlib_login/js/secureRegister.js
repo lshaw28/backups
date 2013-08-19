@@ -38,6 +38,8 @@ var secureRegister = Class.extend(function () {
                 i = 0,
                 errorMessage = '',
                 divider = '',
+                prevHeight = 0,
+                heightDelta = 0,
                 regulaResponse = regula.validate();
 
             // Parse the error messages
@@ -51,8 +53,11 @@ var secureRegister = Class.extend(function () {
 
             // Display errors or submit the form
             if (errorMessage.length > 0) {
+                prevHeight = $(window).height();
                 $('.alert', self.el).removeClass('hidden');
-                console.log("my height is: "+window.height);
+                heightDelta = prevHeight-$(window).height();
+                console.log("height delta: "+heightDelta);
+                self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
             } else {
                 var hostName = window.SPDUtils.getLocationDetails().fullAddress,
                     tempRedirectURL = hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true#'+window.parentDomain;
@@ -114,10 +119,23 @@ var secureRegister = Class.extend(function () {
             });
         },
         bindPassword: function () {
+            var self = this,
+                prevHeight = 0,
+                heightDelta = 0;
+
             $('[data-focus]', self.el).bind('focus', function() {
+                    prevHeight = $(window).height();
                     $('.passwordRules').removeClass('hidden');
+                    heightDelta = prevHeight-$(window).height();
+                    console.log("height delta: "+heightDelta);
+                    self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
+
             }).bind('blur', function() {
+                    prevHeight = $(window).height();
                     $('.passwordRules').addClass('hidden');
+                    heightDelta = prevHeight-$(window).height();
+                    console.log("height delta: "+heightDelta);
+                    self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
             });
 
         },
@@ -180,8 +198,11 @@ var secureRegister = Class.extend(function () {
         showUnauthorizedMessage: function () {
             var self = this,
                 i = 0,
+                prevHeight = 0,
+                heightDelta = 0,
                 errorMessage = 'Unauthorized credentials. Please re-enter.';
 
+            prevHeight = $(window).height();
             // Populate the alert field with the errors
             $('.alert', self.el).html(errorMessage);
             $('.alert', self.el).removeClass('hidden');
@@ -189,7 +210,10 @@ var secureRegister = Class.extend(function () {
             $('input', self.el).each(function() {
                 $(this).val('');
             });
-            console.log("my height is: "+window.height);
+            heightDelta = prevHeight-$(window).height();
+            console.log("height delta: "+heightDelta);
+            self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
+
         },
         /**
          * Posts a message to the parent page via JavaScript
