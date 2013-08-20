@@ -6,7 +6,7 @@
                 <span><i class="icon-chevron-up"></i><i class="icon-chevron-down"></i><h4>Find This Part</h4></span>
             </a>
         </div>
-        <div class="accordion-body collapse" id="#${uniqueId}">
+        <div class="accordion-body collapse in" id="#${uniqueId}">
             <div class="accordion-inner">
                 <cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />
             </div>
