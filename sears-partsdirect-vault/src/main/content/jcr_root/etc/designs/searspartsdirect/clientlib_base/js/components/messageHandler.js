@@ -36,7 +36,7 @@ var messageHandler = Class.extend(function () {
 				}
                 if (message.data.heightChange) {
                     var newHeight = $(message.data.affectedModal).height()-message.data.heightChange;
-                    $(message.data.affectedModal).find('iframe').height(newHeight);
+                    $(message.data.affectedModal).find('iframe').addBack().height(newHeight);
                 }
 			}
 		}
