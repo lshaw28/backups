@@ -11,13 +11,14 @@
 		</div>
 		<div id="${uniqueId}1" class="accordion-body in">
 			<div class="accordion-inner">
-				<form>
+				<form id="cafSelectFilterFrequencyForm" method="post" action="" data-regulagroup="cafSelectFilterFrequency">
+					<div class="alert alert-error hidden">&nbsp;</div>
 					<div class="cafField">
 						<p>Search by fridge model number or water filter part number</p>
 						<div class="radioOptions">
-							<input type="radio" name="numberType" id="ntModel" value="model" />
+							<input type="radio" name="numberType" id="ntModel" value="model" data-constraints="@Checked([message='Please select a search type'] , [groups='cafSelectFilterFrequency'])" />
 							<label for="ntModel">Fridge Model #</label>
-							<input type="radio" name="numberType" id="ntPart" value="part" />
+							<input type="radio" name="numberType" id="ntPart" value="part" data-constraints="@Checked([message='Please select a search type'] , [groups='cafSelectFilterFrequency'])" />
 							<label for="ntPart">Filter Part #</label>
 						</div>
 						<input class="cafSpacedInput" name="number" value="Enter your part or model number" data-inputhelp="Enter your part or model number" />
@@ -26,11 +27,11 @@
 					<div class="cafField">
 						<p>Select water filter automatic reorder frequency</p>
 						<div class="radioOptions">
-							<input type="radio" name="frequency" id="f3" value="3" />
+							<input type="radio" name="frequency" id="f3" value="3" data-constraints="@Checked([message='Please select a frequency'] , [groups='cafSelectFilterFrequency'])" />
 							<label for="f3">Every 3 months</label>
-							<input type="radio" name="frequency" id="f6" value="6" />
+							<input type="radio" name="frequency" id="f6" value="6" data-constraints="@Checked([message='Please select a frequency'] , [groups='cafSelectFilterFrequency'])" />
 							<label for="f6">Every 6 months</label>
-							<input type="radio" name="frequency" id="f12" value="12" />
+							<input type="radio" name="frequency" id="f12" value="12" data-constraints="@Checked([message='Please select a frequency'] , [groups='cafSelectFilterFrequency'])" />
 							<label for="f12">Every 12 months</label>
 						</div>
 					</div>
@@ -73,9 +74,9 @@
 					</div>
 					<div class="cafField">
 						<p>Qty</p>
-						<input class="cafQuantity" name="quantity" />
+						<input class="cafQuantity" name="quantity" data-constraints="@Required([message='Please enter a quantity'] , [groups='cafSelectFilterFrequency']) @Numeric @NotBlank" />
 					</div>
-					<button class="new-btn new-btn-search">Continue</button>
+					<button type="button" class="new-btn new-btn-search cafSubmit" data-submit="true">Continue</button>
 				</form>
 			</div>
 		</div>
