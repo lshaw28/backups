@@ -169,7 +169,7 @@
 		/*
 		 * Responsive table initializer
 		 */
-		shc.pd.base.widgets.ResponsiveTable.init($('table.responsive-table'));
+		shc.pd.base.widgets.ResponsiveTable.init($('table.responsiveTable'));
 		/*
 		 * Search panel finder widget
 		 */
