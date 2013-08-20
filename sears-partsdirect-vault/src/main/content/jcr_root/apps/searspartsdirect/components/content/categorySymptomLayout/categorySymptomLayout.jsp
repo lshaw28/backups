@@ -8,12 +8,12 @@
 	</div>
 </div>
 <div class="row-fluid">
-	<div class="span9">
+	<div class="span8">
 		<div class="categoryDescription">
 			<p><cq:include path="categoryIcon" resourceType="searspartsdirect/components/content/categoryIcon" />${symptom.description}</p>
 		</div>
 	</div>
-	<div class="span3">
+	<div class="span4">
 		<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />
 	</div>
 </div>
