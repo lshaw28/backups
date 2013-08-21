@@ -74,20 +74,6 @@ public class GetJobCodePartsTagTest extends MocksTag {
 		assertTrue(tag.getJobCodeParts(StringUtils.EMPTY).size() == 0);
 	}
 
-	@Test
-	public void testGetJobCodes() {
-		tag.setJobCodes(fixture.mockValidJobCodes());
-		assertNotNull(tag.getJobCodes());
-		assertThat(tag.getJobCodes(), hasSize(2));
-	}
-
-	@Test
-	public void testGetModelNumber() {
-		tag.setModelNumber("someModelNumber");
-		assertNotNull(tag.getModelNumber());
-		assertThat(tag.getModelNumber(), is("someModelNumber"));
-	}
-
 	private void assertEmptyResult() {
 		@SuppressWarnings("unchecked")
 		Map<String, List<JobCodePartModel>> jobCodeParts = (Map<String, List<JobCodePartModel>>) pageContext.getAttribute("jobCodeParts");
