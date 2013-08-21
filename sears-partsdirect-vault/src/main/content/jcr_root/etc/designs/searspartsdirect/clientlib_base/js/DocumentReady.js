@@ -138,10 +138,6 @@
 		$('.responsiveFindThisPart').each(function () {
 			var newResponsiveFindThisPart = new responsiveFindThisPart($(this));
 		});
-        // findThisPart class setup
-        $('.findThisPart').each(function() {
-            var newFindThisPart = new findThisPart($(this));
-        });
         // commonParts class setup
         $('.commonParts').each(function() {
             var newCommonParts = new commonParts($(this));

@@ -40,5 +40,5 @@
 			</div>
 		</div>
 	</div>
-	<cq:include path="findThisPart" resourceType="searspartsdirect/components/content/findThisPart" />
+	<cq:include path="modelSearch" resourceType="searspartsdirect/components/content/responsiveFindThisPart" />
 </c:forEach>
