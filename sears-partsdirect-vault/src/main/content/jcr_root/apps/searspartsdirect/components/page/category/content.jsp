@@ -17,7 +17,7 @@
 					</div>
 					<div class="row-fluid">
 						<div class="span12">
-							 <div class="categorySearch"><cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" /></div>
+							 <div class="categorySearch"><cq:include path="responsiveFindThisPart" resourceType="searspartsdirect/components/content/responsiveFindThisPart" /></div>
 							 <div class="contentText"><cq:include path="text" resourceType="searspartsdirect/components/content/text" /></div>
 						</div>
 					</div>
