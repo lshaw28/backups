@@ -46,7 +46,7 @@ public class GetErrorCodesListTag extends CQBaseTag {
 			session = slingRequest.getResourceResolver().adaptTo(Session.class);
 
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("path", Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair" + "/" + categoryName + "-error-codes");
+			map.put("path", Constants.CATEGORIES_ROOT + "/" + categoryName + "-repair/error-codes");
 			map.put("type", Constants.CQ_PAGE);
 			map.put("1_property", Constants.ASSETS_PAGES_REL_PATH);
 			map.put("1_property.value", categoryPath);
