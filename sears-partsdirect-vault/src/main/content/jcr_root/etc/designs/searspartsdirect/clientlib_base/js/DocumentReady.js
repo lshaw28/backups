@@ -22,9 +22,9 @@
 			}
 		});
         /**
-		 * model section
+		 * Model section
 		 */
-		var modelsection = new modelsectionHeader();
+		var newModelHeader = new modelHeader();
         /**
 		 * Comment Section
 		 */
@@ -169,7 +169,7 @@
 		/*
 		 * Responsive table initializer
 		 */
-		shc.pd.base.widgets.ResponsiveTable.init($('table.responsive-table'));
+		shc.pd.base.widgets.ResponsiveTable.init($('table.responsiveTable'));
 		/*
 		 * Search panel finder widget
 		 */

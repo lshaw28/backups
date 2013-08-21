@@ -1,6 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <c:if test="${not empty jobCodeParts}">
-    <c:forEach var="jobCode" items="${jobCodes}">
         <c:forEach var="part" items="${recommendedParts}">
             <div class="row-fluid">
                 <div class="span2">
@@ -50,7 +49,5 @@
                     </div>
                 </div>
             </div>
-
         </c:forEach>
-    </c:forEach>
 </c:if>

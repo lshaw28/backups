@@ -35,8 +35,10 @@ var messageHandler = Class.extend(function () {
 					document.location.reload();
 				}
                 if (message.data.heightChange) {
-                    var newHeight = $(message.data.affectedModal).height()-message.data.heightChange;
-                    $(message.data.affectedModal).height(newHeight);
+                    var modal = $(message.data.affectedModal);
+                    var newHeight = modal.height()-message.data.heightChange+$('iframe', modal).offset().top;
+                    $('iframe',modal).addBack().height(newHeight);
+
                 }
 			}
 		}
