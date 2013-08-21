@@ -28,14 +28,14 @@
 <div class="row-fluid" id="secureLoginModal">
 	<div class="span6 offset3">
 		<h1 id="loginModalLabel">Sign In<span class="pull-right"><p class="headline">New Customer?</p> <a data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Register</a></span></h1>
-		<form id="secureLoginFormModal" name="secureLoginFormModal" method="post" action="https://web301p.qa.ch3.s.com:5743/shccas/shcLogin" data-regulagroup="loginModal">
+		<form id="secureLoginFormModal" name="secureLoginFormModal" method="post" action="${ssoServerUrl}" data-regulagroup="loginModal">
 			<div class="alert alert-error hidden">&nbsp;</div>
 			<fieldset>
 				<label>Email<span>Required</span></label>
 				<input type="text" name="loginId" data-constraints='@Required(message="Email is required.", groups=[loginModal]) @Required(message="A valid email address is required.", groups=[loginModal])' />
 				<label>Password<span>Required</span></label>
 				<input type="password" name="logonPassword" data-constraints='@Required(message="Please provide a password.", groups=[loginModal])' />
-				<input type="hidden" value="${secureMainSitePath}/partsdirect/j_spring_cas_security_check" name="service" id="service" />
+				<input type="hidden" value="${secureMainSitePath}${pdServicePath}" name="service" id="service" />
 				<input type="hidden" value="true" name="renew" id="renew" />
 				<br />
 				<a data-toggle="modal" data-dismiss="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
