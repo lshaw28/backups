@@ -22,9 +22,9 @@
 			}
 		});
         /**
-		 * model section
+		 * Model section
 		 */
-		var modelsection = new modelsectionHeader();
+		var newModelHeader = new modelHeader();
         /**
 		 * Comment Section
 		 */
