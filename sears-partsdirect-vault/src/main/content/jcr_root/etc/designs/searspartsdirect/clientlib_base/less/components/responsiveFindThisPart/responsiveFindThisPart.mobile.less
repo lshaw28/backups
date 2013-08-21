@@ -3,51 +3,48 @@
 
 @media(max-width: 650px) {
 	.responsiveFindThisPart {
-		.accordion-group, .accordion-inner {
-			border: 0;
-		}
-		.accordion-toggle, .accordion-inner {
-			border: 0;
-			padding: 0;
-		}
-		.accordion-inner {
-			background-color: @secondaryHueLight;
-			padding: 10px;
-			width: inherit;
-		}
-		.accordion-group {
-			.borderRadius(0);
-		}
-		.accordion-toggle {
-			background-color: @secondaryHueLight;
-			color: @secondaryHueDark;
-			padding-left: 15px;
-			text-decoration: none;
+		.responsiveFindThisPartHeader {
+			display: block;
+			font-size: @h4Size;
+			padding: 10px 15px;
 
-			h4 {
-				display: inline-block;
+			a {
+				color: @secondaryHueDark;
+				cursor: pointer;
+				text-decoration: none;
+
+				&:hover {
+					text-decoration: none;
+				}
+				i {
+					display: inline-block;
+					font-size: 20px;
+					margin-right: 20px;
+					vertical-align: middle;
+				}
+				.icon-chevron-down {
+					display: none;
+				}
+				.icon-chevron-up {
+					color: @primaryHueNormal;
+					display: inline-block;
+				}
 			}
-			i {
-				color: @primaryHueNormal;
-				display: inline-block;
-				font-size: 20px;
-				margin-right: 20px;
-				vertical-align: middle;
-			}
-			.icon-chevron-down {
-				display: none;
-			}
-			.icon-chevron-up {
-				display: inline-block;
-			}
-			&.collapsed {
+		}
+		.responsiveFindThisPartBody {
+			display: none;
+		}
+		&.active {
+			.responsiveFindThisPartHeader {
 				.icon-chevron-down {
 					display: inline-block;
 				}
-
 				.icon-chevron-up {
 					display: none;
 				}
+			}
+			.responsiveFindThisPartBody {
+				display: block;
 			}
 		}
 	}

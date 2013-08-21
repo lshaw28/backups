@@ -13,34 +13,43 @@ var responsiveFindThisPart = Class.extend(function () {
 			// Parameters
 			this.el = $(el);
 			// Events
-			this.bindEvent();
-			this.toggleAccordion();
+			this.bindEvents();
 		},
 		/**
-		 * Toggle accordion functionality based on breakpoint
+		 * Toggle functionality based on breakpoint
 		 * @return {void}
 		 */
-		toggleAccordion: function () {
+		toggleActive: function () {
 			var self = this,
 				isMobile = window.SPDUtils.isMobileBreakpoint();
 
 			if (isMobile === true) {
 				// Set CSS classes
-				// Add data toggle
-			} else {
-				// Set CSS classes
-				// Remove data toggle
+				self.el.removeClass('active');
 			}
+		},
+		/**
+		 * When active, toggles display
+		 */
+		togglePanel: function () {
+			var self = this;
+
+			self.el.toggleClass('active');
 		},
 		/**
 		 * Bind the window resize events
 		 * @return {void}
 		 */
-		bindEvent: function () {
+		bindEvents: function () {
 			var self = this;
 
+			// Ensure panel closes on breakpoint change
 			shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
-				self.toggleAccordion();
+				self.toggleActive();
+			});
+			// Set link to toggle display
+			$('.responsiveFindThisPart_js', self.el).bind('click', function () {
+				self.togglePanel();
 			});
 		}
 	};
