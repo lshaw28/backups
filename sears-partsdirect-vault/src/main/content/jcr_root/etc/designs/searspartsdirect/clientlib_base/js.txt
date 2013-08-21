@@ -35,7 +35,6 @@ category101.js
 collapse101.js
 comments.js
 commonParts.js
-findThisPart.js
 guideNavigation.js
 messageHandler.js
 modelHeader.js

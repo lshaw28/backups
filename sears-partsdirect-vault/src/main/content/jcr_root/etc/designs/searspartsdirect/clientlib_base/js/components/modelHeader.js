@@ -4,7 +4,7 @@ var modelHeader = Class.extend(function() {
 
 	return {
 		/**
-		 * Initializes responsiveFindThisPart class
+		 * Initializes modelHeader class
 		 * @param {object} el Target element
 		 */
 		init : function(el) {

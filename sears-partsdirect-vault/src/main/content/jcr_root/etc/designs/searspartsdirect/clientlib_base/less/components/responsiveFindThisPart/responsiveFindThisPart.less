@@ -7,13 +7,69 @@
 
 	.responsiveFindThisPartHeader {
 		display: none;
+		font-size: @h4Size;
+		padding: 10px 15px;
+
+		a {
+			color: @secondaryHueDark;
+			cursor: pointer;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: none;
+			}
+			i {
+				display: inline-block;
+				font-size: 20px;
+				margin-right: 20px;
+				vertical-align: baseline;
+			}
+			.icon-chevron-down {
+				display: none;
+			}
+			.icon-chevron-up {
+				color: @primaryHueNormal;
+				display: inline-block;
+			}
+		}
 	}
 	.responsiveFindThisPartBody {
 		display: block;
-
-		&.active {
+	}
+	&.active {
+		.responsiveFindThisPartHeader {
+			.icon-chevron-down {
+				display: inline-block;
+			}
+			.icon-chevron-up {
+				display: none;
+			}
+		}
+		.responsiveFindThisPartBody {
 			display: block;
 		}
+	}
+}
+
+.partsRequiredRepair, .categorySymptomDetail {
+	.responsiveFindThisPart {
+		.responsiveFindThisPartHeader {
+			display: block;
+		}
+		.responsiveFindThisPartBody {
+			display: none;
+		}
+		&.active {
+			.responsiveFindThisPartBody {
+				display: block;
+			}
+		}
+	}
+}
+
+.categorySymptomDetail {
+	.responsiveFindThisPart {
+		background-color: @secondaryHueLight;
 	}
 }
 
