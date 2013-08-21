@@ -154,6 +154,26 @@ public class EnvironmentSettings {
 	public static String getCommercialSiteUrl() {
 		return getProperty(PD_COMMERCIAL_URL, Constants.EMPTY);
 	}
+	
+	@Property(label = "SSO Server URL",
+			description = "SSO server url",
+			value = "https://web301p.qa.ch3.s.com:5743/shccas/shcLogin"
+		)
+	public static final String SSO_SERVER_URL = "searspartsdirect.sso.server";
+
+	public static String getSSOServerURL() {
+		return getProperty(SSO_SERVER_URL, Constants.EMPTY);
+	}
+	
+	@Property(label = "PD Security Path",
+			description = "PD Security Path",
+			value = "/partsdirect/j_spring_cas_security_check"
+		)
+	public static final String PD_SECURITY_PATH = "searspartsdirect.pd.security.path";
+
+	public static String getPDSecurityPath() {
+		return getProperty(PD_SECURITY_PATH, Constants.EMPTY);
+	}
 
 	// ---- for testing ----
 	public void externalActivateForTesting(final ComponentContext context) throws Exception {
