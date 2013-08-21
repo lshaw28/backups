@@ -45,6 +45,7 @@ var secureLogin = Class.extend(function () {
 				i = 0,
 				errorMessage = '',
 				divider = '',
+                prevHeight = 0,
 				regulaResponse = regula.validate();
 
 			// Parse the error messages
@@ -58,7 +59,9 @@ var secureLogin = Class.extend(function () {
 
 			// Display errors or submit the form
 			if (errorMessage.length > 0) {
+                prevHeight = $(document.body).height();
 				$('.alert', self.el).removeClass('hidden');
+                self.checkHeight(prevHeight);
 			} else {
 				var serverAddress = window.SPDUtils.getLocationDetails().fullAddress,
 					userName = $('[name=loginId]', self.el).val(),
@@ -113,13 +116,16 @@ var secureLogin = Class.extend(function () {
 			});
 		},
 		resetFields: function () {
-			var self = this;
+			var self = this,
+                prevHeight = 0;
+
+            prevHeight = $(document.body).height();
 
 			$('.alert', self.el).addClass('hidden');
 			$('input[type!="hidden"]', self.el).each(function() {
 				$(this).val('');
 			});
-
+            self.checkHeight(prevHeight);
 		},
 		/**
 		 * Handles a successful callback
@@ -133,7 +139,7 @@ var secureLogin = Class.extend(function () {
 
             if (obj === "") {
                 // that jBoss bug...increment retry counter
-                self.recallServiceTries++;
+                self.recallServiceTries+1;
                 if (self.recallServiceTries <= self.maxRecallServiceTries) {
                     // if less than max, retry call
                     console.log('recallServiceTries: '+self.recallServiceTries+' maxServiceTries:');
@@ -197,8 +203,10 @@ var secureLogin = Class.extend(function () {
 		showUnauthorizedMessage: function () {
 			var self = this,
 				i = 0,
-				errorMessage = 'Unauthorized credentials. Please re-enter.';
+				errorMessage = 'Unauthorized credentials. Please re-enter.',
+                prevHeight = 0;
 
+            prevHeight = $(document.body).height();
 			// Populate the alert field with the errors
 			$('.alert', self.el).html(errorMessage);
 			$('.alert', self.el).removeClass('hidden');
@@ -206,11 +214,14 @@ var secureLogin = Class.extend(function () {
 			$('input[type!="hidden"]', self.el).each(function() {
 				$(this).val('');
 			});
+            self.checkHeight(prevHeight);
 		},
         showServerErrorMsg: function () {
             var self = this,
-                errorMessage = "We're sorry. A server error has occurred. Please wait a moment and retry.";
+                errorMessage = "We're sorry. A server error has occurred. Please wait a moment and retry.",
+                prevHeight = 0;
 
+            prevHeight = $(document.body).height();
             // Populate the alert field with the errors
             $('.alert', self.el).html(errorMessage);
             $('.alert', self.el).removeClass('hidden');
@@ -218,6 +229,7 @@ var secureLogin = Class.extend(function () {
             $('input[type!="hidden"]', self.el).each(function() {
                 $(this).val('');
             });
+            self.checkHeight(prevHeight);
             setTimeout(function(){self.recallServiceTries = 0;}, 3000);
         },
 		/**
@@ -232,6 +244,18 @@ var secureLogin = Class.extend(function () {
 			}
 
 			top.window.postMessage(message, domain);
-		}
+		},
+
+        checkHeight: function (prevHeight) {
+            var self = this,
+                heightDelta = 0;
+
+            heightDelta = $(document.body).height()-prevHeight;
+            console.log("login height delta: "+heightDelta);
+            if (heightDelta != 0) {
+                self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#loginModal' });
+            }
+
+        }
 	};
 }());

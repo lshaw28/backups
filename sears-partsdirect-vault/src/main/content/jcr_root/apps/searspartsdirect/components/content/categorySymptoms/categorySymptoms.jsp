@@ -5,8 +5,8 @@
 <spd:tagsByPage tagType="subcategories"/>
 <c:if test="${fn:length(subcategoriesList) eq 1}"> ${subcategoriesList[0].title} </c:if>
 ${productCategoryRelation.title}
-<cq:text property="text2" placeholder=""/>
-<p><cq:text property="optionalDescription" placeholder=""/></p></h2>
+<cq:text property="text2" placeholder=""/></h2>
+<p><cq:text property="optionalDescription" placeholder=""/></p>
 <c:choose>
 	<c:when test="${productCategoryRelation != null}">
 		<spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryRelation.path}" />
