@@ -139,7 +139,7 @@ var secureLogin = Class.extend(function () {
 
             if (obj === "") {
                 // that jBoss bug...increment retry counter
-                self.recallServiceTries+1;
+                self.recallServiceTries = parseInt(self.recallServiceTries, 10) + 1;
                 if (self.recallServiceTries <= self.maxRecallServiceTries) {
                     // if less than max, retry call
                     console.log('recallServiceTries: '+self.recallServiceTries+' maxServiceTries:');
