@@ -55,7 +55,7 @@ var secureRegister = Class.extend(function () {
             if (errorMessage.length > 0) {
                 prevHeight = $(document.body).height();
                 $('.alert', self.el).removeClass('hidden');
-                heightDelta = prevHeight-$(document.body).height();
+                heightDelta = $(document.body).height()-prevHeight;
                 console.log("height delta: "+heightDelta);
                 self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
             } else {

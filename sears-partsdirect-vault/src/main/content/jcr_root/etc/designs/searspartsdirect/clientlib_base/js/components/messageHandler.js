@@ -35,7 +35,7 @@ var messageHandler = Class.extend(function () {
 					document.location.reload();
 				}
                 if (message.data.heightChange) {
-                    var modal = $(message.data.affectedModal)
+                    var modal = $(message.data.affectedModal);
                     var newHeight = modal.height()-message.data.heightChange+$('iframe', modal).offset().top;
                     $('iframe',modal).addBack().height(newHeight);
 
