@@ -65,6 +65,7 @@ relatedArticles/relatedArticles.less
 relatedGuides/relatedGuides.less
 repairStep/repairStep.less
 responsiveDropdown/responsiveDropdown.less
+responsiveFindThisPart/responsiveFindThisPart.less
 responsiveImage/responsiveImage.less
 responsiveTable/responsiveTable.less
 searchPanel/searchPanel.less

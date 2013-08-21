@@ -111,16 +111,8 @@ public class GetJobCodePartsTag extends CQBaseTag {
 		return jobCodeParts;
 	}
 
-	public List<JobCodeModel> getJobCodes() {
-		return jobCodes;
-	}
-
 	public void setJobCodes(List<JobCodeModel> jobCodes) {
 		this.jobCodes = jobCodes;
-	}
-
-	public String getModelNumber() {
-		return modelNumber;
 	}
 
 	public void setModelNumber(String modelNumber) {

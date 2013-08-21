@@ -42,6 +42,7 @@ modelHeader.js
 modelNumberSearch.js
 recommendedParts.js
 responsiveDropdown.js
+responsiveFindThisPart.js
 responsiveImage.js
 revealPanel.js
 searchPanel.js
