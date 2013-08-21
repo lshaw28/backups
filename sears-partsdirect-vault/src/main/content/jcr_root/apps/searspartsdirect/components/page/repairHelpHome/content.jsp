@@ -20,7 +20,7 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="span4">
-					<cq:include path="responsiveFindThisPart" resourceType="searspartsdirect/components/content/responsiveFindThisPart" />
+					<cq:include path="modelSearch" resourceType="searspartsdirect/components/content/responsiveFindThisPart" />
 				</div>
 			</div>
 			<div class="row-fluid">
