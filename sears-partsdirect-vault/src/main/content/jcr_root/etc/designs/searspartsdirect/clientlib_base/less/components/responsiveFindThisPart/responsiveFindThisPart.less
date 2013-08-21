@@ -1,0 +1,20 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.responsiveFindThisPart {
+	background-color: @secondaryHueLighter;
+	margin: 0 0 10px;
+
+	.responsiveFindThisPartHeader {
+		display: none;
+	}
+	.responsiveFindThisPartBody {
+		display: block;
+
+		&.active {
+			display: block;
+		}
+	}
+}
+
+@import "responsiveFindThisPart.mobile.less";
