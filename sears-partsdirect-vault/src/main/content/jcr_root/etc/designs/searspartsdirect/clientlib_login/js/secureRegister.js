@@ -39,7 +39,6 @@ var secureRegister = Class.extend(function () {
                 errorMessage = '',
                 divider = '',
                 prevHeight = 0,
-                heightDelta = 0,
                 regulaResponse = regula.validate();
 
             // Parse the error messages
@@ -55,9 +54,7 @@ var secureRegister = Class.extend(function () {
             if (errorMessage.length > 0) {
                 prevHeight = $(document.body).height();
                 $('.alert', self.el).removeClass('hidden');
-                heightDelta = $(document.body).height()-prevHeight;
-                console.log("height delta: "+heightDelta);
-                self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
+                self.checkHeight(prevHeight);
             } else {
                 var hostName = window.SPDUtils.getLocationDetails().fullAddress,
                     tempRedirectURL = hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true#'+window.parentDomain;
@@ -120,32 +117,32 @@ var secureRegister = Class.extend(function () {
         },
         bindPassword: function () {
             var self = this,
-                prevHeight = 0,
-                heightDelta = 0;
+                prevHeight = 0;
 
             $('[data-focus]', self.el).bind('focus', function() {
                     prevHeight = $(document.body).height();
                     $('.passwordRules').removeClass('hidden');
-                    heightDelta = prevHeight-$(document.body).height();
-                    console.log("height delta: "+heightDelta);
-                    self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
+                    self.checkHeight(prevHeight);
 
             }).bind('blur', function() {
                     prevHeight = $(document.body).height();
                     $('.passwordRules').addClass('hidden');
-                    heightDelta = prevHeight-$(document.body).height();
-                    console.log("height delta: "+heightDelta);
-                    self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
+                    self.checkHeight(prevHeight);
             });
 
         },
         resetFields: function () {
-            var self = this;
+            var self = this,
+                prevHeight = 0;
+
+            prevHeight = $(document.body).height();
 
             $('.alert', self.el).addClass('hidden');
             $('input[type!="hidden"]', self.el).each(function() {
                 $(this).val('');
             });
+
+            self.checkHeight(prevHeight);
         },
         /**
          * Creates validation object literal
@@ -199,7 +196,6 @@ var secureRegister = Class.extend(function () {
             var self = this,
                 i = 0,
                 prevHeight = 0,
-                heightDelta = 0,
                 errorMessage = 'Unauthorized credentials. Please re-enter.';
 
             prevHeight = $(document.body).height();
@@ -210,9 +206,7 @@ var secureRegister = Class.extend(function () {
             $('input', self.el).each(function() {
                 $(this).val('');
             });
-            heightDelta = prevHeight-$(document.body).height();
-            console.log("height delta: "+heightDelta);
-            self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
+            self.checkHeight(prevHeight);
 
         },
         /**
@@ -227,6 +221,18 @@ var secureRegister = Class.extend(function () {
             }
 
             top.window.postMessage(message, domain);
+        },
+
+        checkHeight: function (prevHeight) {
+            var self = this,
+                heightDelta = 0;
+
+            heightDelta = $(document.body).height()-prevHeight;
+            console.log("register height delta: "+heightDelta);
+            if (heightDelta != 0) {
+                self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
+            }
+
         }
     };
 }());
