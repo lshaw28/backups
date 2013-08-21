@@ -1,53 +1,53 @@
-@import "../../base.variables.less";
-@import "../../base.mixins.less";
+@import "../../clientlib_base/less/base.variables.less";
+@import "../../clientlib_base/less/base.mixins.less";
 
 /* Override Styles For Secure Register Layout */
 body {
-  background: #fff none no-repeat 0% 0%;
+	background: @bodyColor none no-repeat 0% 0%;
 }
 
 h1 {
-  color: @secondaryHueDark;
-  margin-top: 0;
+	color: @secondaryHueDark;
+	margin-top: 0;
 
-  span {
-    font-size: @pSize;
-    font-weight: normal;
-    line-height: 48px;
-  }
+	span {
+		font-size: @pSize;
+		font-weight: normal;
+		line-height: 48px;
+	}
 }
 
 p.headline {
-  color: @secondaryHueDark;
-  font-size: @pSize;
-  display: inline;
+	color: @secondaryHueDark;
+	font-size: @pSize;
+	display: inline;
 }
 
 ul.passwordRules {
-  color: @secondaryHueDark;
-  font-size: @smallPSize;
-  list-style: none;
-  margin: 0 0 10px 0;
-  padding: 0;
+	color: @secondaryHueDark;
+	font-size: @smallPSize;
+	list-style: none;
+	margin: 0 0 10px 0;
+	padding: 0;
 
 
-  li {
-    font-weight:normal;
-  }
+	li {
+		font-weight:normal;
+	}
 }
 
 input[type="text"], input[type="password"] {
-  margin-right: 8px;
-  padding: 8px;
-  width: 96%;
+	margin-right: 8px;
+	padding: 8px;
+	width: 96%;
 }
 
 label.checkbox {
-  font-size: @pSize;
+	font-size: @pSize;
 }
 
 .new-btn {
-  padding: 8px 19px;
+	padding: 8px 19px;
 }
 
 @import "secureRegister.tablet.less";
