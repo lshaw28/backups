@@ -33,6 +33,10 @@ NS('shc.pd.base.widgets').SearchPanelFinder = (function () {
 			this.productTypeSelect = $('.product-type-selection select', parent);
 			this.results = new shc.pd.base.widgets.SearchPanelFinderResult(this.parent);
 
+			// Set initial states
+			$('.search-panel-finder-close-only').show();
+			$('.search-panel-finder-open-only').hide();
+
 			// append selection node
 			this.productTypeSelect.append($('<option value="0">Select</option>'));
 
@@ -94,7 +98,7 @@ NS('shc.pd.base.widgets').SearchPanelFinder = (function () {
 
 			$('.search-panel-finder-close-only').hide();
 			$('.search-panel-finder-open-only').show();
-			$('.search-critera-helper').show();
+			$('.search-criteria-helper').show();
 
 			// animate
 			// @TODO remove hard coded padding properties

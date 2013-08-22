@@ -1,119 +1,107 @@
 @import "../../base.variables.less";
 @import "../../base.mixins.less";
 
-@media (max-width: 480px) {
-    
-    .modelSymptomDetail {
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 25px;
-        padding: 10px;
+@media (max-width: 650px) {
+	.modelSymptomDetail {
+		margin: 25px 10px 0;
+		padding: 10px;
 
-       .csd-border {
-            border: 2px solid @secondaryHueLight;
-            margin: 0 0 15px 0;
-            padding-bottom: 15px;
-            padding-left: 10px;
-            padding-right: 10px;
+	   .categorySymptomBorder {
+			border: 2px solid @secondaryHueLight;
+			margin: 0 0 15px 0;
+			padding-bottom: 15px;
+			padding-left: 10px;
+			padding-right: 10px;
 
-            h3 {
-                color: @secondaryHueDark;
-            }
-            div.span3.csd-image {
-                width: 40%;
-                float: left;
-                margin: 0 10px;
-                border: 1px solid @secondaryHueLight;
-            }
-            .csd-content {
+			h3 {
+				color: @secondaryHueDark;
+			}
+			div.span3.categorySymptomImage {
+				width: 40%;
+				float: left;
+				margin: 0 10px;
+				border: 1px solid @secondaryHueLight;
+			}
+			.categorySymptomContent {
+				a {
+					border-top: 1px solid @secondaryHueLight;
+					padding-top: 10px;
+					padding-left: 15px;
+					padding-right: 15px;
+					line-height: 20px;
+					display: inherit;
+					width: 70%;
+				}
+				&:first-child {
+					border-bottom: 1px solid @secondaryHueLight;
+				}
 
-                a {
-                    border-top: 1px solid @secondaryHueLight;
-                    padding-top: 10px;
-                    padding-left: 15px;
-                    padding-right: 15px;
-                    line-height: 20px;
-                    display: inherit;
-                    width: 70%;
-                }
-                &:first-child {
-                    border-bottom: 1px solid @secondaryHueLight;
-                }
-                
-                a[href]:hover {
-                    text-decoration: none;
-                }
-                
-            }
-            
-        }
-        .shopParts{
-            
-            a {
-                border-top: 1px solid @secondaryHueLight;
-                border-bottom: 1px solid @secondaryHueLight;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                padding-left: 15px;
-                padding-right: 15px;
-                line-height: 41px;
-            }
-            
-            a[href]:hover {
-                text-decoration: none;
-            }
-            
-            
-        }
-        .displayRecommendedParts{
-            display: inline-block;
-            border: 15px solid @secondaryHueLight;
+				a[href]:hover {
+					text-decoration: none;
+				}
+			}
+		}
+		.shopParts {
+			a {
+				border-top: 1px solid @secondaryHueLight;
+				border-bottom: 1px solid @secondaryHueLight;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 15px;
+				padding-right: 15px;
+				line-height: 41px;
+			}
+			a[href]:hover {
+				text-decoration: none;
+			}
+		}
+		.displayRecommendedParts {
+			display: inline-block;
+			border: 15px solid @secondaryHueLight;
 
-            .row-fluid{
-                margin: 0;
-                border-bottom: 1px solid @secondaryHueLight;
-                padding: 15px;
-                .span2 span.partsfrequency{
-                    font-size: @h4Size;
-                    font-weight: bold;
-                }
-                .span8{
-                    width: 90%;
-                    margin-top: 10px;
-                    .addToCartQuantity_js{
-                        width: 20px;
+			.row-fluid {
+				margin: 0;
+				border-bottom: 1px solid @secondaryHueLight;
+				padding: 15px;
 
-                    }
-                    .addToCart_js{
-                        white-space: nowrap;
+				.span2 span.partsfrequency {
+					font-size: @h4Size;
+					font-weight: bold;
+				}
+				.span8 {
+					width: 90%;
+					margin-top: 10px;
+					// # TODO: These classes are for JS use only, hence the frigging names
+					.addToCartQuantity_js {
+						width: 20px;
+					}
+					.addToCart_js {
+						white-space: nowrap;
+					}
+					.span2 {
+						margin-top: 10px;
+					}
+				}
+				.span4 p {
+					color: @highlightHueNormal;
+				}
+				.categorySymptomImage {
+					width: 30%;
+					float: left;
 
-                    }
-                    .span2{
-                        margin-top: 10px;
-                    }
-                }
-                
-                .span4 p{
-                    color: @highlightHueNormal;
-                }
-                .csd-image{
-                    width: 30%;
-                    float: left;
-
-                    img{
-
-					width: 50px;
-                    height: 50px;
-                    }
-                }
-                .span2 p{
-                    font-size: @smallestPSize;
-                }
-                .span2 span.partsfrequency{
-                    font-size: @smallestPSize;
-                    font-weight: bold;
-                }
-            }
-        }
-    }
+					img {
+						width: 50px;
+						height: 50px;
+					}
+				}
+				.span2 p {
+					font-size: @smallestPSize;
+				}
+				.span2 span.partsfrequency {
+					font-size: @smallestPSize;
+					font-weight: bold;
+				}
+			}
+		}
+	}
 }

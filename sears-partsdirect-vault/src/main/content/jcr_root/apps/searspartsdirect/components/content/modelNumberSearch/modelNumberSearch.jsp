@@ -13,7 +13,7 @@
 	</form>
 	<c:set var="linkText"><cq:text property="linkText" placeholder=""/></c:set><%--
 	--%><c:if test="${empty linkText}"><c:set var="linkText">Help me find my model number</c:set></c:if><%--
-	--%><p><a href="#brandBar" class="searchPanelFinder_js"><c:out value="${linkText}" /></a></p>
+	--%><p><a href="#findMyModel" class="searchPanelFinder_js"><c:out value="${linkText}" /></a></p>
 	<p class="display-message">&nbsp;</p>
 </div>
 <div class="modelNumberSearchContent">

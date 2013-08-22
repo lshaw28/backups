@@ -22,15 +22,15 @@
 			}
 		});
         /**
-		 * model section
+		 * modelHeader singleton class setup
 		 */
-		var modelsection = new modelsectionHeader();
+		var newModelHeader = new modelHeader();
         /**
-		 * Comment Section
+		 * commentCheck singleton class setup
 		 */
 		var newCommentCheck = new commentCheck();
 		/**
-		 * Search Panel
+		 * searchPanel singleton class setup
 		 */
 		var mainSearchPanel = new searchPanel();
 		/**
@@ -46,7 +46,7 @@
 			var newRevealPanel = new revealPanel($(this));
 		});
 		/**
-		 * Login Navigation
+		 * Login Navigation toggles
 		 */
 		$('.trigger').bind('click', function () {
 			$('body').toggleClass('loginNav-open');
@@ -57,7 +57,7 @@
 			}
 		});
 		/**
-		 * Cart Navigation
+		 * Cart Navigation toggles
 		 */
 		var newCartNav = new cartNav();
 		$('#cartShop [data-toggle]').bind('click', function () {
@@ -88,7 +88,7 @@
 			window.SPDUtils.checkLink($(this));
 		});
 		/**
-		 * responsiveImage component setup
+		 * responsiveImage class setup
 		 */
 		$('.responsiveImage div[data-desktopimage]').each(function () {
 			var newResponsiveImage = new responsiveImage($(this));
@@ -100,25 +100,25 @@
 			var newResponsiveDropdown = new responsiveDropdown($(this));
 		});
 		/**
-		 * video component setup
+		 * video class setup
 		 */
 		$('.video div[data-youtubeid]').each(function () {
 			var newVideo = new video($(this));
 		});
         /**
-		 * addToCart class component setup
+		 * addToCart class setup
 		 */
 		$('.addToCart_js').each(function () {
 			var newAddToCart = new addToCart($(this), $('.addToCartQuantity_js', $(this).parent().parent()));
 		});
         /**
-		 * guideNavigation component setup
+		 * guideNavigation class setup
 		 */
 		$('.guideNavigation').each(function() {
 			var newGuideNavigation = new guideNavigation($(this));
 		});
         /**
-         * collapse101 component setup
+         * collapse101 class setup
          * NOTE: collapse101 is based on Twitter Bootstrap's
          * collapse component with modifications to make it
          * behave responsively the way Sears UX wanted.
@@ -127,31 +127,31 @@
             var newCollapse101 = new Collapse101($(this));
         });
         /**
-         * category101 component setup
+         * category101 class setup
          */
         $('.category101').each(function() {
             var newCategory101 = new category101($(this));
         });
-        // findThisPart component setup
-        $('.findThisPart').each(function() {
-            var newFindThisPart = new findThisPart($(this));
-        });
-        // commonParts component setup
+		/**
+		 * responsiveFindThisPart class setup
+		 */
+		$('.responsiveFindThisPart').each(function () {
+			var newResponsiveFindThisPart = new responsiveFindThisPart($(this));
+		});
+        // commonParts class setup
         $('.commonParts').each(function() {
             var newCommonParts = new commonParts($(this));
         });
-
-        // recommendedParts component setup
+        // recommendedParts class setup
         $('.recommendedParts').each(function() {
             var newrecommendedParts = new recommendedParts($(this));
         });
-
 		// desktop carousel initialization
 		$('.desktop-carousel').each(function () {
 			var carouselElement = $(this);
 
 			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
-				min: 1024,
+				min: 1025,
 				max: 100000,
 				obj: new shc.pd.base.widgets.DesktopCarousel(carouselElement)
 			}));
@@ -162,14 +162,14 @@
 
 			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
 				min: 1,
-				max: 1023,
+				max: 650,
 				obj: new shc.pd.base.widgets.TouchCarousel(carouselElement)
 			}));
 		});
 		/*
 		 * Responsive table initializer
 		 */
-		shc.pd.base.widgets.ResponsiveTable.init($('table.responsive-table'));
+		shc.pd.base.widgets.ResponsiveTable.init($('table.responsiveTable'));
 		/*
 		 * Search panel finder widget
 		 */

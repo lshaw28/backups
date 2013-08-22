@@ -144,7 +144,7 @@
         	title="SkyScraper Ad"/>
        	<desktop
        		jcr:primaryType="cq:Panel"
-       		title="Desktop Image">
+       		title="160x600 Image">
             <items jcr:primaryType="cq:WidgetCollection">
 		       	<desktopImageTab
 					jcr:primaryType="cq:Widget"
@@ -165,7 +165,7 @@
 		</desktop>
        	<tablet
        		jcr:primaryType="cq:Panel"
-       		title="Tablet Image">
+       		title="768x90 Image">
             <items jcr:primaryType="cq:WidgetCollection">
 				<tabletImageTab
 					jcr:primaryType="cq:Widget"
@@ -186,7 +186,7 @@
 		</tablet>
        	<mobile
        		jcr:primaryType="cq:Panel"
-       		title="Mobile Image">
+       		title="300x50 Image">
             <items jcr:primaryType="cq:WidgetCollection">
 				<mobileImageTab
 					jcr:primaryType="cq:Widget"
@@ -205,6 +205,27 @@
 					xtype="html5smartimage" />
 			</items>
 		</mobile>
+		<square
+       		jcr:primaryType="cq:Panel"
+       		title="300x250 Image">
+            <items jcr:primaryType="cq:WidgetCollection">
+				<squareImageTab
+					jcr:primaryType="cq:Widget"
+					itemId="squareImageTab"
+					cropParameter="./jcr:content/squareImage/imageCrop"
+					ddGroups="[media]"
+					fileNameParameter="./jcr:content/squareImage/fileName"
+					fileReferenceParameter="./jcr:content/squareImage/fileReference"
+					blankText="An image is required"
+					name="./jcr:content/squareImage/file"
+					requestSuffix="/jcr:content/squareImage.img.png"
+					rotateParameter="./jcr:content/squareImage/imageRotate"
+					sizeLimit="100"
+					uploadUrl="/tmp/upload/*"
+		            height="400"
+					xtype="html5smartimage" />
+			</items>
+		</square>
        	<linkTab
 			jcr:primaryType="cq:Widget"
 			title="Image Link"
@@ -277,6 +298,12 @@
 					jcr:primaryType="cq:Widget"
 					ignoreData="{Boolean}true"
 					name="./jcr:content/mobileImage/sling:resourceType"
+					value="foundation/components/image"
+					xtype="hidden" />
+				<squareResType
+					jcr:primaryType="cq:Widget"
+					ignoreData="{Boolean}true"
+					name="./jcr:content/squareImage/sling:resourceType"
 					value="foundation/components/image"
 					xtype="hidden" />
 				<caption jcr:primaryType="cq:Widget"

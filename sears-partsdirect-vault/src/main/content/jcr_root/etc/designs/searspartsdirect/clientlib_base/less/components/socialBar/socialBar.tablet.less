@@ -1,8 +1,10 @@
-@media (max-width: 767px) {
-	.socialBar-item-email {
-		display: block;
-	}
-	.socialBar-item-print {
-		display: none;
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+@media (max-width: 768px) {
+	.socialBar {
+		.addthis_button_print {
+			display: none;
+		}
 	}
 }

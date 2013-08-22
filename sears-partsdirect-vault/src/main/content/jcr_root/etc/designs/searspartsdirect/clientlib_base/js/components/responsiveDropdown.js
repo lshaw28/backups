@@ -22,10 +22,12 @@ var responsiveDropdown = Class.extend(function () {
 			this.link = false;
 			this.navigate = false;
 			this.display = false;
+			this.guid = window.SPDUtils.getGUID();
 			// Retrieve data
 			this.setProperties();
 			// Render
 			this.render();
+			this.bindEvent();
 		},
 		/**
 		 * Retrieves data from attributes
@@ -37,6 +39,9 @@ var responsiveDropdown = Class.extend(function () {
 
 			// Kill multiple selections
 			self.el.removeAttr('multiple');
+			// Set up GUID for iOS detection
+			self.el.data('guid', self.guid);
+			window['rD' + self.guid];
 			// Set button class
 			if (su.validString(self.el.data('buttonclass')) !== '') {
 				self.buttonClass = self.el.data('buttonclass');
@@ -153,28 +158,43 @@ var responsiveDropdown = Class.extend(function () {
 		 * @return {void}
 		 */
 		handleButton: function () {
-			var self = this;
-			self.el.focus();
-			self.dropdownItems.toggleClass('active');
+			var self = this,
+				isMobile = window.SPDUtils.isMobileBreakpoint();
+
+			if (isMobile) {
+				self.el.focus();
+			} else {
+				self.dropdownItems.toggleClass('active');
+			}
 		},
 		/**
 		 * Make a selection
 		 * @param {object} val Selected value
 		 * * @param {object} text Selected text
-		 * @param {boolean} sel Optional boolean to denote that the select made the call
 		 * @return {void}
 		 */
-		selectValue: function (val, text, sel) {
+		selectValue: function (val, text) {
 			var self = this,
+				isMobile = window.SPDUtils.isMobileBreakpoint(),
 				valStripped = val.replace('#', ''),
-				scrollPos = 0;
+				scrollPos = 0,
+				targetEl = null;
 
 			// Make sure the anchor exists
 			try {
-				scrollPos = $('a[name="' + valStripped + '"]')[0].offsetTop;
+				targetEl = $('a[name="' + valStripped + '"]');
+				scrollPos = targetEl.offset().top;
 			} catch (e) {
+				console.log(e);
 			}
-
+			// Navigate
+			if (self.navigate === true || val.indexOf('#') > -1) {
+				window.scrollTo(0, parseInt(scrollPos - self.button[0].offsetHeight, 10));
+			}
+			// Hyperlink
+			if (self.link === true) {
+				document.location.href = val;
+			}
 			// Update the Bootstrap dropdown items
 			$('li', self.dropdownItems).removeClass('selected');
 			$('li[data-value="' + val + '"]', self.dropdownItems).addClass('selected');
@@ -189,26 +209,18 @@ var responsiveDropdown = Class.extend(function () {
 			if (self.display === true && text !== '') {
 				self.button.html(text +  '<i class="icon-chevron-sign-down">&nbsp;</i>');
 			}
-			// Hyperlink
-			if (self.link === true) {
-				document.location.href = val;
-			}
-			// Navigate
-			if (self.navigate === true) {
-				window.scrollTo(scrollPos - self.button.height());
-			}
-
 			// Close the dropdown
 			self.dropdownItems.removeClass('active');
 		},
 		bindEvent: function () {
 			var self = this;
 
-			self.el.one('blur change', function () {
-				var val = $('option:selected', self.el).attr('value'),
-					text = $('option:selected', self.el).text();
-				self.selectValue(val, text, true);
-			}).bind('focus', function () {
+			self.el.one('blur change select submit selection inputchange mouseup touchend', function (e) {
+				var selection = e.currentTarget,
+					val = $(selection.options[selection.selectedIndex]).attr('value'),
+					text = $(selection.options[selection.selectedIndex]).text();
+
+				self.selectValue(val, text);
 			});
 		}
 	};

@@ -1,7 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-
 <spd:requiredParts/>
-
 <h3><cq:text property="partsRequiredTitle" placeholder="Parts Required:" default="Parts Required:"/></h3>
 <ul>
 <c:forEach var="part" items="${parts}">
@@ -16,8 +14,7 @@
 	</c:choose>
 </c:forEach>
 </ul>
-
-<c:set var="showSearchComponent" ><cq:text property="showSearch" /></c:set>
+<c:set var="showSearchComponent"><cq:text property="showSearch" /></c:set>
 <c:if test="${showSearchComponent}">
-	<cq:include path="modelNumberSearch" resourceType="searspartsdirect/components/content/modelNumberSearch" />
+	<cq:include path="modelSearch" resourceType="searspartsdirect/components/content/responsiveFindThisPart" />
 </c:if>

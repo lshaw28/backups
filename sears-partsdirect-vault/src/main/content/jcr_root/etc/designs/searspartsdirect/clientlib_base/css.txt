@@ -39,7 +39,6 @@ displayRecommendedParts/displayRecommendedParts.less
 errorCodeChecker/errorCodeChecker.less
 errorCodeTable/errorCodeTable.less
 errorCodesList/errorCodesList.less
-findThisPart/findThisPart.less
 globalHeader/globalHeader.less
 globalFooter/globalFooter.less
 guideListing-listing/guideListing-listing.less
@@ -65,8 +64,9 @@ relatedArticles/relatedArticles.less
 relatedGuides/relatedGuides.less
 repairStep/repairStep.less
 responsiveDropdown/responsiveDropdown.less
+responsiveFindThisPart/responsiveFindThisPart.less
 responsiveImage/responsiveImage.less
-responsive-table/responsive-table.less
+responsiveTable/responsiveTable.less
 searchPanel/searchPanel.less
 search-panel-finder/search-panel-finder.less
 skyscraperAd/skyscraperAd.less

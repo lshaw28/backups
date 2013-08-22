@@ -1,72 +1,68 @@
 @import "../../base.variables.less";
 @import "../../base.mixins.less";
 
-.relatedGuides{
-    .carousel-wrapper{
-        .carousel-list-wrapper{
-            .carousel-item {
-                float: left;
-                width: 25%;
-		    margin-bottom: 20px;
-            }
-            
-            .wrapperGuide {
-                position: relative;
-                min-height: 140px;
-                
-            }
-            
-            .image-wrapper {
-                height: auto;
-		    	min-height:160px;
-                width: 170px;
-                overflow: hidden;
-                position: absolute;
-                left: 0;
-                top: 0;
-                background: @secondaryHueLight;
-                
-                .image {
-                    max-height: 90px;
-                    overflow: hidden;
-                    border-bottom: solid 2px @bodyColor;
-                }
-                
-            }
-            
-            .wrench-symbol {
-                position: absolute;
-                width: 28px;
-                height: 28px;
-                top: 75px;
-                line-height: 24px;
-                left: 45%;
-                margin-left: -9px;
-                border: solid 2px @bodyColor;
-                
-                i {
-                    font-size: 12px;
-                    .flipHorizontally();
-                }
-            }
-            .guideURL{
-                position: relative;
-                display: block;
-                text-align: center;
-                margin: 10px;
-                a{
-                    text-decoration: none;
-                    
-                }
-                &:hover{
-                    text-decoration: none;
-                }
-            }
-        }
-    }
- .new-btn-small {
-		padding: 10px 15px;
-    }
+.relatedGuides {
+	.carousel-wrapper {
+		.carousel-list-wrapper {
+			.carousel-item {
+				margin-bottom: 20px;
+
+				.wrapperGuide {
+					height: 180px;
+					position: relative;
+					width: 100%;
+				}
+				.image-wrapper {
+					background-color: @secondaryHueLight;
+					height: 100%;
+					left: 0;
+					overflow: hidden;
+					position: absolute;
+					top: 0;
+					width: 100%;
+
+					.image {
+						border-bottom: solid 2px @bodyColor;
+						height: 110px;
+						overflow: hidden;
+
+						img {
+							width: 100%;
+						}
+					}
+				}
+				.wrench-symbol {
+					border: solid 2px @bodyColor;
+					height: 28px;
+					left: 45%;
+					line-height: 24px;
+					margin-left: -9px;
+					position: absolute;
+					top: 95px;
+					width: 28px;
+
+					i {
+						font-size: @smallPSize;
+						.flipHorizontally();
+					}
+				}
+				.guideURL {
+					display: block;
+					margin: 10px;
+					padding: 5px 0;
+					position: relative;
+					text-align: center;
+
+					a {
+						&:hover {
+							text-decoration: none;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 @import "relatedGuides.tablet.less";
+@import "relatedGuides.mobile.less";

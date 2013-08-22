@@ -25,15 +25,15 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 			// container reference
 			this.parent = parent;
 			// UI that handles going from model brand search and product output
-			this.$paneManager = $('.search-critera-pane-manager', this.parent);
+			this.$paneManager = $('.search-criteria-pane-manager', this.parent);
 			// UI that contains the product search
-			this.$productOutput = $('.search-critera-output', this.parent);
+			this.$productOutput = $('.search-criteria-output', this.parent);
 			// UI that contains both the 3 images and model helper search
-			this.$modelHelper = $('.search-critera-helper', this.parent);
+			this.$modelHelper = $('.search-criteria-helper', this.parent);
 			// UI that handles the final dropdown
-			this.$modelHelperSearch = $('.search-critera-plate-finder', this.parent);
+			this.$modelHelperSearch = $('.search-criteria-plate-finder', this.parent);
 			// UI that outputs model numbers
-			this.$modelNumbersResult = $('.search-critera-plate-output', this.parent);
+			this.$modelNumbersResult = $('.search-criteria-plate-output', this.parent);
 			// brand selector
 			this.$modelHelperBrandSelect = $('select', this.$modelHelperSearch);
 			// bind manager anchor links
