@@ -1,0 +1,29 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+@media (max-width: 768px) {
+    .categorySymptoms {
+        margin: 10px 0;
+        
+        .row-fluid {
+            margin-left: 30px;
+            width: 95%;
+            
+            .span6 {
+                a {
+                    border-top: 2px solid @secondaryHueLight;
+                    display: block;
+                    margin-top: -2px;
+                    padding: 10px 15px;
+                }
+            }
+            &.last {
+                .span6 {
+                    a {
+                        border-bottom: 2px solid @secondaryHueLight;
+                    }
+                }
+            }
+        }
+    }
+}
