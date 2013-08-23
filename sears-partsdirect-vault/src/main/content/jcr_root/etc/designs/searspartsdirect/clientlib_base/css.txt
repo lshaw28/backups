@@ -15,7 +15,6 @@ core.svgIcons.less
 
 #base=less/components/.
 accordionItem/accordionItem.less
-articleComments/articleComments.less
 authorArticle/authorArticles.less
 authorDetails/authorDetails.less
 authorDisplay/authorDisplay.less
