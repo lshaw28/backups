@@ -37,12 +37,15 @@ var messageHandler = Class.extend(function () {
                 if (message.data.heightChange) {
 
                     var modal = $(message.data.affectedModal);
-                    console.log('modal height:'+modal.height());
-                    var newHeight = (modal.height()+message.data.heightChange)-$('iframe', modal).offset().top;
-                    console.log('new height:'+newHeight);
-                    //$('iframe',modal).addBack().height(newHeight);
-                    $('iframe',modal).height(newHeight);
-                    modal.height(newHeight);
+                    var iFrame = $('iframe', modal);
+                    console.log('iFrame height: '+iFrame.height());
+                    console.log('modal height: '+modal.height());
+                    var newIFrameHeight = (modal.height()+message.data.heightChange)-iFrame.offset().top;
+                    var newModalHeight = modal.height()+message.data.heightChange;
+                    console.log('new iFrame height: '+newIFrameHeight);
+                    console.log('new modal height: '+newModalHeight);
+                    iFrame.height(newIFrameHeight);
+                    modal.height(newModalHeight);
                 }
 			}
 		}
