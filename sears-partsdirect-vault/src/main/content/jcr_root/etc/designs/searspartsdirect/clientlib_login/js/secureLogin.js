@@ -135,9 +135,8 @@ var secureLogin = Class.extend(function () {
 			if (obj === "") {
 				// that jBoss bug...increment retry counter
 				self.recallServiceTries = parseInt(self.recallServiceTries, 10) + 1;
+
 				if (self.recallServiceTries <= self.maxRecallServiceTries) {
-					// if less than max, retry call
-					// console.log('recallServiceTries: '+self.recallServiceTries+' maxServiceTries:');
 					self.validate();
 				} else {
 					// else, show server error msg
@@ -166,8 +165,7 @@ var secureLogin = Class.extend(function () {
 			}
 		},
 		failCallback: function (errors) {
-			// this ajax call should never fail
-			// console.log("there were some errors: "+errors);
+			// Not needed
 		},
 		prepareLogin: function(username, prepareLoginURL) {
 			var self = this,
@@ -236,10 +234,8 @@ var secureLogin = Class.extend(function () {
 		},
 		checkHeight: function (prevHeight) {
 			var self = this,
-				heightDelta = 0;
+				heightDelta = $(document.body).height() - prevHeight;
 
-			heightDelta = $(document.body).height()-prevHeight;
-			// console.log("login height delta: "+heightDelta);
 			if (heightDelta != 0) {
 				self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#loginModal' });
 			}

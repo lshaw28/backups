@@ -35,15 +35,11 @@ var messageHandler = Class.extend(function () {
 					document.location.reload();
 				}
                 if (message.data.heightChange) {
+                    var modal = $(message.data.affectedModal),
+						iFrame = $('iframe', modal),
+						newIFrameHeight = (modal.height()+message.data.heightChange)-iFrame.offset().top,
+						newModalHeight = modal.height()+message.data.heightChange;
 
-                    var modal = $(message.data.affectedModal);
-                    var iFrame = $('iframe', modal);
-                    console.log('iFrame height: '+iFrame.height());
-                    console.log('modal height: '+modal.height());
-                    var newIFrameHeight = (modal.height()+message.data.heightChange)-iFrame.offset().top;
-                    var newModalHeight = modal.height()+message.data.heightChange;
-                    console.log('new iFrame height: '+newIFrameHeight);
-                    console.log('new modal height: '+newModalHeight);
                     iFrame.height(newIFrameHeight);
                     modal.height(newModalHeight);
                 }

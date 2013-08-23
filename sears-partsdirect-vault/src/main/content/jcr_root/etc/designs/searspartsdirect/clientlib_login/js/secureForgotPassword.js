@@ -51,7 +51,6 @@ var secureForgotPassword = Class.extend(function () {
 				$('.alert', self.el).removeClass('hidden');
 			} else {
 				var userName = $('#fldEmail', self.el).val();
-				//var forgotPasswordService = 'https://www.searspartsdirect.com/partsdirect/ssoForgotPasswordEmailModal.action';
 				var forgotPasswordService = mainSitePathSecure + '/partsdirect/ssoForgotPasswordEmailModal.action?modal=true&forgotResponse=?';
 
 				self.submitForgotPassword( userName, forgotPasswordService);
@@ -120,7 +119,6 @@ var secureForgotPassword = Class.extend(function () {
 			commericalURL = "partscommercialvip.qa.ch3.s.com";
 
 			function forgotResponse(data, textStatus, jqXHR) {
-				// console.log(data);
 				switch (data.Status) {
 					case "success":
 						self.showSuccess();
