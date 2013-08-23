@@ -18,15 +18,17 @@ public class GetImagePathTag extends CQBaseTag {
 	public static final String DESKTOP_IMAGE = Constants.ident("desktopImage");
 	public static final String TABLET_IMAGE = Constants.ident("tabletImage");
 	public static final String MOBILE_IMAGE = Constants.ident("mobileImage");
+	public static final String SQUARE_IMAGE = Constants.ident("squareImage");
 
 	private String resourcePath = null;
-	
+
 	@Override
 	public int doStartTag() throws JspException {
 		log.info("GetImagePathTag Start");
 		String desktopImage = "";
 		String tabletImage = "";
 		String mobileImage = "";
+		String squareImage = "";
 
 		Resource resource = this.resource;
 		if (resourcePath != null) {
@@ -40,7 +42,7 @@ public class GetImagePathTag extends CQBaseTag {
 			pageContext.setAttribute("imageCaption",  propOrEmpty(resourceNode,"imageCaption"));
 			pageContext.setAttribute("photoCredit",  propOrEmpty(resourceNode,"photoCredit"));
 		}
-		
+
 		try {
 			Image desktopImageObj = new Image(resource, DESKTOP_IMAGE);
 			if (desktopImageObj != null && desktopImageObj.getHref() != null) {
@@ -64,6 +66,14 @@ public class GetImagePathTag extends CQBaseTag {
 			}
 		} catch (Exception mobileEx) {
 			log.debug("Mobile image error:", mobileEx);
+		}
+		try {
+			Image squareImageObj = new Image(resource, SQUARE_IMAGE);
+			if (squareImageObj != null && squareImageObj.getHref() != null) {
+				squareImage = repairHref(squareImageObj.getHref(), SQUARE_IMAGE);
+			}
+		} catch (Exception squareEx) {
+			log.debug("Square image error:", squareEx);
 		}
 
 		pageContext.setAttribute(DESKTOP_IMAGE, desktopImage);
@@ -93,11 +103,11 @@ public class GetImagePathTag extends CQBaseTag {
 
 		return newPath;
 	}
-	
+
 	public void setResourcePath(String resourcePath) {
 		this.resourcePath  = resourcePath;
 	}
-	
+
 	private String propOrEmpty(Node node, String property) {
 		String propValue = Constants.EMPTY;
 		try {
@@ -109,7 +119,7 @@ public class GetImagePathTag extends CQBaseTag {
 			}
 		} catch (Exception e) {
 			log.warn("Retrieving "+property+" from "+node, e);
-		} 
+		}
 		return propValue;
 	}
 }

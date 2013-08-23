@@ -1,33 +1,41 @@
-@import "../../base.variables.less";
-@import "../../base.mixins.less";
+@import "../../clientlib_base/less/base.variables.less";
+@import "../../clientlib_base/less/base.mixins.less";
 
 /* Override Styles For Secure Login Layout */
 body {
-	background: #fff none no-repeat 0% 0%;
+	background: @bodyColor none no-repeat 0% 0%;
 }
 
 h1 {
-  color: @secondaryHueDark;
-  margin-top: 0;
+	color: @secondaryHueDark;
+	margin-top: 0;
 
-  span {
-    font-size: @pSize;
-    font-weight: normal;
-    line-height: 48px;
-  }
+	span {
+		font-size: @pSize;
+		font-weight: normal;
+		line-height: 48px;
+	}
+}
+
+icon-spinner {
+	display: block;
+	left:50%;
+	position: absolute;
+	top:50%;
 }
 
 input[type="text"], input[type="password"] {
-  margin-right: 8px;
-  width: 94%;
+	margin-right: 8px;
+	padding: 8px;
+	width: 96%;
 }
 
 label.checkbox {
-  font-size: @pSize;
+	font-size: @pSize;
 }
 
 .new-btn {
-  padding: 8px 19px;
+	padding: 8px 19px;
 }
 
 @import "secureLogin.tablet.less";

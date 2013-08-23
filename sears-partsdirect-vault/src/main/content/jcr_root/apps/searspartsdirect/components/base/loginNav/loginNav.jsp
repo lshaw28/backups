@@ -4,7 +4,7 @@
 	<li>
 		<c:choose>
 			<c:when test="${loggedIn}">
-				Hello, <strong><c:out value="${firstName} "/></strong>&nbsp;&nbsp;&nbsp;<a href="${mainSitePath}/partsdirect/myprofile/logout.action">Logout</a>
+				Hello, <strong><c:out value="${firstName} "/></strong><a href="${mainSitePath}/partsdirect/myprofile/logout.action">Logout</a>
 			</c:when>
 			<c:otherwise>
 				<a data-toggle="modal" data-target="#loginModal">Login</a>

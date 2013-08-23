@@ -38,6 +38,7 @@ var secureRegister = Class.extend(function () {
                 i = 0,
                 errorMessage = '',
                 divider = '',
+                prevHeight = 0,
                 regulaResponse = regula.validate();
 
             // Parse the error messages
@@ -51,8 +52,9 @@ var secureRegister = Class.extend(function () {
 
             // Display errors or submit the form
             if (errorMessage.length > 0) {
+                prevHeight = $(document.body).height();
                 $('.alert', self.el).removeClass('hidden');
-                console.log("my height is: "+window.height);
+                self.checkHeight(prevHeight);
             } else {
                 var hostName = window.SPDUtils.getLocationDetails().fullAddress,
                     tempRedirectURL = hostName+'content/searspartsdirect/en/login_form.html?authSuccessURL=true#'+window.parentDomain;
@@ -114,20 +116,33 @@ var secureRegister = Class.extend(function () {
             });
         },
         bindPassword: function () {
+            var self = this,
+                prevHeight = 0;
+
             $('[data-focus]', self.el).bind('focus', function() {
+                    prevHeight = $(document.body).height();
                     $('.passwordRules').removeClass('hidden');
+                    self.checkHeight(prevHeight);
+
             }).bind('blur', function() {
+                    prevHeight = $(document.body).height();
                     $('.passwordRules').addClass('hidden');
+                    self.checkHeight(prevHeight);
             });
 
         },
         resetFields: function () {
-            var self = this;
+            var self = this,
+                prevHeight = 0;
+
+            prevHeight = $(document.body).height();
 
             $('.alert', self.el).addClass('hidden');
             $('input[type!="hidden"]', self.el).each(function() {
                 $(this).val('');
             });
+
+            self.checkHeight(prevHeight);
         },
         /**
          * Creates validation object literal
@@ -180,8 +195,10 @@ var secureRegister = Class.extend(function () {
         showUnauthorizedMessage: function () {
             var self = this,
                 i = 0,
+                prevHeight = 0,
                 errorMessage = 'Unauthorized credentials. Please re-enter.';
 
+            prevHeight = $(document.body).height();
             // Populate the alert field with the errors
             $('.alert', self.el).html(errorMessage);
             $('.alert', self.el).removeClass('hidden');
@@ -189,7 +206,8 @@ var secureRegister = Class.extend(function () {
             $('input', self.el).each(function() {
                 $(this).val('');
             });
-            console.log("my height is: "+window.height);
+            self.checkHeight(prevHeight);
+
         },
         /**
          * Posts a message to the parent page via JavaScript
@@ -203,6 +221,18 @@ var secureRegister = Class.extend(function () {
             }
 
             top.window.postMessage(message, domain);
+        },
+
+        checkHeight: function (prevHeight) {
+            var self = this,
+                heightDelta = 0;
+
+            heightDelta = $(document.body).height()-prevHeight;
+            console.log("register height delta: "+heightDelta);
+            if (heightDelta != 0) {
+                self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
+            }
+
         }
     };
 }());

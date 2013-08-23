@@ -108,6 +108,7 @@ var addToCart = Class.extend(function () {
 		 */
 		handleResponse: function (data) {
 			var self = this,
+				su = window.SPDUtils,
 				i = 0,
 				itemCount = 0;
 
@@ -117,10 +118,11 @@ var addToCart = Class.extend(function () {
 			// Handle items
 			if (data.cartParts.length > 0) {
 				// Set visibility of elements
-				for (i = 0; i < self.cartItems.length; i = i + 1) {
-					self.cartItems[i].removeClass('inactive').addClass('active');
-				}
-				self.cartEmpty.removeClass('active').addClass('inactive');
+				self.cartItems.header.removeClass('inactive');
+				self.cartItems.checkOut.removeClass('inactive');
+				self.cartItems.totals.removeClass('inactive');
+				self.cartItems.view.removeClass('inactive');
+				self.cartEmpty.addClass('inactive');
 				// Remove current items - ensures quantity changes are reflected
 				$('#cartShop .cart-item').remove();
 
@@ -134,15 +136,20 @@ var addToCart = Class.extend(function () {
 				self.cartItems.countBadge.text(itemCount);
 			} else {
 				// Set visibility of elements
-				for (i = 0; i < self.cartItems.length; i = i + 1) {
-					self.cartItems[i].removeClass('active').addClass('inactive');
-				}
-				self.cartEmpty.removeClass('inactive').addClass('active');
+				self.cartItems.header.addClass('inactive');
+				self.cartItems.checkOut.addClass('inactive');
+				self.cartItems.totals.addClass('inactive');
+				self.cartItems.view.addClass('inactive');
+				self.cartEmpty.removeClass('inactive');
 
 				// Set total item count
 				self.cartItems.count.text('0');
 				self.cartItems.countBadge.text('0');
 			}
+
+			// Set cookies
+			su.setCookie('cid', cartId, 1000);
+			su.setCookie('cartSize', itemCount, 1000);
 		},
 		/**
 		 * Render a shopping cart item and insert it in the drop down

@@ -1,35 +1,29 @@
-
 /*global window:true, $:true, Class:true, mainSitePath:true */
-var modelsectionHeader = Class.extend(function() {
+var modelHeader = Class.extend(function() {
 	"use strict";
 
 	return {
 		/**
-		 * model section
-		 * 
-		 * init: On page load events to fire
+		 * Initializes modelHeader class
+		 * @param {object} el Target element
 		 */
-		init : function() {
-
-
-			this.modelSection();
-
-
+		init : function(el) {
+			// Parameters
+			this.el = el;
+			// Events
+			this.bindEvent();
 		},
 		/**
 		 * toggle model section
-		 * 
+		 *
 		 * @return {void}
 		 */
-		modelSection : function() {
-            $('.modelInfo').click(function() {
-              $(".icon-chevron-up").toggleClass("icon-chevron-down");
-              $('#modelSection').slideToggle(function() {
-
-
-              });
-            });
-
+		bindEvent : function() {
+			$('.modelInfo').click(function() {
+				$(".icon-chevron-up").toggleClass("icon-chevron-down");
+				$('#modelSection').slideToggle(function() {
+				});
+			});
 		}
 	}
 }());

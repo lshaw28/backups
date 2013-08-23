@@ -6,8 +6,8 @@
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#parent_${uniqueId}" href="#${uniqueId}">
-				<i class="icon-minus"></i>
-				<i class="icon-plus"></i>
+				<i class="icon-chevron-down">&nbsp;</i>
+				<i class="icon-chevron-up">&nbsp;</i>
 				<cq:text property="accordionHeader" placeholder="Accordion header goes here"/>
 			</a>
 		</div>

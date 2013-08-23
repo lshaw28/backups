@@ -3,8 +3,7 @@
 
 // # Base Styles
 .modelNumberSearch {
-	background-color: @secondaryHueLighter;
-	padding: 10px;
+	padding: 5px 15px;
 
 	p {
 		font-size: @smallPSize;
@@ -34,61 +33,32 @@
 		display: none;
 	}
 }
-
-// # Find This Part Overrides
-.findThisPart {
+// # Find This Part Component Overrides
+.categorySymptomDetail {
 	.modelNumberSearch {
-		background-color: @secondaryHueLight;
-		padding: 0px;
-
-		.modelNumberSearchIntro, .modelNumberSearchInputs, .modelNumberSearchContent {
+		.modelNumberSearchIntro, .modelNumberSearchInputs {
 			display: inline-block;
+			float: none;
 			margin-left: 2.564102564102564%;
 			*margin-left: 2.5109110747408616%;
 			min-height: 30px;
 			vertical-align: top;
+			width: 47.717948717948715%;
+			*width: 47.664757228587014%;
 		}
 		.modelNumberSearchIntro {
 			margin-left: 0;
-			width: 23.076923076923077%;
-			*width: 23.023731587561375%;
-		}
-		.modelNumberSearchInputs {
-			width: 40.17094017094017%;
-			*width: 40.11774868157847%;
-		}
-		.modelNumberSearchContent {
-			width: 23.076923076923077%;
-			*width: 23.023731587561375%;
 		}
 	}
 }
-
 // # Category Template Overrides
 .categorySearch {
 	.modelNumberSearch {
 		background-color: @bodyColor;
 
-		input[type="text"] {
-			background-color: @secondaryHueLighter;
-		}
-		span.add-on{
-			background-color: @secondaryHueLighter;
-		}
-
-		.modelNumberSearchIntro, .modelNumberSearchInputs, .modelNumberSearchContent {
+		.modelNumberSearchIntro, .modelNumberSearchInputs {
 			display: inline-block;
-		}
-		.modelNumberSearchIntro {
 			width: 100%;
-		}
-		.modelNumberSearchInputs {
-			width: 48.717948717948715%;
-			*width: 48.664757228587014%;
-		}
-		.modelNumberSearchContent {
-			width: 48.717948717948715%;
-			*width: 48.664757228587014%;
 		}
 	}
 }

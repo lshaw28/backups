@@ -1,5 +1,4 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<cq:include path="browseGlossary" resourceType="searspartsdirect/components/content/browseGlossary" />
 <spd:getUrlRelation relationType="productCategory" />
 <spd:getCommonParts categoryPath="${productCategoryRelation.path}"/>
 <spd:uniqueID />
@@ -43,14 +42,14 @@
 			<div class="accordion-group">
 				<div class="accordion-heading">
 					<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#parent_${uniqueId}${uniquer}" href="#${uniqueId}${uniquer}">Shop for
-							<c:choose>
-								<c:when test="${not empty commonPart.pluralTitle}">
-									<c:out value="${fn:toLowerCase(commonPart.pluralTitle)}"/>
-								</c:when>
-								<c:otherwise>
-									<c:out value="${fn:toLowerCase(commonPart.title)}"/>
-								</c:otherwise>
-							</c:choose> <i class="icon-chevron-up"></i><i class="icon-chevron-down"></i>
+						<c:choose>
+							<c:when test="${not empty commonPart.pluralTitle}">
+								<c:out value="${fn:toLowerCase(commonPart.pluralTitle)}"/>
+							</c:when>
+							<c:otherwise>
+								<c:out value="${fn:toLowerCase(commonPart.title)}"/>
+							</c:otherwise>
+						</c:choose> <i class="icon-chevron-up"></i><i class="icon-chevron-down"></i>
 					</a>
 				</div>
 				<div id="${uniqueId}${uniquer}" class="accordion-body in collapse">
