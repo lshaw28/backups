@@ -25,10 +25,6 @@
 		 * modelHeader singleton class setup
 		 */
 		var newModelHeader = new modelHeader();
-        /**
-		 * commentCheck singleton class setup
-		 */
-		var newCommentCheck = new commentCheck();
 		/**
 		 * searchPanel singleton class setup
 		 */
