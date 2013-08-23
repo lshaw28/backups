@@ -1,19 +1,12 @@
-@media (max-width: 767px) {
-  .categorySymptomDetail {
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
 
-	margin-left: 0px;
-	margin-right: 0px;
-
-	.csd-border {
-	  .csd-image {
-		border: 2px solid @secondaryHueLight;
-		margin-right: 10px;
-		max-width: 33%;
-		float: left;
-	  }
-
+@media (max-width: 768px) {
+	.categorySymptomDetail {
+		.categorySymptomBorder {
+			.categorySymptomGuides {
+				display: block;
+			}
+		}
 	}
-
-
-  }
 }

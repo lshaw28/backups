@@ -1,0 +1,18 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+@media(max-width: 650px) {
+	.responsiveFindThisPart {
+		.responsiveFindThisPartHeader {
+			display: block;
+		}
+		.responsiveFindThisPartBody {
+			display: none;
+		}
+		&.active {
+			.responsiveFindThisPartBody {
+				display: block;
+			}
+		}
+	}
+}

@@ -1,9 +1,12 @@
 @media (max-width: 650px) {
 	.socialBar {
 		.socialBarIcons {
+			clear: none;
+			float: left;
 			height: 46px;
 			overflow: visible;
 			position: relative;
+			width: 120px;
 			z-index: 999999;
 
 			.socialBarIconsInner {
@@ -15,6 +18,7 @@
 
 				&.active {
 					height: auto;
+					width: 278px;
 				}
 				a {
 					width: 100%;
@@ -28,6 +32,8 @@
 		}
 		.addthis_button_pdfmyurl {
 			border-left: 0 !important;
+			clear: none;
+			float: left;
 
 			[class*="icon-"], [class^=" icon-"], [class*="svg-icon-"], [class^=" svg-icon-"] {
 				margin-right: 10px;

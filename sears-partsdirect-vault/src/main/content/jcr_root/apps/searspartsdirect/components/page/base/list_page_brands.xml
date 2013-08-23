@@ -61,6 +61,10 @@
         jcr:primaryType="nt:unstructured"
         text="Kenmore Pro"
         value="svg-icon-kenmore-pro"/>
+	<iconLG
+        jcr:primaryType="nt:unstructured"
+        text="LG"
+        value="svg-icon-lg"/>
 	<iconMaytag
         jcr:primaryType="nt:unstructured"
         text="Maytag"

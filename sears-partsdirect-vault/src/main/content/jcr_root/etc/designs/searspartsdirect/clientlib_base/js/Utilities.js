@@ -182,6 +182,27 @@
 			var su = window.SPDUtils;
 
 			return su.s4() + su.s4() + su.s4() + su.s4() + su.s4() + su.s4() + su.s4() + su.s4();
+		},
+		/**
+		 * Sets a domain-level cookie
+		 * @param {string} name Name of cookie to create
+		 * @param {string} val Value of cookie to create
+		 * @param {number} days Optional number of days to expire in
+		 */
+		setCookie: function (name, value, days) {
+			var self = this,
+				expireDate = new Date(),
+				cookieValue = '';
+
+			// Set the expiration date
+			if (self.validNumber(days, 0) === 0) {
+				days = 1000;
+			}
+			expireDate.setDate(expireDate.getDate() + days);
+			// Format the cookie value
+			cookieValue = escape(value) + '; expires=' + expireDate.toGMTString() + '; path=/';
+			// Store the cookie
+			document.cookie = name + '=' + cookieValue;
 		}
 	};
 	window.SPDUtils.init();

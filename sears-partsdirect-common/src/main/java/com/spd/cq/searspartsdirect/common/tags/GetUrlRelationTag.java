@@ -107,7 +107,7 @@ public class GetUrlRelationTag extends CQBaseTag {
 	        props.put("type", Constants.CQ_PAGE);
 	        props.put("path", Constants.ASSETS_PATH+"/"+Constants.ASSETS_SYMPTOM_PATH);
 	        props.put("property", Constants.ASSETS_ID_REL_PATH);
-	        props.put("property.value", relationValue);
+	        props.put("property.value", relationValue.toUpperCase());
 	        
 	        List<Hit> hits = qb.createQuery(
 	        			PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)

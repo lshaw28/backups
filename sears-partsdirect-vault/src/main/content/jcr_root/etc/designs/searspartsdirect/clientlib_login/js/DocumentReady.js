@@ -26,13 +26,21 @@
         if (window.location.search.indexOf('errorCode') > 0) {
             // Trigger invalid authentication messaging
             loginForm.showUnauthorizedMessage();
-            //loginForm.postMessage({ 'openModal': '#loginModal' });
+            loginForm.postMessage({ 'openModal': '#loginModal' });
+            $('#secureLoginModal').removeClass('hidden');
+            $('.icon-spinner').addClass('hidden');
         } else {
             loginForm.resetFields();
+            $('#secureLoginModal').removeClass('hidden');
+            $('.icon-spinner').addClass('hidden');
         }
 
         if(window.location.search.indexOf('authSuccessURL') > 0){
             loginForm.postMessage({'reload':true});
+        } else {
+            //display form, hide wheel
+            $('#secureLoginModal').removeClass('hidden');
+            $('.icon-spinner').addClass('hidden');
         }
 
         // Custom validation for matching email fields

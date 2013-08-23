@@ -32,6 +32,7 @@ public class GetUserDataTag extends CQBaseTag {
 		Cookie userNameCookie = null;
 		Cookie myModelsCookie = null;
 		Cookie shoppingCartCookie = null;
+		Cookie shoppingCartSizeCookie = null;
 		boolean cookieFound = false;
 
 		if (cookies != null) {
@@ -46,7 +47,6 @@ public class GetUserDataTag extends CQBaseTag {
 					apiUrl.append("&profileid=" + URLEncoder.encode(myModelsCookie.getValue(), Constants.ENCODING));
 					cookieFound = true;
 				}
-
 				shoppingCartCookie = PartsDirectCookieHelper.getCookieInfo(cookies, Constants.SHOPPING_CART_COOKIE);
 				if (shoppingCartCookie != null && shoppingCartCookie.getValue() != null) {
 					apiUrl.append("&cartid=" + URLEncoder.encode(shoppingCartCookie.getValue(), Constants.ENCODING));
@@ -68,15 +68,22 @@ public class GetUserDataTag extends CQBaseTag {
 					userData.setLoggedIn(true);
 				}
 				
-				int cartCount = 0;
+				/*int cartCount = 0;
 				CartModel cartModel = userData.getCart();
 				if (cartModel != null && cartModel.getCartLines() != null) {
 					for (CartLinesModel cartLine : cartModel.getCartLines()) {
 						cartCount = cartCount +  cartLine.getQuantity();
 					}
+				}*/
+				//pageContext.setAttribute("cartCount", cartCount);	
+				shoppingCartSizeCookie = PartsDirectCookieHelper.getCookieInfo(cookies, Constants.SHOPPING_CART_SIZE_COOKIE);
+				if (shoppingCartSizeCookie != null && shoppingCartSizeCookie.getValue() != null) {
+					pageContext.setAttribute("cartCount", shoppingCartSizeCookie.getValue());
+				} else {
+					pageContext.setAttribute("cartCount", 0);
 				}
-				pageContext.setAttribute("cartCount", cartCount);					
 				pageContext.setAttribute("userData", userData);
+				
 
 			} catch (IOException e) {
 				log.error("I/O Exception while getting data from PD API ", e.fillInStackTrace());
