@@ -14,7 +14,7 @@
 	<filter root="/apps/foundation" />
 	<filter root="/apps/wcm" />
 	<filter root="/robots.txt" />
-	<filter root="/sitemap" />
+	<filter root="/repair-sitemap" />
 	<filter root="/etc/workflow/launcher/config/665047955" />
 	<filter root="/etc/workflow/models/request_for_activation" />
 	<filter root="/etc/workflow/launcher/config/-643961773" />

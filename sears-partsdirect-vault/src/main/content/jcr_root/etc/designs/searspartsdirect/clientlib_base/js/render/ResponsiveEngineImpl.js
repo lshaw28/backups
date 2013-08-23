@@ -5,7 +5,7 @@ NS('shc.pd.base.render').ResponsiveEngineImpl = Class.extend(function () {
 	return {
 		/**
 		 * @constructor
-		 * 
+		 *
 		 */
 		init: function () {
 			this.eventBinded = false;
@@ -25,8 +25,6 @@ NS('shc.pd.base.render').ResponsiveEngineImpl = Class.extend(function () {
 					this.callbacks[event][i](args);
 				}
 			} catch (e) {
-				console.log(e, e.message);
-				console.log(e.stack);
 			}
 		},
 		/**

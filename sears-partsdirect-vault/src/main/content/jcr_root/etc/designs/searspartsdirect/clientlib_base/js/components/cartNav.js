@@ -66,10 +66,7 @@ var cartNav = Class.extend(function () {
 					self.handleResponse(data);
 				})
 				.fail(function (e) {
-					console.log('Error', e);
 				});
-			} else {
-				// Handle error
 			}
 		},
 		/**

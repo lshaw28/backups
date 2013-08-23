@@ -33,7 +33,6 @@ addToCart.js
 cartNav.js
 category101.js
 collapse101.js
-comments.js
 commonParts.js
 guideNavigation.js
 messageHandler.js
