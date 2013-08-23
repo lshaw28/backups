@@ -1,4 +1,10 @@
 /**
+ * Make key HTML5 elements available before Modernizr loads
+ */
+var article = document.createElement('article'),
+	nav = document.createElement('nav');
+
+/**
  * Provide cross-browser compatibility with object methods
  */
 console = console || { 'log': function () {} };
