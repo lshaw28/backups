@@ -115,6 +115,7 @@ public final class Constants {
 	public static final String USER_NAME_COOKIE = "username";
 	public static final String MY_MODEL_COOKIE = "myProfileModels";
 	public static final String SHOPPING_CART_COOKIE = "cid";
+	public static final String SHOPPING_CART_SIZE_COOKIE = "cartSize";
 
 	public static final String XML_DECLARATION = ident("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 	public static final String SITEMAP_OPEN_URLSET = ident("<urlset ");
