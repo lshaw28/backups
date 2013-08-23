@@ -9,21 +9,8 @@
 		 * init: On page load events to fire
 		 */
 		init: function () {
-			window.SPDUtils.checkConsole();
 			window.SPDUtils.getGlobalVariables();
 			window.SPDUtils.setAddThisVariables();
-		},
-		/*
-		 * Creates a console stub for unsupported browsers
-		 * @return {void}
-		 */
-		checkConsole: function () {
-			if (!console) {
-				window['console'] = {
-					log: function () {
-					}
-				};
-			}
 		},
 		/**
 		 * Retrieve and set global variables
