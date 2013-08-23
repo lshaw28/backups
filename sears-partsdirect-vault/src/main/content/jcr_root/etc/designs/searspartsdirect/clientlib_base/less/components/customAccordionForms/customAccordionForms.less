@@ -21,13 +21,37 @@
 		}
 		.accordion-inner {
 			.cafField {
+				overflow: hidden;
 				padding: 10px 0;
+			}
+			.cafCheckboxField {
+				input {
+					float: left;
+				}
+				label {
+					float: left;
+					padding-left: 10px;
+					font-weight: normal;
+					font-size: @pSize;
+				}
+			}
+			.cafSubField {
+				float: left;
+				padding-left: 20px;
+			}
+			.cafSubField:first-child {
+				padding-left: 0;
 			}
 			p {
 				font-weight: bold;
+				font-size: @h5Size;
 				a {
 					font-weight: normal;
 				}
+			}
+			label {
+				color: @secondaryHueDark;
+				font-weight: bold;
 			}
 			.radioOptions {
 				overflow: hidden;
