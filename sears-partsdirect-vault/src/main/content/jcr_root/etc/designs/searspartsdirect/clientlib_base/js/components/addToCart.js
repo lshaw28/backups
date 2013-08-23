@@ -108,6 +108,7 @@ var addToCart = Class.extend(function () {
 		 */
 		handleResponse: function (data) {
 			var self = this,
+				su = window.SPDUtils,
 				i = 0,
 				itemCount = 0;
 
@@ -145,6 +146,10 @@ var addToCart = Class.extend(function () {
 				self.cartItems.count.text('0');
 				self.cartItems.countBadge.text('0');
 			}
+
+			// Set cookies
+			su.setCookie('cid', cartId, 1000);
+			su.setCookie('cartSize', itemCount, 1000);
 		},
 		/**
 		 * Render a shopping cart item and insert it in the drop down
