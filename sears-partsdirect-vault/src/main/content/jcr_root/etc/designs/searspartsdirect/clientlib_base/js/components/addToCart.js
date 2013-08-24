@@ -149,8 +149,8 @@ var addToCart = Class.extend(function () {
 			}
 
 			// Set cookies
-			su.setCookie('cid', cartId, 1000);
-			su.setCookie('cartSize', itemCount, 1000);
+			//su.setCookie('cid', cartId, 1000);
+			//su.setCookie('cartSize', itemCount, 1000);
 		},
 		/**
 		 * Render a shopping cart item and insert it in the drop down
