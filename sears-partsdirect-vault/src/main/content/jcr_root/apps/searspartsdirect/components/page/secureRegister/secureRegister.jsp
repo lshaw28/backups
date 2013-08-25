@@ -22,6 +22,7 @@
 <title>Register</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,600" rel="stylesheet" type="text/css">
 <cq:includeClientLib css="apps.searspartsdirect.login" />
+<cq:includeClientLib js="apps.searspartsdirect.head" />
 </head>
 
 <body>

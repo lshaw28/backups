@@ -173,7 +173,7 @@
 		/*
 		 * SVG icon compatibility fix for legacy browsers
 		 */
-		if ($('html').hasClass('no-background-size')) {
+		if ($('html').hasClass('no-backgroundsize')) {
 			$('[class^="svg-icon"]').each(function () {
 				var newSVGIcon = new svgIcon($(this));
 			});

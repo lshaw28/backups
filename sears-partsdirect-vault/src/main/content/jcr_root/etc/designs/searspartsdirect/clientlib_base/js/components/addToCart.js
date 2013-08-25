@@ -62,7 +62,6 @@ var addToCart = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils,
 				quantity = su.validNumber(self.quantityField.attr('value'), 1),
-				//addAddress = apiPath + 'cart/addtocart',
 				addAddress = mainSitePath + '/partsdirect/addtocart.pd',
 				params = {
 					partno: self.partNumber,
@@ -97,8 +96,6 @@ var addToCart = Class.extend(function () {
 				.fail(function (e) {
 					// Handle error
 				});
-			} else {
-				// Handle error
 			}
 
 		},
