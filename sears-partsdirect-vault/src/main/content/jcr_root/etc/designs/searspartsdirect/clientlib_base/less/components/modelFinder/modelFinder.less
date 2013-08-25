@@ -1,6 +1,6 @@
 @import "../../base.variables.less";
 
-.search-panel-finder-wrapper {
+.modelFinderWrapper {
 	border-left: solid 4px @primaryHueDarkest;
 	border-right: solid 4px @primaryHueDarkest;
 	padding: 0 20px;
@@ -8,18 +8,16 @@
 	height: 0px;
 	overflow: hidden;
 }
-
-.search-panel-finder {
+.modelFinder {
 	width: 100%;
 	position: absolute;
 	overflow: hidden;
 
 	&.is-open {
-		.search-panel-finder-wrapper {
+		.modelFinderWrapper {
 			border-bottom: solid 4px @primaryHueDarkest;
 		}
 	}
-
 	.dropdown-reskin {
 		position: relative;
 		overflow: hidden;
@@ -35,13 +33,12 @@
 
 		i {
 			position: absolute;
-			top: 12px;	
+			top: 12px;
 			right: 20px;
 			font-size: 22px;
 		}
 	}
-
-	.model-number-plates {
+	.modelFinderPlates {
 		padding: 0 0 25px 40px;
 		overflow: hidden;
 
@@ -49,39 +46,28 @@
 			float: left;
 		}
 	}
-
-	.model-number-plates-img-1,
-	.model-number-plates-img-2 {
+	.modelFinderPlatesImage1, .modelFinderPlatesImage2 {
 		margin-right: 15px;
 	}
-
-	.CMNP_center,
-	.CMNP_left {
+	.CMNP_center, .CMNP_left {
 		float: left;
 	}
-
 	.CMNP_left {
 		width: 188px;
 		padding-right: 20px;
 	}
-
 	.CMNP_right {
 		float: right;
 	}
 }
-
-.search-criteria-pane-manager {
+.modelFinderPaneManager {
 	padding-top: 20px;
 	overflow: hidden;
 	display: none;
-	
+
 	.item {
 		float: left;
 		line-height: 30px;
-
-		a {
-	
-		}
 
 		&:first-child {
 			margin-right: 15px;
@@ -90,8 +76,7 @@
 		}
 	}
 }
-
-.search-criteria-close {
+.modelFinderCriteriaClose {
 	text-align: center;
 	border-top: solid 1px @secondaryHueLight;
 	padding: 10px 0;
@@ -102,11 +87,28 @@
 		font-weight: bold;
 	}
 }
-
-.search-criteria-plate-finder {
+.modelFinderPlateFinder {
 	display: none;
 }
-
-.search-criteria-output {
+.modelFinderOutput {
 	overflow: hidden;
+}
+#ProductStyleUL {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		input[type="radio"] {
+			display: inline-block;
+			margin: 0 5px 0 0;
+			vertical-align: baseline;
+		}
+		label {
+			color: @secondaryHueDark;
+			display: inline-block;
+			font-size: @pSize;
+			font-weight: normal;
+		}
+	}
 }

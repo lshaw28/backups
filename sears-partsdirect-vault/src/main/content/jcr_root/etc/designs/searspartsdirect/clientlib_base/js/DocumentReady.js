@@ -169,7 +169,7 @@
 		/*
 		 * Search panel finder widget
 		 */
-		shc.pd.base.widgets.SearchPanelFinder.init($('.search-panel-finder'));
+		shc.pd.base.widgets.SearchPanelFinder.init($('.modelFinder'));
 		/*
 		 * SVG icon compatibility fix for legacy browsers
 		 */
