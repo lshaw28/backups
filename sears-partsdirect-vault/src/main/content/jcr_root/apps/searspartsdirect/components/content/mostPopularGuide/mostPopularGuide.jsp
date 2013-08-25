@@ -42,7 +42,7 @@
 										<strong>Repair difficulty</strong>
 										<div>
 											<div class="difficulty-level-gauge">
-												<div class="difficulty-rating ${difficultyLevel}">
+												<div class="difficultyRating ${difficultyLevel}">
 													<i class="icon-wrench rating-one">&nbsp;</i><i class="icon-wrench rating-two">&nbsp;</i><i class="icon-wrench rating-three">&nbsp;</i><i class="icon-wrench rating-four">&nbsp;</i><i class="icon-wrench rating-five">&nbsp;</i>
 												</div>
 											</div>
