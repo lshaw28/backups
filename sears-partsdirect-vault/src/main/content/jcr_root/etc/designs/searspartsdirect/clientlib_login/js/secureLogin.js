@@ -77,6 +77,7 @@ var secureLogin = Class.extend(function () {
 
 			$('[data-cancel]', self.el).bind('click', function () {
 				self.resetFields();
+                setTimeout(function(){self.recallServiceTries = 0;}, 3000);
 				self.postMessage({ 'closeModal': '#loginModal' });
 			});
 		},
@@ -230,7 +231,7 @@ var secureLogin = Class.extend(function () {
 				domain = window['parentDomain'];
 			}
 
-			top.window.postMessage(message, domain);
+            setTimeout(function(){top.window.postMessage(message, domain);}, 100);
 		},
 		checkHeight: function (prevHeight) {
 			var self = this,

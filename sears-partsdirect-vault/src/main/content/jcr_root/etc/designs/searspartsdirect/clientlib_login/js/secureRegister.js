@@ -203,7 +203,7 @@ var secureRegister = Class.extend(function () {
 				domain = window['parentDomain'];
 			}
 
-			top.window.postMessage(message, domain);
+            setTimeout(function(){top.window.postMessage(message, domain);}, 100);
 		},
 		checkHeight: function (prevHeight) {
 			var self = this,
