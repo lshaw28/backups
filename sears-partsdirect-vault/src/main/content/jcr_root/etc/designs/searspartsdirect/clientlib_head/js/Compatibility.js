@@ -3,16 +3,19 @@
  */
 var article = document.createElement('article'),
 	nav = document.createElement('nav');
-
+	article.style.display = 'block';
+	nav.style.display = 'block';
+/**
+ * Fix jQuery XHR bug
+ */
+var jQueryXHR = (window.ActiveXObject) ? function() { try { return new window.ActiveXObject("Microsoft.XMLHTTP"); } catch(e) {} } : function() { return new window.XMLHttpRequest(); };
 /**
  * Provide cross-browser compatibility with object methods
  */
 console = console || { 'log': function () {} };
-
 ''.trim || (String.prototype.trim = function () {
 	return this.replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g,'');
 });
-
 var JSON = JSON || {};
 JSON.stringify = JSON.stringify || function (obj) {
 	var t = typeof (obj);
