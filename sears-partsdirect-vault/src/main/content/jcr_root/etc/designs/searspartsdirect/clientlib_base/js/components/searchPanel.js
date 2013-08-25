@@ -23,7 +23,6 @@ var searchPanel = Class.extend(function () {
 
 			// Bind an event to each drop-down selection
 			$('#searchContent .dropdown-menu li a').bind('click', function (e) {
-				e.preventDefault();
 				self.selectType($(this));
 			});
 		},
