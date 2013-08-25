@@ -1,7 +1,5 @@
 #base=js/.
-Compatibility.js
 bootstrap.min.js
-modernizr.custom.50282-2.6.2.min.js
 plugins/regula-1.2.3.min.js
 plugins/jquery.hammer-1.0.5.min.js
 Class.js
