@@ -1,11 +1,4 @@
 /**
- * Make key HTML5 elements available before Modernizr loads
- */
-var article = document.createElement('article'),
-	nav = document.createElement('nav');
-	article.style.display = 'block';
-	nav.style.display = 'block';
-/**
  * Fix jQuery XHR bug
  */
 var jQueryXHR = (window.ActiveXObject) ? function() { try { return new window.ActiveXObject("Microsoft.XMLHTTP"); } catch(e) {} } : function() { return new window.XMLHttpRequest(); };
