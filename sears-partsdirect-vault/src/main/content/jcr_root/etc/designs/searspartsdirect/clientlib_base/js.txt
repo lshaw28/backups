@@ -19,11 +19,6 @@ render/DefaultResponsiveEngine.js
 render/WidgetBreakpointRegistry.js
 src/IndexController.js
 src/Carousel.js
-widgets/DesktopCarousel.js
-widgets/TouchCarousel.js
-widgets/ResponsiveTable.js
-widgets/SearchPanelFinder.js
-widgets/SearchPanelFinderResult.js
 Utilities.js
 DocumentReady.js
 WindowResize.js
@@ -47,3 +42,10 @@ searchPanel.js
 secureLoginModal.js
 svgIcon.js
 video.js
+
+#base=js/widgets/.
+DesktopCarousel.js
+TouchCarousel.js
+ResponsiveTable.js
+SearchPanelFinder.js
+SearchPanelFinderResult.js

@@ -1,5 +1,5 @@
 NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
-	var API_PREFIX = $('meta[name="global-mainSitePath"]').attr('content') + '/partsdirect/newModelLocatorAction!',
+	var API_PREFIX = mainSitePath + '/partsdirect/newModelLocatorAction!',
 		PRODUCT_URI = API_PREFIX + 'fetchNewFilterOptionsBasedOnProductType.pd',
 		PRODUCT_SWITCHER_URI = API_PREFIX + 'fetchPlateLocationsAndImageForStyle.pd',
 		MODEL_BRANDS = API_PREFIX + 'fetchBrandsListBasedOnStyle.pd',
@@ -123,7 +123,7 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 				type: 'GET',
 				data: data,
 				dataType: 'html'
-			}).done(function (data) {
+			}).success(function (data) {
 				// a check if you request then close the modal during a request
 				if (this.productType !== null) {
 					callback(data);
@@ -174,7 +174,7 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 				type: 'GET',
 				data: {
 					productType: _this.productType,
-					selectedStyle: _this.styleType, // this does not appear to change the result if null
+					selectedStyle: _this.styleType,
 					selectedBrand: brand
 				},
 				dataType: 'html'
