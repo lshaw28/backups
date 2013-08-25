@@ -54,7 +54,6 @@ var modelNumberSearch = Class.extend(function () {
 				$.ajax({
 					type: 'GET',
 					url: searchAddress,
-					async: false,
 					dataType: 'JSON',
 					data: {
 						modelNumber: searchTerm

@@ -23,32 +23,32 @@ var searchPanel = Class.extend(function () {
 
 			// Bind an event to each drop-down selection
 			$('#searchContent .dropdown-menu li a').bind('click', function (e) {
-				e.preventDefault();
-				self.selectType($(this));
+				self.selectType($(this), true);
 			});
 		},
 		/**
 		 * Handles type selection
 		 * @param {object} el jQuery element
+		 * @param {boolean} click Boolean denoting that a list item initiated event
 		 * @return {void}
 		 */
-		selectType: function (el) {
+		selectType: function (el, click) {
 			var self = this,
-				value = $('#searchBarField').attr('value'),
+				value = self.getValue(),
 				action = mainSitePath + '/partsdirect/' + el.data('postpath') + '/',
 				label = el.data('label'),
 				modelNumber = '',
 				partNumber = '';
 
+			// Close the dropdown
+			if (click === true) {
+				$('#searchContent .dropdown-menu').dropdown('toggle');
+			}
 			// Update selection status
 			$('#searchContent .dropdown-menu li').removeClass('selected');
 			el.parent().addClass('selected');
 			// Set the drop-down label
 			$('#searchTypeLabel').text(label);
-			// Make sure the value isn't the help text
-			if (value === $('#searchBarField').data('inputhelp') || value === $('#searchBarField').data('inputhelpmobile')) {
-				value = '';
-			}
 			// Update hidden fields
 			if (el.data('pathtaken') === 'modelSearch') {
 				modelNumber = value;
@@ -60,12 +60,22 @@ var searchPanel = Class.extend(function () {
 			$('#pathTaken').attr('value', el.data('pathtaken'));
 			// Update form action
 			$('#searchBarForm').attr('action', action + encodeURIComponent(value));
-			// Activate or deactivate the button
-			if (value === '') {
-				$('#searchModelsParts').attr('disabled', true);
-			} else {
-				$('#searchModelsParts').attr('disabled', false);
+		},
+		/**
+		 * Sanitises the current value
+		 * @return Sanitised value
+		 */
+		getValue: function () {
+			var self = this,
+				field = $('#searchBarField'),
+				value = field.attr('value');
+
+			// Make sure the value isn't the help text
+			if (value === field.data('inputhelp') || value === field.data('inputhelpmobile')) {
+				value = '';
 			}
+
+			return value;
 		},
 		/**
 		 * Perform initial event binding
@@ -110,12 +120,14 @@ var searchPanel = Class.extend(function () {
 				}
 			});
 
-			// Determine if Search button is enabled
-			if ($(selectStatement).length > 0) {
-				$('#searchModelsParts').attr('disabled', true);
-			} else {
-				$('#searchModelsParts').attr('disabled', false);
-			}
+			// Bind event on button
+			$('#searchModelsParts').bind('click', function (e) {
+				e.preventDefault();
+
+				if (self.getValue() !== '' && $(selectStatement).length > 0) {
+					$('#searchBarForm').submit();
+				}
+			});
 		}
 	}
 }());

@@ -1,18 +1,46 @@
 /**
- * Make key HTML5 elements available before Modernizr loads
+ * Fix jQuery XHR bug
  */
-var article = document.createElement('article'),
-	nav = document.createElement('nav');
+$.ajaxTransport("+*", function( options, originalOptions, jqXHR ) {
+	if(jQuery.browser.msie && window.XDomainRequest) {
+		var xdr;
 
+		return {
+			send: function( headers, completeCallback ) {
+				// Use Microsoft XDR
+				xdr = new XDomainRequest();
+				xdr.open("get", options.url);
+				xdr.onload = function() {
+					if (this.contentType.match(/\/xml/)) {
+						var dom = new ActiveXObject("Microsoft.XMLDOM");
+						dom.async = false;
+						dom.loadXML(this.responseText);
+						completeCallback(200, "success", [dom]);
+					} else {
+						completeCallback(200, "success", [this.responseText]);
+					}
+				};
+				xdr.ontimeout = function(){
+					completeCallback(408, "error", ["The request timed out."]);
+				};
+				xdr.onerror = function(){
+					completeCallback(404, "error", ["The requested resource could not be found."]);
+				};
+				xdr.send();
+			},
+			abort: function() {
+				if(xdr)xdr.abort();
+			}
+		};
+	}
+});
 /**
  * Provide cross-browser compatibility with object methods
  */
 console = console || { 'log': function () {} };
-
 ''.trim || (String.prototype.trim = function () {
 	return this.replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g,'');
 });
-
 var JSON = JSON || {};
 JSON.stringify = JSON.stringify || function (obj) {
 	var t = typeof (obj);
