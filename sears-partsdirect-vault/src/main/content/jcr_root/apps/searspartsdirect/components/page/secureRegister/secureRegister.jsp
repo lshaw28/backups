@@ -27,7 +27,7 @@
 
 <body>
 <div class="row-fluid" id="secureRegisterModal">
-	<div class="span6 offset3">
+	<div class="span10 offset1">
 		<h1 id="registerModalLabel">Register<span class="pull-right"><p class="headline">Existing Customer?</p> <a data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Sign In</a></span></h1>
 		<form method="post" action="${secureMainSitePath}/partsdirect/register.pd" data-constraints='@EmailsMatch(field1="registerEmail", field2="registerEmailConfirm")' data-regulagroup="registerModal">
 			<div class="alert alert-error hidden">&nbsp;</div>

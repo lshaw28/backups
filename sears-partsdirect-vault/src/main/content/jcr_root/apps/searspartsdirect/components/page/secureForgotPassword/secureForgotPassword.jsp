@@ -27,7 +27,7 @@
 
 <body>
 <div class="row-fluid" id="secureForgotPasswordModal">
-	<div class="span6 offset3">
+	<div class="span10 offset1">
 		<h1 id="forgotPasswordModalLabel">Forgot Password</h1>
 		<form id="secureForgotPasswordFormModal" method="post" action="${secureMainSitePath}/partsdirect/register.pd" data-regulagroup="forgotPasswordModal">
 			<input type="hidden" name="currentForgotPageURL" value="/partsdirect/index.pd" id="currentForgotPageURL">
