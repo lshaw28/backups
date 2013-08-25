@@ -53,9 +53,7 @@ var modelNumberSearch = Class.extend(function () {
 				// Make an AJAX call
 				$.ajax({
 					type: 'GET',
-					xhr: jQueryXHR,
 					url: searchAddress,
-					async: false,
 					dataType: 'JSON',
 					data: {
 						modelNumber: searchTerm
