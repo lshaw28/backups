@@ -159,7 +159,7 @@ var secureForgotPassword = Class.extend(function () {
 				domain = window['parentDomain'];
 			}
 
-			top.window.postMessage(message, domain);
+            setTimeout(function(){top.window.postMessage(message, domain);}, 100);
 		}
 	};
 }());
