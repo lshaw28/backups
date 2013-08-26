@@ -2,25 +2,25 @@
 <spd:getRecentlyViewed />
 <ul class="cartNavItems">
 	<div class="cartNavShadow"></div>
-	<li class="cartNavItem">
+	<li id="cartRecents" class="cartNavItem">
 		<div class="btn-group">
 			<c:choose>
 				<c:when test="${not empty rvModelList and not empty rvPartList}">
 					<a data-toggle="dropdown" href="#">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
 					<ul class="dropdown-menu">
 						<c:forEach var="model" items="${rvModelList}">
-							<li>Model <a href="${model.itemURL}"><c:out value="${model.itemName}" /></a><br />
-							<a href="${model.itemURL}"><c:out value="${model.itemDescription}" /></a></li>
+							<li>Model <a href="${mainSitePath}${model.itemURL}"><c:out value="${model.itemName}" /><br />
+							<c:out value="${model.itemDescription}" /></a></li>
 						</c:forEach>
 						<c:forEach var="part" items="${rvPartList}">
 							<li>
-								<a href="${part.itemURL}">
+								<a href="${mainSitePath}${part.itemURL}">
 								<c:choose>
 									<c:when test='${part.itemImageURL != null && part.itemImageURL != "null"}'>
-										<img src="${part.itemImageURL}" alt="${part.itemDescription}" />
+										<img src="${mainSitePath}${part.itemImageURL}" alt="${part.itemDescription}" />
 									</c:when>
 									<c:otherwise>
-										<img src="/assets/img/images/no_part_100x100.gif" alt="No part image available" />
+										<img src="${mainSitePath}/assets/img/images/no_part_100x100.gif" alt="No part image available" />
 									</c:otherwise>
 								</c:choose>
 								<c:out value="${part.itemName}" /><br /><c:out value="${part.itemDescription}" /></a>
