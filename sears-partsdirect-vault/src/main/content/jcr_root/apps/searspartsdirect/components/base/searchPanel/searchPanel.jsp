@@ -14,8 +14,8 @@
 					<li><a data-postpath="part-number" data-pathtaken="partSearch" data-label="Part #">Part #</a></li>
 				</ul>
 			</div><button id="searchModelsParts" class="new-btn new-btn-search">Search</button>
-			<p class="search-panel-finder-close-only">Can't locate your model number? <a class="searchPanelFinder_js">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
-			<p class="search-panel-finder-open-only" style="display: none;"><a class="searchPanelFinder_js">Close the finder</a></p>
+			<p class="modelFinderClose">Can't locate your model number? <a class="searchPanelFinder_js">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
+			<p class="modelFinderOpen" style="display: none;"><a class="searchPanelFinder_js">Close the finder</a></p>
 			<input name="pathTaken" id="pathTaken" type="hidden"/>
 			<input name="prst" id="prst" type="hidden"/>
 			<input name="shdMod" id="shdMod" type="hidden"/>
@@ -48,43 +48,43 @@
 		</div>
 		<div id="searchRightShadow" class="search-shadow"></div>
 		<a name="findMyModel"></a>
-		<div class="search-panel-finder">
-			<div class="search-panel-finder-wrapper">
-				<div class="search-criteria">
+		<div class="modelFinder">
+			<div class="modelFinderWrapper">
+				<div class="modelFinderCriteria">
 					<h3>Choose your product type</h3>
-					<div class="product-type-selection dropdown-reskin">
+					<div class="modelFinderProductSelect dropdown-reskin">
 						<i class="icon-angle-down"></i>
 						<select></select><%-- this gets populated by JS --%>
 					</div>
 				</div>
 				<%-- UI for that toggles details and plate finder of a search result --%>
-				<div class="search-criteria-pane-manager">
-					<div class="item"><a href="">Plate location</a></div>
-					<div class="item"><a href="">Common number model plates</a></div>
+				<div class="modelFinderPaneManager">
+					<div class="item"><a href="#">Plate location</a></div>
+					<div class="item"><a href="#">Common number model plates</a></div>
 				</div>
 				<%-- search result UI --%>
-				<div class="search-criteria-output"></div>
+				<div class="modelFinderOutput"></div>
 				<%-- plate helper --%>
-				<div class="search-criteria-helper">
+				<div class="modelFinderHelper">
 					<h3>Common model number plates</h3>
 					<%-- @TODO there should be a context var for root img paths --%>
-					<div class="model-number-plates">
-						<img class="model-number-plates-img-1" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help1.png" />
-						<img class="model-number-plates-img-2" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help2.png" />
-						<img class="model-number-plates-img-3" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help3.png" />
+					<div class="modelFinderPlates">
+						<img class="modelFinderPlatesImage1" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help1.png" />
+						<img class="modelFinderPlatesImage2" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help2.png" />
+						<img class="modelFinderPlatesImage3" src="/etc/designs/searspartsdirect/clientlib_base/img/search-model-help3.png" />
 					</div>
 					<%-- After a search, pane-manager triggers the display of this UI --%>
-					<div class="search-criteria-plate-finder">
+					<div class="modelFinderPlateFinder">
 						<p><strong>View sample model numbers by selecting your product brand</strong></p>
-						<%-- Plate finder selection, based on the search-criteria output --%>
-						<div class="plate-finder-selection dropdown-reskin">
+						<%-- Plate finder selection, based on the modelFinderCriteria output --%>
+						<div class="modelFinderPlateSelect dropdown-reskin">
 							<i class="icon-angle-down"></i>
 							<select></select><%-- this gets populated by JS --%>
 						</div>
-						<div class="search-criteria-plate-output"></div>
+						<div class="modelFinderPlateOutput"></div>
 					</div>
 				</div>
-				<div class="search-criteria-close">
+				<div class="modelFinderCriteriaClose">
 					<a class="searchPanelFinder_js">Close <i class="icon-angle-up"></i></a>
 				</div>
 			</div>

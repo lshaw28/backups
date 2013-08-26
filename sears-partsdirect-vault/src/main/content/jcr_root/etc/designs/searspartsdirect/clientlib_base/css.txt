@@ -67,7 +67,7 @@ responsiveFindThisPart/responsiveFindThisPart.less
 responsiveImage/responsiveImage.less
 responsiveTable/responsiveTable.less
 searchPanel/searchPanel.less
-search-panel-finder/search-panel-finder.less
+modelFinder/modelFinder.less
 skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less
 text/text.less

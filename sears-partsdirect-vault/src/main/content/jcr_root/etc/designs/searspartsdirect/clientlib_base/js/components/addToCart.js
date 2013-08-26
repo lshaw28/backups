@@ -62,7 +62,7 @@ var addToCart = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils,
 				quantity = su.validNumber(self.quantityField.attr('value'), 1),
-				addAddress = apiPath + 'cart/addtocart',
+				addAddress = mainSitePath + '/partsdirect/addtocart.pd',
 				params = {
 					partno: self.partNumber,
 					divid: self.divId,
@@ -96,8 +96,6 @@ var addToCart = Class.extend(function () {
 				.fail(function (e) {
 					// Handle error
 				});
-			} else {
-				// Handle error
 			}
 
 		},
@@ -148,8 +146,8 @@ var addToCart = Class.extend(function () {
 			}
 
 			// Set cookies
-			su.setCookie('cid', cartId, 1000);
-			su.setCookie('cartSize', itemCount, 1000);
+			//su.setCookie('cid', cartId, 1000);
+			//su.setCookie('cartSize', itemCount, 1000);
 		},
 		/**
 		 * Render a shopping cart item and insert it in the drop down

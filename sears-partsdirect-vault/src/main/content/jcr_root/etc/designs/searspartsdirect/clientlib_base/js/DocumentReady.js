@@ -169,11 +169,11 @@
 		/*
 		 * Search panel finder widget
 		 */
-		shc.pd.base.widgets.SearchPanelFinder.init($('.search-panel-finder'));
+		shc.pd.base.widgets.SearchPanelFinder.init($('.modelFinder'));
 		/*
 		 * SVG icon compatibility fix for legacy browsers
 		 */
-		if ($('html').hasClass('no-background-size')) {
+		if ($('html').hasClass('no-backgroundsize')) {
 			$('[class^="svg-icon"]').each(function () {
 				var newSVGIcon = new svgIcon($(this));
 			});

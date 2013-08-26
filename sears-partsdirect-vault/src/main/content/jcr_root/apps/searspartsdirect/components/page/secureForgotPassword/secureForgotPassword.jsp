@@ -22,11 +22,12 @@
 <title>Forgot Password</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,600" rel="stylesheet" type="text/css">
 <cq:includeClientLib css="apps.searspartsdirect.login" />
+<cq:includeClientLib js="apps.searspartsdirect.head" />
 </head>
 
 <body>
 <div class="row-fluid" id="secureForgotPasswordModal">
-	<div class="span6 offset3">
+	<div class="span10 offset1">
 		<h1 id="forgotPasswordModalLabel">Forgot Password</h1>
 		<form id="secureForgotPasswordFormModal" method="post" action="${secureMainSitePath}/partsdirect/register.pd" data-regulagroup="forgotPasswordModal">
 			<input type="hidden" name="currentForgotPageURL" value="/partsdirect/index.pd" id="currentForgotPageURL">
