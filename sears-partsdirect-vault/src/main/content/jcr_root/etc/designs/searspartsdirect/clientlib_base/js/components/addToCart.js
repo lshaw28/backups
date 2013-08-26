@@ -130,6 +130,9 @@ var addToCart = Class.extend(function () {
 				}
 
 				// Set total item count
+				if (itemCount > 99) {
+					itemCount = '99+';
+				}
 				self.cartItems.count.text(itemCount);
 				self.cartItems.countBadge.text(itemCount);
 			} else {
