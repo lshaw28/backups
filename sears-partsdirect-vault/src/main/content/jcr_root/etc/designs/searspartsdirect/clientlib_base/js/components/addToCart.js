@@ -17,8 +17,6 @@ var addToCart = Class.extend(function () {
 			this.el = el;
 			this.offset = el.offset();
 			this.animElem = $("#addToCartAnimation");
-			this.animElem.css("left", this.offset.left);
-			this.animElem.css("top", this.offset.top+30);
 			this.quantityField = qf;
 			this.partNumber = '';
 			this.divId = '';
