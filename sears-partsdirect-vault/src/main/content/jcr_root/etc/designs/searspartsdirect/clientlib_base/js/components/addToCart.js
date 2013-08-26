@@ -13,8 +13,13 @@ var addToCart = Class.extend(function () {
 		 * @param {object} qf jQuery element for corresponding quantity field
 		 */
 		init: function (el, qf) {
+
 			// Properties
 			this.el = el;
+            this.offset = el.offset();
+            this.animElem = $("#addToCartAnimation");
+            this.animElem.css("left", this.offset.left);
+            this.animElem.css("top", this.offset.top+25);
 			this.quantityField = qf;
 			this.partNumber = '';
 			this.divId = '';
@@ -97,8 +102,20 @@ var addToCart = Class.extend(function () {
 					// Handle error
 				});
 			}
-
+            self.showAddedMessage();
 		},
+
+        showAddedMessage: function() {
+            var self = this;
+
+            self.animElem.animate({
+                    opacity: 1
+            }, 2000, function() {
+                self.animElem.css("opacity", 0);
+            });
+
+        },
+
 		/**
 		 * Process AJAX response
 		 * @param {object} data AJAX response
@@ -111,7 +128,7 @@ var addToCart = Class.extend(function () {
 				itemCount = 0;
 
 			// Set cartId
-			cartId = data.cartId;
+			//cartId = data.cartId;
 
 			// Handle items
 			if (data.cartParts.length > 0) {
@@ -130,9 +147,6 @@ var addToCart = Class.extend(function () {
 				}
 
 				// Set total item count
-				if (itemCount > 99) {
-					itemCount = '99+';
-				}
 				self.cartItems.count.text(itemCount);
 				self.cartItems.countBadge.text(itemCount);
 			} else {
@@ -147,6 +161,11 @@ var addToCart = Class.extend(function () {
 				self.cartItems.count.text('0');
 				self.cartItems.countBadge.text('0');
 			}
+
+			// Set cookies
+			//su.setCookie('cid', cartId, 1000);
+			//su.setCookie('cartSize', itemCount, 1000);
+
 		},
 		/**
 		 * Render a shopping cart item and insert it in the drop down
@@ -156,23 +175,22 @@ var addToCart = Class.extend(function () {
 		renderItem: function (item) {
 			var self = this,
 				quantity = 0,
-				description = '',
-				partNumber = '',
-				partUrl = '',
-				li = $('<li />');
+				li = $('<li />'),
+				description = '';
 
 			// Retrieve information
 			quantity = item.quantity;
-			description = item.description;
-			partNumber = item.partNumber;
-			partUrl = item.partUrl;
-
+			if (item.description) {
+				description = item.description;
+			} else {
+				description = item.partNumber;
+			}
 			if (description.length > 17) {
 				description = description.substring(0, 17) + '...';
 			}
 
 			li.addClass('cart-item');
-			li.html('<span class="cart-part"><a href="' + mainSitePath + partURL + '">' + description + ' ' + partNumber + '</a></span><span class="cart-quantity">' + quantity + '</span>');
+			li.html('<span class="cart-part">' + description + '</span><span class="cart-quantity">' + quantity + '</span>');
 			self.cartItems.totals.before(li);
 
 			return quantity;
