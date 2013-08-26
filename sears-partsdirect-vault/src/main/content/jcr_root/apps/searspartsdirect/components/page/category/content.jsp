@@ -22,7 +22,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="span3 offset1">
+				<div class="span4">
 					<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />
 				</div>
 			</div>
