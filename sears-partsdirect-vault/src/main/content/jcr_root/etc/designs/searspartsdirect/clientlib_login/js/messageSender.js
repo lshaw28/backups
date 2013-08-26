@@ -1,17 +1,20 @@
-var XDM = function() {
-	var interval_id,
-	last_hash,
-	cache_bust = 1,
-	attached_callback,
-	window = this;
+/*global window:true, $:true, Class:true, mainSitePath:true */
+var XDM = {
+	'send': function(message) {
+		var self = this,
+			data = this.format(message);
 
-	return {
-		send : function(message) {
-			if (window['postMessage']) {
-				window.top['postMessage'](message, parentDomain.replace( /([^:]+:\/\/[^\/]+).*/, '$1'));
-			} else {
-				window.top.location = parentDomain.replace(/#.*$/, '') + '#' + (+new Date) + (cache_bust++) + '&' + message;
-			}
+		if (window['postMessage']) {
+			window.parent['postMessage'](data, parentDomain.replace( /([^:]+:\/\/[^\/]+).*/, '$1'));
+		} else {
+			window.parent.location = parentDomain.replace(/#.*$/, '') + '#' + (+new Date) + (cache_bust++) + '&' + message;
 		}
-	};
-}();
+	},
+	'format': function(message) {
+		var items = new Array();
+		for (var i in message) {
+			items.push(i + '=' + message[i]);
+		}
+		return items.join('&');
+	}
+};
