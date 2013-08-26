@@ -175,6 +175,7 @@ var addToCart = Class.extend(function () {
 		 */
 		renderItem: function (item) {
 			var self = this,
+				su = window.SPDUtils,
 				quantity = 0,
 				partUrl = '',
 				li = $('<li />'),
@@ -183,9 +184,9 @@ var addToCart = Class.extend(function () {
 
 			// Retrieve information
 			quantity = item.quantity;
-			description = item.description;
-			partNumber = item.partNumber;
-			partUrl = item.partUrl;
+			description = su.validString(item.description);
+			partNumber = su.validString(item.partNumber);
+			partUrl = su.validString(item.partUrl);
 
 			if (description.length > 17) {
 				description = description.substring(0, 17) + '...';
