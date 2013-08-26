@@ -1,35 +1,37 @@
-@media (max-width: 767px) {
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+@media(max-width: 650px) {
 	.category101 {
-		.accordion-heading a {
-			color: white;
-		 }
-
-		.accordion-toggle {
-			background-color: @secondaryHueDark;
-			color: white;
-			text-decoration: none;
-
-			i {
-				display: inline-block;
-				margin-right: 20px;
-				color: @bodyColor;
-				font-size: 20px;
-				vertical-align: middle;
-			}
+		.category101Header {
 			.icon-chevron-down {
 				display: none;
 			}
 			.icon-chevron-up {
+				color: @primaryHueNormal;
 				display: inline-block;
 			}
-			&.collapsed {
+		}
+		.category101Mobile {
+			display: block;
+		}
+		.category101Desktop {
+			display: none;
+		}
+		.category101Body {
+			display: none;
+		}
+		&.active {
+			.category101Header {
 				.icon-chevron-down {
 					display: inline-block;
 				}
-
 				.icon-chevron-up {
 					display: none;
 				}
+			}
+			.category101Body {
+				display: block;
 			}
 		}
 	}

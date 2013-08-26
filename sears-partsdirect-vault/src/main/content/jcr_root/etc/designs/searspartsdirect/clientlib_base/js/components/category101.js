@@ -5,52 +5,52 @@ var category101 = Class.extend(function () {
 	return {
 		/**
 		 * Initializes category101 class
+		 * Mobile: accordion
+		 * Tablet/desktop: visible content
 		 * @param {object} el Target element
 		 */
 		init: function (el) {
 			// Parameters
 			this.el = $(el);
-			// Bind events
-			this.bindEvent();
-            // check if at mobile breakpoint
-            this.toggleAccordion();
+			// Events
+			this.bindEvents();
 		},
-                
-                /**
-		 * Determines the correct rendering method
+		/**
+		 * Toggle functionality based on breakpoint
 		 * @return {void}
 		 */
-		toggleAccordion: function () {
+		toggleActive: function () {
 			var self = this,
-                isMobileBreakpoint = window.SPDUtils.isMobileBreakpoint();
+				isMobile = window.SPDUtils.isMobileBreakpoint();
 
-            //self[$(target).hasClass('in') ? 'addClass' : 'removeClass']('collapsed');
-                        
-			if (isMobileBreakpoint === true) {
-
-                $('.accordion-body').collapse101('hide');
-				
-			} else {
-                if (!$('.accordion-body').hasClass('in') ) {
-                    $('.accordion-body').addClass('in');
-                }
-                $('.accordion-body').collapse101('show');
+			if (isMobile === true) {
+				// Set CSS classes
+				self.el.removeClass('active');
 			}
 		},
+		/**
+		 * When active, toggles display
+		 */
+		togglePanel: function () {
+			var self = this;
 
-                
-         /**
-		 * Bind the window resize event
+			self.el.toggleClass('active');
+		},
+		/**
+		 * Bind the window resize events
 		 * @return {void}
 		 */
-		bindEvent: function () {
+		bindEvents: function () {
 			var self = this;
-			
-			shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
-				self.toggleAccordion();
-			});
 
-			this.isBound = true;
+			// Ensure panel closes on breakpoint change
+			shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
+				self.toggleActive();
+			});
+			// Set link to toggle display
+			$('.category101_js', self.el).bind('click', function () {
+				self.togglePanel();
+			});
 		}
-	}
+	};
 }());
