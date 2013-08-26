@@ -1,18 +1,22 @@
 @import "../../base.variables.less";
 
-.modelFinderWrapper {
-	border-left: solid 4px @primaryHueDarkest;
-	border-right: solid 4px @primaryHueDarkest;
-	padding: 0 20px;
-	background: #fff;
-	height: 0px;
-	overflow: hidden;
+.searchPanelFinder_js {
+	cursor: pointer;
 }
+
 .modelFinder {
 	width: 100%;
 	position: absolute;
 	overflow: hidden;
 
+	.modelFinderWrapper {
+		border-left: solid 4px @primaryHueDarkest;
+		border-right: solid 4px @primaryHueDarkest;
+		padding: 0 20px;
+		background: #fff;
+		height: 0px;
+		overflow: hidden;
+	}
 	&.is-open {
 		.modelFinderWrapper {
 			border-bottom: solid 4px @primaryHueDarkest;
