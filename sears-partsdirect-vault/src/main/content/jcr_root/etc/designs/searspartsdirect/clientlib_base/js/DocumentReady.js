@@ -122,17 +122,14 @@
         $('[data-toggle="collapse101"]').each(function () {
             var newCollapse101 = new Collapse101($(this));
         });
-        /**
-         * category101 class setup
-         */
-        $('.category101').each(function() {
-            var newCategory101 = new category101($(this));
-        });
 		/**
-		 * responsiveFindThisPart class setup
+		 * responsiveCollapse class setup
 		 */
 		$('.responsiveFindThisPart').each(function () {
-			var newResponsiveFindThisPart = new responsiveFindThisPart($(this));
+			var newresponsiveCollapse = new responsiveCollapse($(this), 'responsiveFindThisPart_js');
+		});
+		$('.category101').each(function () {
+			var newresponsiveCollapse = new responsiveCollapse($(this), 'category101_js');
 		});
         // commonParts class setup
         $('.commonParts').each(function() {
