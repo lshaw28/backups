@@ -78,7 +78,9 @@ var secureLogin = Class.extend(function () {
 			$('[data-cancel]', self.el).bind('click', function () {
 				self.resetFields();
                 setTimeout(function(){self.recallServiceTries = 0;}, 3000);
-				self.postMessage({ 'closeModal': '#loginModal' });
+				XDM.send({
+					'closeModal': '#loginModal'
+				});
 			});
 		},
 		/**
@@ -89,7 +91,10 @@ var secureLogin = Class.extend(function () {
 
 			$('[data-target]', self.el).bind('click', function() {
 				var target = $(this).data('target');
-				self.postMessage({ 'closeModal': '#loginModal', 'openModal': target});
+				XDM.send({
+					'closeModal': '#loginModal',
+					'openModal': target
+				});
 			});
 		},
 		/**
@@ -151,22 +156,16 @@ var secureLogin = Class.extend(function () {
 				if (!obj.isUserConsumer) {
 					// redirect to commercial PD site
 					$('[name=loginId]', self.el).attr('name', 'j_username');
-					//$('[name=logonPassword]', self.el).attr('name', 'j_password');
-					//logonPassword.name = "j_password";
-					//loginId.name = "j_username";
 					document.secureLoginFormModal.action = commercial_Url+"/partsdirect/commercialLogin.pd?email=" + $('[name=loginId]', self.el).val();
 					$('.alert', self.el).html("Our records show you're a member of our commercial parts website. We're automatically redirecting you to Sears Commercial Parts.");
 					$('.alert', self.el).removeClass('hidden');
-					setTimeout(function(){document.loginFormModal.submit();}, 3000);
+					setTimeout(function(){ document.loginFormModal.submit(); }, 3000);
 				} else {
 					// They're a normal user
 					// submit to SSO
 					$('form', self.el)[0].submit();
 				}
 			}
-		},
-		failCallback: function (errors) {
-			// Not needed
 		},
 		prepareLogin: function(username, prepareLoginURL) {
 			var self = this,
@@ -221,24 +220,19 @@ var secureLogin = Class.extend(function () {
 			setTimeout(function(){self.recallServiceTries = 0;}, 3000);
 		},
 		/**
-		 * Posts a message to the parent page via JavaScript
-		 * @param {object} message The object to post
+		 * Checks the current height
+		 * @param {number} prevHeight Current document.body height
+		 * @return void
 		 */
-		postMessage: function (message) {
-			var domain = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port;
-
-			if (typeof window['parentDomain'] === 'string') {
-				domain = window['parentDomain'];
-			}
-
-            setTimeout(function(){top.window.postMessage(message, domain);}, 100);
-		},
 		checkHeight: function (prevHeight) {
 			var self = this,
 				heightDelta = $(document.body).height() - prevHeight;
 
 			if (heightDelta != 0) {
-				self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#loginModal' });
+				XDM.send({
+					'heightChange': heightDelta,
+					'affectedModal': '#loginModal'
+				});
 			}
 		}
 	};

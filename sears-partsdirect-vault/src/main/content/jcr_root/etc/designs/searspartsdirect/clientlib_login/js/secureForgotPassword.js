@@ -64,7 +64,9 @@ var secureForgotPassword = Class.extend(function () {
 
 			$('[data-cancel]', self.el).bind('click', function () {
 				self.resetFields();
-				self.postMessage({ 'closeModal': '#forgotPasswordModal' });
+				XDM.send({
+					'closeModal': '#forgotPasswordModal'
+				});
 			});
 		},
 		resetFields: function () {
@@ -97,7 +99,9 @@ var secureForgotPassword = Class.extend(function () {
 			// finally, change continue button action to close modal
 			$('[data-submit=true]', self.el).unbind('click').bind('click', function (e) {
 				self.resetFields();
-				self.postMessage({ 'closeModal': '#forgotPasswordModal' });
+				XDM.send({
+					'closeModal': '#forgotPasswordModal'
+				});
 			});
 		},
 		showError: function (errorMsg) {
@@ -147,19 +151,6 @@ var secureForgotPassword = Class.extend(function () {
 			ajx.done(forgotResponse);
 
 			return false;
-		},
-		/**
-		 * Posts a message to the parent page via JavaScript
-		 * @param {object} message The object to post
-		 */
-		postMessage: function (message) {
-			var domain = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port;
-
-			if (typeof window['parentDomain'] === 'string') {
-				domain = window['parentDomain'];
-			}
-
-            setTimeout(function(){top.window.postMessage(message, domain);}, 100);
 		}
 	};
 }());

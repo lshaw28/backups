@@ -75,7 +75,9 @@ var secureRegister = Class.extend(function () {
 
 			$('[data-cancel]', self.el).bind('click', function () {
 				self.resetFields();
-				self.postMessage({ 'closeModal': '#registerModal' });
+				XDM.send({
+					'closeModal': '#registerModal'
+				});
 			});
 		},
 		/**
@@ -86,7 +88,10 @@ var secureRegister = Class.extend(function () {
 
 			$('[data-target]', self.el).bind('click', function() {
 				var target = $(this).data('target');
-				self.postMessage({ 'closeModal': '#registerModal', 'openModal': target});
+				XDM.send({
+					'closeModal': '#registerModal',
+					'openModal': target
+				});
 			});
 		},
 		/**
@@ -193,26 +198,21 @@ var secureRegister = Class.extend(function () {
 			self.checkHeight(prevHeight);
 		},
 		/**
-		 * Posts a message to the parent page via JavaScript
-		 * @param {object} message The object to post
+		 * Checks the current height
+		 * @param {number} prevHeight Current document.body height
+		 * @return void
 		 */
-		postMessage: function (message) {
-			var domain = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port;
-
-			if (typeof window['parentDomain'] === 'string') {
-				domain = window['parentDomain'];
-			}
-
-            setTimeout(function(){top.window.postMessage(message, domain);}, 100);
-		},
 		checkHeight: function (prevHeight) {
 			var self = this,
 				heightDelta = 0;
 
-			heightDelta = $(document.body).height()-prevHeight;
+			heightDelta = $(document.body).height() - prevHeight;
 			// console.log("register height delta: "+heightDelta);
 			if (heightDelta != 0) {
-				self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#registerModal' });
+				XDM.send({
+					'heightChange': heightDelta,
+					'affectedModal': '#registerModal'
+				});
 			}
 		}
 	};

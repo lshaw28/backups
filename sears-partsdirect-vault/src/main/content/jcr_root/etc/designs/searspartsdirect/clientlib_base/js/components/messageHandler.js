@@ -19,7 +19,6 @@ var messageHandler = Class.extend(function () {
 			var self = this;
 
 			// Validate message object
-			// You can check message.origin, message.data or message.source
 			if (message.data) {
 				// Take decisions based on properties of the message's data object
 				if (message.data.closeModal) {
@@ -37,8 +36,8 @@ var messageHandler = Class.extend(function () {
                 if (message.data.heightChange) {
                     var modal = $(message.data.affectedModal),
 						iFrame = $('iframe', modal),
-						newIFrameHeight = (modal.height()+message.data.heightChange)-iFrame.offset().top,
-						newModalHeight = modal.height()+message.data.heightChange;
+						newIFrameHeight = (modal.height() + message.data.heightChange) - iFrame.offset().top,
+						newModalHeight = modal.height() + message.data.heightChange;
 
                     iFrame.height(newIFrameHeight);
                     modal.height(newModalHeight);

@@ -9,6 +9,7 @@ core/Namespace.js
 Utilities.js
 
 #base=js/.
+messageSender.js
 secureLogin.js
 secureForgotPassword.js
 secureRegister.js
