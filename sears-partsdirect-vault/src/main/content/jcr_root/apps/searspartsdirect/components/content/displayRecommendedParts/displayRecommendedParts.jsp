@@ -34,8 +34,8 @@
 			<div class="span8">
 
 				<div class="span5">
-					<p>Found in diagram:<br />
-						<a href="#">Chassis and enclosures</a></p>
+					<!--<p>Found in diagram:<br />
+						<a href="#">Chassis and enclosures</a></p>-->
 				</div>
 				<div class="span2">
 					<span class="partsPrice">$<c:out value="${part.price}" /></span><br />
