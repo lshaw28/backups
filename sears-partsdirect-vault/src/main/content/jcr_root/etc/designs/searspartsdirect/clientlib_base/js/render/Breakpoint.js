@@ -37,14 +37,14 @@ NS('shc.pd.base.render').Breakpoint = Class.extend(function () {
 		 * @return {undefined}
 		 */
 		activate: function () {
-			console.log(this, 'is active');
+			// Not required
 		},
 		/**
 		 * Detach callback stub
 		 * @return {undefined}
 		 */
 		deactivate: function () {
-			console.log(this, 'is deactive');
+			// Not required
 		}
 	};
 }());

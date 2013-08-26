@@ -66,10 +66,7 @@ var cartNav = Class.extend(function () {
 					self.handleResponse(data);
 				})
 				.fail(function (e) {
-					console.log('Error', e);
 				});
-			} else {
-				// Handle error
 			}
 		},
 		/**
@@ -91,6 +88,12 @@ var cartNav = Class.extend(function () {
 					$('input[value="' + self.removedModels[i] + '"]', self.modelDropdown).parent().remove();
 				}
 				self.removedModels = new Array();
+
+				// Update count
+				if (returnedCount > 99) {
+					returnedCount = '99+';
+				}
+				$('#cartModels .count-badge').text(returnedCount);
 			}
 		},
 		/**

@@ -28,14 +28,14 @@ NS('shc.pd.base.widgets').SearchPanelFinder = (function () {
 				_this = this;
 
 			this.parent = parent;
-			this.wrapper = $('.search-panel-finder-wrapper');
+			this.wrapper = $('.modelFinderWrapper');
 			this.visibilityState = VisibilityState.Close;
-			this.productTypeSelect = $('.product-type-selection select', parent);
+			this.productTypeSelect = $('.modelFinderProductSelect select', parent);
 			this.results = new shc.pd.base.widgets.SearchPanelFinderResult(this.parent);
 
 			// Set initial states
-			$('.search-panel-finder-close-only').show();
-			$('.search-panel-finder-open-only').hide();
+			$('.modelFinderClose').show();
+			$('.modelFinderOpen').hide();
 
 			// append selection node
 			this.productTypeSelect.append($('<option value="0">Select</option>'));
@@ -96,13 +96,13 @@ NS('shc.pd.base.widgets').SearchPanelFinder = (function () {
 			this.visibilityState = VisibilityState.Open;
 			this.parent.addClass(OPEN_STATE_CLASSNAME);
 
-			$('.search-panel-finder-close-only').hide();
-			$('.search-panel-finder-open-only').show();
-			$('.search-criteria-helper').show();
+			$('.modelFinderClose').hide();
+			$('.modelFinderOpen').show();
+			$('.modelFinderHelper').show();
 
 			// animate
 			// @TODO remove hard coded padding properties
-			this.wrapper.stop(true).animate({height: _this.wrapperHeight, paddingTop: 20}, ANIMATION_DURATION, function () {
+			this.wrapper.stop(true).animate({height: _this.wrapperHeight, paddingTop: 10}, ANIMATION_DURATION, function () {
 				$(this).height('auto');
 			});
 		},
@@ -115,8 +115,8 @@ NS('shc.pd.base.widgets').SearchPanelFinder = (function () {
 
 			this.visibilityState = VisibilityState.Close;
 
-			$('.search-panel-finder-close-only').show();
-			$('.search-panel-finder-open-only').hide();
+			$('.modelFinderClose').show();
+			$('.modelFinderOpen').hide();
 
 			// animate
 			this.wrapper.stop(true).animate({height: 0, paddingTop: 0, paddingBottom: 0}, ANIMATION_DURATION / 1.5, function () {

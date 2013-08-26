@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<article id="content">
+<article id="content"><div class="articleFix">
 	<div class="row-fluid">
 		<div class="span10 desktop-offset1">
 			<%-- <cq:include path="/content/searspartsdirect/en/jcr:content/breadcrumbNavigation" resourceType="/apps/searspartsdirect/components/base/breadcrumbNavigation" /> --%>
@@ -50,4 +50,4 @@
 			</div>
 		</div>
 	</div>
-</article>
+</div></article>

@@ -10,9 +10,9 @@ var secureLogin = Class.extend(function () {
 		 */
 		init: function (el) {
 			this.el = el;
-            this.serviceCallPending = false;
-            this.maxRecallServiceTries = 5;
-            this.recallServiceTries = 0;
+			this.serviceCallPending = false;
+			this.maxRecallServiceTries = 5;
+			this.recallServiceTries = 0;
 			this.bindSubmit();
 			this.bindCancel();
 			this.bindLinks();
@@ -26,15 +26,15 @@ var secureLogin = Class.extend(function () {
 		bindSubmit: function () {
 			var self = this;
 
-            if (!self.serviceCallPending) {
+			if (!self.serviceCallPending) {
 
-                self.serviceCallPending = true;
+				self.serviceCallPending = true;
 
-                $('[data-submit=true]', self.el).bind('click', function (e) {
-                    e.preventDefault();
-                    self.validate();
-                });
-            }
+				$('[data-submit=true]', self.el).bind('click', function (e) {
+					e.preventDefault();
+					self.validate();
+				});
+			}
 		},
 		/**
 		 * Validates the registration form and displays friendly errors
@@ -45,7 +45,7 @@ var secureLogin = Class.extend(function () {
 				i = 0,
 				errorMessage = '',
 				divider = '',
-                prevHeight = 0,
+				prevHeight = 0,
 				regulaResponse = regula.validate();
 
 			// Parse the error messages
@@ -53,15 +53,14 @@ var secureLogin = Class.extend(function () {
 				errorMessage += divider + regulaResponse[i].message;
 				divider = '<br />';
 			}
-
 			// Populate the errors
 			$('.alert', self.el).html(errorMessage);
 
 			// Display errors or submit the form
 			if (errorMessage.length > 0) {
-                prevHeight = $(document.body).height();
+				prevHeight = $(document.body).height();
 				$('.alert', self.el).removeClass('hidden');
-                self.checkHeight(prevHeight);
+				self.checkHeight(prevHeight);
 			} else {
 				var serverAddress = window.SPDUtils.getLocationDetails().fullAddress,
 					userName = $('[name=loginId]', self.el).val(),
@@ -78,10 +77,12 @@ var secureLogin = Class.extend(function () {
 
 			$('[data-cancel]', self.el).bind('click', function () {
 				self.resetFields();
-				self.postMessage({ 'closeModal': '#loginModal' });
+                setTimeout(function(){self.recallServiceTries = 0;}, 3000);
+				XDM.send({
+					'closeModal': '#loginModal'
+				});
 			});
 		},
-
 		/**
 		 * Binds register link to close login modal and open register modal
 		 */
@@ -90,10 +91,12 @@ var secureLogin = Class.extend(function () {
 
 			$('[data-target]', self.el).bind('click', function() {
 				var target = $(this).data('target');
-				self.postMessage({ 'closeModal': '#loginModal', 'openModal': target});
+				XDM.send({
+					'closeModal': '#loginModal',
+					'openModal': target
+				});
 			});
 		},
-
 		/**
 		 * Binds any related fields so changing one affects the other
 		 */
@@ -117,15 +120,14 @@ var secureLogin = Class.extend(function () {
 		},
 		resetFields: function () {
 			var self = this,
-                prevHeight = 0;
+				prevHeight = 0;
 
-            prevHeight = $(document.body).height();
-
+			prevHeight = $(document.body).height();
 			$('.alert', self.el).addClass('hidden');
 			$('input[type!="hidden"]', self.el).each(function() {
 				$(this).val('');
 			});
-            self.checkHeight(prevHeight);
+			self.checkHeight(prevHeight);
 		},
 		/**
 		 * Handles a successful callback
@@ -134,54 +136,40 @@ var secureLogin = Class.extend(function () {
 			var self = this,
 				commercial_Url = 'https://commercial.searspartsdirect.com';
 
+			self.serviceCallPending = false;
 
-            self.serviceCallPending = false;
+			if (obj === "") {
+				// that jBoss bug...increment retry counter
+				self.recallServiceTries = parseInt(self.recallServiceTries, 10) + 1;
 
-            if (obj === "") {
-                // that jBoss bug...increment retry counter
-                self.recallServiceTries = parseInt(self.recallServiceTries, 10) + 1;
-                if (self.recallServiceTries <= self.maxRecallServiceTries) {
-                    // if less than max, retry call
-                    console.log('recallServiceTries: '+self.recallServiceTries+' maxServiceTries:');
-                    self.validate();
-                } else {
-                    // else, show server error msg
-                    self.showServerErrorMsg();
-                }
-            } else {
-                // proceed normally
-                obj = $.parseJSON($.trim(obj));
+				if (self.recallServiceTries <= self.maxRecallServiceTries) {
+					self.validate();
+				} else {
+					// else, show server error msg
+					self.showServerErrorMsg();
+				}
+			} else {
+				// proceed normally
+				obj = $.parseJSON($.trim(obj));
 
-                // NOT authenticated at this point...
-                if (!obj.isUserConsumer) {
-                    // redirect to commercial PD site
-                    $('[name=loginId]', self.el).attr('name', 'j_username');
-                    //$('[name=logonPassword]', self.el).attr('name', 'j_password');
-                    //logonPassword.name = "j_password";
-                    //loginId.name = "j_username";
-                    document.secureLoginFormModal.action = commercial_Url+"/partsdirect/commercialLogin.pd?email=" + $('[name=loginId]', self.el).val();
-                    $('.alert', self.el).html("Our records show you're a member of our commercial parts website. We're automatically redirecting you to Sears Commercial Parts.");
-                    $('.alert', self.el).removeClass('hidden');
-                    setTimeout(function(){document.loginFormModal.submit();}, 3000);
-                } else {
-                    // They're a normal user
-                    // submit to SSO
-                    $('form', self.el)[0].submit();
-                }
-            }
-
-
+				// NOT authenticated at this point...
+				if (!obj.isUserConsumer) {
+					// redirect to commercial PD site
+					$('[name=loginId]', self.el).attr('name', 'j_username');
+					document.secureLoginFormModal.action = commercial_Url+"/partsdirect/commercialLogin.pd?email=" + $('[name=loginId]', self.el).val();
+					$('.alert', self.el).html("Our records show you're a member of our commercial parts website. We're automatically redirecting you to Sears Commercial Parts.");
+					$('.alert', self.el).removeClass('hidden');
+					setTimeout(function(){ document.loginFormModal.submit(); }, 3000);
+				} else {
+					// They're a normal user
+					// submit to SSO
+					$('form', self.el)[0].submit();
+				}
+			}
 		},
-
-		failCallback: function (errors) {
-			   // this ajax call should never fail
-               console.log("there were some errors: "+errors);
-		},
-
 		prepareLogin: function(username, prepareLoginURL) {
 			var self = this,
 				hostName = window.SPDUtils.getLocationDetails().fullAddress;
-
 
 			$.ajax({
 				type: "GET",
@@ -199,14 +187,13 @@ var secureLogin = Class.extend(function () {
 			});
 			return false;
 		},
-
 		showUnauthorizedMessage: function () {
 			var self = this,
 				i = 0,
 				errorMessage = 'Unauthorized credentials. Please re-enter.',
-                prevHeight = 0;
+				prevHeight = 0;
 
-            prevHeight = $(document.body).height();
+			prevHeight = $(document.body).height();
 			// Populate the alert field with the errors
 			$('.alert', self.el).html(errorMessage);
 			$('.alert', self.el).removeClass('hidden');
@@ -214,48 +201,39 @@ var secureLogin = Class.extend(function () {
 			$('input[type!="hidden"]', self.el).each(function() {
 				$(this).val('');
 			});
-            self.checkHeight(prevHeight);
+			self.checkHeight(prevHeight);
 		},
-        showServerErrorMsg: function () {
-            var self = this,
-                errorMessage = "We're sorry. A server error has occurred. Please wait a moment and retry.",
-                prevHeight = 0;
+		showServerErrorMsg: function () {
+			var self = this,
+				errorMessage = "We're sorry. A server error has occurred. Please wait a moment and retry.",
+				prevHeight = 0;
 
-            prevHeight = $(document.body).height();
-            // Populate the alert field with the errors
-            $('.alert', self.el).html(errorMessage);
-            $('.alert', self.el).removeClass('hidden');
-            // blank out input fields
-            $('input[type!="hidden"]', self.el).each(function() {
-                $(this).val('');
-            });
-            self.checkHeight(prevHeight);
-            setTimeout(function(){self.recallServiceTries = 0;}, 3000);
-        },
+			prevHeight = $(document.body).height();
+			// Populate the alert field with the errors
+			$('.alert', self.el).html(errorMessage);
+			$('.alert', self.el).removeClass('hidden');
+			// blank out input fields
+			$('input[type!="hidden"]', self.el).each(function() {
+				$(this).val('');
+			});
+			self.checkHeight(prevHeight);
+			setTimeout(function(){self.recallServiceTries = 0;}, 3000);
+		},
 		/**
-		 * Posts a message to the parent page via JavaScript
-		 * @param {object} message The object to post
+		 * Checks the current height
+		 * @param {number} prevHeight Current document.body height
+		 * @return void
 		 */
-		postMessage: function (message) {
-			var domain = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port;
+		checkHeight: function (prevHeight) {
+			var self = this,
+				heightDelta = $(document.body).height() - prevHeight;
 
-			if (typeof window['parentDomain'] === 'string') {
-				domain = window['parentDomain'];
+			if (heightDelta != 0) {
+				XDM.send({
+					'heightChange': heightDelta,
+					'affectedModal': '#loginModal'
+				});
 			}
-
-			top.window.postMessage(message, domain);
-		},
-
-        checkHeight: function (prevHeight) {
-            var self = this,
-                heightDelta = 0;
-
-            heightDelta = $(document.body).height()-prevHeight;
-            console.log("login height delta: "+heightDelta);
-            if (heightDelta != 0) {
-                self.postMessage({ 'heightChange': heightDelta, 'affectedModal': '#loginModal' });
-            }
-
-        }
+		}
 	};
 }());

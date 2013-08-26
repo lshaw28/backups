@@ -16,35 +16,48 @@ var messageHandler = Class.extend(function () {
 		 * @param {object} message Message object
 		 */
 		handleMessage: function (message) {
-			var self = this;
+			var self = this,
+				formattedData = self.format(message.data.toString());
 
 			// Validate message object
-			// You can check message.origin, message.data or message.source
-			if (message.data) {
+			if (formattedData) {
 				// Take decisions based on properties of the message's data object
-				if (message.data.closeModal) {
-					$(message.data.closeModal).modal('hide');
+				if (formattedData.closeModal) {
+					$(formattedData.closeModal).modal('hide');
 				}
-                if (message.data.openModal) {
-                    $(message.data.openModal).modal('show');
-                }
-                if (message.data.redirect) {
-                    document.location.href = message.data.redirect;
-                }
-				if (message.data.reload) {
+				if (formattedData.openModal) {
+					$(formattedData.openModal).modal('show');
+				}
+				if (formattedData.redirect) {
+					document.location.href = formattedData.redirect;
+				}
+				if (formattedData.reload) {
 					document.location.reload();
 				}
-                if (message.data.heightChange) {
+				if (formattedData.heightChange) {
+					var modal = $(formattedData.affectedModal),
+						iFrame = $('iframe', modal),
+						newIFrameHeight = (modal.height() + formattedData.heightChange) - iFrame.offset().top,
+						newModalHeight = modal.height() + formattedData.heightChange;
 
-                    var modal = $(message.data.affectedModal);
-                    console.log('modal height:'+modal.height());
-                    var newHeight = (modal.height()+message.data.heightChange)-$('iframe', modal).offset().top;
-                    console.log('new height:'+newHeight);
-                    //$('iframe',modal).addBack().height(newHeight);
-                    $('iframe',modal).height(newHeight);
-                    modal.height(newHeight);
-                }
+					iFrame.height(newIFrameHeight);
+					modal.height(newModalHeight);
+				}
 			}
+		},
+		format: function (data) {
+			var items = data.split('&'),
+				returnData = {},
+				name = '',
+				val = '';
+
+			for (var i = 0; i < items.length; i++) {
+				name = items[i].split('=')[0];
+				val = items[i].split('=')[1];
+				returnData[name] = val;
+			}
+
+			return returnData;
 		}
 	}
 }());
