@@ -119,8 +119,14 @@ var modelNumberSearch = Class.extend(function () {
 				modelNumber = '',
 				modelUrl = '';
 
-			// Check the data object
 			if (su.validString(data.brandName) !== '') {
+				brandName = su.validString(data.brandName);
+			} else if (su.validString(data.formattedBrandName) !== '') {
+				brandName = su.validString(data.formattedBrandName);
+			}
+
+			// Check the data object
+			if (brandName !== '') {
 				brandName = encodeURI(su.validString(data.brandName));
 				categoryName = encodeURI(su.validString(data.categoryName));
 				modelNumber = encodeURI(su.validString(data.modelNumber));
