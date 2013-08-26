@@ -31,6 +31,6 @@
     <cq:include path="forgotPasswordModal" resourceType="searspartsdirect/components/base/forgotPasswordModal" />
     <div id="addToCartAnimation" class="addToCartAnimation">
         <i class="icon-shopping-cart">&nbsp;</i>
-        <p>Added to cart</p>
+        <p>Added to Cart</p>
     </div>
 </body>
