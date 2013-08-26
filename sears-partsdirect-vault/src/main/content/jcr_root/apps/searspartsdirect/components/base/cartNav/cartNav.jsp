@@ -100,7 +100,7 @@
 						<c:set var="cartNoItemsClass" value="" />
 					</c:otherwise>
 				</c:choose>
-				<li class="cartShopCheckout_js${cartClass}"><a class="new-btn new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
+				<li class="cartShopCheckout_js${cartClass}"><a class="new-btn new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Checkout Now</a></li>
 				<li class="cartShopHeader_js${cartClass}"><strong><span class="cart-part">Parts</span><span class="cart-quantity">Quantity</span></strong></li>
 				<c:if test="${fn:length(shoppingCart) gt 0}">
 					<c:forEach var="cartItem" items="${shoppingCart}">
