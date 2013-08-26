@@ -147,10 +147,6 @@ var addToCart = Class.extend(function () {
 				self.cartItems.count.text('0');
 				self.cartItems.countBadge.text('0');
 			}
-
-			// Set cookies
-			//su.setCookie('cid', cartId, 1000);
-			//su.setCookie('cartSize', itemCount, 1000);
 		},
 		/**
 		 * Render a shopping cart item and insert it in the drop down
@@ -160,22 +156,23 @@ var addToCart = Class.extend(function () {
 		renderItem: function (item) {
 			var self = this,
 				quantity = 0,
-				li = $('<li />'),
-				description = '';
+				description = '',
+				partNumber = '',
+				partUrl = '',
+				li = $('<li />');
 
 			// Retrieve information
 			quantity = item.quantity;
-			if (item.description) {
-				description = item.description;
-			} else {
-				description = item.partNumber;
-			}
+			description = item.description;
+			partNumber = item.partNumber;
+			partUrl = item.partUrl;
+
 			if (description.length > 17) {
 				description = description.substring(0, 17) + '...';
 			}
 
 			li.addClass('cart-item');
-			li.html('<span class="cart-part">' + description + '</span><span class="cart-quantity">' + quantity + '</span>');
+			li.html('<span class="cart-part"><a href="' + mainSitePath + partURL + '">' + description + ' ' + partNumber + '</a></span><span class="cart-quantity">' + quantity + '</span>');
 			self.cartItems.totals.before(li);
 
 			return quantity;

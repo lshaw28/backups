@@ -105,12 +105,12 @@
 				<c:if test="${fn:length(shoppingCart) gt 0}">
 					<c:forEach var="cartItem" items="${shoppingCart}">
 						<li class="cart-item">
-							<c:choose>
+							<span class="cart-part"><c:choose>
 								<c:when test="${fn:length(cartItem.part.description) > 17}">
-									<span class="cart-part"><c:out value="${fn:substring(cartItem.part.description, 0, 17)}" />...</span>
+									<c:out value="${fn:substring(cartItem.part.description, 0, 17)}" />... <c:out value="${cartItem.part.partNumber}" />
 								</c:when>
 								<c:otherwise>
-									<span class="cart-part"><c:out value="${cartItem.part.description}" /></span>
+									<c:out value="${cartItem.part.description}" /> <c:out value="${cartItem.part.partNumber}" />
 								</c:otherwise>
 							</c:choose></span>
 							<span class="cart-quantity"><c:out value="${cartItem.quantity}" /></span>
