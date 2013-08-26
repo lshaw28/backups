@@ -74,6 +74,9 @@ var searchPanel = Class.extend(function () {
 			if (value === field.data('inputhelp') || value === field.data('inputhelpmobile')) {
 				value = '';
 			}
+			// Sanitise non-alpha-numeric characters
+			value = value.replace(/[^0-9A-Za-z]/g, '');
+			field.attr('value', value);
 
 			return value;
 		},
