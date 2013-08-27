@@ -9,33 +9,28 @@
 		 * init: On page load events to fire
 		 */
 		init: function () {
-			window.SPDUtils.checkConsole();
 			window.SPDUtils.getGlobalVariables();
 			window.SPDUtils.setAddThisVariables();
-		},
-		/*
-		 * Creates a console stub for unsupported browsers
-		 * @return {void}
-		 */
-		checkConsole: function () {
-			if (!console) {
-				window['console'] = {
-					log: function () {
-					}
-				};
-			}
 		},
 		/**
 		 * Retrieve and set global variables
 		 * @return {void}
 		 */
 		getGlobalVariables: function () {
+			var self = this;
+
 			$('meta[name^="global-"]').each(function () {
 				var newName = $(this).attr('name').replace('global-', ''),
 					newContent = $(this).attr('content');
 
 				window[newName] = newContent;
 			});
+			// API path protocol fix
+			if (self.validString(window['apiPath']) !== '' && self.validString(window['apiPathSecure']) !== '') {
+				if (self.getLocationDetails().protocol === 'https:') {
+					window['apiPath'] = window['apiPathSecure'];
+				}
+			}
 		},
 		/**
 		 * Creates objects required by AddThis

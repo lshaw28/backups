@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<article id="content">
+<article id="content"><div class="articleFix">
 	<%-- <cq:include path="/content/searspartsdirect/en/jcr:content/breadcrumbNavigation" resourceType="/apps/searspartsdirect/components/base/breadcrumbNavigation" /> --%>
 	<cq:include path="/content/searspartsdirect/en/jcr:content/modelHeader" resourceType="/apps/searspartsdirect/components/content/modelHeader" />
 	<div class="row-fluid">
@@ -20,4 +20,4 @@
 			<cq:include path="parsys_bottom" resourceType="foundation/components/parsys" />
 		</div>
 	</div>
-</article>
+</div></article>

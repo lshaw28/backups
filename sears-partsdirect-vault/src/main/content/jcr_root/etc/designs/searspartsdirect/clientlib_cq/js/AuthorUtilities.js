@@ -11,10 +11,6 @@ var SPDAuthorUtils = (function () {
 		 */
 		init: function () {
 			var self = this;
-
-			shc.pd.base.util.ViewChange.getInstance().onResponsive(function (args) {
-				console.log('Application Width: ', args[0]);
-			});
 		},
 		/**
 		 * Refresh responsiveDropdown on edit

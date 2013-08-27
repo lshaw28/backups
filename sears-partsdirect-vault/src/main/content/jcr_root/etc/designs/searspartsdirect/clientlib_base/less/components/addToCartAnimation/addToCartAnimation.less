@@ -1,0 +1,42 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.addToCartAnimation {
+
+  background: @secondaryHueDarkest;
+  outline: none;
+  position: fixed;
+  margin-left:-78px; /* 1/2 width */
+  top: 40%;
+  left: 50%;
+  width:156px;
+  padding: 5px 30px 10px;
+  z-index: 9000;
+  border-radius: 12px;
+  display: none;
+
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
+
+  i {
+    color: @secondaryHueLighter;
+    font-size: 92px;
+    margin-left: 25px;
+
+  }
+
+  p {
+    color: @secondaryHueLighter;
+    font-size: 22px;
+    margin: 0px 5px 12px 5px;
+
+  }
+
+
+}
+

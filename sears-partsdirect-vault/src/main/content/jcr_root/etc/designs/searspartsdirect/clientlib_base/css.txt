@@ -15,6 +15,7 @@ core.svgIcons.less
 
 #base=less/components/.
 accordionItem/accordionItem.less
+addToCartAnimation/addToCartAnimation.less
 authorArticle/authorArticles.less
 authorDetails/authorDetails.less
 authorDisplay/authorDisplay.less
@@ -67,7 +68,7 @@ responsiveFindThisPart/responsiveFindThisPart.less
 responsiveImage/responsiveImage.less
 responsiveTable/responsiveTable.less
 searchPanel/searchPanel.less
-search-panel-finder/search-panel-finder.less
+modelFinder/modelFinder.less
 skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less
 text/text.less

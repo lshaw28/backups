@@ -67,23 +67,23 @@ public class GetUserDataTag extends CQBaseTag {
 				if (userData.getUserName() != null) {
 					userData.setLoggedIn(true);
 				}
-				
-				/*int cartCount = 0;
+
+				int cartCount = 0;
 				CartModel cartModel = userData.getCart();
 				if (cartModel != null && cartModel.getCartLines() != null) {
 					for (CartLinesModel cartLine : cartModel.getCartLines()) {
 						cartCount = cartCount +  cartLine.getQuantity();
 					}
-				}*/
-				//pageContext.setAttribute("cartCount", cartCount);	
-				shoppingCartSizeCookie = PartsDirectCookieHelper.getCookieInfo(cookies, Constants.SHOPPING_CART_SIZE_COOKIE);
-				if (shoppingCartSizeCookie != null && shoppingCartSizeCookie.getValue() != null) {
-					pageContext.setAttribute("cartCount", shoppingCartSizeCookie.getValue());
-				} else {
-					pageContext.setAttribute("cartCount", 0);
 				}
+				pageContext.setAttribute("cartCount", cartCount);
+//				shoppingCartSizeCookie = PartsDirectCookieHelper.getCookieInfo(cookies, Constants.SHOPPING_CART_SIZE_COOKIE);
+//				if (shoppingCartSizeCookie != null && shoppingCartSizeCookie.getValue() != null) {
+//					pageContext.setAttribute("cartCount", shoppingCartSizeCookie.getValue());
+//				} else {
+//					pageContext.setAttribute("cartCount", 0);
+//				}
 				pageContext.setAttribute("userData", userData);
-				
+
 
 			} catch (IOException e) {
 				log.error("I/O Exception while getting data from PD API ", e.fillInStackTrace());
