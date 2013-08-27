@@ -29,27 +29,29 @@ input[type="text"], input[type="password"], select, textarea {
 	display: inline-block;
 	font-size: @pSize;
 	padding: 6px;
-	width: 100%;
 }
 
 .input-append {
+	overflow: hidden;
+	position: relative;
 	width: 100%;
 
-	input {
-		border-right: 0;
+	input[type="text"] {
+		display: block;
 		outline-style: none;
-		padding: 12px 0 12px 12px;
-		width: 75%;
+		width: inherit;
 	}
 	.add-on {
 		background-color: @bodyColor;
-		border: 1px solid @secondaryHueLight;
 		border-left: 0;
-		.borderRadius(0);
 		color: @secondaryHueDark;
-		padding: 12px 6px 12px 12px;
+		padding: 3px 6px 9px;
+		position: absolute;
+		right: 0;
 		text-align: right;
+		top: 0;
 		width: auto;
+		z-index: 10;
 
 		button {
 			background-color: transparent;
