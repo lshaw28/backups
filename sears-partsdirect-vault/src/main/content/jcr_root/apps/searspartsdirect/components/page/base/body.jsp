@@ -30,6 +30,7 @@
 	<cq:include path="registerModal" resourceType="searspartsdirect/components/base/registerModal" />
     <cq:include path="forgotPasswordModal" resourceType="searspartsdirect/components/base/forgotPasswordModal" />
     <div id="addToCartAnimation" class="addToCartAnimation">
-        <span><i class="icon-shopping-cart">&nbsp;</i>Added to cart</span>
+        <i class="icon-shopping-cart">&nbsp;</i>
+        <p>Added to Cart</p>
     </div>
 </body>

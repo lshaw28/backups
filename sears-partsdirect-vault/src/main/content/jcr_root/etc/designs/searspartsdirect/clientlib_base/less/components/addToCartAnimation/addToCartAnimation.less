@@ -3,22 +3,31 @@
 
 .addToCartAnimation {
   display: block;
+  background: @secondaryHueDarkest;
   outline: none;
-  position: absolute;
-  margin: 20px;
-  top: 50%;
+  position: fixed;
+  margin-left:-78px; /* 1/2 width */
+  top: 40%;
   left: 50%;
+  width:156px;
+  padding: 5px 30px 10px;
   z-index: 9000;
   opacity: 0;
+  border-radius: 12px;
+
 
   i {
-    font-size: 48px;
-    color: @secondaryHueDarker;
+    color: @secondaryHueLighter;
+    font-size: 92px;
+    margin-left: 25px;
+
   }
 
-  span {
+  p {
+    color: @secondaryHueLighter;
     font-size: 22px;
-    color: @secondaryHueDarker;
+    margin: 0px 5px 12px 5px;
+
   }
 
 

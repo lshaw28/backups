@@ -1,41 +1,44 @@
 @import "../../base.variables.less";
+@import "../../base.mixins.less";
 
-.modelFinderWrapper {
-	border-left: solid 4px @primaryHueDarkest;
-	border-right: solid 4px @primaryHueDarkest;
-	padding: 0 20px;
-	background: #fff;
-	height: 0px;
-	overflow: hidden;
+.searchPanelFinder_js {
+	cursor: pointer;
 }
-.modelFinder {
-	width: 100%;
-	position: absolute;
-	overflow: hidden;
 
+.modelFinder {
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+
+	.modelFinderWrapper {
+		background-color: @bodyColor;
+		border-left: solid 4px @primaryHueDarkest;
+		border-right: solid 4px @primaryHueDarkest;
+		height: 0;
+		overflow: hidden;
+		padding: 0 20px;
+	}
 	&.is-open {
 		.modelFinderWrapper {
 			border-bottom: solid 4px @primaryHueDarkest;
 		}
 	}
 	.dropdown-reskin {
-		position: relative;
-		overflow: hidden;
 		border: solid 1px @secondaryHueLight;
+		overflow: hidden;
+		position: relative;
 
 		select {
 			border: 0;
-			padding: 0 0 0 15px;
-			height: 45px;
-			width: 110%;
 			margin: 0;
+			padding: 0 0 0 15px;
+			width: 110%;
 		}
-
 		i {
-			position: absolute;
-			top: 12px;
-			right: 20px;
 			font-size: 22px;
+			position: absolute;
+			right: 8px;
+			top: 4px;
 		}
 	}
 	.modelFinderPlates {
@@ -93,6 +96,19 @@
 .modelFinderOutput {
 	overflow: hidden;
 }
+.modelFinderPlateOutput {
+	ul {
+		list-style: none;
+		margin: 10px 0;
+		padding: 0;
+
+		li {
+			display: inline-block;
+			padding: 5px 0;
+			width: 31%;
+		}
+	}
+}
 #ProductStyleUL {
 	list-style: none;
 	margin: 0;
@@ -112,3 +128,5 @@
 		}
 	}
 }
+
+@import "modelFinder.mobile.less";

@@ -17,8 +17,6 @@ var addToCart = Class.extend(function () {
 			this.el = el;
 			this.offset = el.offset();
 			this.animElem = $("#addToCartAnimation");
-			this.animElem.css("left", this.offset.left);
-			this.animElem.css("top", this.offset.top+25);
 			this.quantityField = qf;
 			this.partNumber = '';
 			this.divId = '';
@@ -101,6 +99,7 @@ var addToCart = Class.extend(function () {
 					// Handle error
 				});
 			}
+
 		},
 		/**
 		 * Display a message to the user to show that their item was added to the cart
@@ -111,10 +110,18 @@ var addToCart = Class.extend(function () {
 
 			self.animElem.animate({
 				opacity: 1
-			}, 2000, function() {
-				self.animElem.css('opacity', 0);
-			});
+			}, 1500);
+
+            setTimeout(function () {self.hideAddedMessage()}, 3000);
 		},
+
+        hideAddedMessage: function() {
+            var self = this;
+
+            self.animElem.animate({
+                opacity: 0
+            }, 1500);
+        },
 		/**
 		 * Process AJAX response
 		 * @param {object} data AJAX response
@@ -175,6 +182,7 @@ var addToCart = Class.extend(function () {
 		 */
 		renderItem: function (item) {
 			var self = this,
+				su = window.SPDUtils,
 				quantity = 0,
 				partUrl = '',
 				li = $('<li />'),
@@ -183,9 +191,9 @@ var addToCart = Class.extend(function () {
 
 			// Retrieve information
 			quantity = item.quantity;
-			description = item.description;
-			partNumber = item.partNumber;
-			partUrl = item.partUrl;
+			description = su.validString(item.description);
+			partNumber = su.validString(item.partNumber);
+			partUrl = su.validString(item.partUrl);
 
 			if (description.length > 17) {
 				description = description.substring(0, 17) + '...';

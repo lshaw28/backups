@@ -1,17 +1,19 @@
 /*global window:true, $:true, Class:true */
-var responsiveFindThisPart = Class.extend(function () {
+var responsiveCollapse = Class.extend(function () {
 	"use strict";
 
 	return {
 		/**
-		 * Initializes responsiveFindThisPart class
+		 * Initializes responsiveCollapse class
 		 * Mobile: accordion
 		 * Tablet/desktop: visible content
 		 * @param {object} el Target element
+		 * @param {string} cl Class for buttons to bind
 		 */
-		init: function (el) {
+		init: function (el, cl) {
 			// Parameters
 			this.el = $(el);
+			this.cl = cl;
 			// Events
 			this.bindEvents();
 		},
@@ -48,7 +50,7 @@ var responsiveFindThisPart = Class.extend(function () {
 				self.toggleActive();
 			});
 			// Set link to toggle display
-			$('.responsiveFindThisPart_js', self.el).bind('click', function () {
+			$('.' + self.cl.replace('.', ''), self.el).bind('click', function () {
 				self.togglePanel();
 			});
 		}

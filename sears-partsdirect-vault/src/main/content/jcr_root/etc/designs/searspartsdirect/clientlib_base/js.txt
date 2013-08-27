@@ -24,7 +24,6 @@ WindowResize.js
 #base=js/components/.
 addToCart.js
 cartNav.js
-category101.js
 collapse101.js
 commonParts.js
 guideNavigation.js
@@ -33,7 +32,7 @@ modelHeader.js
 modelNumberSearch.js
 recommendedParts.js
 responsiveDropdown.js
-responsiveFindThisPart.js
+responsiveCollapse.js
 responsiveImage.js
 revealPanel.js
 searchPanel.js
