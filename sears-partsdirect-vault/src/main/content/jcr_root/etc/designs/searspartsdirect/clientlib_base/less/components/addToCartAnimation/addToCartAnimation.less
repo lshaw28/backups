@@ -2,7 +2,7 @@
 @import "../../base.mixins.less";
 
 .addToCartAnimation {
-  display: block;
+
   background: @secondaryHueDarkest;
   outline: none;
   position: fixed;
@@ -15,6 +15,13 @@
   opacity: 0;
   border-radius: 12px;
 
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
 
   i {
     color: @secondaryHueLighter;
