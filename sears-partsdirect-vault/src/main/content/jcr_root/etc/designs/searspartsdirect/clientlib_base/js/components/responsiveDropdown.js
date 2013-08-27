@@ -185,7 +185,6 @@ var responsiveDropdown = Class.extend(function () {
 				targetEl = $('a[name="' + valStripped + '"]');
 				scrollPos = targetEl.offset().top;
 			} catch (e) {
-				console.log(e);
 			}
 			// Navigate
 			if (self.navigate === true || val.indexOf('#') > -1) {

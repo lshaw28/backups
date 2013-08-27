@@ -42,7 +42,7 @@ public class GetJobCodePartsTag extends CQBaseTag {
 
 		if (jobCodes != null && jobCodes.size() > 0) {
 			try {
-				String jsonResponse = apiHelper.readJsonData(buildApiUrl());
+				String jsonResponse = apiHelper.readJsonData(buildApiUrl(), 15000);
 				log.debug("JobCode-Parts API response: " + jsonResponse);
 				jobCodeParts = getJobCodeParts(jsonResponse);
 			} catch (IOException e) {

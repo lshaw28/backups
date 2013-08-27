@@ -2,25 +2,25 @@
 <spd:getRecentlyViewed />
 <ul class="cartNavItems">
 	<div class="cartNavShadow"></div>
-	<li class="cartNavItem">
+	<li id="cartRecents" class="cartNavItem">
 		<div class="btn-group">
 			<c:choose>
-				<c:when test="${not empty rvModelList and not empty rvPartList}">
+				<c:when test="${not empty rvModelList || not empty rvPartList}">
 					<a data-toggle="dropdown" href="#">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
 					<ul class="dropdown-menu">
 						<c:forEach var="model" items="${rvModelList}">
-							<li>Model <a href="${model.itemURL}"><c:out value="${model.itemName}" /></a><br />
-							<a href="${model.itemURL}"><c:out value="${model.itemDescription}" /></a></li>
+							<li>Model <a href="${mainSitePath}/${model.itemURL}"><c:out value="${model.itemName}" /><br />
+							<c:out value="${model.itemDescription}" /></a></li>
 						</c:forEach>
 						<c:forEach var="part" items="${rvPartList}">
 							<li>
-								<a href="${part.itemURL}">
+								<a href="${mainSitePath}/${part.itemURL}">
 								<c:choose>
 									<c:when test='${part.itemImageURL != null && part.itemImageURL != "null"}'>
 										<img src="${part.itemImageURL}" alt="${part.itemDescription}" />
 									</c:when>
 									<c:otherwise>
-										<img src="/assets/img/images/no_part_100x100.gif" alt="No part image available" />
+										<img src="${mainSitePath}/assets/img/images/no_part_100x100.gif" alt="No part image available" />
 									</c:otherwise>
 								</c:choose>
 								<c:out value="${part.itemName}" /><br /><c:out value="${part.itemDescription}" /></a>
@@ -100,17 +100,17 @@
 						<c:set var="cartNoItemsClass" value="" />
 					</c:otherwise>
 				</c:choose>
-				<li class="cartShopCheckout_js${cartClass}"><a class="new-btn new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Check Out Now</a></li>
+				<li class="cartShopCheckout_js${cartClass}"><a class="new-btn new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Checkout Now</a></li>
 				<li class="cartShopHeader_js${cartClass}"><strong><span class="cart-part">Parts</span><span class="cart-quantity">Quantity</span></strong></li>
 				<c:if test="${fn:length(shoppingCart) gt 0}">
 					<c:forEach var="cartItem" items="${shoppingCart}">
 						<li class="cart-item">
-							<c:choose>
+							<span class="cart-part"><c:choose>
 								<c:when test="${fn:length(cartItem.part.description) > 17}">
-									<span class="cart-part"><c:out value="${fn:substring(cartItem.part.description, 0, 17)}" />...</span>
+									<c:out value="${fn:substring(cartItem.part.description, 0, 17)}" />... <c:out value="${cartItem.part.partNumber}" />
 								</c:when>
 								<c:otherwise>
-									<span class="cart-part"><c:out value="${cartItem.part.description}" /></span>
+									<c:out value="${cartItem.part.description}" /> <c:out value="${cartItem.part.partNumber}" />
 								</c:otherwise>
 							</c:choose></span>
 							<span class="cart-quantity"><c:out value="${cartItem.quantity}" /></span>

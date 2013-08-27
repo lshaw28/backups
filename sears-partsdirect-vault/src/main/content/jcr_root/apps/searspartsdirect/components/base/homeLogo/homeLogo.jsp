@@ -1,1 +1,1 @@
-<a href="${mainSitePath}">&nbsp;</a>
+<a href="${mainSitePath}/partsdirect/">&nbsp;</a>

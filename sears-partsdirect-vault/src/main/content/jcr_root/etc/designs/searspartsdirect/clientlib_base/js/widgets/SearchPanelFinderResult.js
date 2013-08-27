@@ -1,5 +1,5 @@
 NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
-	var API_PREFIX = $('meta[name="global-mainSitePath"]').attr('content') + '/partsdirect/newModelLocatorAction!',
+	var API_PREFIX = mainSitePath + '/partsdirect/newModelLocatorAction!',
 		PRODUCT_URI = API_PREFIX + 'fetchNewFilterOptionsBasedOnProductType.pd',
 		PRODUCT_SWITCHER_URI = API_PREFIX + 'fetchPlateLocationsAndImageForStyle.pd',
 		MODEL_BRANDS = API_PREFIX + 'fetchBrandsListBasedOnStyle.pd',
@@ -25,15 +25,15 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 			// container reference
 			this.parent = parent;
 			// UI that handles going from model brand search and product output
-			this.$paneManager = $('.search-criteria-pane-manager', this.parent);
+			this.$paneManager = $('.modelFinderPaneManager', this.parent);
 			// UI that contains the product search
-			this.$productOutput = $('.search-criteria-output', this.parent);
+			this.$productOutput = $('.modelFinderOutput', this.parent);
 			// UI that contains both the 3 images and model helper search
-			this.$modelHelper = $('.search-criteria-helper', this.parent);
+			this.$modelHelper = $('.modelFinderHelper', this.parent);
 			// UI that handles the final dropdown
-			this.$modelHelperSearch = $('.search-criteria-plate-finder', this.parent);
+			this.$modelHelperSearch = $('.modelFinderPlateFinder', this.parent);
 			// UI that outputs model numbers
-			this.$modelNumbersResult = $('.search-criteria-plate-output', this.parent);
+			this.$modelNumbersResult = $('.modelFinderPlateOutput', this.parent);
 			// brand selector
 			this.$modelHelperBrandSelect = $('select', this.$modelHelperSearch);
 			// bind manager anchor links
@@ -98,6 +98,9 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 
 				// set UI response callback
 				callback = function (data) {
+					// Clean image paths in data
+					data = data.replace('src="/partsdirect/assets/img/', 'src="' + mainSitePath + '/partsdirect/assets/img/');
+
 					_this.clearProductSearch(true);
 					_this.$productOutput.prepend(data);
 
@@ -108,6 +111,9 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 				};
 			} else {
 				callback = function (data) {
+					// Clean image paths in data
+					data = data.replace('src="/partsdirect/assets/img/', 'src="' + mainSitePath + '/partsdirect/assets/img/');
+
 					_this.clearProductSearch();
 					_this.$productOutput.html(data);
 
@@ -123,7 +129,7 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 				type: 'GET',
 				data: data,
 				dataType: 'html'
-			}).done(function (data) {
+			}).success(function (data) {
 				// a check if you request then close the modal during a request
 				if (this.productType !== null) {
 					callback(data);
@@ -174,7 +180,7 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 				type: 'GET',
 				data: {
 					productType: _this.productType,
-					selectedStyle: _this.styleType, // this does not appear to change the result if null
+					selectedStyle: _this.styleType,
 					selectedBrand: brand
 				},
 				dataType: 'html'

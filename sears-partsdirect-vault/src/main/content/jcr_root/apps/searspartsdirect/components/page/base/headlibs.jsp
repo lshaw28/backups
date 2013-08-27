@@ -12,3 +12,4 @@
 <cq:includeClientLib css="apps.searspartsdirect.social" />
 <cq:include script="templatelibs.jsp" />
 <cq:include script="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp"/>
+<cq:includeClientLib js="apps.searspartsdirect.head" />

@@ -25,10 +25,6 @@
 		 * modelHeader singleton class setup
 		 */
 		var newModelHeader = new modelHeader();
-        /**
-		 * commentCheck singleton class setup
-		 */
-		var newCommentCheck = new commentCheck();
 		/**
 		 * searchPanel singleton class setup
 		 */
@@ -132,17 +128,14 @@
         $('[data-toggle="collapse101"]').each(function () {
             var newCollapse101 = new Collapse101($(this));
         });
-        /**
-         * category101 class setup
-         */
-        $('.category101').each(function() {
-            var newCategory101 = new category101($(this));
-        });
 		/**
-		 * responsiveFindThisPart class setup
+		 * responsiveCollapse class setup
 		 */
 		$('.responsiveFindThisPart').each(function () {
-			var newResponsiveFindThisPart = new responsiveFindThisPart($(this));
+			var newresponsiveCollapse = new responsiveCollapse($(this), 'responsiveFindThisPart_js');
+		});
+		$('.category101').each(function () {
+			var newresponsiveCollapse = new responsiveCollapse($(this), 'category101_js');
 		});
         // commonParts class setup
         $('.commonParts').each(function() {
@@ -179,11 +172,11 @@
 		/*
 		 * Search panel finder widget
 		 */
-		shc.pd.base.widgets.SearchPanelFinder.init($('.search-panel-finder'));
+		shc.pd.base.widgets.SearchPanelFinder.init($('.modelFinder'));
 		/*
 		 * SVG icon compatibility fix for legacy browsers
 		 */
-		if ($('html').hasClass('no-background-size')) {
+		if ($('html').hasClass('no-backgroundsize')) {
 			$('[class^="svg-icon"]').each(function () {
 				var newSVGIcon = new svgIcon($(this));
 			});
