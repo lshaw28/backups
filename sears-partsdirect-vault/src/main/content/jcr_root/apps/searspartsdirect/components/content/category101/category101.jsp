@@ -9,10 +9,10 @@
 <c:if test="${not empty articles}">
 	<c:choose>
 		<c:when test="${fn:length(productCategoryRelation.title) lt 38 && fn:length(category101header) eq 0}">
-			<c:set var="category101Title" value="${productCategoryRelation.title + ' 101'}" />
+			<c:set var="category101Title" value="${productCategoryRelation.title} 101" />
 		</c:when>
 		<c:when test="${fn:length(category101header) eq 0}">
-			<c:set var="category101Title" value="${fn:substring(productCategoryRelation.title,0,37) + ' 101'}" />
+			<c:set var="category101Title" value="${fn:substring(productCategoryRelation.title,0,37)} 101" />
 		</c:when>
 		<c:otherwise>
 			<c:set var="category101Title" value="${category101header}" />
