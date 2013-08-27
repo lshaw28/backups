@@ -1,16 +1,13 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
-@media (max-width: 1024px) {
-	.input-append {
-		input {
-			width: 70%;
-		}
-	}
-}
-
 @media (max-width: 768px) {
 	input[type="text"], input[type="password"], select, textarea {
 		padding: 12px;
+	}
+	.input-append {
+		.add-on {
+			padding: 9px 12px 15px;
+		}
 	}
 }

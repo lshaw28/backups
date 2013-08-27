@@ -1,10 +1,16 @@
 @import "../../../base.variables.less";
 @import "../../../base.mixins.less";
 
-
 .desktop-carousel {
 	i {
 		display: none;
+	}
+	.carousel-item {
+		.image {
+			small {
+				padding: 10px 0;
+			}
+		}
 	}
 }
 
@@ -46,21 +52,22 @@
 		margin: 0 auto;
 		overflow: hidden;
 	}
-	div.analyzable.parbase.image small{
+	div.analyzable.parbase.image small {
 		margin-top: 10px;
-		text-align: center;
 	}
 	[class*="carousel-trigger"] {
-		width: 50px;
-		height: 50px;
 		background: @secondaryHueLight; // non rba compliant browsers
 		background: rgba(222, 222, 222, .8);
 		border: solid 1px @secondaryHueLight;
-		position: absolute;
-		display: block;
-		top: 159px;
-		z-index: 2;
 		color: @secondaryHueNormal;
+		cursor: pointer;
+		display: block;
+		height: 50px;
+		position: absolute;
+		top: 159px;
+		width: 50px;
+		z-index: 2;
+
 		text-align: center;
 
 		&:hover {
