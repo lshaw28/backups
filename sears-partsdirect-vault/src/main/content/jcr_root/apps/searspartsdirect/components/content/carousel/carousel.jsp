@@ -9,7 +9,7 @@
 		<div class="carouselWrapper">
 			<div class="carouselListWrapper">
 				<c:forEach items="${carouselImages}" var="carouselImage">
-					<div class="carouselItem">
+					<div class="carouselItemHolder">
 						<cq:include path="${carouselImage}" resourceType="searspartsdirect/components/content/carouselItem" />
 					</div>
 				</c:forEach>

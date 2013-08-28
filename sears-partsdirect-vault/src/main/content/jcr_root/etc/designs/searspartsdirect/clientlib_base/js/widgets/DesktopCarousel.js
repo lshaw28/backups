@@ -11,11 +11,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 			this.masterCtrClassName = 'carouselMarkersDesktop';
 
 			try {
-				var items = $('.carouselItem', parent);
-
-				if (items.length === 0) {
-					throw new Error('There are no carousel items');
-				}
+				var items = $('.carouselItemHolder', parent);
 
 				this.parent = parent;
 
@@ -31,7 +27,6 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 				this.bindMasterController();
 				this.onIndexChangeControlDisplay(0);
 			} catch (e) {
-				console.error(e.message);
 			}
 		},
 		/**
@@ -138,7 +133,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 		 */
 		onIndexChangeControlDisplay: function (index) {
 			var _this = this,
-				itemCount = $('.carouselItem', _this.parent).length;
+				itemCount = $('.carouselItemHolder', _this.parent).length;
 
 			// Catch errors in case there is inheritance
 			try {

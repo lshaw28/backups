@@ -10,7 +10,7 @@
 		<div class="carouselWrapper row-fluid">
 			<div class="carouselListWrapper">
 				<c:forEach var="guide" items="${guides}">
-					<div class="carouselItem span3">
+					<div class="carouselItemHolder span3">
 						<spd:linkResolver value="${guide.url}" />
 						<div class="wrapperGuide">
 							<div class="image-wrapper">

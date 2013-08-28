@@ -8,6 +8,7 @@
 	.carouselItem {
 		.image {
 			small {
+				font-size: @pSize;
 				padding: 0 0 10px;
 			}
 		}
@@ -16,13 +17,13 @@
 .desktopCarouselEnabled {
 	@carouselWidth: 550px;
 
-	padding: 0 25px 28px 25px;
+	padding: 0 25px 10px 25px;
 	margin: 0 auto;
 	width: @carouselWidth;
 	overflow: hidden;
 	position: relative;
 
-	[class*="Item"] {
+	.carouselItemHolder {
 		float: left;
 
 		img, p {
@@ -95,7 +96,7 @@
 
 // shared on touch carousel
 [class*="carouselMarkers"] {
-	display: none;
+	display: block;
 	position: absolute;
 	bottom: 5px;
 	width: 100%;

@@ -11,11 +11,7 @@ NS('shc.pd.base.widgets').TouchCarousel = shc.pd.base.widgets.DesktopCarousel.ex
 			this.masterCtrClassName = 'carouselMarkersTouch';
 
 			try {
-				var items = $('.carouselItem', parent);
-
-				if (items.length === 0) {
-					throw new Error('There are no carousel items');
-				}
+				var items = $('.carouselItemHolder', parent);
 
 				this.parent = parent;
 
@@ -32,7 +28,6 @@ NS('shc.pd.base.widgets').TouchCarousel = shc.pd.base.widgets.DesktopCarousel.ex
 				this.bindTouchEvents();
 				this.onIndexChangeControlDisplay(0);
 			} catch (e) {
-				console.error(e.message);
 			}
 		},
 		/**
@@ -52,11 +47,6 @@ NS('shc.pd.base.widgets').TouchCarousel = shc.pd.base.widgets.DesktopCarousel.ex
 				e.gesture.preventDefault();
 				hasSwiped = shc.pd.base.util.Enums.Direction.Left;
 			});
-
-			// experimental, not in requirement anyways
-//			Hammer(this.parent).on('drag', function (e) {
-//				_this.carousel.getFx().setX(e.gesture.deltaX, 'px');
-//			});
 
 			Hammer(this.parent).on('dragend', function (e) {
 				if (_this.active === true) {
