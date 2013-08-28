@@ -99,7 +99,9 @@ var addToCart = Class.extend(function () {
 					// Handle error
 				});
 			}
-
+            // NOTE: Next line for testing ONLY
+            // comment out for QA/PROD
+            //self.showAddedMessage();
 		},
 		/**
 		 * Display a message to the user to show that their item was added to the cart
@@ -108,9 +110,7 @@ var addToCart = Class.extend(function () {
 		showAddedMessage: function() {
 			var self = this;
 
-			self.animElem.animate({
-				opacity: 1
-			}, 1500);
+            self.animElem.fadeIn(1500);
 
             setTimeout(function () {self.hideAddedMessage()}, 3000);
 		},
@@ -118,9 +118,14 @@ var addToCart = Class.extend(function () {
         hideAddedMessage: function() {
             var self = this;
 
-            self.animElem.animate({
-                opacity: 0
-            }, 1500);
+            self.animElem.fadeOut(1500);
+            setTimeout(function () {self.hideAddedMessageForIE8()}, 1510);
+        },
+
+        hideAddedMessageForIE8: function() {
+            var self = this;
+
+            self.animElem.css('display', 'none');
         },
 		/**
 		 * Process AJAX response
