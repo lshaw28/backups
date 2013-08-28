@@ -54,7 +54,7 @@
 				</div>
 				<div id="${uniqueId}${uniquer}" class="accordion-body in collapse">
 					<div class="accordion-inner">
-						<p><a href="${mainSitePath}/partsdirect/product-types/${productCategoryRelation.title}-Parts">Shop <c:choose>
+						<p><a href="${mainSitePath}/partsdirect/product-types/${productCategoryRelation.trueName}-Parts">Shop <c:choose>
 							<c:when test="${not empty commonPart.pluralTitle}">
 								<c:out value="${fn:toLowerCase(commonPart.pluralTitle)}"/>
 							</c:when>
