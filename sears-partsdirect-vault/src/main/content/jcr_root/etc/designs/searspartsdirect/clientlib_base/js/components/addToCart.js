@@ -205,7 +205,7 @@ var addToCart = Class.extend(function () {
 			}
 
 			li.addClass('cart-item');
-			li.html('<span class="cart-part"><a href="' + mainSitePath + partURL + '">' + description + ' ' + partNumber + '</a></span><span class="cart-quantity">' + quantity + '</span>');
+			li.html('<span class="cart-part"><a href="' + mainSitePath + partUrl + '">' + description + ' ' + partNumber + '</a></span><span class="cart-quantity">' + quantity + '</span>');
 			self.cartItems.totals.before(li);
 
 			return quantity;
