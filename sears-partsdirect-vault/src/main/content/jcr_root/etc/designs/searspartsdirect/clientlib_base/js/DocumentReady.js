@@ -146,17 +146,37 @@
             var newrecommendedParts = new recommendedParts($(this));
         });
 		// desktop carousel initialization
-		$('.desktop-carousel').each(function () {
+		$('.carousel .desktopCarousel').each(function () {
 			var carouselElement = $(this);
 
 			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
-				min: 1025,
+				min: 769,
 				max: 100000,
 				obj: new shc.pd.base.widgets.DesktopCarousel(carouselElement)
 			}));
 		});
 		// touch carousel initialization
-		$('.touch-carousel').each(function () {
+		$('.carousel .touchCarousel').each(function () {
+			var carouselElement = $(this);
+
+			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
+				min: 1,
+				max: 768,
+				obj: new shc.pd.base.widgets.TouchCarousel(carouselElement)
+			}));
+		});
+		// desktop relatedGuide initialization
+		$('.relatedGuides .desktopCarousel').each(function () {
+			var carouselElement = $(this);
+
+			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
+				min: 651,
+				max: 100000,
+				obj: new shc.pd.base.widgets.DesktopCarousel(carouselElement)
+			}));
+		});
+		// touch relatedGuide initialization
+		$('.relatedGuides .touchCarousel').each(function () {
 			var carouselElement = $(this);
 
 			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({

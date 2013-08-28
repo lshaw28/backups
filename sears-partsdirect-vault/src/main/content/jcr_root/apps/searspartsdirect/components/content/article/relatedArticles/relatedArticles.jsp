@@ -11,7 +11,7 @@
 		--%><c:out value="${newHeader}" /><%--
 	--%></h2>
 	<div class="carousel-mobile-only">
-		<div class="carousel-wrapper row-fluid">
+		<div class="carouselWrapper row-fluid">
 			<c:forEach var="article" items="${articles}">
 				<div class="carousel-mobile-item span3">
 					<spd:linkResolver value="${article.url}" />

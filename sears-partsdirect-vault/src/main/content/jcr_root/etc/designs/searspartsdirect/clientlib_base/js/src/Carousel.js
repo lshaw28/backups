@@ -18,7 +18,7 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 			this._super();
 			
 			// we need items, or else this should not be in use
-			if ($('.carousel-item', parent).length === 0) {
+			if ($('.carouselItem', parent).length === 0) {
 				throw new Error('No items to carousel');
 			}
 			
@@ -26,7 +26,7 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 			this.hasAction = true;
 			
 			// item wrapper that we move
-			this.itemWrapper = $('.carousel-list-wrapper', parent);
+			this.itemWrapper = $('.carouselListWrapper', parent);
 			
 			// fx handler
 			this.moveFx = new shc.pd.base.fx.Translate3dResolver(this.itemWrapper, 'marginLeft');
