@@ -35,6 +35,7 @@ categorySymptomDetail/categorySymptomDetail.less
 categorySymptoms/categorySymptoms.less
 commonParts/commonParts.less
 customAccordionForms/customAccordionForms.less
+customAccordionForms/customAccordionForms.tablet.less
 difficultyRating/difficultyRating.less
 displayRecommendedParts/displayRecommendedParts.less
 errorCodeChecker/errorCodeChecker.less
