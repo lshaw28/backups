@@ -26,6 +26,7 @@ var customAccordionForms = Class.extend(function () {
 					} else {
 						//Opening accordion
 						$(this).parent().addClass('cafHeadingOpen');
+						$(this).find('span').addClass('hidden');
 					}
 				}
 			});
@@ -46,6 +47,11 @@ var customAccordionForms = Class.extend(function () {
 			
 			$('.cafSubmit', self.el).bind('click', function (e) {
 				e.preventDefault();
+				//Sets the frequency, dates (eventually) and quantity the user input on the first step
+				if ($(e.target.form).attr('id') == "cafSelectFilterFrequencyForm") {
+					$('#freqSel').html($('input[name="frequency"]:checked').val());
+					$('#subQty').html($('#waterFilterQuantity').val());
+				}
 				//Special bit to fill out the billing form if user wants to use the same address (already on checkbox, here in case user updates after clicking the checkbox)
 				if ($(e.target.form).attr('id') == "cafShippingAddressForm" && $('#shippingSame').attr('checked')) {
 					self.setBillingFields(true);
@@ -82,10 +88,12 @@ var customAccordionForms = Class.extend(function () {
 					self.setBillingFields(true);
 					$('#billingSame').attr('checked', 'checked');
 					$('.accordion-group').has('#cafBillingAddressForm').find('.accordion-toggle').attr('data-status', 'complete');
+					$('.accordion-group').has('#cafBillingAddressForm').find('.accordion-toggle span').removeClass('hidden');
 				} else {
 					self.setBillingFields(false);
 					$('#billingSame').removeAttr('checked');
 					$('.accordion-group').has('#cafBillingAddressForm').find('.accordion-toggle').attr('data-status', 'unavailable');
+					$('.accordion-group').has('#cafBillingAddressForm').find('.accordion-toggle span').addClass('hidden');
 				}
 			});
 			
@@ -106,23 +114,23 @@ var customAccordionForms = Class.extend(function () {
 		 */
 		setBillingFields: function (fill) {
 			if (fill) {
-				$('#billingFirst').val($('#shippingFirst').val());
-				$('#billingLast').val($('#shippingLast').val());
-				$('#billingAddress').val($('#shippingAddress').val());
-				$('#billingApt').val($('#shippingApt').val());
-				$('#billingCity').val($('#shippingCity').val());
-				$('#billingZip').val($('#shippingZip').val());
-				$('#billingPhone').val($('#shippingPhone').val());
-				$('#billingExt').val($('#shippingExt').val());
+				$('#billingFirst').val($('#shippingFirst').val()).attr('disabled', 'disabled');
+				$('#billingLast').val($('#shippingLast').val()).attr('disabled', 'disabled');
+				$('#billingAddress').val($('#shippingAddress').val()).attr('disabled', 'disabled');
+				$('#billingApt').val($('#shippingApt').val()).attr('disabled', 'disabled');
+				$('#billingCity').val($('#shippingCity').val()).attr('disabled', 'disabled');
+				$('#billingZip').val($('#shippingZip').val()).attr('disabled', 'disabled');
+				$('#billingPhone').val($('#shippingPhone').val()).attr('disabled', 'disabled');
+				$('#billingExt').val($('#shippingExt').val()).attr('disabled', 'disabled');
 			} else {
-				$('#billingFirst').val('');
-				$('#billingLast').val('');
-				$('#billingAddress').val('');
-				$('#billingApt').val('');
-				$('#billingCity').val('');
-				$('#billingZip').val('');
-				$('#billingPhone').val('');
-				$('#billingExt').val('');
+				$('#billingFirst').val('').removeAttr('disabled');
+				$('#billingLast').val('').removeAttr('disabled');
+				$('#billingAddress').val('').removeAttr('disabled');
+				$('#billingApt').val('').removeAttr('disabled');
+				$('#billingCity').val('').removeAttr('disabled');
+				$('#billingZip').val('').removeAttr('disabled');
+				$('#billingPhone').val('').removeAttr('disabled');
+				$('#billingExt').val('').removeAttr('disabled');
 			}
 		},
 		/**
@@ -310,8 +318,8 @@ var customAccordionForms = Class.extend(function () {
 					regula.bind(
 						{element: document.getElementById("payCode"),
 						constraints: [
-							{constraintType: regula.Constraint.NotBlank,
-								params: {message: "Please enter your security code."}
+							{constraintType: regula.Constraint.Pattern,
+								params: {regex: /^\d+$/, message: "Please enter your security code."}
 							}
 						]}
 					);
@@ -352,12 +360,13 @@ var customAccordionForms = Class.extend(function () {
 			// Display errors or submit the form
 			if (errorMessage.length > 0) {
 				alert.removeClass('hidden');
+				alert.parent().removeClass('hidden');
 			} else {
 				var thisToggle = $('#' + button.target.attributes['data-this-toggle-id'].value),
 					completedToggles = $('.accordion-toggle[data-status=complete]').length,
 					nextToggle = $('.accordion-toggle[data-status=unavailable]:eq(0)');
 				
-				alert.addClass('hidden');
+				alert.parent().addClass('hidden');
 				
 				for (var i = 0; i < completedToggles; i++) {
 					var currentToggle = $('.accordion-toggle[data-status=complete]:eq(' + i + ')');
@@ -365,6 +374,7 @@ var customAccordionForms = Class.extend(function () {
 				}
 				//Separated so that opening a completed step can deactivate the other toggles
 				thisToggle.attr('href', thisToggle.attr('data-href')).attr('data-toggle', 'collapse');
+				thisToggle.find('span').removeClass('hidden');
 				thisToggle.click();
 				thisToggle.attr('data-status', 'complete');
 				nextToggle.attr('data-status', 'incomplete');

@@ -3,6 +3,10 @@
 
 // # Base Styles
 .customAccordionForms {
+	.hidden {
+		display: none;
+		visibility: hidden;
+	}
 	.accordion-group {
 		border: none;
 		.accordion-heading {
@@ -11,6 +15,12 @@
 			.accordion-toggle {
 				color: @secondaryHueDark;
 				font-size: @h3Size;
+				span {
+					float: right;
+					padding-top: 8px;
+					padding-right: 10px;
+					font-size: @smallPSize;
+				}
 			}
 		}
 		.accordion-heading.cafHeadingOpen {
@@ -20,27 +30,19 @@
 			}
 		}
 		.accordion-inner {
-			.cafField {
-				overflow: hidden;
+			.row-fluid {
 				padding: 10px 0;
-			}
-			.cafCheckboxField {
-				input {
-					float: left;
+				.cafSpacedInput {
+					color: @secondaryHueNormal;
+					margin: 0 0 10px;
+					padding: 2px 6px;
 				}
-				label {
-					float: left;
-					padding-left: 10px;
-					font-weight: normal;
-					font-size: @pSize;
+				#findMyModel {
+					margin-bottom: 0;
 				}
-			}
-			.cafSubField {
-				float: left;
-				padding-left: 20px;
-			}
-			.cafSubField:first-child {
-				padding-left: 0;
+				.cafText {
+					width: 100%;
+				}
 			}
 			p {
 				font-weight: bold;
@@ -57,6 +59,7 @@
 				overflow: hidden;
 				input {
 					float: left;
+					width: auto;
 					margin: 4px 5px 0 20px;
 				}
 				input:first-child {
@@ -66,16 +69,110 @@
 					float: left;
 					font-weight: normal;
 					font-size: @pSize;
+					margin: 0;
 				}
 			}
-			.cafSpacedInput {
-				color: @secondaryHueNormal;
-				margin: 10px 0;
-				padding: 2px 6px;
+			.cafCheckboxField {
+				input {
+					float: left;
+					width: auto;
+				}
+				label {
+					float: left;
+					padding-left: 10px;
+					font-weight: normal;
+					font-size: @pSize;
+					width: 90%;
+				}
 			}
-			.cafQuantity {
-				width: 20px;
-				padding: 2px 6px;
+			
+			.creditCards {
+				float: left;
+				list-style: none;
+				margin: 20px 0 10px;
+				padding: 2px 0;
+				li {
+					float: left;
+					margin: 0 5px 0 0;
+				}
+			}
+			.creditCards:first-child {
+				border-right: 1px solid @secondaryHueNormal;
+				margin: 20px 5px 0 0;
+			}
+			.iconSearsIcon {
+				background: url(../../../img/creditcard_sprite.gif) no-repeat 0 0;
+				background-position: 0 -144px;
+				background-repeat: no-repeat;
+				width: 80px;
+				height: 19px;
+			}
+			.creditCardIcon {
+				background: url(../../../img/creditcard_sprite.gif) no-repeat 0 0;
+				background-repeat: no-repeat;
+				width: 30px;
+				height: 19px;
+			}
+			.iconSearsMasterCard {
+				background-position: 0 0;
+			}
+			.iconSearsCard {
+				background-position: 0 -24px;
+			}
+			.iconVisaCard {
+				background-position: 0 -96px;
+			}
+			.iconMasterCard {
+				background-position: 0 -72px;
+			}
+			.iconExpress {
+				background-position: 0 -120px;
+			}
+			.iconDiscover {
+				background-position: 0 -48px;
+			}
+			
+			.noteText {
+				font-size: 14px;
+				font-weight: normal;
+				margin: 10px 0;
+			}
+			.pseudoTableRow {
+				p {
+					font-weight: normal;
+					margin-bottom: 0;
+					a {
+						font-size: @h5Size;
+					}
+				}
+				[class*="span"]:first-child {
+					p {
+						font-weight: bold;
+						margin-left: 10px;
+					}
+				}
+				#cafFilterPrice {
+					font-weight: bold;
+				}
+			}
+			.darkRow {
+				background-color: #ebebeb;
+			}
+			
+			.creditCard {
+				background: url(../../../img/creditcard_sprite.png) no-repeat 0 0;
+				background-repeat: no-repeat;
+				width: 187px;
+				height: 97px;
+			}
+			.cardSears {
+				background-position: 0 0;
+			}
+			.cardOther {
+				background-position: 0 -114px;
+			}
+			.cardExpress {
+				background-position: 0 -228px;
 			}
 		}
 	}
