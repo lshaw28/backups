@@ -7,11 +7,11 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 		 * @param {jQuery} parent {HTMLElement}
 		 */
 		init: function (parent) {
-			this.enablerClassName = 'desktop-carousel-enabled';
-			this.masterCtrClassName = 'carousel-master-control-desktop';
+			this.enablerClassName = 'desktopCarouselEnabled';
+			this.masterCtrClassName = 'carouselMarkersDesktop';
 
 			try {
-				var items = $('.carousel-item', parent);
+				var items = $('.carouselItem', parent);
 
 				if (items.length === 0) {
 					throw new Error('There are no carousel items');
@@ -56,7 +56,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 			this.carousel.setIndex(0);
 
 			// remove all styling
-			$('.carousel-list-wrapper', this.parent).removeAttr('style');
+			$('.carouselListWrapper', this.parent).removeAttr('style');
 		},
 		/**
 		 * Generate left/right triggers
@@ -68,7 +68,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 				_this = this;
 
 			// trigger handler back
-			left.addClass('carousel-trigger-left').click(function (e) {
+			left.addClass('carouselTriggerLeft').click(function (e) {
 				e.preventDefault();
 				_this.carousel.back();
 			});
@@ -76,7 +76,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 			left.prependTo(this.parent);
 
 			// trigger handler next
-			right.addClass('carousel-trigger-right').click(function (e) {
+			right.addClass('carouselTriggerRight').click(function (e) {
 				e.preventDefault();
 				_this.carousel.next();
 			});
@@ -106,7 +106,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 			}
 
 			container.addClass(this.masterCtrClassName);
-			itemWrapper.addClass('cmc-wrapper');
+			itemWrapper.addClass('carouselMarkersWrapper');
 
 			// append to container, and append to document
 			itemWrapper.appendTo(container);
@@ -138,7 +138,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 		 */
 		onIndexChangeControlDisplay: function (index) {
 			var _this = this,
-				itemCount = $('.carousel-item', _this.parent).length;
+				itemCount = $('.carouselItem', _this.parent).length;
 
 			// Catch errors in case there is inheritance
 			try {

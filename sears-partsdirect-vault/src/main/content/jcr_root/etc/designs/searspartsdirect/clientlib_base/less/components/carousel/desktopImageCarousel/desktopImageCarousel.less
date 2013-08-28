@@ -1,20 +1,19 @@
 @import "../../../base.variables.less";
 @import "../../../base.mixins.less";
 
-.desktop-carousel {
+.desktopCarousel {
 	i {
 		display: none;
 	}
-	.carousel-item {
+	.carouselItem {
 		.image {
 			small {
-				padding: 10px 0;
+				padding: 0 0 10px;
 			}
 		}
 	}
 }
-
-.desktop-carousel-enabled {
+.desktopCarouselEnabled {
 	@carouselWidth: 550px;
 
 	padding: 0 25px 28px 25px;
@@ -23,7 +22,7 @@
 	overflow: hidden;
 	position: relative;
 
-	[class*="item"] {
+	[class*="Item"] {
 		float: left;
 
 		img, p {
@@ -44,10 +43,10 @@
 			height: 370px;
 		}
 	}
-	.carousel-wrapper {
+	.carouselWrapper {
 		overflow: hidden;
 	}
-	.carousel-list-wrapper {
+	.carouselListWrapper {
 		width: 99999px;
 		margin: 0 auto;
 		overflow: hidden;
@@ -55,7 +54,7 @@
 	div.analyzable.parbase.image small {
 		margin-top: 10px;
 	}
-	[class*="carousel-trigger"] {
+	[class*="carouselTrigger"] {
 		background: @secondaryHueLight; // non rba compliant browsers
 		background: rgba(222, 222, 222, .8);
 		border: solid 1px @secondaryHueLight;
@@ -64,11 +63,10 @@
 		display: block;
 		height: 50px;
 		position: absolute;
+		text-align: center;
 		top: 159px;
 		width: 50px;
 		z-index: 2;
-
-		text-align: center;
 
 		&:hover {
 			background: @primaryHueLighter;
@@ -84,26 +82,26 @@
 			display: none;
 		}
 	}
-	.carousel-trigger-left {
+	.carouselTriggerLeft {
 		left: 0;
 	}
-	.carousel-trigger-right {
+	.carouselTriggerRight {
 		right: 0;
 	}
-	.carousel-master-control-desktop {
+	.carouselMarkersDesktop {
 		display: block;
 	}
 }
 
 // shared on touch carousel
-[class*="carousel-master-control"] {
+[class*="carouselMarkers"] {
 	display: none;
 	position: absolute;
 	bottom: 5px;
 	width: 100%;
 	left: 0;
 
-	.cmc-wrapper {
+	.carouselMarkersWrapper {
 		text-align: center;
 
 		> a {

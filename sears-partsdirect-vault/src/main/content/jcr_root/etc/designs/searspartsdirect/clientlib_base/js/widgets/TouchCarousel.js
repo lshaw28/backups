@@ -7,11 +7,11 @@ NS('shc.pd.base.widgets').TouchCarousel = shc.pd.base.widgets.DesktopCarousel.ex
 		 * @param {jQuery} parent {HTMLElement}
 		 */
 		init: function (parent) {
-			this.enablerClassName = 'touch-carousel-enabled';
-			this.masterCtrClassName = 'carousel-master-control-touch';
+			this.enablerClassName = 'touchCarouselEnabled';
+			this.masterCtrClassName = 'carouselMarkersTouch';
 
 			try {
-				var items = $('.carousel-item', parent);
+				var items = $('.carouselItem', parent);
 
 				if (items.length === 0) {
 					throw new Error('There are no carousel items');

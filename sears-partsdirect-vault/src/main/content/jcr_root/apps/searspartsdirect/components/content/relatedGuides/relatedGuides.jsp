@@ -6,11 +6,11 @@
 <spd:getRelatedGuides categoryPath="${productCategoryRelation.path}"/>
 <c:if test="${not empty guides && not empty productCategoryRelation}">
 	<h2><cq:text property="newHeader" placeholder="Most Viewed Guides" default="Most Viewed Guides"/></h2>
-	<div class="touch-carousel hide-onload">
-		<div class="carousel-wrapper row-fluid">
-			<div class="carousel-list-wrapper">
+	<div class="touchCarousel hide-onload">
+		<div class="carouselWrapper row-fluid">
+			<div class="carouselListWrapper">
 				<c:forEach var="guide" items="${guides}">
-					<div class="carousel-item span3">
+					<div class="carouselItem span3">
 						<spd:linkResolver value="${guide.url}" />
 						<div class="wrapperGuide">
 							<div class="image-wrapper">
