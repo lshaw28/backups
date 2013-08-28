@@ -1,42 +1,45 @@
 @import "../../../base.variables.less";
 @import "../../../base.mixins.less";
 
-.touch-carousel-enabled {
+.touchCarouselEnabled {
 	padding-bottom: 25px;
 
-	.carousel-wrapper {
+	.carouselWrapper {
 		overflow: hidden;
 	}
-	.carousel-list-wrapper {
+	.carouselListWrapper {
 		width: 99999px;
 	}
-	.carousel-master-control-touch {
+	.carouselMarkersTouch {
 		display: block;
 
 		&.hideControls {
 			display: none;
 		}
 	}
-	[class*="-item"] {
+	.carouselItemHolder {
 		text-align: center;
 		min-width: 0;
 		width: 280px;
 		float: left;
 		margin-right: 10px;
 
+		.image {
+			small {
+				padding: 6px 0;
+			}
+		}
 		img {
 			display: block;
 			width: 280px;
 			height: 185px;
 			background: @secondaryHueNormal;
 		}
-
 		p {
 			font-size: 11px;
 			line-height: 13px;
 			padding: 6px 0;
 		}
-
 		[data-desktopimage] {
 			width: 280px;
 			height: 185px;

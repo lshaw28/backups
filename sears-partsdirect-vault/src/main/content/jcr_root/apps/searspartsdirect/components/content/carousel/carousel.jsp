@@ -5,11 +5,11 @@
 	<c:if test="${not empty titleText}">
 		<h2><c:out value="${titleText} "/></h2>
 	</c:if>
-	<div class="hide-onload desktop-carousel touch-carousel">
-		<div class="carousel-wrapper">
-			<div class="carousel-list-wrapper">
+	<div class="hide-onload desktopCarousel touchCarousel">
+		<div class="carouselWrapper">
+			<div class="carouselListWrapper">
 				<c:forEach items="${carouselImages}" var="carouselImage">
-					<div class="carousel-item">
+					<div class="carouselItemHolder">
 						<cq:include path="${carouselImage}" resourceType="searspartsdirect/components/content/carouselItem" />
 					</div>
 				</c:forEach>
