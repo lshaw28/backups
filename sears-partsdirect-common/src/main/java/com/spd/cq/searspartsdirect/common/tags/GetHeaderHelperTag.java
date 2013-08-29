@@ -15,12 +15,15 @@ public class GetHeaderHelperTag extends CQBaseTag {
 		Cookie[] cookies = request.getCookies();
 		Cookie myProfileModelCookie = null;
 		Cookie shoppingCartCookie = null;
+		Cookie jSessionId = null;
 
 		if (cookies != null) {
 			myProfileModelCookie = PartsDirectCookieHelper.getCookieInfo(cookies,
 					Constants.MY_MODEL_COOKIE);
 			shoppingCartCookie = PartsDirectCookieHelper.getCookieInfo(cookies,
 					Constants.SHOPPING_CART_COOKIE);
+			
+			jSessionId = PartsDirectCookieHelper.getCookieInfo(cookies, "JSESSIONID");
 
 			if (myProfileModelCookie != null) {
 				pageContext.setAttribute("myProfileModelCookie", myProfileModelCookie.getValue());
@@ -33,6 +36,14 @@ public class GetHeaderHelperTag extends CQBaseTag {
 			} else {
 				pageContext.setAttribute("shoppingCartCookieId", "");
 			}
+			
+			if (jSessionId != null) {
+				pageContext.setAttribute("jSessionId", jSessionId.getValue());
+			} else {
+				pageContext.setAttribute("jSessionId", "");
+			}
+			
+			
 		}
 
 		pageContext.setAttribute("PdApiRoot", EnvironmentSettings.getPDApiRoot());

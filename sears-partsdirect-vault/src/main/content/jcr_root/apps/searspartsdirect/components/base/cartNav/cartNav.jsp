@@ -59,7 +59,7 @@
 						</li>
 						<c:choose>
 							<c:when test="${loggedIn}">
-								<li><a class="new-btn" href="${mainSitePath}/partsdirect/">Edit List</a></li>
+								<li><a class="new-btn" href="${mainSitePath}/partsdirect/myProfileMyOwnedModels.pd">Edit List</a></li>
 							</c:when>
 							<c:otherwise>
 								<li id="cartGuestEdit"><button type="button" class="new-btn edit_js">Edit List</button></li>
