@@ -1,6 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 <ul>
-	<li class="loginNavHome"><a href="${mainSitePath}"><i class="icon-home">&nbsp;</i><span class="text-home">Home</span></a>
+	<%-- <li class="loginNavHome"><a href="${mainSitePath}"><i class="icon-home">&nbsp;</i><span class="text-home">Home</span></a>--%>
 	<li><c:choose>
 		<c:when test="${loggedIn}">
 			Hello, <strong><c:out value="${firstName} "/></strong><a href="${mainSitePath}/partsdirect/myprofile/logout.action">Logout</a>
