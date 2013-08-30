@@ -9,7 +9,7 @@
 					<a data-toggle="dropdown" href="#">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
 					<ul class="dropdown-menu">
 						<c:forEach var="model" items="${rvModelList}">
-							<li>Model <a href="${mainSitePath}/${model.itemURL}"><c:out value="${model.itemName}" /><br />
+							<li>Model <a href="${mainSitePath}${model.itemURL}"><c:out value="${model.itemName}" /><br />
 							<c:out value="${model.itemDescription}" /></a></li>
 						</c:forEach>
 						<c:forEach var="part" items="${rvPartList}">
