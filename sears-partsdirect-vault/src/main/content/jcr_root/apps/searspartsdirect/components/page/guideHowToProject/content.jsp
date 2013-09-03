@@ -41,13 +41,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid">
-				<div class="span9">
-					<a name="template_comments"></a>
-					<c:set var="displayedCommentsType" scope="request">Guide</c:set>
-					<cq:include path="comments" resourceType="searspartsdirect/components/content/comments" />
-				</div>
-			</div>
 		</div>
 	</div>
 </div></article>
