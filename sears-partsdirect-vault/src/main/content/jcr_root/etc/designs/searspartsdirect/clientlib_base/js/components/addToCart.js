@@ -79,8 +79,8 @@ var addToCart = Class.extend(function () {
 					params.userid = registeredUserId;
 				}
 				// Add cart ID param if available
-				if (su.validString(cartId) !== '') {
-					params.cartid = cartId;
+				if (NS('shc.pd.cookies').cid !== '') {
+					params.cid = NS('shc.pd.cookies').cid;
 				}
 
 				// Make an AJAX call
@@ -111,7 +111,6 @@ var addToCart = Class.extend(function () {
 			var self = this;
 
             self.animElem.fadeIn(1500);
-
             setTimeout(function () {self.hideAddedMessage()}, 3000);
 		},
 
@@ -138,8 +137,8 @@ var addToCart = Class.extend(function () {
 				i = 0,
 				itemCount = 0;
 
-			// Set cartId
-			cartId = data.cartId;
+			// Set cartID cookie
+			NS('shc.pd.cookies').cid = data.cartId;
 
 			// Handle items
 			if (data.cartParts.length > 0) {
@@ -189,23 +188,11 @@ var addToCart = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils,
 				quantity = 0,
-				partUrl = '',
-				li = $('<li />'),
-				description = '',
-				partNumber;
+				li = new cartItemTemplate(item);
 
-			// Retrieve information
+			// Retrieve quantity
 			quantity = item.quantity;
-			description = su.validString(item.description);
-			partNumber = su.validString(item.partNumber);
-			partUrl = su.validString(item.partUrl);
-
-			if (description.length > 17) {
-				description = description.substring(0, 17) + '...';
-			}
-
-			li.addClass('cart-item');
-			li.html('<span class="cart-part"><a href="' + mainSitePath + partUrl + '">' + description + ' ' + partNumber + '</a></span><span class="cart-quantity">' + quantity + '</span>');
+			// Insert element
 			self.cartItems.totals.before(li);
 
 			return quantity;
