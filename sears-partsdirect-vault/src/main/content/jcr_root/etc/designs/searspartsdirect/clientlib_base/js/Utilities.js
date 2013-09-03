@@ -198,6 +198,67 @@
 			cookieValue = escape(value) + '; expires=' + expireDate.toGMTString() + '; path=/';
 			// Store the cookie
 			document.cookie = name + '=' + cookieValue;
+		},
+		/**
+		 * Gets the value of a cookie
+		 * @param {string} name Name of the cookie to retrieve
+		 * @param {string} retval Optional default return value
+		 * @return {string} Value of cookie
+		 */
+		getCookie: function (name, retval) {
+			var su = this,
+				allCookies = document.cookie.split(';'),
+				i = 0,
+				cookieName = '',
+				cookieValue = '';
+
+			// Set initial return value
+			retval = su.validString(retval, '');
+
+			// Parse cookie items
+			for (i = 0; i < allCookies.length; i = i + 1) {
+				cookieName = allCookies[i].split('=')[0].trim();
+				cookieValue = allCookies[i].split('=')[1].trim();
+
+				if (cookieName.toLowerCase() === name.toLowerCase()) {
+					retval = cookieValue;
+					break;
+				}
+			}
+
+			return retval;
+		},
+		/**
+		 * Tokenize a string into an array of user-defined objects
+		 * @param {string} input The original string to split
+		 * @param {object} template Template object to return
+		 * @param {string} delimiter The delimit to split against
+		 */
+		tokenize: function (input, template, delimiter) {
+			var su = this,
+				obj = {},
+				items = input.split(delimiter),
+				output = new Array(),
+				length = template.length,
+				modulus = 0,
+				i = 0;
+
+			for (i = 0; i < items.length; i = i + 1) {
+				modulus = i % length;
+
+				// New instance
+				if (i % length === 0) {
+					obj = {};
+				}
+				// Update properties
+				obj[template[modulus]] = items[i];
+				// Push instance
+				if ((modulus === (length - 1)) || ((i + 1) === items.length)) {
+					output.push(obj);
+				}
+			}
+
+			return output;
 		}
 	};
 	window.SPDUtils.init();

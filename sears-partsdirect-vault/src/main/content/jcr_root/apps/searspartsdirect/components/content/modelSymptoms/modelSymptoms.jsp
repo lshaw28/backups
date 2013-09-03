@@ -40,6 +40,9 @@ Here are the most common symptoms we've seen for this model. Select a symptom to
 				</tbody>
 				</table>
 			</c:when>
+			<c:when test="${not empty symptomList}">
+	        	<cq:include path="categorySymptoms" resourceType="searspartsdirect/components/content/categorySymptoms" />
+	        </c:when>
 			<c:otherwise>
 				<%--  if no symptoms then display the featured guide --%>
 				<cq:include path="mostPopularGuide" resourceType="searspartsdirect/components/content/mostPopularGuide" />
