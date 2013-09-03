@@ -10,12 +10,14 @@
 
 <%-- iterate through each parent category tag --%>
 <c:forEach var="parentCategory" items="${parent_categoriesList}">
+    <spd:getAssets assetType="productCategory" tagFilter="${parentCategory.tagID}" />
+    <c:if test="${!empty productCategoryList}">
 	<div class="category-title"><h4><c:out value="${parentCategory.title} Repair Help" /></h4></div>
 	<div class="category-container">
 
 		<%-- get the list of all the product categories that correspond to the current parent category
-			returns category asset model array list --%>
-		<spd:getAssets assetType="productCategory" tagFilter="${parentCategory.tagID}" />
+			returns category asset model array list
+		<spd:getAssets assetType="productCategory" tagFilter="${parentCategory.tagID}" />    --%>
 
 		<%-- iterate through each category asset model object --%>
 		<c:forEach var="category" items="${productCategoryList}">
@@ -38,5 +40,6 @@
 				</span></a>
 			</div>
 		</c:forEach>
+    </c:if>
 	</div>
 </c:forEach>
