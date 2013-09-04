@@ -7,7 +7,7 @@
 	searspartsdirect.sitemap.paths.stop=""
 	searspartsdirect.external.added.prefix="http://www.searspartsdirect.com"
 	searspartsdirect.external.added.suffix=".html"
-	searspartsdirect.userdata.api="http://partsapivip.stress.ch3.s.com/pd-services/intra/v1/userservice/retrive?username="
+	searspartsdirect.userdata.api="https://partsapivip.stress.ch3.s.com/pd-services/intra/v1/userservice/retrive?username="
 	searspartsdirect.topparts.api="http://partsapivip.stress.ch3.s.com/pd-services/intra/v1/modelTop/topParts"
 	searspartsdirect.jobcode.parts.api="http://partsapivip.stress.ch3.s.com/pd-services/intra/v1/commonSymptoms/jobcodelist/partlist"
 	searspartsdirect.modelsub.api="http://partsapivip.stress.ch3.s.com/pd-services/intra/v1/commonSymptoms/modelInfo"
