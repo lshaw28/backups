@@ -14,7 +14,7 @@ var modelItemTemplate = function (item) {
 		modelDescription = su.validString(item.modelDescription),
 		modelUrl = su.validString(item.modelURL);
 
-	li.html('Model <a href="' + mainSitePath + modelUrl +'">' + modelName + '<br />' + modelDescription + '</a>');
+	li.html('Model <a href="' + mainSitePath + modelUrl +'">' + modelName.replace('"', '') + '<br />' + modelDescription.replace('"', '') + '</a>');
 
 	return li;
 };

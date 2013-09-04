@@ -19,7 +19,7 @@ var partItemTemplate = function (item) {
 		partImageUrl = '';
 	}
 
-	li.html('<a href="' + mainSitePath + partUrl + '">' + (partImageUrl !== '' ? '<img src="' + partImageUrl + '" alt="' + partDescription + '" />' : '') + partName + '<br />' + partDescription + '</a>');
+	li.html('<a href="' + mainSitePath + partUrl + '">' + (partImageUrl !== '' ? '<img src="' + partImageUrl + '" alt="' + partDescription + '" />' : '') + partName.replace('"', '') + '<br />' + partDescription.replace('"', '') + '</a>');
 
 	return li;
 };
