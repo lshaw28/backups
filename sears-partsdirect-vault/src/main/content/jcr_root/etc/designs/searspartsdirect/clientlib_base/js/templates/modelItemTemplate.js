@@ -12,9 +12,9 @@ var modelItemTemplate = function (item) {
 		li = $('<li />'),
 		modelName = su.validString(item.modelName),
 		modelDescription = su.validString(item.modelDescription),
-		modelUrl = su.validString(item.modelUrl);
+		modelUrl = su.validString(item.modelURL);
 
-	li.html('Model <a href="' + mainSitePath + '/' + modelUrl +'">' + modelName + '<br />' + modelDescription + '</a>');
+	li.html('Model <a href="' + mainSitePath + modelUrl +'">' + modelName + '<br />' + modelDescription + '</a>');
 
 	return li;
 };

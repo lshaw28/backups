@@ -243,18 +243,20 @@
 				modulus = 0,
 				i = 0;
 
-			for (i = 0; i < items.length; i = i + 1) {
-				modulus = i % length;
+			if (items.length >= length) {
+				for (i = 0; i < items.length; i = i + 1) {
+					modulus = i % length;
 
-				// New instance
-				if (i % length === 0) {
-					obj = {};
-				}
-				// Update properties
-				obj[template[modulus]] = items[i];
-				// Push instance
-				if ((modulus === (length - 1)) || ((i + 1) === items.length)) {
-					output.push(obj);
+					// New instance
+					if (i % length === 0) {
+						obj = {};
+					}
+					// Update properties
+					obj[template[modulus]] = items[i];
+					// Push instance
+					if ((modulus === (length - 1)) || ((i + 1) === items.length)) {
+						output.push(obj);
+					}
 				}
 			}
 

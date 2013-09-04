@@ -12,10 +12,14 @@ var partItemTemplate = function (item) {
 		li = $('<li />'),
 		partName = su.validString(item.partName),
 		partDescription = su.validString(item.partDescription),
-		partUrl = su.validString(item.partUrl),
-		partImageUrl = su.validString(item.partImageUrl);
+		partUrl = su.validString(item.partURL),
+		partImageUrl = su.validString(item.partImageURL);
 
-	li.html('<a href="' + mainSitePath + '/' + partUrl + '">' + (partImageUrl !== '' ? '<img src="' + mainSitePath + partImageUrl + '" alt="' + partDescription + '" />' : '') + partName + '<br />' + partDescription + '</a>');
+	if (partImageUrl.toLowerCase() === 'null') {
+		partImageUrl = '';
+	}
+
+	li.html('<a href="' + mainSitePath + partUrl + '">' + (partImageUrl !== '' ? '<img src="' + partImageUrl + '" alt="' + partDescription + '" />' : '') + partName + '<br />' + partDescription + '</a>');
 
 	return li;
 };

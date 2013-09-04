@@ -108,13 +108,16 @@
 					font-size: @smallerPSize;
 					height: auto;
 					padding: 10px 0 0 0;
-                                        float: left;
-                                        clear: both;
+					width: 100%;
+
 					&:first-child {
 						padding: 0;
 					}
 					a {
 						white-space: normal;
+					}
+					&.inactive {
+						display: none !important;
 					}
 				}
 				.cartModelItem {
@@ -227,12 +230,6 @@
 	}
 	&:after {
 		content: ')';
-	}
-}
-
-#cartShop {
-	li.inactive {
-		display: none;
 	}
 }
 
