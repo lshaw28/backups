@@ -54,7 +54,7 @@ var userData = Class.extend(function () {
 		checkAPI: function () {
 			var self = this,
 				su = window.SPDUtils,
-				userAddress = apiPathSecure.replace('/v1', '/intra/v1') + 'userservice/retrive',
+				userAddress = apiPathSecure + 'userservice/retrive',
 				params = {};
 
 			// Validate and add additional parameters
