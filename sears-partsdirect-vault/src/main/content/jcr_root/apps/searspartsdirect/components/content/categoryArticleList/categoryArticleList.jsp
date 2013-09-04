@@ -17,15 +17,15 @@
 						</c:if>
 						<div class="span6 categoryArticleTab">
 							<spd:linkResolver value="${article.url}" />
-							<h4 class="categoryArticleList"><a href="${url}"><c:out value="${article.title} "/></a></h4>
+							<h4 class="hidden-tablet hidden-mobile"><a href="${url}"><c:out value="${article.title} "/></a></h4>
                             <div class="span3">
 							<c:if test="${not empty article.imagePath}">
 								<a href="${url}"><spd:displayImage path="${article.imagePath}" decorated="false" /></a>
 							</c:if>
                             </div>
                             <div class="span7">
-                                <h4 class="categoryArticleList1"><a href="${url}"><c:out value="${article.title} "/></a></h4>
-							<p><c:out value="${article.description} "/></p>
+                                <h4 class="hidden-desktop"><a href="${url}"><c:out value="${article.title} "/></a></h4>
+								<p><c:out value="${article.description} "/></p>
                             </div>
 						</div>
 						<c:if test="${currentItem.count % 2 eq 0 or currentItem.last}">

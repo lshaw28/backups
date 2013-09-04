@@ -46,13 +46,6 @@
 					<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
 				</div>
 			</div>
-			<div class="row-fluid">
-				<div class="span9">
-					<a name="template_comments"></a>
-					<c:set var="displayedCommentsType" scope="request">Repair Guide</c:set>
-					<cq:include path="comments" resourceType="searspartsdirect/components/content/comments" />
-				</div>
-			</div>
 		</div>
 	</div>
 </div></article>

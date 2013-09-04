@@ -1,1 +1,1 @@
-<a href="${mainSitePath}/partsdirect/">&nbsp;</a>
+<a href="${mainSitePath}/partsdirect/index.action">&nbsp;</a>

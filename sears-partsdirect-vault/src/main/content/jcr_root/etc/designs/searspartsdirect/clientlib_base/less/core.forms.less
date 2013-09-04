@@ -29,9 +29,11 @@ input[type="text"], input[type="password"], select, textarea {
 	display: inline-block;
 	font-size: @pSize;
 	padding: 6px;
+	position: relative;
 
 	&:focus {
-		outline: none;
+		outline-style: none;
+		z-index: 0;
 	}
 }
 
@@ -56,7 +58,7 @@ input[type="text"], input[type="password"], select, textarea {
 		text-align: right;
 		top: 0;
 		width: auto;
-		z-index: 10;
+		z-index: 1;
 
 		button {
 			background-color: transparent;

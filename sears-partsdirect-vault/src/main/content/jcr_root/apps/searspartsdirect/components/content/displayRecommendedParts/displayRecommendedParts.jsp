@@ -16,7 +16,7 @@
 				</c:choose>
 			</div>
 			<div class="span3">
-				<spd:linkResolver value="${part.url}"/>
+				<spd:linkResolver value="${mainSitePath}${part.url}"/>
 				<p><a href="${url}">${part.name}</a>
 					<br />
 					PART NUMBER: <c:out value="${part.number}" /></p>
