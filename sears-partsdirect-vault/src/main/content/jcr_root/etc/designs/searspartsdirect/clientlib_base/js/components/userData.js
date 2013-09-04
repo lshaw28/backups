@@ -54,7 +54,7 @@ var userData = Class.extend(function () {
 		checkAPI: function () {
 			var self = this,
 				su = window.SPDUtils,
-				userAddress = apiPath.replace('/v1', '/intra/v1') + 'userservice/retrive',
+				userAddress = apiPathSecure.replace('/v1', '/intra/v1') + 'userservice/retrive',
 				params = {};
 
 			// Validate and add additional parameters
@@ -166,6 +166,7 @@ var userData = Class.extend(function () {
 					self.modelsItems.guestEdit.removeClass('inactive');
 					self.modelsItems.guestControls.removeClass('inactive');
 				}
+				self.modelsItems.removeClass('inactive');
 				self.modelsEmpty.addClass('inactive');
 
 				// Render items
