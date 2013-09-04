@@ -76,6 +76,7 @@ var userData = Class.extend(function () {
 				type: 'GET',
 				url: userAddress,
 				contentType: 'application/json',
+				async: false,
 				dataType: 'JSON',
 				data: params
 			})
