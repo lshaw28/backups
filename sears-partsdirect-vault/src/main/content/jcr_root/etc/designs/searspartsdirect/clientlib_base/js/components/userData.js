@@ -19,6 +19,15 @@ var userData = Class.extend(function () {
 				countBadge: $('#cartShop .count-badge')
 			}
 			this.cartEmpty = $('#cartShop .cartShopEmpty_js');
+			this.modelsItems = {
+// Retrieve elements
+				items: $('#cartModelItems'),
+				userEdit: $('#cartUserEdit'),
+				guestEdit: $('#cartGuestEdit'),
+				guestControls: $('#cartGuestControls'),
+				countBadge: $('#cartModels .count-badge')
+			}
+			this.modelsEmpty = $('#cartModels .cartModelsEmpty_js');
 			// Begin setup straight away
 			this.getHeaderCookies();
 			this.displayRecentPartsModels();
@@ -46,12 +55,12 @@ var userData = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils,
 				userAddress = apiPath.replace('/v1', '/intra/v1') + 'userservice/retrive',
-				params = {
-					username: NS('shc.pd.cookies').username
-				};
+				params = {};
 
 			// Validate and add additional parameters
-			if (NS('shc.pd.cookies').username === '') {
+			if (NS('shc.pd.cookies').username !== '') {
+				params.username = NS('shc.pd.cookies').username;
+			} else {
 				// Add profile cookie
 				if (NS('shc.pd.cookies').myProfileModels !== '') {
 					params.profileid = NS('shc.pd.cookies').myProfileModels;
@@ -87,11 +96,10 @@ var userData = Class.extend(function () {
 
 			// Set loginNav items
 			self.setLoginState(resp);
-			// Set recently viewed
 			// Set my models
+			self.displayMyModelsItems(resp);
 			// Set cart items
 			self.displayCartItems(resp.cart.cartLines);
-
 		},
 		/**
 		 * Set login status
@@ -107,7 +115,7 @@ var userData = Class.extend(function () {
 
 			// Logout on success, login on fail
 			if (username !== '') {
-				$('#loginNavStatus').html('Hello, <strong>' + firstName + '</strong><a href="' + mainSitePath + '/partsdirect/myprofile/logout.action">Logout</a>');
+				$('#loginNavStatus').html('Hello, <strong>' + firstName + '</strong><a href="' + mainSitePath + '/partsdirect/myprofile/logout.action" onclick="SPDUtils.setCookie(\'username\', \'\');">Logout</a>');
 				$('#loginNavProfile').html('<a href="' + mainSitePath + '/partsdirect/myProfile.pd">My Profile</a>');
 			}
 		},
@@ -134,6 +142,43 @@ var userData = Class.extend(function () {
 					$('#cartRecents .dropdown-menu').append(li);
 				}
 				$('#cartRecents [data-toggle]').attr('data-toggle', 'dropdown');
+			}
+		},
+		/**
+		 * Set my models items and additional functionality
+		 * @param {object} resp Response from API call
+		 */
+		displayMyModelsItems: function (resp) {
+			var self = this,
+				su = window.SPDUtils,
+				userId = su.validNumber(resp.userId),
+				myModelsItems = resp.ownedModels.profileModelsList,
+				itemCount = myModelsItems.length,
+				i = 0,
+				span = null;
+
+			// Are there items?
+			if (itemCount > 0) {
+				// Set visibility of elements
+				if (userId > 0) {
+					self.modelsItems.userEdit.removeClass('inactive');
+				} else {
+					self.modelsItems.guestEdit.removeClass('inactive');
+					self.modelsItems.guestControls.removeClass('inactive');
+				}
+				self.modelsEmpty.addClass('inactive');
+
+				// Render items
+				for (i = 0; i < myModelsItems.length; i = i + 1) {
+					span = new myModelsItemTemplate(myModelsItems[i]);
+					self.modelsItems.items.append(span);
+				}
+
+				// Set item count
+				if (itemCount >= 99) {
+					itemCount = '99+';
+				}
+				self.modelsItems.countBadge.text(itemCount);
 			}
 		},
 		/**

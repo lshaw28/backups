@@ -25,6 +25,7 @@ WindowResize.js
 #base=js/templates/.
 cartItemTemplate.js
 modelItemTemplate.js
+myModelsItemTemplate.js
 partItemTemplate.js
 
 #base=js/components/.
