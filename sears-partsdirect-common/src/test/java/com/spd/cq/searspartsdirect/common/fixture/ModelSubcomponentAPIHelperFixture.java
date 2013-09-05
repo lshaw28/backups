@@ -19,8 +19,6 @@ public class ModelSubcomponentAPIHelperFixture {
 
 	private final SlingHttpServletRequest request;
 
-	private final static String TEST_BRAND = "Kenmore";
-	private final static String TEST_CATEGORY = "Dishwasher";
 	private final static String TEST_MODEL = "66513593K600";
 
 	public ModelSubcomponentAPIHelperFixture() throws Exception {
@@ -57,16 +55,9 @@ public class ModelSubcomponentAPIHelperFixture {
 	}
 
 	public String getFiatUrl() {
-		return "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/modelInfo?modelNumber=66513593K600&categoryName=Dishwasher&brandName=Kenmore";
+		return "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/modelInfo?modelNumber=66513593K600";
 	}
 
-	public String getBrandName() {
-		return TEST_BRAND;
-	}
-
-	public String getCategoryName() {
-		return TEST_CATEGORY;
-	}
 
 	public String getModelNumber() {
 		return TEST_MODEL;

@@ -25,8 +25,6 @@ public class GetModelHeaderTagTest extends MocksTag {
 	
 	@Test
 	public void testWithArguments() throws JspException {
-		tag.setBrand(fixture.getBrand());
-		tag.setProductCategory(fixture.getProductCategory());
 		tag.setModel(fixture.getModel());
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -34,8 +32,6 @@ public class GetModelHeaderTagTest extends MocksTag {
 	@Test
 	public void testWithArgumentsAndFakeCompleteResult() throws JspException {
 		fixture.setUpFakeCompleteResult();
-		tag.setBrand(fixture.getBrand());
-		tag.setProductCategory(fixture.getProductCategory());
 		tag.setModel(fixture.getModel());
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -43,8 +39,6 @@ public class GetModelHeaderTagTest extends MocksTag {
 	@Test
 	public void testWithArgumentsAndFakeEmptyResult() throws JspException {
 		fixture.setUpFakeEmptyResult();
-		tag.setBrand(fixture.getBrand());
-		tag.setProductCategory(fixture.getProductCategory());
 		tag.setModel(fixture.getModel());
 		runTagShouldSkipBodyEvalPage();
 	}

@@ -19,27 +19,14 @@ public class ModelSubcomponentAPIHelper {
 
 	public final static String MODELSUB_REQATTR = Constants.ident("spd.model.subcomponents");
 
-	private final static String BRAND_PARAM = "brandName";
-	private final static String CATEGORY_PARAM = "categoryName";
 	private final static String MODEL_PARAM = "modelNumber";
 
-	private String brand;
-	private String category;
 	private String model;
 
-	public ModelSubcomponentAPIHelper(String brand, String category, String model) {
+	public ModelSubcomponentAPIHelper(String model) {
 		super();
-		this.brand = brand;
-		this.category = category;
+
 		this.model = model;
-	}
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
 	}
 
 	public void setModel(String model) {
@@ -69,7 +56,7 @@ public class ModelSubcomponentAPIHelper {
 		// ?modelNumber=66513593K600
 		// &categoryName=Dishwasher
 		// &brandName=Kenmore
-		if (StringUtils.isNotBlank(model) && StringUtils.isNotBlank(brand) && StringUtils.isNotBlank(category)) {
+		if (StringUtils.isNotBlank(model)) {
 			StringBuilder url = new StringBuilder(EnvironmentSettings.getPDModelSubApiUrl());
 			try {
 				url.append("?" + MODEL_PARAM + "=" + URLEncoder.encode(model, Constants.ENCODING));

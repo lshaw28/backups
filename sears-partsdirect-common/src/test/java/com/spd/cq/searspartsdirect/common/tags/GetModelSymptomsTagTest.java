@@ -45,9 +45,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		createQueryWithNoHitsYet();
 		
 		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
-		
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
+
 		tag.setModelNumber("66513593K600");
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -62,8 +60,6 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
 		
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
 		tag.setModelNumber("66513593K600");
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -77,9 +73,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		createQueryWithNoHitsYet();
 		
 		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
-		
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
+
 		tag.setModelNumber("66513593K600");
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -92,9 +86,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		createQueryWithNoHitsYet();
 		
 		hits.add(popProps(createTestHitProps(createATestHit("/foo"),false)));
-		
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
+
 		tag.setModelNumber("66513593K600");
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -108,9 +100,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		createQueryWithNoHitsYet();
 		
 		hits.add(popProps(createTestHitProps(createATestHit("/foo"),false)));
-		
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
+
 		tag.setModelNumber("66513593K600");
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -123,9 +113,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		createQueryWithNoHitsYet();
 		
 		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
-		
-		tag.setBrandName("Kenmoar");
-		tag.setCategoryName("Dishcleaner");
+
 		tag.setModelNumber("665135931024600");
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -139,8 +127,6 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		hits.add(createATestHit("/foo"));
 		
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
 		tag.setModelNumber("66513593K600");
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -154,9 +140,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		createQueryWithNoHitsYet();
 		
 		hits.add(createATestHit("/foo"));
-		
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
+
 		tag.setModelNumber("66513593K600");
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -171,9 +155,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		Hit explodingHit = createATestHit("/foo");
 		when(explodingHit.getPath()).thenThrow(new RepositoryException());
 		hits.add(explodingHit);
-		
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
+
 		tag.setModelNumber("66513593K600");
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -190,8 +172,6 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		when(explodingHit.getProperties()).thenThrow(new RepositoryException());
 		hits.add(explodingHit);
 		
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
 		tag.setModelNumber("66513593K600");
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -205,8 +185,6 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
 		
-		tag.setBrandName("Kenmore");
-		tag.setCategoryName("Dishwasher");
 		assertThat(tag.getModelNumber(),nullValue());
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -220,8 +198,6 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		
 		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
 		
-		tag.setBrandName("Kenmore");
-		assertThat(tag.getCategoryName(),nullValue());
 		assertThat(tag.getModelNumber(),nullValue());
 		runTagShouldSkipBodyEvalPage();
 	}
@@ -234,9 +210,7 @@ public class GetModelSymptomsTagTest extends MocksTag {
 		createQueryWithNoHitsYet();
 		
 		hits.add(popProps(createTestHitProps(createATestHit("/foo"),true)));
-		
-		assertThat(tag.getBrandName(),nullValue());
-		assertThat(tag.getCategoryName(),nullValue());
+
 		assertThat(tag.getModelNumber(),nullValue());
 		runTagShouldSkipBodyEvalPage();
 	}

@@ -24,8 +24,6 @@ import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 public class GetModelHeaderTag extends CQBaseTag {
 	
 	protected final static Logger log = LoggerFactory.getLogger(GetModelHeaderTag.class);
-	private BrandModel brand;
-	private ProductCategoryModel productCategory;
 	private String model;
 	
 	@Override
@@ -34,7 +32,7 @@ public class GetModelHeaderTag extends CQBaseTag {
 		List<ExternalLinkModel> pseudoTabs = new LinkedList<ExternalLinkModel>();
 		
 		try {
-			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(brand.getTitle(), productCategory.getTitle(), model);
+			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(model);
 			PDModelSubcomponentModel subcomponents = apiHelper.getModelSubcomponents(slingRequest);
 			PDTab[] apiTabs = subcomponents.getTabsArr();
 			for (PDTab tab : apiTabs) {
@@ -59,14 +57,7 @@ public class GetModelHeaderTag extends CQBaseTag {
         return EVAL_PAGE;
     }
 	
-	public void setBrand(BrandModel brand) {
-		this.brand = brand;
-	}
-	
-	public void setProductCategory(ProductCategoryModel productCategory) {
-		this.productCategory = productCategory;
-	}
-	
+
 	public void setModel(String model) {
 		this.model = model;
 	}
