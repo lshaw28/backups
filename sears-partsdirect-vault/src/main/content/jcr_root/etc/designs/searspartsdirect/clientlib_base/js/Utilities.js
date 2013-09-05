@@ -30,7 +30,7 @@
 			window['templateName'] = $('[data-templatename]').data('templatename');
 			// API path protocol fix
 			if (self.validString(window['apiPath']) !== '' && self.validString(window['apiPathSecure']) !== '') {
-				if (self.getLocationDetails().protocol === 'https:') {
+				if (document.location.href.indexOf('https') > -1) {
 					window['apiPath'] = window['apiPathSecure'];
 				}
 			}
