@@ -60,8 +60,8 @@ public class ModelSubcomponentAPIHelper {
 			StringBuilder url = new StringBuilder(EnvironmentSettings.getPDModelSubApiUrl());
 			try {
 				url.append("?" + MODEL_PARAM + "=" + URLEncoder.encode(model, Constants.ENCODING));
-			/*	url.append("&" + CATEGORY_PARAM + "=" + URLEncoder.encode(category, Constants.ENCODING));
-				url.append("&" + BRAND_PARAM + "=" + URLEncoder.encode(brand, Constants.ENCODING));*/
+				url.append("&" + CATEGORY_PARAM + "=" + URLEncoder.encode(category, Constants.ENCODING));
+				url.append("&" + BRAND_PARAM + "=" + URLEncoder.encode(brand, Constants.ENCODING));
 			} catch (UnsupportedEncodingException e) {} // CANTHAPPEN - we are using a guaranteed encoding.
 			return url.toString();
 		} else {

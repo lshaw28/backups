@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<spd:getRecentlyViewed />
+
 <ul class="cartNavItems">
 	<div class="cartNavShadow"></div>
 	<li id="cartRecents" class="cartNavItem">
