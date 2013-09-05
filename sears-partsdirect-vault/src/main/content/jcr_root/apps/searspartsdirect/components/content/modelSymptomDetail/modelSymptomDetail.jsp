@@ -35,7 +35,7 @@
                         <p><a href="${url}"><c:out value="${guide.title}" /></a></p>
                     </c:forEach>
                 </c:if>
-                <spd:getPartsLinkTag brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}"/>
+                <spd:getPartsLinkTag modelNumber="${modelRelation}"/>
                 <c:if test="${empty recommendedParts && not empty findPartUrl && not empty jobCode.partTypeModel}">
                     <p class="shopParts"><a href="${findPartUrl}">Shop ${jobCode.partTypeModel.title} in this model</a></p>
                 </c:if>

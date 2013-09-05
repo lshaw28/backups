@@ -9,7 +9,7 @@
 Here are the most common symptoms we've seen for this model. Select a symptom to view which parts have been used to fix that problem.<br/>
 <spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryRelation.path}" />
 
-<spd:getModelSymptoms brandName="${brandRelation.title}" categoryName="${productCategoryRelation.title}" modelNumber="${modelRelation}" />
+<spd:getModelSymptoms modelNumber="${modelRelation}" />
 
 		<c:choose>
 			<c:when test="${not empty modelSymptoms}">

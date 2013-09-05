@@ -25,18 +25,6 @@ public class GetModelHeaderTagFixture {
 		return "66513593K600";
 	}
 
-	public ProductCategoryModel getProductCategory() {
-		ProductCategoryModel testCategory = mock(ProductCategoryModel.class);
-		when(testCategory.getTitle()).thenReturn("Dishwasher");
-		return testCategory;
-	}
-
-	public BrandModel getBrand() {
-		BrandModel testBrand = mock(BrandModel.class);
-		when(testBrand.getTitle()).thenReturn("Kenmore");
-		return testBrand;
-	}
-
 	public void setUpFakeCompleteResult() {
 		PDModelSubcomponentModel fakeResult = setUpFakeResult();
 		PDTab[] tabsArr = new PDTab[2];
