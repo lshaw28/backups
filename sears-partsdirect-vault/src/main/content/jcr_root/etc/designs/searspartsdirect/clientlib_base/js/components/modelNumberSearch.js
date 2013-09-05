@@ -98,7 +98,7 @@ var modelNumberSearch = Class.extend(function () {
 						self.redirect(data.models[0]);
 						break;
 					default:
-						self.displayMessage('We found multiple results for this search. <a href="' + mainSitePath + '/partsdirect/part-model/' + searchTerm + '>View search results</a>', 'success');
+						self.displayMessage('We found multiple results for this search. <a href="' + mainSitePath + '/partsdirect/part-model/' + searchTerm + '">View search results</a>', 'success');
 						break;
 				}
 			} else {
