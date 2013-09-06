@@ -167,7 +167,7 @@ var userData = Class.extend(function () {
 					self.modelsItems.guestEdit.removeClass('inactive');
 					self.modelsItems.guestControls.removeClass('inactive');
 				}
-				self.modelsItems.removeClass('inactive');
+				self.modelsItems.items.removeClass('inactive');
 				self.modelsEmpty.addClass('inactive');
 
 				// Render items
