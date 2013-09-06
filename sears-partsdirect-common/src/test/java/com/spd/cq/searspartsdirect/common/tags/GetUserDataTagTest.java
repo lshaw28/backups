@@ -28,39 +28,39 @@ public class GetUserDataTagTest extends MocksTag {
 	public void testWithNothingSetUp() throws JspException {
 		runTagShouldSkipBodyAndEvalPage();
 	}
-	
+
 	@Test
 	public void testWithEmptyCookies() throws JspException {
 		fixture.setUpEmptyCookies();
 		runTagShouldSkipBodyAndEvalPage();
 	}
-	
+
 	@Test
 	public void testWithEmptyUserCookie() throws JspException {
 		fixture.setUpEmptyUserCookie();
 		runTagShouldSkipBodyAndEvalPage();
 	}
-	
+
 	@Test
 	public void testWithPopulatedUserCookie() throws JspException {
 		fixture.setUpPopulatedUserCookie();
 		runTagShouldSkipBodyAndEvalPage();
 	}
-	
+
 	@Test
 	public void testWithEmptyModelAndCart() throws JspException {
 		fixture.setUpEmptyModelCookie();
 		fixture.setUpEmptyCartCookie();
 		runTagShouldSkipBodyAndEvalPage();
 	}
-	
+
 	@Test
 	public void testWithPopulatedModelAndCart() throws JspException {
 		fixture.setUpPopulatedModelCookie();
 		fixture.setUpPopulatedCartCookie();
 		runTagShouldSkipBodyAndEvalPage();
 	}
-	
+
 	private void runTagShouldSkipBodyAndEvalPage() throws JspException {
 		tag.setPageContext(pageContext);
 		int startResult = tag.doStartTag();
