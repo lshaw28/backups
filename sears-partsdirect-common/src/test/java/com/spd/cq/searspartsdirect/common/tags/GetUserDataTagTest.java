@@ -63,10 +63,10 @@ public class GetUserDataTagTest extends MocksTag {
 
 	private void runTagShouldSkipBodyAndEvalPage() throws JspException {
 		tag.setPageContext(pageContext);
-//		int startResult = tag.doStartTag();
-//		int endResult = tag.doEndTag();
-//		assertThat(startResult,is(TagSupport.SKIP_BODY));
-//		assertThat(endResult,is(TagSupport.EVAL_PAGE));
+		int startResult = tag.doStartTag();
+		int endResult = tag.doEndTag();
+		assertThat(startResult,is(TagSupport.SKIP_BODY));
+		assertThat(endResult,is(TagSupport.EVAL_PAGE));
 	}
 
 }
