@@ -8,7 +8,7 @@
 		<h3><c:out value="${jobCode.title} "/></h3>
 		<div class="row-fluid">
 			<c:choose>
-				<c:when test="${jobCode.partTypeModel != null && jobCode.partTypeModel.imagePath != null && fn:indexOf(jobCode.partTypeModel.imagePath, '/0.gif') == -1 && (fn:indexOf(jobCode.partTypeModel.imagePath, '.jpg') > -1 || fn:indexOf(jobCode.partTypeModel.imagePath, '.gif') > -1 || fn:indexOf(jobCode.partTypeModel.imagePath, '.png') > -1)}">
+				<c:when test="${jobCode.partTypeModel != null && jobCode.partTypeModel.imagePath != null && fn:indexOf(jobCode.partTypeModel.imagePath, '/0.gif') == -1}">
 					<div class="new-span-quarter categorySymptomImage">
 						<spd:displayImage path="${jobCode.partTypeModel.imagePath}" altText="${jobCode.partTypeModel.title}"/>
 					</div>
