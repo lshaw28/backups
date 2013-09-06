@@ -82,6 +82,29 @@
 			}
 		},
 		/**
+		 * Check that an object resolves to a valid boolean
+		 * @param {object} obj Object to validate
+		 * @param {boolean} retval Optional return value
+		 */
+		validBoolean: function (obj, retval) {
+			// Type checking ensures faster validation
+			if (typeof obj === 'boolean') {
+				return obj;
+			} else if (typeof obj === 'string' && (obj === 'true')) {
+				return true;
+			} else if (typeof obj === 'string' && (obj === 'false')) {
+				return false;
+			} else if (typeof obj === 'number' && (obj === 1)) {
+				return true;
+			} else if (typeof obj === 'number' && (obj === 0)) {
+				return false;
+			} else if (typeof retval === 'boolean') {
+				return retval;
+			} else {
+				return false;
+			}
+		},
+		/**
 		 * Check if the screen is currently sized at an internally-defined mobile breakpoint
 		 * @return {boolean} Check result
 		 */
