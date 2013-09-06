@@ -159,9 +159,10 @@ var responsiveDropdown = Class.extend(function () {
 		 */
 		handleButton: function () {
 			var self = this,
-				isMobile = window.SPDUtils.isMobileBreakpoint();
+				isMobile = window.SPDUtils.isMobileBreakpoint(),
+                isMobileBrowser = window.SPDUtils.isMobileBrowser();
 
-			if (isMobile) {
+			if (isMobile && isMobileBrowser) {
 				self.el.focus();
 			} else {
 				self.dropdownItems.toggleClass('active');
