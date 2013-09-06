@@ -31,6 +31,7 @@ partItemTemplate.js
 addToCart.js
 cartNav.js
 collapse101.js
+commentCheck.js
 commonParts.js
 guideNavigation.js
 messageHandler.js

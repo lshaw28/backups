@@ -24,6 +24,12 @@
 					<cq:include path="relatedArticles" resourceType="searspartsdirect/components/content/article/relatedArticles" />
 				</div>
 			</div>
+			<div class="row-fluid">
+				<div class="span12">
+					<c:set var="displayedCommentsType" scope="request">Article</c:set>
+					<cq:include path="comments" resourceType="searspartsdirect/components/content/comments" />
+				</div>
+			</div>
 		</div>
 	</div>
 </div></article>
