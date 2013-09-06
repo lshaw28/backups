@@ -1,3 +1,4 @@
+<%@ include file="/apps/searspartsdirect/global.jsp" %>
 <%@ page session="false" import="java.util.List,
 	com.adobe.cq.social.commons.Comment,
 	com.adobe.cq.social.commons.CommentSystem,
@@ -71,10 +72,9 @@
 		</div>
 		<div class="commentsTarget"></div>
 		<div class="commentsForm" >
-		<c:choose>
-			<c:when test="${not empty firstName}">
+			<div class="commentsAuthenticated_js inactive">
 				<h2>Got Something to Say?</h2>
-				<div class="commentsAuthenticated" id="<%= cs.getId() %>-signed-in-text"><%= signedInText %><span class="commentsDisplayName" id="<%= cs.getId() %>-signed-in-user"><%= StringEscapeUtils.escapeHtml4(formattedName) %></span></div>
+				<div class="commentsAuthenticated" id="<%= cs.getId() %>-signed-in-text"><%= signedInText %><span class="commentsDisplayName" id="<%= cs.getId() %>-signed-in-user">&nbsp;</span></div>
 				<%
 				if (!cs.isClosed() && CollabUtil.canAddNode(resourceResolver.adaptTo(Session.class), cs.getRootPath())) {
 				%><sling:include resourceType="searspartsdirect/components/content/composer" replaceSelectors="simple-template"/><%
@@ -82,12 +82,11 @@
 				if(!CollabUtil.canAddNode(resourceResolver.adaptTo(Session.class), cs.getRootPath())) {
 					%><p><%=i18n.get("You are not allowed to post here, please sign in or join")%></p><%
 				}%>
-			</c:when>
-			<c:otherwise>
+			</div>
+			<div class="commentsUnauthenticated_js">
 				<h2>Got Something to Say?</h2>
 				<p><a data-toggle="modal" data-target="#loginModal">Sign in with your Sears ID</a></p>
-			</c:otherwise>
-		</c:choose>
+			</div>
 		</div>
 	</div>
 </div>
@@ -105,7 +104,7 @@ $CQ(function(){
 	CQ.soco.comments.attachToComposer($CQ("#<%=cs.getId()%>").find("form").first(), $CQ(".commentsTarget"), "comment");
 	$CQ("#<%=cs.getId()%>").bind(CQ.soco.comments.events.ADDED, function (event) {
 		CQ_Analytics.record({ event: 'postComment', values: {
-				commenterName: '<%=loggedInUserID%>',
+				commenterName: (NS('shc.pd').firstName + ' ' + NS('shc.pd').lastName.substring(0, 1)).trim(),
 				componentPath: '<%=resource.getResourceType()%>'
 			}
 		});
@@ -128,4 +127,3 @@ $CQ(function(){
 	$CQ(".comment").bind(CQ.soco.comments.events.ADDED, CQ.soco.comments.addHandler);
 });
 </script>
-<%@ include file="/apps/searspartsdirect/global.jsp" %>
