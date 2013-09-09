@@ -167,16 +167,6 @@
 				obj: new shc.pd.base.widgets.TouchCarousel(carouselElement)
 			}));
 		});
-		// desktop relatedGuide initialization
-		$('.relatedGuides .desktopCarousel').each(function () {
-			var carouselElement = $(this);
-
-			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
-				min: 651,
-				max: 100000,
-				obj: new shc.pd.base.widgets.DesktopCarousel(carouselElement)
-			}));
-		});
 		// touch relatedGuide initialization
 		$('.relatedGuides .touchCarousel').each(function () {
 			var carouselElement = $(this);
