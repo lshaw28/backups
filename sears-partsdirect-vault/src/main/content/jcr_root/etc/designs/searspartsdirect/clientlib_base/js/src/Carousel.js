@@ -6,7 +6,7 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 	 * @type {Number}
 	 */
 	var ANIMATION_SPEED = 500;
-	
+
 	return {
 		/**
 		 * @constructor
@@ -16,24 +16,24 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 		 */
 		init: function (parent, itemCount, movementPx) {
 			this._super();
-			
+
 			// we need items, or else this should not be in use
-			if ($('.carouselItem', parent).length === 0) {
+			if ($('.carouselItemHolder', parent).length === 0) {
 				throw new Error('No items to carousel');
 			}
-			
+
 			this.callback = function () {};
 			this.hasAction = true;
-			
+
 			// item wrapper that we move
 			this.itemWrapper = $('.carouselListWrapper', parent);
-			
+
 			// fx handler
 			this.moveFx = new shc.pd.base.fx.Translate3dResolver(this.itemWrapper, 'marginLeft');
-			
+
 			// detect what kind of width we're gonna use
 			this.setMovementPx(movementPx);
-			
+
 			// maxIndex
 			this.setMaxIndex(itemCount - 1);
 		},
