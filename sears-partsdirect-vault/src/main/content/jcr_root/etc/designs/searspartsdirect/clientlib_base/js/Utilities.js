@@ -19,12 +19,15 @@
 		getGlobalVariables: function () {
 			var self = this;
 
+			// Head metadata
 			$('meta[name^="global-"]').each(function () {
 				var newName = $(this).attr('name').replace('global-', ''),
 					newContent = $(this).attr('content');
 
 				window[newName] = newContent;
 			});
+			// Template name for tracking
+			window['templateName'] = $('[data-templatename]').data('templatename');
 			// API path protocol fix
 			if (self.validString(window['apiPath']) !== '' && self.validString(window['apiPathSecure']) !== '') {
 				if (self.getLocationDetails().protocol === 'https:') {
@@ -261,6 +264,29 @@
 			}
 
 			return output;
+		},
+		/**
+		 * Attempt tracking call
+		 * @param {object} params Parameters to pass to the CQ record method if it exists
+		 * @param {string} componentName The name of the component to track
+		 */
+		trackEvent: function (params, componentName) {
+			var self = this;
+
+			// Grab the page title
+			params.values.pageTitle = $('title').text();
+
+			// Component name is complicated
+			componentName = self.validString(componentName);
+			if (componentName !== '' && self.validString(window['templateName']) !== '') {
+				componentName = componentName.replace('#templateName', templateName);
+			}
+			params.values.componentName = componentName;
+
+			// Check tracking is available
+			if (typeof CQ_Analytics.record === 'function') {
+				CQ_Analytics.record(params);
+			}
 		}
 	};
 	window.SPDUtils.init();

@@ -6,4 +6,9 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Error Code Checker"
 	jcr:description="Shows error codes link if error codes are present"
-	componentGroup="SearsPartsDirect" />
+	componentGroup="SearsPartsDirect">
+	<analytics
+		jcr:primaryType="nt:unstructured"
+		cq:trackevents="errorCodeCheckerClick"
+		cq:trackvars="pageTitle,componentName" />
+</jcr:root>
