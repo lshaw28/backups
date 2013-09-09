@@ -50,7 +50,10 @@
 	String nameId = id + "-" + CollabUser.PROP_NAME;
 	String mailId = id +"-" + CollabUser.PROP_EMAIL;
 	String webId = id + "-" + CollabUser.PROP_WEBSITE;
-	String formAction = commentResource.getPath() + ".social.createcomment.html";
+	
+	String updatedCommentResourcePath = commentResource.getPath().replaceFirst("/content/searspartsdirect/en", "");
+    String formAction = updatedCommentResourcePath + ".social.createcomment.html";
+	
 	boolean requireLogin = false;
 	String authorizableId = loggedInUserID;
 	boolean anonymous = isAnonymous;
