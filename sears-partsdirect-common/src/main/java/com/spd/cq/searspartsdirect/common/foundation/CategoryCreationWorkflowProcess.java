@@ -71,6 +71,7 @@ public class CategoryCreationWorkflowProcess implements WorkflowProcess {
                 createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", categoryTrueName+"-common-parts", "/apps/searspartsdirect/templates/commonParts", categoryTitle + " Common Parts", null);
                 createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", categoryTrueName+"-common-questions", "/apps/searspartsdirect/templates/commonQuestions", categoryTitle + " Common Questions", null);
                 createPage(pm, "/content/searspartsdirect/en/categories/" + categoryTrueName + "-repair", categoryTrueName+"-maintenance-tips", "/apps/searspartsdirect/templates/maintenanceTips", categoryTitle + " Maintenance Tips", null);
+                createPage(pm, "/content/searspartsdirect/en/repair-guide", categoryTrueName, "/apps/searspartsdirect/templates/base", categoryTitle + " Repair Guides", null);
                 jcrSession.save();
 	        }
         } catch (Exception e) {

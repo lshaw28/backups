@@ -161,6 +161,12 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
+			<name>categoryName</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
 			<name>maxOutput</name>
 			<type>java.lang.Integer</type>
 			<required>false</required><!-- defaulted to 4 -->
@@ -456,6 +462,12 @@
 		<info>Gets the list of Guides for a category</info>
 		<attribute>
 			<name>categoryPath</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>categoryName</name>
 			<type>java.lang.String</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>

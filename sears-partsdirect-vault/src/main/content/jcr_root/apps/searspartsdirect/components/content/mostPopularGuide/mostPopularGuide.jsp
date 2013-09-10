@@ -5,7 +5,7 @@
 </c:if>
 
 <c:if test="${not empty productCategoryRelation}">
-	<spd:getMostPopularGuide categoryPath="${productCategoryRelation.path}" />
+	<spd:getMostPopularGuide categoryPath="${productCategoryRelation.path}" categoryName="${productCategoryRelation.trueName}" />
 	<c:set var="titleText"><cq:text property="title" placeholder="" /></c:set>
 	<c:choose>
 		<c:when test="${not empty titleText}">
