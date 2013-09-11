@@ -13,7 +13,7 @@
 			<a data-toggle="dropdown" href="#">My Models&nbsp;<span class="count-badge parentheses">0</span>&nbsp;<i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
 				<li id="cartModelItems" class="inactive"></li>
-				<li id="cartUserEdit" class="inactive"><a class="new-btn" href="${mainSitePath}/partsdirect/myProfileMyOwnedModels.pd">Edit List</a></li>
+				<li id="cartUserEdit" class="inactive"><a class="new-btn" href="${secureMainSitePath}/partsdirect/myProfileMyOwnedModels.pd">Edit List</a></li>
 				<li id="cartGuestEdit" class="inactive"><button type="button" class="new-btn edit_js">Edit List</button></li>
 				<li id="cartGuestControls" class="inactive"><button type="button" class="new-btn new-btn-edit remove_js">Remove</button><button type="button" class="new-btn new-btn-borderless pull-right cancel_js">Cancel</button></li>
 				<li class="cartModelsEmpty_js">You can find parts to your models faster by adding models you own to this list.<br /><br /><a class="new-btn" href="${mainSitePath}/partsdirect/linkToProfilePromoPage.action">Learn More</a></li>

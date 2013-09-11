@@ -27,6 +27,8 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 	
 	protected String categoryPath;
 	protected int maxOutput = 4;
+	protected String categoryName;
+	
 	
 	public static final String REL_GUIDES_ATTR = Constants.ident("relatedGuides");
 	
@@ -102,7 +104,7 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 		QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
 		HashMap<String, String> props = new HashMap<String, String>();
         props.put("type", Constants.CQ_PAGE);
-        props.put("path", Constants.GUIDES_ROOT);
+        props.put("path", Constants.GUIDES_ROOT+"/"+categoryName);
         props.put("property", Constants.ASSETS_PAGES_REL_PATH);
         props.put("property.value", categoryPath);
         
@@ -130,5 +132,9 @@ public class GetRelatedGuidesTag extends CQBaseTag {
     			page.getPath() + ".html", 
     			page.getPath() + Constants.ASSETS_IMAGE_PATH, 
     			page.getTitle());
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 }

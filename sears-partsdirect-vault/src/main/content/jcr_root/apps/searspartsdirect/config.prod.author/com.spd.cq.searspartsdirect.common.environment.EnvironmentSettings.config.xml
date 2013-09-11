@@ -16,5 +16,5 @@
 	searspartsdirect.local.http="searspartsdirect.com:2280"
 	searspartsdirect.local.https="searspartsdirect.com:2643"
 	searspartsdirect.commercial.url="commercial.searspartsdirect.com"
-	searspartsdirect.pd.security.path="/partsdirect/j_acegi_cas_security_check"
+	searspartsdirect.pd.security.path="/partsdirect/j_spring_cas_security_check"
 	searspartsdirect.sso.server="https://sso.shld.net/shccas/shcLogin" />
