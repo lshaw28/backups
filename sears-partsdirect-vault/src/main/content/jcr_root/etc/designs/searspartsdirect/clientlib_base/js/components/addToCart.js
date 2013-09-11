@@ -17,6 +17,8 @@ var addToCart = Class.extend(function () {
 			this.el = el;
 			this.offset = el.offset();
 			this.animElem = $("#addToCartAnimation");
+            this.animElemOriginalTop = this.animElem.css("top");
+            this.isAnimating = false;
 			this.quantityField = qf;
 			this.partNumber = '';
 			this.divId = '';
@@ -110,14 +112,29 @@ var addToCart = Class.extend(function () {
 		showAddedMessage: function() {
 			var self = this;
 
-            self.animElem.fadeIn(1500);
+            if (self.isAnimating) {
+                return;
+            } else {
+                self.isAnimating = true;
+            }
+
+            self.animElem.css('display', 'block');
+            self.animElem.animate({
+                   opacity: 1,
+                   top: "-=200"},
+                1500
+            );
             setTimeout(function () {self.hideAddedMessage()}, 3000);
 		},
 
         hideAddedMessage: function() {
             var self = this;
 
-            self.animElem.fadeOut(1500);
+            self.animElem.animate({
+                    opacity: 0,
+                    top: "-=200"},
+                1500
+            );
             setTimeout(function () {self.hideAddedMessageForIE8()}, 1510);
         },
 
@@ -125,6 +142,8 @@ var addToCart = Class.extend(function () {
             var self = this;
 
             self.animElem.css('display', 'none');
+            self.animElem.css('top', self.animElemOriginalTop);
+            self.isAnimating = false;
         },
 		/**
 		 * Process AJAX response
