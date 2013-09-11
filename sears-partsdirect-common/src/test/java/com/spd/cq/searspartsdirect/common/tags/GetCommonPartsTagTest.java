@@ -32,7 +32,7 @@ public class GetCommonPartsTagTest extends MocksTag {
 	@Test
 	public void testDoStart() throws RepositoryException, JspException {
 		fixture.setUpComplete();
-		tag.setCategoryPath("categoryPath");
+		tag.setProductCategory(fixture.getProductCategoryModel());
 		runTagSkipsBodyEvalsPage();
 		validCompleteResultWithDetails();
 	}
@@ -48,7 +48,7 @@ public class GetCommonPartsTagTest extends MocksTag {
 	public void testDoStartNoHitProperties() throws RepositoryException, JspException {
 		fixture.setUpComplete();
 		fixture.removeHitProperties();
-		tag.setCategoryPath("categoryPath");
+		tag.setProductCategory(fixture.getProductCategoryModel());
 		runTagSkipsBodyEvalsPage();
 		validEmptyResult();
 	}
@@ -57,7 +57,7 @@ public class GetCommonPartsTagTest extends MocksTag {
 	public void testDoStartHitPropertiesThrows() throws RepositoryException, JspException {
 		fixture.setUpComplete();
 		fixture.breakHitProperties();
-		tag.setCategoryPath("categoryPath");
+		tag.setProductCategory(fixture.getProductCategoryModel());
 		runTagSkipsBodyEvalsPage();
 		validEmptyResult();
 	}
@@ -66,7 +66,7 @@ public class GetCommonPartsTagTest extends MocksTag {
 	public void testDoStartNoHitPageGuidesProperties() throws RepositoryException, JspException {
 		fixture.setUpComplete();
 		fixture.removeHitPageGuidesProperties();
-		tag.setCategoryPath("categoryPath");
+		tag.setProductCategory(fixture.getProductCategoryModel());
 		runTagSkipsBodyEvalsPage();
 		validCompleteResultWithDetails();
 	}
@@ -75,7 +75,7 @@ public class GetCommonPartsTagTest extends MocksTag {
 	public void testDoStartNoGuidesResolve() throws RepositoryException, JspException {
 		fixture.setUpComplete();
 		fixture.removeHitGuidesGuidePages();
-		tag.setCategoryPath("categoryPath");
+		tag.setProductCategory(fixture.getProductCategoryModel());
 		runTagSkipsBodyEvalsPage();
 		validCompleteResultWithDetails();
 	}

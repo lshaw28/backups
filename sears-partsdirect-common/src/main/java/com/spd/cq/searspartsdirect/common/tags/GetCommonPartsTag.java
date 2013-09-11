@@ -22,6 +22,7 @@ import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.model.GuideModel;
 import com.spd.cq.searspartsdirect.common.model.spdasset.PartTypeModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 public class GetCommonPartsTag extends CQBaseTag {
 
@@ -31,34 +32,38 @@ public class GetCommonPartsTag extends CQBaseTag {
 	private Session session;
 	private QueryBuilder builder;
 	private Query query;
-	private String categoryPath;
+	private ProductCategoryModel productCategory;
 	List<PartTypeModel> partTypes;
 	List<String> anchors;
 
 	@Override
 	public int doStartTag() throws JspException {
-		if (!StringUtils.isEmpty(categoryPath)) {
+		if (productCategory != null && !StringUtils.isEmpty(productCategory.getPath())) {
 			partTypes = new ArrayList<PartTypeModel>();
 			anchors = new ArrayList<String>();
 
 			session = slingRequest.getResourceResolver().adaptTo(Session.class);
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("path", Constants.ASSETS_PATH + "/partType");
+			map.put("path", Constants.ASSETS_PATH + "/partType/"+productCategory.getTrueName());
 			map.put("type", Constants.CQ_PAGE);
 			map.put("property", Constants.ASSETS_PAGES_REL_PATH);
-			map.put("property.value", categoryPath);
+			map.put("property.value", productCategory.getPath());
 			map.put("orderby", "@"+ Constants.ASSETS_TITLE_REL_PATH);
 			map.put("orderby.index","true");
 			map.put("orderby.sort", "asc");
+		//	map.put("p.limit", "-1"); //fetch all the results
+			map.put("p.offset", "0");
+		    map.put("p.limit", "100"); //this can be updated to a higher number 
 
 			builder = resourceResolver.adaptTo(QueryBuilder.class);
 			query = builder.createQuery(PredicateGroup.create(map), session);
 			SearchResult result = query.getResult();
-
+			
 			for (Hit hit : result.getHits()) {
 				try {
 					ValueMap props = hit.getProperties();
 					Page partTypePage = pageManager.getPage(hit.getPath());
+					log.debug("hit.getPath() "+hit.getPath());
 					if (props != null) {
 						PartTypeModel partType = new PartTypeModel(partTypePage.getPath(), 
 								props.get(Constants.ASSETS_TITLE_PATH, String.class), 
@@ -95,6 +100,7 @@ public class GetCommonPartsTag extends CQBaseTag {
 					log.error("Retrieving common parts, ", e);
 				}
 			}
+			
 			pageContext.setAttribute("commonParts", partTypes);
 		} else {
 			log.debug("CategoryPath is null");
@@ -107,8 +113,7 @@ public class GetCommonPartsTag extends CQBaseTag {
 		return EVAL_PAGE;
 	}
 
-	public void setCategoryPath(String categoryPath) {
-		this.categoryPath = categoryPath;
+	public void setProductCategory(ProductCategoryModel productCategory) {
+		this.productCategory = productCategory;
 	}
-
 }
