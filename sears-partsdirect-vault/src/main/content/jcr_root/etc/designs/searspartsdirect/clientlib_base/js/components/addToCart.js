@@ -17,6 +17,8 @@ var addToCart = Class.extend(function () {
 			this.el = el;
 			this.offset = el.offset();
 			this.animElem = $("#addToCartAnimation");
+            this.animElemOriginalTop = this.animElem.css("top");
+            this.isAnimating = false;
 			this.quantityField = qf;
 			this.partNumber = '';
 			this.divId = '';
@@ -79,8 +81,8 @@ var addToCart = Class.extend(function () {
 					params.userid = registeredUserId;
 				}
 				// Add cart ID param if available
-				if (NS('shc.pd.cookies').cid !== '') {
-					params.cid = NS('shc.pd.cookies').cid;
+				if (su.validString(cartId) !== '') {
+					params.cartid = cartId;
 				}
 
 				// Make an AJAX call
@@ -110,14 +112,29 @@ var addToCart = Class.extend(function () {
 		showAddedMessage: function() {
 			var self = this;
 
-            self.animElem.fadeIn(1500);
+            if (self.isAnimating) {
+                return;
+            } else {
+                self.isAnimating = true;
+            }
+
+            self.animElem.css('display', 'block');
+            self.animElem.animate({
+                   opacity: 1,
+                   top: "-=200"},
+                1500
+            );
             setTimeout(function () {self.hideAddedMessage()}, 3000);
 		},
 
         hideAddedMessage: function() {
             var self = this;
 
-            self.animElem.fadeOut(1500);
+            self.animElem.animate({
+                    opacity: 0,
+                    top: "-=200"},
+                1500
+            );
             setTimeout(function () {self.hideAddedMessageForIE8()}, 1510);
         },
 
@@ -125,6 +142,8 @@ var addToCart = Class.extend(function () {
             var self = this;
 
             self.animElem.css('display', 'none');
+            self.animElem.css('top', self.animElemOriginalTop);
+            self.isAnimating = false;
         },
 		/**
 		 * Process AJAX response
@@ -137,8 +156,8 @@ var addToCart = Class.extend(function () {
 				i = 0,
 				itemCount = 0;
 
-			// Set cartID cookie
-			NS('shc.pd.cookies').cid = data.cartId;
+			// Set cartId
+			cartId = data.cartId;
 
 			// Handle items
 			if (data.cartParts.length > 0) {
@@ -188,11 +207,23 @@ var addToCart = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils,
 				quantity = 0,
-				li = new cartItemTemplate(item);
+				partUrl = '',
+				li = $('<li />'),
+				description = '',
+				partNumber;
 
-			// Retrieve quantity
+			// Retrieve information
 			quantity = item.quantity;
-			// Insert element
+			description = su.validString(item.description);
+			partNumber = su.validString(item.partNumber);
+			partUrl = su.validString(item.partUrl);
+
+			if (description.length > 17) {
+				description = description.substring(0, 17) + '...';
+			}
+
+			li.addClass('cart-item');
+			li.html('<span class="cart-part"><a href="' + mainSitePath + partUrl + '">' + description + ' ' + partNumber + '</a></span><span class="cart-quantity">' + quantity + '</span>');
 			self.cartItems.totals.before(li);
 
 			return quantity;
