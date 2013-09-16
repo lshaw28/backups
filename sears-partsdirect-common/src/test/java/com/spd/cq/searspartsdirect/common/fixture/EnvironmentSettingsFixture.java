@@ -50,7 +50,7 @@ public class EnvironmentSettingsFixture {
 		ourHash.put(EnvironmentSettings.SITEMAP_STOP_PATHS, Constants.EMPTY);
 		ourHash.put(EnvironmentSettings.EXTERNAL_ADDED_PREFIX, "http://www.searspartsdirect.com");
 		ourHash.put(EnvironmentSettings.EXTERNAL_ADDED_SUFFIX, ".html");
-		ourHash.put(EnvironmentSettings.PD_USERDATA_API, "http://partsapivip.stress.ch3.s.com/pd-services/v1/userservice/retrive?username=");
+		ourHash.put(EnvironmentSettings.PD_USERDATA_API, "http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username=");
 		ourHash.put(EnvironmentSettings.PD_URL, "http://www.searspartsdirect.com");
 		ourHash.put(EnvironmentSettings.PD_TOPPARTS_API, "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/modelTop/topParts");
 		ourHash.put(EnvironmentSettings.PD_MODELSUB_API, "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/modelInfo");
