@@ -52,6 +52,9 @@ public class GetErrorCodesListTag extends CQBaseTag {
 			map.put("1_property.value", categoryPath);
 			map.put("2_property", Constants.TEMPLATE_REL_PATH);
 			map.put("2_property.value", Constants.ERROR_CODE_TEMPLATE);
+//			map.put("p.limit", "-1"); //fetch all the results
+			map.put("p.offset", "0");
+			map.put("p.limit", "100"); //this can be updated to a higher number 
 
 			builder = resourceResolver.adaptTo(QueryBuilder.class);
 			query = builder.createQuery(PredicateGroup.create(map), session);

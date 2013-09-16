@@ -155,14 +155,8 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetRelatedGuidesTag</tag-class>
 		<info>Sets page context information required for Related Guides component</info>
 		<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>categoryName</name>
-			<type>java.lang.String</type>
+			<name>productCategory</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -527,8 +521,8 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCommonPartsTag</tag-class>
 		<info>Gets the Common Category Parts</info>
 		<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
+			<name>productCategory</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
