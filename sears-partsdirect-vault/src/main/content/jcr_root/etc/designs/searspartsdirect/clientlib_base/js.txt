@@ -21,6 +21,12 @@ Utilities.js
 DocumentReady.js
 WindowResize.js
 
+#base=js/templates/.
+cartItemTemplate.js
+modelItemTemplate.js
+myModelsItemTemplate.js
+partItemTemplate.js
+
 #base=js/components/.
 addToCart.js
 cartNav.js
@@ -39,6 +45,7 @@ revealPanel.js
 searchPanel.js
 secureLoginModal.js
 svgIcon.js
+userData.js
 video.js
 
 #base=js/widgets/.
