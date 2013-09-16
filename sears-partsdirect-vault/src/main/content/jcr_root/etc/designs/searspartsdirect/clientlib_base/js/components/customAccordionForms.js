@@ -16,6 +16,7 @@ var customAccordionForms = Class.extend(function () {
 		bindEvents: function () {
 			var self = this;
 			
+			$('body').append($('#modalShipping')).append($('#modalCode'));
 			//This modifies the accordion to change the head background color when toggled and to have one open at a time (preference to current step)
 			$('.customAccordionForms .accordion-toggle').bind('click', function () {
 				//Checks if accordion is deactivated
@@ -41,15 +42,12 @@ var customAccordionForms = Class.extend(function () {
 					$('.accordion-toggle').removeAttr('href').attr('data-toggle', 'false');
                 }
 			});
-			$('.customAccordionForms .accordion').on('hide', function () {
-				//console.log('close');
-			});
 			
 			$('.cafSubmit', self.el).bind('click', function (e) {
 				e.preventDefault();
 				//Sets the frequency, dates (eventually) and quantity the user input on the first step
 				if ($(e.target.form).attr('id') == "cafSelectFilterFrequencyForm") {
-					$('#freqSel').html($('input[name="frequency"]:checked').val());
+					$('#freqSel').html($('.filFreq:checked').val());
 					$('#subQty').html($('#waterFilterQuantity').val());
 				}
 				//Special bit to fill out the billing form if user wants to use the same address (already on checkbox, here in case user updates after clicking the checkbox)
@@ -77,7 +75,6 @@ var customAccordionForms = Class.extend(function () {
 				defaultMessage: "Invalid number",
 				validator: function() {
 					var match = /^\d+$/;
-					console.log(this.value.length);
 					return (match.test(this.value) && this.value.length > 12 && this.value.length < 17);
 				}
 			});
@@ -87,13 +84,13 @@ var customAccordionForms = Class.extend(function () {
 				if ($(this).attr('checked')) {
 					self.setBillingFields(true);
 					$('#billingSame').attr('checked', 'checked');
-					$('.accordion-group').has('#cafBillingAddressForm').find('.accordion-toggle').attr('data-status', 'complete');
-					$('.accordion-group').has('#cafBillingAddressForm').find('.accordion-toggle span').removeClass('hidden');
+					$('.billingToggle').attr('data-status', 'complete');
+					$('.billingToggle span').removeClass('hidden');
 				} else {
 					self.setBillingFields(false);
 					$('#billingSame').removeAttr('checked');
-					$('.accordion-group').has('#cafBillingAddressForm').find('.accordion-toggle').attr('data-status', 'unavailable');
-					$('.accordion-group').has('#cafBillingAddressForm').find('.accordion-toggle span').addClass('hidden');
+					$('.billingToggle').attr('data-status', 'unavailable');
+					$('.billingToggle span').addClass('hidden');
 				}
 			});
 			

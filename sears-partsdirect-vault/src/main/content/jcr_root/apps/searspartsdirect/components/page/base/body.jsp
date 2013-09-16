@@ -33,6 +33,4 @@
         <i class="icon-shopping-cart">&nbsp;</i>
         <p>Added to Cart</p>
     </div>
-	<cq:include path="shippingRestrictionsModal" resourceType="searspartsdirect/components/content/shippingRestrictionsModal" />
-	<cq:include path="securityCodeModal" resourceType="searspartsdirect/components/content/securityCodeModal" />
 </body>

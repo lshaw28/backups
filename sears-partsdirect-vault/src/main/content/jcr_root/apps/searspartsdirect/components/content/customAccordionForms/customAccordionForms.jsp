@@ -40,11 +40,11 @@
 							<div class="span8 offset1">
 								<p>Select water filter automatic reorder frequency</p>
 								<div class="radioOptions">
-									<input type="radio" name="frequency" id="frequency3" value="3" />
+									<input type="radio" class="filFreq" name="frequency" id="frequency3" value="3" />
 									<label for="frequency3">Every 3 months</label>
-									<input type="radio" name="frequency" id="frequency6" value="6" />
+									<input type="radio" class="filFreq" name="frequency" id="frequency6" value="6" />
 									<label for="frequency6">Every 6 months</label>
-									<input type="radio" name="frequency" id="frequency12" value="12" />
+									<input type="radio" class="filFreq" name="frequency" id="frequency12" value="12" />
 									<label for="frequency12">Every 12 months</label>
 								</div>
 							</div>
@@ -157,7 +157,7 @@
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span4 offset1">
+							<div class="span3 offset1">
 								<label for="shippingState">State <span>Required</span></label>
 								<select name="state" id="shippingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-navigate="true">
 									<option value="AA">AA</option>
@@ -166,7 +166,7 @@
 									<option value="AP">AP</option>
 								</select>
 							</div>
-							<div class="span4">
+							<div class="span3">
 								<label for="shippingZip">ZIP Code <span>Required</span></label>
 								<input class="cafText" name="zip" id="shippingZip" data-mask="99999" data-placeholder=" " />
 							</div>
@@ -213,7 +213,7 @@
 <div class="accordion" id="parent_${uniqueId}3">
 	<div class="accordion-group">
 		<div class="accordion-heading">
-			<a class="accordion-toggle" id="toggle_${uniqueId}3" data-toggle="false" data-status="unavailable" data-parent="#parent_${uniqueId}3" data-href="#${uniqueId}3">
+			<a class="accordion-toggle billingToggle" id="toggle_${uniqueId}3" data-toggle="false" data-status="unavailable" data-parent="#parent_${uniqueId}3" data-href="#${uniqueId}3">
 				3 &nbsp; Enter Billing Address
 				<span class="hidden"><i class="icon-pencil"></i> EDIT</span>
 			</a>
@@ -256,7 +256,7 @@
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span4 offset1">
+							<div class="span3 offset1">
 								<label for="billingState">State <span>Required</span></label>
 								<select name="state" id="billingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-navigate="true">
 									<option value="AA">AA</option>
@@ -265,7 +265,7 @@
 									<option value="AP">AP</option>
 								</select>
 							</div>
-							<div class="span4">
+							<div class="span3">
 								<label for="billingZip">ZIP Code <span>Required</span></label>
 								<input class="cafText" name="zip" id="billingZip" data-mask="99999" data-placeholder=" " />
 							</div>
@@ -457,4 +457,42 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div id="modalShipping" class="modal hide fade in" style="display: none; ">
+	<h3>Shipping Restrictions</h3>
+	<h4>Can I ship an order to a P.O. Box?</h4>
+	<p>The U.S. Postal Service delivers all packages addressed to P.O. boxes within the Continental U.S. We can't deliver to P.O. boxes outside of the Continental U.S.</p>
+	<p><strong>Please note:</strong> Some items can't be shipped to a P.O. box and require a physical address for delivery.</p>
+	<h4>Can orders be shipped to a military address?</h4>
+	<p>The U.S. Postal Service delivers all orders to military APO/FPO addresses. Please allow an additional 4-6 weeks for the military postal service to deliver your package to its final overseas destination.</p>
+	<a href="#" class="btn" data-dismiss="modal">Close</a>
+</div>
+<div id="modalCode" class="modal hide fade in" style="display: none; ">
+	<h3>How to find your security code</h3>
+	<p>The security code can be found on either the front or back of your credit card.</p>
+	<div class="row-fluid">
+		<div class="span7">
+			<div class="cardSears creditCard"></div>
+		</div>
+		<div class="span5">
+			<p>The security code is on the back of Sears Card and Sears Premier Card. <strong>If you have a 13-digit Sears Card, the security code is not required.</strong></p>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span7">
+			<div class="cardOther creditCard"></div>
+		</div>
+		<div class="span5">
+			<p>The security code is on the back of MasterCard, Sears Gold MasterCard VISA, and Discover cards.</p>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span7">
+			<div class="cardExpress creditCard"></div>
+		</div>
+		<div class="span5">
+			<p>The security code is on the front of American Express cards.</p>
+		</div>
+	</div>
+	<a href="#" class="btn" data-dismiss="modal">Close</a>
 </div>

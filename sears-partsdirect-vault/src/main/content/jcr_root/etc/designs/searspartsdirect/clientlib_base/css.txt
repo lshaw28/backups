@@ -36,8 +36,8 @@ categorySymptoms/categorySymptoms.less
 commonParts/commonParts.less
 customAccordionForms/customAccordionForms.less
 customAccordionForms/customAccordionForms.tablet.less
-shippingRestrictionsModal/shippingRestrictionsModal.less
-securityCodeModal/securityCodeModal.less
+subscriptionConfirmation/subscriptionConfirmation.less
+subscriptionConfirmation/subscriptionConfirmation.tablet.less
 difficultyRating/difficultyRating.less
 displayRecommendedParts/displayRecommendedParts.less
 errorCodeChecker/errorCodeChecker.less
