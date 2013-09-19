@@ -40,24 +40,26 @@
 	<div class="span12 detailHeader">
 		<h3>Subscription Detail</h3>
 	</div>
-	<div class="span2 offset1 contentRow darkRow">
-		<p><strong>Part #</strong></p>
-		<p><a href="#">[XXXXXXX]</a></p>
-	</div>
-	<div class="span2 contentRow">
-		<p><strong>Description</strong></p>
-		<p>[desc]</p>
-	</div>
-	<div class="span2 contentRow darkRow">
-		<p><strong>Qty</strong></p>
-		<p>[X]</p>
-	</div>
-	<div class="span2 contentRow">
-		<p><strong>Unit Price</strong></p>
-		<p>$[XX.XX]</p>
-	</div>
-	<div class="span2 contentRow darkRow">
-		<p><strong>Price</strong></p>
-		<p>$[XX.XX]</p>
+	<div class="span10 offset1">
+		<table class="responsiveTable alwaysOpen">
+			<thead>
+				<tr>
+					<th>Part #</th>
+					<th>Description</th>
+					<th>Qty</th>
+					<th>Unit Price</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="#">[XXXXXXX]</a></td>
+					<td>[desc]</td>
+					<td>[X]</td>
+					<td>$[XX.XX]</td>
+					<td>$[XX.XX]</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>

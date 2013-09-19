@@ -370,14 +370,16 @@ var customAccordionForms = Class.extend(function () {
 					currentToggle.attr('href', currentToggle.attr('data-href')).attr('data-toggle', 'collapse');
 				}
 				//Separated so that opening a completed step can deactivate the other toggles
-				thisToggle.attr('href', thisToggle.attr('data-href')).attr('data-toggle', 'collapse');
-				thisToggle.find('span').removeClass('hidden');
-				thisToggle.click();
-				thisToggle.attr('data-status', 'complete');
-				nextToggle.attr('data-status', 'incomplete');
-				nextToggle.attr('href', nextToggle.attr('data-href')).attr('data-toggle', 'collapse');
-				nextToggle.click();
-				nextToggle.removeAttr('href').attr('data-toggle', 'false');
+				if ($('.accordion-toggle[data-status=unavailable]:eq(0)').length > 0) {
+					thisToggle.attr('href', thisToggle.attr('data-href')).attr('data-toggle', 'collapse');
+					thisToggle.find('span').removeClass('hidden');
+					thisToggle.click();
+					thisToggle.attr('data-status', 'complete');
+					nextToggle.attr('data-status', 'incomplete');
+					nextToggle.attr('href', nextToggle.attr('data-href')).attr('data-toggle', 'collapse');
+					nextToggle.click();
+					nextToggle.removeAttr('href').attr('data-toggle', 'false');
+				}
 			}
 		}
 	};

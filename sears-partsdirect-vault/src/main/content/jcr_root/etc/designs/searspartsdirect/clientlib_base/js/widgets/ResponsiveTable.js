@@ -14,7 +14,6 @@ NS('shc.pd.base.widgets').ResponsiveTable = (function () {
 				var tableHeaders = [],
                     uniqueID;
 
-
 				// get headers
 				$('thead th', this).each(function () {
 					tableHeaders.push($(this).text());
@@ -31,13 +30,20 @@ NS('shc.pd.base.widgets').ResponsiveTable = (function () {
                     };
                     $(this).prepend('<div class="column-label ' + TD_LABEL_CLASSNAME +'">' + tableHeaders[$(this).index()] + '</div>');
 				});
-
-                // add hide/show toggle for collapsible elements
-                $('tbody').on('click','td',function(){
-                    $(this).toggleClass('td-open');
-                    $('#'+this.id+' ~ .td-hideable').toggleClass('hidden-phone');
-                });
-
+				
+				// check if rows shouldn't be hidden
+				if ($(this).hasClass('alwaysOpen')) {
+					$('.alwaysOpen td:eq(0)').addClass('td-open');
+					$('.alwaysOpen .td-hideable').removeClass('hidden-phone');
+				// if not...
+				} else {
+					// add hide/show toggle for collapsible elements
+					$('tbody').on('click','td',function(){
+						$(this).toggleClass('td-open');
+						$('#'+this.id+' ~ .td-hideable').toggleClass('hidden-phone');
+					});
+				}
+				
 			});
 		}
      };
