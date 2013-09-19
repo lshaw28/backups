@@ -2,6 +2,7 @@
 bootstrap.min.js
 plugins/regula-1.2.3.min.js
 plugins/jquery.hammer-1.0.5.min.js
+plugins/bootstrap-inputmask.js
 Class.js
 core/Namespace.js
 fx/Easing.js
@@ -33,6 +34,7 @@ cartNav.js
 collapse101.js
 commentCheck.js
 commonParts.js
+customAccordionForms.js
 guideNavigation.js
 messageHandler.js
 modelHeader.js
