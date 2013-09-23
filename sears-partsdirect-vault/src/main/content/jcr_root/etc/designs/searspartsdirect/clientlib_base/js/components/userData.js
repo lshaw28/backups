@@ -10,7 +10,6 @@ var userData = Class.extend(function () {
 		init: function () {
 			// Elements
 			this.cartItems = {
-// Retrieve elements
 				header: $('#cartShop .cartShopHeader_js'),
 				checkOut: $('#cartShop .cartShopCheckOut_js'),
 				totals: $('#cartShop .cartShopTotals_js'),
@@ -20,7 +19,6 @@ var userData = Class.extend(function () {
 			}
 			this.cartEmpty = $('#cartShop .cartShopEmpty_js');
 			this.modelsItems = {
-// Retrieve elements
 				items: $('#cartModelItems'),
 				userEdit: $('#cartUserEdit'),
 				guestEdit: $('#cartGuestEdit'),
@@ -28,6 +26,12 @@ var userData = Class.extend(function () {
 				countBadge: $('#cartModels .count-badge')
 			}
 			this.modelsEmpty = $('#cartModels .cartModelsEmpty_js');
+			this.comments = {
+				auth: $('.commentsAuthenticated_js'),
+				unauth: $('.commentsUnauthenticated_js'),
+				displayName: $('.commentsDisplayName'),
+				displayNameField: $('#comments-userIdentifier')
+			};
 			// Begin setup straight away
 			this.getHeaderCookies();
 			this.displayRecentPartsModels();
@@ -112,12 +116,24 @@ var userData = Class.extend(function () {
 				su = window.SPDUtils,
 				username = su.validString(resp.username),
 				firstName = su.validString(resp.firstName),
-				lastName = su.validString(resp.lastName);
+				lastName = su.validString(resp.lastName),
+				formattedName = (firstName + ' ' + lastName).trim();
 
-			// Logout on success, login on fail
+			// Make names global
+			NS('shc.pd').firstName = firstName;
+			NS('shc.pd').lastName = lastName;
+
+			// Set loginNav items
 			if (username !== '') {
 				$('#loginNavStatus').html('Hello, <strong>' + firstName + '</strong><a href="' + mainSitePath + '/partsdirect/myprofile/logout.action" onclick="SPDUtils.setCookie(\'username\', \'\');">Logout</a>');
 				$('#loginNavProfile').html('<a href="' + mainSitePath + '/partsdirect/myProfile.pd">My Profile</a>');
+			}
+			// Set comment items
+			if (username !== '' && NS('shc.pd').firstName !== '') {
+				self.comments.auth.removeClass('inactive');
+				self.comments.unauth.addClass('inactive');
+				self.comments.displayName.text(formattedName);
+				self.comments.displayNameField.attr('value', formattedName);
 			}
 		},
 		/**
@@ -167,7 +183,7 @@ var userData = Class.extend(function () {
 					self.modelsItems.guestEdit.removeClass('inactive');
 					self.modelsItems.guestControls.removeClass('inactive');
 				}
-				self.modelsItems.removeClass('inactive');
+				self.modelsItems.items.removeClass('inactive');
 				self.modelsEmpty.addClass('inactive');
 
 				// Render items

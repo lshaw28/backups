@@ -19,15 +19,18 @@
 		getGlobalVariables: function () {
 			var self = this;
 
+			// Head metadata
 			$('meta[name^="global-"]').each(function () {
 				var newName = $(this).attr('name').replace('global-', ''),
 					newContent = $(this).attr('content');
 
 				window[newName] = newContent;
 			});
+			// Template name for tracking
+			window['templateName'] = $('[data-templatename]').data('templatename');
 			// API path protocol fix
 			if (self.validString(window['apiPath']) !== '' && self.validString(window['apiPathSecure']) !== '') {
-				if (self.getLocationDetails().protocol === 'https:') {
+				if (document.location.href.indexOf('https') > -1) {
 					window['apiPath'] = window['apiPathSecure'];
 				}
 			}
@@ -79,6 +82,29 @@
 			}
 		},
 		/**
+		 * Check that an object resolves to a valid boolean
+		 * @param {object} obj Object to validate
+		 * @param {boolean} retval Optional return value
+		 */
+		validBoolean: function (obj, retval) {
+			// Type checking ensures faster validation
+			if (typeof obj === 'boolean') {
+				return obj;
+			} else if (typeof obj === 'string' && (obj === 'true')) {
+				return true;
+			} else if (typeof obj === 'string' && (obj === 'false')) {
+				return false;
+			} else if (typeof obj === 'number' && (obj === 1)) {
+				return true;
+			} else if (typeof obj === 'number' && (obj === 0)) {
+				return false;
+			} else if (typeof retval === 'boolean') {
+				return retval;
+			} else {
+				return false;
+			}
+		},
+		/**
 		 * Check if the screen is currently sized at an internally-defined mobile breakpoint
 		 * @return {boolean} Check result
 		 */
@@ -104,6 +130,9 @@
 				return false;
 			}
 		},
+        isMobileBrowser: function() {
+            return ("ontouchstart" in document.documentElement);
+        },
 		/**
 		 * Retrieve the current protocol, host name and path
 		 * @return {object}
@@ -261,6 +290,29 @@
 			}
 
 			return output;
+		},
+		/**
+		 * Attempt tracking call
+		 * @param {object} params Parameters to pass to the CQ record method if it exists
+		 * @param {string} componentName The name of the component to track
+		 */
+		trackEvent: function (params, componentName) {
+			var self = this;
+
+			// Grab the page title
+			params.values.pageTitle = $('title').text();
+
+			// Component name is complicated
+			componentName = self.validString(componentName);
+			if (componentName !== '' && self.validString(window['templateName']) !== '') {
+				componentName = componentName.replace('#templateName', templateName);
+			}
+			params.values.componentName = componentName;
+
+			// Check tracking is available
+			if (typeof CQ_Analytics.record === 'function') {
+				CQ_Analytics.record(params);
+			}
 		}
 	};
 	window.SPDUtils.init();

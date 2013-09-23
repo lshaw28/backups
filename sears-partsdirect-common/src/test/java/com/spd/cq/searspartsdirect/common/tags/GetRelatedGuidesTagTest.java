@@ -37,7 +37,7 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 			fixture.setUpNoDirectRelations();
 			fixture.makeNHits(0, resourceResolver);
 			tag.setPageContext(pageContext);
-			tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+			tag.setProductCategory(fixture.setupProductCategory());
 			
 			int startResult = tag.doStartTag();
 			assertThat(startResult,is(TagSupport.SKIP_BODY));
@@ -59,7 +59,7 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 		fixture.setUpNoDirectRelations();
 		fixture.makeNHits(1, resourceResolver, new GetRelatedItemsFixture.Explodes());
 		tag.setPageContext(pageContext);
-		tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+		tag.setProductCategory(fixture.setupProductCategory());
 		
 		int startResult = tag.doStartTag();
 		assertThat(startResult,is(TagSupport.SKIP_BODY));
@@ -96,7 +96,7 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 			fixture.makeNHits(2, resourceResolver);
 
 			tag.setPageContext(pageContext);
-			tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+			tag.setProductCategory(fixture.setupProductCategory());
 			
 			int startResult = tag.doStartTag();
 			assertThat(startResult,is(TagSupport.SKIP_BODY));
@@ -123,7 +123,7 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 			fixture.makeNHits(2, resourceResolver);
 			
 			tag.setPageContext(pageContext);
-			tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+			tag.setProductCategory(fixture.setupProductCategory());
 			
 			int startResult = tag.doStartTag();
 			assertThat(startResult,is(TagSupport.SKIP_BODY));
@@ -147,7 +147,7 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 			fixture.makeNHits(5, resourceResolver, 1);
 
 			tag.setPageContext(pageContext);
-			tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+			tag.setProductCategory(fixture.setupProductCategory());
 			
 			int startResult = tag.doStartTag();
 			assertThat(startResult,is(TagSupport.SKIP_BODY));
@@ -170,7 +170,7 @@ public class GetRelatedGuidesTagTest extends MocksTag {
 			fixture.setUpDirectRelations(5);
 
 			tag.setPageContext(pageContext);
-			tag.setCategoryPath("/content/searspartsdirect/en/somepage");
+			tag.setProductCategory(fixture.setupProductCategory());
 			
 			int startResult = tag.doStartTag();
 			assertThat(startResult,is(TagSupport.SKIP_BODY));

@@ -34,17 +34,16 @@ public class GetModelSymptomsTag extends CQBaseTag {
 	QueryBuilder builder;
 	Query query;
 	List<SymptomModel> symptomModels;
-	private String brandName;
-	private String categoryName;
+
 	private String modelNumber;
 
 	@Override
 	public int doStartTag() throws JspException {
 		List<SymptomModel> symptoms = new ArrayList<SymptomModel>();
-		if (!StringUtils.isEmpty(brandName) && !StringUtils.isEmpty(categoryName) && !StringUtils.isEmpty(modelNumber)) {
-			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(brandName, categoryName, modelNumber);
+		if (!StringUtils.isEmpty(modelNumber)) {
+			ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(modelNumber);
 			PDModelSubcomponentModel subcomponents = apiHelper.getModelSubcomponents(slingRequest);
-			log.debug("brandName "+brandName+ " categoryName "+categoryName+" model is "+modelNumber);
+			log.debug(" model is "+modelNumber);
 			
 			if (subcomponents != null) {
 				 log.debug("PD symptom length "+ subcomponents.getSymptomsArr().length);
@@ -95,21 +94,6 @@ public class GetModelSymptomsTag extends CQBaseTag {
 		return EVAL_PAGE;
 	}
 
-	public String getBrandName() {
-		return brandName;
-	}
-
-	public void setBrandName(String brandName) {
-		this.brandName = brandName;
-	}
-
-	public String getCategoryName() {
-		return categoryName;
-	}
-
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
 
 	public String getModelNumber() {
 		return modelNumber;

@@ -10,7 +10,7 @@ var myModelsItemTemplate = function (item) {
 	// Properties
 	var su = window.SPDUtils,
 		span = $('<span />'),
-		modelId = su.validString(item.id),
+		modelId = item.id,
 		modelNumber = su.validString(item.modelNumber),
 		modelBrandName = su.validString(item.brandName),
 		modelCategoryName = su.validString(item.categoryName),

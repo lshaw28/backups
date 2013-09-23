@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<article id="content"><div class="articleFix">
+<article id="content" data-templatename="TwoColumnspage"><div class="articleFix">
 	<%-- <cq:include path="/content/searspartsdirect/en/jcr:content/breadcrumbNavigation" resourceType="/apps/searspartsdirect/components/base/breadcrumbNavigation" /> --%>
 	<cq:include path="/content/searspartsdirect/en/jcr:content/modelHeader" resourceType="/apps/searspartsdirect/components/content/modelHeader" />
 	<div class="row-fluid">

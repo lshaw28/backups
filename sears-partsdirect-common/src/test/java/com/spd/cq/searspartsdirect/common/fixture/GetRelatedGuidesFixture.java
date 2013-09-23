@@ -15,6 +15,7 @@ import org.mockito.stubbing.Answer;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 import com.spd.cq.searspartsdirect.common.tags.GetRelatedGuidesTag;
 
 public class GetRelatedGuidesFixture extends GetRelatedItemsFixture {
@@ -66,6 +67,11 @@ public class GetRelatedGuidesFixture extends GetRelatedItemsFixture {
 			when(pageManager.getPage(pPath)).thenReturn(p);
 			when(p.getPath()).thenReturn(pPath);
 		}
+	}
+	
+	public ProductCategoryModel setupProductCategory() {
+		ProductCategoryModel productCategoryModel = new ProductCategoryModel("someTrueName","/content/searspartsdirect/en/somepage",null,null,null,null,null, null);
+		return productCategoryModel;
 	}
 
 }

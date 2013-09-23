@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<article id="content"><div class="articleFix">
+<article id="content" data-templatename="RepairGuidepage"><div class="articleFix">
 	<div class="row-fluid">
 		<div class="span10 desktop-offset1">
 			<%-- <cq:include path="/content/searspartsdirect/en/jcr:content/breadcrumbNavigation" resourceType="/apps/searspartsdirect/components/base/breadcrumbNavigation" /> --%>
@@ -44,6 +44,13 @@
 				</div>
 				<div class="span2 offset1 ad-span pull-right">
 					<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span9">
+					<a name="template_comments"></a>
+					<c:set var="displayedCommentsType" scope="request">Repair Guide</c:set>
+					<cq:include path="comments" resourceType="searspartsdirect/components/content/comments" />
 				</div>
 			</div>
 		</div>
