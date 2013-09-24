@@ -31,8 +31,11 @@ var messageHandler = Class.extend(function () {
 				if (formattedData.redirect) {
 					document.location.href = formattedData.redirect;
 				}
-				if (formattedData.reload) {
+				if (formattedData.reload && $('html').hasClass('lt-ie10') === false) {
 					document.location.reload();
+				}
+				if (formattedData.reload && $('html').hasClass('lt-ie10') === true) {
+					document.location.href = document.location.href;
 				}
 				if (formattedData.heightChange) {
 					var modal = $(formattedData.affectedModal),
