@@ -32,7 +32,6 @@ partItemTemplate.js
 addToCart.js
 cartNav.js
 collapse101.js
-commentCheck.js
 commonParts.js
 customAccordionForms.js
 guideNavigation.js
