@@ -100,7 +100,8 @@ public class GuideNavigationTag extends CQBaseTag {
 		}
 
 		// Comments link is unconditional
-		generators.add(new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));
+		//UNCOMMENT THE FOLLOWING LINES WHEN COMMENTS ARE ENABLED
+		/*generators.add(new CommentsLinkGenerator(constructCommentsPath(),resourceResolver));*/
 
 		// We iterate over our generators and create our output
 		for (LinkGenerator linkGen : generators) {
