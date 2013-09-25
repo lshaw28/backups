@@ -37,7 +37,7 @@ public class GetMostPopularGuideTag extends CQBaseTag{
 			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
 			HashMap<String, String> props = new HashMap<String, String>();
 			props.put("type", "cq:Page");
-			props.put("path", Constants.GUIDES_ROOT + "/" +categoryName);
+			props.put("path", Constants.GUIDES_ROOT);
 			props.put("property", Constants.ASSETS_PAGES_REL_PATH);
 			props.put("property.value", categoryPath);
 
