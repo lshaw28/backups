@@ -71,9 +71,11 @@ var userData = Class.extend(function () {
 			.success(function (data) {
 				self.handleResponse(data);
 			})
-			.fail(function (e) {
+			.fail(function (xhr, status, message) {
 				console.log('Unable to retrieve user data:');
-				console.log(e.message);
+				console.log(xhr);
+				console.log(status);
+				console.log(message);
 			});
 		},
 		/**
