@@ -58,22 +58,7 @@ var userData = Class.extend(function () {
 		checkAPI: function () {
 			var self = this,
 				su = window.SPDUtils,
-				userAddress = apiPathSecure + 'userservice/retrive',
-				params = {};
-
-			// Validate and add additional parameters
-			if (NS('shc.pd.cookies').username !== '') {
-				params.username = NS('shc.pd.cookies').username;
-			} else {
-				// Add profile cookie
-				if (NS('shc.pd.cookies').myProfileModels !== '') {
-					params.profileid = NS('shc.pd.cookies').myProfileModels;
-				}
-				// Add cart cookie
-				if (NS('shc.pd.cookies').cid !== '') {
-					params.cartid = NS('shc.pd.cookies').cid;
-				}
-			}
+				userAddress = mainSitePathSecure + '/partsdirect/retrieveSessionUserInfo.pd';
 
 			// Make an AJAX call
 			$.ajax({
@@ -81,8 +66,7 @@ var userData = Class.extend(function () {
 				url: userAddress,
 				contentType: 'application/json',
 				async: false,
-				dataType: 'JSON',
-				data: params
+				dataType: 'JSON'
 			})
 			.success(function (data) {
 				self.handleResponse(data);
