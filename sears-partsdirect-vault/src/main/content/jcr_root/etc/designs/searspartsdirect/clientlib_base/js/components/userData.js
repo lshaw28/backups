@@ -6,10 +6,8 @@ var userData = Class.extend(function () {
 		/**
 		 * @class userData
 		 * Singleton class to handle initial login, recently viewed and shopping cart states
-		 * @param {object} resp Data sent by the userData iframe
 		 */
-		init: function (resp) {
-			console.log(resp);
+		init: function () {
 			// Elements
 			this.cartItems = {
 				header: $('#cartShop .cartShopHeader_js'),
@@ -37,7 +35,7 @@ var userData = Class.extend(function () {
 			// Begin setup straight away
 			this.getHeaderCookies();
 			this.displayRecentPartsModels();
-			this.handleResponse(resp);
+			this.checkAPI();
 		},
 		/**
 		 * Retrieves cookie values used by global header items
@@ -52,6 +50,46 @@ var userData = Class.extend(function () {
 			NS('shc.pd.cookies').recentlyViewedModels = su.getCookie('recentlyViewedModels', '');
 			NS('shc.pd.cookies').myProfileModels = su.getCookie('myProfileModels', '');
 			NS('shc.pd.cookies').cid = su.getCookie('cid', '');
+		},
+		/**
+		 * Makes AJAX call to user API
+		 * @return {void}
+		 */
+		checkAPI: function () {
+			var self = this,
+				su = window.SPDUtils,
+				userAddress = apiPathSecure + 'userservice/retrive',
+				params = {};
+
+			// Validate and add additional parameters
+			if (NS('shc.pd.cookies').username !== '') {
+				params.username = NS('shc.pd.cookies').username;
+			} else {
+				// Add profile cookie
+				if (NS('shc.pd.cookies').myProfileModels !== '') {
+					params.profileid = NS('shc.pd.cookies').myProfileModels;
+				}
+				// Add cart cookie
+				if (NS('shc.pd.cookies').cid !== '') {
+					params.cartid = NS('shc.pd.cookies').cid;
+				}
+			}
+
+			// Make an AJAX call
+			$.ajax({
+				type: 'GET',
+				url: userAddress,
+				contentType: 'application/json',
+				async: false,
+				dataType: 'JSON',
+				data: params
+			})
+			.success(function (data) {
+				self.handleResponse(data);
+			})
+			.fail(function (e) {
+				// Handle error
+			});
 		},
 		/**
 		 * Handles response from the API
