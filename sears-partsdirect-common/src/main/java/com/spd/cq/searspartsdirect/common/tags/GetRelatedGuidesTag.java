@@ -100,7 +100,7 @@ public class GetRelatedGuidesTag extends CQBaseTag {
 		QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
 		HashMap<String, String> props = new HashMap<String, String>();
         props.put("type", Constants.CQ_PAGE);
-        props.put("path", Constants.GUIDES_ROOT+"/"+productCategory.getTrueName());
+        props.put("path", Constants.GUIDES_ROOT);
         props.put("property", Constants.ASSETS_PAGES_REL_PATH);
         props.put("property.value", productCategory.getPath());
         
