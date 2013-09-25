@@ -58,7 +58,7 @@ var userData = Class.extend(function () {
 		checkAPI: function () {
 			var self = this,
 				su = window.SPDUtils,
-				userAddress = mainSitePathSecure + '/partsdirect/retrieveSessionUserInfo.pd';
+				userAddress = ajaxSitePath + '/partsdirect/retrieveSessionUserInfo.pd';
 
 			// Make an AJAX call
 			$.ajax({
@@ -82,6 +82,7 @@ var userData = Class.extend(function () {
 		 */
 		handleResponse: function (resp) {
 			var self = this;
+			NS('shc.pd.login.resp') = resp;
 
 			// Set loginNav items
 			self.setLoginState(resp);

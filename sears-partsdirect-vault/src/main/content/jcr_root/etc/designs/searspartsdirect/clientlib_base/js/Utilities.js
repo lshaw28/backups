@@ -34,6 +34,13 @@
 					window['apiPath'] = window['apiPathSecure'];
 				}
 			}
+			// AJAX site path protocol fix
+			window['ajaxSitePath'] = mainSitePath;
+			if (self.validString(window['mainSitePath']) !== '' && self.validString(window['mainSitePathSecure']) !== '') {
+				if (document.location.href.indexOf('https') > -1) {
+					window['ajaxSitePath'] = window['mainSitePathSecure'];
+				}
+			}
 		},
 		/**
 		 * Creates objects required by AddThis
