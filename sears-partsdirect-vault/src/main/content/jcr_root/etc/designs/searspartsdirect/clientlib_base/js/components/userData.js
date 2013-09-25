@@ -58,25 +58,31 @@ var userData = Class.extend(function () {
 		checkAPI: function () {
 			var self = this,
 				su = window.SPDUtils,
-				userAddress = ajaxSitePath + '/partsdirect/retrieveSessionUserInfo.pd';
+				dateObj = new Date(),
+				userAddress = ajaxSitePath + '/partsdirect/retrieveSessionUserInfo.pd?d=' + dateObj.getTime();
 
 			// Make an AJAX call
-			$.ajax({
-				type: 'GET',
-				url: userAddress,
-				contentType: 'application/json',
-				async: false,
-				dataType: 'JSON'
-			})
-			.success(function (data) {
-				self.handleResponse(data);
-			})
-			.fail(function (xhr, status, message) {
-				console.log('Unable to retrieve user data:');
-				console.log(xhr);
-				console.log(status);
-				console.log(message);
-			});
+			if ($.browser.msie) {
+				var xhReq = new XMLHttpRequest();
+				var dateObj = new Date();
+				xhReq.open('GET', userAddress, false);
+				xhReq.send(null);
+				self.handleResponse(JSON.parse(xhReq.responseText));
+			} else {
+				$.ajax({
+					type: 'GET',
+					url: userAddress,
+					contentType: 'application/json',
+					async: false,
+					dataType: 'JSON'
+				})
+				.success(function (data) {
+					self.handleResponse(data);
+				})
+				.fail(function (xhr, status, message) {
+					// Handle errors
+				});
+			}
 		},
 		/**
 		 * Handles response from the API
@@ -85,7 +91,6 @@ var userData = Class.extend(function () {
 		 */
 		handleResponse: function (resp) {
 			var self = this;
-			NS('shc.pd.login.resp') = resp;
 
 			// Set loginNav items
 			self.setLoginState(resp);
