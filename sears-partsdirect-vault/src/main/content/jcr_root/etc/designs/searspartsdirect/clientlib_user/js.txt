@@ -1,0 +1,12 @@
+#base=/etc/designs/searspartsdirect/clientlib_login/js/.
+jquery-1.9.1.min.js
+
+#base=/etc/designs/searspartsdirect/clientlib_base/js/.
+Class.js
+core/Namespace.js
+Utilities.js
+
+#base=js/.
+messageSender.js
+userData.js
+DocumentReady.js

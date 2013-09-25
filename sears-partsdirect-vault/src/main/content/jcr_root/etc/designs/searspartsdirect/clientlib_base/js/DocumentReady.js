@@ -6,10 +6,6 @@
 	 */
 	$(document).ready(function () {
 		/**
-		 * Set up userData singleton class before all else
-		 */
-		var newUserData = new userData();
-		/**
 		 * Cross-Domain Window Message Handling
 		 */
 		var newMessageHandler = new messageHandler();

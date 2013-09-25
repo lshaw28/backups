@@ -1,4 +1,4 @@
-/*global window:true, $:true, Class:true, mainSitePath:true */
+/*global window:true, $:true, Class:true, mainSitePath:true, userData: true */
 var messageHandler = Class.extend(function () {
 	"use strict";
 
@@ -23,9 +23,16 @@ var messageHandler = Class.extend(function () {
 				newIFrameHeight = 0,
 				newModalHeight = 0;
 
+			if (message.data.toString().indexOf('"resp"') > -1) {
+				formattedData = JSON.parse(message.data.toString());
+			}
+
 			// Validate message object
 			if (formattedData) {
 				// Take decisions based on properties of the message's data object
+				if (formattedData.resp) {
+					var newUserData = new userData(formattedData.resp);
+				}
 				if (formattedData.closeModal) {
 					$(formattedData.closeModal).modal('hide');
 				}
