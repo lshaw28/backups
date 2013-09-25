@@ -23,6 +23,7 @@
 	<meta name="global-cartId" content="${shoppingCartCookieId}" />
 	<%-- Metadata --%>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 	<meta name="author" content="Sears PartsDirect" />
 	<meta name="keywords" content="<%= StringEscapeUtils.escapeHtml4(WCMUtils.getKeywords(currentPage, false)) %>" />
 	<meta name="description" content="<%= StringEscapeUtils.escapeHtml4(properties.get("jcr:description", "")) %>" />
