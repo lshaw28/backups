@@ -77,17 +77,19 @@ public class GetErrorCodesListTag extends CQBaseTag {
 								if (pages[i].contains("/brand")) {
 									List<ErrorCodeListModel> errorCodeModels = new ArrayList<ErrorCodeListModel>();
 									Page page = pageManager.getPage(pages[i]);
-									ValueMap brandPageProps = page.getProperties();
-									String brandLogo = brandPageProps.get("brandLogo", "");
-									BrandModel brandModel = new BrandModel(page.getName(),"", page.getTitle(), page.getDescription(), page.getPath() + Constants.ASSETS_LOGO_PATH, brandLogo);
-									if (!tempErrorCodeList.containsKey(brandModel)) {
-										errorCodeModels.add(model);
-										tempErrorCodeList.put(brandModel, errorCodeModels);
-									} else {
-										List<ErrorCodeListModel> newModel = tempErrorCodeList.get(brandModel);
-										newModel.add(model);
-										tempErrorCodeList.remove(brandModel);
-										tempErrorCodeList.put(brandModel, newModel);
+									if (page != null) {
+										ValueMap brandPageProps = page.getProperties();
+										String brandLogo = brandPageProps.get("brandLogo", "");
+										BrandModel brandModel = new BrandModel(page.getName(),"", page.getTitle(), page.getDescription(), page.getPath() + Constants.ASSETS_LOGO_PATH, brandLogo);
+										if (!tempErrorCodeList.containsKey(brandModel)) {
+											errorCodeModels.add(model);
+											tempErrorCodeList.put(brandModel, errorCodeModels);
+										} else {
+											List<ErrorCodeListModel> newModel = tempErrorCodeList.get(brandModel);
+											newModel.add(model);
+											tempErrorCodeList.remove(brandModel);
+											tempErrorCodeList.put(brandModel, newModel);
+										}
 									}
 								}
 							}
