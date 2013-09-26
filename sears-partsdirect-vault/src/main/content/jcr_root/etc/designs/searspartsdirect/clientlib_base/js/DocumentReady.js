@@ -2,6 +2,20 @@
 (function (window) {
 	"use strict";
 	/**
+	 * IE support
+	 */
+	if ($.browser.msie) {
+		var v = $.browser.version;
+		v = v.slice(0, v.indexOf('.'));
+		if (window.SPDUtils.validNumber(v, 1000) < 10) {
+			$('html').addClass('lt-ie10');
+		}
+		if (window.SPDUtils.validNumber(v, 1000) < 9) {
+			$('html').addClass('lt-ie9');
+		}
+		$('html').addClass('ie-v' + v);
+	}
+	/**
 	 * Global functionality instantiation
 	 */
 	$(document).ready(function () {

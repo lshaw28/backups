@@ -67,7 +67,11 @@ var userData = Class.extend(function () {
 				var dateObj = new Date();
 				xhReq.open('GET', userAddress, false);
 				xhReq.send(null);
-				self.handleResponse(JSON.parse(xhReq.responseText));
+
+				try {
+					self.handleResponse(JSON.parse(xhReq.responseText));
+				} catch (e) {
+				}
 			} else {
 				$.ajax({
 					type: 'GET',

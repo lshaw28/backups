@@ -37,7 +37,7 @@
                'WebkitTransition' : 'webkitTransitionEnd'
             ,  'MozTransition'    : 'transitionend'
             ,  'OTransition'      : 'oTransitionEnd otransitionend'
-            ,  'transition'       : 'TransitionEnd'
+            ,  'transition'       : 'transitionend'
             }
           , name
 
