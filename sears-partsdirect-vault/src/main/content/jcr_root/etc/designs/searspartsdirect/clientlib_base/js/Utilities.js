@@ -253,12 +253,22 @@
 
 			// Parse cookie items
 			for (i = 0; i < allCookies.length; i = i + 1) {
-				cookieName = allCookies[i].split('=')[0].trim();
-				cookieValue = allCookies[i].split('=')[1].trim();
+				if (typeof allCookies[i] === 'string') {
+					try {
+						cookieName = allCookies[i].split('=')[0].trim();
+					} catch (e) {
+						cookieName = su.validString(allCookies[i].split('=')[0]);
+					}
+					try {
+						cookieValue = allCookies[i].split('=')[1].trim();
+					} catch (e) {
+						cookieValue = su.validString(allCookies[i].split('=')[1]);
+					}
 
-				if (cookieName.toLowerCase() === name.toLowerCase()) {
-					retval = cookieValue;
-					break;
+					if (cookieName.toLowerCase() === name.toLowerCase()) {
+						retval = cookieValue;
+						break;
+					}
 				}
 			}
 
