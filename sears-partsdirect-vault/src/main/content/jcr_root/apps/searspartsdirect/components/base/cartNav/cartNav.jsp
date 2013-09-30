@@ -1,6 +1,5 @@
-<%@ include file="/apps/searspartsdirect/global.jsp" %>
-
-<ul class="cartNavItems">
+<%@ include file="/apps/searspartsdirect/global.jsp" %><%
+%><ul class="cartNavItems">
 	<div class="cartNavShadow"></div>
 	<li id="cartRecents" class="cartNavItem">
 		<div class="btn-group">
