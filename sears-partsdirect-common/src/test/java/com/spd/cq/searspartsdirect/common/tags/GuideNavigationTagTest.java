@@ -41,7 +41,7 @@ public class GuideNavigationTagTest extends MocksTag {
 			@SuppressWarnings("unchecked")
 			List<AnchorLinkModel> result = (List<AnchorLinkModel>)pageContext.getAttribute(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR);
 			assertThat(result,instanceOf(List.class));
-			assertThat(result,hasSize(5));
+			assertThat(result,hasSize(4));
 			for (AnchorLinkModel link : result) {
 				assertThat(link,isA(AnchorLinkModel.class));
 				assertThat(link.getLinkText(),not(nullValue()));
@@ -55,7 +55,7 @@ public class GuideNavigationTagTest extends MocksTag {
 			assertThat(result.get(1).getLinkText(),is(Constants.PARTS_REQ_DEF_GUIDE_NAV_LINK));
 			assertThat(result.get(2).getLinkText(),is(fixture.getTextHeader()));
 			assertThat(result.get(3).getLinkText(),is(Constants.INSTRUCTIONS_DEF_GUIDE_NAV_LINK));
-			assertThat(result.get(4).getLinkText(),is(Constants.COMMENTS_GUIDE_NAV_LINK_PREFIX+" ("+fixture.getCommentCount()+")"));
+			//assertThat(result.get(4).getLinkText(),is(Constants.COMMENTS_GUIDE_NAV_LINK_PREFIX+" ("+fixture.getCommentCount()+")"));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -69,7 +69,7 @@ public class GuideNavigationTagTest extends MocksTag {
 			@SuppressWarnings("unchecked")
 			List<AnchorLinkModel> result = (List<AnchorLinkModel>)pageContext.getAttribute(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR);
 			assertThat(result,instanceOf(List.class));
-			assertThat(result,hasSize(4));
+			assertThat(result,hasSize(3));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -83,7 +83,7 @@ public class GuideNavigationTagTest extends MocksTag {
 			@SuppressWarnings("unchecked")
 			List<AnchorLinkModel> result = (List<AnchorLinkModel>)pageContext.getAttribute(Constants.GUIDE_NAV_SECTIONS_PAGE_ATTR);
 			assertThat(result,instanceOf(List.class));
-			assertThat(result,hasSize(4));
+			assertThat(result,hasSize(3));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

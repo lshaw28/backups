@@ -1,6 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <spd:getUrlRelation relationType="productCategory" />
-<spd:getCommonParts categoryPath="${productCategoryRelation.path}"/>
+<spd:getCommonParts productCategory="${productCategoryRelation}"/>
 <spd:uniqueID />
 <c:set var="uniquer" value="0" />
 <c:forEach var="commonPart" items="${commonParts}">

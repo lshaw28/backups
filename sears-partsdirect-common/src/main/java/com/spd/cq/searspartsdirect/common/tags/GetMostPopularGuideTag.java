@@ -24,6 +24,7 @@ public class GetMostPopularGuideTag extends CQBaseTag{
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(GetMostPopularGuideTag.class);
 	protected String categoryPath;
+	protected String categoryName;
 
 	
 	@Override
@@ -73,5 +74,9 @@ public class GetMostPopularGuideTag extends CQBaseTag{
 
 	public void setCategoryPath(String categoryPath) {
 		this.categoryPath = categoryPath;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 }

@@ -146,15 +146,15 @@ public class EnvironmentSettings {
 	public static String getLocalHttpsAndPort() {
 		return getProperty(LOCAL_HTTPS_N_PORT, Constants.EMPTY);
 	}
-	
+
 	@Property(label = "Commercial site Url",
 			description = "Commercial site url",
-			value = "partscommercialvip.stress.ch3.s.com")
+			value = "partscommercialvip.qa.ch3.s.com")
 	public static final String PD_COMMERCIAL_URL = "searspartsdirect.commercial.url";
 	public static String getCommercialSiteUrl() {
 		return getProperty(PD_COMMERCIAL_URL, Constants.EMPTY);
 	}
-	
+
 	@Property(label = "SSO Server URL",
 			description = "SSO server url",
 			value = "https://web301p.qa.ch3.s.com:5743/shccas/shcLogin"
@@ -164,7 +164,7 @@ public class EnvironmentSettings {
 	public static String getSSOServerURL() {
 		return getProperty(SSO_SERVER_URL, Constants.EMPTY);
 	}
-	
+
 	@Property(label = "PD Security Path",
 			description = "PD Security Path",
 			value = "/partsdirect/j_spring_cas_security_check"

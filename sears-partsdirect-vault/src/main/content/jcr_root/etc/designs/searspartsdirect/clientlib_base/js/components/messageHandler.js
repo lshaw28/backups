@@ -17,7 +17,11 @@ var messageHandler = Class.extend(function () {
 		 */
 		handleMessage: function (message) {
 			var self = this,
-				formattedData = self.format(message.data.toString());
+				formattedData = self.format(message.data.toString()),
+				modal = null,
+				iFrame = null,
+				newIFrameHeight = 0,
+				newModalHeight = 0;
 
 			// Validate message object
 			if (formattedData) {
@@ -31,14 +35,17 @@ var messageHandler = Class.extend(function () {
 				if (formattedData.redirect) {
 					document.location.href = formattedData.redirect;
 				}
-				if (formattedData.reload) {
+				if (formattedData.reload && $('html').hasClass('lt-ie10') === false) {
 					document.location.reload();
 				}
+				if (formattedData.reload && $('html').hasClass('lt-ie10') === true) {
+					document.location.href = document.location.href;
+				}
 				if (formattedData.heightChange) {
-					var modal = $(formattedData.affectedModal),
-						iFrame = $('iframe', modal),
-						newIFrameHeight = (modal.height() + formattedData.heightChange) - iFrame.offset().top,
-						newModalHeight = modal.height() + formattedData.heightChange;
+					modal = $(formattedData.affectedModal);
+					iFrame = $('iframe', modal);
+					newIFrameHeight = (modal.height() + formattedData.heightChange) - iFrame.offset().top;
+					newModalHeight = modal.height() + formattedData.heightChange;
 
 					iFrame.height(newIFrameHeight);
 					modal.height(newModalHeight);

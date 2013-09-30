@@ -59,15 +59,11 @@ var responsiveDropdown = Class.extend(function () {
 				self.hiddenfield = $(self.el.data('hiddenfield'));
 			}
 			// Update display text on selection
-			self.display = self.el.data('display');
+			self.display = su.validBoolean(self.el.data('display'));
 			// Enable selection hyperlink
-			if (su.validString(self.el.data('link')) !== '') {
-				self.link = true;
-			}
+			self.link = su.validBoolean(self.el.data('link'));
 			// Enable selection navigation
-			if (su.validString(self.el.data('navigate')) !== '') {
-				self.navigate = true;
-			}
+			self.navigate = su.validBoolean(self.el.data('navigate'));
 		},
 		/**
 		 * Render the Bootstrap-style dropdown for desktop
@@ -159,9 +155,10 @@ var responsiveDropdown = Class.extend(function () {
 		 */
 		handleButton: function () {
 			var self = this,
-				isMobile = window.SPDUtils.isMobileBreakpoint();
+				isMobile = window.SPDUtils.isMobileBreakpoint(),
+                isMobileBrowser = window.SPDUtils.isMobileBrowser();
 
-			if (isMobile) {
+			if (isMobile && isMobileBrowser) {
 				self.el.focus();
 			} else {
 				self.dropdownItems.toggleClass('active');

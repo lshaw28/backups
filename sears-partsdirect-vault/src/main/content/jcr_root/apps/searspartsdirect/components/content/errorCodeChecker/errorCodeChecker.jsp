@@ -13,6 +13,6 @@
 			<span class="icon-container">
 				<i class="svg-icon-er"></i>
 				<span class="divider">&nbsp;</span>
-			</span> <c:out value="${productCategoryRelation.title}" /> returning an error code?</span><a class="new-btn" href="${fn:toLowerCase(catRepairUrl)}">View <c:out value="${productCategoryRelation.title}" /> Error Code<c:if test="${numErrorCodes gt 1}">s</c:if></a></p>
+			</span> <c:out value="${productCategoryRelation.title}" /> returning an error code?</span><a class="new-btn" href="${fn:toLowerCase(catRepairUrl)}" onclick="SPDUtils.trackEvent({event: 'errorCodeCheckerClick', values: {}, componentPath: '<%=resource.getResourceType()%>'}, 'PD_CQ_Errorcode_box_#templateName');">View <c:out value="${productCategoryRelation.title}" /> Error Code<c:if test="${numErrorCodes gt 1}">s</c:if></a></p>
 	</c:if>
 </c:if>

@@ -2,6 +2,20 @@
 (function (window) {
 	"use strict";
 	/**
+	 * IE support
+	 */
+	if ($.browser.msie) {
+		var v = $.browser.version;
+		v = v.slice(0, v.indexOf('.'));
+		if (window.SPDUtils.validNumber(v, 1000) < 10) {
+			$('html').addClass('lt-ie10');
+		}
+		if (window.SPDUtils.validNumber(v, 1000) < 9) {
+			$('html').addClass('lt-ie9');
+		}
+		$('html').addClass('ie-v' + v);
+	}
+	/**
 	 * Global functionality instantiation
 	 */
 	$(document).ready(function () {
@@ -62,6 +76,12 @@
 		var newCartNav = new cartNav();
 		$('#cartShop [data-toggle]').bind('click', function () {
 			$('body').toggleClass('cartNav-open');
+		});
+		/**
+		 * customAccordionForms component setup
+		 */
+		$('.customAccordionForms').each(function () {
+			var newCustomAccordionForms = new customAccordionForms($(this));
 		});
 		/**
 		 * Input help text listeners
@@ -161,16 +181,6 @@
 				min: 1,
 				max: 768,
 				obj: new shc.pd.base.widgets.TouchCarousel(carouselElement)
-			}));
-		});
-		// desktop relatedGuide initialization
-		$('.relatedGuides .desktopCarousel').each(function () {
-			var carouselElement = $(this);
-
-			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
-				min: 651,
-				max: 100000,
-				obj: new shc.pd.base.widgets.DesktopCarousel(carouselElement)
 			}));
 		});
 		// touch relatedGuide initialization

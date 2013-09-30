@@ -61,6 +61,11 @@ public class GetAssetsTag extends CQBaseTag {
 			props.put("4_property", "jcr:content/cq:tags");
 			props.put("4_property.value", authorFilter);
 		}
+		
+		//props.put("p.limit", "-1"); //fetch all the results
+		props.put("p.offset", "0");
+		props.put("p.limit", "100"); //this can be updated to a higher number 
+			    
 		List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
 		try {
 			for (Hit hit: hits) {

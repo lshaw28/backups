@@ -155,8 +155,8 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetRelatedGuidesTag</tag-class>
 		<info>Sets page context information required for Related Guides component</info>
 		<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
+			<name>productCategory</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
@@ -419,18 +419,7 @@
 		<name>getModelHeader</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelHeaderTag</tag-class>
 		<info>Pulls API information for display in Model Header</info>
-		<attribute>
-			<name>brand</name>
-			<type>com.spd.cq.searspartsdirect.common.model.spdasset.BrandModel</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>productCategory</name>
-			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
+		
 		<attribute>
 			<name>model</name>
 			<type>java.lang.String</type>
@@ -454,23 +443,12 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelSymptomsTag</tag-class>
 		<info>Gets the model symptom data</info>
 		<attribute>
-			<name>brandName</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
 			<name>modelNumber</name>
 			<type>java.lang.String</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-		<attribute>
-			<name>categoryName</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
+	
 	</tag>
 	<tag>
 		<name>getMostPopularGuide</name>
@@ -482,29 +460,6 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-	</tag>
-	<tag>
-		<name>getPartsLinkTag</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetPartsLinkTag</tag-class>
-		<info>Gets the part link url for the functional site</info>
-		<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>brandName</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>modelNumber</name>
-			<type>java.lang.String</type>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
 		<attribute>
 			<name>categoryName</name>
 			<type>java.lang.String</type>
@@ -512,6 +467,17 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>getPartsLinkTag</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetPartsLinkTag</tag-class>
+		<info>Gets the part link url for the functional site</info>
+		<attribute>
+			<name>modelNumber</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		</tag>
 	<tag>
 		<name>getJobCodeParts</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetJobCodePartsTag</tag-class>
@@ -555,8 +521,8 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetCommonPartsTag</tag-class>
 		<info>Gets the Common Category Parts</info>
 		<attribute>
-			<name>categoryPath</name>
-			<type>java.lang.String</type>
+			<name>productCategory</name>
+			<type>com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel</type>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>

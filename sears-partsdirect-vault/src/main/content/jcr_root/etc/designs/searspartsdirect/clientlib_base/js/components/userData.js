@@ -10,7 +10,6 @@ var userData = Class.extend(function () {
 		init: function () {
 			// Elements
 			this.cartItems = {
-// Retrieve elements
 				header: $('#cartShop .cartShopHeader_js'),
 				checkOut: $('#cartShop .cartShopCheckOut_js'),
 				totals: $('#cartShop .cartShopTotals_js'),
@@ -20,7 +19,6 @@ var userData = Class.extend(function () {
 			}
 			this.cartEmpty = $('#cartShop .cartShopEmpty_js');
 			this.modelsItems = {
-// Retrieve elements
 				items: $('#cartModelItems'),
 				userEdit: $('#cartUserEdit'),
 				guestEdit: $('#cartGuestEdit'),
@@ -28,6 +26,12 @@ var userData = Class.extend(function () {
 				countBadge: $('#cartModels .count-badge')
 			}
 			this.modelsEmpty = $('#cartModels .cartModelsEmpty_js');
+			this.comments = {
+				auth: $('.commentsAuthenticated_js'),
+				unauth: $('.commentsUnauthenticated_js'),
+				displayName: $('.commentsDisplayName'),
+				displayNameField: $('#comments-userIdentifier')
+			};
 			// Begin setup straight away
 			this.getHeaderCookies();
 			this.displayRecentPartsModels();
@@ -54,37 +58,35 @@ var userData = Class.extend(function () {
 		checkAPI: function () {
 			var self = this,
 				su = window.SPDUtils,
-				userAddress = apiPath.replace('/v1', '/intra/v1') + 'userservice/retrive',
-				params = {};
-
-			// Validate and add additional parameters
-			if (NS('shc.pd.cookies').username !== '') {
-				params.username = NS('shc.pd.cookies').username;
-			} else {
-				// Add profile cookie
-				if (NS('shc.pd.cookies').myProfileModels !== '') {
-					params.profileid = NS('shc.pd.cookies').myProfileModels;
-				}
-				// Add cart cookie
-				if (NS('shc.pd.cookies').cid !== '') {
-					params.cartid = NS('shc.pd.cookies').cid;
-				}
-			}
+				dateObj = new Date(),
+				userAddress = ajaxSitePath + '/partsdirect/retrieveSessionUserInfo.pd?d=' + dateObj.getTime();
 
 			// Make an AJAX call
-			$.ajax({
-				type: 'GET',
-				url: userAddress,
-				contentType: 'application/json',
-				dataType: 'JSON',
-				data: params
-			})
-			.success(function (data) {
-				self.handleResponse(data);
-			})
-			.fail(function (e) {
-				// Handle error
-			});
+			if ($.browser.msie) {
+				var xhReq = new XMLHttpRequest();
+				var dateObj = new Date();
+				xhReq.open('GET', userAddress, false);
+				xhReq.send(null);
+
+				try {
+					self.handleResponse(JSON.parse(xhReq.responseText));
+				} catch (e) {
+				}
+			} else {
+				$.ajax({
+					type: 'GET',
+					url: userAddress,
+					contentType: 'application/json',
+					async: false,
+					dataType: 'JSON'
+				})
+				.success(function (data) {
+					self.handleResponse(data);
+				})
+				.fail(function (xhr, status, message) {
+					// Handle errors
+				});
+			}
 		},
 		/**
 		 * Handles response from the API
@@ -111,12 +113,24 @@ var userData = Class.extend(function () {
 				su = window.SPDUtils,
 				username = su.validString(resp.username),
 				firstName = su.validString(resp.firstName),
-				lastName = su.validString(resp.lastName);
+				lastName = su.validString(resp.lastName),
+				formattedName = (firstName + ' ' + lastName).trim();
 
-			// Logout on success, login on fail
+			// Make names global
+			NS('shc.pd').firstName = firstName;
+			NS('shc.pd').lastName = lastName;
+
+			// Set loginNav items
 			if (username !== '') {
 				$('#loginNavStatus').html('Hello, <strong>' + firstName + '</strong><a href="' + mainSitePath + '/partsdirect/myprofile/logout.action" onclick="SPDUtils.setCookie(\'username\', \'\');">Logout</a>');
 				$('#loginNavProfile').html('<a href="' + mainSitePath + '/partsdirect/myProfile.pd">My Profile</a>');
+			}
+			// Set comment items
+			if (username !== '' && NS('shc.pd').firstName !== '') {
+				self.comments.auth.removeClass('inactive');
+				self.comments.unauth.addClass('inactive');
+				self.comments.displayName.text(formattedName);
+				self.comments.displayNameField.attr('value', formattedName);
 			}
 		},
 		/**
@@ -166,6 +180,7 @@ var userData = Class.extend(function () {
 					self.modelsItems.guestEdit.removeClass('inactive');
 					self.modelsItems.guestControls.removeClass('inactive');
 				}
+				self.modelsItems.items.removeClass('inactive');
 				self.modelsEmpty.addClass('inactive');
 
 				// Render items

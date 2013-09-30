@@ -20,13 +20,15 @@ import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
 import com.spd.cq.searspartsdirect.common.model.GuideModel;
+import com.spd.cq.searspartsdirect.common.model.spdasset.ProductCategoryModel;
 
 public class GetRelatedGuidesTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(GetRelatedGuidesTag.class);
 	
-	protected String categoryPath;
 	protected int maxOutput = 4;
+	protected ProductCategoryModel productCategory;
+	
 	
 	public static final String REL_GUIDES_ATTR = Constants.ident("relatedGuides");
 	
@@ -67,10 +69,6 @@ public class GetRelatedGuidesTag extends CQBaseTag {
         return EVAL_PAGE;
 	}
 	
-	public void setCategoryPath(String categoryPath) {
-		this.categoryPath = categoryPath;
-	}
-	
 	public void setMaxOutput(int maxOutput) {
 		this.maxOutput  = maxOutput;
 	}
@@ -104,7 +102,7 @@ public class GetRelatedGuidesTag extends CQBaseTag {
         props.put("type", Constants.CQ_PAGE);
         props.put("path", Constants.GUIDES_ROOT);
         props.put("property", Constants.ASSETS_PAGES_REL_PATH);
-        props.put("property.value", categoryPath);
+        props.put("property.value", productCategory.getPath());
         
         List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
 
@@ -130,5 +128,9 @@ public class GetRelatedGuidesTag extends CQBaseTag {
     			page.getPath() + ".html", 
     			page.getPath() + Constants.ASSETS_IMAGE_PATH, 
     			page.getTitle());
+	}
+
+	public void setProductCategory(ProductCategoryModel productCategory) {
+		this.productCategory = productCategory;
 	}
 }

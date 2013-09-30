@@ -3,11 +3,11 @@
 <c:if test="${empty productCategoryRelation}">
 	<spd:getUrlRelation relationType="productCategory" />
 </c:if>
-<spd:getRelatedGuides categoryPath="${productCategoryRelation.path}"/>
+<spd:getRelatedGuides productCategory="${productCategoryRelation}"/>
 <c:if test="${not empty guides && not empty productCategoryRelation}">
 	<h2><cq:text property="newHeader" placeholder="Most Viewed Guides" default="Most Viewed Guides"/></h2>
 	<div class="touchCarousel hide-onload">
-		<div class="carouselWrapper row-fluid">
+		<div class="carouselWrapper">
 			<div class="carouselListWrapper">
 				<c:forEach var="guide" items="${guides}">
 					<div class="carouselItemHolder span3">

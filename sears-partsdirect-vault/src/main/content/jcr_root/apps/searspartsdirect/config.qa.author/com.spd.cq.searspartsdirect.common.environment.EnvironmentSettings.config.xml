@@ -7,7 +7,7 @@
 	searspartsdirect.sitemap.paths.stop=""
 	searspartsdirect.external.added.prefix="http://www.searspartsdirect.com"
 	searspartsdirect.external.added.suffix=".html"
-	searspartsdirect.userdata.api="https://partsapivip.qa.ch3.s.com/pd-services/intra/v1/userservice/retrive?username="
+	searspartsdirect.userdata.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username="
 	searspartsdirect.topparts.api="http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/modelTop/topParts"
 	searspartsdirect.jobcode.parts.api="http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/jobcodelist/partlist"
 	searspartsdirect.modelsub.api="http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/modelInfo"
@@ -16,5 +16,5 @@
 	searspartsdirect.local.http="cqapp301p.qa.ch3.s.com:4702"
 	searspartsdirect.local.https="cqapp301p.qa.ch3.s.com:5633"
 	searspartsdirect.commercial.url="partscommercialvip.qa.ch3.s.com"
-	searspartsdirect.pd.security.path="/partsdirect/j_acegi_cas_security_check"
+	searspartsdirect.pd.security.path="/partsdirect/j_spring_cas_security_check"
 	searspartsdirect.sso.server="https://web301p.qa.ch3.s.com:5743/shccas/shcLogin"/>

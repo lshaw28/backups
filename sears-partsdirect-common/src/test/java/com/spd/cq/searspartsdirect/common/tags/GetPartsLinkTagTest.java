@@ -25,12 +25,8 @@ public class GetPartsLinkTagTest extends MocksTag {
 
 	@Test
 	public void testDoStart() throws JspException {
-		tag.setBrandName(fixture.getBrandName());
-		tag.setCategoryName(fixture.getCategoryName());
 		tag.setModelNumber(fixture.getModelNumber());
 		tag.setPageContext(pageContext);
-		assertThat(tag.getBrandName(),is(fixture.getBrandName()));
-		assertThat(tag.getCategoryName(),is(fixture.getCategoryName()));
 		assertThat(tag.getModelNumber(),is(fixture.getModelNumber()));
 		int startResult  = tag.doStartTag();
 		@SuppressWarnings("unused")

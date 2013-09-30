@@ -52,6 +52,9 @@ public class GetErrorCodesListTag extends CQBaseTag {
 			map.put("1_property.value", categoryPath);
 			map.put("2_property", Constants.TEMPLATE_REL_PATH);
 			map.put("2_property.value", Constants.ERROR_CODE_TEMPLATE);
+//			map.put("p.limit", "-1"); //fetch all the results
+			map.put("p.offset", "0");
+			map.put("p.limit", "100"); //this can be updated to a higher number 
 
 			builder = resourceResolver.adaptTo(QueryBuilder.class);
 			query = builder.createQuery(PredicateGroup.create(map), session);
@@ -74,17 +77,19 @@ public class GetErrorCodesListTag extends CQBaseTag {
 								if (pages[i].contains("/brand")) {
 									List<ErrorCodeListModel> errorCodeModels = new ArrayList<ErrorCodeListModel>();
 									Page page = pageManager.getPage(pages[i]);
-									ValueMap brandPageProps = page.getProperties();
-									String brandLogo = brandPageProps.get("brandLogo", "");
-									BrandModel brandModel = new BrandModel(page.getName(),"", page.getTitle(), page.getDescription(), page.getPath() + Constants.ASSETS_LOGO_PATH, brandLogo);
-									if (!tempErrorCodeList.containsKey(brandModel)) {
-										errorCodeModels.add(model);
-										tempErrorCodeList.put(brandModel, errorCodeModels);
-									} else {
-										List<ErrorCodeListModel> newModel = tempErrorCodeList.get(brandModel);
-										newModel.add(model);
-										tempErrorCodeList.remove(brandModel);
-										tempErrorCodeList.put(brandModel, newModel);
+									if (page != null) {
+										ValueMap brandPageProps = page.getProperties();
+										String brandLogo = brandPageProps.get("brandLogo", "");
+										BrandModel brandModel = new BrandModel(page.getName(),"", page.getTitle(), page.getDescription(), page.getPath() + Constants.ASSETS_LOGO_PATH, brandLogo);
+										if (!tempErrorCodeList.containsKey(brandModel)) {
+											errorCodeModels.add(model);
+											tempErrorCodeList.put(brandModel, errorCodeModels);
+										} else {
+											List<ErrorCodeListModel> newModel = tempErrorCodeList.get(brandModel);
+											newModel.add(model);
+											tempErrorCodeList.remove(brandModel);
+											tempErrorCodeList.put(brandModel, newModel);
+										}
 									}
 								}
 							}
