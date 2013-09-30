@@ -1,7 +1,7 @@
 /*global $:true, window:true, Class:true */
 (function (window) {
 	"use strict";
-	window.SPDUtils = {
+	window['SPDUtils'] = {
 		/**
 		 * @namespace SPDUtils
 		 * Global utilities and helper methods
@@ -9,8 +9,10 @@
 		 * init: On page load events to fire
 		 */
 		init: function () {
-			window.SPDUtils.getGlobalVariables();
-			window.SPDUtils.setAddThisVariables();
+			var self = this;
+
+			self.getGlobalVariables();
+			self.setAddThisVariables();
 		},
 		/**
 		 * Retrieve and set global variables
