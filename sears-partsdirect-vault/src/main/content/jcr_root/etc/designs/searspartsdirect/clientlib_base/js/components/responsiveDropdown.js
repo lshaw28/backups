@@ -127,7 +127,7 @@ var responsiveDropdown = Class.extend(function () {
 			a.attr('data-value', value);
 
 			// Make hyperlinks function
-			if (value !== '' && value !== '#') {
+			if (value !== '' && value !== '#' && (self.link === true || self.navigate === true)) {
 				a.attr('href', value);
 			}
 			a.bind('click', function (e) {
