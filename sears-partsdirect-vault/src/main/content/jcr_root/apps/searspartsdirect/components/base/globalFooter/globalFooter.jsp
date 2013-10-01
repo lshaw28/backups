@@ -1,62 +1,27 @@
-<%@ include file="/apps/searspartsdirect/global.jsp" %>
-<div id="footerDivider"></div>
+<%@ include file="/apps/searspartsdirect/global.jsp" %><%
+%><div id="footerDivider"></div>
 <div id="footerContent">
 	<div id="footerColumn1">
 		<div class="footerIcon" id="lpchatbutton4"></div>
 		<div class="footerIcon" id="lpvoicebutton4"></div>
-		<p>
-			<a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false">
-				<span class="icon-stack">
-					<i class="icon-circle icon-stack-base"></i>
-					<i class="icon-question icon-light"></i>
-				</span>
-				FAQs<br />
-				<span class="footerIconHelp hidden-mobile">Check out the most frequently asked questions</span>
-			</a>
-		</p>
-		<p>
-			<a href="${mainSitePath}/partsdirect/contactus.pd">
-				<span class="icon-stack">
-					<i class="icon-circle icon-stack-base"></i>
-					<i class="icon-envelope icon-light"></i>
-				</span>
-				Email us<br />
-				<span class="footerIconHelp hidden-mobile">We'll reply within 24 hours</span>
-			</a>
-		</p>
-		<p>
-			<a href="${mainSitePath}/partsdirect/how-to-use-this-site/">
-				<span class="icon-stack">
-					<i class="icon-circle icon-stack-base"></i>
-					<i class="icon-play-sign icon-light"></i>
-				</span>
-				Video<br />
-				<span class="footerIconHelp hidden-mobile">How to use the site (3:58)</span>
-			</a>
-		</p>
+		<p><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-question icon-light"></i></span> FAQs<br />
+		<span class="footerIconHelp hidden-mobile">Check out the most frequently asked questions</span></a></p>
+		<p><a href="${mainSitePath}/partsdirect/contactus.pd"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-envelope icon-light"></i></span> Email us<br />
+		<span class="footerIconHelp hidden-mobile">We'll reply within 24 hours</span></a></p>
+		<p><a href="${mainSitePath}/partsdirect/how-to-use-this-site/"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i> <i class="icon-play-sign icon-light"></i> </span> Video<br />
+		<span class="footerIconHelp hidden-mobile">How to use the site (3:58)</span></a></p>
 	</div>
 	<div id="footerColumn2">
 		<div class="footerPromo">
-			<div class="footerPromoIcon">
-				<span class="icon-stack">
-					<i class="icon-circle icon-stack-base"></i>
-					<i class="icon-truck icon-light"></i>
-				</span>
-			</div>
+			<div class="footerPromoIcon"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-truck icon-light"></i></span></div>
 			<div class="footerPromoContent">
 				<h3><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">fast shipping</a></h3>
 				<p>Sears PartsDirect ships from regionally-located warehouses for timely delivery.</p>
 				<p><a class="new-btn new-btn-square" href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false#returnsFAQ">Learn More</a></p>
 			</div>
 		</div>
-
 		<div class="footerPromo">
-			<div class="footerPromoIcon">
-				<span class="icon-stack">
-					<i class="icon-circle icon-stack-base"></i>
-					<i class="icon-check-sign icon-light"></i>
-				</span>
-			</div>
+			<div class="footerPromoIcon"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-check-sign icon-light"></i></span></div>
 			<div class="footerPromoContent">
 				<h3><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush?pop=flush?pop=flush&amp;commercialUI=false#returnsFAQ">guaranteed fit</a></h3>
 				<p>All parts are manufacturer-approved, to ensure proper fit and to keep appliances running for years to come.</p>

@@ -1,4 +1,4 @@
-<%@ include file="/apps/searspartsdirect/global.jsp"%>
-<div id="forgotPasswordModal" class="modal hide fade" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+<%@ include file="/apps/searspartsdirect/global.jsp"%><%
+%><div id="forgotPasswordModal" class="modal hide fade" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
     <iframe frameBorder="0" data-src="${secureMainSitePath}/forgot_password.html#"></iframe>
 </div>

@@ -1,5 +1,5 @@
-<%@ include file="/apps/searspartsdirect/global.jsp" %>
-<ul>
+<%@ include file="/apps/searspartsdirect/global.jsp" %><%
+%><ul>
 	<li id="loginNavStatus"><a data-toggle="modal" data-target="#loginModal">Login</a></li>
 	<li id="loginNavProfile"><a data-toggle="modal" data-target="#registerModal">Register</a></li>
 	<li><a href="${mainSitePath}/partsdirect/orderStatus.pd?pop=flush" title="Order status">Order lookup</a></li>
