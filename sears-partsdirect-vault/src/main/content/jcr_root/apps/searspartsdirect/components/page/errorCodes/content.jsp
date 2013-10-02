@@ -1,4 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
+<spd:getUrlRelation relationType="productCategory" />
 <article id="content" data-templatename="ErrorCodespage"><div class="articleFix">
 	<div class="row-fluid">
 		<div class="span10 desktop-offset1">
@@ -8,8 +9,7 @@
 				<div class="span12">
 					<h1>
 						<c:if test="${not empty productCategoryRelation}">
-						<c:out value="${productCategoryRelation.title}" />
-						&nbsp;Error Codes
+						<c:out value="${productCategoryRelation.title}" /> Error Codes
 						</c:if>
 					</h1>
 					<div class="errorCodeChecker white">
