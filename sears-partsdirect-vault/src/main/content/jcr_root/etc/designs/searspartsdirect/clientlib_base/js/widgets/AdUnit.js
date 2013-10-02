@@ -6,11 +6,10 @@ NS('shc.pd.base.widgets').AdUnit = shc.pd.base.render.Breakpoint.extend(function
 		 * @constructor
 		 * @param {object} el jQuery ad unit container element
 		 */
-		init: function (el) {
+		init: function (el, enablerClassName) {
 			this.el = el;
 			this.adUnitEl = $('.adUnit_js', this.el);
-			this.enablerClassName = 'adEnabled';
-			this.disablerClassName = 'adDisabled';
+			this.enablerClassName = enablerClassName;
 			this.imageRendered = false;
 		},
 		/**
@@ -33,7 +32,6 @@ NS('shc.pd.base.widgets').AdUnit = shc.pd.base.render.Breakpoint.extend(function
 
 			// Set CSS classes
 			self.el.addClass(self.enablerClassName);
-			self.el.removeClass(self.disablerClassName);
 		},
 		/**
 		 * Deactivation event
@@ -43,7 +41,6 @@ NS('shc.pd.base.widgets').AdUnit = shc.pd.base.render.Breakpoint.extend(function
 			var self = this;
 
 			// Set CSS classes
-			self.el.addClass(self.disablerClassName);
 			self.el.removeClass(self.enablerClassName);
 		},
 		/**

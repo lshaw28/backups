@@ -224,7 +224,7 @@
 			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
 				min: 0,
 				max: 767,
-				obj: new shc.pd.base.widgets.AdUnit(mobileAdUnit)
+				obj: new shc.pd.base.widgets.AdUnit(mobileAdUnit, 'mobileAdEnabled')
 			}));
 		});
 		// Tablet Ad Units
@@ -234,7 +234,7 @@
 			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
 				min: 768,
 				max: 1023,
-				obj: new shc.pd.base.widgets.AdUnit(tabletAdUnit)
+				obj: new shc.pd.base.widgets.AdUnit(tabletAdUnit, 'tabletAdEnabled')
 			}));
 		});
 		// Desktop Ad Units
@@ -244,7 +244,7 @@
 			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
 				min: 1024,
 				max: 100000,
-				obj: new shc.pd.base.widgets.AdUnit(desktopAdUnit)
+				obj: new shc.pd.base.widgets.AdUnit(desktopAdUnit, 'desktopAdEnabled')
 			}));
 		});
 	});

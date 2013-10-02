@@ -2,11 +2,12 @@
 @import "../../base.mixins.less";
 
 // # Container Classes
-.adEnabled {
-	display: block !important;
-}
-.adDisabled {
+.adUnitContainer {
 	display: none !important;
+
+	&.desktopAdEnabled, &.tabletAdEnabled, &.mobileAdEnabled {
+		display: block !important;
+	}
 }
 
 // # Ad Unit: Defaults To 160x600px

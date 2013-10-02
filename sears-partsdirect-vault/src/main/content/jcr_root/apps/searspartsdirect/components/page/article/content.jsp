@@ -15,13 +15,13 @@
 					<cq:include path="socialBar" resourceType="searspartsdirect/components/content/socialBar" />
 					<cq:include path="parsys" resourceType="foundation/components/parsys" />
 				</div>
-				<div class="desktopAdUnit adDisabled span2 offset1 pull-right">
+				<div class="desktopAdUnit adUnitContainer span2 offset1 pull-right">
 					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit" />
 				</div>
-				<div class="tabletAdUnit adDisabled">
+				<div class="tabletAdUnit adUnitContainer">
 					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit768x90" />
 				</div>
-				<div class="mobileAdUnit adDisabled">
+				<div class="mobileAdUnit adUnitContainer">
 					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit300x50" />
 				</div>
 			</div>
