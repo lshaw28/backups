@@ -28,7 +28,7 @@ NS('shc.pd.base.fx').Translate3dResolver = Class.extend(function () {
 		 * Stub to be late binded - set X on translate3d or other CSS properties
 		 * @param {number} x
 		 * @param {string} unit
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		setX: function (x, unit) {},
 		/**
@@ -37,12 +37,12 @@ NS('shc.pd.base.fx').Translate3dResolver = Class.extend(function () {
 		 * @param {string} unit
 		 * @param {number} duration in milliseconds
 		 * @param {Function} callback
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		animateX: function (x, unit, duration, callback) {},
 		/**
 		 * Redefine `util.Translate3dResolver.animateX`
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		lateBindAnimateX: function () {
 			// redefine `animate` method based on available feature
@@ -70,7 +70,7 @@ NS('shc.pd.base.fx').Translate3dResolver = Class.extend(function () {
 		},
 		/**
 		 * Redefine `util.Translate3dResolver.setX`
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		lateBindSetX: function () {
 			// redefine `setX` method based on available feature

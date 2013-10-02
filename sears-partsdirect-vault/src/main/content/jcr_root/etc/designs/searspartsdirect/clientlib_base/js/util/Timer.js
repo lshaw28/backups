@@ -14,7 +14,7 @@ NS('shc.pd.base.util').Timer = Class.extend(function () {
 		},
 		/**
 		 * Starts iteration
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		start: function () {
 			if (this.singleUse === true) {
@@ -28,7 +28,7 @@ NS('shc.pd.base.util').Timer = Class.extend(function () {
 		/**
 		 * Stop iteration
 		 * @param {boolean} invokeLastTickAction Fires last tick if set to true
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		stop: function (invokeLastTickAction) {
 			// check for multiple iterations
@@ -48,7 +48,7 @@ NS('shc.pd.base.util').Timer = Class.extend(function () {
 		},
 		/**
 		 * Stops and starts timer
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		reset: function () {
 			this.stop();
@@ -57,7 +57,7 @@ NS('shc.pd.base.util').Timer = Class.extend(function () {
 		/**
 		 * Event that is invoked per iteration
 		 * @param {Function} setTickAction
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		setTickAction: function (setTickAction) {
 			this.tickAction = setTickAction;

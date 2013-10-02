@@ -1,0 +1,64 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+// # Container Classes
+.adEnabled {
+	display: block !important;
+}
+.adDisabled {
+	display: none !important;
+}
+
+// # Ad Unit: Defaults To 160x600px
+// # Use Bootstrap classes to handle layout
+.adUnit {
+	display: inline-block;
+	height: auto;
+	left: 50%;
+	margin-left: -80px;
+	min-height: 600px;
+	position: relative;
+	top: 0px;
+	width: 160px;
+
+	.adUnit_js {
+		height: 600px;
+		width: 160px;
+
+		a, img {
+			display: inline-block;
+			height: 100%;
+			width: 100%;
+		}
+	}
+	&.adUnit768x90 {
+		margin-left: -384px;
+		min-height: 90px;
+		width: 768px;
+
+		.adUnit_js {
+			height: 90px;
+			width: 768px;
+		}
+	}
+	&.adUnit300x250 {
+		margin-left: -150px;
+		min-height: 250px;
+		width: 300px;
+
+		.adUnit_js {
+			height: 250px;
+			width: 300px;
+		}
+	}
+	&.adUnit300x50 {
+		margin-left: -150px;
+		min-height: 50px;
+		width: 300px;
+
+		.adUnit_js {
+			height: 50px;
+			width: 300px;
+		}
+	}
+}

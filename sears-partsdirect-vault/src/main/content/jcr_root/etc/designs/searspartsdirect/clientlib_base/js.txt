@@ -50,6 +50,7 @@ userData.js
 video.js
 
 #base=js/widgets/.
+AdUnit.js
 DesktopCarousel.js
 TouchCarousel.js
 ResponsiveTable.js

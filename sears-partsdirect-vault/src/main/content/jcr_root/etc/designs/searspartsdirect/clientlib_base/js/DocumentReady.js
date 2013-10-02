@@ -2,23 +2,23 @@
 (function (window) {
 	"use strict";
 	/**
-	 * IE support
-	 */
-	if ($.browser.msie) {
-		var v = $.browser.version;
-		v = v.slice(0, v.indexOf('.'));
-		if (window.SPDUtils.validNumber(v, 1000) < 10) {
-			$('html').addClass('lt-ie10');
-		}
-		if (window.SPDUtils.validNumber(v, 1000) < 9) {
-			$('html').addClass('lt-ie9');
-		}
-		$('html').addClass('ie-v' + v);
-	}
-	/**
 	 * Global functionality instantiation
 	 */
 	$(document).ready(function () {
+		/**
+		 * IE support
+		 */
+		if ($.browser.msie) {
+			var v = $.browser.version;
+			v = v.slice(0, v.indexOf('.'));
+			if (window.SPDUtils.validNumber(v, 1000) < 10) {
+				$('html').addClass('lt-ie10');
+			}
+			if (window.SPDUtils.validNumber(v, 1000) < 9) {
+				$('html').addClass('lt-ie9');
+			}
+			$('html').addClass('ie-v' + v);
+		}
 		/**
 		 * Set up userData singleton class before all else
 		 */
@@ -216,6 +216,36 @@
 			var newSrc = $(this).data('src') + window.SPDUtils.getLocationDetails().fullAddress;
 
 			$(this).attr('src', newSrc);
+		});
+		// Mobile Ad Units
+		$('.mobileAdUnit').each(function () {
+			var mobileAdUnit = $(this);
+
+			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
+				min: 0,
+				max: 767,
+				obj: new shc.pd.base.widgets.AdUnit(mobileAdUnit)
+			}));
+		});
+		// Tablet Ad Units
+		$('.tabletAdUnit').each(function () {
+			var tabletAdUnit = $(this);
+
+			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
+				min: 768,
+				max: 1023,
+				obj: new shc.pd.base.widgets.AdUnit(tabletAdUnit)
+			}));
+		});
+		// Desktop Ad Units
+		$('.desktopAdUnit').each(function () {
+			var desktopAdUnit = $(this);
+
+			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
+				min: 1024,
+				max: 100000,
+				obj: new shc.pd.base.widgets.AdUnit(desktopAdUnit)
+			}));
 		});
 	});
 }(window));

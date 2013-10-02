@@ -15,7 +15,7 @@ NS('shc.pd.base.render').DefaultResponsiveEngine = shc.pd.base.render.Responsive
 		/**
 		 * Add callback on orientation change
 		 * @param {Function} callback
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		onResize: function (callback) {
 			this.initEventBindings();
@@ -24,7 +24,7 @@ NS('shc.pd.base.render').DefaultResponsiveEngine = shc.pd.base.render.Responsive
 		/**
 		 * Add callback on orientation change
 		 * @param {Function} callback
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		onOrientationChange: function (callback) {
 			this.initEventBindings();
@@ -33,7 +33,7 @@ NS('shc.pd.base.render').DefaultResponsiveEngine = shc.pd.base.render.Responsive
 		/**
 		 * Add callback to both events
 		 * @param {Function} callback
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		onResponsive: function (callback) {
 			this.initEventBindings();
@@ -42,7 +42,7 @@ NS('shc.pd.base.render').DefaultResponsiveEngine = shc.pd.base.render.Responsive
 		},
 		/**
 		 * Bind events
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		bindEvents: function () {
 			var _this = this,

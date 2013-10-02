@@ -39,7 +39,7 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 		},
 		/**
 		 * @Override
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		action: function () {
 			if (this.hasAction === true) {
@@ -53,7 +53,7 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 			return this.movementPx;
 		},
 		/**
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		setMovementPx: function (movementPx) {
 			this.movementPx = movementPx;
@@ -61,19 +61,19 @@ NS('shc.pd.base.src').Carousel = shc.pd.base.src.IndexController.extend(function
 		/**
 		 * Set fx callback
 		 * @param {Function} callback
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		onFxComplete: function (callback) {
 			this.callback = callback;
 		},
 		/**
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		enableAction: function () {
 			this.hasAction = true;
 		},
 		/**
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		disableAction: function () {
 			this.hasAction = false;
