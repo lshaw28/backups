@@ -174,7 +174,18 @@ public class EnvironmentSettings {
 	public static String getPDSecurityPath() {
 		return getProperty(PD_SECURITY_PATH, Constants.EMPTY);
 	}
+	
+	@Property(label = "PD Live Person flag",
+			description = "PD Live PErson flag",
+			value = "y"
+		)
+	public static final String PD_LIVEPERSON_FLAG = "searspartsdirect.liveperson.flag";
 
+	public static String getPDLivePersonFlag() {
+		return getProperty(PD_LIVEPERSON_FLAG, Constants.EMPTY);
+	}
+	
+	
 	// ---- for testing ----
 	public void externalActivateForTesting(final ComponentContext context) throws Exception {
 		activate(context);

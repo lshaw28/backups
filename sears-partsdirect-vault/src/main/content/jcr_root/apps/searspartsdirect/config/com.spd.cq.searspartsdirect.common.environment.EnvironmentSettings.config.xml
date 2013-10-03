@@ -17,4 +17,4 @@
 	searspartsdirect.local.https="localhost:5433"
 	searspartsdirect.pd.security.path="/partsdirect/j_spring_cas_security_check"
 	searspartsdirect.sso.server="https://web301p.qa.ch3.s.com:5743/shccas/shcLogin"
-	/>
+	searspartsdirect.liveperson.flag="y" />

@@ -38,6 +38,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getLocalHttpAndPort(), is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getLocalHttpsAndPort(), is(instanceOf(String.class)));
 		assertThat(EnvironmentSettings.getCommercialSiteUrl(), is(instanceOf(String.class)));
+		assertThat(EnvironmentSettings.getPDLivePersonFlag(), is(instanceOf(String.class)));
 		fixture.setUpStubSettings(hook);
 		assertThat(EnvironmentSettings.get404HandlerURL(),is(EnvironmentSettings.HANDLE_404_URL));
 		assertThat(EnvironmentSettings.getSitemapStartPaths(),is(EnvironmentSettings.SITEMAP_START_PATHS));
@@ -53,6 +54,7 @@ public class EnvironmentSettingsTest extends TestCase {
 		assertThat(EnvironmentSettings.getLocalHttpAndPort(), is(EnvironmentSettings.LOCAL_HTTP_N_PORT));
 		assertThat(EnvironmentSettings.getLocalHttpsAndPort(), is(EnvironmentSettings.LOCAL_HTTPS_N_PORT));
 		assertThat(EnvironmentSettings.getCommercialSiteUrl(), is(EnvironmentSettings.PD_COMMERCIAL_URL));
+		assertThat(EnvironmentSettings.getPDLivePersonFlag(), is(EnvironmentSettings.PD_LIVEPERSON_FLAG));
 		try {
 			hook.deactivate(fixture.getComponentContext());
 		} catch (Exception e) {

@@ -3,7 +3,7 @@
 %><%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %><%
 %><%@page import="java.util.LinkedList" %><%
 %><spd:defineObjects /><%
-%><spd:getPDUrl /><%
+%><spd:getPDEnvDetail /><%
 %><spd:getLocalUrl /><%
 %><spd:getConstants /><%
 %><c:set var="mainSitePath" scope="request">${nonSecurePDUrl}</c:set><%
