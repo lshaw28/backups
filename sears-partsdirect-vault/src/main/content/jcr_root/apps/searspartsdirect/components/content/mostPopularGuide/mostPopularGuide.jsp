@@ -21,11 +21,14 @@
 			<c:when test="${not empty guides}">
 				<c:forEach items="${guides}" var="popularGuide" varStatus="status">
 					<spd:linkResolver value="${popularGuide.url}" />
-						<div class="guideListing-popular-image">
-							<div class="wrapper">
-								<spd:displayImage path="${popularGuide.imagePath}"/>
-							</div>
-						</div>
+
+                        <div class="guideListing-popular-image">
+                            <div class="wrapper">
+                                <spd:displayImage path="${popularGuide.imagePath}"/>
+                            </div>
+                            <hr>
+                        </div>
+
 
 						<div class="wrench-symbol">
 							<i class="icon-wrench"></i>
