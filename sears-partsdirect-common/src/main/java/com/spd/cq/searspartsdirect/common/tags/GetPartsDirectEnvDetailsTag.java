@@ -7,10 +7,10 @@ import org.slf4j.LoggerFactory;
 
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 
-public class GetPartsDirectUrlTag extends CQBaseTag {
+public class GetPartsDirectEnvDetailsTag extends CQBaseTag {
 
 	private static final long serialVersionUID = 1L;
-	protected static Logger log = LoggerFactory.getLogger(GetPartsDirectUrlTag.class);
+	protected static Logger log = LoggerFactory.getLogger(GetPartsDirectEnvDetailsTag.class);
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -23,6 +23,8 @@ public class GetPartsDirectUrlTag extends CQBaseTag {
 		
 		pageContext.setAttribute("ssoServerUrl", EnvironmentSettings.getSSOServerURL());
 		pageContext.setAttribute("pdServicePath", EnvironmentSettings.getPDSecurityPath());
+		
+		pageContext.setAttribute("pd247ChatFlag", EnvironmentSettings.getPD247ChatFlag());
 		
 		return SKIP_BODY;
 	}

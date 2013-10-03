@@ -23,7 +23,7 @@
 <meta property="og:url" content="<%=externalLinks.getExternalUrlForPage(currentPage.getPath()) %>" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black"><spd:getPDUrl />
+<meta name="apple-mobile-web-app-status-bar-style" content="black"><spd:getPDEnvDetail />
 <spd:getLocalUrl /><meta name="global-mainSitePath" content="${nonSecurePDUrl}" />
 <meta name="global-mainSitePathSecure" content="${securePDUrl}" />
 <meta name="global-modelSearchServletPath" content="bin/searspartsdirect/modelsearch" /><spd:getHeaderHelperData />
@@ -35,6 +35,7 @@
 <cq:include script="headlibs.jsp"/>
 <cq:include script="/libs/wcm/core/components/init/init.jsp"/>
 <cq:include script="stats.jsp"/>
+<!--  PD 24*7 chat flag -> ${pd247ChatFlag} -->
 <% if (favIcon != null) { %><link rel="icon" type="image/vnd.microsoft.icon" href="<%= favIcon %>" />
 <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<%= favIcon %>" /><% } %>
 </head>
