@@ -19,7 +19,7 @@
 					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit" />
 				</div>
 				<div class="tabletAdUnit adUnitContainer">
-					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit768x90" />
+					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit728x90" />
 				</div>
 				<div class="mobileAdUnit adUnitContainer">
 					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit300x50" />
