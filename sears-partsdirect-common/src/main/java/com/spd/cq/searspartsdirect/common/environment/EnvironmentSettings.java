@@ -175,14 +175,14 @@ public class EnvironmentSettings {
 		return getProperty(PD_SECURITY_PATH, Constants.EMPTY);
 	}
 	
-	@Property(label = "PD Live Person flag",
-			description = "PD Live PErson flag",
+	@Property(label = "PD 24*7 chat flag",
+			description = "PD  24*7 chat flag",
 			value = "y"
 		)
-	public static final String PD_LIVEPERSON_FLAG = "searspartsdirect.liveperson.flag";
+	public static final String PD_247CHAT_FLAG = "searspartsdirect.247chat.flag";
 
-	public static String getPDLivePersonFlag() {
-		return getProperty(PD_LIVEPERSON_FLAG, Constants.EMPTY);
+	public static String getPD247ChatFlag() {
+		return getProperty(PD_247CHAT_FLAG, Constants.EMPTY);
 	}
 	
 	

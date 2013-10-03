@@ -24,7 +24,7 @@ public class GetPartsDirectEnvDetailsTag extends CQBaseTag {
 		pageContext.setAttribute("ssoServerUrl", EnvironmentSettings.getSSOServerURL());
 		pageContext.setAttribute("pdServicePath", EnvironmentSettings.getPDSecurityPath());
 		
-		pageContext.setAttribute("pdLivePersonFlag", EnvironmentSettings.getPDLivePersonFlag());
+		pageContext.setAttribute("pd247ChatFlag", EnvironmentSettings.getPD247ChatFlag());
 		
 		return SKIP_BODY;
 	}
