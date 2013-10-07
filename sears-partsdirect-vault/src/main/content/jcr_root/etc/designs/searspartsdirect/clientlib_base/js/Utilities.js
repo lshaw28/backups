@@ -158,7 +158,7 @@
 			}
 		},
         isMobileBrowser: function() {
-            return ("ontouchstart" in document.documentElement);
+            return ('ontouchstart' in document.documentElement);
         },
 		/**
 		 * Retrieve the current protocol, host name and path
