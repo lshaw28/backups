@@ -13,85 +13,56 @@
 		<div id="${uniqueId}1" class="accordion-body in">
 			<div class="accordion-inner">
 				<form id="cafSelectFilterFrequencyForm" method="post" action="">
-					<div class="row-fluid">
-						<div class="span10 offset1 hidden">
-							<div class="alert alert-error hidden" id="alert_${uniqueId}1">&nbsp;</div>
-						</div>
-					</div>
 					<fieldset>
 						<div class="row-fluid">
 							<div class="span10 offset1">
-								<p>Search by fridge model number or water filter part number</p>
+								<p>Search by refrigerator model number or water filter part number</p>
 								<div class="radioOptions">
+									<input type="radio" name="numberType" id="ntPart" value="part" checked="checked" />
+									<label for="ntPart">Filter Part #</label>
 									<input type="radio" name="numberType" id="ntModel" value="model" />
 									<label for="ntModel">Fridge Model #</label>
-									<input type="radio" name="numberType" id="ntPart" value="part" />
-									<label for="ntPart">Filter Part #</label>
 								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span7 offset1">
-								<input class="cafSpacedInput cafText" name="partNumber" value="Enter your part or model number" data-inputhelp="Enter your part or model number" />
-								<p><a href="#findMyModel" class="searchPanelFinder_js">Can't locate the model number? Use our finder</a></p>
+							<div class="span10 offset1">
+								<input class="numberField" name="partNumber" value="Enter your part or model number" data-inputhelp="Enter your part or model number" />
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span8 offset1">
+							<div class="span10 offset1 radioToDropDown">
 								<p>Select water filter automatic reorder frequency</p>
 								<div class="radioOptions">
 									<input type="radio" class="filFreq" name="frequency" id="frequency3" value="3" />
 									<label for="frequency3">Every 3 months</label>
-									<input type="radio" class="filFreq" name="frequency" id="frequency6" value="6" />
+									<input type="radio" class="filFreq" name="frequency" id="frequency6" value="6" checked="checked" />
 									<label for="frequency6">Every 6 months</label>
 									<input type="radio" class="filFreq" name="frequency" id="frequency12" value="12" />
 									<label for="frequency12">Every 12 months</label>
 								</div>
+								<div class="comboContainer">
+									<select name="year" id="payYear" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+										<option value="3">3</option>
+										<option value="6">6</option>
+										<option value="12">12</option>
+									</select>
+								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span7 offset1">
-								<p>Starting from</p>
-								<select name="startMonth" id="startMonth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-navigate="true">
-									<option value="1">January</option>
-									<option value="2">February</option>
-									<option value="3">March</option>
-									<option value="4">April</option>
-									<option value="5">May</option>
-									<option value="6">June</option>
-									<option value="7">July</option>
-									<option value="8">August</option>
-									<option value="9">September</option>
-									<option value="10">October</option>
-									<option value="11">November</option>
-									<option value="12">December</option>
-								</select>
-								<select name="startDay" id="startDay" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-navigate="true">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-									<option value="11">11</option>
-									<option value="12">12</option>
-								</select>
-								<select name="startYear" id="startYear" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-navigate="true">
-									<option value="2013">2013</option>
-									<option value="2014">2014</option>
-									<option value="2015">2015</option>
-									<option value="2016">2016</option>
-								</select>
+							<div class="span10 offset1">
+								<p>Place first order on:</p>
+								<div class="input-append date" id="orderDate">
+									<input class="dateInput" id="odInput" size="16" type="text">
+									<span class="add-on"><i class="icon-th"></i></span>
+								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span1 offset1">
+							<div class="span10 offset1">
 								<label for="waterFilterQuantity">Qty</label>
-								<input class="cafText" name="quantity" id="waterFilterQuantity" />
+								<input class="cafText" name="quantity" id="waterFilterQuantity" value="1" />
 							</div>
 						</div>
 					</fieldset>
@@ -116,22 +87,17 @@
 		<div id="${uniqueId}2" class="accordion-body collapse">
 			<div class="accordion-inner">
 				<form id="cafShippingAddressForm" method="post" action="">
-					<div class="row-fluid">
-						<div class="span10 offset1 hidden">
-							<div class="alert alert-error hidden" id="alert_${uniqueId}2">&nbsp;</div>
-						</div>
-					</div>
 					<fieldset>
 						<div class="row-fluid">
-							<div class="span5 offset1">
+							<div class="span10 offset1">
 								<label for="shippingFirst">First Name <span>Required</span></label>
-								<input class="cafText" name="fname" id="shippingFirst" />
+								<input class="cafText cafNameInput" name="fname" id="shippingFirst" />
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span5 offset1">
+							<div class="span10 offset1">
 								<label for="shippingLast">Last Name <span>Required</span></label>
-								<input class="cafText" name="lname" id="shippingLast" />
+								<input class="cafText cafNameInput" name="lname" id="shippingLast" />
 							</div>
 						</div>
 						<div class="row-fluid cafCheckboxField">
@@ -141,56 +107,116 @@
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span5 offset1">
-								<label for="shippingAddress">Street Address <span>Required</span></label>
-								<input class="cafText" name="address" id="shippingAddress" />
-							</div>
-							<div class="span3">
-								<label for="shippingApt">Apt. # <span>Optional</span></label>
-								<input class="cafText" name="apt" id="shippingApt" />
+							<div class="span10 offset1">
+								<div class="cafSameRow">
+									<label for="shippingAddress">Street Address <span>Required</span></label>
+									<input class="cafText cafAddress" name="address" id="shippingAddress" />
+								</div>
+								<div class="cafSameRow">
+									<label for="shippingApt">Apt. # <span>Optional</span></label>
+									<input class="cafText cafApt" name="apt" id="shippingApt" />
+								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span5 offset1">
+							<div class="span10 offset1">
 								<label for="shippingCity">City <span>Required</span></label>
-								<input class="cafText" name="city" id="shippingCity" />
+								<input class="cafText cafCity" name="city" id="shippingCity" />
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span3 offset1">
+							<div class="span10 offset1">
 								<label for="shippingState">State <span>Required</span></label>
-								<select name="state" id="shippingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-navigate="true">
-									<option value="AA">AA</option>
-									<option value="AE">AE</option>
-									<option value="AL">AK</option>
-									<option value="AP">AP</option>
-								</select>
+								<div class="comboContainer">
+									<select name="state" id="shippingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+										<option value="AA">AA</option>
+										<option value="AE">AE</option>
+										<option value="AL">AL</option>
+										<option value="AK">AK</option>
+										<option value="AP">AP</option>
+										<option value="AZ">AZ</option>
+										<option value="AR">AR</option>
+										<option value="CA">CA</option>
+										<option value="CO">CO</option>
+										<option value="DE">DE</option>
+										<option value="DC">DC</option>
+										<option value="FL">FL</option>
+										<option value="GA">GA</option>
+										<option value="GU">GU</option>
+										<option value="HI">HI</option>
+										<option value="ID">ID</option>
+										<option value="IL">IL</option>
+										<option value="IN">IN</option>
+										<option value="IA">IA</option>
+										<option value="KS">KS</option>
+										<option value="KY">KY</option>
+										<option value="LA">LA</option>
+										<option value="ME">ME</option>
+										<option value="MD">MD</option>
+										<option value="MA">MA</option>
+										<option value="MI">MI</option>
+										<option value="MN">MN</option>
+										<option value="MS">MS</option>
+										<option value="MO">MO</option>
+										<option value="MT">MT</option>
+										<option value="NE">NE</option>
+										<option value="NV">NV</option>
+										<option value="NH">NH</option>
+										<option value="NJ">NJ</option>
+										<option value="NM">NM</option>
+										<option value="NY">NY</option>
+										<option value="NC">NC</option>
+										<option value="ND">ND</option>
+										<option value="OH">OH</option>
+										<option value="OK">OK</option>
+										<option value="OR">OR</option>
+										<option value="PA">PA</option>
+										<option value="PR">PR</option>
+										<option value="RI">RI</option>
+										<option value="SC">SC</option>
+										<option value="SD">SD</option>
+										<option value="TN">TN</option>
+										<option value="TX">TX</option>
+										<option value="UT">UT</option>
+										<option value="VA">VA</option>
+										<option value="VI">VI</option>
+										<option value="VT">VT</option>
+										<option value="WA">WA</option>
+										<option value="WV">WV</option>
+										<option value="WI">WI</option>
+										<option value="WY">WY</option>
+									</select>
+								</div>
 							</div>
-							<div class="span3">
+						</div>
+						<div class="row-fluid">
+							<div class="span10 offset1">
 								<label for="shippingZip">ZIP Code <span>Required</span></label>
-								<input class="cafText" name="zip" id="shippingZip" data-mask="99999" data-placeholder=" " />
+								<input class="cafText cafZip" name="zip" id="shippingZip" data-mask="99999" data-placeholder=" " />
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span4 offset1">
-								<label for="shippingPhone">Phone Number <span>Required</span></label>
-								<input class="cafText" name="phone" id="shippingPhone" data-mask="999-999-9999" data-placeholder=" " />
-							</div>
-							<div class="span3">
-								<label for="shippingExt">Ext. # <span>Optional</span></label>
-								<input class="cafText" name="ext" id="shippingExt" />
+							<div class="span10 offset1">
+								<div class="cafSameRow">
+									<label for="shippingPhone">Phone Number <span>Required</span></label>
+									<input class="cafText cafZip" name="phone" id="shippingPhone" data-mask="999-999-9999" data-placeholder=" " />
+								</div>
+								<div class="cafSameRow">
+									<label for="shippingExt">Ext. # <span>Optional</span></label>
+									<input class="cafText cafExt" name="ext" id="shippingExt" />
+								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span5 offset1">
+							<div class="span10 offset1">
 								<label for="shippingEmail">Email Address <span>Required</span></label>
-								<input class="cafText" name="email" id="shippingEmail" />
+								<input class="cafText cafCity" name="email" id="shippingEmail" />
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span5 offset1">
+							<div class="span10 offset1">
 								<label for="shippingConfirm">Confirm Email Address <span>Required</span></label>
-								<input class="cafText" name="confirm" id="shippingConfirm" />
+								<input class="cafText cafCity" name="confirm" id="shippingConfirm" />
 							</div>
 						</div>
 						<div class="row-fluid cafCheckboxField">
@@ -221,63 +247,118 @@
 		<div id="${uniqueId}3" class="accordion-body collapse">
 			<div class="accordion-inner">
 				<form id="cafBillingAddressForm" method="post" action="">
-					<div class="row-fluid">
-						<div class="span10 offset1 hidden">
-							<div class="alert alert-error hidden" id="alert_${uniqueId}3">&nbsp;</div>
-						</div>
-					</div>
 					<fieldset>
 						<div class="row-fluid">
-							<div class="span5 offset1">
+							<div class="span10 offset1">
 								<label for="billingFirst">First Name <span>Required</span></label>
-								<input class="cafText" name="fname" id="billingFirst" />
+								<input class="cafText cafNameInput" name="fname" id="billingFirst" />
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span5 offset1">
+							<div class="span10 offset1">
 								<label for="billingLast">Last Name <span>Required</span></label>
-								<input class="cafText" name="fname" id="billingLast" />
+								<input class="cafText cafNameInput" name="lname" id="billingLast" />
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span5 offset1">
-								<label for="billingAddress">Street Address <span>Required</span></label>
-								<input class="cafText" name="address" id="billingAddress" />
-							</div>
-							<div class="span3">
-								<label for="billingApt">Apt. # <span>Optional</span></label>
-								<input class="cafText" name="apt" id="billingApt" />
+							<div class="span10 offset1">
+								<div class="cafSameRow">
+									<label for="billingAddress">Street Address <span>Required</span></label>
+									<input class="cafText cafAddress" name="address" id="billingAddress" />
+								</div>
+								<div class="cafSameRow">
+									<label for="billingApt">Apt. # <span>Optional</span></label>
+									<input class="cafText cafApt" name="apt" id="billingApt" />
+								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span5 offset1">
+							<div class="span10 offset1">
 								<label for="billingCity">City <span>Required</span></label>
-								<input class="cafText" name="city" id="billingCity" />
+								<input class="cafText cafCity" name="city" id="billingCity" />
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span3 offset1">
+							<div class="span10 offset1">
 								<label for="billingState">State <span>Required</span></label>
-								<select name="state" id="billingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-navigate="true">
-									<option value="AA">AA</option>
-									<option value="AE">AE</option>
-									<option value="AL">AK</option>
-									<option value="AP">AP</option>
-								</select>
-							</div>
-							<div class="span3">
-								<label for="billingZip">ZIP Code <span>Required</span></label>
-								<input class="cafText" name="zip" id="billingZip" data-mask="99999" data-placeholder=" " />
+								<div class="comboContainer">
+									<select name="state" id="billingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+										<option value="AA">AA</option>
+										<option value="AE">AE</option>
+										<option value="AL">AL</option>
+										<option value="AK">AK</option>
+										<option value="AP">AP</option>
+										<option value="AZ">AZ</option>
+										<option value="AR">AR</option>
+										<option value="CA">CA</option>
+										<option value="CO">CO</option>
+										<option value="DE">DE</option>
+										<option value="DC">DC</option>
+										<option value="FL">FL</option>
+										<option value="GA">GA</option>
+										<option value="GU">GU</option>
+										<option value="HI">HI</option>
+										<option value="ID">ID</option>
+										<option value="IL">IL</option>
+										<option value="IN">IN</option>
+										<option value="IA">IA</option>
+										<option value="KS">KS</option>
+										<option value="KY">KY</option>
+										<option value="LA">LA</option>
+										<option value="ME">ME</option>
+										<option value="MD">MD</option>
+										<option value="MA">MA</option>
+										<option value="MI">MI</option>
+										<option value="MN">MN</option>
+										<option value="MS">MS</option>
+										<option value="MO">MO</option>
+										<option value="MT">MT</option>
+										<option value="NE">NE</option>
+										<option value="NV">NV</option>
+										<option value="NH">NH</option>
+										<option value="NJ">NJ</option>
+										<option value="NM">NM</option>
+										<option value="NY">NY</option>
+										<option value="NC">NC</option>
+										<option value="ND">ND</option>
+										<option value="OH">OH</option>
+										<option value="OK">OK</option>
+										<option value="OR">OR</option>
+										<option value="PA">PA</option>
+										<option value="PR">PR</option>
+										<option value="RI">RI</option>
+										<option value="SC">SC</option>
+										<option value="SD">SD</option>
+										<option value="TN">TN</option>
+										<option value="TX">TX</option>
+										<option value="UT">UT</option>
+										<option value="VA">VA</option>
+										<option value="VI">VI</option>
+										<option value="VT">VT</option>
+										<option value="WA">WA</option>
+										<option value="WV">WV</option>
+										<option value="WI">WI</option>
+										<option value="WY">WY</option>
+									</select>
+								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span4 offset1">
-								<label for="billingPhone">Phone Number <span>Required</span></label>
-								<input class="cafText" name="phone" id="billingPhone" data-mask="999-999-9999" data-placeholder=" " />
+							<div class="span10 offset1">
+								<label for="billingZip">ZIP Code <span>Required</span></label>
+								<input class="cafText cafZip" name="zip" id="billingZip" data-mask="99999" data-placeholder=" " />
 							</div>
-							<div class="span3">
-								<label for="billingExt">Ext. # <span>Optional</span></label>
-								<input class="cafText" name="ext" id="billingExt" />
+						</div>
+						<div class="row-fluid">
+							<div class="span10 offset1">
+								<div class="cafSameRow">
+									<label for="billingPhone">Phone Number <span>Required</span></label>
+									<input class="cafText cafZip" name="phone" id="billingPhone" data-mask="999-999-9999" data-placeholder=" " />
+								</div>
+								<div class="cafSameRow">
+									<label for="billingExt">Ext. # <span>Optional</span></label>
+									<input class="cafText cafExt" name="ext" id="billingExt" />
+								</div>
 							</div>
 						</div>
 						<div class="row-fluid cafCheckboxField">
@@ -309,11 +390,6 @@
 			<div class="accordion-inner">
 				<form id="cafPaymentForm" method="post" action="">
 					<div class="row-fluid">
-						<div class="span10 offset1 hidden">
-							<div class="alert alert-error hidden" id="alert_${uniqueId}4">&nbsp;</div>
-						</div>
-					</div>
-					<div class="row-fluid">
 						<div class="span10 offset1">
 							<ul class="creditCards">
 								<li class="iconSearsIcon"></li>
@@ -330,47 +406,52 @@
 					</div>
 					<fieldset>
 						<div class="row-fluid">
-							<div class="span5 offset1">
+							<div class="span10 offset1">
 								<label for="payNumber">Card Number <span>Required</span></label>
-								<input class="cafText" name="cardNumber" id="payNumber" maxlength="16" />
+								<input class="cafText cafCredit" name="cardNumber" id="payNumber" maxlength="16" />
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span4 offset1">
-								<label for="payCode">Security Code <span>Required</span></label>
-								<input class="cafText" name="code" id="payCode" maxlength="4" />
-								<a href="#modalCode" data-toggle="modal">What's this?</a>
+							<div class="span10 offset1">
+								<label for="payCode" class="narrowLabel">Security Code <span>Required</span></label>
+								<a href="#modalCode" class="linkByLabel" data-toggle="modal">What's this?</a>
+								<div class="clear"></div>
+								<input class="cafText cafCode" name="code" id="payCode" maxlength="4" />
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span5 offset1">
 								<label for="payMonth">Expiration Date <span>Required</span></label>
-								<select name="month" id="payMonth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-navigate="true">
-									<option value="1">January</option>
-									<option value="2">February</option>
-									<option value="3">March</option>
-									<option value="4">April</option>
-									<option value="5">May</option>
-									<option value="6">June</option>
-									<option value="7">July</option>
-									<option value="8">August</option>
-									<option value="9">September</option>
-									<option value="10">October</option>
-									<option value="11">November</option>
-									<option value="12">December</option>
-								</select>
-								<select name="year" id="payYear" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-navigate="true">
-									<option value="2013">2013</option>
-									<option value="2014">2014</option>
-									<option value="2015">2015</option>
-									<option value="2016">2016</option>
-								</select>
+								<div class="comboContainer monthWidth">
+									<select name="month" id="payMonth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+										<option value="1">January</option>
+										<option value="2">February</option>
+										<option value="3">March</option>
+										<option value="4">April</option>
+										<option value="5">May</option>
+										<option value="6">June</option>
+										<option value="7">July</option>
+										<option value="8">August</option>
+										<option value="9">September</option>
+										<option value="10">October</option>
+										<option value="11">November</option>
+										<option value="12">December</option>
+									</select>
+								</div>
+								<div class="comboContainer">
+									<select name="year" id="payYear" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+										<option value="2013">2013</option>
+										<option value="2014">2014</option>
+										<option value="2015">2015</option>
+										<option value="2016">2016</option>
+									</select>
+								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span5 offset1">
+							<div class="span10 offset1">
 								<label for="payName">Name On Card <span>Required</span></label>
-								<input class="cafText" name="name" id="payName" />
+								<input class="cafText cafCity" name="name" id="payName" />
 							</div>
 						</div>
 					</fieldset>
@@ -401,9 +482,7 @@
 								<p>Product</p>
 							</div>
 							<div class="span8">
-								<p>
-									<a href="#" id="filterLink">Product description</a>
-								</p>
+								<p id="filterLink">Product description</p>
 							</div>
 						</div>
 						<div class="row-fluid pseudoTableRow">
@@ -412,7 +491,7 @@
 							</div>
 							<div class="span8">
 								<p id="cafFilterPrice">$34.23</p>
-								<p>First charge will appear around <span id="purchaseDate">[date]</span>.</p>
+								<p>If price changes, customer will receive an email notification regarding the difference. First charge will appear around <span id="purchaseDate">[date]</span>.</p>
 							</div>
 						</div>
 						<div class="row-fluid darkRow pseudoTableRow">
@@ -428,7 +507,7 @@
 								<p>Reorder Frequency</p>
 							</div>
 							<div class="span8">
-								<p>Every <span id="freqSel">[freq]</span> months, starting from <span id="startDate">[date]</span>.</p>
+								<p>Every <span id="freqSel">[freq]</span> months, starting <span id="startDate">[date]</span>.</p>
 							</div>
 						</div>
 						<div class="row-fluid darkRow pseudoTableRow">
