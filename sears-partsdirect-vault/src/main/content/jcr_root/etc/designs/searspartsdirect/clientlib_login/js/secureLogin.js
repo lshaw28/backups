@@ -8,16 +8,35 @@ var secureLogin = Class.extend(function () {
 		 * Uses Regula validation
 		 * See documentation: https://github.com/vivin/regula/wiki
 		 */
-		init: function (el) {
+		init: function (el, isMobileBrowser, isTabletSize, isMobileSize) {
 			this.el = el;
+			this.isMobileBrowser = isMobileBrowser;
+			this.isTabletSize = isTabletSize;
+			this.isMobileSize = isMobileSize;
 			this.serviceCallPending = false;
 			this.maxRecallServiceTries = 5;
 			this.recallServiceTries = 0;
+			this.mobileCheck();
 			this.bindSubmit();
 			this.bindCancel();
 			this.bindLinks();
 			this.bindCheckField();
 			this.resetFields();
+		},
+		mobileCheck: function() {
+			var self = this;
+
+			// if mobile browser, add touch friendly styling
+			if(self.isMobileBrowser) {
+				$('new-btn', self.el).each( function() {
+					$(this).removeClass('new-btn');
+					$(this).addClass('new-btn-touch');
+				})
+			}
+
+			console.log("is mobile browser: "+self.isMobileBrowser);
+			console.log("is tablet size: "+self.isTabletSize);
+			console.log("is mobile size: "+self.isMobileSize);
 		},
 		/**
 		 * Binds the submit button to perform Regula validation
