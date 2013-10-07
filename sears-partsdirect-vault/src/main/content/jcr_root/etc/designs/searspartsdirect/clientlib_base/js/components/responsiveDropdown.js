@@ -173,7 +173,7 @@ var responsiveDropdown = Class.extend(function () {
 		 */
 		selectValue: function (val, text) {
 			var self = this,
-				isMobile = window.SPDUtils.isMobileBreakpoint(),
+				isMobile = window.SPDUtils.isMobileBrowser(),
 				valStripped = val.replace('#', ''),
 				scrollPos = 0,
 				targetEl = null;
@@ -184,7 +184,6 @@ var responsiveDropdown = Class.extend(function () {
 				scrollPos = targetEl.offset().top;
 			} catch (e) {
 			}
-
 			// Navigate
 			if (self.navigate === true || val.indexOf('#') > -1) {
 				window.scrollTo(0, parseInt(scrollPos - self.button[0].offsetHeight - 20, 10));
@@ -199,6 +198,10 @@ var responsiveDropdown = Class.extend(function () {
 			// Update the select element
 			$('option', self.el).attr('selected', false);
 			$('option[data-value="' + val + '"]', self.el).attr('selected', 'selected');
+			// Fire on change event on desktop
+			if (isMobile === false) {
+				self.el.change();
+			}
 			// Update the optional hidden field
 			if (self.hiddenField !== null) {
 				self.hiddenField.attr('value', val);
