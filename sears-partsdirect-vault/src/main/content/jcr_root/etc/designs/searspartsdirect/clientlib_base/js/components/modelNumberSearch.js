@@ -170,27 +170,35 @@ var modelNumberSearch = Class.extend(function () {
 				key = -1;
 
 			// Bind input events
-			self.inputField.bind('keyup', function () {
-				return false;
-			})
-			.bind('keyup', function (e) {
-				// Determine which key was pressed
-				if (e.keyCode) {
-					key = e.keyCode;
-				} else if (e.which) {
-					key = e.which;
-				}
-
-				// Search if the user hit enter
-				if (key === 13) {
-					self.search();
-				}
+			self.inputField.bind('keyup', function (e) {
+				e.preventDefault();
+				self.checkKey(e);
 			});
 			// Bind button
 			self.button.bind('click', function (e) {
 				e.preventDefault();
 				self.search();
 			});
+		},
+		/**
+		 * Perform search if the user hits Enter
+		 * @param {event} e Event fired
+		 * @return {void}
+		 */
+		checkKey: function (e) {
+			var self = this,
+				key = -1;
+
+			if (e.keyCode) {
+				key = e.keyCode;
+			} else if (e.which) {
+				key = e.which;
+			}
+
+			// Search if the user hit enter
+			if (key === 13) {
+				self.search();
+			}
 		}
 	};
 }());
