@@ -174,7 +174,7 @@ var responsiveDropdown = Class.extend(function () {
 		selectValue: function (val, text) {
 			var self = this,
 				isMobile = window.SPDUtils.isMobileBrowser(),
-				valStripped = val.replace('#', ''),
+				valStripped = val.toString().replace('#', ''),
 				scrollPos = 0,
 				targetEl = null;
 
@@ -218,7 +218,7 @@ var responsiveDropdown = Class.extend(function () {
 
 			self.el.bind('blur', function (e) {
 				var selection = e.currentTarget,
-					val = $(selection.options[selection.selectedIndex]).attr('value').toString(),
+					val = $(selection.options[selection.selectedIndex]).attr('value'),
 					text = $(selection.options[selection.selectedIndex]).text();
 
 				self.selectValue(val, text);
