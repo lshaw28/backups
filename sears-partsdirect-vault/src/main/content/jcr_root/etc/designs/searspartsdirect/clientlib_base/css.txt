@@ -12,6 +12,7 @@ core.buttons.tablet.less
 core.forms.less
 core.tables.less
 core.svgIcons.less
+datepicker.less
 
 #base=less/components/.
 accordionItem/accordionItem.less
@@ -37,6 +38,7 @@ categorySymptoms/categorySymptoms.less
 commonParts/commonParts.less
 customAccordionForms/customAccordionForms.less
 customAccordionForms/customAccordionForms.tablet.less
+customAccordionForms/customAccordionForms.mobile.less
 subscriptionConfirmation/subscriptionConfirmation.less
 subscriptionConfirmation/subscriptionConfirmation.tablet.less
 difficultyRating/difficultyRating.less
