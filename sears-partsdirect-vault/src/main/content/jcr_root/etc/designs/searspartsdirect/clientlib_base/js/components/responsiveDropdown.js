@@ -218,7 +218,7 @@ var responsiveDropdown = Class.extend(function () {
 
 			self.el.bind('blur', function (e) {
 				var selection = e.currentTarget,
-					val = $(selection.options[selection.selectedIndex]).attr('value'),
+					val = $(selection.options[selection.selectedIndex]).attr('value').toString(),
 					text = $(selection.options[selection.selectedIndex]).text();
 
 				self.selectValue(val, text);
