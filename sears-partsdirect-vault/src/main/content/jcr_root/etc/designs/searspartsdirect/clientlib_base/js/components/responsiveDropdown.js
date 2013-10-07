@@ -184,6 +184,7 @@ var responsiveDropdown = Class.extend(function () {
 				scrollPos = targetEl.offset().top;
 			} catch (e) {
 			}
+
 			// Navigate
 			if (self.navigate === true || val.indexOf('#') > -1) {
 				window.scrollTo(0, parseInt(scrollPos - self.button[0].offsetHeight - 20, 10));
@@ -212,7 +213,7 @@ var responsiveDropdown = Class.extend(function () {
 		bindEvent: function () {
 			var self = this;
 
-			self.el.one('blur change select submit selection inputchange mouseup touchend', function (e) {
+			self.el.bind('blur', function (e) {
 				var selection = e.currentTarget,
 					val = $(selection.options[selection.selectedIndex]).attr('value'),
 					text = $(selection.options[selection.selectedIndex]).text();
