@@ -123,6 +123,7 @@ var responsiveDropdown = Class.extend(function () {
 				li = $('<li />'),
 				a = $('<a />');
 
+			li.attr('data-value', value);
 			a.html(text);
 			a.attr('data-value', value);
 
@@ -185,7 +186,7 @@ var responsiveDropdown = Class.extend(function () {
 			}
 			// Navigate
 			if (self.navigate === true || val.indexOf('#') > -1) {
-				window.scrollTo(0, parseInt(scrollPos - self.button[0].offsetHeight, 10));
+				window.scrollTo(0, parseInt(scrollPos - self.button[0].offsetHeight - 20, 10));
 			}
 			// Hyperlink
 			if (self.link === true) {
