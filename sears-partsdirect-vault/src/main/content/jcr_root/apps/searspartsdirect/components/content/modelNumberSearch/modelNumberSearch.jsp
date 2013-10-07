@@ -5,12 +5,12 @@
 	--%><p><c:out value="${searchInstructions}"/></p>
 </div>
 <div class="modelNumberSearchInputs">
-	<form class="form-inline">
+	<div class="form-inline">
 		<div class="input-append">
 		<input type="text" id="modelNumberSearchInput" name="modelNumberSearchInput" maxlength="42" data-inputhelp="Enter model number" data-inputhelpmobile="Model #" />
 		<span class="add-on"><button><i class="icon-search">&nbsp;</i></button></span>
 		</div>
-	</form>
+	</div>
 	<c:set var="linkText"><cq:text property="linkText" placeholder=""/></c:set><%--
 	--%><c:if test="${empty linkText}"><c:set var="linkText">Help me find my model number</c:set></c:if><%--
 	--%><p><a href="#findMyModel" class="searchPanelFinder_js"><c:out value="${linkText}" /></a></p>

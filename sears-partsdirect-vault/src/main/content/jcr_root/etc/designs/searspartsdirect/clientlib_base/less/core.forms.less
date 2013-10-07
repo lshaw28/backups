@@ -35,6 +35,10 @@ input[type="text"], input[type="password"], select, textarea {
 		outline-style: none;
 		z-index: 0;
 	}
+	&.error {
+		background-color: @highlightHueLightest;
+		border: 1px solid @highlightHueNormal;
+	}
 }
 
 .input-append {
