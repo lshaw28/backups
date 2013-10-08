@@ -13,6 +13,7 @@
 
 			self.getGlobalVariables();
 			self.setAddThisVariables();
+			self.getQueryParameters();
 		},
 		/**
 		 * Retrieve and set global variables
@@ -54,6 +55,29 @@
 			window['addthis_config'] = {
 				'data_track_addressbar': false
 			};
+		},
+		/**
+		 * Get query string parameters
+		 * @return {void}
+		 */
+		getQueryParameters: function () {
+			var returnObj = {},
+				query = window.location.search.substring(1),
+				spaceReg = /\+/g,
+				queryReg = /([^&=]+)=?([^&]*)/g,
+				match,
+				name = '',
+				value = '';
+
+			/* Parse values */
+			while (match = queryReg.exec(query)) {
+				name = decodeURIComponent(match[1].replace(spaceReg, ' '));
+				value = decodeURIComponent(match[2].replace(spaceReg, ' '));
+				returnObj[name] = value;
+			}
+
+			/* Create object */
+			window['queryParams'] = returnObj;
 		},
 		/**
 		 * Check that an object resolves to a valid string

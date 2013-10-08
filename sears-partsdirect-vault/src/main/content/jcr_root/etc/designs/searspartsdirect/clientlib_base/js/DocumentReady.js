@@ -213,7 +213,10 @@
 		 * Cross-domain iframe fix
 		 */
 		$('iframe[data-src]').each(function () {
-			var newSrc = $(this).data('src') + window.SPDUtils.getLocationDetails().fullAddress;
+			var isMobileBrowser = window.SPDUtils.isMobileBrowser(),
+				windowWidth = $(window).width(),
+				newSrc = $(this).data('src').replace('$1', isMobileBrowser.toString()).replace('$2', windowWidth.toString())
+				+ window.SPDUtils.getLocationDetails().fullAddress;
 
 			$(this).attr('src', newSrc);
 		});
