@@ -139,24 +139,6 @@
 				return false;
 			}
 		},
-		isParentTabletBreakpoint: function() {
-			var currentWidth = parseInt($(window.parent).width(), 10);
-
-			if (currentWidth > 767 && currentWidth < 1025) {
-				return true;
-			} else {
-				return false;
-			}
-		},
-		isParentMobileBreakpoint: function() {
-			var currentWidth = parseInt($(window.parent).width(), 10);
-
-			if (currentWidth < 768) {
-				return true;
-			} else {
-				return false;
-			}
-		},
         isMobileBrowser: function() {
             return ('ontouchstart' in document.documentElement);
         },
