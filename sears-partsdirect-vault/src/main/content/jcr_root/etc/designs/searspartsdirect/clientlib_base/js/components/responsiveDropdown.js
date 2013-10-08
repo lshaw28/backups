@@ -174,9 +174,12 @@ var responsiveDropdown = Class.extend(function () {
 		selectValue: function (val, text) {
 			var self = this,
 				isMobile = window.SPDUtils.isMobileBrowser(),
-				valStripped = val.replace('#', ''),
+				valStripped = '',
 				scrollPos = 0,
 				targetEl = null;
+
+			val = val.toString();
+			valStripped = val.replace('#');
 
 			// Make sure the anchor exists
 			try {

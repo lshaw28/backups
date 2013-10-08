@@ -18,7 +18,7 @@ var customAccordionForms = Class.extend(function () {
 			
 			$('body').append($('#modalShipping')).append($('#modalCode'));
 			//This modifies the accordion to change the head background color when toggled and to have one open at a time (preference to current step)
-			$('.customAccordionForms .accordion-toggle').bind('click', function () {
+			$('.customAccordionForms .accordion-toggle').on('click', function () {
 				//Checks if accordion is deactivated
 				if ($(this).attr('data-toggle') == "collapse") {
 					if ($(this).parent().hasClass('cafHeadingOpen')) {
@@ -43,7 +43,23 @@ var customAccordionForms = Class.extend(function () {
                 }
 			});
 			
-			$('.cafSubmit', self.el).bind('click', function (e) {
+			//This sets up the DatePickers
+			var today = new Date();
+			$('#orderDate').datepicker({
+				startDate: (today.getMonth() + 1).toString() + "/" + today.getDate().toString() + "/" + today.getFullYear().toString(),
+				endDate: (today.getMonth() + 1).toString() + "/" + today.getDate().toString() + "/" + (today.getFullYear() + 1).toString(),
+				orientation: "top auto",
+				autoclose: true
+			});
+			//for selecting months ahead
+			$('.filFreq').on('click', function (e) {
+				var beginDate = new Date();
+				beginDate.setMonth(beginDate.getMonth() + parseInt($(this).val()));
+				$('#orderDate').datepicker('update', (beginDate.getMonth() + 1).toString() + '/' + beginDate.getDate().toString() + '/' + beginDate.getFullYear().toString());
+			});
+			$('#frequency6').click();
+			
+			$('.cafSubmit', self.el).on('click', function (e) {
 				e.preventDefault();
 				//Sets the frequency, dates (eventually) and quantity the user input on the first step
 				if ($(e.target.form).attr('id') == "cafSelectFilterFrequencyForm") {
@@ -57,6 +73,24 @@ var customAccordionForms = Class.extend(function () {
 				//Set Regula to validate current form
 				self.bindRegula(parseInt(e.target.attributes['data-form-number'].value));
 				self.validate(e);
+			});
+			
+			//These handle autofills for the dropdowns (i.e.: if browser fills in previously used address)
+			$('#shippingState').on('change.autofill', function() {
+				$('#shippingState').off('change.autofill');
+				$('#shippingState').parent().find('.responsiveDropdown li[data-value=' + $('#shippingState option:selected').val() + '] a').click();
+			});
+			$('#billingState').on('change.autofill', function() {
+				$('#billingState').off('change.autofill');
+				$('#billingState').parent().find('.responsiveDropdown li[data-value=' + $('#billingState option:selected').val() + '] a').click();
+			});
+			$('#payMonth').on('change.autofill', function() {
+				$('#payMonth').off('change.autofill');
+				$('#payMonth').parent().find('.responsiveDropdown li[data-value=' + $('#payMonth option:selected').val() + '] a').click();
+			});
+			$('#payYear').on('change.autofill', function() {
+				$('#payYear').off('change.autofill');
+				$('#payYear').parent().find('.responsiveDropdown li[data-value=' + $('#payYear option:selected').val() + '] a').click();
 			});
 			
 			//Custom Regula constraint for matching fields
@@ -80,7 +114,7 @@ var customAccordionForms = Class.extend(function () {
 			});
 			
 			//This will have the shipping address submit button submit the billing address form with shipping address data
-			$('.customAccordionForms #shippingSame').bind('click', function () {
+			$('.customAccordionForms #shippingSame').on('click', function () {
 				if ($(this).attr('checked')) {
 					self.setBillingFields(true);
 					$('#billingSame').attr('checked', 'checked');
@@ -95,10 +129,14 @@ var customAccordionForms = Class.extend(function () {
 			});
 			
 			//This will have the shipping address submit button fill out the billing address form with shipping address data
-			$('.customAccordionForms #billingSame').bind('click', function () {
+			$('.customAccordionForms #billingSame').on('click', function () {
 				if ($(this).attr('checked')) {
 					self.setBillingFields(true);
 					$('#shippingSame').attr('checked', 'checked');
+					// Clear out old error messages
+					$('.accordion-inner .error').remove();
+					// Remove validation on individual fields
+					$('.errorField').off('change.error').removeClass('errorField');
 				} else {
 					self.setBillingFields(false);
 					$('#shippingSame').removeAttr('checked');
@@ -154,30 +192,14 @@ var customAccordionForms = Class.extend(function () {
 							}
 						]}
 					);
-					/*regula.bind(
-						{element: document.getElementById("startMonth"),
+					regula.bind(
+						{element: document.getElementById("odInput"),
 						constraints: [
-							{constraintType: regula.Constraint.Selected,
-								params: {message: "Please select a month"}
+							{constraintType: regula.Constraint.Pattern,
+								params: {regex: /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/,message: "Please enter a date"}
 							}
 						]}
 					);
-					regula.bind(
-						{element: document.getElementById("startDay"),
-						constraints: [
-							{constraintType: regula.Constraint.Selected,
-								params: {message: "Please select a day"}
-							}
-						]}
-					);
-					regula.bind(
-						{element: document.getElementById("startYear"),
-						constraints: [
-							{constraintType: regula.Constraint.Selected,
-								params: {message: "Please select a year"}
-							}
-						]}
-					);*/
 					regula.bind(
 						{element: document.getElementById("waterFilterQuantity"),
 						constraints: [
@@ -217,6 +239,14 @@ var customAccordionForms = Class.extend(function () {
 						constraints: [
 							{constraintType: regula.Constraint.NotBlank,
 								params: {message: "Please enter your city."}
+							}
+						]}
+					);
+					regula.bind(
+						{element: document.getElementById("shippingState"),
+						constraints: [
+							{constraintType: regula.Constraint.Selected,
+								params: {message: "Please select your state."}
 							}
 						]}
 					);
@@ -340,30 +370,51 @@ var customAccordionForms = Class.extend(function () {
 		validate: function (button) {
 			var self = this,
 				i = 0,
-				errorMessage = '',
-				divider = '',
-				regulaResponse = regula.validate(),
-				alert = $('#' + button.target.attributes['data-alert-id'].value);
+				regulaResponse = regula.validate();
 			
-			// Parse the error messages
+			// Clear out old error messages
+			$('.accordion-inner .error').remove();
+			// Remove validation on individual fields
+			$('.errorField').off('change.error').removeClass('errorField');
+			//$('.comboError').removeClass('comboError');
+			
+			// Place the error messages under each field
 			for (i = 0; i < regulaResponse.length; i = i + 1) {
-				errorMessage += divider + regulaResponse[i].message;
-				divider = '<br />';
+				var currentInvalid = $(regulaResponse[i].failingElements[0]);
+				currentInvalid.after('<span class="error">*' + regulaResponse[i].message + '</span>');
+				/*if (currentInvalid.is('select')) {
+					currentInvalid.parent().parent().addClass('comboError');
+				}*/
+				currentInvalid.addClass('errorField');
+				currentInvalid.on('change.error', function (e) {
+					var z = 0,
+						remainingErrors = regula.validate(),
+						stillError = false;
+					
+					// Search for field among list of invalid fields
+					for (z = 0; z < remainingErrors.length; z = z + 1) {
+						// Check if field is still in error
+						if ($(remainingErrors[z].failingElements[0]).attr('id') == $(this).attr('id')) {
+							stillError = true;
+						}
+					}
+					if (!stillError) {
+						// Clear out error message
+						$(this).siblings('.error').remove();
+						// Remove validation on individual field
+						$(this).off('change.error').removeClass('errorField');
+						/*if ($(this).parent().parent().hasClass('comboError')) {
+							$(this).parent().parent().removeClass('comboError');
+						}*/
+					}
+				});
 			}
-
-			// Populate the errors
-			alert.html(errorMessage);
 			
-			// Display errors or submit the form
-			if (errorMessage.length > 0) {
-				alert.removeClass('hidden');
-				alert.parent().removeClass('hidden');
-			} else {
+			// Submit the form if there are no errors
+			if (regulaResponse.length == 0) {
 				var thisToggle = $('#' + button.target.attributes['data-this-toggle-id'].value),
 					completedToggles = $('.accordion-toggle[data-status=complete]').length,
 					nextToggle = $('.accordion-toggle[data-status=unavailable]:eq(0)');
-				
-				alert.parent().addClass('hidden');
 				
 				for (var i = 0; i < completedToggles; i++) {
 					var currentToggle = $('.accordion-toggle[data-status=complete]:eq(' + i + ')');
