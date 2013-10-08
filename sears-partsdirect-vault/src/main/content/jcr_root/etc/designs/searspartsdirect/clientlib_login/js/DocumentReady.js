@@ -13,27 +13,7 @@
 		/**
 		 * Determine mobile touch capability, window size
 		 */
-		var su = window.SPDUtils,
-			isMobileBrowser = false,
-			isTabletSize = false,
-			isMobileSize = false;
-		// check window size
-		if (su.isMobileBrowser()) {
-			isMobileBrowser = true;
-			if (su.isParentTabletBreakpoint()) {
-				isTabletSize = true;
-			} else if (su.isParentMobileBreakpoint()) {
-				isMobileSize = true;
-			}
-
-		} else {
-			// desktop browser (no touch events)
-			if (su.isParentTabletBreakpoint()) {
-				isTabletSize = true;
-			} else if (su.isParentMobileBreakpoint()) {
-				isMobileSize = true;
-			}
-		}
+		var su = window.SPDUtils;
 
 
         /**
@@ -42,7 +22,7 @@
          * 2. forgot pw
          * 3. register
          */
-        var loginForm = new secureLogin($('#secureLoginModal'), isMobileBrowser, isTabletSize, isMobileSize);
+        var loginForm = new secureLogin($('#secureLoginModal'));
         var forgotPasswordForm = new secureForgotPassword($('#secureForgotPasswordModal'));
         var registerForm = new secureRegister($('#secureRegisterModal'));
 
