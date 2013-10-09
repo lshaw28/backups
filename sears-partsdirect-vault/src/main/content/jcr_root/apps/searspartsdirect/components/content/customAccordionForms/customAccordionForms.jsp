@@ -41,10 +41,10 @@
 									<input type="radio" class="filFreq" name="frequency" id="frequency12" value="12" />
 									<label for="frequency12">Every 12 months</label>
 								</div>
-								<div class="comboContainer">
-									<select name="year" id="payYear" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+								<div class="comboContainer freqDropCont">
+									<select name="freqSel" id="freqDrop" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
 										<option value="3">3</option>
-										<option value="6">6</option>
+										<option value="6" selected="selected">6</option>
 										<option value="12">12</option>
 									</select>
 								</div>
@@ -62,7 +62,7 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="waterFilterQuantity">Qty</label>
-								<input class="cafText" name="quantity" id="waterFilterQuantity" value="1" />
+								<input class="cafText" name="quantity" id="waterFilterQuantity" value="1" pattern="[0-9]*" />
 							</div>
 						</div>
 					</fieldset>
@@ -129,6 +129,7 @@
 								<label for="shippingState">State <span>Required</span></label>
 								<div class="comboContainer">
 									<select name="state" id="shippingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+										<option value="ZZ">--</option>
 										<option value="AA">AA</option>
 										<option value="AE">AE</option>
 										<option value="AL">AL</option>
@@ -192,18 +193,18 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingZip">ZIP Code <span>Required</span></label>
-								<input class="cafText cafZip" name="zip" id="shippingZip" data-mask="99999" data-placeholder=" " />
+								<input class="cafText cafZip" name="zip" id="shippingZip" pattern="[0-9]*" data-mask="99999" data-placeholder=" " />
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
-								<div class="cafSameRow">
+								<div class="cafSameRow phoneWidth">
 									<label for="shippingPhone">Phone Number <span>Required</span></label>
-									<input class="cafText cafZip" name="phone" id="shippingPhone" data-mask="999-999-9999" data-placeholder=" " />
+									<input class="cafText cafZip" name="phone" id="shippingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
 								</div>
 								<div class="cafSameRow">
 									<label for="shippingExt">Ext. # <span>Optional</span></label>
-									<input class="cafText cafExt" name="ext" id="shippingExt" />
+									<input class="cafText cafExt" name="ext" id="shippingExt" pattern="[0-9]*" />
 								</div>
 							</div>
 						</div>
@@ -283,6 +284,7 @@
 								<label for="billingState">State <span>Required</span></label>
 								<div class="comboContainer">
 									<select name="state" id="billingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+										<option value="ZZ">--</option>
 										<option value="AA">AA</option>
 										<option value="AE">AE</option>
 										<option value="AL">AL</option>
@@ -346,18 +348,18 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="billingZip">ZIP Code <span>Required</span></label>
-								<input class="cafText cafZip" name="zip" id="billingZip" data-mask="99999" data-placeholder=" " />
+								<input class="cafText cafZip" name="zip" id="billingZip" pattern="[0-9]*" data-mask="99999" data-placeholder=" " />
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
-								<div class="cafSameRow">
+								<div class="cafSameRow phoneWidth">
 									<label for="billingPhone">Phone Number <span>Required</span></label>
-									<input class="cafText cafZip" name="phone" id="billingPhone" data-mask="999-999-9999" data-placeholder=" " />
+									<input class="cafText cafZip" name="phone" id="billingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
 								</div>
 								<div class="cafSameRow">
 									<label for="billingExt">Ext. # <span>Optional</span></label>
-									<input class="cafText cafExt" name="ext" id="billingExt" />
+									<input class="cafText cafExt" name="ext" id="billingExt" pattern="[0-9]*" />
 								</div>
 							</div>
 						</div>
@@ -408,7 +410,7 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="payNumber">Card Number <span>Required</span></label>
-								<input class="cafText cafCredit" name="cardNumber" id="payNumber" maxlength="16" />
+								<input class="cafText cafCredit" name="cardNumber" id="payNumber" maxlength="16" pattern="[0-9]*" />
 							</div>
 						</div>
 						<div class="row-fluid">
@@ -416,14 +418,15 @@
 								<label for="payCode" class="narrowLabel">Security Code <span>Required</span></label>
 								<a href="#modalCode" class="linkByLabel" data-toggle="modal">What's this?</a>
 								<div class="clear"></div>
-								<input class="cafText cafCode" name="code" id="payCode" maxlength="4" />
+								<input class="cafText cafCode" name="code" id="payCode" maxlength="4" pattern="[0-9]*" />
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span5 offset1">
+							<div class="span10 offset1">
 								<label for="payMonth">Expiration Date <span>Required</span></label>
 								<div class="comboContainer monthWidth">
 									<select name="month" id="payMonth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+										<option value="ZZ">-----</option>
 										<option value="1">January</option>
 										<option value="2">February</option>
 										<option value="3">March</option>
@@ -440,6 +443,7 @@
 								</div>
 								<div class="comboContainer">
 									<select name="year" id="payYear" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+										<option value="ZZ">----</option>
 										<option value="2013">2013</option>
 										<option value="2014">2014</option>
 										<option value="2015">2015</option>
@@ -490,8 +494,8 @@
 								<p>Price</p>
 							</div>
 							<div class="span8">
-								<p id="cafFilterPrice">$34.23</p>
-								<p>If price changes, customer will receive an email notification regarding the difference. First charge will appear around <span id="purchaseDate">[date]</span>.</p>
+								<p id="cafFilterPrice">$34.23*</p>
+								<p>*Price subject to change. Auto-reorders are fulfilled at the then current price of the water filter.  Email notification will be sent two weeks prior to auto-reorder date, which will include the final order price.</p>
 							</div>
 						</div>
 						<div class="row-fluid darkRow pseudoTableRow">

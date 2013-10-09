@@ -51,13 +51,20 @@ var customAccordionForms = Class.extend(function () {
 				orientation: "top auto",
 				autoclose: true
 			});
-			//for selecting months ahead
-			$('.filFreq').on('click', function (e) {
+			//Ties the frequency radio buttons and dropdown together and sets the order date
+			$('.freqDropCont .responsiveDropdown li').live('click', 'a', function () {
 				var beginDate = new Date();
-				beginDate.setMonth(beginDate.getMonth() + parseInt($(this).val()));
+				beginDate.setMonth(beginDate.getMonth() + parseInt($(this).attr('data-value')));
 				$('#orderDate').datepicker('update', (beginDate.getMonth() + 1).toString() + '/' + beginDate.getDate().toString() + '/' + beginDate.getFullYear().toString());
+				$('.filFreq').removeAttr('checked');
+				$('.filFreq[value=' + $(this).attr('data-value') + ']').attr('checked', 'checked');
 			});
-			$('#frequency6').click();
+			
+			$('.filFreq').on('click', function () {
+				$('.freqDropCont .responsiveDropdown li a[data-value=' + $(this).val() + ']').click();
+			});
+			today.setMonth(today.getMonth() + 6);
+			$('#orderDate').datepicker('update', (today.getMonth() + 1).toString() + '/' + today.getDate().toString() + '/' + today.getFullYear().toString());
 			
 			$('.cafSubmit', self.el).on('click', function (e) {
 				e.preventDefault();
@@ -93,6 +100,11 @@ var customAccordionForms = Class.extend(function () {
 				$('#payYear').parent().find('.responsiveDropdown li[data-value=' + $('#payYear option:selected').val() + '] a').click();
 			});
 			
+			//This is for when there is an error on the expiration date has an error (only the month get the validation change event)
+			$('#payYear').on('change.error', function() {
+				$('#payMonth').change();
+			});
+			
 			//Custom Regula constraint for matching fields
 			regula.custom({
 				name: "MatchInput",
@@ -110,6 +122,19 @@ var customAccordionForms = Class.extend(function () {
 				validator: function() {
 					var match = /^\d+$/;
 					return (match.test(this.value) && this.value.length > 12 && this.value.length < 17);
+				}
+			});
+			//Custom Regula constraint for when two drop downs must be selected as a pair
+			regula.custom({
+				name: "SelectGroup",
+				defaultMessage: "Select fields",
+				params: ["inputId"],
+				validator: function(params) {
+					var returnVal = false;
+					if ($('#' + params["inputId"])[0].selectedIndex && $(this)[0].selectedIndex) {
+						returnVal = true;
+					}
+					return (returnVal);
 				}
 			});
 			
@@ -317,6 +342,14 @@ var customAccordionForms = Class.extend(function () {
 						]}
 					);
 					regula.bind(
+						{element: document.getElementById("billingState"),
+						constraints: [
+							{constraintType: regula.Constraint.Selected,
+								params: {message: "Please select your state."}
+							}
+						]}
+					);
+					regula.bind(
 						{element: document.getElementById("billingZip"),
 						constraints: [
 							{constraintType: regula.Constraint.NotBlank,
@@ -343,10 +376,18 @@ var customAccordionForms = Class.extend(function () {
 						]}
 					);
 					regula.bind(
-						{element: document.getElementById("payCode"),
+						{element: document.getElementById("payMonth"),
 						constraints: [
-							{constraintType: regula.Constraint.Pattern,
-								params: {regex: /^\d+$/, message: "Please enter your security code."}
+							{constraintType: regula.Constraint.SelectGroup,
+								params: {inputId: "payYear", message: "Please select a month and a year."}
+							}
+						]}
+					);
+					regula.bind(
+						{element: document.getElementById("shippingConfirm"),
+						constraints: [
+							{constraintType: regula.Constraint.MatchInput,
+								params: {inputId: "shippingEmail", message: "Please confirm your email address."}
 							}
 						]}
 					);
@@ -382,9 +423,6 @@ var customAccordionForms = Class.extend(function () {
 			for (i = 0; i < regulaResponse.length; i = i + 1) {
 				var currentInvalid = $(regulaResponse[i].failingElements[0]);
 				currentInvalid.after('<span class="error">*' + regulaResponse[i].message + '</span>');
-				/*if (currentInvalid.is('select')) {
-					currentInvalid.parent().parent().addClass('comboError');
-				}*/
 				currentInvalid.addClass('errorField');
 				currentInvalid.on('change.error', function (e) {
 					var z = 0,
@@ -403,9 +441,6 @@ var customAccordionForms = Class.extend(function () {
 						$(this).siblings('.error').remove();
 						// Remove validation on individual field
 						$(this).off('change.error').removeClass('errorField');
-						/*if ($(this).parent().parent().hasClass('comboError')) {
-							$(this).parent().parent().removeClass('comboError');
-						}*/
 					}
 				});
 			}

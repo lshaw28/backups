@@ -82,11 +82,14 @@
 				}
 			}
 			#orderDate {
-				max-width: 130px;
+				max-width: 140px;
 			}
 			.input-append.date {
 				input {
 					padding: 4px;
+				}
+				.error {
+					font-size: 14px;
 				}
 				.add-on {
 					padding: 7px 12px 1px;
@@ -110,13 +113,17 @@
 			}
 			.comboContainer {
 				float: left;
-				padding-right: 30px;
+				padding-right: 10px;
 				.responsiveDropdown {
 					height: 36px;
 					.new-btn-dropdown {
 						background-color: @bodyColor;
 						border: solid 1px @secondaryHueDark;
 						color: @secondaryHueDark;
+						padding: 10px;
+						.icon-chevron-sign-down {
+							padding-left: 20px;
+						}
 					}
 					ul {
 						position: absolute;
@@ -127,10 +134,14 @@
 				}
 			}
 			.comboContainer.monthWidth {
+				width: 145px;
 				.responsiveDropdown {
 					ul {
-						width: 104px;
+						width: 115px;
 					}
+				}
+				.error {
+					width: 235px;
 				}
 			}
 			.comboError {
@@ -169,6 +180,12 @@
 			}
 			.cafSameRow:first-child {
 				padding-right: 30px;
+			}
+			.cafSameRow.phoneWidth {
+				width: 185px;
+				.error {
+					width: 305px;
+				}
 			}
 			
 			.creditCards {
