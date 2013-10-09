@@ -2,45 +2,58 @@
 @import "../../base.mixins.less";
 
 .loginNav {
-	float: right;
-	margin: 0 0 15px 0;
+    float: right;
+    margin: 0 0 15px 0;
 
-	ul {
-		margin: 0 5px 0 0;
-		padding: 0;
-		list-style-type: none;
+    ul {
+        margin: 0 5px 0 0;
+        padding: 0;
+        list-style-type: none;
 
-		li {
-			color: @primaryHueDarkest;
-			float: left;
-			font-size: @smallPSize;
-			list-style-type: none;
-			margin: 0 15px 0 5px;
-			padding: 0;
+        li {
+            color: @primaryHueDarkest;
+            float: left;
+            font-size: @smallPSize;
+            list-style-type: none;
+            margin: 0 15px 0 5px;
+            padding: 0;
 
-			a {
-				font-size: @smallPSize;
-				margin: 0;
-				padding: 0;
+            a {
+                font-size: @smallPSize;
+                margin: 0;
+                padding: 0;
 
-				.icon-home {
-					color: @secondaryHueDark;
-					font-size: @h2Size;
-					display: none;
-				}
-			}
-		}
-	}
-}
-
+                .icon-home {
+                    color: @secondaryHueDark;
+                    font-size: @h2Size;
+                    display: none;
+                }
+                .icon-phone {
+                    color: @secondaryHueDark;
+                    font-size: @h2Size;
+                    display: none;
+                }
+                .icon-comments-alt {
+                    color: @secondaryHueDark;
+                    font-size: @h4Size;
+                    display: none;
+                }
+                .icon-envelope-alt {
+                    color: @secondaryHueDark;
+                    font-size: @h2Size;
+                    display: none;
+                }
+            }
 #loginNavStatus {
 	a {
 		margin-left: 10px;
 	}
+}        }
+    }
 }
 
 .trigger {
-	display: none;
+    display: none;
 }
 
 @import "loginNav.tablet.less";

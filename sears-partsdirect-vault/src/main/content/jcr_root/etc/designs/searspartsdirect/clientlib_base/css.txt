@@ -82,6 +82,7 @@ toolsRequiredRepair/toolsRequiredRepair.less
 topAccessories/topAccessories.less
 topParts/topParts.less
 video/video.less
+sideChatNavigation/sideChatNavigation.less
 
 #base=less/templates/.
 repairHelpHome/repairHelpHome.less

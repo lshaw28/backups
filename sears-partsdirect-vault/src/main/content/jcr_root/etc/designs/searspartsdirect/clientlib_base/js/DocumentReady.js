@@ -39,6 +39,10 @@
 				e.stopPropagation();
 			}
 		});
+		/**
+		 * sticky Persitant Chat
+		 */
+		 var stickyPersitantChat = new PCChat();
         /**
 		 * modelHeader singleton class setup
 		 */

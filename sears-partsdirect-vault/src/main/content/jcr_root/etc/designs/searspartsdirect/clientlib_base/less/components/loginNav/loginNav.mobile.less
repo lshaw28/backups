@@ -1,51 +1,75 @@
 @media (max-width: 650px) {
-	.loginNav {
-		background-color: transparent;
-		left: -276px;
-		position: absolute;
-		top: 0;
-		width: 276px;
-		z-index: 0;
+    .loginNav {
+        background-color: transparent;
+        left: -276px;
+        position: absolute;
+        top: 0;
+        width: 276px;
+        z-index: 0;
 
-		ul {
-			float: left;
-			width: 100%;
+        ul {
+            float: left;
+            width: 100%;
 
-			li {
-				clear: left;
-				float: left;
-				font-size: @h5Size;
-				margin: 0;
-				width: 100%;
+            li {
+                clear: left;
+                float: left;
+                font-size: @h5Size;
+                margin: 0;
+                width: 100%;
 
-				a {
-					border-bottom: 1px solid @secondaryHueLight;
-					color: @primaryHueNormal;
-					display: block;
-					float: left;
-					font-size: @h5Size;
-					padding: 20px 0 20px 5%;
-					width: 95%;
+                a {
+                    border-bottom: 1px solid @secondaryHueLight;
+                    color: @primaryHueNormal;
+                    display: block;
+                    float: left;
+                    font-size: @h5Size;
+                    padding: 20px 0 20px 5%;
+                    width: 95%;
 
-					.icon-home {
-						display: inline-block;
-					}
-					.text-home {
-						display: none;
-					}
-				}
-			}
-		}
-	}
+                    .icon-home {
+                        display: inline-block;
+                    }
+                    .icon-phone {
+                        display: inline-block;
+                    }
+                    .icon-comments-alt {
+                        display: inline-block;
+                    }
+                    .icon-envelope-alt {
+                        display: inline-block;
+                    }
 
-	.trigger {
-		background: @secondaryHueNormal url(../../../img/menu-trigger.png) no-repeat center center;
-		display: block;
-		height: 44px;
-		left: 0;
-		position: absolute;
-		top: 0;
-		width: 44px;
-		z-index: 2;
-	}
+                    .text-home {
+                        display: none;
+                    }
+                }
+
+
+            }
+            li.visible-phone.chatOffline {
+                a {
+                    color: @secondaryHueDark !important;
+                    font-size: @h5Size;
+                    font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+                }
+            }
+            li.visible-phone.ChatNotAvailable {
+                display: none !important;
+
+            }
+        }
+
+    }
+
+    .trigger {
+        background: @secondaryHueNormal url(../../../img/menu-trigger.png) no-repeat center center;
+        display: block;
+        height: 44px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 44px;
+        z-index: 2;
+    }
 }

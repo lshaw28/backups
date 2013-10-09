@@ -49,6 +49,7 @@ secureLoginModal.js
 svgIcon.js
 userData.js
 video.js
+sideChatNavigation.js
 
 #base=js/widgets/.
 AdUnit.js
