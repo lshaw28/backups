@@ -35,13 +35,6 @@
 <cq:include script="headlibs.jsp"/>
 <cq:include script="/libs/wcm/core/components/init/init.jsp"/>
 <cq:include script="stats.jsp"/>
-<!--  PD 24*7 chat flag -> ${pd247ChatFlag} -->
-<script type="text/JavaScript" src="https://secure.ifbyphone.com/js/ibp_clickto_referral.js"></script>
-<script type="text/JavaScript">
-    var _ibp_public_key = "ebc48a973d649b0f9d0ed3398d0c425669b2ebc1";
-    var _ibp_formatting = true;
-    var _ibp_keyword_set = 59924;
-</script> 
 <% if (favIcon != null) { %><link rel="icon" type="image/vnd.microsoft.icon" href="<%= favIcon %>" />
 <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<%= favIcon %>" /><% } %>
 </head>
