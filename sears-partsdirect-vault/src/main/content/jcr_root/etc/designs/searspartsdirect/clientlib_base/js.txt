@@ -43,6 +43,7 @@ recommendedParts.js
 responsiveDropdown.js
 responsiveCollapse.js
 responsiveImage.js
+responsivePinchImage.js
 revealPanel.js
 searchPanel.js
 secureLoginModal.js

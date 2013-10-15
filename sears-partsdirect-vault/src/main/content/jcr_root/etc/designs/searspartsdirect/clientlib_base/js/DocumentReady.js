@@ -118,6 +118,12 @@
 			var newResponsiveImage = new responsiveImage($(this));
 		});
 		/**
+		 * responsivePinchImage class setup
+		 */
+		$('.responsivePinchImage').each(function () {
+			var newResponsivePinchImage = new responsivePinchImage($(this));
+		});
+		/**
 		 * responsiveDropdown class setup
 		 */
 		$('[data-toggle="responsive-dropdown"]').each(function () {

@@ -1,0 +1,46 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.responsivePinchImage {
+	border: 1px solid #dedede;
+	height: 600px;
+	position: relative;
+	width: 900px;
+
+	[data-toggle="pinch-image"] {
+		height: 100%;
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+		
+		img {
+			position: absolute;
+			width: 100%;
+		}
+		.control {
+			background-color: #39f;
+			color: #fff;
+			font-size: 20px;
+			font-weight: bold;
+			left: 10px;
+			min-width: 20px;
+			padding: 8px;
+			position: absolute;
+			text-align: center;
+			width: auto;
+			
+			&.minus {
+				bottom: 10px;
+			}
+			&.plus {
+				bottom: 50px;
+			}
+			&.inactive {
+				background-color: #ccc;
+			}
+		}
+	}
+}
+
+@import "responsivePinchImage.tablet.less";
+@import "responsivePinchImage.mobile.less";

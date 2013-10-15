@@ -70,6 +70,7 @@ repairStep/repairStep.less
 responsiveDropdown/responsiveDropdown.less
 responsiveFindThisPart/responsiveFindThisPart.less
 responsiveImage/responsiveImage.less
+responsivePinchImage/responsivePinchImage.less
 responsiveTable/responsiveTable.less
 searchPanel/searchPanel.less
 modelFinder/modelFinder.less
