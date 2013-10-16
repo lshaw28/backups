@@ -2,10 +2,12 @@
 @import "../../base.mixins.less";
 
 .responsivePinchImage {
-	border: 1px solid #dedede;
-	height: 600px;
+	border: 1px solid @secondaryHueLight;
+	.boxSizing(border-box);
+	cursor: pointer;
+	height: 315px;
 	position: relative;
-	width: 900px;
+	width: 100%;
 
 	[data-toggle="pinch-image"] {
 		height: 100%;
