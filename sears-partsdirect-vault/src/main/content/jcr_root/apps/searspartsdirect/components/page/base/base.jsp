@@ -26,6 +26,7 @@
 	}
 
 %><%= Doctype.fromRequest(request).getDeclaration() %>
-<html lang="en"><cq:include script="head.jsp"/>
+<html lang="en">
+<cq:include script="head.jsp"/>
 <cq:include script="body.jsp"/>
 </html>
