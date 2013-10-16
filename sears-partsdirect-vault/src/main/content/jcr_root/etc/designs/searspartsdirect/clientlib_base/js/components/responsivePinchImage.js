@@ -22,7 +22,8 @@ var responsivePinchImage = Class.extend(function () {
 			this.imageWidth = 0;
 			this.imageHeight = 0;
 			// Last Event Scale
-			this.lastEventScale = 0;
+			this.lastScale = 1;
+			this.transformPrefix = null;
 			// Perform setup
 			this.getProperties();
 			if (this.hasImage === true) {
@@ -46,6 +47,27 @@ var responsivePinchImage = Class.extend(function () {
 			if (self.desktopImage !== '' || self.tabletImage !== '' || self.mobileImage !== '') {
 				self.hasImage = true;
 			}
+			// Set vendor prefix for CSS transforms
+			self.setPrefix();
+		},
+		/**
+		 * Determines the vendor prefix to use for CSS transformations
+		 * If none is supported, retain the null value for future logic
+		 * @returns {void}
+		 */
+		setPrefix: function () {
+			var self = this,
+				div = $('<div />'),
+				i,
+				list = ['transform', 'msTransform', 'MozTransform', 'WebkitTransform', 'OTransform'];
+
+			// Determine which prefix to use
+			for (i = 0; i < list.length; ++i) {
+				if (typeof div[0].style[list[i]] !== 'undefined') {
+					self.transformPrefix = list[i];
+					return;
+				}
+			}
 		},
 		/**
 		 * Renders an image for the current breakpoint
@@ -61,7 +83,7 @@ var responsivePinchImage = Class.extend(function () {
 			// Choose the best image
 			if (isMobile) {
 				newImage = self.chooseImage(self.mobileImage, self.tabletImage, self.desktopImage);
-			} else if (isMobile) {
+			} else if (isTablet) {
 				newImage = self.chooseImage(self.tabletImage, self.mobileImage, self.desktopImage);
 			} else {
 				newImage = self.chooseImage(self.desktopImage, self.tabletImage, self.mobileImage);
@@ -73,19 +95,32 @@ var responsivePinchImage = Class.extend(function () {
 			} else {
 				currentImage = su.validString(self.image.attr('src'));
 			}
-			// New images or new src, update
+			// New image or new src, update
 			if (currentImage !== newImage) {
+				// Set new image source
 				self.image.attr('src', newImage);
+				// Reset image scale
+				self.lastScale = 1;
+				if (self.transformPrefix !== null) {
+					self.image[0].style[self.transformPrefix] = '';
+				}
+				// Reset initial CSS
 				self.image.css({
+					'height': 'auto',
 					'left': '50%',
 					'top': '50%',
 					'width': '100%'
 				});
-				self.imageWidth = self.image.width();
-				self.imageHeight = self.image.height();
-				self.image.css({
-					'margin-left': self.imageWidth / 2,
-					'margin-top': self.imageHeight / 2
+				// Set image load CSS
+				self.image.bind('load', function () {
+					self.imageWidth = self.image.width();
+					self.imageHeight = self.image.height();
+					
+					self.image.css({
+						'height': self.imageHeight,
+						'margin-left': 0 - self.imageWidth / 2,
+						'margin-top': 0 - self.imageHeight / 2
+					});
 				});
 			}
 		},
@@ -151,7 +186,7 @@ var responsivePinchImage = Class.extend(function () {
 					'clientX': clientPos.x,
 					'clientY': clientPos.y,
 					'gesture': {
-						'scale': 1.2
+						'scale': (self.lastScale <= 2.8 ? self.lastScale + 0.2 : 3.0)
 					}
 				});
 			});
@@ -162,7 +197,7 @@ var responsivePinchImage = Class.extend(function () {
 					'clientX': clientPos.x,
 					'clientY': clientPos.y,
 					'gesture': {
-						'scale': 0.8
+						'scale': (self.lastScale >= 0.4 ? self.lastScale - 0.2 : 0.2)
 					}
 				});
 			});
@@ -206,13 +241,22 @@ var responsivePinchImage = Class.extend(function () {
 			newX += -x * (newWidth - self.imageWidth) / newWidth;
 			newY += -y * (newHeight - self.imageHeight) / newHeight;
 
-			// Scale the image
-			self.image.css('-webkit-transform', 'scale3d(' + scale + ', ' + scale + ', 1)');
-			self.container.css('-webkit-transform', 'translate3d(' + newX + 'px, ' + newY + 'px, 0)');
-
-			// Set the dimensions
+			// Set properties
+			self.lastScale = scale;
 			self.imageWidth = newWidth;
 			self.imageHeight = newHeight;
+			
+			// Scale the image using transforms or regular old math
+			if (self.transformPrefix !== null) {
+				self.image[0].style[self.transformPrefix] = 'scale3d(' + scale + ', ' + scale + ', 1)';
+			} else {
+				self.image.css({
+					'height': self.imageHeight,
+					'margin-left': 0 - self.imageWidth / 2,
+					'margin-top': 0 - self.imageHeight / 2,
+					'width': self.imageWidth
+				});
+			}
 		}
 	};
 }());
