@@ -232,12 +232,12 @@ var responsivePinchImage = Class.extend(function () {
 			self.imageHeight = newHeight;
 			
 			// Scale the image
-			self.image.stop().animate({
+			self.image.stop().css({
 				'height': self.imageHeight,
 				'margin-left': 0 - self.imageWidth / 2,
 				'margin-top': 0 - self.imageHeight / 2,
 				'width': self.imageWidth
-			}, 50);
+			});
 		},
 		/**
 		 * Handles a drag event
@@ -272,10 +272,10 @@ var responsivePinchImage = Class.extend(function () {
 			}
 
 			// Set new margins
-			self.image.stop().animate({
+			self.image.stop().css({
 				'margin-left': marginLeft,
 				'margin-top': marginTop
-			}, 50);
+			});
 		}
 	};
 }());
