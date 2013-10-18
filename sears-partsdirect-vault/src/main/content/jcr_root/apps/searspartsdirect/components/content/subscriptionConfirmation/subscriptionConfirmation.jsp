@@ -4,7 +4,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<h1>Subscription Confirmation # 9999999 <button type="button" class="new-btn new-btn-search">Log Out</button></h1>
+		<h1>Subscription Confirmation # 9999999 <a href="${mainSitePath}/partsdirect/myprofile/logout.action" onclick="SPDUtils.setCookie(\'username\', \'\');" class="new-btn new-btn-search">Log Out</a></h1>
 	</div>
 </div>
 <div class="row-fluid">
@@ -55,7 +55,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><a href="#">[XXXXXXX]</a></td>
+					<td>[XXXXXXX]</td>
 					<td>[desc]</td>
 					<td>[X]</td>
 					<td>$[XX.XX]</td>
