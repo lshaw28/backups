@@ -71,6 +71,7 @@ var customAccordionForms = Class.extend(function () {
 				//Sets the frequency, dates (eventually) and quantity the user input on the first step
 				if ($(e.target.form).attr('id') == "cafSelectFilterFrequencyForm") {
 					$('#freqSel').html($('.filFreq:checked').val());
+					$('#startDate').html($('#odInput').val());
 					$('#subQty').html($('#waterFilterQuantity').val());
 				}
 				//Special bit to fill out the billing form if user wants to use the same address (already on checkbox, here in case user updates after clicking the checkbox)
