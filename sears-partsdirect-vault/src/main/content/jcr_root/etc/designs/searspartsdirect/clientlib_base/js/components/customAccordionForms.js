@@ -161,8 +161,9 @@ var customAccordionForms = Class.extend(function () {
 					$('#shippingSame').attr('checked', 'checked');
 					// Clear out old error messages
 					$('.accordion-inner .error').remove();
-					// Remove validation on individual fields
+					// Remove validation on individual fields and error border color
 					$('.errorField').off('change.error').removeClass('errorField');
+					$('.dropError').removeClass('dropError');
 				} else {
 					self.setBillingFields(false);
 					$('#shippingSame').removeAttr('checked');
@@ -416,15 +417,18 @@ var customAccordionForms = Class.extend(function () {
 			
 			// Clear out old error messages
 			$('.accordion-inner .error').remove();
-			// Remove validation on individual fields
+			// Remove validation on individual fields and error border color
 			$('.errorField').off('change.error').removeClass('errorField');
-			//$('.comboError').removeClass('comboError');
+			$('.dropError').removeClass('dropError');
 			
 			// Place the error messages under each field
 			for (i = 0; i < regulaResponse.length; i = i + 1) {
 				var currentInvalid = $(regulaResponse[i].failingElements[0]);
 				currentInvalid.after('<span class="error">*' + regulaResponse[i].message + '</span>');
 				currentInvalid.addClass('errorField');
+				if (currentInvalid.siblings('.responsiveDropdown').length > 0) {
+					currentInvalid.siblings('.responsiveDropdown').find('.new-btn-dropdown').addClass('dropError');
+				}
 				currentInvalid.on('change.error', function (e) {
 					var z = 0,
 						remainingErrors = regula.validate(),
@@ -442,6 +446,9 @@ var customAccordionForms = Class.extend(function () {
 						$(this).siblings('.error').remove();
 						// Remove validation on individual field
 						$(this).off('change.error').removeClass('errorField');
+						if ($(this).siblings('.responsiveDropdown').length > 0) {
+							$(this).siblings('.responsiveDropdown').find('.new-btn-dropdown').removeClass('dropError');
+						}
 					}
 				});
 			}

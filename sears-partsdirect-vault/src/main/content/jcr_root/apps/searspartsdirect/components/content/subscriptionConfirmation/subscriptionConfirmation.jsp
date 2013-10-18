@@ -38,10 +38,12 @@
 		<p>The customer will receive filter(s) shipped to their home <strong>every 6 months</strong>. If they have questions or would like to make updates to their membership, they can call 1-800-366-PART (7278).</p>
 	</div>
 </div>
-<div class="row-fluid">
-	<div class="span12 detailHeader">
+<div class="row-fluid detailHeader">
+	<div class="span12">
 		<h3>Subscription Detail</h3>
 	</div>
+</div>
+<div class="row-fluid">
 	<div class="span10 offset1">
 		<table class="responsiveTable alwaysOpen">
 			<thead>
