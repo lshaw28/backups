@@ -1,4 +1,12 @@
 @import "base.variables.less";
+.userSelect(@v: none) {
+	-webkit-touch-callout: @v;
+	-webkit-user-select: @v;
+	-khtml-user-select: @v;
+	-moz-user-select: @v;
+	-ms-user-select: @v;
+	user-select: @v;
+}
 .backgroundSize(@v: contain) {
 	-webkit-background-size: @v;
 	-moz-background-size: @v;

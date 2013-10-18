@@ -11,6 +11,8 @@ var responsivePinchImage = Class.extend(function () {
 			// Elements
 			this.el = el;
 			this.container = $('[data-toggle="pinch-image"]', this.el);
+			this.fullscreen = $('[data-toggle="pinch-fullscreen"]', this.el);
+			this.print = $('[data-toggle="pinch-print"]', this.el);
 			this.image = null;
 			this.plusButton = null;
 			this.minusButton = null;
@@ -109,15 +111,13 @@ var responsivePinchImage = Class.extend(function () {
 			var self = this;
 
 			// Render plus button
-			self.plusButton = $('<a />');
+			self.plusButton = $('<i />');
 			self.plusButton.addClass('control')
-				.addClass('plus')
-				.text('+');
+				.addClass('icon-plus');
 			// Render minus button
-			self.minusButton = $('<a />');
+			self.minusButton = $('<i />');
 			self.minusButton.addClass('control')
-				.addClass('minus')
-				.text('-');
+				.addClass('icon-minus');
 			// Display buttons
 			self.container.append(self.plusButton)
 				.append(self.minusButton);
