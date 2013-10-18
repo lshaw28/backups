@@ -40,10 +40,6 @@
 			}
 		});
 		/**
-		 * sticky Persitant Chat
-		 */
-		 var stickyPersitantChat = new PCChat();
-        /**
 		 * modelHeader singleton class setup
 		 */
 		var newModelHeader = new modelHeader();
@@ -135,27 +131,27 @@
 		$('.video div[data-youtubeid]').each(function () {
 			var newVideo = new video($(this));
 		});
-        /**
+		/**
 		 * addToCart class setup
 		 */
 		$('.addToCart_js').each(function () {
 			var newAddToCart = new addToCart($(this), $('.addToCartQuantity_js', $(this).parent().parent()));
 		});
-        /**
+		/**
 		 * guideNavigation class setup
 		 */
 		$('.guideNavigation').each(function() {
 			var newGuideNavigation = new guideNavigation($(this));
 		});
-        /**
-         * collapse101 class setup
-         * NOTE: collapse101 is based on Twitter Bootstrap's
-         * collapse component with modifications to make it
-         * behave responsively the way Sears UX wanted.
-         */
-        $('[data-toggle="collapse101"]').each(function () {
-            var newCollapse101 = new Collapse101($(this));
-        });
+		/**
+		 * collapse101 class setup
+		 * NOTE: collapse101 is based on Twitter Bootstrap's
+		 * collapse component with modifications to make it
+		 * behave responsively the way Sears UX wanted.
+		 */
+		$('[data-toggle="collapse101"]').each(function () {
+			var newCollapse101 = new Collapse101($(this));
+		});
 		/**
 		 * responsiveCollapse class setup
 		 */
@@ -165,14 +161,14 @@
 		$('.category101').each(function () {
 			var newresponsiveCollapse = new responsiveCollapse($(this), 'category101_js');
 		});
-        // commonParts class setup
-        $('.commonParts').each(function() {
-            var newCommonParts = new commonParts($(this));
-        });
-        // recommendedParts class setup
-        $('.recommendedParts').each(function() {
-            var newrecommendedParts = new recommendedParts($(this));
-        });
+		// commonParts class setup
+		$('.commonParts').each(function() {
+			var newCommonParts = new commonParts($(this));
+		});
+		// recommendedParts class setup
+		$('.recommendedParts').each(function() {
+			var newrecommendedParts = new recommendedParts($(this));
+		});
 		// desktop carousel initialization
 		$('.carousel .desktopCarousel').each(function () {
 			var carouselElement = $(this);
@@ -259,6 +255,14 @@
 				max: 100000,
 				obj: new shc.pd.base.widgets.AdUnit(desktopAdUnit, 'desktopAdEnabled')
 			}));
+		});
+		// Initialise AddThis if needed
+		if ($('.socialBar').length > 0) {
+			window.SPDUtils.prepareAddThis();
+		}
+		// Side Chat Navigation
+		$('.sideChatNavigation').each(function () {
+			var newSideChatNavigation = new sideChatNavigation($(this));
 		});
 	});
 }(window));

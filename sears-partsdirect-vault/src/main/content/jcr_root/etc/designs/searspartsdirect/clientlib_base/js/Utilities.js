@@ -12,7 +12,6 @@
 			var self = this;
 
 			self.getGlobalVariables();
-			self.setAddThisVariables();
 			self.getQueryParameters();
 		},
 		/**
@@ -48,13 +47,24 @@
 		/**
 		 * Creates objects required by AddThis
 		 */
-		setAddThisVariables: function () {
+		prepareAddThis: function () {
+			var self = this,
+				addThisUrl = '//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f903dd609463926',
+				script = null;
+
+			// Set global variables
 			window['addthis_share'] = {
 				'url': document.location.href
 			};
 			window['addthis_config'] = {
 				'data_track_addressbar': false
 			};
+			// Append script to the body
+			script = $('<script />');
+			script.attr('src', self.getFullLocation().protocol + addThisUrl)
+				.attr('type', 'text/javascript')
+				.attr('language', 'javascript');
+			$('body').append(script);
 		},
 		/**
 		 * Get query string parameters

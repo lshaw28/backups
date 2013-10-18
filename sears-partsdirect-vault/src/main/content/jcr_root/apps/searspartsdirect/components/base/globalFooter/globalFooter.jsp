@@ -29,26 +29,6 @@
 			</div>
 		</div>
 	</div>
-<c:if test="${not empty pd247ChatFlag}">
-<div id="persistentChat_sidePanel" class="hidden-phone">
-	<div id="pC_panelContent">
-		<div class="pC_persistent_icons_content">
-			<h3>for questions or assistance, call <span class="semi-bold"><script type="text/JavaScript" src="https://secure.ifbyphone.com/js/keyword_replacement.js"></script> </span></h3>
-			<p>M-F&nbsp;&nbsp;6:30 a.m. - 10:30 p.m. CT</p>
-			<p>Sat&nbsp;&nbsp;&nbsp;7:00 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
-			<p>Sun&nbsp;&nbsp;7:30 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
-		</div>
-	</div>
-	<div id="pC_panelHandle">
-		<div class="p_icons">
-			<div class="pC_icons_div" id="pC_call_id"><i class="icon-phone icon-2x"></i><br />Call</div>
-			<div class="pC_icons_div pC_top_bot_border ChatNotAvailable" id="pC_chat_id"><i class="icon-comments-alt icon-2x"></i><br />Chat</div>
-			<div class="pC_icons_div pC_top_bot_border" id="pC_chat_offline_id"><i class="icon-comments-alt icon-2x"></i><br />Chat offline</div>
-			<div class="pC_icons_div"><a href="${mainSitePath}/partsdirect/contactus.pd"><i class="icon-envelope icon-2x"></i><br />Email</a></div>
-		</div>
-	</div>
-</div>
-</c:if>
 	<div id="footerColumn3">
 		<h3>for questions or assistance, call <span class="semi-bold">1-800-252-1698</span></h3>
 		<p>M-F&nbsp;&nbsp;6:30 a.m. - 10:30 p.m. CT</p>
@@ -80,7 +60,23 @@
 		<a href="${mainSitePath}/partsdirect/termsOfUse.pd" class="popupTrigger">Terms of use</a>
 	</div>
 	<div class="footerLogos">
-		<img src="http://c.searspartsdirect.com/cons-148/assets/img/home_images/veriSign.jpg" />
-		<img src="http://c.searspartsdirect.com/cons-148/assets/img/home_images/bbb.jpg" />
+		<img src="${contextPath}/etc/designs/searspartsdirect/clientlib_base/img/veriSign.jpg" />
+		<img src="${contextPath}/etc/designs/searspartsdirect/clientlib_base/img/bbb.jpg" />
 	</div>
 </div>
+<c:if test="${not empty pd247ChatFlag}">
+<div class="sideChatNavigation hidden-phone">
+	<div class="sideChatNavigationContent">
+		<h3>for questions or assistance, call <span class="semi-bold"><script type="text/JavaScript" src="https://secure.ifbyphone.com/js/keyword_replacement.js"></script> </span></h3>
+		<p>M-F&nbsp;&nbsp;6:30 a.m. - 10:30 p.m. CT</p>
+		<p>Sat&nbsp;&nbsp;&nbsp;7:00 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
+		<p>Sun&nbsp;&nbsp;7:30 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
+	</div>
+	<div class="sideChatNavigationControls">
+		<div data-toggle="sidechattoggle" class="sideChatNavigationIcon"><i class="icon-phone icon-2x"></i><br />Call</div>
+		<div class="sideChatNavigationIcon ChatNotAvailable" id="pC_chat_id"><i class="icon-comments-alt icon-2x"></i><br />Chat</div>
+		<div class="sideChatNavigationIcon offline"><i class="icon-comments-alt icon-2x"></i><br />Chat offline</div>
+		<div class="sideChatNavigationIcon"><a href="${mainSitePath}/partsdirect/contactus.pd"><i class="icon-envelope icon-2x"></i><br />Email</a></div>
+	</div>
+</div>
+</c:if>

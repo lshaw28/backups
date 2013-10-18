@@ -10,7 +10,7 @@ var secureLogin = Class.extend(function () {
 		 */
 		init: function (el) {
 			this.el = el;
-			this.isMobileBrowser = isMobileBrowser;
+			this.isMobileBrowser = su.isMobileBrowser();
 			this.isTabletSize = isTabletSize;
 			this.isMobileSize = isMobileSize;
 			this.serviceCallPending = false;
