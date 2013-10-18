@@ -1,80 +1,56 @@
 @import "../../base.variables.less";
 @import "../../base.mixins.less";
 
+.sideChatNavigation {
+	bottom: 100px;
+	position: fixed;
+	right: -340px;
+	width: 384px;
+	z-index: 999;
 
+	.sideChatNavigationContent, .sideChatNavigationControls {
+		float: right;
+	}
+	.sideChatNavigationContent {
+		background-color: @bodyColor;
+		border: 3px solid @primaryHueDarker;
+		border-right: 0;
+		height: 200px;
+		padding: 15px;
+		width: 307px;
+	}
+	.sideChatNavigationControls {
+		height: auto;
 
-#persistentChat_sidePanel {
-    width:384px;
-    position:fixed;
-    right:-340px;
-    bottom:100px;
-    z-index:999;
-    
-    #pC_panelContent {
-        float:right;
-        width:337px;
-        height:220px;
-        border:3px solid @primaryHueDarker;
-        border-right:0px;
-        background:@bodyColor;
-        
-        .pC_persistent_icons_content {
-            width:307px;
-            padding:15px;
-            font-size:@pSize;
-            display: block;
-        }
-        
-    }
-    
-    #pC_panelHandle{
-        height:auto;
-        float:right;
-        cursor:pointer;
-        
-        .p_icons {
-            
-            .ChatNotAvailable{
-                display: none;
-            }
-            
-            .pC_icons_div {
-                width:44px;
-                padding:10px 0px;
-                cursor:pointer;
-                text-align:center;
-                color:@bodyColor;
-                font-size:@smallPSize;
-                background:@primaryHueNormal;
-                
-                
-                a {
-                    color: @bodyColor;
-                    font-size:@smallPSize;
-                    text-decoration: none;
-                    
-                    
-                }
-                img {
-                    text-align:center; padding:0 0 8px 0;
-                }
-                
-            }
-            
-            #pC_chat_offline_id{
-                background:@secondaryHueNormal;
-                cursor: normal;
-                
-                
-            }
-            .pC_top_bot_border {
-                border:1px solid #666666;
-                border-left:0px;
-                border-right:0px;
-            }
-            
-            
-        }
-        
-    }
+		.sideChatNavigationIcon {
+			background-color: @primaryHueNormal;
+			border-top: 1px solid @secondaryHueDark;
+			color: @bodyColor;
+			cursor: pointer;
+			font-size: @smallPSize;
+			padding: 10px 0;
+			text-align: center;
+			width: 44px;
+
+			a {
+				color: @bodyColor;
+				font-size:@smallPSize;
+				text-decoration: none;
+			}
+			img {
+				text-align:center; padding:0 0 8px 0;
+			}
+			&:first-child {
+				border-top: 0;
+			}
+			// # Used by JavaScript?
+			&.ChatNotAvailable {
+				display: none;
+			}
+			&.offline {
+				background-color: @secondaryHueNormal;
+				cursor: default;
+			}
+		}
+	}
 }

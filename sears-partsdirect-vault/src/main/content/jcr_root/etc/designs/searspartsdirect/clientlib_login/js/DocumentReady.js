@@ -15,7 +15,6 @@
 		 */
 		var su = window.SPDUtils;
 
-
         /**
          * Define secure modals:
          * 1. login
