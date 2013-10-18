@@ -60,8 +60,8 @@
 		<a href="${mainSitePath}/partsdirect/termsOfUse.pd" class="popupTrigger">Terms of use</a>
 	</div>
 	<div class="footerLogos">
-		<img src="http://c.searspartsdirect.com/cons-148/assets/img/home_images/veriSign.jpg" />
-		<img src="http://c.searspartsdirect.com/cons-148/assets/img/home_images/bbb.jpg" />
+		<img src="${contextPath}/etc/designs/searspartsdirect/clientlib_base/img/veriSign.jpg" />
+		<img src="${contextPath}/etc/designs/searspartsdirect/clientlib_base/img/bbb.jpg" />
 	</div>
 </div>
 <c:if test="${not empty pd247ChatFlag}">
