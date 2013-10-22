@@ -23,6 +23,7 @@ import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.replication.ReplicationStatus;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
@@ -86,7 +87,7 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 				aPage = aResource.adaptTo(Page.class);
 			}
 			if (aPage != null) {
-				writeUrlsUnder(rules,aPage,out);
+					writeUrlsUnder(rules,aPage,out);
 			} else {
 				log.warn("Could not resolve the path "+startPath+" to a page");
 			}
@@ -105,14 +106,17 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 	}
 	
 	void writeUrlForPage(final Rules rules, final Page aPage, final PrintWriter out) {
-		out.println(Constants.SITEMAP_OPEN_URL);
-		out.print(Constants.SITEMAP_OPEN_LOC);
-		out.print(getExternalUrl(rules,aPage)); 
-		out.println(Constants.SITEMAP_CLOSE_LOC);
-		out.print(Constants.SITEMAP_OPEN_LM);
-		out.print(getFormattedLastModified(rules,aPage));
-		out.println(Constants.SITEMAP_CLOSE_LM);
-		out.println(Constants.SITEMAP_CLOSE_URL);
+		ReplicationStatus replicationStatus = aPage.adaptTo(ReplicationStatus.class);
+		if (replicationStatus.isActivated()) {
+			out.println(Constants.SITEMAP_OPEN_URL);
+			out.print(Constants.SITEMAP_OPEN_LOC);
+			out.print(getExternalUrl(rules,aPage)); 
+			out.println(Constants.SITEMAP_CLOSE_LOC);
+			out.print(Constants.SITEMAP_OPEN_LM);
+			out.print(getFormattedLastModified(rules,aPage));
+			out.println(Constants.SITEMAP_CLOSE_LM);
+			out.println(Constants.SITEMAP_CLOSE_URL);
+		}
 	}
 	
 	String getExternalUrl(final Rules rules, final Page aPage) {
