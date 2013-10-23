@@ -6,7 +6,9 @@ package com.spd.cq.searspartsdirect.common.foundation;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.Servlet;
@@ -107,7 +109,7 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 	
 	void writeUrlForPage(final Rules rules, final Page aPage, final PrintWriter out) {
 		ReplicationStatus replicationStatus = aPage.adaptTo(ReplicationStatus.class);
-		if (replicationStatus.isActivated()) {
+		if (replicationStatus.isActivated() && !isVirtualPage(aPage.getPath())) {
 			out.println(Constants.SITEMAP_OPEN_URL);
 			out.print(Constants.SITEMAP_OPEN_LOC);
 			out.print(getExternalUrl(rules,aPage)); 
@@ -117,6 +119,29 @@ public class SitemapServlet extends SlingSafeMethodsServlet {
 			out.println(Constants.SITEMAP_CLOSE_LM);
 			out.println(Constants.SITEMAP_CLOSE_URL);
 		}
+	}
+	
+	private static List<String> getVirtualPageUrls() {
+		List<String> reservedPages = new ArrayList<String>();
+		reservedPages.add("/content/searspartsdirect/en.html");
+		reservedPages.add("/content/searspartsdirect/en/repair-guide.html");
+		reservedPages.add("/article.html");
+		reservedPages.add("/author.html");
+		reservedPages.add("/categories.html");
+		reservedPages.add("/symptom.html");
+		reservedPages.add("/model-repair.html");
+		return reservedPages;
+	}
+	
+	private boolean isVirtualPage(String pagePath) {
+		pagePath = pagePath + ".html";
+		List<String> virtualPagePatterns = getVirtualPageUrls();
+		for (String patten : virtualPagePatterns) {
+			if (pagePath.contains(patten)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	String getExternalUrl(final Rules rules, final Page aPage) {
