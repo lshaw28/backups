@@ -19,7 +19,7 @@ NS('shc.pd.base.fx').Translate3d = Class.extend(function () {
 	/**
 	 * Resolves prefix for transform
 	 * @private
-	 * @return {undefined}
+	 * @return {void}
 	 */
 	function resolveVendorPrefix() {
 		var div = $('<div />'),
@@ -68,7 +68,7 @@ NS('shc.pd.base.fx').Translate3d = Class.extend(function () {
 		 * Set X axis
 		 * @param {number} x
 		 * @param {string} unit
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		setX: function (x, unit) {
 			this.node[0].style[staticCssProperty] = 'translate3d(' + x + unit + ',0,0)';
@@ -81,7 +81,7 @@ NS('shc.pd.base.fx').Translate3d = Class.extend(function () {
 		 * @param {string} unit
 		 * @param {number} duration (milliseconds)
 		 * @param {Function} callback
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		animateX: function (destination, unit, duration, callback) {
 			if (typeof duration === 'undefined') {
@@ -125,7 +125,7 @@ NS('shc.pd.base.fx').Translate3d = Class.extend(function () {
 		/**
 		 * Stop animation
 		 * @param {boolean} suppressEvent
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		stop: function (suppressEvent) {
 			this.timer.stop();

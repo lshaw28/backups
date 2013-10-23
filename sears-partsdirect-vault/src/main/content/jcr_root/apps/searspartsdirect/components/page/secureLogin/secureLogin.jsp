@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="X-UA-Compatible" content="IE=edge,chrome=1" />
 <%-- Environment Variables --%>
-<spd:getPDUrl />
+<spd:getPDEnvDetail />
 <spd:getLocalUrl />
 <meta name="global-mainSitePath" content="${nonSecurePDUrl}" />
 <meta name="global-mainSitePathSecure" content="${securePDUrl}" />

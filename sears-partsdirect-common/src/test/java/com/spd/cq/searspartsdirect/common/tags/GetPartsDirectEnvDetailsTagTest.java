@@ -6,11 +6,11 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-public class GetPartsDirectUrlTest  extends MocksTag{
+public class GetPartsDirectEnvDetailsTagTest  extends MocksTag{
 
 	@Test
 	public void testDoStartTag() throws JspException {
-		GetPartsDirectUrlTag getPartsDirectUrl = new GetPartsDirectUrlTag();
+		GetPartsDirectEnvDetailsTag getPartsDirectUrl = new GetPartsDirectEnvDetailsTag();
 		getPartsDirectUrl.setPageContext(pageContext);
 		getPartsDirectUrl.doStartTag();
 		getPartsDirectUrl.doEndTag();

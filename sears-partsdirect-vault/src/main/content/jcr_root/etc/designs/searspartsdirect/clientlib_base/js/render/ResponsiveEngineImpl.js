@@ -14,7 +14,7 @@ NS('shc.pd.base.render').ResponsiveEngineImpl = Class.extend(function () {
 		 * Fire specified event
 		 * @param {string} event Callback property name
 		 * @param {array} args Passed variable
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		fire: function (event, args) {
 			try {
@@ -35,12 +35,12 @@ NS('shc.pd.base.render').ResponsiveEngineImpl = Class.extend(function () {
 		/**
 		 * Stub method for entire window resize
 		 * @param {Function} callback
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		onResponsive: function (callback) {},
 		/**
 		 * Check if events are binded
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		initEventBindings: function () {
 			if (this.eventBinded === false) {
@@ -51,7 +51,7 @@ NS('shc.pd.base.render').ResponsiveEngineImpl = Class.extend(function () {
 		},
 		/**
 		 * Bind events stub
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		bindEvents: function () {},
 		/**

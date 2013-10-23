@@ -20,6 +20,9 @@
 				</div>
 			</div>
 			<div class="row-fluid">
+				<div class="desktopAdUnit adUnitContainer span2 offset1 pull-right">
+					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit" />
+				</div>
 				<div class="span9">
 					<div class="row-fluid">
 						<div class="span6">
@@ -31,6 +34,14 @@
 							<cq:include path="toolsRequiredRepair" resourceType="searspartsdirect/components/content/toolsRequiredRepair" />
 						</div>
 					</div>
+				</div>
+				<div class="tabletAdUnit adUnitContainer">
+					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit728x90" />
+				</div>
+				<div class="mobileAdUnit adUnitContainer">
+					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit300x50" />
+				</div>
+				<div class="span9">
 					<div class="row-fluid">
 						<div class="span12">
 							<a name="template_beforeYouBegin"></a>
@@ -41,9 +52,6 @@
 							<cq:include path="relatedGuides" resourceType="searspartsdirect/components/content/relatedGuides" />
 						</div>
 					</div>
-				</div>
-				<div class="span2 offset1 ad-span pull-right">
-					<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,5 @@
-<%@ include file="/apps/searspartsdirect/global.jsp" %>
-<div class="innerHeader ie_innerHeader ">
+<%@ include file="/apps/searspartsdirect/global.jsp" %><%
+%><div class="innerHeader ie_innerHeader ">
 	<div class="body_shadow_left"></div>
 	<div class="body_shadow_right"></div>
 	<cq:include path="homeLogo" resourceType="/apps/searspartsdirect/components/base/homeLogo" />

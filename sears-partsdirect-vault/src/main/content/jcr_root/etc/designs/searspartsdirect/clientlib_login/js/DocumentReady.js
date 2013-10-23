@@ -9,6 +9,12 @@
 		 * Set window messaging
 		 */
 		window['parentDomain'] = decodeURIComponent(document.location.hash.replace(/^#/, ''));
+
+		/**
+		 * Determine mobile touch capability, window size
+		 */
+		var su = window.SPDUtils;
+
         /**
          * Define secure modals:
          * 1. login

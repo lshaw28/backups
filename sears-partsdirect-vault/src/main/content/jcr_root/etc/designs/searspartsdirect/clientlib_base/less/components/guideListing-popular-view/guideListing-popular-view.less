@@ -34,23 +34,42 @@
 	}
 }
 
+
+
 .guideListing-popular-image {
-	width: @guideListing-popular-view-img-width + 4px;
-	background: @secondaryHueLightest;
-	overflow: hidden;
-	position: absolute;
 
-	.wrapper {
-		border-right: solid 4px #fff;
-		overflow: hidden;
-	}
 
-	img {
-		display: block;
-		max-width: none;
-		height: @guideListing-popular-view-height;
-	}
+    width: @guideListing-popular-view-img-width + 4px;
+    background: @secondaryHueLightest;
+    overflow: hidden;
+    position: absolute;
+
+    .wrapper {
+
+      border-left: solid 1px @secondaryHueLight;
+      border-top: solid 1px @secondaryHueLight;
+      border-right: solid 4px #fff;
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: none;
+      height: @guideListing-popular-view-height;
+    }
+
+    hr {
+      border-bottom: 0;
+      border-top: solid 1px @secondaryHueLight;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      left: 0;
+      top: @guideListing-popular-view-height - 1px;
+      width: @guideListing-popular-view-img-width;
+    }
 }
+
 
 .guideListing-popular-text {
 	padding-left: 304px;
@@ -65,14 +84,14 @@
 	}
 
 	p {
-		min-height: 130px;
+
 		overflow: hidden;
 	}
 
 	h3 {
 		margin-top: 0;
 		color: @primaryHueNormal;
-		line-height: 24px;
+		line-height: @h2Size;
 	}
 
 	.repair-difficulty {

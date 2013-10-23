@@ -406,9 +406,9 @@
 		</attribute>
 	</tag>
 	<tag>
-		<name>getPDUrl</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetPartsDirectUrlTag</tag-class>
-		<info>this tag will fetch the PD (QA, Stress, Production) url</info>
+		<name>getPDEnvDetail</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetPartsDirectEnvDetailsTag</tag-class>
+		<info>this tag will fetch the PD (QA, Stress, Production) urls and variables</info>
 	</tag>
 	<tag>
 		<name>getLocalUrl</name>

@@ -8,4 +8,3 @@
 		<a class="addthis_button_email"><i class="icon-envelope-alt"></i><span class="socialBarMobile">Email this</span></a>
 	</div>
 </div>
-<a class="addthis_button_print"><i class="icon-print"></i>Print this</a>

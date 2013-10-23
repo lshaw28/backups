@@ -165,7 +165,7 @@
 		</desktop>
        	<tablet
        		jcr:primaryType="cq:Panel"
-       		title="768x90 Image">
+       		title="728x90 Image">
             <items jcr:primaryType="cq:WidgetCollection">
 				<tabletImageTab
 					jcr:primaryType="cq:Widget"

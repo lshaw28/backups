@@ -39,6 +39,17 @@
 					jcr:primaryType="cq:Widget"
 					path="/apps/searspartsdirect/components/page/base/tab_page_properties.infinity.json"
 					xtype="cqinclude"/>
+				<pageRelations
+					jcr:primaryType="cq:Panel"
+					width="500"
+					title="Page Relations">
+					<items jcr:primaryType="cq:WidgetCollection">
+						<pageRelations jcr:primaryType="cq:Widget"
+							name="./pages"
+							treeRootPath="/etc/spdAssets/scaffolding/productCategory"
+							xtype="pagemapper"/>
+					</items>
+				</pageRelations>
 			</items>
 		</tabs>
 	</items>

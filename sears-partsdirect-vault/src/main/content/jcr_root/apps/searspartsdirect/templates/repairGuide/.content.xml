@@ -16,5 +16,17 @@
 			jcr:primaryType="nt:unstructured"
 			sling:resourceType="searspartsdirect/components/content/comments"
 			moderateComments="true" />
+		<repairInstructions
+			jcr:primaryType="nt:unstructured">
+			<instructionsParsys
+				jcr:primaryType="nt:unstructured"
+				sling:resourceType="foundation/components/parsys">
+				<warning
+					jcr:primaryType="nt:unstructured"
+					sling:resourceType="searspartsdirect/components/content/warning"
+					noticeIcon="icon-warning-sign"
+					noticeText="Undertaking repairs to appliances can be hazardous. Use the proper tools and safety equipment noted in the guide and follow all instructions. Do not proceed until you are confident that you understand all of the steps and are capable of completing the repair. Some repairs should only be performed by a qualified technician." />
+			</instructionsParsys>
+		</repairInstructions>
 	</jcr:content>
 </jcr:root>

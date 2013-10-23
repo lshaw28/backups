@@ -2,23 +2,23 @@
 (function (window) {
 	"use strict";
 	/**
-	 * IE support
-	 */
-	if ($.browser.msie) {
-		var v = $.browser.version;
-		v = v.slice(0, v.indexOf('.'));
-		if (window.SPDUtils.validNumber(v, 1000) < 10) {
-			$('html').addClass('lt-ie10');
-		}
-		if (window.SPDUtils.validNumber(v, 1000) < 9) {
-			$('html').addClass('lt-ie9');
-		}
-		$('html').addClass('ie-v' + v);
-	}
-	/**
 	 * Global functionality instantiation
 	 */
 	$(document).ready(function () {
+		/**
+		 * IE support
+		 */
+		if ($.browser.msie) {
+			var v = $.browser.version;
+			v = v.slice(0, v.indexOf('.'));
+			if (window.SPDUtils.validNumber(v, 1000) < 10) {
+				$('html').addClass('lt-ie10');
+			}
+			if (window.SPDUtils.validNumber(v, 1000) < 9) {
+				$('html').addClass('lt-ie9');
+			}
+			$('html').addClass('ie-v' + v);
+		}
 		/**
 		 * Set up userData singleton class before all else
 		 */
@@ -39,7 +39,7 @@
 				e.stopPropagation();
 			}
 		});
-        /**
+		/**
 		 * modelHeader singleton class setup
 		 */
 		var newModelHeader = new modelHeader();
@@ -114,6 +114,12 @@
 			var newResponsiveImage = new responsiveImage($(this));
 		});
 		/**
+		 * responsivePinchImage class setup
+		 */
+		$('.responsivePinchImage').each(function () {
+			var newResponsivePinchImage = new responsivePinchImage($(this));
+		});
+		/**
 		 * responsiveDropdown class setup
 		 */
 		$('[data-toggle="responsive-dropdown"]').each(function () {
@@ -125,27 +131,27 @@
 		$('.video div[data-youtubeid]').each(function () {
 			var newVideo = new video($(this));
 		});
-        /**
+		/**
 		 * addToCart class setup
 		 */
 		$('.addToCart_js').each(function () {
 			var newAddToCart = new addToCart($(this), $('.addToCartQuantity_js', $(this).parent().parent()));
 		});
-        /**
+		/**
 		 * guideNavigation class setup
 		 */
 		$('.guideNavigation').each(function() {
 			var newGuideNavigation = new guideNavigation($(this));
 		});
-        /**
-         * collapse101 class setup
-         * NOTE: collapse101 is based on Twitter Bootstrap's
-         * collapse component with modifications to make it
-         * behave responsively the way Sears UX wanted.
-         */
-        $('[data-toggle="collapse101"]').each(function () {
-            var newCollapse101 = new Collapse101($(this));
-        });
+		/**
+		 * collapse101 class setup
+		 * NOTE: collapse101 is based on Twitter Bootstrap's
+		 * collapse component with modifications to make it
+		 * behave responsively the way Sears UX wanted.
+		 */
+		$('[data-toggle="collapse101"]').each(function () {
+			var newCollapse101 = new Collapse101($(this));
+		});
 		/**
 		 * responsiveCollapse class setup
 		 */
@@ -155,14 +161,14 @@
 		$('.category101').each(function () {
 			var newresponsiveCollapse = new responsiveCollapse($(this), 'category101_js');
 		});
-        // commonParts class setup
-        $('.commonParts').each(function() {
-            var newCommonParts = new commonParts($(this));
-        });
-        // recommendedParts class setup
-        $('.recommendedParts').each(function() {
-            var newrecommendedParts = new recommendedParts($(this));
-        });
+		// commonParts class setup
+		$('.commonParts').each(function() {
+			var newCommonParts = new commonParts($(this));
+		});
+		// recommendedParts class setup
+		$('.recommendedParts').each(function() {
+			var newrecommendedParts = new recommendedParts($(this));
+		});
 		// desktop carousel initialization
 		$('.carousel .desktopCarousel').each(function () {
 			var carouselElement = $(this);
@@ -213,9 +219,50 @@
 		 * Cross-domain iframe fix
 		 */
 		$('iframe[data-src]').each(function () {
-			var newSrc = $(this).data('src') + window.SPDUtils.getLocationDetails().fullAddress;
+			var isMobileBrowser = window.SPDUtils.isMobileBrowser(),
+				windowWidth = $(window).width(),
+				newSrc = $(this).data('src').replace('$1', isMobileBrowser.toString()).replace('$2', windowWidth.toString())
+				+ window.SPDUtils.getLocationDetails().fullAddress;
 
 			$(this).attr('src', newSrc);
+		});
+		// Mobile Ad Units
+		$('.mobileAdUnit').each(function () {
+			var mobileAdUnit = $(this);
+
+			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
+				min: 0,
+				max: 767,
+				obj: new shc.pd.base.widgets.AdUnit(mobileAdUnit, 'mobileAdEnabled')
+			}));
+		});
+		// Tablet Ad Units
+		$('.tabletAdUnit').each(function () {
+			var tabletAdUnit = $(this);
+
+			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
+				min: 768,
+				max: 1023,
+				obj: new shc.pd.base.widgets.AdUnit(tabletAdUnit, 'tabletAdEnabled')
+			}));
+		});
+		// Desktop Ad Units
+		$('.desktopAdUnit').each(function () {
+			var desktopAdUnit = $(this);
+
+			shc.pd.base.render.WidgetBreakpointRegistry.add(new shc.pd.base.render.BreakpointConfig({
+				min: 1024,
+				max: 100000,
+				obj: new shc.pd.base.widgets.AdUnit(desktopAdUnit, 'desktopAdEnabled')
+			}));
+		});
+		// Initialise AddThis if needed
+		if ($('.socialBar').length > 0) {
+			window.SPDUtils.prepareAddThis();
+		}
+		// Side Chat Navigation
+		$('.sideChatNavigation').each(function () {
+			var newSideChatNavigation = new sideChatNavigation($(this));
 		});
 	});
 }(window));

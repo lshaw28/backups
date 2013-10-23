@@ -4,7 +4,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<h1>Subscription Confirmation # 9999999 <button type="button" class="new-btn new-btn-search">Log Out</button></h1>
+		<h1>Subscription Confirmation # 9999999 <a href="${mainSitePath}/partsdirect/myprofile/logout.action" onclick="SPDUtils.setCookie(\'username\', \'\');" class="new-btn new-btn-search">Log Out</a></h1>
 	</div>
 </div>
 <div class="row-fluid">
@@ -34,6 +34,8 @@
 	<div class="span12">
 		<p>A confirmation email has been sent to [email@example.com].</p>
 		<p>Please remind the customer to record the Subscription Confirmation Number for reference when inquiring about this subscription.</p>
+		<p>By enrolling in the Sears Filter Replacement Plan (FRP), the customer has consented that the credit card account designated will be charged for the current market price of each filter, as of the date of shipping, plus sales tax. They will be notified by email, at the email account provided, of the exact cost of the filter before it is shipped to them, unless they notify us to take other action.</p>
+		<p>The customer will receive filter(s) shipped to their home <strong>every 6 months</strong>. If they have questions or would like to make updates to their membership, they can call 1-800-366-PART (7278).</p>
 	</div>
 </div>
 <div class="row-fluid">
@@ -53,7 +55,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><a href="#">[XXXXXXX]</a></td>
+					<td>[XXXXXXX]</td>
 					<td>[desc]</td>
 					<td>[X]</td>
 					<td>$[XX.XX]</td>

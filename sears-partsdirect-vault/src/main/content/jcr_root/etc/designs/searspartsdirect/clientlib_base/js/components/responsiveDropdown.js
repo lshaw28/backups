@@ -123,11 +123,12 @@ var responsiveDropdown = Class.extend(function () {
 				li = $('<li />'),
 				a = $('<a />');
 
+			li.attr('data-value', value);
 			a.html(text);
 			a.attr('data-value', value);
 
 			// Make hyperlinks function
-			if (value !== '' && value !== '#') {
+			if (value !== '' && value !== '#' && (self.link === true || self.navigate === true)) {
 				a.attr('href', value);
 			}
 			a.bind('click', function (e) {
@@ -172,10 +173,13 @@ var responsiveDropdown = Class.extend(function () {
 		 */
 		selectValue: function (val, text) {
 			var self = this,
-				isMobile = window.SPDUtils.isMobileBreakpoint(),
-				valStripped = val.replace('#', ''),
+				isMobile = window.SPDUtils.isMobileBrowser(),
+				valStripped = '',
 				scrollPos = 0,
 				targetEl = null;
+
+			val = val.toString();
+			valStripped = val.replace('#');
 
 			// Make sure the anchor exists
 			try {
@@ -185,7 +189,7 @@ var responsiveDropdown = Class.extend(function () {
 			}
 			// Navigate
 			if (self.navigate === true || val.indexOf('#') > -1) {
-				window.scrollTo(0, parseInt(scrollPos - self.button[0].offsetHeight, 10));
+				window.scrollTo(0, parseInt(scrollPos - self.button[0].offsetHeight - 20, 10));
 			}
 			// Hyperlink
 			if (self.link === true) {
@@ -197,6 +201,10 @@ var responsiveDropdown = Class.extend(function () {
 			// Update the select element
 			$('option', self.el).attr('selected', false);
 			$('option[data-value="' + val + '"]', self.el).attr('selected', 'selected');
+			// Fire on change event on desktop
+			if (isMobile === false) {
+				self.el.change();
+			}
 			// Update the optional hidden field
 			if (self.hiddenField !== null) {
 				self.hiddenField.attr('value', val);
@@ -211,7 +219,7 @@ var responsiveDropdown = Class.extend(function () {
 		bindEvent: function () {
 			var self = this;
 
-			self.el.one('blur change select submit selection inputchange mouseup touchend', function (e) {
+			self.el.bind('blur', function (e) {
 				var selection = e.currentTarget,
 					val = $(selection.options[selection.selectedIndex]).attr('value'),
 					text = $(selection.options[selection.selectedIndex]).text();

@@ -22,6 +22,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.osgi.service.component.ComponentContext;
 
+import com.day.cq.replication.ReplicationStatus;
 import com.day.cq.wcm.api.Page;
 import com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings;
 import com.spd.cq.searspartsdirect.common.helpers.NavigablePageFilter;
@@ -44,6 +45,9 @@ public class SitemapServletFixture {
 		
 		configureTestEnvironment();
 		
+		ReplicationStatus replicationStatus = mock(ReplicationStatus.class);
+		when(replicationStatus.isActivated()).thenReturn(true);
+		
 		Resource foo = mock(Resource.class);
 		when(resourceResolver.getResource("/foo")).thenReturn(foo);
 		when(resourceResolver.map(slingRequest,"/foo")).thenReturn("/foo");
@@ -51,6 +55,7 @@ public class SitemapServletFixture {
 		when(foo.adaptTo(Page.class)).thenReturn(fooPage);
 		when(fooPage.getPath()).thenReturn("/foo");
 		when(fooPage.getLastModified()).thenReturn(Calendar.getInstance());
+		when(fooPage.adaptTo(ReplicationStatus.class)).thenReturn(replicationStatus);
 		
 		final List<Page> fooChildren = new ArrayList<Page>();
 		Page barPage = mock(Page.class);
@@ -59,6 +64,7 @@ public class SitemapServletFixture {
 		// we could reduce the above and the similar to above above above to an Answer - but why..
 		when(barPage.getLastModified()).thenReturn(Calendar.getInstance());
 		when(barPage.isValid()).thenReturn(true);
+		when(barPage.adaptTo(ReplicationStatus.class)).thenReturn(replicationStatus);
 		
 		fooChildren.add(barPage);
 		when(fooPage.listChildren(any(NavigablePageFilter.class))).thenAnswer(new Answer<Iterator<Page>>() {

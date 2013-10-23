@@ -1,8 +1,5 @@
 #base=less/.
-bootstrap.less
-bootstrap-responsive.less
-font-awesome.less
-font-awesome-ie7.less
+bootstrap/bootstrap-sears.less
 core.standardtags.less
 core.textclasses.less
 core.helperclasses.less
@@ -12,10 +9,12 @@ core.buttons.tablet.less
 core.forms.less
 core.tables.less
 core.svgIcons.less
+datepicker.less
 
 #base=less/components/.
 accordionItem/accordionItem.less
 addToCartAnimation/addToCartAnimation.less
+adUnit/adUnit.less
 authorArticle/authorArticles.less
 authorDetails/authorDetails.less
 authorDisplay/authorDisplay.less
@@ -36,6 +35,7 @@ categorySymptoms/categorySymptoms.less
 commonParts/commonParts.less
 customAccordionForms/customAccordionForms.less
 customAccordionForms/customAccordionForms.tablet.less
+customAccordionForms/customAccordionForms.mobile.less
 subscriptionConfirmation/subscriptionConfirmation.less
 subscriptionConfirmation/subscriptionConfirmation.tablet.less
 difficultyRating/difficultyRating.less
@@ -70,16 +70,17 @@ repairStep/repairStep.less
 responsiveDropdown/responsiveDropdown.less
 responsiveFindThisPart/responsiveFindThisPart.less
 responsiveImage/responsiveImage.less
+responsivePinchImage/responsivePinchImage.less
 responsiveTable/responsiveTable.less
 searchPanel/searchPanel.less
 modelFinder/modelFinder.less
-skyscraperAd/skyscraperAd.less
 socialBar/socialBar.less
 text/text.less
 toolsRequiredRepair/toolsRequiredRepair.less
 topAccessories/topAccessories.less
 topParts/topParts.less
 video/video.less
+sideChatNavigation/sideChatNavigation.less
 
 #base=less/templates/.
 repairHelpHome/repairHelpHome.less
