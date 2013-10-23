@@ -55,6 +55,13 @@
 				color: @secondaryHueDark;
 				font-weight: bold;
 			}
+			input[type="text"] {
+				&.focus {
+					background: @bodyColor;
+					border: 1px solid @secondaryHueLight;
+					-webkit-outline: 0px;
+				}
+			}
 			.errorField {
 				border: solid 2px #b94a48;
 			}
@@ -121,7 +128,7 @@
 					height: 36px;
 					.new-btn-dropdown {
 						background-color: @bodyColor;
-						border: solid 1px @secondaryHueDark;
+						border: solid 1px @secondaryHueLight;
 						color: @secondaryHueDark;
 						padding: 10px;
 						.icon-chevron-sign-down {
