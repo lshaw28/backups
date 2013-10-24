@@ -61,6 +61,7 @@ modelNumberSearch/modelNumberSearch.less
 modelSymptoms/modelSymptoms.less
 notice/notice.less
 overviewImage/overviewImage.less
+partList/partList.less
 partsRequiredRepair/partsRequiredRepair.less
 plainText/plainText.less
 recommendedParts/recommendedParts.less

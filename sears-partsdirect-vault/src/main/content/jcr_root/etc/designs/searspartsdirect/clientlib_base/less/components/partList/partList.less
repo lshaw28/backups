@@ -1,0 +1,90 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+
+.partList {
+	.partListDiagram {
+		width: 31.623931623931625%;
+		*width: 31.570740134569924%;
+	}
+	.partListItems {
+		width: 65.81196581196582%;
+		*width: 65.75877432260411%;
+
+		.partListItem {
+			border-bottom: 1px solid @secondaryHueLight;
+			padding: 20px 0;
+			
+			&:first-child {
+				border-top: 1px solid @secondaryHueLight;
+			}
+		}
+	}
+	// # Typically I would nest these inside .partListItems .partListItem
+	// # The styles would be complex, slower to paint, harder to override
+	.diagramPosition {
+		color: @secondaryHueNormal;
+		font-size: @noteSize;
+		text-align: center;
+
+		span {
+			font-size: @h2Size;
+		}
+	}
+	.partListItemDescription {
+		.partListItemImage {
+			border: 1px solid @secondaryHueLight;
+			clear: none;
+			float: left;
+			height: 58px;
+			margin: 0 10px 10px;
+			width: 58px;
+
+			img {
+				width: 100%;
+			}
+		}
+		p {
+			a {
+				font-size: @h5Size;
+			}
+		}
+	}
+	.partListItemCart {
+		.partListItemPrice, .partListItemQuantity {
+			clear: none;
+			float: left;
+			margin-bottom: 5px;
+			width: 50%;
+		}
+		.partListItemPrice {
+			color: @secondaryHueDarkest;
+
+			strong {
+				display: inline-block;
+				font-size: @h4Size;
+				margin-top: @h3Size;
+				width: 100%;
+			}
+		}
+		.partListItemQuantity {
+			input[type="text"] {
+				.boxSizing(border-box);
+				display: block;
+				padding: 12px;
+				width: 100%;
+			}
+		}
+		.partListItemAdd {
+			text-align: center;
+			
+			button {
+				.boxSizing(border-box);
+				margin: 0;
+				width: 100%;
+			}
+		}
+	}
+}
+
+@import "partList.tablet.less";
+@import "partList.mobile.less";
