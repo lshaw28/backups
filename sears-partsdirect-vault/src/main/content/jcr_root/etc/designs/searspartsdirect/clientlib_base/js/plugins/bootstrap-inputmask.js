@@ -193,12 +193,6 @@
           that.caret(0, pos)
         else
           that.caret(pos)
-		console.log(that.$element.css('border'));
-		/*that.$element.css('border', '1px solid rgba(134, 188, 231, 0.862745);');
-		that.$element.css('background', '#ffffff');
-		that.$element.css('outline-style', 'none');
-		that.$element.css('outline-color', 'none');
-		that.$element.css('outline-width', '0');*/
       }
 
       if ($.browser.msie)
