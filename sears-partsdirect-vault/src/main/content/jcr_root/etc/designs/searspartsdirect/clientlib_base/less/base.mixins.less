@@ -1,9 +1,11 @@
 @import "base.variables.less";
-@import "bootstrap/variables-sears.less";
-
 .spanWidth(@v) {
-	width: (@fluidGridColumnWidth * @v) + (@fluidGridGutterWidth * (@v - 1));
-	*width: (@fluidGridColumnWidth * @v) + (@fluidGridGutterWidth * (@v - 1)) - (.5 / @gridRowWidth * 100 * 1%);
+	width: ((@flexColumnWidth * @v) + (@flexGutterWidth * (@v - 1)));
+	*width: ((@flexColumnWidth * @v) + (@flexGutterWidth * (@v - 1)) - (.5 / @flexRowWidth * 100 * 1%));
+}
+.gutterWidth() {
+	margin-left: (@flexGutterWidth - .3);
+	*margin-left: (@flexGutterWidth - (.6 / @flexRowWidth * 100 * 1%));
 }
 .appearance(@v: none) {
 	-webkit-appearance: @v;

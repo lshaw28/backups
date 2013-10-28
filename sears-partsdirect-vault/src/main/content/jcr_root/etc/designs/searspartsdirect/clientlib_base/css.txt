@@ -9,7 +9,6 @@ core.buttons.tablet.less
 core.forms.less
 core.tables.less
 core.svgIcons.less
-datepicker.less
 
 #base=less/components/.
 accordionItem/accordionItem.less
@@ -75,13 +74,13 @@ responsivePinchImage/responsivePinchImage.less
 responsiveTable/responsiveTable.less
 searchPanel/searchPanel.less
 modelFinder/modelFinder.less
+sideChatNavigation/sideChatNavigation.less
 socialBar/socialBar.less
 text/text.less
 toolsRequiredRepair/toolsRequiredRepair.less
 topAccessories/topAccessories.less
 topParts/topParts.less
 video/video.less
-sideChatNavigation/sideChatNavigation.less
 
 #base=less/templates/.
 repairHelpHome/repairHelpHome.less
