@@ -10,7 +10,7 @@
 <c:set var="modelNumber" value="${modelRelation}" scope="request" />
 <cq:include path="jobCodePartsFinder" resourceType="searspartsdirect/components/content/jobCodePartsFinder" />
 
-<h1><c:out value="${symptom.title}" /></h1>
+<h2><c:out value="${productCategoryRelation.title}" /> <c:out value="${symptom.title}" /> - Symptom Diagnosis</h2>
 <p><c:out value="${symptom.description}" /></p>
 <c:forEach var="jobCode" items="${symptom.jobCodeModels}">
     <div class="categorySymptomBorder">
