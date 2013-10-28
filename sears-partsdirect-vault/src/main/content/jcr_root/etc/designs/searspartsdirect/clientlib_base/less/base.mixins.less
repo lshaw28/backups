@@ -1,4 +1,10 @@
 @import "base.variables.less";
+@import "bootstrap/variables-sears.less";
+
+.spanWidth(@v) {
+	width: (@fluidGridColumnWidth * @v) + (@fluidGridGutterWidth * (@v - 1));
+	*width: (@fluidGridColumnWidth * @v) + (@fluidGridGutterWidth * (@v - 1)) - (.5 / @gridRowWidth * 100 * 1%);
+}
 .appearance(@v: none) {
 	-webkit-appearance: @v;
 	-khtml-appearance: @v;
