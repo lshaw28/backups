@@ -1,6 +1,12 @@
 @import "base.variables.less";
 @import "base.mixins.less";
 
+.flip-vertical {
+	.flipVertically();
+}
+.flip-horizontal {
+	.flipHorizontally();
+}
 .clear {
 	clear: both;
 }
@@ -21,16 +27,19 @@ img.center {
 .wrench-symbol {
 	display: inline-block;
 	background: @primaryHueDarker;
-	border: solid 4px #fff;
+	border: solid 4px @bodyColor;
 	.borderRadius(9999px);
 	text-align: center;
 
 	i {
-		color: #fff;
+		color: @bodyColor;
 	}
 }
 .hidden, .inactive {
 	display: none !important;
+}
+.error {
+	color: @highlightHueNormal;
 }
 
 @import "core.helperclasses.mobile.less";

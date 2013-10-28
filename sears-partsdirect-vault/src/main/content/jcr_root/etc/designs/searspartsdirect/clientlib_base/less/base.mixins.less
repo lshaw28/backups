@@ -1,4 +1,12 @@
 @import "base.variables.less";
+.spanWidth(@v) {
+	width: ((@flexColumnWidth * @v) + (@flexGutterWidth * (@v - 1)));
+	*width: ((@flexColumnWidth * @v) + (@flexGutterWidth * (@v - 1)) - (.5 / @flexRowWidth * 100 * 1%));
+}
+.gutterWidth() {
+	margin-left: (@flexGutterWidth - .3);
+	*margin-left: (@flexGutterWidth - (.6 / @flexRowWidth * 100 * 1%));
+}
 .appearance(@v: none) {
 	-webkit-appearance: @v;
 	-khtml-appearance: @v;
