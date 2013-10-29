@@ -1,6 +1,12 @@
 @import "base.variables.less";
 @import "base.mixins.less";
-
+// # Elements
+html {
+	font-size: 10px;
+}
+body {
+	font-size: 100%;
+}
 h1, h2, h3, h4 {
 	margin: 10px 0;
 	font-weight: normal;
@@ -29,8 +35,9 @@ h4 {
 		font-size: @h4Size;
 	}
 }
-p {
+article, p, .article-fix {
 	font-size: @pSize;
+	text-rendering: optimizelegibility;
 }
 pre {
 	font-size: 100%;
@@ -54,6 +61,12 @@ a[href], a[onclick], a[data-target], a[data-toggle], button {
 		}
 	}
 }
-[class^="icon-"],[class*=" icon-"] {
+[class^="icon-"], [class*=" icon-"] {
 	text-decoration: none !important;
 }
+// # Classes
+.semi-bold {
+	font-weight: 600;
+}
+@import "core.text.tablet.less";
+@import "core.text.mobile.less";
