@@ -111,11 +111,11 @@ var responsivePinchImage = Class.extend(function () {
 			var self = this;
 
 			// Render plus button
-			self.plusButton = $('<i />');
+			self.plusButton = $('<a />');
 			self.plusButton.addClass('control')
 				.addClass('icon-plus');
 			// Render minus button
-			self.minusButton = $('<i />');
+			self.minusButton = $('<a />');
 			self.minusButton.addClass('control')
 				.addClass('icon-minus');
 			// Display buttons
@@ -164,25 +164,33 @@ var responsivePinchImage = Class.extend(function () {
 				self.handleDrag(event);
 			});
 			// Bind button clicks
-			self.plusButton.bind('click', function () {
+			self.plusButton.bind('click', function (e) {
+				e.preventDefault();
+
 				var clientPos = self.getCenter();
+
+				self.lastScale = (self.lastScale <= 2.8 ? self.lastScale + 0.2 : 3.0);
 
 				self.handleSizing({
 					'clientX': clientPos.x,
 					'clientY': clientPos.y,
 					'gesture': {
-						'scale': (self.lastScale <= 2.8 ? self.lastScale + 0.2 : 3.0)
+						'scale': self.lastScale
 					}
 				});
 			});
-			self.minusButton.bind('click', function () {
+			self.minusButton.bind('click', function (e) {
+				e.preventDefault();
+
 				var clientPos = self.getCenter();
+				
+				self.lastScale = (self.lastScale >= 0.4 ? self.lastScale - 0.2 : 0.2);
 
 				self.handleSizing({
 					'clientX': clientPos.x,
 					'clientY': clientPos.y,
 					'gesture': {
-						'scale': (self.lastScale >= 0.4 ? self.lastScale - 0.2 : 0.2)
+						'scale': self.lastScale
 					}
 				});
 			});

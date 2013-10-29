@@ -1,30 +1,48 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%><%
-	// useDiagram should be a boolean set by a dialog checkbox
-	// For now, I am hardcoding it
-%><c:set var="useDiagram"><cq:text property="useDiagram" placeholder=""/></c:set><%
-%><c:choose>
-	<c:when test="${useDiagram eq 'yes'}">
-		<c:set var="partListClass" value="span8" />
-	</c:when>
-	<c:otherwise>
-		<c:set var="partListClass" value="span12" />
-	</c:otherwise>
-</c:choose><%
-%><div class="row-fluid"><%
-%><c:if test="${useDiagram eq 'yes'}"><%
-%>	<div class="span4">
+%><div class="row-fluid">
+	<div class="new-span-general partListDiagram">
 		<cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />
-	</div><%
-%></c:if>
-	<div class="${partListClass}}">
+	</div>
+	<div class="new-span-general partListItems">
 <%	// This should be a for each going through each part
 	// I don't know how these are supposed to be populated %>
-		<div class="partListItem">
-			<div class="span1 diagramPosition">
+		<div class="partListItem row-fluid">
+			<div class="new-span2 diagramPosition">
+				<p><span>1</span><br />on diagram</p>
 			</div>
-			<div class="span6 partListItemDescription">
+			<div class="new-span6 partListItemDescription">
+				<% // If there is an image URL %>
+				<div class="partListItemImage">
+					<img src="http://www.urlforthepartimage.com/image/jpg" />
+				</div>
+				<% // End if %>
+				<p><a href="http://www.urlforthepart.com">The long name for the part</a><br />
+				Part #: XXXXXXXX
+				<% // If the part has a substitution %>
+				<br /><small><i class="icon-share flip-vertical">&nbsp;</i> Substitution: YYYYYYYY</small>
+				<% // End If
+				// If the item is not returnable %>
+				<br /><span class="error">This item is not returnable</span>
+				<% // End if %>
+				</p>
 			</div>
-			<div class="span4 partListItemCart">
+			<div class="new-span4 partListItemCart">
+				<% // If the user needs to contact customer support %>
+				<p>Contact customer support for availability: <strong>1-800-252-1698</strong></p>
+				<% // If the item is no longer available %>
+				<p>We're sorry, this item is no longer available.</p>
+				<% // Otherwise %>
+				<div class="partListItemPrice">
+					<strong>$X.XX</strong> In stock
+				</div>
+				<% // End If %>
+				<div class="partListItemQuantity">
+					<label>Qty</label>
+					<input type="text" class="addToCartQuantity_js" value="1" />
+				</div>
+				<div class="partListItemAdd">
+					<button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
+				</div>
 			</div>
 		</div>
 <% // End for each %>

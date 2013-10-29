@@ -1,6 +1,10 @@
 // # File Paths
 @imagePath: "../etc/designs/searspartsdirect/clientlib_base/img/";
 @IMAGE_PATH: "etc/designs/searspartsdirect/clientlib_base/img/";
+// # Grid variables
+@flexRowWidth: (12 * 60px) + (20px * (11));
+@flexColumnWidth: percentage(60px/@flexRowWidth);
+@flexGutterWidth: percentage(20px/@flexRowWidth);
 // # Fonts
 @bodyFont: 'Open Sans', Helvetica, Arial, sans-serif;
 @standardFont: Arial, Helvetica, sans-serif;
@@ -23,6 +27,7 @@
 @smallerPSize: 13px;
 @smallPSize: 12px;
 @smallestPSize: 11px;
+@noteSize: 10px;
 // # Line Heights
 @largestHeight: 48px;
 @largeHeight: 32px;

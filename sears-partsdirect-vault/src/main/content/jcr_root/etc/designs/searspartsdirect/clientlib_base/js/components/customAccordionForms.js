@@ -161,8 +161,9 @@ var customAccordionForms = Class.extend(function () {
 					$('#shippingSame').attr('checked', 'checked');
 					// Clear out old error messages
 					$('.accordion-inner .error').remove();
-					// Remove validation on individual fields
+					// Remove validation on individual fields and error border color
 					$('.errorField').off('change.error').removeClass('errorField');
+					$('.dropError').removeClass('dropError');
 				} else {
 					self.setBillingFields(false);
 					$('#shippingSame').removeAttr('checked');
@@ -377,18 +378,18 @@ var customAccordionForms = Class.extend(function () {
 						]}
 					);
 					regula.bind(
-						{element: document.getElementById("payMonth"),
+						{element: document.getElementById("payCode"),
 						constraints: [
-							{constraintType: regula.Constraint.SelectGroup,
-								params: {inputId: "payYear", message: "Please select a month and a year."}
+							{constraintType: regula.Constraint.NotBlank,
+								params: {message: "Please enter your security code."}
 							}
 						]}
 					);
 					regula.bind(
-						{element: document.getElementById("shippingConfirm"),
+						{element: document.getElementById("payMonth"),
 						constraints: [
-							{constraintType: regula.Constraint.MatchInput,
-								params: {inputId: "shippingEmail", message: "Please confirm your email address."}
+							{constraintType: regula.Constraint.SelectGroup,
+								params: {inputId: "payYear", message: "Please select a month and a year."}
 							}
 						]}
 					);
@@ -416,15 +417,29 @@ var customAccordionForms = Class.extend(function () {
 			
 			// Clear out old error messages
 			$('.accordion-inner .error').remove();
-			// Remove validation on individual fields
+			// Remove validation on individual fields and error border color
 			$('.errorField').off('change.error').removeClass('errorField');
-			//$('.comboError').removeClass('comboError');
+			$('.dropError').removeClass('dropError');
 			
 			// Place the error messages under each field
 			for (i = 0; i < regulaResponse.length; i = i + 1) {
 				var currentInvalid = $(regulaResponse[i].failingElements[0]);
 				currentInvalid.after('<span class="error">*' + regulaResponse[i].message + '</span>');
 				currentInvalid.addClass('errorField');
+				if (currentInvalid.siblings('.responsiveDropdown').length > 0) {
+					currentInvalid.siblings('.responsiveDropdown').find('.new-btn-dropdown').addClass('dropError');
+					//Custom error handling for SelectGroup
+					if (regulaResponse[i].constraintName == "SelectGroup") {
+						var otherSelect = $('#' + regulaResponse[i].constraintParameters.inputId);
+						currentInvalid.attr('data-match', regulaResponse[i].constraintParameters.inputId);
+						if (currentInvalid.find('option:selected').index() > 0) {
+							currentInvalid.siblings('.responsiveDropdown').find('.new-btn-dropdown').removeClass('dropError');
+						}
+						if (otherSelect.find('option:selected').index() < 1) {
+							otherSelect.siblings('.responsiveDropdown').find('.new-btn-dropdown').addClass('dropError');
+						}
+					}
+				}
 				currentInvalid.on('change.error', function (e) {
 					var z = 0,
 						remainingErrors = regula.validate(),
@@ -442,6 +457,12 @@ var customAccordionForms = Class.extend(function () {
 						$(this).siblings('.error').remove();
 						// Remove validation on individual field
 						$(this).off('change.error').removeClass('errorField');
+						if ($(this).siblings('.responsiveDropdown').length > 0) {
+							$(this).siblings('.responsiveDropdown').find('.new-btn-dropdown').removeClass('dropError');
+							if ($(this).attr('data-match') != undefined) {
+								$('#' + $(this).attr('data-match')).siblings('.responsiveDropdown').find('.new-btn-dropdown').removeClass('dropError');
+							}
+						}
 					}
 				});
 			}
