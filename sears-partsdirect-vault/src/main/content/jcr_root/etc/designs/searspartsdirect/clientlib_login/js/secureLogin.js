@@ -8,11 +8,11 @@ var secureLogin = Class.extend(function () {
 		 * Uses Regula validation
 		 * See documentation: https://github.com/vivin/regula/wiki
 		 */
-		init: function (el) {
+		init: function (el, isMobile, isTablet) {
 			this.el = el;
 			//this.isMobileBrowser = su.isMobileBrowser();
-			//this.isTabletSize = isTabletSize;
-			//this.isMobileSize = isMobileSize;
+			this.isTabletSize = isTablet;
+			this.isMobileSize = isMobile;
 			this.serviceCallPending = false;
 			this.maxRecallServiceTries = 5;
 			this.recallServiceTries = 0;
@@ -21,6 +21,25 @@ var secureLogin = Class.extend(function () {
 			this.bindLinks();
 			this.bindCheckField();
 			this.resetFields();
+			this.styleForDevice();
+		},
+
+		styleForDevice: function () {
+			var self = this;
+
+			if (!self.isTabletSize && !self.isMobileSize) return;
+			// apply touch friendly "fat" styling
+
+			if (self.isTabletSize) {
+				self.el.width = 400;
+				self.el.height = 300;
+			};
+
+			if (self.isMobileSize) {
+				self.el.width = 300;
+				self.el.height = 200;
+			};
+
 		},
 
 		/**

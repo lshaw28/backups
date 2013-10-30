@@ -13,7 +13,12 @@
 		/**
 		 * Determine mobile touch capability, window size
 		 */
-		var su = window.SPDUtils;
+		var su = window.SPDUtils,
+			isMobile = false,
+			isTablet = false;
+
+		isMobile = su.isMobileBreakpoint();
+		isTablet = su.isTabletBreakpoint();
 
         /**
          * Define secure modals:
@@ -21,7 +26,7 @@
          * 2. forgot pw
          * 3. register
          */
-        var loginForm = new secureLogin($('#secureLoginModal'));
+        var loginForm = new secureLogin($('#secureLoginModal', isMobile, isTablet));
         var forgotPasswordForm = new secureForgotPassword($('#secureForgotPasswordModal'));
         var registerForm = new secureRegister($('#secureRegisterModal'));
 
