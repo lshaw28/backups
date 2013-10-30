@@ -11,14 +11,23 @@
 
 			.partListItem {
 				background-color: @bodyColor;
-				border: none;
+				border: 0;
 				.boxSizing(border-box);
+				.boxShadow(0 5px 5px 0 @secondaryHueLight);
 				padding: 10px;
 				width: 100%;
+				
+				&:first-child {
+					border: 0;
+				}
+			}
+			.partListItem + .partListItem {
+				margin-top: 10px;
 			}
 		}
 		.diagramPosition {
 			margin: auto 0;
+			.spanWidth(2);
 		}
 		.partListItemDescription, .partListItemCart {
 			float: right;
@@ -33,6 +42,11 @@
 			.partListItemPrice {
 				float: none;
 				width: 100%;
+				
+				strong {
+					margin: 0 10px 0 0;
+					width: auto;
+				}
 			}
 			.partListItemQuantity, .partListItemAdd {
 				display: none;

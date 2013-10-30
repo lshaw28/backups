@@ -10,5 +10,37 @@
 			margin-left: 0;
 			width: 100%;
 		}
+		.diagramPosition {
+			.spanWidth(1);
+		}
+		.partListItemDescription {
+			.partListItemImage {
+				height: 78px;
+				width: 78px;
+			}
+		}
+		.partListItemCart {
+			.spanWidth(5);
+			
+			.partListItemPrice, .partListItemQuantity, .partListItemAdd {
+				float: left;
+			}
+			.partListItemPrice, .partListItemQuantity {
+				.spanWidth(3);
+			}
+			.partListItemQuantity {
+				input[type="text"] {
+					padding: 20px 10px;
+					width: 90%;
+				}
+			}
+			.partListItemAdd {
+				.spanWidth(6);
+				
+				button {
+					margin-top: @h3Size;
+				}
+			}
+		}
 	}
 }
