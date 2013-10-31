@@ -20,7 +20,6 @@ var secureLogin = Class.extend(function () {
 			this.bindLinks();
 			this.bindCheckField();
 			this.resetFields();
-			this.styleForDevice();
 		},
 
 		/**
