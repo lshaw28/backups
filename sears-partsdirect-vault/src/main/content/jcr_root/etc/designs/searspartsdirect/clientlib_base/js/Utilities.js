@@ -13,6 +13,7 @@
 
 			self.getGlobalVariables();
 			self.getQueryParameters();
+			self.setVendorCSS();
 		},
 		/**
 		 * Retrieve and set global variables
@@ -348,6 +349,7 @@
 		 * Attempt tracking call
 		 * @param {object} params Parameters to pass to the CQ record method if it exists
 		 * @param {string} componentName The name of the component to track
+		 * @return {void}
 		 */
 		trackEvent: function (params, componentName) {
 			var self = this;
@@ -365,6 +367,21 @@
 			// Check tracking is available
 			if (typeof CQ_Analytics.record === 'function') {
 				CQ_Analytics.record(params);
+			}
+		},
+		/**
+		 * Sets vendor-specific CSS properties for CSS3 techniques
+		 * @return {void}
+		 */
+		setVendorCSS: function () {
+			var div = $('<div />'),
+				i = 0,
+				transforms = ['transform', 'msTransform', 'MozTransform', 'WebkitTransform', 'OTransform'];
+		
+			for (i = 0; i < transforms.length; ++i) {
+				if (typeof div[0].style[transforms[i]] !== 'undefined') {
+					window['CSSTransform'] = transforms[i];
+				}
 			}
 		}
 	};
