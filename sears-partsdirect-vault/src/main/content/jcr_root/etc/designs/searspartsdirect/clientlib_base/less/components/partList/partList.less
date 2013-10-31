@@ -23,12 +23,15 @@
 		color: @secondaryHueNormal;
 		font-size: @noteSize;
 		text-align: center;
+		.spanWidth(2);
 
 		span {
 			font-size: @h2Size;
 		}
 	}
 	.partListItemDescription {
+		.spanWidth(6);
+
 		.partListItemImage {
 			border: 1px solid @secondaryHueLight;
 			clear: none;
@@ -48,6 +51,8 @@
 		}
 	}
 	.partListItemCart {
+		.spanWidth(4);
+
 		.partListItemPrice, .partListItemQuantity {
 			clear: none;
 			float: left;
@@ -68,7 +73,7 @@
 			input[type="text"] {
 				.boxSizing(border-box);
 				display: block;
-				padding: 12px;
+				padding: 16px 8px;
 				width: 100%;
 			}
 		}
