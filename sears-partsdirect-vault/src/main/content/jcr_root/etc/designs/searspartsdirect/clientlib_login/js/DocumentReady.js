@@ -26,7 +26,7 @@
          * 2. forgot pw
          * 3. register
          */
-        var loginForm = new secureLogin($('#secureLoginModal', isMobile, isTablet));
+        var loginForm = new secureLogin($('#secureLoginModal'));
         var forgotPasswordForm = new secureForgotPassword($('#secureForgotPasswordModal'));
         var registerForm = new secureRegister($('#secureRegisterModal'));
 
