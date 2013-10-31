@@ -13,7 +13,12 @@
 		/**
 		 * Determine mobile touch capability, window size
 		 */
-		var su = window.SPDUtils;
+		var su = window.SPDUtils,
+			isMobile = false,
+			isTablet = false;
+
+		isMobile = su.isMobileBreakpoint();
+		isTablet = su.isTabletBreakpoint();
 
         /**
          * Define secure modals:

@@ -11,8 +11,7 @@ var secureLogin = Class.extend(function () {
 		init: function (el) {
 			this.el = el;
 			//this.isMobileBrowser = su.isMobileBrowser();
-			//this.isTabletSize = isTabletSize;
-			//this.isMobileSize = isMobileSize;
+
 			this.serviceCallPending = false;
 			this.maxRecallServiceTries = 5;
 			this.recallServiceTries = 0;
