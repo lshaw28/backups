@@ -41,7 +41,7 @@ var responsivePinchImage = Class.extend(function () {
 			}
 		},
 		/**
-		 * Retrieves data for
+		 * Retrieves image paths
 		 * @return {void}
 		 */
 		getProperties: function () {
@@ -58,6 +58,7 @@ var responsivePinchImage = Class.extend(function () {
 		},
 		/**
 		 * Renders an image for the current breakpoint
+		 * @return {void}
 		 */
 		renderImage: function () {
 			var self = this,
@@ -146,7 +147,7 @@ var responsivePinchImage = Class.extend(function () {
 			}
 		},
 		/**
-		 * Binds events for scaling the image
+		 * Binds events for scaling and displaying the image
 		 * @return {void}
 		 */
 		bindEvents: function () {
@@ -207,7 +208,7 @@ var responsivePinchImage = Class.extend(function () {
 		 */
 		handleGesture: function (ev) {
 			var self = this,
-				transform = 'translate3d(0, 0, 0) scale3d(1, 1, 0)';
+				transform = "translate3d(0, 0, 0) " + "scale3d(1, 1, 0) ";
 
 			// Depending on the event, calculate or store scale and transform values
 			switch(ev.type) {
@@ -261,10 +262,10 @@ var responsivePinchImage = Class.extend(function () {
 			}
 
 			// Handle transforms, falling back to normal CSS for IE <= 9
-			if (typeof window['CSSTransform'] === 'string') {
-				if (self.scale != 1) {
-					transform = 'translate3d(' + self.posX + 'px,' + self.posY + 'px, 0) scale3d(' + self.scale + ',' + self.scale + ', 0)';
-				}
+			if (self.scale != 1) {
+				transform = "translate3d(" + self.posX + "px," + self.posY + "px, 0) " + "scale3d(" + self.scale + "," + self.scale + ", 0) ";
+			}
+			if (!$('body').hasClass('lt-ie10')) {
 				self.image[0].style[window['CSSTransform']] = transform;
 			} else {
 				self.image.css({
