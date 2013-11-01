@@ -22,31 +22,31 @@
 			position: absolute;
 			width: 100%;
 		}
-		.control {
-			background-color: @bodyColor;
-			border: 1px solid @secondaryHueLighter;
-			.borderRadius(3px);
-			color: @primaryHueNormal;
-			display: block;
-			font-size: @h5Size;
-			font-weight: 600;
-			left: 10px;
-			min-width: @h5Size;
-			padding: 15px;
-			position: absolute;
-			text-align: center;
-			.userSelect();
-			width: auto;
+	}
+	.control {
+		background-color: @bodyColor;
+		border: 1px solid @primaryHueLighter;
+		.borderRadius(2px);
+		color: @primaryHueNormal;
+		display: block;
+		font-size: @h5Size;
+		font-weight: 600;
+		left: 10px;
+		min-width: @h5Size;
+		padding: 15px;
+		position: absolute;
+		text-align: center;
+		.userSelect();
+		width: auto;
 
-			&.icon-minus {
-				bottom: 10px;
-			}
-			&.icon-plus {
-				bottom: 60px;
-			}
-			&.inactive {
-				background-color: #ccc;
-			}
+		&.icon-minus {
+			bottom: 10px;
+		}
+		&.icon-plus {
+			bottom: 58px;
+		}
+		&.inactive {
+			background-color: #ccc;
 		}
 	}
 	[data-toggle="pinch-fullscreen"], [data-toggle="pinch-print"] {

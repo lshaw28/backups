@@ -21,10 +21,17 @@ var responsivePinchImage = Class.extend(function () {
 			this.tabletImage = '';
 			this.mobileImage = '';
 			this.hasImage = false;
+			this.offset = this.container.offset();
 			this.imageWidth = 0;
 			this.imageHeight = 0;
-			// Last Event Scale
+			this.posX = 0;
+			this.posY = 0;
+			this.scale = 1;
 			this.lastScale = 1;
+			this.lastPosX = 0;
+			this.lastPosY = 0;
+			this.maxX = 0;
+			this.maxY = 0;
 			// Perform setup
 			this.getProperties();
 			if (this.hasImage === true) {
@@ -34,7 +41,7 @@ var responsivePinchImage = Class.extend(function () {
 			}
 		},
 		/**
-		 * Retrieves data for
+		 * Retrieves image paths
 		 * @return {void}
 		 */
 		getProperties: function () {
@@ -51,6 +58,7 @@ var responsivePinchImage = Class.extend(function () {
 		},
 		/**
 		 * Renders an image for the current breakpoint
+		 * @return {void}
 		 */
 		renderImage: function () {
 			var self = this,
@@ -86,7 +94,7 @@ var responsivePinchImage = Class.extend(function () {
 					'height': 'auto',
 					'left': '50%',
 					'top': '50%',
-					'width': 'auto'
+					'width': '100%'
 				});
 				// Set image load CSS
 				// Force pixel sizes and negative margins for centering
@@ -119,7 +127,7 @@ var responsivePinchImage = Class.extend(function () {
 			self.minusButton.addClass('control')
 				.addClass('icon-minus');
 			// Display buttons
-			self.container.append(self.plusButton)
+			self.container.parent().append(self.plusButton)
 				.append(self.minusButton);
 		},
 		/**
@@ -139,41 +147,33 @@ var responsivePinchImage = Class.extend(function () {
 			}
 		},
 		/**
-		 * Binds events for scaling the image
+		 * Binds events for scaling and displaying the image
+		 * @return {void}
 		 */
 		bindEvents: function () {
-			var self = this,
-				isMobile = window.SPDUtils.isMobileBrowser();
+			var self = this;
 
-			// Bind pinch events based on the availability of touchstart
-			if (isMobile === true) {
-				self.image.hammer({
-					'prevent_default': true
-				}).on('pinchin', function(event) {
-					event.gesture.preventDefault();
-					self.handleSizing(event);
-				}).on('pinchout', function(event) {
-					event.gesture.preventDefault();
-					self.handleSizing(event);
-				});
-			}
-			self.image.hammer({
-				'prevent_default': true
-			}).on('drag', function (event) {
-				event.gesture.preventDefault();
-				self.handleDrag(event);
+			// Gestures - on the container to avoid oddness
+			self.container.hammer({
+				prevent_default: true,
+				prevent_mouseevents: false
+			}).on('touch', function(ev) {
+				self.handleGesture(ev);
+			}).on('transform', function(ev) {
+				self.handleGesture(ev);
+			}).on('drag', function(ev) {
+				self.handleGesture(ev);
+			}).on('dragend', function(ev) {
+				self.handleGesture(ev);
 			});
-			// Bind button clicks
+
+			// Button clicks
 			self.plusButton.bind('click', function (e) {
 				e.preventDefault();
-
-				var clientPos = self.getCenter();
-
 				self.lastScale = (self.lastScale <= 2.8 ? self.lastScale + 0.2 : 3.0);
 
-				self.handleSizing({
-					'clientX': clientPos.x,
-					'clientY': clientPos.y,
+				self.handleGesture({
+					'type': 'transform',
 					'gesture': {
 						'scale': self.lastScale
 					}
@@ -181,109 +181,117 @@ var responsivePinchImage = Class.extend(function () {
 			});
 			self.minusButton.bind('click', function (e) {
 				e.preventDefault();
-
-				var clientPos = self.getCenter();
-				
 				self.lastScale = (self.lastScale >= 0.4 ? self.lastScale - 0.2 : 0.2);
 
-				self.handleSizing({
-					'clientX': clientPos.x,
-					'clientY': clientPos.y,
+				self.handleGesture({
+					'type': 'transform',
 					'gesture': {
 						'scale': self.lastScale
 					}
 				});
 			});
-			// Bind window resize
+			self.fullscreen.bind('click', function () {
+				self.openImage(false);
+			});
+			self.print.bind('click', function () {
+				self.openImage(true);
+			});
+			// Window resize
 			shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
 				self.renderImage();
 			});
 		},
 		/**
-		 * Gets center position for the image object
-		 * @returns {object}
+		 * Handles gestures
+		 * @param {object} ev Event fired
+		 * @returns {void}
 		 */
-		getCenter: function () {
+		handleGesture: function (ev) {
 			var self = this,
-				retval = {};
+				transform = "translate3d(0, 0, 0) " + "scale3d(1, 1, 0) ";
 
-			retval.x = parseInt(self.image.offset().left + (self.imageWidth / 2), 10);
-			retval.y = parseInt(self.image.offset().top + (self.imageHeight / 2), 10);
-
-			return retval;
-		},
-		/**
-		 * Handles a size change event
-		 * @param {object} event Event fired by user or JavaScript
-		 * @return {void}
-		 */
-		handleSizing: function (event) {
-			var self = this,
-				offset = self.container.offset(),
-				newX = 0,
-				newY = 0,
-				x = event.clientX,
-				y = event.clientY,
-				scale = event.gesture.scale,
-				newWidth = self.imageWidth * scale,
-				newHeight = self.imageHeight * scale;
-
-			// Determine the new offset
-			x -= offset.left + newX;
-			y -= offset.top + newY;
-			newX += -x * (newWidth - self.imageWidth) / newWidth;
-			newY += -y * (newHeight - self.imageHeight) / newHeight;
-
-			// Set properties
-			self.lastScale = scale;
-			self.imageWidth = newWidth;
-			self.imageHeight = newHeight;
-			
-			// Scale the image
-			self.image.stop().css({
-				'height': self.imageHeight,
-				'margin-left': 0 - self.imageWidth / 2,
-				'margin-top': 0 - self.imageHeight / 2,
-				'width': self.imageWidth
-			});
-		},
-		/**
-		 * Handles a drag event
-		 * @param {object} event Event fired by user or JavaScript
-		 */
-		handleDrag: function (event) {
-			var self = this,
-				isMobileBrowser = window.SPDUtils.isMobileBrowser(),
-				moveX = event.gesture.deltaX,
-				moveY = event.gesture.deltaY,
-				containerWidth = self.container.width(),
-				containerHeight = self.container.height(),
-				marginLeft = parseInt(self.image.css('margin-left').replace('px', ''), 10),
-				marginTop = parseInt(self.image.css('margin-top').replace('px', ''), 10);
-
-			// Handle different drag directions
-			moveX = moveX / 10;
-			moveY = moveY / 10;
-			marginLeft = marginLeft + moveX;
-			marginTop = marginTop + moveY;
-			
-			// Sanitise
-			if (marginLeft + self.imageWidth <= 0) {
-				marginLeft += 10;
-			} else if (marginLeft + self.imageWidth >= containerWidth) {
-				marginLeft -= 10;
-			}
-			if (marginTop + self.imageHeight <= 0) {
-				marginTop += 10;
-			} else if (marginTop + self.imageHeight >= containerHeight) {
-				marginTop -= 10;
+			// Depending on the event, calculate or store scale and transform values
+			switch(ev.type) {
+				case 'touch':
+					self.lastScale = self.scale;
+					break;
+				case 'drag':
+					if (self.scale != 1) {
+						self.posX = self.lastPosX + ev.gesture.deltaX;
+						self.posY = self.lastPosY + ev.gesture.deltaY;
+						if (self.posX > self.maxX) {
+							self.posX = self.maxX;
+						}
+						if (self.posX < -self.maxX) {
+							self.posX = -self.maxX;
+						}
+						if (self.posY > self.maxY) {
+							self.posY = self.maxY;
+						}
+						if (self.posY < -self.maxY) {
+							self.posY = -self.maxY;
+						}
+					} else {
+						self.posX = 0;
+						self.posY = 0;
+						self.lastPosX = 0;
+						self.lastPosY = 0;
+					}
+					break;
+				case 'transform':
+					self.scale = Math.max(1, Math.min(self.lastScale * ev.gesture.scale, 10));
+					self.maxX = Math.ceil((self.scale - 1) * self.image[0].clientWidth / 2);
+					self.maxY = Math.ceil((self.scale - 1) * self.image[0].clientHeight / 2);
+					if (self.posX > self.maxX) {
+						self.posX = self.maxX;
+					}
+					if (self.posX < -self.maxX) {
+						self.posX = -self.maxX;
+					}
+					if (self.posY > self.maxY) {
+						self.posY = self.maxY;
+					}
+					if (self.posY < -self.maxY) {
+						self.posY = -self.maxY;
+					}
+					break;
+				case 'dragend':
+					self.lastPosX = self.posX < self.maxX ? self.posX: self.maxX;
+					self.lastPosY = self.posY < self.maxY ? self.posY: self.maxY;
+					break;
 			}
 
-			// Set new margins
-			self.image.stop().css({
-				'margin-left': marginLeft,
-				'margin-top': marginTop
-			});
+			// Handle transforms, falling back to normal CSS for IE <= 9
+			if (self.scale != 1) {
+				transform = "translate3d(" + self.posX + "px," + self.posY + "px, 0) " + "scale3d(" + self.scale + "," + self.scale + ", 0) ";
+			}
+			if (!$('body').hasClass('lt-ie10')) {
+				self.image[0].style[window['CSSTransform']] = transform;
+			} else {
+				self.image.css({
+					'height': self.imageHeight * self.scale,
+					'left': self.posX,
+					'top': self.posY,
+					'width': self.imageWidth * self.scale
+				});
+			}
+		},
+		/**
+		 * Opens the image in a new window with optional printing
+		 * @params {boolean} print Optional image printing
+		 */
+		openImage: function (print) {
+			var self = this,
+				image = self.chooseImage(self.desktopImage, self.tabletImage, self.mobileImage),
+				newWindow = window.open('', '', 'width=100%,height=100%');
+
+			// Render the image
+			newWindow.document.write('<img src="' + image + '" />');
+			// Optionally kick off printing
+			if (print === true) {
+				newWindow.focus();
+				newWindow.print();
+			}
 		}
 	};
 }());

@@ -82,6 +82,7 @@
 					<input type="text" class="addToCartQuantity_js" value="1" />
 				</div>
 				<div class="partListItemAdd">
+					<% // Please replace the values in the data- attributes with actual values %>
 					<button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
 				</div>
 			</div>
