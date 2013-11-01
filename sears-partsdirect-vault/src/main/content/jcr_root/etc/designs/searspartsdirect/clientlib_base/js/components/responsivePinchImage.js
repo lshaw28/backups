@@ -147,10 +147,12 @@ var responsivePinchImage = Class.extend(function () {
 		},
 		/**
 		 * Binds events for scaling the image
+		 * @return {void}
 		 */
 		bindEvents: function () {
 			var self = this;
 
+			// Gestures - on the container to avoid oddness
 			self.container.hammer({
 				prevent_default: true,
 				prevent_mouseevents: false
@@ -164,7 +166,7 @@ var responsivePinchImage = Class.extend(function () {
 				self.handleGesture(ev);
 			});
 
-			// Bind button clicks
+			// Button clicks
 			self.plusButton.bind('click', function (e) {
 				e.preventDefault();
 				self.lastScale = (self.lastScale <= 2.8 ? self.lastScale + 0.2 : 3.0);
@@ -193,7 +195,7 @@ var responsivePinchImage = Class.extend(function () {
 			self.print.bind('click', function () {
 				self.openImage(true);
 			});
-			// Bind window resize
+			// Window resize
 			shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
 				self.renderImage();
 			});
@@ -205,8 +207,9 @@ var responsivePinchImage = Class.extend(function () {
 		 */
 		handleGesture: function (ev) {
 			var self = this,
-				transform = "translate3d(0, 0, 0) " + "scale3d(1, 1, 0) ";
+				transform = 'translate3d(0, 0, 0) scale3d(1, 1, 0)';
 
+			// Depending on the event, calculate or store scale and transform values
 			switch(ev.type) {
 				case 'touch':
 					self.lastScale = self.scale;
@@ -257,16 +260,20 @@ var responsivePinchImage = Class.extend(function () {
 					break;
 			}
 
-			// transform!
-			if (self.scale != 1) {
-				transform = "translate3d(" + self.posX + "px," + self.posY + "px, 0) " + "scale3d(" + self.scale + "," + self.scale + ", 0) ";
+			// Handle transforms, falling back to normal CSS for IE <= 9
+			if (typeof window['CSSTransform'] === 'string') {
+				if (self.scale != 1) {
+					transform = 'translate3d(' + self.posX + 'px,' + self.posY + 'px, 0) scale3d(' + self.scale + ',' + self.scale + ', 0)';
+				}
+				self.image[0].style[window['CSSTransform']] = transform;
+			} else {
+				self.image.css({
+					'height': self.imageHeight * self.scale,
+					'left': self.posX,
+					'top': self.posY,
+					'width': self.imageWidth * self.scale
+				});
 			}
-
-			self.image[0].style.transform = transform;
-			self.image[0].style.oTransform = transform;
-			self.image[0].style.msTransform = transform;
-			self.image[0].style.mozTransform = transform;
-			self.image[0].style.webkitTransform = transform;
 		},
 		/**
 		 * Opens the image in a new window with optional printing
