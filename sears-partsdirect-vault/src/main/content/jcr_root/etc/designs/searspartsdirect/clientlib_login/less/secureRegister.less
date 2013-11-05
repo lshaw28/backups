@@ -35,19 +35,23 @@ ul.passwordRules {
 		font-weight:normal;
 	}
 }
+#secureRegisterModal {
+  input[type="text"], input[type="password"] {
+    margin-right: 8px;
+    padding: 8px;
+    width: 95%;
+  }
 
-input[type="text"], input[type="password"] {
-	margin-right: 8px;
-	padding: 8px;
-	width: 95%;
+  .new-btn {
+    padding: 8px 19px;
+  }
 }
+
 
 label.checkbox {
 	font-size: @pSize;
 }
 
-.new-btn {
-	padding: 8px 19px;
-}
+
 
 @import "secureRegister.tablet.less";
