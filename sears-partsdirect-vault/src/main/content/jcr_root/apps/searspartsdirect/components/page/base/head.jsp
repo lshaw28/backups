@@ -26,7 +26,17 @@
 		<c:if test="${empty productCategoryRelation}">
 			<spd:getUrlRelation relationType="productCategory" />
 		</c:if>
-		<title><c:out value="${productCategoryRelation.title}" /> <c:out value="${symptom.title}" /> | Symptom Diagnosis - Sears PartsDirect</title>
+		
+		<spd:getUrlRelation relationType="model" />
+		<c:choose>
+		<c:when test="${!empty modelRelation}">
+			<title><c:out value="${productCategoryRelation.title}"/> <c:out value="${modelRelation}" /> <c:out value="${symptom.title}" /> - Sears PartsDirect</title>
+		</c:when>
+		<c:otherwise>
+			<title><c:out value="${productCategoryRelation.title}" /> <c:out value="${symptom.title}" /> | Symptom Diagnosis - Sears PartsDirect</title>
+		</c:otherwise>
+		</c:choose>
+		
 		<meta name="description" content="Learn why your <c:out value="${productCategoryRelation.title}" />  <c:out value="${symptom.title}" /> at Sears PartsDirect. Find out which repairs might help solve the problem, parts and more." />
 		<meta name="keywords" content="<c:out value="${productCategoryRelation.title}" /> repairs, <c:out value="${productCategoryRelation.title}" /> <c:out value="${symptom.title}" />, repair guides, repair help, diy" />
 	</c:when>
