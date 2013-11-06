@@ -9,7 +9,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<h1><c:out value="${productCategoryRelation.title}" /> <c:out value="${symptom.title}" /> - Symptom Diagnosis</h1>
+		<h1><c:out value="${productCategoryRelation.title}" /> <c:out value="${symptom.title}" /></h1>
 	</div>
 </div>
 <div class="row-fluid">
