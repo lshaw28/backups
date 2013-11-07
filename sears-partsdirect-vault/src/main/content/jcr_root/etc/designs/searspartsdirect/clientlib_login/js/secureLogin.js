@@ -138,7 +138,7 @@ var secureLogin = Class.extend(function () {
 		setBtnSizes: function () {
 			var self = this;
 
-			if (self.isMobileBrowser) return;
+			if (!self.isMobileBrowser) return;
 
 			$('button').removeClass('new-btn');
 			$('button').addClass('new-btn-touch');
