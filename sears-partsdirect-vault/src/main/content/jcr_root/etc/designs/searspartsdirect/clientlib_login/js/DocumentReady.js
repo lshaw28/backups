@@ -11,14 +11,12 @@
 		window['parentDomain'] = decodeURIComponent(document.location.hash.replace(/^#/, ''));
 
 		/**
-		 * Determine mobile touch capability, window size
+		 * Determine mobile touch capability
 		 */
 		var su = window.SPDUtils,
-			isMobile = false,
-			isTablet = false;
+			isMobileBrowser = false;
 
-		isMobile = su.isMobileBreakpoint();
-		isTablet = su.isTabletBreakpoint();
+		isMobileBrowser = su.isMobileBrowser();
 
         /**
          * Define secure modals:
@@ -26,7 +24,7 @@
          * 2. forgot pw
          * 3. register
          */
-        var loginForm = new secureLogin($('#secureLoginModal'));
+        var loginForm = new secureLogin($('#secureLoginModal'), isMobileBrowser);
         var forgotPasswordForm = new secureForgotPassword($('#secureForgotPasswordModal'));
         var registerForm = new secureRegister($('#secureRegisterModal'));
 
