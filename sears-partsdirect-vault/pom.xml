@@ -28,7 +28,7 @@
 					<builtContentDirectory>src/main/content/jcr_root</builtContentDirectory>
 					<packageFile>target/${project.artifactId}-${project.version}.zip</packageFile>
 					<targetURL>${crx_url}/crx/packmgr/service.jsp</targetURL>
-					<user>${crx_user}</user>
+					<userId>${crx_user}</userId>
 					<password>${crx_password}</password>
 					<verbose>true</verbose>
 				</configuration>
