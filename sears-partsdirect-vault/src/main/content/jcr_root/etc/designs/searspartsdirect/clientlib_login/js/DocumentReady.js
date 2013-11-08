@@ -25,8 +25,8 @@
          * 3. register
          */
         var loginForm = new secureLogin($('#secureLoginModal'), isMobileBrowser);
-        var forgotPasswordForm = new secureForgotPassword($('#secureForgotPasswordModal'));
-        var registerForm = new secureRegister($('#secureRegisterModal'));
+        var forgotPasswordForm = new secureForgotPassword($('#secureForgotPasswordModal'), isMobileBrowser);
+        var registerForm = new secureRegister($('#secureRegisterModal'), isMobileBrowser);
 
         // Check if we need to show modal with error code
         if (document.location.search.indexOf('errorCode') > 0) {
