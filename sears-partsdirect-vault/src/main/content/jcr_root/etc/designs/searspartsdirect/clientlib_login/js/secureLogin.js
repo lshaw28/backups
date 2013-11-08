@@ -140,7 +140,7 @@ var secureLogin = Class.extend(function () {
 
 			if (!self.isMobileBrowser) return;
 
-			$('button').removeClass('new-btn');
+			$('button').removeClass('new-btn-modal');
 			$('button').addClass('new-btn-touch');
 		},
 		/**
