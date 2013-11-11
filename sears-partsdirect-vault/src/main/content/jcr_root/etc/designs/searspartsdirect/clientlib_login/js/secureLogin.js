@@ -8,11 +8,9 @@ var secureLogin = Class.extend(function () {
 		 * Uses Regula validation
 		 * See documentation: https://github.com/vivin/regula/wiki
 		 */
-		init: function (el) {
+		init: function (el, isMobileBrowser) {
 			this.el = el;
-			this.isMobileBrowser = su.isMobileBrowser();
-			this.isTabletSize = isTabletSize;
-			this.isMobileSize = isMobileSize;
+			this.isMobileBrowser = isMobileBrowser;
 			this.serviceCallPending = false;
 			this.maxRecallServiceTries = 5;
 			this.recallServiceTries = 0;
@@ -20,6 +18,7 @@ var secureLogin = Class.extend(function () {
 			this.bindCancel();
 			this.bindLinks();
 			this.bindCheckField();
+			this.setBtnSizes();
 			this.resetFields();
 		},
 
@@ -132,6 +131,17 @@ var secureLogin = Class.extend(function () {
 				$(this).val('');
 			});
 			self.checkHeight(prevHeight);
+		},
+		/**
+		 * if mobile browser, set btn style to fat touch friendly
+		 */
+		setBtnSizes: function () {
+			var self = this;
+
+			if (!self.isMobileBrowser) return;
+
+			$('button').removeClass('new-btn-modal');
+			$('button').addClass('new-btn-touch');
 		},
 		/**
 		 * Handles a successful callback

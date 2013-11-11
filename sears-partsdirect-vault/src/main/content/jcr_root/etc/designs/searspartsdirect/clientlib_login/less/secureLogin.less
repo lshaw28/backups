@@ -24,22 +24,31 @@ icon-spinner {
 	top:50%;
 }
 
-input[type="text"], input[type="password"] {
-	margin-right: 8px;
-	padding: 8px;
-	width: 96%;
-}
+
 
 label.checkbox {
 	font-size: @pSize;
 }
 
-.new-btn {
-	padding: 8px 19px;
+#secureLoginFormModal {
+
+  input[type="text"], input[type="password"] {
+    margin-right: 8px;
+    padding: 8px;
+    width: 95%;
+  }
+
+  .new-btn-modal {
+      padding: 8px 19px;
+  }
+
+  .new-btn-touch {
+
+    padding: 14px 19px;
+
+  }
+
+
 }
 
-.new-btn-touch {
-  padding: 14px 19px;
-}
-
-//@import "secureLogin.tablet.less";
+@import "secureLogin.tablet.less";

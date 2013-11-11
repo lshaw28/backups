@@ -27,7 +27,7 @@
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
-								<input class="numberField" name="partNumber" value="Enter your part or model number" data-inputhelp="Enter your part or model number" />
+								<input type="text" class="numberField" name="partNumber" value="Enter your part or model number" data-inputhelp="Enter your part or model number" />
 							</div>
 						</div>
 						<div class="row-fluid">
@@ -91,13 +91,13 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingFirst">First Name <span>Required</span></label>
-								<input class="cafText cafNameInput" name="fname" id="shippingFirst" />
+								<input type="text" class="cafText cafNameInput" name="fname" id="shippingFirst" />
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingLast">Last Name <span>Required</span></label>
-								<input class="cafText cafNameInput" name="lname" id="shippingLast" />
+								<input type="text" class="cafText cafNameInput" name="lname" id="shippingLast" />
 							</div>
 						</div>
 						<div class="row-fluid cafCheckboxField">
@@ -110,18 +110,18 @@
 							<div class="span10 offset1">
 								<div class="cafSameRow">
 									<label for="shippingAddress">Street Address <span>Required</span></label>
-									<input class="cafText cafAddress" name="address" id="shippingAddress" />
+									<input type="text" class="cafText cafAddress" name="address" id="shippingAddress" />
 								</div>
 								<div class="cafSameRow">
 									<label for="shippingApt">Apt. # <span>Optional</span></label>
-									<input class="cafText cafApt" name="apt" id="shippingApt" />
+									<input type="text" class="cafText cafApt" name="apt" id="shippingApt" />
 								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingCity">City <span>Required</span></label>
-								<input class="cafText cafCity" name="city" id="shippingCity" />
+								<input type="text" class="cafText cafCity" name="city" id="shippingCity" />
 							</div>
 						</div>
 						<div class="row-fluid">
@@ -193,31 +193,31 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingZip">ZIP Code <span>Required</span></label>
-								<input class="cafText cafZip" name="zip" id="shippingZip" pattern="[0-9]*" data-mask="99999" data-placeholder=" " />
+								<input type="text" class="cafText cafZip" name="zip" id="shippingZip" pattern="[0-9]*" data-mask="99999" data-placeholder=" " />
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<div class="cafSameRow phoneWidth">
 									<label for="shippingPhone">Phone Number <span>Required</span></label>
-									<input class="cafText cafZip" name="phone" id="shippingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
+									<input type="text" class="cafText cafZip" name="phone" id="shippingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
 								</div>
 								<div class="cafSameRow">
 									<label for="shippingExt">Ext. # <span>Optional</span></label>
-									<input class="cafText cafExt" name="ext" id="shippingExt" pattern="[0-9]*" />
+									<input type="text" class="cafText cafExt" name="ext" id="shippingExt" pattern="[0-9]*" />
 								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingEmail">Email Address <span>Required</span></label>
-								<input class="cafText cafCity" name="email" id="shippingEmail" />
+								<input type="text" class="cafText cafCity" name="email" id="shippingEmail" />
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingConfirm">Confirm Email Address <span>Required</span></label>
-								<input class="cafText cafCity" name="confirm" id="shippingConfirm" />
+								<input type="text" class="cafText cafCity" name="confirm" id="shippingConfirm" />
 							</div>
 						</div>
 						<div class="row-fluid cafCheckboxField">
@@ -252,31 +252,31 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="billingFirst">First Name <span>Required</span></label>
-								<input class="cafText cafNameInput" name="fname" id="billingFirst" />
+								<input type="text" class="cafText cafNameInput" name="fname" id="billingFirst" />
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="billingLast">Last Name <span>Required</span></label>
-								<input class="cafText cafNameInput" name="lname" id="billingLast" />
+								<input type="text" class="cafText cafNameInput" name="lname" id="billingLast" />
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<div class="cafSameRow">
 									<label for="billingAddress">Street Address <span>Required</span></label>
-									<input class="cafText cafAddress" name="address" id="billingAddress" />
+									<input type="text" class="cafText cafAddress" name="address" id="billingAddress" />
 								</div>
 								<div class="cafSameRow">
 									<label for="billingApt">Apt. # <span>Optional</span></label>
-									<input class="cafText cafApt" name="apt" id="billingApt" />
+									<input type="text" class="cafText cafApt" name="apt" id="billingApt" />
 								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="billingCity">City <span>Required</span></label>
-								<input class="cafText cafCity" name="city" id="billingCity" />
+								<input type="text" class="cafText cafCity" name="city" id="billingCity" />
 							</div>
 						</div>
 						<div class="row-fluid">
@@ -348,18 +348,18 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="billingZip">ZIP Code <span>Required</span></label>
-								<input class="cafText cafZip" name="zip" id="billingZip" pattern="[0-9]*" data-mask="99999" data-placeholder=" " />
+								<input type="text" class="cafText cafZip" name="zip" id="billingZip" pattern="[0-9]*" data-mask="99999" data-placeholder=" " />
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<div class="cafSameRow phoneWidth">
 									<label for="billingPhone">Phone Number <span>Required</span></label>
-									<input class="cafText cafZip" name="phone" id="billingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
+									<input type="text" class="cafText cafZip" name="phone" id="billingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
 								</div>
 								<div class="cafSameRow">
 									<label for="billingExt">Ext. # <span>Optional</span></label>
-									<input class="cafText cafExt" name="ext" id="billingExt" pattern="[0-9]*" />
+									<input type="text" class="cafText cafExt" name="ext" id="billingExt" pattern="[0-9]*" />
 								</div>
 							</div>
 						</div>
@@ -410,7 +410,7 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="payNumber">Card Number <span>Required</span></label>
-								<input class="cafText cafCredit" name="cardNumber" id="payNumber" maxlength="16" pattern="[0-9]*" />
+								<input type="text" class="cafText cafCredit" name="cardNumber" id="payNumber" maxlength="16" pattern="[0-9]*" />
 							</div>
 						</div>
 						<div class="row-fluid">
@@ -418,7 +418,7 @@
 								<label for="payCode" class="narrowLabel">Security Code <span>Required</span></label>
 								<a href="#modalCode" class="linkByLabel" data-toggle="modal">What's this?</a>
 								<div class="clear"></div>
-								<input class="cafText cafCode" name="code" id="payCode" maxlength="4" pattern="[0-9]*" />
+								<input type="text" class="cafText cafCode" name="code" id="payCode" maxlength="4" pattern="[0-9]*" />
 							</div>
 						</div>
 						<div class="row-fluid">
@@ -455,7 +455,7 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="payName">Name On Card <span>Required</span></label>
-								<input class="cafText cafCity" name="name" id="payName" />
+								<input type="text" class="cafText cafCity" name="name" id="payName" />
 							</div>
 						</div>
 					</fieldset>

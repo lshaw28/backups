@@ -1,7 +1,6 @@
 #base=less/.
 bootstrap/bootstrap-sears.less
-core.standardtags.less
-core.textclasses.less
+core.text.less
 core.helperclasses.less
 core.grid.less
 core.buttons.less
@@ -9,7 +8,6 @@ core.buttons.tablet.less
 core.forms.less
 core.tables.less
 core.svgIcons.less
-datepicker.less
 
 #base=less/components/.
 accordionItem/accordionItem.less
@@ -61,6 +59,7 @@ modelNumberSearch/modelNumberSearch.less
 modelSymptoms/modelSymptoms.less
 notice/notice.less
 overviewImage/overviewImage.less
+partList/partList.less
 partsRequiredRepair/partsRequiredRepair.less
 plainText/plainText.less
 recommendedParts/recommendedParts.less
@@ -74,13 +73,13 @@ responsivePinchImage/responsivePinchImage.less
 responsiveTable/responsiveTable.less
 searchPanel/searchPanel.less
 modelFinder/modelFinder.less
+sideChatNavigation/sideChatNavigation.less
 socialBar/socialBar.less
 text/text.less
 toolsRequiredRepair/toolsRequiredRepair.less
 topAccessories/topAccessories.less
 topParts/topParts.less
 video/video.less
-sideChatNavigation/sideChatNavigation.less
 
 #base=less/templates/.
 repairHelpHome/repairHelpHome.less

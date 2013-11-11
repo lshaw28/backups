@@ -55,6 +55,9 @@
 				color: @secondaryHueDark;
 				font-weight: bold;
 			}
+			.errorField {
+				border: solid 2px #b94a48;
+			}
 			.error {
 				display: block;
 				color: #b94a48;
@@ -118,12 +121,15 @@
 					height: 36px;
 					.new-btn-dropdown {
 						background-color: @bodyColor;
-						border: solid 1px @secondaryHueDark;
+						border: solid 1px @secondaryHueLight;
 						color: @secondaryHueDark;
 						padding: 10px;
 						.icon-chevron-sign-down {
 							padding-left: 20px;
 						}
+					}
+					.new-btn-dropdown.dropError {
+						border: solid 2px #b94a48;
 					}
 					ul {
 						position: absolute;
@@ -149,6 +155,7 @@
 			}
 			.cafText {
 				padding: 3px;
+				margin-bottom: 0;
 			}
 			.cafNameInput {
 				width: 209px;
@@ -182,7 +189,7 @@
 				padding-right: 30px;
 			}
 			.cafSameRow.phoneWidth {
-				width: 185px;
+				width: 190px;
 				.error {
 					width: 305px;
 				}

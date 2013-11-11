@@ -6,17 +6,25 @@
   padding: 40px 70px 30px 70px;
   width: 366px;
   z-index: 9999;
+  overflow: hidden;
 
   iframe {
     border: 0;
     min-width: 500px;
-    min-height: 320px;
+    min-height: 330px;
     margin: 40px 70px 30px 70px;
-	overflow: visible;
+	overflow: hidden;
 
     &#registerIFrame {
       min-height: 550px;
     }
+
+    &#secureLoginFormModal {
+      .new-btn {
+        padding: 8px 19px;
+      }
+    }
+
   }
 
 
@@ -43,25 +51,15 @@
 
   }
 
-	h1 {
-		color: @secondaryHueDark;
-		margin-top: 0;
+  &#promoModal {
 
-		span {
-			font-size: @pSize;
-			font-weight: normal;
-			line-height: @largestSize;
-		}
-	}
+    h1 {
+      line-height: 3.0rem;
+    }
 
-	input[type="text"], input[type="password"] {
-		margin-right: 8px;
-		width: 95%;
-	}
+  }
 
-	label.checkbox {
-		font-size: @pSize;
-	}
 }
 
+@import "modal.tablet.less";
 @import "modal.mobile.less";

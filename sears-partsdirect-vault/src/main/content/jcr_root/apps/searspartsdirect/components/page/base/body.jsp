@@ -15,6 +15,7 @@
 %>	<cq:include path="loginModal" resourceType="searspartsdirect/components/base/loginModal" /><%
 %>	<cq:include path="registerModal" resourceType="searspartsdirect/components/base/registerModal" /><%
 %>	<cq:include path="forgotPasswordModal" resourceType="searspartsdirect/components/base/forgotPasswordModal" /><%
+%>	<cq:include path="promoModal" resourceType="searspartsdirect/components/base/promoModal" /><%
 %>	<div id="addToCartAnimation" class="addToCartAnimation">
         <i class="icon-shopping-cart">&nbsp;</i>
         <p>Added to Cart</p>

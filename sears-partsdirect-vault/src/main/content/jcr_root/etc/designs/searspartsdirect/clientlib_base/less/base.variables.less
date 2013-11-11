@@ -1,40 +1,46 @@
 // # File Paths
 @imagePath: "../etc/designs/searspartsdirect/clientlib_base/img/";
 @IMAGE_PATH: "etc/designs/searspartsdirect/clientlib_base/img/";
+// # Grid variables
+@flexRowWidth: (12 * 60px) + (20px * (11));
+@flexColumnWidth: percentage(60px/@flexRowWidth);
+@flexGutterWidth: percentage(20px/@flexRowWidth);
 // # Fonts
 @bodyFont: 'Open Sans', Helvetica, Arial, sans-serif;
 @standardFont: Arial, Helvetica, sans-serif;
 @codeFont: Monaco, Menlo, Consolas, "Courier New", monospace;
 @testimonialFont: Georgia;
 // # Icon Sizes
-@iconSizeLarge: 100px;
-@iconSizeNormal: 90px;
-@iconSizeSmall: 70px;
-@iconSizeSmallest: 40px;
+@iconSizeLarge: 10.0rem;
+@iconSizeNormal: 9.0rem;
+@iconSizeSmall: 7.0rem;
+@iconSizeSmallest: 4.0rem;
+@iconSizePromo: 2.2rem;
 // # Text Sizes
-@largestSize: 48px;
-@largeSize: 32px;
-@h1Size: 28px;
-@h2Size: 24px;
-@h3Size: 22px;
-@h4Size: 18px;
-@h5Size: 16px;
-@pSize: 14px;
-@smallerPSize: 13px;
-@smallPSize: 12px;
-@smallestPSize: 11px;
+@largestSize: 4.8rem;
+@largeSize: 3.2rem;
+@h1Size: 2.8rem;
+@h2Size: 2.4rem;
+@h3Size: 2.2rem;
+@h4Size: 1.8rem;
+@h5Size: 1.6rem;
+@pSize: 1.4rem;
+@smallerPSize: 1.3rem;
+@smallPSize: 1.2rem;
+@smallestPSize: 1.2rem;
+@noteSize: 1.2rem;
 // # Line Heights
-@largestHeight: 48px;
-@largeHeight: 32px;
-@h1Height: 28px;
-@h2Height: 24px;
-@h3Height: 22px;
-@h4Height: 18px;
-@h5Height: 16px;
-@pHeight: @pSize * 1.5;
-@smallerPHeight: 13px;
-@smallPHeight: 12px;
-@smallestPHeight: 11px;
+@largestHeight: 4.8rem;
+@largeHeight: 3.2rem;
+@h1Height: 2.8rem;
+@h2Height: 2.4rem;
+@h3Height: 2.2rem;
+@h4Height: 1.8rem;
+@h5Height: 1.6rem;
+@pHeight: (@pSize * 1.5);
+@smallerPHeight: 1.3rem;
+@smallPHeight: 1.2rem;
+@smallestPHeight: 1.1rem;
 // # Global Colors
 @bodyColor: #fff;
 // # Blues
