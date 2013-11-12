@@ -75,7 +75,7 @@
 	<div class="sideChatNavigationControls">
 		<div data-toggle="sidechattoggle" class="sideChatNavigationIcon"><i class="icon-phone icon-2x"></i><br />Call</div>
 		<div class="sideChatNavigationIcon ChatNotAvailable" id="pC_chat_id"><i class="icon-comments-alt icon-2x"></i><br />Chat</div>
-		<div class="sideChatNavigationIcon offline"><i class="icon-comments-alt icon-2x"></i><br />Chat offline</div>
+				<div class="sideChatNavigationIcon offline" id="pC_chat_offline_id"><i class="icon-comments-alt icon-2x"></i><br />Chat offline</div>
 		<div class="sideChatNavigationIcon"><a href="${mainSitePath}/partsdirect/contactus.pd"><i class="icon-envelope icon-2x"></i><br />Email</a></div>
 	</div>
 </div>
