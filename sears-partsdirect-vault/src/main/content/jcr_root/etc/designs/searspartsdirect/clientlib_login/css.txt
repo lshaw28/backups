@@ -1,5 +1,6 @@
 #base=/etc/designs/searspartsdirect/clientlib_base/less/.
 bootstrap/bootstrap-sears.less
+bootstrap/alerts.less
 core.text.less
 core.helperclasses.less
 core.grid.less
