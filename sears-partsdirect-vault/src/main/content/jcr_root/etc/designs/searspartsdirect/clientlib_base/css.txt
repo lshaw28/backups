@@ -1,10 +1,6 @@
 #base=less/.
-bootstrap.less
-bootstrap-responsive.less
-font-awesome.less
-font-awesome-ie7.less
-core.standardtags.less
-core.textclasses.less
+bootstrap/bootstrap-sears.less
+core.text.less
 core.helperclasses.less
 core.grid.less
 core.buttons.less
@@ -16,6 +12,7 @@ core.svgIcons.less
 #base=less/components/.
 accordionItem/accordionItem.less
 addToCartAnimation/addToCartAnimation.less
+adUnit/adUnit.less
 authorArticle/authorArticles.less
 authorDetails/authorDetails.less
 authorDisplay/authorDisplay.less
@@ -36,6 +33,7 @@ categorySymptoms/categorySymptoms.less
 commonParts/commonParts.less
 customAccordionForms/customAccordionForms.less
 customAccordionForms/customAccordionForms.tablet.less
+customAccordionForms/customAccordionForms.mobile.less
 subscriptionConfirmation/subscriptionConfirmation.less
 subscriptionConfirmation/subscriptionConfirmation.tablet.less
 difficultyRating/difficultyRating.less
@@ -61,6 +59,7 @@ modelNumberSearch/modelNumberSearch.less
 modelSymptoms/modelSymptoms.less
 notice/notice.less
 overviewImage/overviewImage.less
+partList/partList.less
 partsRequiredRepair/partsRequiredRepair.less
 plainText/plainText.less
 recommendedParts/recommendedParts.less
@@ -70,10 +69,11 @@ repairStep/repairStep.less
 responsiveDropdown/responsiveDropdown.less
 responsiveFindThisPart/responsiveFindThisPart.less
 responsiveImage/responsiveImage.less
+responsivePinchImage/responsivePinchImage.less
 responsiveTable/responsiveTable.less
 searchPanel/searchPanel.less
 modelFinder/modelFinder.less
-skyscraperAd/skyscraperAd.less
+sideChatNavigation/sideChatNavigation.less
 socialBar/socialBar.less
 text/text.less
 toolsRequiredRepair/toolsRequiredRepair.less

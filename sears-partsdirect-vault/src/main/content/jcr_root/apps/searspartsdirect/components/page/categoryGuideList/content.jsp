@@ -23,8 +23,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="span3 offset1">
+						<div class="span4">
 							<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />
+						</div>
+						<div class="tabletAdUnit adUnitContainer">
+							<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit728x90" />
+						</div>
+						<div class="mobileAdUnit adUnitContainer">
+							<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit300x50" />
 						</div>
 					</div>
 					<div class="row-fluid">
@@ -32,8 +38,8 @@
 							<cq:include path="featuredGuide" resourceType="searspartsdirect/components/content/mostPopularGuide" />
 							<cq:include path="guideListing" resourceType="searspartsdirect/components/content/guideListing" />
 						</div>
-						<div class="span2 adspan offset1">
-							<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
+						<div class="desktopAdUnit adUnitContainer span2 offset1 pull-right">
+							<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit" />
 						</div>
 					</div>
 				</div>

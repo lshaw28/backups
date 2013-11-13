@@ -24,7 +24,7 @@ NS('shc.pd.base.render').WidgetBreakpointRegistry = (function () {
 		/**
 		 * Adds to breakpint registry
 		 * @param {BreakpointConfig} breakpointConfig
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		add: function (breakpointConfig) {
 			// lazy init
@@ -47,7 +47,7 @@ NS('shc.pd.base.render').WidgetBreakpointRegistry = (function () {
 		/**
 		 * Removes a registry by ID
 		 * @param {Number} id
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		remove: function (id) {
 			var i;
@@ -83,7 +83,7 @@ NS('shc.pd.base.render').WidgetBreakpointRegistry = (function () {
 		/**
 		 * Iterates over registry using provided parameters and inits enable/disable
 		 * @param {Number} width
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		executeChangeActions: function (width) {
 			var i;
@@ -97,7 +97,7 @@ NS('shc.pd.base.render').WidgetBreakpointRegistry = (function () {
 		 * Toggles activation 
 		 * @param {mixed|BreakpointConfig} bpConf
 		 * @param {Number} width
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		executeChangeAction: function (bpConf, width) {
 			// activation creds met?

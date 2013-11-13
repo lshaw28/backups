@@ -20,6 +20,9 @@ var messageHandler = Class.extend(function () {
 				formattedData = self.format(message.data.toString()),
 				modal = null,
 				iFrame = null,
+				modalHeight = 0,
+				deltaHeight = 0,
+				iFrameOffsetTop = 0,
 				newIFrameHeight = 0,
 				newModalHeight = 0;
 
@@ -42,10 +45,13 @@ var messageHandler = Class.extend(function () {
 					document.location.href = document.location.href;
 				}
 				if (formattedData.heightChange) {
+					deltaHeight = parseInt(formattedData.heightChange);
 					modal = $(formattedData.affectedModal);
+					modalHeight = modal.height();
 					iFrame = $('iframe', modal);
-					newIFrameHeight = (modal.height() + formattedData.heightChange) - iFrame.offset().top;
-					newModalHeight = modal.height() + formattedData.heightChange;
+					iFrameOffsetTop = iFrame.offset().top;
+					newIFrameHeight = (modalHeight + deltaHeight) - iFrameOffsetTop;
+					newModalHeight = modalHeight + deltaHeight;
 
 					iFrame.height(newIFrameHeight);
 					modal.height(newModalHeight);

@@ -31,9 +31,6 @@
 
 								<div class="wrapper">
 									<div class="image-wrapper">
-										<div class="wrench-symbol">
-											<i class="icon-wrench"></i>
-										</div>
 										<div class="image">
 											<spd:displayImage path="${guide.imagePath}" />
 										</div>

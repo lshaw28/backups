@@ -68,13 +68,13 @@ NS('shc.pd.base.src').IndexController = Class.extend(function () {
 		},
 		/**
 		 * Stub, overridable method
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		action: function () {},
 		/**
 		 * Set max index
 		 * @param {number} number
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		setMaxIndex: function (number) {
 			this.maxIndex = number;
@@ -82,7 +82,7 @@ NS('shc.pd.base.src').IndexController = Class.extend(function () {
 		/**
 		 * Set max index
 		 * @param {number} number
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		getMaxIndex: function (number) {
 			return this.maxIndex;
@@ -90,7 +90,7 @@ NS('shc.pd.base.src').IndexController = Class.extend(function () {
 		/**
 		 * Set event for on index change
 		 * @param {Function} event
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		setOnIndexChange: function (event) {
 			this.onIndexChange = event;

@@ -209,7 +209,7 @@ NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
 		},
 		/**
 		 * @param {Boolean} partial
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		clearProductSearch: function (partial) {
 			if (typeof partial !== 'undefined' && partial === true) {

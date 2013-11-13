@@ -13,14 +13,19 @@
 			background-color: @secondaryHueLighter;
 			padding: 5px 0;
 			.accordion-toggle {
+				cursor: default;
 				color: @secondaryHueDark;
 				font-size: @h3Size;
 				span {
 					float: right;
-					padding-top: 8px;
+					cursor: pointer;
+					padding-top: 1px;
 					padding-right: 10px;
 					font-size: @smallPSize;
 				}
+			}
+			.accordion-toggle:hover {
+				text-decoration: none;
 			}
 		}
 		.accordion-heading.cafHeadingOpen {
@@ -32,16 +37,11 @@
 		.accordion-inner {
 			.row-fluid {
 				padding: 10px 0;
-				.cafSpacedInput {
+				.numberField {
 					color: @secondaryHueNormal;
+					width: 293px;
 					margin: 0 0 10px;
-					padding: 2px 6px;
-				}
-				#findMyModel {
-					margin-bottom: 0;
-				}
-				.cafText {
-					width: 100%;
+					padding: 3px 6px;
 				}
 			}
 			p {
@@ -54,6 +54,18 @@
 			label {
 				color: @secondaryHueDark;
 				font-weight: bold;
+			}
+			.errorField {
+				border: solid 2px #b94a48;
+			}
+			.error {
+				display: block;
+				color: #b94a48;
+			}
+			.radioToDropDown {
+				.comboContainer {
+					display: none;
+				}
 			}
 			.radioOptions {
 				overflow: hidden;
@@ -72,6 +84,23 @@
 					margin: 0;
 				}
 			}
+			#orderDate {
+				max-width: 140px;
+			}
+			.input-append.date {
+				input {
+					padding: 4px;
+				}
+				.error {
+					font-size: 14px;
+				}
+				.add-on {
+					padding: 7px 12px 1px;
+				}
+			}
+			#waterFilterQuantity {
+				max-width: 65px;
+			}
 			.cafCheckboxField {
 				input {
 					float: left;
@@ -83,6 +112,86 @@
 					font-weight: normal;
 					font-size: @pSize;
 					width: 90%;
+				}
+			}
+			.comboContainer {
+				float: left;
+				padding-right: 10px;
+				.responsiveDropdown {
+					height: 36px;
+					.new-btn-dropdown {
+						background-color: @bodyColor;
+						border: solid 1px @secondaryHueLight;
+						color: @secondaryHueDark;
+						padding: 10px;
+						.icon-chevron-sign-down {
+							padding-left: 20px;
+						}
+					}
+					.new-btn-dropdown.dropError {
+						border: solid 2px #b94a48;
+					}
+					ul {
+						position: absolute;
+						overflow: auto;
+						max-height: 200px;
+						width: 74px;
+					}
+				}
+			}
+			.comboContainer.monthWidth {
+				width: 145px;
+				.responsiveDropdown {
+					ul {
+						width: 115px;
+					}
+				}
+				.error {
+					width: 235px;
+				}
+			}
+			.comboError {
+				padding-bottom: 19px;
+			}
+			.cafText {
+				padding: 3px;
+				margin-bottom: 0;
+			}
+			.cafNameInput {
+				width: 209px;
+			}
+			.cafAddress {
+				width: 369px;
+			}
+			.cafApt {
+				width: 109px;
+			}
+			.cafCity {
+				width: 289px;
+			}
+			.cafZip {
+				width: 169px;
+			}
+			.cafExt {
+				width: 69px;
+			}
+			.cafCredit {
+				width: 189px;
+			}
+			.cafCode {
+				width: 79px;
+			}
+			
+			.cafSameRow {
+				float: left;
+			}
+			.cafSameRow:first-child {
+				padding-right: 30px;
+			}
+			.cafSameRow.phoneWidth {
+				width: 190px;
+				.error {
+					width: 305px;
 				}
 			}
 			
@@ -130,6 +239,14 @@
 			}
 			.iconDiscover {
 				background-position: 0 -48px;
+			}
+			
+			.narrowLabel {
+				float: left;
+				padding-right: 15px;
+			}
+			.linkByLabel {
+				float: left;
 			}
 			
 			.noteText {

@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="X-UA-Compatible" content="IE=edge,chrome=1" />
 <%-- Environment Variables --%>
-<spd:getPDUrl />
+<spd:getPDEnvDetail />
 <spd:getLocalUrl />
 <meta name="global-mainSitePath" content="${nonSecurePDUrl}" />
 <meta name="global-mainSitePathSecure" content="${securePDUrl}" />
@@ -41,8 +41,8 @@
 				<input type="hidden" name="commercialUI" value="false" id="forgotModalPswForm_commercialUI">
 			</fieldset>
 			<div class="pull-right">
-				<button type="button" class="new-btn" data-dismiss="modal" data-cancel="true" aria-hidden="true">Cancel</button>
-				<button type="button" class="new-btn new-btn-search" data-submit="true">Continue</button>
+				<button type="button" class="new-btn new-btn-modal" data-dismiss="modal" data-cancel="true" aria-hidden="true">Cancel</button>
+				<button type="button" class="new-btn new-btn-modal new-btn-search" data-submit="true">Continue</button>
 			</div>
 		</form>
 	</div>

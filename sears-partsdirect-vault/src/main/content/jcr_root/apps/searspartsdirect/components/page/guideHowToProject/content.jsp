@@ -15,30 +15,34 @@
 			<cq:include path="guideNavigation" resourceType="searspartsdirect/components/content/guideNavigation" />
 			<div class="clearfix">&nbsp;</div>
 			<div class="row-fluid">
-				<div class="span8">
-					<div class="row-fluid">
-						<div class="span12">
-							<cq:include path="parsys" resourceType="foundation/components/parsys" />
-							<a name="template_toolsRequiredRepair"></a>
-							<cq:include path="toolsRequiredRepair" resourceType="searspartsdirect/components/content/toolsRequiredRepair" />
-							<a name="template_beforeYouBegin"></a>
-							<cq:include path="beforeYouBegin" resourceType="searspartsdirect/components/content/text" />
-							<a name="template_repairInstructions"></a>
-							<cq:include path="repairInstructions" resourceType="searspartsdirect/components/content/repairInstructions" />
-						</div>
-					</div>
-				</div>
-				<div class="span3 offset1 pull-right">
+				<div class="span4 pull-right">
 					<div class="row-fluid">
 						<div class="span12">
 							<cq:include path="category101" resourceType="searspartsdirect/components/content/category101" />
 						</div>
 					</div>
 					<div class="row-fluid">
-						<div class="span12 ad-span">
-							<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
+						<div class="desktopAdUnit adUnitContainer span12 offset1">
+							<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit" />
 						</div>
 					</div>
+				</div>
+				<div class="span8">
+					<cq:include path="parsys" resourceType="foundation/components/parsys" />
+					<a name="template_toolsRequiredRepair"></a>
+					<cq:include path="toolsRequiredRepair" resourceType="searspartsdirect/components/content/toolsRequiredRepair" />
+				</div>
+				<div class="span8">
+					<a name="template_beforeYouBegin"></a>
+					<cq:include path="beforeYouBegin" resourceType="searspartsdirect/components/content/text" />
+					<a name="template_repairInstructions"></a>
+					<cq:include path="repairInstructions" resourceType="searspartsdirect/components/content/repairInstructions" />
+				</div>
+				<div class="tabletAdUnit adUnitContainer">
+					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit728x90" />
+				</div>
+				<div class="mobileAdUnit adUnitContainer">
+					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit300x50" />
 				</div>
 			</div>
 		</div>

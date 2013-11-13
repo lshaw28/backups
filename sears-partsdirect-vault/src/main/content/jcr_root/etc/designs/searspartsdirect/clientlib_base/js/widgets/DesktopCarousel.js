@@ -31,7 +31,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 		},
 		/**
 		 * Activation event
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		activate: function () {
 			this.parent.addClass(this.enablerClassName);
@@ -39,7 +39,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 		},
 		/**
 		 * Deactivation event
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		deactivate: function () {
 			this.parent.removeClass(this.enablerClassName);
@@ -55,7 +55,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 		},
 		/**
 		 * Generate left/right triggers
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		bindSideTriggers: function () {
 			var left = $('<a />'),
@@ -87,7 +87,7 @@ NS('shc.pd.base.widgets').DesktopCarousel = shc.pd.base.render.Breakpoint.extend
 		},
 		/**
 		 * Generate master controller
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		bindMasterController: function () {
 			var container = $('<div />'),

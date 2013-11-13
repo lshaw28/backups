@@ -21,6 +21,24 @@
 
 		},
 		/**
+		 * Rerender responsive pinch image on edit
+		 * @param {object} el ExtJS caller
+		 */
+		onResponsivePinchImageEdit: function () {
+			this.refreshSelf();
+			var target = $(this.el.dom),
+				newResponsivePinchImage = new responsivePinchImage(target);
+		},
+		/**
+		 * Rerender responsive pinch image within a partList component on edit
+		 * @param {object} el ExtJS caller
+		 */
+		onPartListEdit: function () {
+			this.refreshSelf();
+			var target = $('.responsiveImage', this.el.dom),
+				newResponsivePinchImage = new responsivePinchImage(target);
+		},
+		/**
 		 * Rerender video on edit
 		 * @param {object} el ExtJS caller
 		 */

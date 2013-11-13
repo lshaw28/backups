@@ -1,7 +1,7 @@
 /*global $:true, window:true, Class:true */
 (function (window) {
 	"use strict";
-	window.SPDUtils = {
+	window['SPDUtils'] = {
 		/**
 		 * @namespace SPDUtils
 		 * Global utilities and helper methods
@@ -9,8 +9,11 @@
 		 * init: On page load events to fire
 		 */
 		init: function () {
-			window.SPDUtils.getGlobalVariables();
-			window.SPDUtils.setAddThisVariables();
+			var self = this;
+
+			self.getGlobalVariables();
+			self.getQueryParameters();
+			self.setVendorCSS();
 		},
 		/**
 		 * Retrieve and set global variables
@@ -45,13 +48,47 @@
 		/**
 		 * Creates objects required by AddThis
 		 */
-		setAddThisVariables: function () {
+		prepareAddThis: function () {
+			var self = this,
+				addThisUrl = '//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f903dd609463926',
+				script = null;
+
+			// Set global variables
 			window['addthis_share'] = {
 				'url': document.location.href
 			};
 			window['addthis_config'] = {
 				'data_track_addressbar': false
 			};
+			// Append script to the body
+			script = $('<script />');
+			script.attr('src', self.getFullLocation().protocol + addThisUrl)
+				.attr('type', 'text/javascript')
+				.attr('language', 'javascript');
+			$('body').append(script);
+		},
+		/**
+		 * Get query string parameters
+		 * @return {void}
+		 */
+		getQueryParameters: function () {
+			var returnObj = {},
+				query = window.location.search.substring(1),
+				spaceReg = /\+/g,
+				queryReg = /([^&=]+)=?([^&]*)/g,
+				match,
+				name = '',
+				value = '';
+
+			/* Parse values */
+			while (match = queryReg.exec(query)) {
+				name = decodeURIComponent(match[1].replace(spaceReg, ' '));
+				value = decodeURIComponent(match[2].replace(spaceReg, ' '));
+				returnObj[name] = value;
+			}
+
+			/* Create object */
+			window['queryParams'] = returnObj;
 		},
 		/**
 		 * Check that an object resolves to a valid string
@@ -138,7 +175,7 @@
 			}
 		},
         isMobileBrowser: function() {
-            return ("ontouchstart" in document.documentElement);
+            return ('ontouchstart' in document.documentElement);
         },
 		/**
 		 * Retrieve the current protocol, host name and path
@@ -312,6 +349,7 @@
 		 * Attempt tracking call
 		 * @param {object} params Parameters to pass to the CQ record method if it exists
 		 * @param {string} componentName The name of the component to track
+		 * @return {void}
 		 */
 		trackEvent: function (params, componentName) {
 			var self = this;
@@ -329,6 +367,21 @@
 			// Check tracking is available
 			if (typeof CQ_Analytics.record === 'function') {
 				CQ_Analytics.record(params);
+			}
+		},
+		/**
+		 * Sets vendor-specific CSS properties for CSS3 techniques
+		 * @return {void}
+		 */
+		setVendorCSS: function () {
+			var div = $('<div />'),
+				i = 0,
+				transforms = ['transform', 'msTransform', 'MozTransform', 'WebkitTransform', 'OTransform'];
+		
+			for (i = 0; i < transforms.length; ++i) {
+				if (typeof div[0].style[transforms[i]] !== 'undefined') {
+					window['CSSTransform'] = transforms[i];
+				}
 			}
 		}
 	};

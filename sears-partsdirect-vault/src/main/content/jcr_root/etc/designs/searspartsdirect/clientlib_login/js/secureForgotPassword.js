@@ -8,10 +8,12 @@ var secureForgotPassword = Class.extend(function () {
 		 * Uses Regula validation
 		 * See documentation: https://github.com/vivin/regula/wiki
 		 */
-		init: function (el) {
+		init: function (el, isMobileBrowser) {
 			this.el = el;
+			this.isMobileBrowser = isMobileBrowser;
 			this.bindSubmit();
 			this.bindCancel();
+			this.setBtnSizes();
 			this.resetFields();
 		},
 		/**
@@ -25,6 +27,17 @@ var secureForgotPassword = Class.extend(function () {
 				e.preventDefault();
 				self.validate();
 			});
+		},
+		/**
+		 * if mobile browser, set btn style to fat touch friendly
+		 */
+		setBtnSizes: function () {
+			var self = this;
+
+			if (!self.isMobileBrowser) return;
+
+			$('button').removeClass('new-btn-modal');
+			$('button').addClass('new-btn-touch');
 		},
 		/**
 		 * Validates the registration form and displays friendly errors

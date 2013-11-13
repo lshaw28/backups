@@ -15,7 +15,7 @@ shc.pd.base.util.ViewChange = (function () {
 		instance: null,
 		/**
 		 * Helper function for quick window detection impls
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		getInstance: function () {
 			if (this.instance === null) {

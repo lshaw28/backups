@@ -22,26 +22,26 @@ NS('shc.pd.base.render').Breakpoint = Class.extend(function () {
 		},
 		/**
 		 * @param {Boolean} active
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		setActive: function (active) {
 			this.active = active;
 		},
 		/**
 		 * Stub method to be overrided
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		responsiveCallback: function () {},
 		/**
 		 * Attachment callback stub
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		activate: function () {
 			// Not required
 		},
 		/**
 		 * Detach callback stub
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		deactivate: function () {
 			// Not required

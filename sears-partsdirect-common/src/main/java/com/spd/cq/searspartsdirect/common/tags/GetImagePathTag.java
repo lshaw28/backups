@@ -79,6 +79,7 @@ public class GetImagePathTag extends CQBaseTag {
 		pageContext.setAttribute(DESKTOP_IMAGE, desktopImage);
 		pageContext.setAttribute(TABLET_IMAGE, tabletImage);
 		pageContext.setAttribute(MOBILE_IMAGE, mobileImage);
+		pageContext.setAttribute(SQUARE_IMAGE, squareImage);
 		log.info("GetImagePathTag End");
 		return SKIP_BODY;
 	}

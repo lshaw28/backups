@@ -2,14 +2,21 @@
 @import "../../clientlib_base/less/base.mixins.less";
 
 @media (max-width: 768px) {
-	.new-btn {
-		padding: 14px 19px;
-	}
-	.new-btn-small {
-		font-size: @pSize;
-		padding: 14px 19px;
-	}
-	.new-btn-dropdown {
-		padding: 18px 20px;
-	}
+
+
+  #secureRegisterModal {
+    input[type="text"], input[type="password"] {
+      margin-right: 8px;
+      padding: 8px;
+      width: 94%;
+    }
+    .new-btn-small {
+      font-size: @pSize;
+      padding: 14px 19px;
+    }
+    .new-btn-dropdown {
+      padding: 18px 20px;
+    }
+  }
+
 }

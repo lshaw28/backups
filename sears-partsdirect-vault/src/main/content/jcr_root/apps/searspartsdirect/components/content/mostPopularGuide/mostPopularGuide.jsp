@@ -21,11 +21,14 @@
 			<c:when test="${not empty guides}">
 				<c:forEach items="${guides}" var="popularGuide" varStatus="status">
 					<spd:linkResolver value="${popularGuide.url}" />
-						<div class="guideListing-popular-image">
-							<div class="wrapper">
-								<spd:displayImage path="${popularGuide.imagePath}"/>
-							</div>
-						</div>
+
+                        <div class="guideListing-popular-image">
+                            <div class="wrapper">
+                                <spd:displayImage path="${popularGuide.imagePath}"/>
+                            </div>
+                            <hr>
+                        </div>
+
 
 						<div class="wrench-symbol">
 							<i class="icon-wrench"></i>
@@ -62,13 +65,13 @@
 								<c:choose>
 									<c:when test="${not empty viewText}">
 										<a class="new-btn-large" href="${url}">
-											<i class="icon-chevron-left"></i>
+
 											${viewText}
 										</a>
 									</c:when>
 									<c:otherwise>
 										<a class="new-btn-large" href="${url}">
-											<i class="icon-chevron-left"></i>
+
 											View This Repair Guide
 										</a>
 									</c:otherwise>

@@ -34,7 +34,7 @@ NS('shc.pd.base.render').BreakpointConfig = Class.extend(function () {
 		},
 		/**
 		 * @param {Number} min
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		setMin: function (min) {
 			this.min = min;
@@ -47,7 +47,7 @@ NS('shc.pd.base.render').BreakpointConfig = Class.extend(function () {
 		},
 		/**
 		 * @param {Number} max
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		setMax: function (max) {
 			this.max = max;
@@ -60,7 +60,7 @@ NS('shc.pd.base.render').BreakpointConfig = Class.extend(function () {
 		},
 		/**
 		 * @param {mixed|Breakpoint} obj
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		setObj: function (obj) {
 			this.obj = obj;
@@ -73,7 +73,7 @@ NS('shc.pd.base.render').BreakpointConfig = Class.extend(function () {
 		},
 		/**
 		 * @param {Number} id
-		 * @return {undefined}
+		 * @return {void}
 		 */
 		setIdentifier: function (id) {
 			this.id = id;

@@ -174,7 +174,18 @@ public class EnvironmentSettings {
 	public static String getPDSecurityPath() {
 		return getProperty(PD_SECURITY_PATH, Constants.EMPTY);
 	}
+	
+	@Property(label = "PD 24*7 chat flag",
+			description = "PD  24*7 chat flag",
+			value = "y"
+		)
+	public static final String PD_247CHAT_FLAG = "searspartsdirect.247chat.flag";
 
+	public static String getPD247ChatFlag() {
+		return getProperty(PD_247CHAT_FLAG, Constants.EMPTY);
+	}
+	
+	
 	// ---- for testing ----
 	public void externalActivateForTesting(final ComponentContext context) throws Exception {
 		activate(context);

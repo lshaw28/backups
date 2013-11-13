@@ -3,6 +3,7 @@ bootstrap.min.js
 plugins/regula-1.2.3.min.js
 plugins/jquery.hammer-1.0.5.min.js
 plugins/bootstrap-inputmask.js
+plugins/bootstrap-datepicker.js
 Class.js
 core/Namespace.js
 fx/Easing.js
@@ -42,14 +43,17 @@ recommendedParts.js
 responsiveDropdown.js
 responsiveCollapse.js
 responsiveImage.js
+responsivePinchImage.js
 revealPanel.js
 searchPanel.js
 secureLoginModal.js
+sideChatNavigation.js
 svgIcon.js
 userData.js
 video.js
 
 #base=js/widgets/.
+AdUnit.js
 DesktopCarousel.js
 TouchCarousel.js
 ResponsiveTable.js

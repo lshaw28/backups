@@ -15,8 +15,14 @@
 					<cq:include path="socialBar" resourceType="searspartsdirect/components/content/socialBar" />
 					<cq:include path="parsys" resourceType="foundation/components/parsys" />
 				</div>
-				<div class="span2 offset1 ad-span pull-right">
-					<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
+				<div class="desktopAdUnit adUnitContainer span2 offset1 pull-right">
+					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit" />
+				</div>
+				<div class="tabletAdUnit adUnitContainer">
+					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit728x90" />
+				</div>
+				<div class="mobileAdUnit adUnitContainer">
+					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit300x50" />
 				</div>
 			</div>
 			<div class="row-fluid">

@@ -10,15 +10,18 @@
 				</div>
 			</div>
 			<div class="row-fluid">
-				<div class="span8">
+				<div class="span9">
 					<cq:include path="articleIndexCopy" resourceType="searspartsdirect/components/content/articleIndexCopy" />
 					<cq:include path="category101Detail" resourceType="searspartsdirect/components/content/category101Detail" />
 					<cq:include path="categoryArticleList" resourceType="searspartsdirect/components/content/categoryArticleList" />
 				</div>
-				<div class="span3 offset1 pull-right ad-span">
-					<cq:include path="skyscraperAd" resourceType="searspartsdirect/components/content/skyscraperAd" />
+				<div class="desktopAdUnit tabletAdUnit adUnitContainer span3 pull-right">
+					<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit" />
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="mobileAdUnit adUnitContainer">
+		<cq:include path="adUnit" resourceType="searspartsdirect/components/content/adUnit300x250" />
 	</div>
 </div></article>

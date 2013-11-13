@@ -94,6 +94,9 @@ var searchPanel = Class.extend(function () {
 					self.selectType($(selectStatement));
 				}
 			})
+			.bind('focus', function () {
+				$(this).removeClass('error');
+			})
 			.bind('change', function () {
 				if ($(selectStatement).length > 0) {
 					self.selectType($(selectStatement));
@@ -129,6 +132,9 @@ var searchPanel = Class.extend(function () {
 
 				if (self.getValue() !== '' && $(selectStatement).length > 0) {
 					$('#searchBarForm').submit();
+					$('#searchBarField').removeClass('error');
+				} else {
+					$('#searchBarField').addClass('error');
 				}
 			});
 		}

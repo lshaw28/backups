@@ -6,9 +6,9 @@
 	margin: 0 0 15px 0;
 
 	ul {
+		list-style-type: none;
 		margin: 0 5px 0 0;
 		padding: 0;
-		list-style-type: none;
 
 		li {
 			color: @primaryHueDarkest;
@@ -23,24 +23,19 @@
 				margin: 0;
 				padding: 0;
 
-				.icon-home {
+				i {
 					color: @secondaryHueDark;
-					font-size: @h2Size;
 					display: none;
+					font-size: @h3Size;
+					line-height: @h5Size;
+					margin-right: 10px;
 				}
 			}
 		}
 	}
-}
-
-#loginNavStatus {
-	a {
-		margin-left: 10px;
+	.trigger {
+		display: none;
 	}
-}
-
-.trigger {
-	display: none;
 }
 
 @import "loginNav.tablet.less";
