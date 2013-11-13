@@ -127,6 +127,7 @@ var secureLogin = Class.extend(function () {
 
 			prevHeight = $(document.body).height();
 			$('.alert', self.el).addClass('hidden');
+			$('.alert', self.el).html('');
 			$('input[type!="hidden"]', self.el).each(function() {
 				$(this).val('');
 			});
