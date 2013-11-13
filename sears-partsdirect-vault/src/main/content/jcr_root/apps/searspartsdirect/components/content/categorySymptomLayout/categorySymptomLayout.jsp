@@ -2,9 +2,14 @@
 <spd:getUrlRelation relationType="symptom" />
 <spd:getSymptomDetail id="${symptomRelation.id}" />
 
+<spd:getRelation single="true" assetType="productCategory" />
+	<c:if test="${empty productCategoryRelation}">
+		<spd:getUrlRelation relationType="productCategory" />
+	</c:if>
+
 <div class="row-fluid">
 	<div class="span12">
-		<h1><c:out value="${symptom.title}" /></h1>
+		<h1><c:out value="${productCategoryRelation.title}" /> <c:out value="${symptom.title}" /></h1>
 	</div>
 </div>
 <div class="row-fluid">
