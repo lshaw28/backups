@@ -5,6 +5,7 @@
 		<groupId>com.spd.cq.searspartsdirect</groupId>
 		<artifactId>searspartsdirect-parent</artifactId>
 		<version>0.0.1</version>
+		<relativePath>../sears-partsdirect-parent/pom.xml</relativePath>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>

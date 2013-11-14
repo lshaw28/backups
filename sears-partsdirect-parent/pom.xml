@@ -6,6 +6,7 @@
 		<groupId>com.spd.cq</groupId>
 		<artifactId>cq-parent</artifactId>
 		<version>0.0.1</version>
+		<relativePath>../cq-parent/pom.xml</relativePath>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
