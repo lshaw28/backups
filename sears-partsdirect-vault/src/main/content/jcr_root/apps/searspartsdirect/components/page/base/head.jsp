@@ -9,12 +9,49 @@
 	}
 	ExternalLinks externalLinks = new ExternalLinks(slingRequest);
 %><head>
-<title><%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %></title>
+
+<spd:getHeaderHelperData />
+
+<c:choose>
+	<c:when test="${template eq '/apps/searspartsdirect/templates/modelHelp'}" >
+		<spd:getUrlRelation />
+		<title><c:out value="${brandRelation.title}" /> <c:out value="${productCategoryRelation.title}" /> Model #<c:out value="${modelRelation}" /> Symptoms for Repair | Symptom Diagnosis - Sears PartsDirect</title>
+		<meta name="description" content="Troubleshoot your <c:out value="${brandRelation.title}" /> <c:out value="${productCategoryRelation.title}" /> Model #<c:out value="${modelRelation}" /> and research repair symptoms at Sears PartsDirect. Find out which repairs might help solve the problem, parts and more." />
+		<meta name="keywords" content="<c:out value="${brandRelation.title}" /> <c:out value="${productCategoryRelation.title}" /> Model #<c:out value="${modelRelation}" /> Symptoms, <c:out value="${brandRelation.title}" /> <c:out value="${productCategoryRelation.title}" /> Model #<c:out value="${modelRelation}" /> Repair Guides" />
+	</c:when>
+	<c:when test="${template eq '/apps/searspartsdirect/templates/categorySymptom'}" >
+		<spd:getUrlRelation relationType="symptom" />
+		<spd:getSymptomDetail id="${symptomRelation.id}" />
+		<spd:getRelation single="true" assetType="productCategory" />
+		<c:if test="${empty productCategoryRelation}">
+			<spd:getUrlRelation relationType="productCategory" />
+		</c:if>
+		
+		<spd:getUrlRelation relationType="model" />
+		<c:choose>
+		<c:when test="${!empty modelRelation}">
+			<title><c:out value="${productCategoryRelation.title}"/> <c:out value="${modelRelation}" /> <c:out value="${symptom.title}" /> - Sears PartsDirect</title>
+		</c:when>
+		<c:otherwise>
+			<title><c:out value="${productCategoryRelation.title}" /> <c:out value="${symptom.title}" /> | Symptom Diagnosis - Sears PartsDirect</title>
+		</c:otherwise>
+		</c:choose>
+		
+		<meta name="description" content="Learn why your <c:out value="${productCategoryRelation.title}" />  <c:out value="${symptom.title}" /> at Sears PartsDirect. Find out which repairs might help solve the problem, parts and more." />
+		<meta name="keywords" content="<c:out value="${productCategoryRelation.title}" /> repairs, <c:out value="${productCategoryRelation.title}" /> <c:out value="${symptom.title}" />, repair guides, repair help, diy" />
+	</c:when>
+	<c:otherwise>
+			<title><%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %></title>
+			<meta name="description" content="<%= StringEscapeUtils.escapeHtml4(properties.get("jcr:description", "")) %>" />
+			<meta name="keywords" content="<%= StringEscapeUtils.escapeHtml4(WCMUtils.getKeywords(currentPage, false)) %>" />
+	</c:otherwise>
+</c:choose>
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="author" content="Sears PartsDirect" />
-<meta name="keywords" content="<%= StringEscapeUtils.escapeHtml4(WCMUtils.getKeywords(currentPage, false)) %>" />
-<meta name="description" content="<%= StringEscapeUtils.escapeHtml4(properties.get("jcr:description", "")) %>" />
+
+
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="<%=externalLinks.getExternalUrlForPage(currentPage.getPath()) %>" />
 <meta property="og:title" content="<%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %>" />
@@ -26,7 +63,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black"><spd:getPDEnvDetail />
 <spd:getLocalUrl /><meta name="global-mainSitePath" content="${nonSecurePDUrl}" />
 <meta name="global-mainSitePathSecure" content="${securePDUrl}" />
-<meta name="global-modelSearchServletPath" content="bin/searspartsdirect/modelsearch" /><spd:getHeaderHelperData />
+<meta name="global-modelSearchServletPath" content="bin/searspartsdirect/modelsearch" />
 <meta name="global-apiPath" content="${PdApiRoot}" />
 <meta name="global-apiPathSecure" content="${PdApiRootSecure}" />
 <meta name="global-guestCookieId" content="${myProfileModelCookie}" />
@@ -37,4 +74,5 @@
 %><cq:include script="stats.jsp"/>
 <% if (favIcon != null) { %><link rel="icon" type="image/vnd.microsoft.icon" href="<%= favIcon %>" />
 <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<%= favIcon %>" /><% } %>
+
 </head>

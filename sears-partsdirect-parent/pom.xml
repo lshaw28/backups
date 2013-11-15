@@ -6,6 +6,7 @@
 		<groupId>com.spd.cq</groupId>
 		<artifactId>cq-parent</artifactId>
 		<version>0.0.1</version>
+		<relativePath>../cq-parent/pom.xml</relativePath>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -16,8 +17,8 @@
 
 	<!--  NOTE: This project needs to be built with NO modules enabled for the first build to seed the parent. --> 
 	<modules> 
-		<!--  <module>../sears-partsdirect-common</module>
-		<module>../sears-partsdirect-vault</module> -->
+		<module>../sears-partsdirect-common</module>
+		<module>../sears-partsdirect-vault</module>
 	</modules>
 
 	<dependencies>

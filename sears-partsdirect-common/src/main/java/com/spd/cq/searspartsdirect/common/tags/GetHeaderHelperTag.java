@@ -33,6 +33,8 @@ public class GetHeaderHelperTag extends CQBaseTag {
 			} else {
 				pageContext.setAttribute("shoppingCartCookieId", "");
 			}
+			
+			pageContext.setAttribute("template", currentPage.getProperties().get("cq:template", ""));
 		}
 
 		pageContext.setAttribute("PdApiRoot", EnvironmentSettings.getPDApiRoot());

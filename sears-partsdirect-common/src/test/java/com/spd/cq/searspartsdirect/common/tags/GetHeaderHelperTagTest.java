@@ -2,10 +2,13 @@ package com.spd.cq.searspartsdirect.common.tags;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import org.apache.sling.api.resource.ValueMap;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,6 +24,9 @@ public class GetHeaderHelperTagTest extends MocksTag {
 		super.setUp();
 		fixture = new GetHeaderHelperTagFixture(request);
 		tag = new GetHeaderHelperTag();
+		ValueMap pageProperties = mock(ValueMap.class);
+		when(currentPage.getProperties()).thenReturn(pageProperties);
+		when(pageProperties.get("cq:template", "")).thenReturn("someTemplate");
 	}
 
 	@Test

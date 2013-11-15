@@ -1,9 +1,9 @@
 NS('shc.pd.base.widgets').SearchPanelFinderResult = Class.extend(function() {
-	var API_PREFIX = mainSitePath + '/partsdirect/newModelLocatorAction!',
-		PRODUCT_URI = API_PREFIX + 'fetchNewFilterOptionsBasedOnProductType.pd',
+	var API_PREFIX = mainSitePath + '/partsdirect/',
+		PRODUCT_URI = API_PREFIX + 'newModelLocatorActionProductTypeBasedFilter.pd',
 		PRODUCT_SWITCHER_URI = API_PREFIX + 'fetchPlateLocationsAndImageForStyle.pd',
-		MODEL_BRANDS = API_PREFIX + 'fetchBrandsListBasedOnStyle.pd',
-		MODEL_NUMBERS_URI = API_PREFIX + 'fetchSampleModelNumbersBasedOnBrand.pd';
+		MODEL_BRANDS = API_PREFIX + 'newModelLocatorActionBrandsListStyleBased.pd',
+		MODEL_NUMBERS_URI = API_PREFIX + 'newModelLocatorActionSampleModelNumBrandBased.pd';
 
 	return {
 		/**
