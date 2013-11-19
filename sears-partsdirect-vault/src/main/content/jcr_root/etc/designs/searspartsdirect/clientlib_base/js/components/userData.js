@@ -114,11 +114,15 @@ var userData = Class.extend(function () {
 				username = su.validString(resp.username),
 				firstName = su.validString(resp.firstName),
 				lastName = su.validString(resp.lastName),
-				formattedName = (firstName + ' ' + lastName).trim();
+				formattedName = (firstName + ' ' + lastName).trim(),
+				casId = su.validString(resp.casId),
+				unitCenterId = su.validString(resp.unitCenterId);
 
 			// Make names global
 			NS('shc.pd').firstName = firstName;
 			NS('shc.pd').lastName = lastName;
+			NS('shc.pd').casId = casId;
+			NS('shc.pd').unitCenterId = unitCenterId;
 
 			// Set loginNav items
 			if (username !== '') {
