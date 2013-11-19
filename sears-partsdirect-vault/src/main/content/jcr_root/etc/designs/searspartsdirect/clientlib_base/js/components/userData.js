@@ -59,7 +59,7 @@ var userData = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils,
 				dateObj = new Date(),
-				userAddress = ajaxSitePath + 'partsdirect/retrieveSessionUserInfo.pd?d=' + dateObj.getTime();
+				userAddress = ajaxSitePath + '/partsdirect/retrieveSessionUserInfo.pd?d=' + dateObj.getTime();
 
 			// Make an AJAX call
 			if ($.browser.msie) {
