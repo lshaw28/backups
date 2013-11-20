@@ -605,3 +605,7 @@
 	</div>
 	<a href="#" class="btn" data-dismiss="modal">Close</a>
 </div>
+<div id="processingIcon" class="addToCartAnimation">
+	<i class="icon-refresh">&nbsp;</i>
+	<p>Placing order</p>
+</div>

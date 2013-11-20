@@ -356,6 +356,9 @@ var customAccordionForms = Class.extend(function () {
 			//Where the information to start the subscription is submitted
 			$('#finalSubmit').on('click', function () {
 				var dateEntered = $('#odInput').val();
+				$(this).unbind('click');
+				$('.accordion-toggle').removeAttr('href').attr('data-toggle', 'false');
+				$('#processingIcon').show();
 				$.ajax({
 					type: "POST",
 					dataType: "json",
@@ -419,7 +422,7 @@ var customAccordionForms = Class.extend(function () {
 					}),
 					url: apiPath + 'subscriptionservice/enroll',
 					success: function(response) {
-						console.log(response);
+						//console.log(response);
 						if (response.message == 'SUCCESS') {
 							$.ajax({
 								type:"GET",
@@ -453,10 +456,8 @@ var customAccordionForms = Class.extend(function () {
 									$('#confirmPartDesc').html($('.filterFound a').html());
 									$('#confirmQty').html($('#waterFilterQuantity').val());
 									//Price formatting in case price is an even integer or tens of cents
-									var unitPrice = Math.round(response.price * 100);
-									var finalPrice = Math.round(response.paymentInfo.amount * 100);
-									var formattedUnitPrice = unitPrice.toString();
-									var formattedFinalPrice = finalPrice.toString();
+									var formattedUnitPrice = Math.round(response.price * 100).toString();
+									var formattedFinalPrice = Math.round(response.paymentInfo.amount * 100).toString();
 									$('#confirmUnitPrice').html(formattedUnitPrice.substring(0, formattedUnitPrice.length - 2) + '.' + formattedUnitPrice.substring(formattedUnitPrice.length - 2));
 									$('#confirmTotalPrice').html(formattedFinalPrice.substring(0, formattedFinalPrice.length - 2) + '.' + formattedFinalPrice.substring(formattedFinalPrice.length - 2));
 								},
