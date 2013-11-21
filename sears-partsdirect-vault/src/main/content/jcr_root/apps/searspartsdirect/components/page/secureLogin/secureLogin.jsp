@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <i class="icon-spinner icon-spin icon-large"></i>
+
     <div class="row-fluid hidden" id="secureLoginModal">
         <div class="span10 offset1">
             <h1 id="loginModalLabel">Sign In<span class="pull-right"><p class="headline">New Customer?</p> <a data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Register</a></span></h1>

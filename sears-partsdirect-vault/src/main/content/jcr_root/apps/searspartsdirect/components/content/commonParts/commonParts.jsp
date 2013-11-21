@@ -31,6 +31,7 @@
 							<p><c:forEach var="guide" items="${commonPart.guides}">
 								<spd:linkResolver value="${guide.url}"/>
 									<a href="${url}"><c:out value="${guide.title}"/></a><br />
+
 							</c:forEach></p>
 						</div>
 					</div>
@@ -42,7 +43,9 @@
 			<div class="accordion-group">
 				<div class="accordion-heading">
 					<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#parent_${uniqueId}${uniquer}" href="#${uniqueId}${uniquer}">Shop for
+
 						<c:choose>
+
 							<c:when test="${not empty commonPart.pluralTitle}">
 								<c:out value="${fn:toLowerCase(commonPart.pluralTitle)}"/>
 							</c:when>
@@ -54,7 +57,11 @@
 				</div>
 				<div id="${uniqueId}${uniquer}" class="accordion-body in collapse">
 					<div class="accordion-inner">
-						<p><a href="${mainSitePath}/partsdirect/product-types/${productCategoryRelation.trueName}-Parts">Shop <c:choose>
+						
+						<p><a href="${mainSitePath}/partsdirect/product-types/${productCategoryRelation.trueName}-Parts">Shop 
+						<spd:displayImage path="${commonPart.imagePath}"/>
+						<c:choose>
+							
 							<c:when test="${not empty commonPart.pluralTitle}">
 								<c:out value="${fn:toLowerCase(commonPart.pluralTitle)}"/>
 							</c:when>

@@ -14,7 +14,12 @@ var customAccordionForms = Class.extend(function () {
 		 * @return {void}
 		 */
 		bindEvents: function () {
-			var self = this;
+			var self = this,
+				filterSearchInterval = 0,
+				typingFilter = false,
+				searchText = '',
+				unitPrice = 0.0,
+				preTaxPrice = 0;
 			
 			$('body').append($('#modalShipping')).append($('#modalCode'));
 			//This modifies the accordion to change the head background color when toggled and to have one open at a time (preference to current step)
@@ -43,6 +48,61 @@ var customAccordionForms = Class.extend(function () {
                 }
 			});
 			
+			//This handles when a user enters text into the filter search field
+			$('.numberField').on('keypress', function (e) {
+				typingFilter = true;
+				clearInterval(filterSearchInterval);
+				filterSearchInterval = setInterval(function () {
+					searchText = $('.numberField').val();
+					if (!typingFilter && searchText != "Enter your part or model number" && searchText.length > 2) {
+						var searchType = "part";
+						if ($('#ntPart').attr('checked') == undefined) {
+							searchType = "model";
+						}
+						clearInterval(filterSearchInterval);
+						$.ajax({
+							type: "GET",
+							cache: false,
+							dataType: "xml",
+							data: {
+								number: searchText
+							},
+							url: apiPath + 'searchWaterFilter/' + searchType,
+							success: function(response) {
+								//console.log(response);
+								if($(response).find('part > description').length == 0) {
+									$('.searchText .filterError').removeClass('hidden');
+									$('.searchText .filterFound').addClass('hidden');
+									$('#cafSelectFilterFrequencyForm .cafSubmit').addClass('hidden');
+									$('#finalPartNumber').val('');
+									$('#finalGroupId').val('');
+									$('#finalSupplierId').val('');
+								} else {
+									var groupId = $(response).find('productGroupId').text();
+									var supplierId = $(response).find('supplierId').text();
+									$('#finalPartNumber').val($(response).find('partNumber').text());
+									$('#finalGroupId').val(groupId);
+									$('#finalSupplierId').val(supplierId);
+									$('.searchText .filterError').addClass('hidden');
+									$('.searchText .filterFound').removeClass('hidden');
+									$('#cafSelectFilterFrequencyForm .cafSubmit').removeClass('hidden');
+									$('.searchText .filterFound .filterDescription').attr('href', mainSitePathSecure + '/partsdirect/part-number/' + searchText + '/' + groupId + '/' + supplierId);
+									$('.searchText .filterFound .filterDescription').html($(response).find('part > description').text());
+									//Multiplies the price by 100 so it can be converted into an integer
+									unitPrice = parseFloat($(response).find('sellingPrice').text()) * 100;
+								}
+							},
+							error: function(response) {
+								//console.log('fail');
+							}
+						});
+					}
+				}, 2000);
+			});
+			$('.numberField').on('keyup', function (e) {
+				typingFilter = false;
+			});
+			
 			//This sets up the DatePickers
 			var today = new Date();
 			$('#orderDate').datepicker({
@@ -67,20 +127,176 @@ var customAccordionForms = Class.extend(function () {
 			$('#orderDate').datepicker('update', (today.getMonth() + 1).toString() + '/' + today.getDate().toString() + '/' + today.getFullYear().toString());
 			
 			$('.cafSubmit', self.el).on('click', function (e) {
+				var submittedFormId = $(e.target.form).attr('id');
 				e.preventDefault();
-				//Sets the frequency, dates (eventually) and quantity the user input on the first step
-				if ($(e.target.form).attr('id') == "cafSelectFilterFrequencyForm") {
+				//Sets the frequency, date, quantity and price based on user input in the first step
+				if (submittedFormId == "cafSelectFilterFrequencyForm") {
+					var selectedQty = $('#waterFilterQuantity').val();
 					$('#freqSel').html($('.filFreq:checked').val());
 					$('#startDate').html($('#odInput').val());
-					$('#subQty').html($('#waterFilterQuantity').val());
+					$('#subQty').html(selectedQty);
+					//Multiplies and converts the multiplied price to an integer then converts it into a string to display the price properly
+					preTaxPrice = Math.round(unitPrice) * parseInt(selectedQty);
 				}
-				//Special bit to fill out the billing form if user wants to use the same address (already on checkbox, here in case user updates after clicking the checkbox)
-				if ($(e.target.form).attr('id') == "cafShippingAddressForm" && $('#shippingSame').attr('checked')) {
-					self.setBillingFields(true);
+				if (submittedFormId == "cafShippingAddressForm") {
+					if ($('#shippingPO').attr('checked') == "checked") {
+						$('#finalPO').val('true');
+					} else {
+						$('#finalPO').val('false');
+					}
+					if (!$('#countyRow').hasClass('hidden')) {
+						$('#finalGeocode').val($('#shippingCounty').val());
+					}
+					//Special bit to fill out the billing form if user wants to use the same address (already on checkbox, here in case user updates after clicking the checkbox)
+					if ($('#shippingSame').attr('checked')) {
+						self.setBillingFields(true);
+					}
 				}
 				//Set Regula to validate current form
 				self.bindRegula(parseInt(e.target.attributes['data-form-number'].value));
 				self.validate(e);
+			});
+			
+			//Brings up the county dropdown for address validation
+			$('#shippingAddress, #shippingCity, #shippingState, #shippingZip').on('change.addressValidation', function() {
+				var address = $('#shippingAddress').val();
+				var city = $('#shippingCity').val();
+				var state = $('#shippingState').val();
+				var zip = $('#shippingZip').val();
+				$('#cafShippingAddressForm .cafSubmit').addClass('hidden');
+				if (address != "" && city != "" && state != "ZZ" && zip != "") {
+					$.ajax({
+						type : "POST",
+						dataType: "json",
+						headers: {
+							'Accept': 'application/json',
+							'Content-Type': 'application/json'
+						},
+						cache: false,
+						data: JSON.stringify({
+							'address1': address,
+							'city': city,
+							'zipCode': zip,
+							'state': state
+						}),
+						url: apiPath + 'address/validate',
+						success : function(response) {
+							//console.log(response);
+							if (response.geoCodeValues != null) {
+								var geoCodes = response.geoCodeValues.length;
+								$('#shippingCounty').parent().find('.responsiveDropdown').remove();
+								$('#shippingCounty').html('')
+								for (var i = 0; i < geoCodes; i++) {
+									var key = response.geoCodeValues[i].key;
+									var value = response.geoCodeValues[i].value;
+									
+									if (key == '') {
+										key = 'ZZ';
+									}
+									$('#shippingCounty').append($('<option>', {value : key}).text(value).attr('data-value', key));
+								}
+								$('#shippingCounty').each(function () {
+									var newResponsiveDropdown = new responsiveDropdown($(this));
+								});
+								$('.countyRow').removeClass('hidden');
+							} else {
+								$('.countyRow').addClass('hidden');
+								//console.log(response);
+								$.ajax({
+									type : "POST",
+									dataType: "json",
+									headers: {
+										'Accept': 'application/json',
+										'Content-Type': 'application/json'
+									},
+									cache: false,
+									data: JSON.stringify({
+										"address": {
+											'address1': address,
+											'city': city,
+											'geoCode': response.validatedAddress.verifiedAddress.geoCode,
+											'zipCode': zip,
+											'state': state
+										},
+										"partCompositeKey": {
+											"partNumber": $('#finalPartNumber').val(),
+											"productGroupId": $('#finalGroupId').val(),
+											"supplierId": $('#finalSupplierId').val()
+										},
+										"quantity": parseInt($('#waterFilterQuantity').val())
+									}),
+									url: apiPath + 'address/validate/taxandshipping',
+									success: function(response2) {
+										//console.log(response2);
+										if (response2.taxAmount != null) {
+											//Price formatting in case price is an even integer or tens of cents
+											var totalPrice = preTaxPrice + Math.round(response2.taxAmount * 100);
+											var formattedPrice = totalPrice.toString();
+											$('#cafFilterPrice').html('$' + formattedPrice.substring(0, formattedPrice.length - 2) + '.' + formattedPrice.substring(formattedPrice.length - 2) + '*');
+											$('#cafShippingAddressForm .cafSubmit').removeClass('hidden');
+											$('#finalGeocode').val(response.validatedAddress.verifiedAddress.geoCode);
+										} else {
+											//console.log('taxandshipping fail');
+										}
+									},
+									error: function(response2) {
+										//console.log('taxandshipping ajax fail');
+									}
+								});
+							}
+						},
+						error : function(response) {
+							//console.log('fail');
+						}
+					});
+				}
+			});
+			$('#shippingCounty').on('change.addressValidation', function() {
+				if ($(this).val() == 'ZZ') {
+					$('#cafShippingAddressForm .cafSubmit').addClass('hidden');
+				} else {
+					$('#cafShippingAddressForm .cafSubmit').removeClass('hidden');
+					$.ajax({
+						type : "POST",
+						dataType: "json",
+						headers: {
+							'Accept': 'application/json',
+							'Content-Type': 'application/json'
+						},
+						cache: false,
+						data: JSON.stringify({
+							"address": {
+								'address1': $('#shippingAddress').val(),
+								'city': $('#shippingCity').val(),
+								'geoCode': $('#shippingCounty').val(),
+								'zipCode': $('#shippingZip').val(),
+								'state': $('#shippingState').val()
+							},
+							"partCompositeKey": {
+								"partNumber": $('#finalPartNumber').val(),
+								"productGroupId": $('#finalGroupId').val(),
+								"supplierId": $('#finalSupplierId').val()
+							},
+							"quantity": parseInt($('#waterFilterQuantity').val())
+						}),
+						url: apiPath + 'address/validate/taxandshipping',
+						success : function(response) {
+							if (response.taxAmount != null) {
+								//Price formatting in case price is an even integer or tens of cents
+								var totalPrice = preTaxPrice + Math.round(response.taxAmount * 100);
+								var formattedPrice = totalPrice.toString();
+								$('#cafFilterPrice').html('$' + formattedPrice.substring(0, formattedPrice.length - 2) + '.' + formattedPrice.substring(formattedPrice.length - 2) + '*');
+								$('#cafShippingAddressForm .cafSubmit').removeClass('hidden');
+								$('#finalGeocode').val($('#shippingCounty').val());
+							} else {
+								//console.log('taxandshipping fail');
+							}
+						},
+						error : function(response) {
+							//console.log('taxandshipping ajax fail');
+						}
+					});
+				}
 			});
 			
 			//These handle autofills for the dropdowns (i.e.: if browser fills in previously used address)
@@ -101,42 +317,9 @@ var customAccordionForms = Class.extend(function () {
 				$('#payYear').parent().find('.responsiveDropdown li[data-value=' + $('#payYear option:selected').val() + '] a').click();
 			});
 			
-			//This is for when there is an error on the expiration date has an error (only the month get the validation change event)
+			//This is for when there is an error on the expiration date has an error (only the month dropdown gets the validation change event)
 			$('#payYear').on('change.error', function() {
 				$('#payMonth').change();
-			});
-			
-			//Custom Regula constraint for matching fields
-			regula.custom({
-				name: "MatchInput",
-				defaultMessage: "Fields must match",
-				params: ["inputId"],
-				validator: function(params) {
-					var match = $('#' + params["inputId"]).val();
-					return (this.value == match);
-				}
-			});
-			//Custom Regula constraint for validating credit cards
-			regula.custom({
-				name: "CreditCard",
-				defaultMessage: "Invalid number",
-				validator: function() {
-					var match = /^\d+$/;
-					return (match.test(this.value) && this.value.length > 12 && this.value.length < 17);
-				}
-			});
-			//Custom Regula constraint for when two drop downs must be selected as a pair
-			regula.custom({
-				name: "SelectGroup",
-				defaultMessage: "Select fields",
-				params: ["inputId"],
-				validator: function(params) {
-					var returnVal = false;
-					if ($('#' + params["inputId"])[0].selectedIndex && $(this)[0].selectedIndex) {
-						returnVal = true;
-					}
-					return (returnVal);
-				}
 			});
 			
 			//This will have the shipping address submit button submit the billing address form with shipping address data
@@ -169,6 +352,161 @@ var customAccordionForms = Class.extend(function () {
 					$('#shippingSame').removeAttr('checked');
 				}
 			});
+			
+			//Where the information to start the subscription is submitted
+			$('#finalSubmit').on('click', function () {
+				var dateEntered = $('#odInput').val();
+				$(this).unbind('click');
+				$('.accordion-toggle').removeAttr('href').attr('data-toggle', 'false');
+				$('#processingIcon').show();
+				$.ajax({
+					type: "POST",
+					dataType: "json",
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					cache: false,
+					data: JSON.stringify({
+						"shippingInfo": {
+							"firstName": $('#shippingFirst').val(),
+							"lastName": $('#shippingLast').val(),
+							"dayTimePhone": $('#shippingPhone').val(),
+							"dayTimePhoneExt": $('#shippingExt').val(),
+							"email": $('#shippingEmail').val(),
+							"address": {
+								"address1": $('#shippingAddress').val(),
+								"address2": $('#shippingApt').val(),
+								"city": $('#shippingCity').val(),
+								"geoCode": $('#finalGeocode').val(),
+								"zipCode": $('#shippingZip').val(),
+								"state": $('#shippingState').val()
+							}
+						},
+						"billingInfo": {
+							"firstName": $('#billingFirst').val(),
+							"lastName": $('#billingLast').val(),
+							"dayTimePhone": $('#shippingPhone').val(),
+							"dayTimePhoneExt": $('#shippingExt').val(),
+							"address": {
+								"address1": $('#billingAddress').val(),
+								"address2": $('#billingApt').val(),
+								"city": $('#billingCity').val(),
+								"zipCode": $('#billingZip').val(),
+								"state": $('#billingState').val()
+							}
+						},
+						"isShippingBillingSame": false,
+						"partCompositeKey": {
+							"partNumber": $('#finalPartNumber').val(),
+							"productGroupId": $('#finalGroupId').val(),
+							"supplierId": $('#finalSupplierId').val()
+						},
+						"creditCard": {
+							"cardNumber": $('#payNumber').val(),
+							"cardType": $('#finalCardType').val(),
+							"expMonth": parseInt($('#payMonth').val()),
+							"expYear": parseInt($('#payYear').val()),
+							"securityCode": parseInt($('#payCode').val()),
+							"name": $('#payName').val()
+						},
+						"subscriptionInfo": {
+							"renewalPeriod": parseInt($('.filFreq:checked').val()),
+							"nextFullfillmentDate": dateEntered.substr(6,4) + dateEntered.substr(0,2) + dateEntered.substr(3,2)
+						},
+						"ldapUserInfo": {
+							"casId": NS('shc.pd').casId,
+							"unitCenterId": NS('shc.pd').unitCenterId
+						},
+						"quantity": parseInt($('#waterFilterQuantity').val())
+					}),
+					url: apiPath + 'subscriptionservice/enroll',
+					success: function(response) {
+						//console.log(response);
+						if (response.message == 'SUCCESS') {
+							$.ajax({
+								type:"GET",
+								url:'SubscriptionConfirmation.html',
+								success: function(pageResponse) {
+									$('.pageTitleHeader, .customAccordionForms').addClass('hidden');
+									$('.customAccordionForms').after($(pageResponse).find('.subscriptionConfirmation'));
+									$('#confirmNo').html(response.membershipId);
+									$('#confirmShipFirst').html(response.shippingInfo.firstName);
+									$('#confirmShipLast').html(response.shippingInfo.lastName);
+									$('#confirmShipAddress').html(response.shippingInfo.address.address1);
+									if (response.shippingInfo.address.address2 != '') {
+										$('#confirmShipAddress + br').after(response.shippingInfo.address.address2 + '<br />');
+									}
+									$('#confirmShipCity').html(response.shippingInfo.address.city);
+									$('#confirmShipState').html(response.shippingInfo.address.state);
+									$('#confirmShipZip').html(response.shippingInfo.address.zipCode);
+									$('#confirmBillFirst').html(response.billingInfo.firstName);
+									$('#confirmBillLast').html(response.billingInfo.lastName);
+									$('#confirmBillAddress').html(response.billingInfo.address.address1);
+									if (response.billingInfo.address.address2 != '') {
+										$('#confirmBillAddress + br').after(response.billingInfo.address.address2 + '<br />');
+									}
+									$('#confirmBillCity').html(response.billingInfo.address.city);
+									$('#confirmBillState').html(response.billingInfo.address.state);
+									$('#confirmBillZip').html(response.billingInfo.address.zipCode);
+									$('#confirmBillCardType').html(response.paymentInfo.cardType);
+									$('#confirmBillCardNo').html(response.paymentInfo.cardNumber);
+									$('#confirmEmail').html($('#shippingEmail').val());
+									$('#confirmPartNo').html($('#finalPartNumber').val());
+									$('#confirmPartDesc').html($('.filterFound a').html());
+									$('#confirmQty').html($('#waterFilterQuantity').val());
+									//Price formatting in case price is an even integer or tens of cents
+									var formattedUnitPrice = Math.round(response.price * 100).toString();
+									var formattedFinalPrice = Math.round(response.paymentInfo.amount * 100).toString();
+									$('#confirmUnitPrice').html(formattedUnitPrice.substring(0, formattedUnitPrice.length - 2) + '.' + formattedUnitPrice.substring(formattedUnitPrice.length - 2));
+									$('#confirmTotalPrice').html(formattedFinalPrice.substring(0, formattedFinalPrice.length - 2) + '.' + formattedFinalPrice.substring(formattedFinalPrice.length - 2));
+								},
+								error: function(pageResponse) {
+									//console.log('fail');
+								}
+							});
+						} else {
+							
+						}
+					},
+					error: function(response) {
+						//console.log(response);
+					}
+				});
+			});
+			
+			//Custom Regula constraint for matching fields
+			regula.custom({
+				name: "MatchInput",
+				defaultMessage: "Fields must match",
+				params: ["inputId"],
+				validator: function(params) {
+					var match = $('#' + params["inputId"]).val();
+					return (this.value == match);
+				}
+			});
+			//Custom Regula constraint for validating credit cards
+			regula.custom({
+				name: "CreditCard",
+				defaultMessage: "Invalid number",
+				validator: function() {
+					var match = /^\d+$/;
+					return (match.test(this.value) && this.value.length > 11 && this.value.length < 17);
+				}
+			});
+			//Custom Regula constraint for when two drop downs must be selected as a pair
+			regula.custom({
+				name: "SelectGroup",
+				defaultMessage: "Select fields",
+				params: ["inputId"],
+				validator: function(params) {
+					var returnVal = false;
+					if ($('#' + params["inputId"])[0].selectedIndex && $(this)[0].selectedIndex) {
+						returnVal = true;
+					}
+					return (returnVal);
+				}
+			});
 		},
 		/**
 		 * Sets billing form input fields
@@ -181,18 +519,40 @@ var customAccordionForms = Class.extend(function () {
 				$('#billingAddress').val($('#shippingAddress').val()).attr('disabled', 'disabled');
 				$('#billingApt').val($('#shippingApt').val()).attr('disabled', 'disabled');
 				$('#billingCity').val($('#shippingCity').val()).attr('disabled', 'disabled');
+				$('#billingState').parent().find('.responsiveDropdown li[data-value=' + $('#shippingState option:selected').val() + '] a').click();
+				$('.billingStateDrop .responsiveDropdown ul').addClass('dropdownDisabled');
 				$('#billingZip').val($('#shippingZip').val()).attr('disabled', 'disabled');
 				$('#billingPhone').val($('#shippingPhone').val()).attr('disabled', 'disabled');
 				$('#billingExt').val($('#shippingExt').val()).attr('disabled', 'disabled');
+				$('#finalBillingFName').val($('#shippingFirst').val());
+				$('#finalBillingLName').val($('#shippingLast').val());
+				$('#finalBillingAddress').val($('#shippingAddress').val());
+				$('#finalBillingApt').val($('#shippingApt').val());
+				$('#finalBillingCity').val($('#shippingCity').val());
+				$('#finalBillingState').val($('#shippingState').val());
+				$('#finalBillingZip').val($('#shippingZip').val());
+				$('#finalBillingPhone').val($('#shippingPhone').val());
+				$('#finalBillingExt').val($('#shippingExt').val());
 			} else {
 				$('#billingFirst').val('').removeAttr('disabled');
 				$('#billingLast').val('').removeAttr('disabled');
 				$('#billingAddress').val('').removeAttr('disabled');
 				$('#billingApt').val('').removeAttr('disabled');
 				$('#billingCity').val('').removeAttr('disabled');
+				$('.billingStateDrop .responsiveDropdown ul').removeClass('dropdownDisabled');
+				$('#billingState').parent().find('.responsiveDropdown li[data-value=ZZ] a').click();
 				$('#billingZip').val('').removeAttr('disabled');
 				$('#billingPhone').val('').removeAttr('disabled');
 				$('#billingExt').val('').removeAttr('disabled');
+				$('#finalBillingFName').val('');
+				$('#finalBillingLName').val('');
+				$('#finalBillingAddress').val('');
+				$('#finalBillingApt').val('');
+				$('#finalBillingCity').val('');
+				$('#finalBillingState').val('');
+				$('#finalBillingZip').val('');
+				$('#finalBillingPhone').val('');
+				$('#finalBillingExt').val('');
 			}
 		},
 		/**
@@ -412,7 +772,6 @@ var customAccordionForms = Class.extend(function () {
 		 */
 		validate: function (button) {
 			var self = this,
-				i = 0,
 				regulaResponse = regula.validate();
 			
 			// Clear out old error messages
@@ -471,23 +830,122 @@ var customAccordionForms = Class.extend(function () {
 			if (regulaResponse.length == 0) {
 				var thisToggle = $('#' + button.target.attributes['data-this-toggle-id'].value),
 					completedToggles = $('.accordion-toggle[data-status=complete]').length,
-					nextToggle = $('.accordion-toggle[data-status=unavailable]:eq(0)');
+					nextToggle = $('.accordion-toggle[data-status=unavailable]:eq(0)'),
+					formNumber = button.target.attributes['data-form-number'].value;
 				
-				for (var i = 0; i < completedToggles; i++) {
-					var currentToggle = $('.accordion-toggle[data-status=complete]:eq(' + i + ')');
-					currentToggle.attr('href', currentToggle.attr('data-href')).attr('data-toggle', 'collapse');
+				//Performing credit card validation before moving to last step
+				if (parseInt(formNumber) == 4) {
+					var number = $('#payNumber').val().replace(/[a-zA-Z\s-]/g, "");
+					var month = $('#payMonth').val();
+					var year = $('#payYear').val();
+					var code = $('#payCode').val().replace(/[a-zA-Z\s-]/g, "");
+					var name = $('#payName').val().replace(/[\s]/g, "");
+					var cardType = '';
+					
+					var cards = new Array();
+					cards[0] = { cardName: "VISA", lengths: [13,16], prefixes: [4] };
+					cards[1] = { cardName: "SEARS_MASTERCARD", lengths: [16], prefixes: [512106,512107,512108] };
+					cards[2] = { cardName: "COMMERCIAL_ONE", lengths: [16], prefixes: [540553] };
+					cards[3] = { cardName: "MASTERCARD", lengths: [16], prefixes: [51,52,53,54,55] };
+					cards[4] = { cardName: "DinersClub", lengths: [14,16], prefixes: [305,36,38,54,55] };
+					cards[5] = { cardName: "CarteBlanche", lengths: [14], prefixes: [300,301,302,303,304,305] };
+					cards[6] = { cardName: "AMERICAN_EXPRESS", lengths: [15], prefixes: [34,37] };
+					cards[7] = { cardName: "DISCOVER", lengths: [16], prefixes: [6011,622,64,65] };
+					cards[8] = { cardName: "JCB", lengths: [16], prefixes: [35] };
+					cards[9] = { cardName: "enRoute", lengths: [15], prefixes: [2014,2149] };
+					cards[10] = { cardName: "Solo", lengths: [16,18,19], prefixes: [6334, 6767] };
+					cards[11] = { cardName: "Switch", lengths: [16,18,19], prefixes: [4903,4905,4911,4936,564182,633110,6333,6759] };
+					cards[12] = { cardName: "Maestro", lengths: [12,13,14,15,16,18,19], prefixes: [5018,5020,5038,6304,6759,6761] };
+					cards[13] = { cardName: "VisaElectron", lengths: [16], prefixes: [417500,4917,4913,4508,4844] };
+					cards[14] = { cardName: "LaserCard", lengths: [16,17,18,19], prefixes: [6304,6706,6771,6709] };
+					cards[15] = { cardName: "SEARS_CARD", lengths: [16], prefixes: [5049] };
+					cards[16] = { cardName: "SearsCard13", lengths: [13], prefixes: [95501] };
+					
+					for (i = 0; i < cards.length; i++) {
+						var lengthMatch = false;
+						for (var z = 0; z < cards[i].lengths.length; z++) {
+							if (number.length == cards[i].lengths[z]) {
+								lengthMatch = true;
+								break;
+							}
+						}
+						if (lengthMatch) {
+							for (var q = 0; q < cards[i].prefixes.length; q++) {
+								var exp = new RegExp("^" + cards[i].prefixes[q]);
+								if (exp.test(number)) {
+									//console.log(cards[i].cardName);
+									cardType = cards[i].cardName;
+									break;
+								}
+							}
+						}
+						if (cardType != '') break;
+					}
+					if (cardType != '') {
+						$.ajax({
+							type: "POST",
+							dataType: "json",
+							headers: {
+								'Accept': 'application/json',
+								'Content-Type': 'application/json'
+							},
+							cache: false,
+							data: JSON.stringify({
+								'cardNumber': number,
+								'cardType': cardType,
+								'expMonth': month,
+								'expYear': year,
+								'securityCode': code,
+								'name': name
+							}),
+							url: apiPath + 'validate/paymentcard',
+							success: function(response) {
+								//console.log(response);
+								if (response.status == 5) {
+									$('.payAlert').addClass('hidden');
+									$('#finalCardType').val(cardType);
+									self.openStep(thisToggle, completedToggles, nextToggle);
+								} else {
+									$('.payAlert').html(response.message);
+									$('.payAlert').removeClass('hidden');
+									$('#finalCardType').val('');
+								}
+							},
+							error: function(response) {
+								//console.log('fail');
+								$('.payAlert').html('Error with request.');
+								$('.payAlert').removeClass('hidden');
+							}
+						});
+					} else {
+						$('#finalCardType').val('');
+						$('.payAlert').html('Not a valid credit card type.');
+						$('.payAlert').removeClass('hidden');
+					}
+				} else {
+					self.openStep(thisToggle, completedToggles, nextToggle);
 				}
-				//Separated so that opening a completed step can deactivate the other toggles
-				if ($('.accordion-toggle[data-status=unavailable]:eq(0)').length > 0) {
-					thisToggle.attr('href', thisToggle.attr('data-href')).attr('data-toggle', 'collapse');
-					thisToggle.find('span').removeClass('hidden');
-					thisToggle.click();
-					thisToggle.attr('data-status', 'complete');
-					nextToggle.attr('data-status', 'incomplete');
-					nextToggle.attr('href', nextToggle.attr('data-href')).attr('data-toggle', 'collapse');
-					nextToggle.click();
-					nextToggle.removeAttr('href').attr('data-toggle', 'false');
-				}
+			}
+		},
+		/**
+		 * Opens up the next step
+		 * @return {void}
+		 */
+		openStep: function (toggle, cTog, nTog) {
+			for (var i = 0; i < cTog; i++) {
+				var currentToggle = $('.accordion-toggle[data-status=complete]:eq(' + i + ')');
+				currentToggle.attr('href', currentToggle.attr('data-href')).attr('data-toggle', 'collapse');
+			}
+			//Separated so that opening a completed step can deactivate the other toggles
+			if ($('.accordion-toggle[data-status=unavailable]:eq(0)').length > 0) {
+				toggle.attr('href', toggle.attr('data-href')).attr('data-toggle', 'collapse');
+				toggle.find('span').removeClass('hidden');
+				toggle.click();
+				toggle.attr('data-status', 'complete');
+				nTog.attr('data-status', 'incomplete');
+				nTog.attr('href', nTog.attr('data-href')).attr('data-toggle', 'collapse');
+				nTog.click();
+				nTog.removeAttr('href').attr('data-toggle', 'false');
 			}
 		}
 	};

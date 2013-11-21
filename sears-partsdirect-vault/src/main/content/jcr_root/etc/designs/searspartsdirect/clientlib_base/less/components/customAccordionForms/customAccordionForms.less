@@ -1,5 +1,7 @@
 @import "../../base.variables.less";
 @import "../../base.mixins.less";
+@import "../../bootstrap/variables-sears.less";
+@import "../../bootstrap/mixins-sears.less";
 
 // # Base Styles
 .customAccordionForms {
@@ -42,6 +44,18 @@
 					width: 293px;
 					margin: 0 0 10px;
 					padding: 3px 6px;
+				}
+				.searchText {
+					height: 20px;
+					.filterFound {
+						font-weight: bold;
+						a {
+							text-decoration: underline;
+						}
+					}
+					.filterError {
+						color: #b94a48;
+					}
 				}
 			}
 			p {
@@ -95,7 +109,7 @@
 					font-size: 14px;
 				}
 				.add-on {
-					padding: 7px 12px 1px;
+					padding: 5px 12px 3px;
 				}
 			}
 			#waterFilterQuantity {
@@ -137,6 +151,14 @@
 						max-height: 200px;
 						width: 74px;
 					}
+					ul.dropdownDisabled {
+						display: none;
+					}
+				}
+			}
+			.comboContainer.countyWidth {
+				ul {
+					width: 280px;
 				}
 			}
 			.comboContainer.monthWidth {
@@ -195,6 +217,19 @@
 				}
 			}
 			
+			.alert {
+				padding: 8px 35px 8px 14px;
+				margin-bottom: @baseLineHeight;
+				text-shadow: 0 1px 0 rgba(255,255,255,.5);
+				background-color: @warningBackground;
+				border: 1px solid @warningBorder;
+				.border-radius(@baseBorderRadius);
+			}
+			.alert-error {
+				background-color: @errorBackground;
+				border-color: @errorBorder;
+				color: @errorText;
+			}
 			.creditCards {
 				float: left;
 				list-style: none;
@@ -277,31 +312,36 @@
 			}
 		}
 	}
-}
+	
+	#modalShipping {
+		a {
+			float: right;
+		}
+	}
 
-#modalShipping {
-	a {
-		float: right;
+	#modalCode {
+		.creditCard {
+			background: url(../../../img/creditcard_sprite.png) no-repeat 0 0;
+			background-repeat: no-repeat;
+			width: 187px;
+			height: 97px;
+		}
+		.cardSears {
+			background-position: 0 0;
+		}
+		.cardOther {
+			background-position: 0 -114px;
+		}
+		.cardExpress {
+			background-position: 0 -228px;
+		}
+		a {
+			float: right;
+		}
 	}
-}
-
-#modalCode {
-	.creditCard {
-		background: url(../../../img/creditcard_sprite.png) no-repeat 0 0;
-		background-repeat: no-repeat;
-		width: 187px;
-		height: 97px;
-	}
-	.cardSears {
-		background-position: 0 0;
-	}
-	.cardOther {
-		background-position: 0 -114px;
-	}
-	.cardExpress {
-		background-position: 0 -228px;
-	}
-	a {
-		float: right;
+	
+	#processingIcon {
+		opacity: 1;
+		top: 50%;
 	}
 }

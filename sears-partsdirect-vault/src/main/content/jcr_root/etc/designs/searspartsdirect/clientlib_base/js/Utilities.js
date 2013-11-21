@@ -62,7 +62,7 @@
 			};
 			// Append script to the body
 			script = $('<script />');
-			script.attr('src', self.getFullLocation().protocol + addThisUrl)
+			script.attr('src', self.getLocationDetails().protocol + addThisUrl)
 				.attr('type', 'text/javascript')
 				.attr('language', 'javascript');
 			$('body').append(script);

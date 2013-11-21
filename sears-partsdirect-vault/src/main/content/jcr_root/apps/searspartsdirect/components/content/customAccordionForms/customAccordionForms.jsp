@@ -28,6 +28,10 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<input type="text" class="numberField" name="partNumber" value="Enter your part or model number" data-inputhelp="Enter your part or model number" />
+								<div class="searchText">
+									<span class="filterFound hidden"><a class="filterDescription" href="#" target="_blank"></a> is a match for your refrigerator.</span>
+									<span class="filterError hidden">*We could not find a water filter matching this model or part number. Please try again or <a href="http://partsbetavip.qa.ch3.s.com/partsdirect/merchandiser/show.pd?description=Water%20Filters" target="_blank">browse water filters</a></span>
+								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
@@ -68,7 +72,7 @@
 					</fieldset>
 					<div class="row-fluid">
 						<div class="span2 offset1">
-							<button type="button" class="new-btn new-btn-search cafSubmit" data-submit="true" data-form-number="1" data-alert-id="alert_${uniqueId}1" data-this-toggle-id="toggle_${uniqueId}1">Continue</button>
+							<button type="button" class="new-btn new-btn-search cafSubmit hidden" data-submit="true" data-form-number="1" data-alert-id="alert_${uniqueId}1" data-this-toggle-id="toggle_${uniqueId}1">Continue</button>
 						</div>
 					</div>
 				</form>
@@ -196,6 +200,18 @@
 								<input type="text" class="cafText cafZip" name="zip" id="shippingZip" pattern="[0-9]*" data-mask="99999" data-placeholder=" " />
 							</div>
 						</div>
+						<div class="row-fluid countyRow hidden">
+							<div class="span10 offset1">
+								<label for="shippingCounty">Select County <span>Required</span></label>
+								<div class="comboContainer countyWidth">
+									<select name="year" id="shippingCounty" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+										<option value="ZZ">----</option>
+										<option value="DN">I don't know</option>
+										<option value="NL">My City/County is not listed</option>
+									</select>
+								</div>
+							</div>
+						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<div class="cafSameRow phoneWidth">
@@ -229,7 +245,7 @@
 					</fieldset>
 					<div class="row-fluid">
 						<div class="span2 offset1">
-							<button type="button" class="new-btn new-btn-search cafSubmit" id="shippingSubmit" data-submit="true" data-form-number="2" data-alert-id="alert_${uniqueId}2" data-this-toggle-id="toggle_${uniqueId}2">Continue</button>
+							<button type="button" class="new-btn new-btn-search cafSubmit hidden" id="shippingSubmit" data-submit="true" data-form-number="2" data-alert-id="alert_${uniqueId}2" data-this-toggle-id="toggle_${uniqueId}2">Continue</button>
 						</div>
 					</div>
 				</form>
@@ -282,7 +298,7 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="billingState">State <span>Required</span></label>
-								<div class="comboContainer">
+								<div class="comboContainer billingStateDrop">
 									<select name="state" id="billingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
 										<option value="ZZ">--</option>
 										<option value="AA">AA</option>
@@ -393,6 +409,7 @@
 				<form id="cafPaymentForm" method="post" action="">
 					<div class="row-fluid">
 						<div class="span10 offset1">
+							<div class="alert alert-error payAlert hidden">Not a valid credit card type.</div>
 							<ul class="creditCards">
 								<li class="iconSearsIcon"></li>
 								<li class="iconSearsMasterCard creditCardIcon"></li>
@@ -427,15 +444,15 @@
 								<div class="comboContainer monthWidth">
 									<select name="month" id="payMonth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
 										<option value="ZZ">-----</option>
-										<option value="1">January</option>
-										<option value="2">February</option>
-										<option value="3">March</option>
-										<option value="4">April</option>
-										<option value="5">May</option>
-										<option value="6">June</option>
-										<option value="7">July</option>
-										<option value="8">August</option>
-										<option value="9">September</option>
+										<option value="01">January</option>
+										<option value="02">February</option>
+										<option value="03">March</option>
+										<option value="04">April</option>
+										<option value="05">May</option>
+										<option value="06">June</option>
+										<option value="07">July</option>
+										<option value="08">August</option>
+										<option value="09">September</option>
 										<option value="10">October</option>
 										<option value="11">November</option>
 										<option value="12">December</option>
@@ -448,6 +465,7 @@
 										<option value="2014">2014</option>
 										<option value="2015">2015</option>
 										<option value="2016">2016</option>
+										<option value="2017">2017</option>
 									</select>
 								</div>
 							</div>
@@ -532,7 +550,15 @@
 						</div>
 						<div class="row-fluid">
 							<div class="span4">
-								<button type="button" class="new-btn new-btn-search">Start subscription</button>
+								<form id="finalForm" method="post" action="">
+									<input type="hidden" name="partNumber" id="finalPartNumber" value="">
+									<input type="hidden" name="productGroupId" id="finalGroupId" value="">
+									<input type="hidden" name="supplierId" id="finalSupplierId" value="">
+									<input type="hidden" name="po" id="finalPO" value="false">
+									<input type="hidden" name="cardType" id="finalCardType" value="">
+									<input type="hidden" name="geocode" id="finalGeocode" value="">
+									<button type="button" class="new-btn new-btn-search" id="finalSubmit">Start subscription</button>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -578,4 +604,8 @@
 		</div>
 	</div>
 	<a href="#" class="btn" data-dismiss="modal">Close</a>
+</div>
+<div id="processingIcon" class="addToCartAnimation">
+	<i class="icon-refresh">&nbsp;</i>
+	<p>Placing order</p>
 </div>
