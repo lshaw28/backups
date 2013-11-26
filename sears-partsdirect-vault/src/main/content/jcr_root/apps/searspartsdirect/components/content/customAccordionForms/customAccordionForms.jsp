@@ -216,7 +216,7 @@
 							<div class="span10 offset1">
 								<div class="cafSameRow phoneWidth">
 									<label for="shippingPhone">Phone Number <span>Required</span></label>
-									<input type="text" class="cafText cafZip" name="phone" id="shippingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
+									<input type="text" class="cafText cafZip" name="phone" id="shippingPhone" pattern="[0-9-()]*" />
 								</div>
 								<div class="cafSameRow">
 									<label for="shippingExt">Ext. # <span>Optional</span></label>
@@ -428,6 +428,7 @@
 							<div class="span10 offset1">
 								<label for="payNumber">Card Number <span>Required</span></label>
 								<input type="text" class="cafText cafCredit" name="cardNumber" id="payNumber" maxlength="16" pattern="[0-9]*" />
+								<span id="payCardType"></span>
 							</div>
 						</div>
 						<div class="row-fluid">
@@ -549,7 +550,7 @@
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="span4">
+							<div class="offset4 span4">
 								<form id="finalForm" method="post" action="">
 									<input type="hidden" name="partNumber" id="finalPartNumber" value="">
 									<input type="hidden" name="productGroupId" id="finalGroupId" value="">
