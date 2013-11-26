@@ -1,0 +1,259 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.globalFooter {
+	background-color: @bodyColor;
+	border-top: 2px solid @bodyColor;
+	float: left;
+	margin: 20px 0px;
+	position: relative;
+	width: 100%;
+}
+#footerDivider {
+	background: @secondaryHueLight;
+	height: 1px;
+	left: 0;
+	position: absolute;
+	top: -2px;
+	width: 100%;
+}
+#footerContent {
+	background: @secondaryHueLighter;
+	float: left;
+	width: 100%;
+
+}
+
+#footerColumn1, #footerColumn2, #footerColumn3 {
+	clear: none;
+	float: left;
+	overflow: visible;
+	padding: 20px 0 20px 2%;
+	width: 30%;
+}
+
+#footerColumn1 {
+	.footerIcon {
+		a {
+			clear: both;
+			float: left;
+			height: 45px;
+			margin: 0 0 14px 2px;
+			width: 100%;
+		}
+	}
+	p {
+		clear: both;
+		float: left;
+		margin: 0 0 14px 0;
+		min-height: 45px;
+		width: 100%;
+
+		a {
+			color: @primaryHueNormal;
+			font-family: @bodyFont;
+			font-size: @h4Size;
+			font-weight: bold;
+
+			.icon-stack {
+				float: left;
+				font-size: @h2Size;
+				margin: 0 8px 0 0;
+			}
+			.icon-circle {
+				color: @bodyColor;
+			}
+			.icon-light {
+				color: @secondaryHueDark;
+			}
+			.footerIconHelp {
+				color: @secondaryHueDark;
+				font-family: @standardFont;
+				font-size: @smallPSize;
+				font-weight: normal;
+			}
+
+			&:hover {
+				span {
+					font-weight: normal;
+					text-decoration: none;
+				}
+				.footerIconHelp {
+					text-decoration: none;
+				}
+				.icon-circle {
+					color: @primaryHueDarkest;
+				}
+				.icon-light {
+					color: @bodyColor;
+				}
+			}
+		}
+	}
+}
+
+#footerColumn2 {
+	.footerPromo {
+		position: relative;
+		width: 100%;
+
+		.footerPromoIcon {
+			font-size: 41px;
+			left: -45px;
+			margin-top: -40px;
+			position: absolute;
+			top: 50%;
+
+			.icon-circle {
+				color: @bodyColor;
+			}
+			.icon-light {
+				color: @secondaryHueDark;
+			}
+		}
+		.footerPromoContent {
+			background-color: @bodyColor;
+			.borderRadius(3px);
+			margin: 0 0 25px 0;
+			padding: 10px 30px;
+
+			h3 {
+				color: @primaryHueDarkest;
+				font-weight: normal;
+				margin: 0 0 3px 0;
+				padding: 0;
+				width: 100%;
+
+				a {
+					color: @primaryHueNormal;
+
+					&:hover {
+						color: @primaryHueDarker;
+					}
+				}
+			}
+		}
+	}
+}
+
+#footerColumn3 {
+	h3 {
+		color: @secondaryHueDark;
+		font-weight: normal;
+		line-height: 30px;
+		margin: 0 0 10px 0;
+		padding: 0 0 10px 0;
+
+		span {
+			display: inline-block;
+			font-weight: bold;
+		}
+	}
+	p {
+		float: left;
+		font-size: @h5Size;
+		margin: 0 0 3px 0;
+		padding: 0;
+		width: 100%;
+	}
+	ul {
+		float: left;
+		list-style-type: none;
+		margin: 10px 0 0 0;
+		padding: 0;
+		width: 48%;
+
+		li {
+			display: block;
+			margin: 0;
+			padding: 0 0 6px 0;
+
+			a {
+				font-size: @pSize;
+			}
+		}
+	}
+}
+
+#footerLegal {
+	background-color: @bodyColor;
+	background-position: bottom left;
+	background-repeat: repeat-x;
+	float: left;
+	height: auto;
+	min-height: 45px;
+	width: 100%;
+
+  .footerGlow {
+    background-color: @primaryHueDarker;
+    height: 6px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+	.footerLegalLinks {
+		margin: 0 auto;
+		width: 561px;
+
+		a {
+			color: @secondaryHueDark;
+			display: inline-block;
+			float: left;
+			font-size: @smallestPSize;
+			margin: 12px 13px 0 13px;
+		}
+	}
+	.copyright {
+		color: @secondaryHueDark;
+		float: left;
+		font-size: @smallPSize;
+        margin-left: 10px;
+		padding: 12px 0 0 0;
+		width: 130px;
+	}
+	.footerLogos {
+		float: right;
+		margin: 8px 10px 0 0;
+		width: 88px;
+
+		a {
+			margin-left: 5px;
+		}
+	}
+}
+
+#lpchatbutton4, #lpvoicebutton4 {
+	a {
+		background-image: url(../../../../clientlib_base/img/lp_btn_sprite.png);
+		background-repeat: no-repeat;
+		border: 0;
+		display: block;
+		height: 40px;
+		width: 210px;
+
+		img {
+			display: none;
+		}
+	}
+}
+#lpchatbutton4 {
+	a {
+		background-position: 0 -53px;
+
+		&:hover {
+			background-position: 0 0;
+		}
+	}
+}
+#lpvoicebutton4 {
+	a {
+		background-position: 0 -105px;
+
+		&:hover {
+			background-position: 0 -158px;
+		}
+	}
+}
+
+@import 'globalFooter.tablet';
+@import 'globalFooter.mobile';

@@ -1,0 +1,30 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.breadcrumbNavigation {
+	margin: 0;
+	padding: 10px 0 0;
+
+	.breadcrumb {
+		background-color: @bodyColor;
+		padding: 0;
+
+		li {
+			float: left;
+			font-size: @smallPSize;
+			margin: 0;
+			padding: 0;
+
+			a {
+				color: @secondaryHueDark;
+				font-size: @smallPSize;
+
+				&:hover {
+					color: @primaryHueDarker;
+				}
+			}
+		}
+	}
+}
+
+@import "breadcrumbNavigation.mobile";

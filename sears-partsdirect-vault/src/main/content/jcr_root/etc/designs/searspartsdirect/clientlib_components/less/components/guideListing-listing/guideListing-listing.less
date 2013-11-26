@@ -1,0 +1,40 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.guideListing-listing {
+	overflow: hidden;
+	padding-left: 40px;
+
+	.item {
+		float: left;
+		width: 47.5%;
+		padding-right: 2.5%;
+	}
+
+	.wrapper {
+		position: relative;
+		padding-left: 110px;
+		min-height: 85px;
+	}
+
+	.image-wrapper {
+		height: 85px;
+		width: 100px;
+		overflow: hidden;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background: @secondaryHueLight;
+        border: 1px solid @secondaryHueLight;
+
+		.image {
+
+			overflow: hidden;
+
+		}
+	}
+
+
+}
+
+@import "guideListing-listing.mobile";

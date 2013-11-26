@@ -1,0 +1,125 @@
+@import "../../../../../clientlib_base/less/base.variables.less";
+@import "../../../../../clientlib_base/less/base.mixins.less";
+
+.desktopCarousel {
+	i {
+		display: none;
+	}
+	.carouselItem {
+		.image {
+			small {
+				font-size: @pSize;
+				padding: 0 0 10px;
+			}
+		}
+	}
+}
+.desktopCarouselEnabled {
+	@carouselWidth: 550px;
+
+	padding: 0 25px 10px 25px;
+	margin: 0 auto;
+	width: @carouselWidth;
+	overflow: hidden;
+	position: relative;
+
+	.carouselItemHolder {
+		float: left;
+
+		img, p {
+			width: @carouselWidth;
+		}
+
+		img {
+			height: 370px;
+			background: @secondaryHueNormal;
+		}
+
+		p {
+			padding: 6px 0;
+		}
+
+		[data-desktopimage] {
+			width: 550px;
+			height: 370px;
+		}
+	}
+	.carouselWrapper {
+		overflow: hidden;
+	}
+	.carouselListWrapper {
+		width: 99999px;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+	div.analyzable.parbase.image small {
+		margin-top: 10px;
+	}
+	[class*="carouselTrigger"] {
+		background: @secondaryHueLight; // non rba compliant browsers
+		background: rgba(222, 222, 222, .8);
+		border: solid 1px @secondaryHueLight;
+		color: @secondaryHueNormal;
+		cursor: pointer;
+		display: block;
+		height: 50px;
+		position: absolute;
+		text-align: center;
+		top: 159px;
+		width: 50px;
+		z-index: 2;
+
+		&:hover {
+			background: @primaryHueLighter;
+			color: @bodyColor;
+		}
+
+		i {
+			display: block;
+			line-height: 50px;
+			font-size: 60px;
+		}
+		&.hideTrigger {
+			display: none;
+		}
+	}
+	.carouselTriggerLeft {
+		left: 0;
+	}
+	.carouselTriggerRight {
+		right: 0;
+	}
+	.carouselMarkersDesktop {
+		display: block;
+	}
+}
+
+// shared on touch carousel
+[class*="carouselMarkers"] {
+	display: block;
+	position: absolute;
+	bottom: 5px;
+	width: 100%;
+	left: 0;
+
+	.carouselMarkersWrapper {
+		text-align: center;
+
+		> a {
+			display: inline-block;
+			width: 14px;
+			height: 14px;
+			.borderRadius(7px);
+			background: @secondaryHueDark;
+			cursor: pointer;
+			margin: 0 7px;
+
+			&.active {
+				background: @primaryHueDarker;
+			}
+		}
+	}
+	&.hideControls {
+		display: none;
+	}
+}

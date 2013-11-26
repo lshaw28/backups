@@ -1,0 +1,37 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.errorCodesTable-header {
+	background: @secondaryHueDark;
+	font: 18px/24px @bodyFont;
+	padding: 10px;
+	color: @secondaryHueLightest;
+}
+
+.tbl-col-error-code {
+	min-width: 110px;
+}
+
+.tbl-col-condition {
+	width: 50%;
+}
+
+.tbl-col-check-repair {
+	width: 50%;
+}
+
+.tbl-col-show-parts {
+	min-width: 180px;
+}
+
+.errorCodesTable {
+	.table-wrapper {
+		padding: 0 30px;
+	}
+
+  i {
+	display: none;
+  }
+}
+
+@import "errorCodeTable.mobile";

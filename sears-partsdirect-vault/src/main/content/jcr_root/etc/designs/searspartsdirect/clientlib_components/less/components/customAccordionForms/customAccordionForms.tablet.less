@@ -1,0 +1,56 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+@media (max-width: 768px) {
+	.customAccordionForms {
+		[class*="span"] {
+			padding-top: 20px;
+		}
+		[class*="span"]:first-child {
+			padding-top: 0;
+		}
+		.accordion-group {
+			.accordion-inner {
+				.row-fluid {
+					.numberField {
+						padding: 10px 6px;
+					}
+				}
+				.cafText {
+					padding: 10px;
+				}
+				.comboContainer {
+					height: 50px;
+					.responsiveDropdown {
+						.new-btn-dropdown {
+							padding: 14px;
+						}
+					}
+				}
+				.input-append.date {
+					input {
+						padding: 11px;
+					}
+					.add-on {
+						padding: 14px 12px 8px;
+					}
+				}
+				.cafSameRow {
+					float: none;
+					padding-top: 20px;
+				}
+				.cafSameRow:first-child {
+					padding-top: 0;
+				}
+			}
+		}
+	}
+	.pseudoTableRow {
+		[class*="span"] {
+			padding-top: 0;
+			p {
+				margin-left: 10px;
+			}
+		}
+	}
+}

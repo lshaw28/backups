@@ -1,0 +1,76 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.responsiveFindThisPart {
+	background-color: @secondaryHueLighter;
+	margin: 0 0 10px;
+
+	.responsiveFindThisPartHeader {
+		display: none;
+		font-size: @h4Size;
+		padding: 10px 15px;
+
+		a {
+			color: @secondaryHueDark;
+			cursor: pointer;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: none;
+			}
+			i {
+				display: inline-block;
+				font-size: 20px;
+				margin-right: 20px;
+				vertical-align: baseline;
+			}
+			.icon-chevron-up {
+				display: none;
+			}
+			.icon-chevron-down {
+				color: @primaryHueNormal;
+				display: inline-block;
+			}
+		}
+	}
+	.responsiveFindThisPartBody {
+		display: block;
+	}
+	&.active {
+		.responsiveFindThisPartHeader {
+			.icon-chevron-up {
+				display: inline-block;
+			}
+			.icon-chevron-down {
+				display: none;
+			}
+		}
+		.responsiveFindThisPartBody {
+			display: block;
+		}
+	}
+}
+
+.partsRequiredRepair, .categorySymptomDetail {
+	.responsiveFindThisPart {
+		.responsiveFindThisPartHeader {
+			display: block;
+		}
+		.responsiveFindThisPartBody {
+			display: none;
+		}
+		&.active {
+			.responsiveFindThisPartBody {
+				display: block;
+			}
+		}
+	}
+}
+
+.categorySymptomDetail {
+	.responsiveFindThisPart {
+		background-color: @secondaryHueLight;
+	}
+}
+
+@import "responsiveFindThisPart.mobile";

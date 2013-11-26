@@ -1,0 +1,243 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.searchPanel {
+	height: auto;
+	padding: 50px 0 10px 0;
+	width: 100%;
+
+	form {
+		height: auto;
+		margin: 0;
+		text-align: center;
+		width: 100%;
+	}
+}
+.search-shadow, #searchContainer {
+	display: inline-block;
+}
+.search-shadow {
+	height: 25px;
+	margin-top: -10px;
+	position: absolute;
+	top: 50%;
+	width: 185px;
+	z-index: 50;
+}
+#searchLeftShadow {
+	background: url(../../../../clientlib_base/img/headerLeftShadow.png) no-repeat left top;
+	left: 0;
+	margin-left: -185px;
+}
+#searchRightShadow {
+	background: url(../../../../clientlib_base/img/headerRightShadow.png) no-repeat right top;
+	margin-right: -185px;
+	right: 0;
+}
+#searchContainer {
+	height: auto;
+	text-align: left;
+	min-width: 650px;
+	position: relative;
+	z-index: 75;
+}
+#searchTabs {
+	height: 38px;
+	list-style: none;
+	margin: 0 0 -6px;
+	position: relative;
+	width: 100%;
+	z-index: 120;
+
+	li {
+		display: inline-block;
+		float: left;
+
+		a {
+			border: 1px solid @primaryHueLight;
+			.borderRadius(4px 4px 0 0);
+            font-size: @pSize;
+			height: 27px;
+			line-height: @largeSize;
+			padding: 8px 10px;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+	li.active {
+		a {
+			background-color: @primaryHueLight;
+			border-width: 3px;
+			.borderRadius(4px 4px 0 0);
+			color: @bodyColor;
+			font-size: @pSize;
+			height: 32px;
+			line-height: @largeSize;
+			padding: 10px 10px 8px 10px;
+			text-align: center;
+		}
+	}
+	li:first-child {
+		a {
+			.borderRadius(4px 0 0 0);
+		}
+		&.active {
+			a {
+				.borderRadius(4px 4px 0 0);
+			}
+		}
+	}
+	li:last-child {
+		a {
+			.borderRadius(0 4px 0 0);
+		}
+		&.active {
+			a {
+				.borderRadius(4px 4px 0 0);
+			}
+		}
+	}
+}
+.search-content-pane {
+	.verticalGradient(@primaryHueLight, @primaryHueDarkest);
+	border: inset 1px solid @primaryHueLighter;
+	.boxShadow(0 8px 6px -6px @secondaryHueLight);
+	display: none;
+	height: 80px;
+	line-height: 35px;
+	padding: 15px 15px 0;
+	z-index: 100;
+
+	input, span, div {
+		display: inline-block;
+	}
+
+	p, span.large {
+		color: @bodyColor;
+		font-size: @smallPSize;
+		font-weight: 600;
+
+		a {
+			color: @bodyColor;
+			font-size: @smallPSize;
+		}
+	}
+	span.large {
+		font-size: 26px;
+		height: 21px;
+		padding: 0 8px;
+	}
+
+	input[type="text"] {
+		font-size: @h5Size;
+		margin: 0;
+		width: 50%;
+	}
+	.btn-group {
+		margin-right: 10px;
+
+		a {
+			background-color: @bodyColor;
+			border: 0;
+			.borderRadius(0);
+			color: @secondaryHueDark;
+			display: inline-block;
+			font: 16px/35px @standardFont;
+			padding: 0 10px;
+		}
+		.btn-type {
+			background-color: @bodyColor;
+			background-image: none;
+			border: 1px solid @secondaryHueLight;
+			.borderRadius(2px);
+			display: inline-block;
+			float: left;
+			min-width: 120px;
+			padding-left: 8px;
+			padding-right: 8px;
+			text-align: left;
+
+			.icon-chevron-sign-down {
+				float: right;
+				margin: 8px 0 0 8px;
+			}
+		}
+		.dropdown-menu {
+			.borderRadius(0);
+			border: 1% solid @secondaryHueLight !important;
+			border-top: 0;
+			margin-top: 0;
+			min-width: 50px;
+			padding: 4%;
+			width: 130px;
+
+			a {
+				cursor: pointer;
+			}
+
+			li.selected {
+				a {
+					font-weight: bold;
+				}
+			}
+		}
+	}
+	&.active {
+		display: block;
+	}
+}
+
+#manualContent {
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		li {
+			color: @bodyColor;
+			display: inline-block;
+			margin: 0 0 10px;
+			padding: 10px 0;
+			width: 32%;
+
+			.icon-stack {
+				font-size: @h3Size;
+
+				.icon-stack-base {
+					color: @bodyColor;
+				}
+				.icon-light {
+					color: @primaryHueDarkest;
+				}
+			}
+
+			h4 {
+				color: @bodyColor;
+				margin: 0;
+				padding: 0;
+
+				a {
+					color: @bodyColor;
+
+					&:hover {
+						color: @bodyColor;
+					}
+
+					span {
+						font-size: @smallPSize;
+					}
+				}
+			}
+		}
+	}
+}
+
+#searchTypeLabel {
+	float: left;
+}
+
+@import "searchPanel.tablet";
+@import "searchPanel.mobile";

@@ -1,0 +1,347 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+@import "../../../../clientlib_base/less/bootstrap/variables-sears.less";
+@import "../../../../clientlib_base/less/bootstrap/mixins-sears.less";
+
+// # Base Styles
+.customAccordionForms {
+	.hidden {
+		display: none;
+		visibility: hidden;
+	}
+	.accordion-group {
+		border: none;
+		.accordion-heading {
+			background-color: @secondaryHueLighter;
+			padding: 5px 0;
+			.accordion-toggle {
+				cursor: default;
+				color: @secondaryHueDark;
+				font-size: @h3Size;
+				span {
+					float: right;
+					cursor: pointer;
+					padding-top: 1px;
+					padding-right: 10px;
+					font-size: @smallPSize;
+				}
+			}
+			.accordion-toggle:hover {
+				text-decoration: none;
+			}
+		}
+		.accordion-heading.cafHeadingOpen {
+			background-color: @secondaryHueDark;
+			.accordion-toggle {
+				color: #ffffff;
+			}
+		}
+		.accordion-inner {
+			.row-fluid {
+				padding: 10px 0;
+				.numberField {
+					color: @secondaryHueNormal;
+					width: 293px;
+					margin: 0 0 10px;
+					padding: 3px 6px;
+				}
+				.searchText {
+					height: 20px;
+					.filterFound {
+						font-weight: bold;
+						a {
+							text-decoration: underline;
+						}
+					}
+					.filterError {
+						color: #b94a48;
+					}
+				}
+			}
+			p {
+				font-weight: bold;
+				font-size: @h5Size;
+				a {
+					font-weight: normal;
+				}
+			}
+			label {
+				color: @secondaryHueDark;
+				font-weight: bold;
+			}
+			.errorField {
+				border: solid 2px #b94a48;
+			}
+			.error {
+				display: block;
+				color: #b94a48;
+			}
+			.radioToDropDown {
+				.comboContainer {
+					display: none;
+				}
+			}
+			.radioOptions {
+				overflow: hidden;
+				input {
+					float: left;
+					width: auto;
+					margin: 4px 5px 0 20px;
+				}
+				input:first-child {
+					margin: 4px 5px 0 0;
+				}
+				label {
+					float: left;
+					font-weight: normal;
+					font-size: @pSize;
+					margin: 0;
+				}
+			}
+			#orderDate {
+				max-width: 140px;
+			}
+			.input-append.date {
+				input {
+					padding: 4px;
+				}
+				.error {
+					font-size: 14px;
+				}
+				.add-on {
+					padding: 5px 12px 3px;
+				}
+			}
+			#waterFilterQuantity {
+				max-width: 65px;
+			}
+			.cafCheckboxField {
+				input {
+					float: left;
+					width: auto;
+				}
+				label {
+					float: left;
+					padding-left: 10px;
+					font-weight: normal;
+					font-size: @pSize;
+					width: 90%;
+				}
+			}
+			.comboContainer {
+				float: left;
+				padding-right: 10px;
+				.responsiveDropdown {
+					height: 36px;
+					.new-btn-dropdown {
+						background-color: @bodyColor;
+						border: solid 1px @secondaryHueLight;
+						color: @secondaryHueDark;
+						padding: 10px;
+						.icon-chevron-sign-down {
+							padding-left: 20px;
+						}
+					}
+					.new-btn-dropdown.dropError {
+						border: solid 2px #b94a48;
+					}
+					ul {
+						position: absolute;
+						overflow: auto;
+						max-height: 200px;
+						width: 74px;
+					}
+					ul.dropdownDisabled {
+						display: none;
+					}
+				}
+			}
+			.comboContainer.countyWidth {
+				ul {
+					width: 280px;
+				}
+			}
+			.comboContainer.monthWidth {
+				width: 145px;
+				.responsiveDropdown {
+					ul {
+						width: 115px;
+					}
+				}
+				.error {
+					width: 235px;
+				}
+			}
+			.comboError {
+				padding-bottom: 19px;
+			}
+			.cafText {
+				padding: 3px;
+				margin-bottom: 0;
+			}
+			.cafNameInput {
+				width: 209px;
+			}
+			.cafAddress {
+				width: 369px;
+			}
+			.cafApt {
+				width: 109px;
+			}
+			.cafCity {
+				width: 289px;
+			}
+			.cafZip {
+				width: 169px;
+			}
+			.cafExt {
+				width: 69px;
+			}
+			.cafCredit {
+				width: 189px;
+			}
+			.cafCode {
+				width: 79px;
+			}
+			
+			.cafSameRow {
+				float: left;
+			}
+			.cafSameRow:first-child {
+				padding-right: 30px;
+			}
+			.cafSameRow.phoneWidth {
+				width: 190px;
+				.error {
+					width: 305px;
+				}
+			}
+			
+			.alert {
+				padding: 8px 35px 8px 14px;
+				margin-bottom: @baseLineHeight;
+				text-shadow: 0 1px 0 rgba(255,255,255,.5);
+				background-color: @warningBackground;
+				border: 1px solid @warningBorder;
+				.border-radius(@baseBorderRadius);
+			}
+			.alert-error {
+				background-color: @errorBackground;
+				border-color: @errorBorder;
+				color: @errorText;
+			}
+			.creditCards {
+				float: left;
+				list-style: none;
+				margin: 20px 0 10px;
+				padding: 2px 0;
+				li {
+					float: left;
+					margin: 0 5px 0 0;
+				}
+			}
+			.creditCards:first-child {
+				border-right: 1px solid @secondaryHueNormal;
+				margin: 20px 5px 0 0;
+			}
+			.iconSearsIcon {
+				background: url(../../../img/creditcard_sprite.gif) no-repeat 0 0;
+				background-position: 0 -144px;
+				background-repeat: no-repeat;
+				width: 80px;
+				height: 19px;
+			}
+			.creditCardIcon {
+				background: url(../../../img/creditcard_sprite.gif) no-repeat 0 0;
+				background-repeat: no-repeat;
+				width: 30px;
+				height: 19px;
+			}
+			.iconSearsMasterCard {
+				background-position: 0 0;
+			}
+			.iconSearsCard {
+				background-position: 0 -24px;
+			}
+			.iconVisaCard {
+				background-position: 0 -96px;
+			}
+			.iconMasterCard {
+				background-position: 0 -72px;
+			}
+			.iconExpress {
+				background-position: 0 -120px;
+			}
+			.iconDiscover {
+				background-position: 0 -48px;
+			}
+			
+			.narrowLabel {
+				float: left;
+				padding-right: 15px;
+			}
+			.linkByLabel {
+				float: left;
+			}
+			
+			.noteText {
+				font-size: 14px;
+				font-weight: normal;
+				margin: 10px 0;
+			}
+			.pseudoTableRow {
+				p {
+					font-weight: normal;
+					margin-bottom: 0;
+					a {
+						font-size: @h5Size;
+					}
+				}
+				[class*="span"]:first-child {
+					p {
+						font-weight: bold;
+						margin-left: 10px;
+					}
+				}
+				#cafFilterPrice {
+					font-weight: bold;
+				}
+			}
+			.darkRow {
+				background-color: @secondaryHueLighter;
+			}
+		}
+	}
+	
+	#modalShipping {
+		a {
+			float: right;
+		}
+	}
+
+	#modalCode {
+		.creditCard {
+			background: url(../../../img/creditcard_sprite.png) no-repeat 0 0;
+			background-repeat: no-repeat;
+			width: 187px;
+			height: 97px;
+		}
+		.cardSears {
+			background-position: 0 0;
+		}
+		.cardOther {
+			background-position: 0 -114px;
+		}
+		.cardExpress {
+			background-position: 0 -228px;
+		}
+		a {
+			float: right;
+		}
+	}
+	
+	#processingIcon {
+		opacity: 1;
+		top: 50%;
+	}
+}

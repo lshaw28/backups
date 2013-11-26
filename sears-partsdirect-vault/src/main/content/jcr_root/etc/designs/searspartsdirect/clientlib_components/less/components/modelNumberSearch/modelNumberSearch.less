@@ -1,0 +1,64 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+// # Base Styles
+.modelNumberSearch {
+	padding: 10px 15px 5px 15px;
+
+	p {
+		font-size: @smallPSize;
+
+		a {
+			font-size: @smallPSize;
+		}
+	}
+	p.display-message {
+		display: none;
+
+		&.error, &.success {
+			display: block;
+		}
+		&.error {
+			color: @highlightHueNormal;
+		}
+	}
+	.form-inline {
+		margin: 0 0 10px 0;
+	}
+	input[type="text"] {
+		background-color: @bodyColor;
+	}
+	modelNumberSearchContent {
+		display: none;
+	}
+}
+// # Find This Part Component Overrides
+.categorySymptomDetail {
+	.modelNumberSearch {
+		.modelNumberSearchIntro, .modelNumberSearchInputs {
+			display: inline-block;
+			float: none;
+			margin-left: 2.564102564102564%;
+			*margin-left: 2.5109110747408616%;
+			min-height: 30px;
+			vertical-align: top;
+			.spanWidth(6);
+		}
+		.modelNumberSearchIntro {
+			margin-left: 0;
+		}
+	}
+}
+// # Category Template Overrides
+.categorySearch {
+	.modelNumberSearch {
+		background-color: @bodyColor;
+
+		.modelNumberSearchIntro, .modelNumberSearchInputs {
+			display: inline-block;
+			width: 100%;
+		}
+	}
+}
+
+@import "modelNumberSearch.mobile";

@@ -1,0 +1,22 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.categoryDescription {
+	.categoryIcon {
+		float: left;
+		width: auto;
+
+		[class*="svg-icon-"], [class^=" svg-icon-"], [class*="icon-"], [class^=" icon-"] {
+			margin: 0 20px 20px 0;
+		}
+		[class*="svg-icon-"], [class^=" svg-icon-"] {
+			color: @primaryHueDarker;
+			height: @iconSizeLarge;
+			width: @iconSizeLarge;
+		}
+		[class*="icon-"], [class^=" icon-"] {
+			color: @primaryHueDarker;
+			font-size: @iconSizeLarge;
+		}
+	}
+}

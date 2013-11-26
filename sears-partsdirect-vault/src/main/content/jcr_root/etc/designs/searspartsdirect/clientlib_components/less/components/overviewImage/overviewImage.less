@@ -1,0 +1,43 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.overviewImage, .overviewIcon {
+	display: inline-block;
+	margin: 0 3% 50px 0;
+	vertical-align: top;
+	width: auto;
+
+	[class*="svg-icon-"], [class^=" svg-icon-"] {
+		height: @iconSizeLarge;
+		width: @iconSizeLarge;
+	}
+	[class*="icon-"], [class^=" icon-"] {
+		color: @primaryHueDarker;
+		font-size: @iconSizeLarge;
+	}
+}
+
+.overview {
+	display: inline-block;
+	margin: 0 0 50px;
+	vertical-align: top;
+	width: auto;
+}
+
+.categorySymptomLayout {
+	.overviewImage {
+		margin: 0 3% 3% 0;
+		width: 115px;
+	}
+}
+
+.guideDetails {
+	.overviewImage {
+		margin: 0;
+		.spanWidth(3);
+	}
+	.overview {
+		margin: 0;
+		.spanWidth(9);
+	}
+}

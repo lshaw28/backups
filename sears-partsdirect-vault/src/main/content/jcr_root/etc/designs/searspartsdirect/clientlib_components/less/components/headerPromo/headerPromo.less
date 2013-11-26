@@ -1,0 +1,45 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.headerPromo {
+	clear: both;
+	font-size: @pSize;
+	margin-bottom: -10px;
+	position: relative;
+	text-align: center;
+	width: 100%;
+	z-index: 0;
+
+	p {
+		color: @secondaryHueDark;
+		padding: 0 2% 15px;
+	}
+
+	.icon-stack {
+		font-size: @h4Size;
+		text-align: center;
+
+		.icon-circle {
+			color: @secondaryHueDark;
+		}
+		.icon-light {
+			color: @bodyColor;
+		}
+	}
+
+    .icon-truck {
+      font-size: @iconSizePromo;
+      color: @primaryHueDarker;
+    }
+
+    span {
+      color: @highlightHueDark;
+    }
+
+	[class*="new-btn-"], [class^=" new-btn-"], a {
+		display: inline-block;
+		font-size: @pSize;
+	}
+}
+
+@import "headerPromo.mobile";

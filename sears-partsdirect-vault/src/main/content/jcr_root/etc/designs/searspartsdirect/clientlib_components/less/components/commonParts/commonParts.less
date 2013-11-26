@@ -1,0 +1,67 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.commonParts {
+	.commonPartsContainerIndent {
+		margin-left: 40px;
+	}
+	.accordion {
+		margin-bottom: 0;
+
+		.accordion-group {
+			.borderRadius(0);
+			border: 0;
+			border-bottom: 2px solid @secondaryHueLight;
+
+			.accordion-heading {
+				.accordion-toggle {
+					border: 0;
+					display: block;
+					padding: 8px 0 8px 10px;
+					text-decoration: none;
+
+					p {
+						display: inline-block;
+						line-height: 40px;
+					}
+					i {
+						color: @primaryHueNormal;
+						display: inline-block;
+						float: right;
+						font-size: @h4Size;
+						margin-right: 20px;
+					}
+					.icon-chevron-up {
+						display: none;
+					}
+					.icon-chevron-down {
+						display: inline-block;
+					}
+					&.collapsed {
+						.icon-chevron-up {
+							display: inline-block;
+						}
+
+						.icon-chevron-down {
+							display: none;
+						}
+					}
+				}
+			}
+			.accordion-body {
+				.accordion-inner {
+					border: 0;
+					padding: 10px;
+					width: inherit;
+				}
+			}
+		}
+		&.first {
+			.accordion-group {
+				border-top: 2px solid @secondaryHueLight;
+			}
+		}
+	}
+}
+
+@import "commonParts.mobile";

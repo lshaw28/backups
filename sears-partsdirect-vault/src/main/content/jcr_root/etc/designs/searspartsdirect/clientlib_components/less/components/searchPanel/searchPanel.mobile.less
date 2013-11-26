@@ -1,0 +1,84 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+@media (max-width: 680px) {
+	.search-content-pane {
+		span.large {
+			display: none;
+			visibility: hidden;
+		}
+		input[type="text"] {
+			font-size: @pSize;
+			margin-right: 6px;
+			width: 40%;
+		}
+		.btn-group {
+			margin-right: 6px;
+
+			.btn-type {
+				font-size: @pSize;
+
+				.icon-chevron-sign-down {
+					float: right;
+					margin: 10px 0 0 10px;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 650px) {
+	.search-content-pane {
+		padding: 10px 10px 0;
+
+		p {
+			line-height: 2.5em;
+		}
+	}
+
+	#manualContent {
+		ul {
+			li {
+				.icon-stack {
+					font-size: @pSize;
+				}
+
+				h4 {
+					font-size: @h5Size;
+
+					a {
+						font-size: @h5Size;
+
+						span {
+							font-size: @smallestPSize;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.search-content-pane {
+		input[type="text"] {
+			width: 35%;
+		}
+	}
+}
+
+@media (max-width: 400px) {
+	.search-content-pane {
+		padding: 5px 5px 0px 5px;
+
+		input[type="text"] {
+			padding: 12px 5px;
+		}
+		.btn-group {
+			.btn-type {
+				min-width: 70px;
+				padding: 5px;
+			}
+		}
+	}
+}

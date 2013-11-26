@@ -1,0 +1,42 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.loginNav {
+	float: right;
+	margin: 0 0 15px 0;
+
+	ul {
+		list-style-type: none;
+		margin: 0 5px 0 0;
+		padding: 0;
+
+		li {
+			color: @primaryHueDarkest;
+			float: left;
+			font-size: @smallPSize;
+			list-style-type: none;
+			margin: 0 15px 0 5px;
+			padding: 0;
+
+			a {
+				font-size: @smallPSize;
+				margin: 0;
+				padding: 0;
+
+				i {
+					color: @secondaryHueDark;
+					display: none;
+					font-size: @h3Size;
+					line-height: @h5Size;
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+	.trigger {
+		display: none;
+	}
+}
+
+@import "loginNav.tablet";
+@import "loginNav.mobile";

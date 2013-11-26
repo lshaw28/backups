@@ -1,0 +1,38 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.articleComments {
+	padding-bottom: 15px;
+}
+
+.articleComments-item {
+	padding: 20px 0 0 25px;
+
+	.item-header {
+		overflow: hidden;
+	}
+	.name {
+		display: inline-block;
+		padding-bottom: 3px;
+		text-decoration: none;
+	}
+	.avatar {
+		float: left;
+		height: 52px;
+		padding-right: 10px;
+		width: 52px;
+
+		img {
+			.borderRadius(25px);
+			border: solid 1px @secondaryHueLighter;
+		}
+	}
+}
+
+.commentsLoader {
+	display: block;
+}
+
+.commentsForm {
+	padding: 15px 0 0 25px;
+}

@@ -1,0 +1,175 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+@media (max-width: 1299px) {
+	#footerColumn1 {
+		padding: 20px 0 16px 25px;
+		width: 32%;
+	}
+	#footerColumn2 {
+		width: 27%;
+	}
+	#footerColumn3 {
+		h3 {
+			padding: 0 28px 1px 0;
+		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.globalFooter {
+		margin: 20px 0px;
+		width: 100%;
+	}
+	#footerColumn2 {
+		.footerPromo {
+			.footerPromoContent {
+				p {
+					font-size: @smallPSize;
+					line-height: 150%;
+				}
+			}
+		}
+	}
+	#footerColumn3 {
+		h3 {
+			line-height: @h3Size;
+			padding: 0 48px 1px 0;
+			font-size: @h4Size;
+
+			span {
+				font-weight: 600;
+			}
+		}
+		p {
+			float: left;
+			width: 100%;
+			padding: 0 0 0 0;
+			font-size: @pSize;
+			margin: 0 0 3px 0;
+		}
+		ul {
+			li {
+				display: block;
+				margin: 0;
+				padding: 0 0 2px 0;
+
+				a {
+					font-size: @smallPSize;
+				}
+			}
+		}
+		form {
+			p {
+				input {
+					width: 50%;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 1000px) {
+	#footerColumn2 {
+		.footerPromo {
+			.footerPromoIcon {
+				display: none;
+				visibility: hidden;
+			}
+			.footerPromoContent {
+				padding: 10px 20px;
+
+				h3 {
+					font-weight: normal;
+					color: @primaryHueDarkest;
+				}
+				p {
+					color: @secondaryHueDark;
+					font-size: @smallPSize;
+				}
+			}
+		}
+	}
+	#footerColumn3 {
+		p {
+			margin: 0;
+		}
+		ul {
+			li {
+				padding: 0 0 3px 0;
+			}
+		}
+		form {
+			p {
+				input {
+					margin: 0 0 5px 0;
+					width: 90%;
+				}
+			}
+		}
+	}
+	#footerLegal {
+		.footerLegalLinks {
+			a {
+				color: @secondaryHueDark;
+				float: left;
+				font-size: @smallestPSize;
+				margin: 12px 6px 0 6px;
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.globalFooter {
+		margin: 20px 0px;
+		width: 100%;
+	}
+	#footerColumn1 {
+		p {
+			a {
+				font-size: @h5Size;
+			}
+		}
+	}
+	#footerColumn2 {
+		font-size: @pSize;
+
+		.footerPromo {
+			.footerPromoContent {
+				h3 {
+					a {
+						font-size: @h4Size;
+						line-height: 25px;
+					}
+				}
+				p {
+					font-size: @pSize;
+				}
+			}
+		}
+	}
+	#footerColumn3 {
+		p {
+			margin: 0 0 4px 0;
+		}
+		ul {
+			li {
+				a {
+					font-size: @pSize;
+				}
+			}
+		}
+	}
+	#footerLegal {
+		.copyright {
+			font-size: @smallestPSize;
+			width: 110px;
+		}
+		.footerLegalLinks {
+			a {
+				font-size: @smallestPSize;
+			}
+		}
+	}
+}

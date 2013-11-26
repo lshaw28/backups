@@ -1,0 +1,37 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.notice {
+	padding: 0 20px 10px;
+
+	em {
+		font-weight: 500;
+	}
+
+	[class*="icon-"], [class^=" icon-"] {
+		font-size: @largeSize;
+
+		&:before {
+			text-align: center;
+			width: @largeSize + 5;
+		}
+	}
+
+	.icon-ban-circle {
+		color: @highlightHueNormal;
+		position: relative;
+		top: -2px;
+	}
+	.icon-info {
+		color: @primaryHueNormal;
+		position: relative;
+		top: -5px;
+	}
+	.icon-warning-sign {
+		color: @highlightHueLighter;
+		position: relative;
+		top: -5px;
+	}
+}
+
+@import "notice.mobile";

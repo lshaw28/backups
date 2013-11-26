@@ -1,0 +1,65 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.modal {
+  .borderRadius(0);
+  padding: 40px 70px 30px 70px;
+  width: 366px;
+  z-index: 9999;
+  overflow: hidden;
+
+  iframe {
+    border: 0;
+    min-width: 500px;
+    min-height: 330px;
+    margin: 40px 70px 30px 70px;
+	overflow: hidden;
+
+    &#registerIFrame {
+      min-height: 550px;
+    }
+
+    &#secureLoginFormModal {
+      .new-btn {
+        padding: 8px 19px;
+      }
+    }
+
+  }
+
+
+  &#loginModal {
+    padding: 0px;
+    min-width: 640px;
+    min-height: 370px;
+    margin-left: -320px;
+  }
+
+  &#forgotPasswordModal {
+    padding: 0px;
+    min-width: 640px;
+    min-height: 370px;
+    margin-left: -320px;
+  }
+
+  &#registerModal {
+    min-width: 640px;
+    min-height: 570px;
+    margin-left: -320px;
+    padding: 0px;
+    position: absolute;
+
+  }
+
+  &#promoModal {
+
+    h1 {
+      line-height: 3.0rem;
+    }
+
+  }
+
+}
+
+@import "modal.tablet";
+@import "modal.mobile";

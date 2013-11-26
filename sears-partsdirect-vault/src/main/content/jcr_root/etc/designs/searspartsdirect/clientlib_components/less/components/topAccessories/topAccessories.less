@@ -1,0 +1,24 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+
+.topAccessories-item {
+	@width: 134px;
+
+	line-height: @h2Size;
+	margin: 0 auto;
+	width: @width;
+	padding-bottom: 2px;
+	text-align: center;
+
+	img {
+		width: @width - 2;
+		border: solid 1px @secondaryHueLighter;
+		display: block;
+		margin: 0 auto 2px 0;
+	}
+}
+
+.topAccessories-item + .topAccessories-item {
+	padding-top: 15px;
+}
+
+@import "topAccessories.mobile";

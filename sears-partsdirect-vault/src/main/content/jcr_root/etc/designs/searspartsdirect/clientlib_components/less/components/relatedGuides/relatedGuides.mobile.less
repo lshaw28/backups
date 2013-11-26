@@ -1,0 +1,62 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+@media (max-width: 650px) {
+	.relatedGuides {
+
+      position: relative;
+
+      p {
+        a {
+          text-align: center;
+          width: 90%;
+        }
+      }
+
+      .touchCarouselEnabled {
+        padding-bottom: 50px;
+        position: relative;
+      }
+
+		.carouselWrapper {
+			.carouselListWrapper {
+				.carouselItemHolder {
+					margin-bottom: 0;
+					min-width: 280px;
+
+					.wrapperGuide {
+						height: 265px;
+					}
+					.image-wrapper {
+						background-color: @secondaryHueLight;
+						height: 100%;
+						left: 0;
+						min-width: 280px;
+						overflow: hidden;
+						position: absolute;
+						top: 0;
+
+						.image {
+							height: 185px;
+							margin-bottom: 25px;
+						}
+					}
+					.wrench-symbol {
+						height: 44px;
+						line-height: @h2Size * 2;
+						margin-left: -9px;
+						top: 160px;
+						width: 44px;
+
+						i {
+							font-size: @h2Size;
+						}
+					}
+					.guideURL {
+						padding: 0;
+					}
+				}
+			}
+		}
+	}
+}

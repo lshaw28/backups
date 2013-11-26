@@ -1,0 +1,67 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.category101 {
+	background-color: @secondaryHueLighter;
+	margin: 0 0 10px;
+	padding: 0 15px;
+
+	.category101Header {
+		font-size: @h4Size;
+		padding: 10px 0;
+
+		a {
+			color: @secondaryHueDark;
+			cursor: pointer;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: none;
+			}
+			i {
+				display: none;
+				font-size: 20px;
+				margin-right: 20px;
+				vertical-align: baseline;
+			}
+		}
+	}
+	.category101Mobile {
+		display: none;
+	}
+	.category101Desktop {
+		display: block;
+	}
+	.category101Body {
+		display: block;
+		padding: 0 0 10px 0;
+
+		ul {
+			display: block;
+			list-style: none;
+			margin: 0 0 10px;
+			padding: 0;
+
+			li {
+				border-top: 1px solid @bodyColor;
+				padding: 5px 0;
+
+				&.last {
+					border-bottom: 1px solid @bodyColor;
+				}
+			}
+		}
+	}
+	&.active {
+		.category101Header {
+			i {
+				display: none;
+			}
+		}
+		.category101Body {
+			display: block;
+		}
+	}
+}
+
+@import "category101.mobile";

@@ -1,0 +1,57 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+@media(max-width: 650px) {
+	.category101 {
+      background-color: @secondaryHueDark;
+
+		.category101Header {
+			.icon-chevron-up {
+				display: none;
+			}
+			.icon-chevron-down {
+				color: @secondaryHueLightest;
+				display: inline-block;
+			}
+            a {
+              color: @secondaryHueLightest;
+
+              i {
+                display: none;
+                float: right;
+                font-size: 20px;
+                margin-right: 0px;
+                vertical-align: baseline;
+              }
+
+            }
+		}
+		.category101Mobile {
+			display: block;
+		}
+		.category101Desktop {
+			display: none;
+		}
+		.category101Body {
+			display: none;
+		}
+		&.active {
+          background-color: @secondaryHueLighter;
+			.category101Header {
+				.icon-chevron-up {
+                    color: @secondaryHueDark;
+					display: inline-block;
+				}
+				.icon-chevron-down {
+					display: none;
+				}
+                a {
+                  color: @secondaryHueDark;
+                }
+			}
+			.category101Body {
+				display: block;
+			}
+		}
+	}
+}

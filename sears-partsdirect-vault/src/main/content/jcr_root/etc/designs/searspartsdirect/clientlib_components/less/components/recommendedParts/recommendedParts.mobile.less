@@ -1,0 +1,24 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+@media (max-width: 480px) {
+    .recommendedParts {
+        margin-left: 0;
+        
+        .accordion-heading h4.recommendedShopParts{
+            display: none;
+            
+        }
+         .accordion-heading h4.shopParts{
+            display: block;
+            
+        }
+
+        .accordion-toggle {
+          i {
+            float: right;
+            margin-right: 0px;
+          }
+        }
+    }
+}
