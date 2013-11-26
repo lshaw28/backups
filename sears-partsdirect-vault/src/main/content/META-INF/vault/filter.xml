@@ -3,7 +3,7 @@
 	<filter root="/apps/searspartsdirect" />
 	<filter root="/etc/designs/searspartsdirect" />
 	<filter root="/etc/tags/searspartsdirect" />
-	<filter root="/etc/scaffolding" />
+	<filter root="/etc/scaffolding/searspartsdirect" />
 	<filter root="/etc/spdAssets">
 		<exclude pattern="/etc/spdAssets/scaffolding.*" />
 	</filter>

@@ -63,14 +63,18 @@ var customAccordionForms = Class.extend(function () {
 						$.ajax({
 							type: "GET",
 							cache: false,
-							dataType: "xml",
+							dataType: "json",
+							headers: {
+								'Accept': 'application/json',
+								'Content-Type': 'application/json'
+							},
 							data: {
 								number: searchText
 							},
 							url: apiPath + 'searchWaterFilter/' + searchType,
 							success: function(response) {
 								//console.log(response);
-								if($(response).find('part > description').length == 0) {
+								if(response == null) {
 									$('.searchText .filterError').removeClass('hidden');
 									$('.searchText .filterFound').addClass('hidden');
 									$('#cafSelectFilterFrequencyForm .cafSubmit').addClass('hidden');
@@ -78,18 +82,18 @@ var customAccordionForms = Class.extend(function () {
 									$('#finalGroupId').val('');
 									$('#finalSupplierId').val('');
 								} else {
-									var groupId = $(response).find('productGroupId').text();
-									var supplierId = $(response).find('supplierId').text();
-									$('#finalPartNumber').val($(response).find('partNumber').text());
+									var groupId = response.productGroupId;
+									var supplierId = response.supplierId;
+									$('#finalPartNumber').val(response.partNumber);
 									$('#finalGroupId').val(groupId);
 									$('#finalSupplierId').val(supplierId);
 									$('.searchText .filterError').addClass('hidden');
 									$('.searchText .filterFound').removeClass('hidden');
 									$('#cafSelectFilterFrequencyForm .cafSubmit').removeClass('hidden');
 									$('.searchText .filterFound .filterDescription').attr('href', mainSitePathSecure + '/partsdirect/part-number/' + searchText + '/' + groupId + '/' + supplierId);
-									$('.searchText .filterFound .filterDescription').html($(response).find('part > description').text());
+									$('.searchText .filterFound .filterDescription').html(response.description);
 									//Multiplies the price by 100 so it can be converted into an integer
-									unitPrice = parseFloat($(response).find('sellingPrice').text()) * 100;
+									unitPrice = parseFloat(response.sellingPrice) * 100;
 								}
 							},
 							error: function(response) {
@@ -165,6 +169,7 @@ var customAccordionForms = Class.extend(function () {
 				var zip = $('#shippingZip').val();
 				$('#cafShippingAddressForm .cafSubmit').addClass('hidden');
 				if (address != "" && city != "" && state != "ZZ" && zip != "") {
+					$('#test').val('');
 					$.ajax({
 						type : "POST",
 						dataType: "json",
@@ -185,7 +190,7 @@ var customAccordionForms = Class.extend(function () {
 							if (response.geoCodeValues != null) {
 								var geoCodes = response.geoCodeValues.length;
 								$('#shippingCounty').parent().find('.responsiveDropdown').remove();
-								$('#shippingCounty').html('')
+								$('#shippingCounty').html('');
 								for (var i = 0; i < geoCodes; i++) {
 									var key = response.geoCodeValues[i].key;
 									var value = response.geoCodeValues[i].value;
@@ -353,6 +358,41 @@ var customAccordionForms = Class.extend(function () {
 				}
 			});
 			
+			//Checks the card type as the user is typing
+			$('#payNumber').on('keyup', function (e) {
+				var number = $(this).val().replace(/[a-zA-Z\s-]/g, "");
+				var cardType = '';
+				var cards = new Array();
+				cards[0] = { cardType: "VISA", cardName: "Visa", prefixes: [4] };
+				cards[1] = { cardType: "SEARS_MASTERCARD", cardName: "Sears Mastercard", prefixes: [512106,512107,512108] };
+				cards[2] = { cardType: "MASTERCARD", cardName: "Mastercard", prefixes: [51,52,53,54,55] };
+				cards[3] = { cardType: "AMERICAN_EXPRESS", cardName: "American Express", prefixes: [34,37] };
+				cards[4] = { cardType: "DISCOVER", cardName: "Discover", prefixes: [6011,622,64,65] };
+				cards[5] = { cardType: "SEARS_CARD", cardName: "Sears Card", prefixes: [5049] };
+				cards[6] = { cardType: "SearsCard13", cardName: "Sears Card", prefixes: [95501] };
+				var cardsLength = cards.length;
+				
+				for (var i = 0; i < cardsLength; i++) {
+					var prefixLength = cards[i].prefixes.length;
+					for (var h = 0; h < prefixLength; h++) {
+						var exp = new RegExp('^' + cards[i].prefixes[h]);
+						if (exp.test(number)) {
+							cardType = cards[i].cardType;
+							$('#payCardType').html(cards[i].cardName);
+							$('#finalCardType').val(cardType);
+							break;
+						}
+					}
+					if (cardType != '') {
+						break;
+					}
+				}
+				if (cardType == '') {
+					$('#payCardType').html('');
+					$('#finalCardType').val('');
+				}
+			});
+			
 			//Where the information to start the subscription is submitted
 			$('#finalSubmit').on('click', function () {
 				var dateEntered = $('#odInput').val();
@@ -430,6 +470,9 @@ var customAccordionForms = Class.extend(function () {
 								success: function(pageResponse) {
 									$('.pageTitleHeader, .customAccordionForms').addClass('hidden');
 									$('.customAccordionForms').after($(pageResponse).find('.subscriptionConfirmation'));
+									$('html, body').animate({
+										'scrollTop': $('a[name=backToTop]').offset().top
+									}, 1000);
 									$('#confirmNo').html(response.membershipId);
 									$('#confirmShipFirst').html(response.shippingInfo.firstName);
 									$('#confirmShipLast').html(response.shippingInfo.lastName);
@@ -483,6 +526,16 @@ var customAccordionForms = Class.extend(function () {
 				validator: function(params) {
 					var match = $('#' + params["inputId"]).val();
 					return (this.value == match);
+				}
+			});
+			//Custom Regula constraint for phone numbers
+			regula.custom({
+				name: "PhoneNumber",
+				defaultMessage: "Not a phone number",
+				validator: function() {
+					var regTest = new RegExp(/[a-zA-Z]/);
+					var pNumber = this.value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "");
+					return (!regTest.test(pNumber) && pNumber.length == 10);
 				}
 			});
 			//Custom Regula constraint for validating credit cards
@@ -648,7 +701,7 @@ var customAccordionForms = Class.extend(function () {
 					regula.bind(
 						{element: document.getElementById("shippingPhone"),
 						constraints: [
-							{constraintType: regula.Constraint.NotBlank,
+							{constraintType: regula.Constraint.PhoneNumber,
 								params: {message: "Please enter a valid 10-digit phone number."}
 							}
 						]}
@@ -840,47 +893,8 @@ var customAccordionForms = Class.extend(function () {
 					var year = $('#payYear').val();
 					var code = $('#payCode').val().replace(/[a-zA-Z\s-]/g, "");
 					var name = $('#payName').val().replace(/[\s]/g, "");
-					var cardType = '';
+					var cardType = $('#finalCardType').val();
 					
-					var cards = new Array();
-					cards[0] = { cardName: "VISA", lengths: [13,16], prefixes: [4] };
-					cards[1] = { cardName: "SEARS_MASTERCARD", lengths: [16], prefixes: [512106,512107,512108] };
-					cards[2] = { cardName: "COMMERCIAL_ONE", lengths: [16], prefixes: [540553] };
-					cards[3] = { cardName: "MASTERCARD", lengths: [16], prefixes: [51,52,53,54,55] };
-					cards[4] = { cardName: "DinersClub", lengths: [14,16], prefixes: [305,36,38,54,55] };
-					cards[5] = { cardName: "CarteBlanche", lengths: [14], prefixes: [300,301,302,303,304,305] };
-					cards[6] = { cardName: "AMERICAN_EXPRESS", lengths: [15], prefixes: [34,37] };
-					cards[7] = { cardName: "DISCOVER", lengths: [16], prefixes: [6011,622,64,65] };
-					cards[8] = { cardName: "JCB", lengths: [16], prefixes: [35] };
-					cards[9] = { cardName: "enRoute", lengths: [15], prefixes: [2014,2149] };
-					cards[10] = { cardName: "Solo", lengths: [16,18,19], prefixes: [6334, 6767] };
-					cards[11] = { cardName: "Switch", lengths: [16,18,19], prefixes: [4903,4905,4911,4936,564182,633110,6333,6759] };
-					cards[12] = { cardName: "Maestro", lengths: [12,13,14,15,16,18,19], prefixes: [5018,5020,5038,6304,6759,6761] };
-					cards[13] = { cardName: "VisaElectron", lengths: [16], prefixes: [417500,4917,4913,4508,4844] };
-					cards[14] = { cardName: "LaserCard", lengths: [16,17,18,19], prefixes: [6304,6706,6771,6709] };
-					cards[15] = { cardName: "SEARS_CARD", lengths: [16], prefixes: [5049] };
-					cards[16] = { cardName: "SearsCard13", lengths: [13], prefixes: [95501] };
-					
-					for (i = 0; i < cards.length; i++) {
-						var lengthMatch = false;
-						for (var z = 0; z < cards[i].lengths.length; z++) {
-							if (number.length == cards[i].lengths[z]) {
-								lengthMatch = true;
-								break;
-							}
-						}
-						if (lengthMatch) {
-							for (var q = 0; q < cards[i].prefixes.length; q++) {
-								var exp = new RegExp("^" + cards[i].prefixes[q]);
-								if (exp.test(number)) {
-									//console.log(cards[i].cardName);
-									cardType = cards[i].cardName;
-									break;
-								}
-							}
-						}
-						if (cardType != '') break;
-					}
 					if (cardType != '') {
 						$.ajax({
 							type: "POST",
