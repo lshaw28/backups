@@ -136,6 +136,7 @@ var customAccordionForms = Class.extend(function () {
 				//Sets the frequency, date, quantity and price based on user input in the first step
 				if (submittedFormId == "cafSelectFilterFrequencyForm") {
 					var selectedQty = $('#waterFilterQuantity').val();
+					$('#filterLink').html($('.filterDescription').html());
 					$('#freqSel').html($('.filFreq:checked').val());
 					$('#startDate').html($('#odInput').val());
 					$('#subQty').html(selectedQty);
