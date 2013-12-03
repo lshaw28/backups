@@ -6,8 +6,8 @@
 			<li id="searchTab" class="header-search-tab active"> <a data-toggle="tab" data-target="#searchContent"><i class="icon-search">&nbsp;</i> Search</a></li>
 			<li id="headerManualTab" class="header-search-tab"><a data-toggle="tab" data-target="#manualContent">Manuals & Repair Help</a></li>
 		</ul>
-		<!-- new dev starts here for PD2 -->
-		<!-- Test Commit -->
+		<!-- new dev starts here for PD season 2 -->
+		
 		<div id="searchContent" class="search-content-pane active">
 			<input id="searchBarField" type="text" maxlength="100" tabindex="1" data-inputhelp="Enter model or part number" data-inputhelpmobile="Model/Part #" name="searchModPar"><span class="large">in</span><div class="btn-group ">
 				<a class="btn btn-type" href="#" data-toggle="dropdown"><span id="searchTypeLabel" data-texthelp="Select Type" data-texthelpmobile="Type">Type</span> <i class="icon-chevron-sign-down">&nbsp;</i></a>
