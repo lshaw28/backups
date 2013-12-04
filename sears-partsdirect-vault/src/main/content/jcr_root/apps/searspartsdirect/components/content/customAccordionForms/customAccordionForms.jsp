@@ -552,7 +552,7 @@
 								<p>Shipping Method</p>
 							</div>
 							<div class="span8">
-								<p>Standard Shipping <span class="alert-ship">(FREE)</span></p>
+								<p>Standard Shipping (<span class="alert-ship">FREE</span>)</p>
 							</div>
 						</div>
 						<div class="row-fluid pseudoTableRow">
