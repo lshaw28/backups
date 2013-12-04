@@ -64,10 +64,6 @@ var customAccordionForms = Class.extend(function () {
 							type: "GET",
 							cache: false,
 							dataType: "json",
-							headers: {
-								'Accept': 'application/json',
-								'Content-Type': 'application/json'
-							},
 							data: {
 								number: searchText
 							},
@@ -98,6 +94,7 @@ var customAccordionForms = Class.extend(function () {
 							},
 							error: function(response) {
 								//console.log('fail');
+								//console.log(response);
 							}
 						});
 					}
@@ -135,6 +132,12 @@ var customAccordionForms = Class.extend(function () {
 				e.preventDefault();
 				//Sets the frequency, date, quantity and price based on user input in the first step
 				if (submittedFormId == "cafSelectFilterFrequencyForm") {
+					if ($('#finalPartNumber').val() == '') {
+						$('.filterAlert').removeClass('hidden');
+						return;
+					} else {
+						$('.filterAlert').addClass('hidden');
+					}
 					var selectedQty = $('#waterFilterQuantity').val();
 					$('#filterLink').html($('.filterDescription').html());
 					$('#freqSel').html($('.filFreq:checked').val());
@@ -168,7 +171,6 @@ var customAccordionForms = Class.extend(function () {
 				var city = $('#shippingCity').val();
 				var state = $('#shippingState').val();
 				var zip = $('#shippingZip').val();
-				$('#cafShippingAddressForm .cafSubmit').addClass('hidden');
 				if (address != "" && city != "" && state != "ZZ" && zip != "") {
 					$('#test').val('');
 					$.ajax({
@@ -258,10 +260,7 @@ var customAccordionForms = Class.extend(function () {
 				}
 			});
 			$('#shippingCounty').on('change.addressValidation', function() {
-				if ($(this).val() == 'ZZ') {
-					$('#cafShippingAddressForm .cafSubmit').addClass('hidden');
-				} else {
-					$('#cafShippingAddressForm .cafSubmit').removeClass('hidden');
+				if (!$(this).val() == 'ZZ') {
 					$.ajax({
 						type : "POST",
 						dataType: "json",
@@ -292,7 +291,6 @@ var customAccordionForms = Class.extend(function () {
 								var totalPrice = preTaxPrice + Math.round(response.taxAmount * 100);
 								var formattedPrice = totalPrice.toString();
 								$('#cafFilterPrice').html('$' + formattedPrice.substring(0, formattedPrice.length - 2) + '.' + formattedPrice.substring(formattedPrice.length - 2) + '*');
-								$('#cafShippingAddressForm .cafSubmit').removeClass('hidden');
 								$('#finalGeocode').val($('#shippingCounty').val());
 							} else {
 								//console.log('taxandshipping fail');
@@ -461,7 +459,7 @@ var customAccordionForms = Class.extend(function () {
 						},
 						"quantity": parseInt($('#waterFilterQuantity').val())
 					}),
-					url: apiPath + 'subscriptionservice/enroll',
+					url: apiPathSecure + 'subscriptionservice/enroll',
 					success: function(response) {
 						//console.log(response);
 						if (response.message == 'SUCCESS') {
@@ -711,7 +709,7 @@ var customAccordionForms = Class.extend(function () {
 						{element: document.getElementById("shippingEmail"),
 						constraints: [
 							{constraintType: regula.Constraint.Pattern,
-								params: {regex: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, message: "Please enter your email address."}
+								params: {regex: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/, message: "Please enter your email address."}
 							}
 						]}
 					);
@@ -913,7 +911,7 @@ var customAccordionForms = Class.extend(function () {
 								'securityCode': code,
 								'name': name
 							}),
-							url: apiPath + 'validate/paymentcard',
+							url: apiPathSecure + 'validate/paymentcard',
 							success: function(response) {
 								//console.log(response);
 								if (response.status == 5) {

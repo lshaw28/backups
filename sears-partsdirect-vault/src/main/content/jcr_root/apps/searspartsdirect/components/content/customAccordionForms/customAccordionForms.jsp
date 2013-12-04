@@ -13,6 +13,7 @@
 		<div id="${uniqueId}1" class="accordion-body in">
 			<div class="accordion-inner">
 				<form id="cafSelectFilterFrequencyForm" method="post" action="">
+					<div class="alert alert-error filterAlert hidden">Enter your part or model number to find a filter</div>
 					<fieldset>
 						<div class="row-fluid">
 							<div class="span10 offset1">
@@ -72,7 +73,7 @@
 					</fieldset>
 					<div class="row-fluid">
 						<div class="span2 offset1">
-							<button type="button" class="new-btn new-btn-search cafSubmit hidden" data-submit="true" data-form-number="1" data-alert-id="alert_${uniqueId}1" data-this-toggle-id="toggle_${uniqueId}1">Continue</button>
+							<button type="button" class="new-btn new-btn-search cafSubmit" data-submit="true" data-form-number="1" data-alert-id="alert_${uniqueId}1" data-this-toggle-id="toggle_${uniqueId}1">Continue</button>
 						</div>
 					</div>
 				</form>
@@ -563,7 +564,7 @@
 							</div>
 						</div>
 						<div class="row-fluid">
-							<div class="offset4 span4">
+							<div class="span4">
 								<form id="finalForm" method="post" action="">
 									<input type="hidden" name="partNumber" id="finalPartNumber" value="">
 									<input type="hidden" name="productGroupId" id="finalGroupId" value="">
