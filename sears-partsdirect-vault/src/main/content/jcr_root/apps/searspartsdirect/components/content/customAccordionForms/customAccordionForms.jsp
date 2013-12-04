@@ -445,7 +445,7 @@
 								<label for="payMonth">Expiration Date <span>Required</span></label>
 								<div class="comboContainer monthWidth">
 									<select name="month" id="payMonth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
-										<option value="ZZ">-----</option>
+										<option value="ZZ">Month</option>
 										<option value="01">January</option>
 										<option value="02">February</option>
 										<option value="03">March</option>
@@ -462,7 +462,7 @@
 								</div>
 								<div class="comboContainer">
 									<select name="year" id="payYear" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
-										<option value="ZZ">----</option>
+										<option value="ZZ">Year</option>
 										<option value="2013">2013</option>
 										<option value="2014">2014</option>
 										<option value="2015">2015</option>
