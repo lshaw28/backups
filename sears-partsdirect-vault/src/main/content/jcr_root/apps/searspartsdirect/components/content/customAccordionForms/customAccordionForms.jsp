@@ -217,7 +217,7 @@
 							<div class="span10 offset1">
 								<div class="cafSameRow phoneWidth">
 									<label for="shippingPhone">Phone Number <span>Required</span></label>
-									<input type="text" class="cafText cafZip" name="phone" id="shippingPhone" pattern="[0-9-()]*" />
+									<input type="text" class="cafText cafZip" name="phone" id="shippingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
 								</div>
 								<div class="cafSameRow">
 									<label for="shippingExt">Ext. # <span>Optional</span></label>
