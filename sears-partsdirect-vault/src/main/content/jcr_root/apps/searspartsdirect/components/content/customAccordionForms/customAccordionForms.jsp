@@ -139,8 +139,7 @@
 							<div class="span10 offset1">
 								<label for="shippingState">State <span>Required</span></label>
 								<div class="comboContainer">
-									<select name="state" id="shippingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
-										<option value="ZZ">--</option>
+									<select name="state" id="shippingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true" data-changed="false">
 										<option value="AA">AA</option>
 										<option value="AE">AE</option>
 										<option value="AL">AL</option>
@@ -252,7 +251,7 @@
 					</fieldset>
 					<div class="row-fluid">
 						<div class="span2 offset1">
-							<button type="button" class="new-btn new-btn-search cafSubmit hidden" id="shippingSubmit" data-submit="true" data-form-number="2" data-alert-id="alert_${uniqueId}2" data-this-toggle-id="toggle_${uniqueId}2">Continue</button>
+							<button type="button" class="new-btn new-btn-search cafSubmit" id="shippingSubmit" data-submit="true" data-form-number="2" data-alert-id="alert_${uniqueId}2" data-this-toggle-id="toggle_${uniqueId}2">Continue</button>
 						</div>
 					</div>
 				</form>
@@ -309,8 +308,7 @@
 							<div class="span10 offset1">
 								<label for="billingState">State <span>Required</span></label>
 								<div class="comboContainer billingStateDrop">
-									<select name="state" id="billingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
-										<option value="ZZ">--</option>
+									<select name="state" id="billingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true" data-changed="false">
 										<option value="AA">AA</option>
 										<option value="AE">AE</option>
 										<option value="AL">AL</option>
@@ -456,8 +454,7 @@
 							<div class="span10 offset1">
 								<label for="payMonth">Expiration Date <span>Required</span></label>
 								<div class="comboContainer monthWidth">
-									<select name="month" id="payMonth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Month" data-display="true">
-										<option value="ZZ">Month</option>
+									<select name="month" id="payMonth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Month" data-display="true" data-changed="false">
 										<option value="01">January</option>
 										<option value="02">February</option>
 										<option value="03">March</option>
@@ -473,8 +470,7 @@
 									</select>
 								</div>
 								<div class="comboContainer">
-									<select name="year" id="payYear" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Year" data-display="true">
-										<option value="ZZ">Year</option>
+									<select name="year" id="payYear" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Year" data-display="true" data-changed="false">
 										<option value="2013">2013</option>
 										<option value="2014">2014</option>
 										<option value="2015">2015</option>

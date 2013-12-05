@@ -303,6 +303,12 @@ var customAccordionForms = Class.extend(function () {
 				}
 			});
 			
+			//These are for setting if the dropdowns have had an option selected by a user
+			$('#shippingState, #billingState, #payMonth, #payYear').on('change.initial', function() {
+				$(this).off('change.initial');
+				$(this).attr('data-changed', 'true');
+			});
+			
 			//These handle autofills for the dropdowns (i.e.: if browser fills in previously used address)
 			$('#shippingState').on('change.autofill', function() {
 				$('#shippingState').off('change.autofill');
@@ -517,6 +523,15 @@ var customAccordionForms = Class.extend(function () {
 				});
 			});
 			
+			//Custom Regula constraint for dropdowns
+			regula.custom({
+				name: "DropDown",
+				defaultMessage: "Select something",
+				validator: function() {
+					var selected = $(this).attr('data-changed') == 'true';
+					return selected;
+				}
+			});
 			//Custom Regula constraint for matching fields
 			regula.custom({
 				name: "MatchInput",
@@ -525,16 +540,6 @@ var customAccordionForms = Class.extend(function () {
 				validator: function(params) {
 					var match = $('#' + params["inputId"]).val();
 					return (this.value == match);
-				}
-			});
-			//Custom Regula constraint for phone numbers
-			regula.custom({
-				name: "PhoneNumber",
-				defaultMessage: "Not a phone number",
-				validator: function() {
-					var regTest = new RegExp(/[a-zA-Z]/);
-					var pNumber = this.value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "");
-					return (!regTest.test(pNumber) && pNumber.length == 10);
 				}
 			});
 			//Custom Regula constraint for validating credit cards
@@ -553,7 +558,7 @@ var customAccordionForms = Class.extend(function () {
 				params: ["inputId"],
 				validator: function(params) {
 					var returnVal = false;
-					if ($('#' + params["inputId"])[0].selectedIndex && $(this)[0].selectedIndex) {
+					if ($('#' + params["inputId"]).attr('data-changed') == 'true' && $(this).attr('data-changed') == 'true') {
 						returnVal = true;
 					}
 					return (returnVal);
@@ -684,7 +689,7 @@ var customAccordionForms = Class.extend(function () {
 					regula.bind(
 						{element: document.getElementById("shippingState"),
 						constraints: [
-							{constraintType: regula.Constraint.Selected,
+							{constraintType: regula.Constraint.DropDown,
 								params: {message: "Please select your state."}
 							}
 						]}
@@ -700,7 +705,7 @@ var customAccordionForms = Class.extend(function () {
 					regula.bind(
 						{element: document.getElementById("shippingPhone"),
 						constraints: [
-							{constraintType: regula.Constraint.PhoneNumber,
+							{constraintType: regula.Constraint.NotBlank,
 								params: {message: "Please enter a valid 10-digit phone number."}
 							}
 						]}
@@ -758,7 +763,7 @@ var customAccordionForms = Class.extend(function () {
 					regula.bind(
 						{element: document.getElementById("billingState"),
 						constraints: [
-							{constraintType: regula.Constraint.Selected,
+							{constraintType: regula.Constraint.DropDown,
 								params: {message: "Please select your state."}
 							}
 						]}
