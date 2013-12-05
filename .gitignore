@@ -30,3 +30,4 @@ build.xml
 org.apache.felix.http.xml
 sears-partsdirect-vault/bin
 ResourcePath.java
+/sears-partsdirect-common
