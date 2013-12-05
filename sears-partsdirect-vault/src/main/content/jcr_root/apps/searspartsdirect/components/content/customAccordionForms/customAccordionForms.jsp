@@ -6,8 +6,11 @@
 	<div class="accordion-group">
 		<div class="accordion-heading cafHeadingOpen">
 			<a class="accordion-toggle" id="toggle_${uniqueId}1" data-toggle="false" data-status="incomplete" data-parent="#parent_${uniqueId}1" data-href="#${uniqueId}1">
-				1 &nbsp; Select Water Filter and Reorder Frequency
-				<span class="hidden"><i class="icon-pencil"></i> EDIT</span>
+				<div class="cafStepNumber">1</div>
+				<div class="cafStepEdit hidden">
+					<span><i class="icon-pencil"></i> EDIT</span>
+				</div>
+				<div>Select Water Filter and Reorder Frequency</div>
 			</a>
 		</div>
 		<div id="${uniqueId}1" class="accordion-body in">
@@ -85,8 +88,11 @@
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" id="toggle_${uniqueId}2" data-toggle="false" data-status="unavailable" data-parent="#parent_${uniqueId}2" data-href="#${uniqueId}2">
-				2 &nbsp; Enter Shipping Address
-				<span class="hidden"><i class="icon-pencil"></i> EDIT</span>
+				<div class="cafStepNumber">2</div>
+				<div class="cafStepEdit hidden">
+					<span><i class="icon-pencil"></i> EDIT</span>
+				</div>
+				<div>Enter Shipping Address</div>
 			</a>
 		</div>
 		<div id="${uniqueId}2" class="accordion-body collapse">
@@ -258,8 +264,11 @@
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle billingToggle" id="toggle_${uniqueId}3" data-toggle="false" data-status="unavailable" data-parent="#parent_${uniqueId}3" data-href="#${uniqueId}3">
-				3 &nbsp; Enter Billing Address
-				<span class="hidden"><i class="icon-pencil"></i> EDIT</span>
+				<div class="cafStepNumber">3</div>
+				<div class="cafStepEdit hidden">
+					<span><i class="icon-pencil"></i> EDIT</span>
+				</div>
+				<div>Enter Billing Address</div>
 			</a>
 		</div>
 		<div id="${uniqueId}3" class="accordion-body collapse">
@@ -401,8 +410,11 @@
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" id="toggle_${uniqueId}4" data-toggle="false" data-status="unavailable" data-parent="#parent_${uniqueId}4" data-href="#${uniqueId}4">
-				4 &nbsp; Enter Payment Information
-				<span class="hidden"><i class="icon-pencil"></i> EDIT</span>
+				<div class="cafStepNumber">4</div>
+				<div class="cafStepEdit hidden">
+					<span><i class="icon-pencil"></i> EDIT</span>
+				</div>
+				<div>Enter Payment Information</div>
 			</a>
 		</div>
 		<div id="${uniqueId}4" class="accordion-body collapse">
@@ -507,7 +519,8 @@
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" id="toggle_${uniqueId}5" data-toggle="false" data-status="unavailable" data-parent="#parent_${uniqueId}5" data-href="#${uniqueId}5">
-				5 &nbsp; Review Subscription
+				<div class="cafStepNumber">5</div>
+				<div>Review Subscription</div>
 			</a>
 		</div>
 		<div id="${uniqueId}5" class="accordion-body collapse">

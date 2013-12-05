@@ -952,7 +952,7 @@ var customAccordionForms = Class.extend(function () {
 			//Separated so that opening a completed step can deactivate the other toggles
 			if ($('.accordion-toggle[data-status=unavailable]:eq(0)').length > 0) {
 				toggle.attr('href', toggle.attr('data-href')).attr('data-toggle', 'collapse');
-				toggle.find('span').removeClass('hidden');
+				toggle.find('.cafStepEdit').removeClass('hidden');
 				toggle.click();
 				toggle.attr('data-status', 'complete');
 				nTog.attr('data-status', 'incomplete');

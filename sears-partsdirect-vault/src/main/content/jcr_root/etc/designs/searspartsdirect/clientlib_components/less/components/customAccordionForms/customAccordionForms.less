@@ -18,12 +18,18 @@
 				cursor: default;
 				color: @secondaryHueDark;
 				font-size: @h3Size;
-				span {
+				.cafStepNumber {
+					float: left;
+					width: 30px;
+					height: 50px;
+				}
+				.cafStepEdit {
 					float: right;
-					cursor: pointer;
-					padding-top: 1px;
-					padding-right: 10px;
-					font-size: @smallPSize;
+					line-height: 14px;
+					span {
+						cursor: pointer;
+						font-size: @smallPSize;
+					}
 				}
 			}
 			.accordion-toggle:hover {
