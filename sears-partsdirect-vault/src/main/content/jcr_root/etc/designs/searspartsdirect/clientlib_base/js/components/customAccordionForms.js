@@ -160,6 +160,9 @@ var customAccordionForms = Class.extend(function () {
 						self.setBillingFields(true);
 					}
 				}
+				if (submittedFormId == "cafPaymentForm") {
+					$('.payAlert').addClass('hidden');
+				}
 				//Set Regula to validate current form
 				self.bindRegula(parseInt(e.target.attributes['data-form-number'].value));
 				self.validate(e);
