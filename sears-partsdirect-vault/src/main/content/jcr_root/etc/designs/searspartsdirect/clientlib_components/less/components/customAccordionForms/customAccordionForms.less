@@ -327,14 +327,26 @@
 	}
 	
 	#processingIcon {
-		opacity: 1;
-		top: 50%;
+		opacity: .8;
+		filter: alpha(opacity=80);
+		text-align: center;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 126px;
 	}
 }
 
 #modalShipping {
 	a {
 		float: right;
+	}
+	a:hover,
+	a:focus {
+		text-decoration: none;
+		color: @primaryHueNormal;
 	}
 }
 
@@ -356,5 +368,10 @@
 	}
 	a {
 		float: right;
+	}
+	a:hover,
+	a:focus {
+		text-decoration: none;
+		color: @primaryHueNormal;
 	}
 }
