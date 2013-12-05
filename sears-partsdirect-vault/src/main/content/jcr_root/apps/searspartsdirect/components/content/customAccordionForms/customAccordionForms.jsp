@@ -602,7 +602,7 @@
 	<p><strong>Please note:</strong> Some items can't be shipped to a P.O. box and require a physical address for delivery.</p>
 	<h4>Can orders be shipped to a military address?</h4>
 	<p>The U.S. Postal Service delivers all orders to military APO/FPO addresses. Please allow an additional 4-6 weeks for the military postal service to deliver your package to its final overseas destination.</p>
-	<a href="#" class="new-btn new-btn-modal" data-dismiss="modal">Close</a>
+	<a href="#" class="btn" data-dismiss="modal">Close</a>
 </div>
 <div id="modalCode" class="modal hide fade in" style="display: none; ">
 	<h3>How to find your security code</h3>
@@ -631,7 +631,7 @@
 			<p>The security code is on the front of American Express cards.</p>
 		</div>
 	</div>
-	<a href="#" class="new-btn new-btn-modal" data-dismiss="modal">Close</a>
+	<a href="#" class="btn" data-dismiss="modal">Close</a>
 </div>
 <div id="processingIcon" class="addToCartAnimation">
 	<i class="icon-refresh">&nbsp;</i>
