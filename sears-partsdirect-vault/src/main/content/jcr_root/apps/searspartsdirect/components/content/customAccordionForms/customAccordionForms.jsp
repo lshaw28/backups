@@ -210,7 +210,7 @@
 							<div class="span10 offset1">
 								<label for="shippingCounty">Select County <span>Required</span></label>
 								<div class="comboContainer countyWidth">
-									<select name="year" id="shippingCounty" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+									<select name="year" id="shippingCounty" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true" data-changed="false">
 										<option value="ZZ">----</option>
 										<option value="DN">I don't know</option>
 										<option value="NL">My City/County is not listed</option>
@@ -252,6 +252,9 @@
 					<div class="row-fluid">
 						<div class="span2 offset1">
 							<button type="button" class="new-btn new-btn-search cafSubmit" id="shippingSubmit" data-submit="true" data-form-number="2" data-alert-id="alert_${uniqueId}2" data-this-toggle-id="toggle_${uniqueId}2">Continue</button>
+						</div>
+						<div class="span9">
+							<span class="cafValidating hidden">Validating your address<span class="cafValidatingDots"></span></span>
 						</div>
 					</div>
 				</form>

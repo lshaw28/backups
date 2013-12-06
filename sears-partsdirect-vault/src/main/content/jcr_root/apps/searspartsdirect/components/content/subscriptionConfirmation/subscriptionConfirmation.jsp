@@ -52,6 +52,7 @@
 					<th>Description</th>
 					<th>Qty</th>
 					<th>Unit Price</th>
+					<th>Tax</th>
 					<th>Price</th>
 				</tr>
 			</thead>
@@ -61,6 +62,7 @@
 					<td><span id="confirmPartDesc">desc</span></td>
 					<td><span id="confirmQty">X</span></td>
 					<td>$<span id="confirmUnitPrice">XX.XX</span></td>
+					<td>$<span id="confirmTax">XX.XX</span></td>
 					<td>$<span id="confirmTotalPrice">XX.XX</span></td>
 				</tr>
 			</tbody>

@@ -19,7 +19,8 @@ var customAccordionForms = Class.extend(function () {
 				typingFilter = false,
 				searchText = '',
 				unitPrice = 0.0,
-				preTaxPrice = 0;
+				preTaxPrice = 0,
+				validateDotsInterval = 0;
 			
 			$('body').append($('#modalShipping')).append($('#modalCode'));
 			//This modifies the accordion to change the head background color when toggled and to have one open at a time (preference to current step)
@@ -32,7 +33,7 @@ var customAccordionForms = Class.extend(function () {
 					} else {
 						//Opening accordion
 						$(this).parent().addClass('cafHeadingOpen');
-						$(this).find('span').addClass('hidden');
+						$(this).find('.cafStepEdit').addClass('hidden');
 					}
 				}
 			});
@@ -73,7 +74,6 @@ var customAccordionForms = Class.extend(function () {
 								if(response == null) {
 									$('.searchText .filterError').removeClass('hidden');
 									$('.searchText .filterFound').addClass('hidden');
-									$('#cafSelectFilterFrequencyForm .cafSubmit').addClass('hidden');
 									$('#finalPartNumber').val('');
 									$('#finalGroupId').val('');
 									$('#finalSupplierId').val('');
@@ -147,6 +147,9 @@ var customAccordionForms = Class.extend(function () {
 					preTaxPrice = Math.round(unitPrice) * parseInt(selectedQty);
 				}
 				if (submittedFormId == "cafShippingAddressForm") {
+					if (!$('#cafShippingAddressForm .cafValidating').hasClass('hidden')) {
+						return;
+					}
 					if ($('#shippingPO').attr('checked') == "checked") {
 						$('#finalPO').val('true');
 					} else {
@@ -158,6 +161,7 @@ var customAccordionForms = Class.extend(function () {
 					//Special bit to fill out the billing form if user wants to use the same address (already on checkbox, here in case user updates after clicking the checkbox)
 					if ($('#shippingSame').attr('checked')) {
 						self.setBillingFields(true);
+						$('#cafBillingAddressForm').parent().parent().parent().find('.cafStepEdit').removeClass('hidden');
 					}
 				}
 				if (submittedFormId == "cafPaymentForm") {
@@ -170,12 +174,22 @@ var customAccordionForms = Class.extend(function () {
 			
 			//Brings up the county dropdown for address validation
 			$('#shippingAddress, #shippingCity, #shippingState, #shippingZip').on('change.addressValidation', function() {
-				var address = $('#shippingAddress').val();
-				var city = $('#shippingCity').val();
-				var state = $('#shippingState').val();
-				var zip = $('#shippingZip').val();
-				if (address != "" && city != "" && state != "ZZ" && zip != "") {
-					$('#test').val('');
+				var address = $('#shippingAddress').val(),
+					city = $('#shippingCity').val(),
+					state = $('#shippingState').val(),
+					zip = $('#shippingZip').val();
+				if (address != "" && city != "" && $('#shippingState').attr('data-changed') == 'true' && zip != "") {
+					$('#cafShippingAddressForm .cafValidating').removeClass('hidden');
+					clearInterval(validateDotsInterval);
+					$('#cafShippingAddressForm .cafValidating .cafValidatingDots').html('.....');
+					validateDotsInterval = setInterval(function () {
+						var currentDots = $('#cafShippingAddressForm .cafValidating .cafValidatingDots').html();
+						if (currentDots.length > 0) {
+							$('#cafShippingAddressForm .cafValidating .cafValidatingDots').html(currentDots.substr(0, currentDots.length - 1));
+						} else {
+							$('#cafShippingAddressForm .cafValidating .cafValidatingDots').html('.....');
+						}
+					}, 1000);
 					$.ajax({
 						type : "POST",
 						dataType: "json",
@@ -193,10 +207,12 @@ var customAccordionForms = Class.extend(function () {
 						url: apiPath + 'address/validate',
 						success : function(response) {
 							//console.log(response);
+							$('#shippingCounty').parent().find('.responsiveDropdown').remove();
+							$('#shippingCounty').html('');
 							if (response.geoCodeValues != null) {
+								$('#cafShippingAddressForm .cafValidating').addClass('hidden');
+								clearInterval(validateDotsInterval);
 								var geoCodes = response.geoCodeValues.length;
-								$('#shippingCounty').parent().find('.responsiveDropdown').remove();
-								$('#shippingCounty').html('');
 								for (var i = 0; i < geoCodes; i++) {
 									var key = response.geoCodeValues[i].key;
 									var value = response.geoCodeValues[i].value;
@@ -206,13 +222,14 @@ var customAccordionForms = Class.extend(function () {
 									}
 									$('#shippingCounty').append($('<option>', {value : key}).text(value).attr('data-value', key));
 								}
+								$('#shippingCounty').attr('data-changed', 'false');
 								$('#shippingCounty').each(function () {
 									var newResponsiveDropdown = new responsiveDropdown($(this));
 								});
 								$('.countyRow').removeClass('hidden');
 							} else {
 								$('.countyRow').addClass('hidden');
-								//console.log(response);
+								$('#shippingCounty').append($('<option>', {value : response.validatedAddress.verifiedAddress.geoCode}).text('----'));
 								$.ajax({
 									type : "POST",
 									dataType: "json",
@@ -240,6 +257,8 @@ var customAccordionForms = Class.extend(function () {
 									success: function(response2) {
 										//console.log(response2);
 										if (response2.taxAmount != null) {
+											$('#cafShippingAddressForm .cafValidating').addClass('hidden');
+											clearInterval(validateDotsInterval);
 											//Price formatting in case price is an even integer or tens of cents
 											var totalPrice = preTaxPrice + Math.round(response2.taxAmount * 100);
 											var formattedPrice = totalPrice.toString();
@@ -264,6 +283,17 @@ var customAccordionForms = Class.extend(function () {
 			});
 			$('#shippingCounty').on('change.addressValidation', function() {
 				if (!$(this).val() == 'ZZ') {
+					$('#cafShippingAddressForm .cafValidating').removeClass('hidden');
+					clearInterval(validateDotsInterval);
+					$('#cafShippingAddressForm .cafValidating .cafValidatingDots').html('.....');
+					validateDotsInterval = setInterval(function () {
+						var currentDots = $('#cafShippingAddressForm .cafValidating .cafValidatingDots').html();
+						if (currentDots.length > 0) {
+							$('#cafShippingAddressForm .cafValidating .cafValidatingDots').html(currentDots.substr(0, currentDots.length - 1));
+						} else {
+							$('#cafShippingAddressForm .cafValidating .cafValidatingDots').html('.....');
+						}
+					}, 1000);
 					$.ajax({
 						type : "POST",
 						dataType: "json",
@@ -290,6 +320,8 @@ var customAccordionForms = Class.extend(function () {
 						url: apiPath + 'address/validate/taxandshipping',
 						success : function(response) {
 							if (response.taxAmount != null) {
+								$('#cafShippingAddressForm .cafValidating').addClass('hidden');
+								clearInterval(validateDotsInterval);
 								//Price formatting in case price is an even integer or tens of cents
 								var totalPrice = preTaxPrice + Math.round(response.taxAmount * 100);
 								var formattedPrice = totalPrice.toString();
@@ -309,6 +341,10 @@ var customAccordionForms = Class.extend(function () {
 			//These are for setting if the dropdowns have had an option selected by a user
 			$('#shippingState, #billingState, #payMonth, #payYear').on('change.initial', function() {
 				$(this).off('change.initial');
+				$(this).attr('data-changed', 'true');
+			});
+			//Separated in case the address is changed to one that also requires a county selection
+			$('#shippingCounty').on('change.initial', function() {
 				$(this).attr('data-changed', 'true');
 			});
 			
@@ -444,7 +480,7 @@ var customAccordionForms = Class.extend(function () {
 								"state": $('#billingState').val()
 							}
 						},
-						"isShippingBillingSame": false,
+						"isShippingBillingSame": $('#shippingSame').attr('checked') == 'checked',
 						"partCompositeKey": {
 							"partNumber": $('#finalPartNumber').val(),
 							"productGroupId": $('#finalGroupId').val(),
@@ -507,9 +543,11 @@ var customAccordionForms = Class.extend(function () {
 									$('#confirmPartDesc').html($('.filterFound a').html());
 									$('#confirmQty').html($('#waterFilterQuantity').val());
 									//Price formatting in case price is an even integer or tens of cents
-									var formattedUnitPrice = Math.round(response.price * 100).toString();
-									var formattedFinalPrice = Math.round(response.paymentInfo.amount * 100).toString();
+									var formattedUnitPrice = Math.round(response.price * 100).toString(),
+										formattedTax = (Math.round(response.paymentInfo.amount * 100) - Math.round(response.price * 100) * parseInt($('#waterFilterQuantity').val())).toString(),
+										formattedFinalPrice = Math.round(response.paymentInfo.amount * 100).toString();
 									$('#confirmUnitPrice').html(formattedUnitPrice.substring(0, formattedUnitPrice.length - 2) + '.' + formattedUnitPrice.substring(formattedUnitPrice.length - 2));
+									$('#confirmTax').html(formattedTax.substring(0, formattedTax.length - 2) + '.' + formattedTax.substring(formattedTax.length - 2));
 									$('#confirmTotalPrice').html(formattedFinalPrice.substring(0, formattedFinalPrice.length - 2) + '.' + formattedFinalPrice.substring(formattedFinalPrice.length - 2));
 								},
 								error: function(pageResponse) {
@@ -521,6 +559,7 @@ var customAccordionForms = Class.extend(function () {
 						}
 					},
 					error: function(response) {
+						//console.log('fail');
 						//console.log(response);
 					}
 				});
@@ -705,6 +744,16 @@ var customAccordionForms = Class.extend(function () {
 							}
 						]}
 					);
+					if (!$('.countyRow').hasClass('hidden')) {
+						regula.bind(
+							{element: document.getElementById("shippingCounty"),
+							constraints: [
+								{constraintType: regula.Constraint.DropDown,
+									params: {message: "Please select your county."}
+								}
+							]}
+						);
+					}
 					regula.bind(
 						{element: document.getElementById("shippingPhone"),
 						constraints: [
