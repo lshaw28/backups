@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %><%
-%><form id="searchBarForm" method="post">
+%><form id="searchBarForm" method="GET">
 	<div id="searchContainer">
 		<div id="searchLeftShadow" class="search-shadow"></div>
 		<ul id="searchTabs">

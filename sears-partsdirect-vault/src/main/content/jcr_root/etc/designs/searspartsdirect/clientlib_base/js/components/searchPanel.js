@@ -59,7 +59,8 @@ var searchPanel = Class.extend(function () {
 			$('#shdPart').attr('value', partNumber);
 			$('#pathTaken').attr('value', el.data('pathtaken'));
 			// Update form action
-			$('#searchBarForm').attr('action', action + encodeURIComponent(value));
+			//$('#searchBarForm').attr('action', action + encodeURIComponent(value));
+			$('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
 		},
 		/**
 		 * Sanitises the current value
