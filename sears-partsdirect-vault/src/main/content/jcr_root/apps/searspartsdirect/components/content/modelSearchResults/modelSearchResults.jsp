@@ -1,9 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
-<script>
-	alert("Hey Pankaj how u doing");
-</script>
-
 <div class="row-fluid">
 	<div class="repairHelpHomeTitle">
 		<div class="pageTitleHeader">
