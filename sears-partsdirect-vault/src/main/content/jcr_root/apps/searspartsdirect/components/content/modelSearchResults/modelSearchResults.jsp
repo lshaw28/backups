@@ -5,7 +5,10 @@
     String homeClass = "visible-phone visible-tablet visible-desktop breadcrumb-back";
     String delimStr = "&nbsp;&gt;&nbsp;";
     String searchModPar = (request.getParameter("searchModPar") != null) ? request.getParameter("searchModPar") : "";
-%>
+    String pathTaken = (request.getParameter("pathTaken") != null) ? request.getParameter("pathTaken") : "";
+    %>
+    <script type="text/javascript" src="/etc/designs/searspartsdirect/clientlib_base/js/modelSearchResults.js" ></script>
+    
 	<li class="<%=homeClass%>"><a href="http://www.searspartsdirect.com/">Home</a><%= delimStr%></li>
 	<li class="<%= linkClass %>">Model Search Results for "<%= searchModPar%>"</li>
 </ul>
@@ -170,3 +173,8 @@
 		</p>
 	</div>
 </div>
+<script>
+    $(document).ready(function(){
+        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>');
+    });
+</script>
