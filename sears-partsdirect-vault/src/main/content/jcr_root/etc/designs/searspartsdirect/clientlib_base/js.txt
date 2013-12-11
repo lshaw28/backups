@@ -22,6 +22,7 @@ src/Carousel.js
 Utilities.js
 DocumentReady.js
 WindowResize.js
+modelSearchResults.js
 
 #base=js/templates/.
 cartItemTemplate.js
