@@ -27,7 +27,7 @@
 		Card: <span id="confirmBillCardType">Visa</span><br />
 		************<span id="confirmBillCardNo">9999</span></p>
 		<p>*Please Note*<br />
-		The credit card on file will be charged around Month day, year. The first water filter(s) will arrive approximately 2-4 business days after the credit card is charged.</p>
+		The credit card on file will be charged around <span id="confirmDate">Month day, year</span>. The first water filter(s) will arrive approximately 2-4 business days after the credit card is charged.</p>
 	</div>
 </div>
 <div class="row-fluid">

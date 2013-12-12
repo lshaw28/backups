@@ -642,6 +642,7 @@ var customAccordionForms = Class.extend(function () {
 							$('#confirmBillCardType').html(xhrResp.paymentInfo.cardType);
 							$('#confirmBillCardNo').html(xhrResp.paymentInfo.cardNumber);
 							$('#confirmEmail').html($('#shippingEmail').val());
+							$('#confirmDate').html($('#startDate').html());
 							$('#confirmPartNo').html($('#finalPartNumber').val());
 							$('#confirmPartDesc').html($('.filterFound a').html());
 							$('#confirmQty').html($('#waterFilterQuantity').val());
