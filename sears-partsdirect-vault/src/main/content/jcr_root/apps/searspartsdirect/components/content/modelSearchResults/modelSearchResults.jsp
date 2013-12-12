@@ -17,12 +17,11 @@
 	<div class="repairHelpHomeTitle">
 		<div class="pageTitleHeader">
 			<h1>
-				(17) results found for model #<strong>1111</strong>
+                (<strong class="searchCount0"></strong>) results found for model #<strong><%= searchModPar%></strong>
 				<p class="pull-right">
 					We also found <span><a>(1) part number</a></span>
 				</p>
 			</h1>
-
 		</div>
 	</div>
 </div>
@@ -61,7 +60,7 @@
 <div class="row-fluid">
 	<div class="resultsHeaderBar">
 		<div class="la-anim-2"></div>
-		<span><strong>1-25 of 55</strong>Sort by <select>
+		<span><strong class="searchCount1"></strong>Sort by <select>
 				<option value="relevance" selected>Relevance</option>
 				<option value="price">Price</option>
 				<option value="popularity">Popularity</option>
@@ -75,7 +74,7 @@
 	<div class="resultsFooterBar">
 		<div class="row-fluid">
 			<div class="span3 resultsFooterLeft hidden-phone">
-				<strong>1-25 of 55</strong>
+				<strong class="searchCount1"></strong>
 			</div>
 			<div class="span6 resultsFooterNav">
 				<a> <i class="icon-chevron-right"></i> <span
