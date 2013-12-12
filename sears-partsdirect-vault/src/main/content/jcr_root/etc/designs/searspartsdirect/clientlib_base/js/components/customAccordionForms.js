@@ -1,6 +1,7 @@
 var customAccordionForms = Class.extend(function () {
 	"use strict";
 	var xhrRespHandler = new Object();
+	var monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	
 	return {
 		/**
@@ -79,7 +80,7 @@ var customAccordionForms = Class.extend(function () {
 							data: {
 								number: searchText
 							},
-							url: apiPathSecure + 'searchWaterFilter/' + searchType,
+							url: apiPath + 'searchWaterFilter/' + searchType,
 							success: function(response) {
 								//console.log(response);
 								if(response == null) {
@@ -152,7 +153,7 @@ var customAccordionForms = Class.extend(function () {
 					var selectedQty = $('#waterFilterQuantity').val();
 					$('#filterLink').html($('.filterDescription').html());
 					$('#freqSel').html($('.filFreq:checked').val());
-					$('#startDate').html($('#odInput').val());
+					$('#startDate').html(monthArray[parseInt($('#odInput').val().substr(0,2)) - 1] + ' ' + parseInt($('#odInput').val().substr(3,5)) + ', ' + $('#odInput').val().substr(6,10));
 					$('#subQty').html(selectedQty);
 					//Multiplies and converts the multiplied price to an integer then converts it into a string to display the price properly
 					preTaxPrice = Math.round(unitPrice) * parseInt(selectedQty);
