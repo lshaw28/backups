@@ -69,3 +69,4 @@ toolsRequiredRepair/toolsRequiredRepair.less
 topAccessories/topAccessories.less
 topParts/topParts.less
 video/video.less
+mervRatingHelp/mervRatingHelp.less

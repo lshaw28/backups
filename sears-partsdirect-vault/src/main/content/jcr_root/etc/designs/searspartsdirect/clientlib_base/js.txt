@@ -45,6 +45,7 @@ sideChatNavigation.js
 svgIcon.js
 userData.js
 video.js
+mervRatingHelp.js
 
 #base=js/widgets/.
 AdUnit.js

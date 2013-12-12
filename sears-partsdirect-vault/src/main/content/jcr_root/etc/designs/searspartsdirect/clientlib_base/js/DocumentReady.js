@@ -264,5 +264,8 @@
 		$('.sideChatNavigation').each(function () {
 			var newSideChatNavigation = new sideChatNavigation($(this));
 		});
+		
+		//Merv Rating Help
+		var newMervRatingHelp = new mervRatingHelp($(this));
 	});
 }(window));
