@@ -7,6 +7,16 @@ var customAccordionForms = Class.extend(function () {
 		 * Initializes customAccordionForms class
 		 */
 		init: function () {
+			// Redirect if LDAP user isn't logged in and page is not on local
+			if (window.location.host.indexOf('localhost') < 0) {
+				if (NS('shc.pd').roles == undefined) {
+					window.location = mainSitePathSecure + '/partsdirect/wfsLogin';
+				} else {
+					if (NS('shc.pd').roles.indexOf('WFS') == -1) {
+						window.location = mainSitePathSecure + '/partsdirect/wfsLogin';
+					}
+				}
+			}
 			// Render
 			this.bindEvents();
 		},
@@ -69,7 +79,7 @@ var customAccordionForms = Class.extend(function () {
 							data: {
 								number: searchText
 							},
-							url: apiPath + 'searchWaterFilter/' + searchType,
+							url: apiPathSecure + 'searchWaterFilter/' + searchType,
 							success: function(response) {
 								//console.log(response);
 								if(response == null) {
@@ -192,24 +202,46 @@ var customAccordionForms = Class.extend(function () {
 						}
 					}, 1000);
 					if ($.browser.msie) {
-						/*var xhReqVal = new XMLHttpRequest();
-						xhReqVal.open('POST', apiPath + 'address/validate', false);
-						xhReqVal.setRequestHeader("Accept","application/json");
-						xhReqVal.setRequestHeader("Content-type","application/json");
-						xhReqVal.send('{"address1":"' + address + '","city":"' + city + '","zipCode":"' + zip + '","state":"' + state + '"}');
-						try {
-							xhrRespHandler.getGeoCode($.parseJSON(xhReqVal.responseText), address, city, state, zip);
-						} catch (e) {
-							
-						}*/
-						xdr = new XDomainRequest();
+						/*xdr = new XDomainRequest();
 						xdr.open('POST', apiPath + 'address/validate');
 						xdr.send('{"address1":"' + address + '","city":"' + city + '","zipCode":"' + zip + '","state":"' + state + '"}');
 						try {
 							xhrRespHandler.getGeoCode($.parseJSON(xdr.responseText), address, city, state, zip);
 						} catch (e) {
 							$('.visible-desktop').html('error: ' + e.name + ' message: ' + e.message + ' sent: {"address1":"' + address + '","city":"' + city + '","zipCode":"' + zip + '","state":"' + state + '"} response: ' + $.parseJSON(xdr.responseText) + ' sent to: ' + apiPath + 'address/validate');
-						}
+						}*/
+						$.ajax({
+							beforeSend: function(xhrObj){
+								xhrObj.setRequestHeader("Content-Type","application/json");
+								xhrObj.setRequestHeader("Accept","application/json");
+							},
+							type : "POST",
+							dataType: "json",
+							processData: false,
+							crossDomain: true,
+							headers: {
+								'Accept': 'application/json',
+								'Content-Type': 'application/json'
+							},
+							cache: false,
+							data: JSON.stringify({
+								'address1': address,
+								'city': city,
+								'zipCode': zip,
+								'state': state
+							}),
+							xhrFields: {
+								withCredentials: true
+							},
+							url: apiPath + 'address/validate',
+							success : function(response) {
+								//console.log(response);
+								xhrRespHandler.getGeoCode(response, address, city, state, zip);
+							},
+							error : function(response) {
+								//console.log('fail');
+							}
+						});
 					} else {
 						$.ajax({
 							type : "POST",
@@ -323,17 +355,6 @@ var customAccordionForms = Class.extend(function () {
 					$('.countyRow').addClass('hidden');
 					$('#shippingCounty').append($('<option>', {value : xhrResp.validatedAddress.verifiedAddress.geoCode}).text('----'));
 					if ($.browser.msie) {
-						/*var xhReqTax = new XMLHttpRequest(),
-							dataReqTax = '{"address":{"address1":"' + address + '","city":"' + city + '","geoCode":"' + xhrResp.validatedAddress.verifiedAddress.geoCode + '","zipCode":"' + zip + '","state":"' + state + '"},"partCompositeKey":{"partNumber":"' + $('#finalPartNumber').val() + '","productGroupId":"' + $('#finalGroupId').val() + '","supplierId":"' + $('#finalSupplierId').val() + '"},"quantity":' + parseInt($('#waterFilterQuantity').val()) + '}';
-						xhReqTax.open('POST', apiPath + 'address/validate/taxandshipping', false);
-						xhReqTax.setRequestHeader("Accept","application/json");
-						xhReqTax.setRequestHeader("Content-type","application/json");
-						xhReqTax.send(dataReqTax);
-						try {
-							xhrRespHandler.getTax(xhrResp, $.parseJSON(xhReqTax.responseText));
-						} catch (e) {
-							
-						}*/
 						var xdr = new XDomainRequest(),
 							dataReqTax = '{"address":{"address1":"' + address + '","city":"' + city + '","geoCode":"' + xhrResp.validatedAddress.verifiedAddress.geoCode + '","zipCode":"' + zip + '","state":"' + state + '"},"partCompositeKey":{"partNumber":"' + $('#finalPartNumber').val() + '","productGroupId":"' + $('#finalGroupId').val() + '","supplierId":"' + $('#finalSupplierId').val() + '"},"quantity":' + parseInt($('#waterFilterQuantity').val()) + '}';
 						xdr.open('POST', apiPath + 'address/validate/taxandshipping', false);
@@ -1062,6 +1083,7 @@ var customAccordionForms = Class.extend(function () {
 								},
 								error: function(response) {
 									//console.log('fail');
+									//console.log(response);
 									xhrRespHandler.showPayValError();
 								}
 							});
