@@ -641,8 +641,9 @@ var customAccordionForms = Class.extend(function () {
 							$('#confirmBillZip').html(xhrResp.billingInfo.address.zipCode);
 							$('#confirmBillCardType').html(xhrResp.paymentInfo.cardType);
 							$('#confirmBillCardNo').html(xhrResp.paymentInfo.cardNumber);
-							$('#confirmEmail').html($('#shippingEmail').val());
 							$('#confirmDate').html($('#startDate').html());
+							$('#confirmEmail').html($('#shippingEmail').val());
+							$('#confirmFreq').html($('.filFreq:checked').val());
 							$('#confirmPartNo').html($('#finalPartNumber').val());
 							$('#confirmPartDesc').html($('.filterFound a').html());
 							$('#confirmQty').html($('#waterFilterQuantity').val());
