@@ -14,7 +14,6 @@
 						<text jcr:primaryType="cq:Widget"
 								fieldLabel="Long Description"
 								name="./longDescription"
-								maxLength="560"
 								allowBlank="{Boolean}false"
 								xtype="textarea" />
 						<difficulty
