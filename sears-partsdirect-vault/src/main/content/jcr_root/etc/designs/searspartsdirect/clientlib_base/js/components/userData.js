@@ -123,6 +123,7 @@ var userData = Class.extend(function () {
 			NS('shc.pd').lastName = lastName;
 			NS('shc.pd').casId = casId;
 			NS('shc.pd').unitCenterId = unitCenterId;
+			NS('shc.pd').roles = resp.roles;
 
 			// Set loginNav items
 			if (username !== '') {
