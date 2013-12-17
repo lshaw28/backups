@@ -34,7 +34,7 @@
 	<div class="span12">
 		<p>A confirmation email has been sent to <span id="confirmEmail">email@example.com</span>.</p>
 		<p>Please remind the customer to record the Subscription Confirmation Number for reference when inquiring about this subscription.</p>
-		<p>By enrolling in the Sears Filter Replacement Plan (FRP), the customer has consented that the credit card account designated will be charged for the current market price of each filter, as of the date of shipping, plus sales tax. They will be notified by email, at the email account provided, of the exact cost of the filter before it is shipped to them, unless they notify us to take other action.</p>
+		<p>By enrolling in the Sears Filter Replacement Plan (FRP), the customer has consented that the credit card account designated will be charged for the then current market price of each filter, as of the date of shipping, plus sales tax. They will be notified by email, at the email account provided, of the exact cost of the filter before it is shipped to them, unless they notify us to take other action.</p>
 		<p>The customer will receive filter(s) shipped to their home <strong>every <span id="confirmFreq">6</span> months</strong>. If they have questions or would like to make updates to their membership, they can call 1-800-366-PART (7278).</p>
 	</div>
 </div>
