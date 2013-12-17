@@ -16,7 +16,9 @@ var recommendedParts = Class.extend(function () {
 			// set uniqueIDs on Accordion;
 			this.setAccordionIDs();
 			// default accordions to closed
-			this.initAccordion();
+			//this.initAccordion();
+			// NOTE: on request of business, above line commented out to force
+			// recommended part accordions to default to open state. 12/17/13 - DJMcG
 		},
 
 		/**
@@ -33,18 +35,14 @@ var recommendedParts = Class.extend(function () {
 		},
 
 		/**
-		 * adds the class 'in' from the accordion-body
-		 * to ensure that the accordion defaults to open.
+		 * removes the class 'in' from the accordion-body
+		 * to ensure that the accordion defaults to closed.
 		 * @return {void}
 		 */
 		initAccordion: function () {
-			var self = this,
-				accBody = $('div.accordion-body', self.el);
+			var self = this;
 
-			if (!accBody.hasClass('in')) {
-				$('div.accordion-body', self.el).addClass('in');
-			}
-
+			$('div.accordion-body', self.el).removeClass('in');
 		}
 	}
 }());

@@ -266,6 +266,6 @@
 		});
 		
 		//Merv Rating Help
-		var newMervRatingHelp = new mervRatingHelp($(this));
+		//var newMervRatingHelp = new mervRatingHelp($(this));
 	});
 }(window));
