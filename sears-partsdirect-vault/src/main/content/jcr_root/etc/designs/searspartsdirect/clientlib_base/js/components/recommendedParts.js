@@ -33,14 +33,18 @@ var recommendedParts = Class.extend(function () {
 		},
 
 		/**
-		 * removes the class 'in' from the accordion-body
-		 * to ensure that the accordion defaults to closed.
+		 * adds the class 'in' from the accordion-body
+		 * to ensure that the accordion defaults to open.
 		 * @return {void}
 		 */
 		initAccordion: function () {
-			var self = this;
+			var self = this,
+				accBody = $('div.accordion-body', self.el);
 
-			$('div.accordion-body', self.el).removeClass('in');
+			if (!accBody.hasClass('in')) {
+				$('div.accordion-body', self.el).addClass('in');
+			}
+
 		}
 	}
 }());
