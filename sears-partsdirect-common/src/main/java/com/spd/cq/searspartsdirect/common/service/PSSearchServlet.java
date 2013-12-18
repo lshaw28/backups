@@ -49,11 +49,27 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			SlingHttpServletResponse response) throws ServletException,
 			IOException {
 
-		modelNumber = request.getParameter("modelnumber");
+		//modelNumber = request.getParameter("modelnumber");
 		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject = populateProductInfo();
+		} catch (ValueFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PathNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.getWriter().print(jsonObject.toString());
 		response.setHeader("Content-Type", "application/json");
 
-		if (StringUtils.isNotEmpty(modelNumber)) {
+		/*if (StringUtils.isNotEmpty(modelNumber)) {
 			try {
 				ResourceResolver resourceResolver = request
 						.getResourceResolver();
@@ -67,17 +83,17 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				log.error("Error occured in ContainerServlet:doGet() "
 						+ e.getMessage() + " Exception: ");
 			}
-		}
+		}*/
 	}
 
 	@SuppressWarnings("unused")
-	private JSONObject populateProductInfo(String modelNumber)
+	private JSONObject populateProductInfo()
 			throws JSONException, ValueFormatException, PathNotFoundException,
 			RepositoryException {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		final String PRODUCT_DETAILS_URL = "API URL TO BE PROVIDED";
+		final String PRODUCT_DETAILS_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models?modelNumber=123&offset=0&limit=5&sortType=Relevance&brand=Amana&productType=refrigerator";
 		GetMethod method = new GetMethod(PRODUCT_DETAILS_URL);
 
 		try {
@@ -87,18 +103,18 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			int resultStatusCode = 200;
 
 			if (resultStatusCode != HttpStatus.SC_OK) {
-				log.error("populateProductInfo() failed-Status Code: "
+				log.error("pankajrohira populateProductInfo() failed-Status Code: "
 						+ method.getStatusLine());
 			} else {
 				int statusCode = client.executeMethod(method);
 				// Read the response body.
 				byte[] responseBody = method.getResponseBody();
-				Header header = method.getResponseHeader("Content-Length");
+				//Header header = method.getResponseHeader("totalCount");
 
 				JSONObject productDetailsJsonObj = new JSONObject(new String(
 						responseBody));
 				// JSONArray jsa = new JSONArray();
-				result.put("headerInfo", header.toString());
+				result.put("totalCount", "pankajrohira");
 				result.put("jsonData", productDetailsJsonObj.toString());
 			}
 		} catch (HttpException e) {
