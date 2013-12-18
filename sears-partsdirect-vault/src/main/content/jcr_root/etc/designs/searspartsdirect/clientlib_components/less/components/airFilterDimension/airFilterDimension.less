@@ -1,0 +1,66 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.airFilterDimension{
+    .freeShipping{
+        color: @highlightHueDarkest;
+    }
+    .airFilerDimSelect {
+        height: 30px;  
+    }
+    .airfilterDimensionSection{
+        border: 2px solid @secondaryHueLightest;
+        margin-bottom: 10px;
+        .row-fluid{
+            text-align: center;
+            .span4{
+                .responsiveDropdown{
+                    min-width: 40%; 
+
+                    ul{
+                        li {
+                            border: 0;
+                            padding: 2px;
+                            text-align: center;
+                        }
+                    }
+                    .new-btn-dropdown{
+                        background-color: @bodyColor;
+                        color: @primaryHueDark;  
+                        font-weight: bold;
+                        .icon-chevron-sign-down{        
+                            padding-left: 10px;                            
+                        }
+                    }
+                }
+                .dimensionCross {
+                    float: right;
+                    line-height: 34px;
+                    font-weight: bolder;   
+                }  
+            }
+        }
+        #noDataFound{         
+            h1{
+                padding: 20px;
+            }
+        }
+    }
+
+
+    #airFilterSelectionForm {        
+        background-color:@secondaryHueLightest; 
+        padding: 20px;                
+    }
+
+    #afLandingImage{
+        margin: 0 10px 20px 10px;   
+        position:relative;
+        left:10%;
+    }
+
+}
+
+
+@import "airFilterDimension.mobile";
+@import "airFilterDimension.tablet";

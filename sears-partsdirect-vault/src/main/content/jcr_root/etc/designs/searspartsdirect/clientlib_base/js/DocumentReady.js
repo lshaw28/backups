@@ -267,5 +267,9 @@
 		
 		//Merv Rating Help
 		//var newMervRatingHelp = new mervRatingHelp($(this));
+		/**
+		 * airFilterDimension class setup
+		 */
+        var newFilterDim = new airFilterDimension();  
 	});
 }(window));
