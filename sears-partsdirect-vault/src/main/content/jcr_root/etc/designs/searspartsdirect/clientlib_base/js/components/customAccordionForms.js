@@ -203,46 +203,15 @@ var customAccordionForms = Class.extend(function () {
 						}
 					}, 1000);
 					if ($.browser.msie) {
-						/*xdr = new XDomainRequest();
+						xdr = new XDomainRequest();
 						xdr.open('POST', apiPath + 'address/validate');
 						xdr.send('{"address1":"' + address + '","city":"' + city + '","zipCode":"' + zip + '","state":"' + state + '"}');
+						$('.visible-desktop').html('url: ' + apiPath + 'address/validate response: ' + xdr.responseText);
 						try {
-							xhrRespHandler.getGeoCode($.parseJSON(xdr.responseText), address, city, state, zip);
+							//xhrRespHandler.getGeoCode($.parseJSON(xdr.responseText), address, city, state, zip);
 						} catch (e) {
 							$('.visible-desktop').html('error: ' + e.name + ' message: ' + e.message + ' sent: {"address1":"' + address + '","city":"' + city + '","zipCode":"' + zip + '","state":"' + state + '"} response: ' + $.parseJSON(xdr.responseText) + ' sent to: ' + apiPath + 'address/validate');
-						}*/
-						$.ajax({
-							beforeSend: function(xhrObj){
-								xhrObj.setRequestHeader("Content-Type","application/json");
-								xhrObj.setRequestHeader("Accept","application/json");
-							},
-							type : "POST",
-							dataType: "json",
-							processData: false,
-							crossDomain: true,
-							headers: {
-								'Accept': 'application/json',
-								'Content-Type': 'application/json'
-							},
-							cache: false,
-							data: JSON.stringify({
-								'address1': address,
-								'city': city,
-								'zipCode': zip,
-								'state': state
-							}),
-							xhrFields: {
-								withCredentials: true
-							},
-							url: apiPath + 'address/validate',
-							success : function(response) {
-								//console.log(response);
-								xhrRespHandler.getGeoCode(response, address, city, state, zip);
-							},
-							error : function(response) {
-								//console.log('fail');
-							}
-						});
+						}
 					} else {
 						$.ajax({
 							type : "POST",
@@ -259,11 +228,12 @@ var customAccordionForms = Class.extend(function () {
 								'state': state
 							}),
 							url: apiPath + 'address/validate',
-							success : function(response) {
+							success: function(response) {
 								//console.log(response);
+								$('.visible-desktop').html('url: ' + apiPath + 'address/validate');
 								xhrRespHandler.getGeoCode(response, address, city, state, zip);
 							},
-							error : function(response) {
+							error: function(response) {
 								//console.log('fail');
 							}
 						});
@@ -320,10 +290,10 @@ var customAccordionForms = Class.extend(function () {
 								"quantity": parseInt($('#waterFilterQuantity').val())
 							}),
 							url: apiPath + 'address/validate/taxandshipping',
-							success : function(response) {
+							success: function(response) {
 								xhrRespHandler.getTax(response, response2);
 							},
-							error : function(response) {
+							error: function(response) {
 								//console.log('taxandshipping ajax fail');
 							}
 						});
@@ -621,6 +591,7 @@ var customAccordionForms = Class.extend(function () {
 								'scrollTop': $('a[name=backToTop]').offset().top
 							}, 1000);
 							$('#confirmNo').html(xhrResp.membershipId);
+							$('#confirmNew').attr('href', window.location);
 							$('#confirmShipFirst').html(xhrResp.shippingInfo.firstName);
 							$('#confirmShipLast').html(xhrResp.shippingInfo.lastName);
 							$('#confirmShipAddress').html(xhrResp.shippingInfo.address.address1);
