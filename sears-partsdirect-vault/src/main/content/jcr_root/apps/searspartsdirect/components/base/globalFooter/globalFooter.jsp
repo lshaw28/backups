@@ -67,7 +67,7 @@
 <c:if test="${not empty pd247ChatFlag}">
 <div class="sideChatNavigation hidden-phone">
 	<div class="sideChatNavigationContent">
-		<h3>for questions or assistance, call <span class="semi-bold"><script type="text/JavaScript" src="https://secure.ifbyphone.com/js/keyword_replacement.js"></script> 1-800-252-1698</span></h3>
+		<h3>for questions or assistance, call <span class="semi-bold"><!--  <script type="text/JavaScript" src="https://secure.ifbyphone.com/js/keyword_replacement.js"></script>--> 1-800-252-1698</span></h3>
 		<p>M-F&nbsp;&nbsp;6:30 a.m. - 10:30 p.m. CT</p>
 		<p>Sat&nbsp;&nbsp;&nbsp;7:00 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
 		<p>Sun&nbsp;&nbsp;7:30 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
