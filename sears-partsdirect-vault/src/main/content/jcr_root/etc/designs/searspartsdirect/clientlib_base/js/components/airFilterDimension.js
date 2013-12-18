@@ -24,37 +24,25 @@ var airFilterDimension = Class.extend(function() {
 
           $('#airFilterWidth').on("change", function(){
               self.width = ($(this).val());                  
-               if(typeof self.width != 'undefined' && typeof self.height != 'undefined' && typeof self.depth != 'undefined'){
-                alert(self.width +" "+ self.height +" "+ self.depth);            
-                $('#afLandingImage').hide();
-                $('#afBrandImage').show();
+               if(typeof self.width != 'undefined' && typeof self.height != 'undefined' && typeof self.depth != 'undefined'){                           
+                $('#afLandingImage').hide();                
                 $('#noDataFound').show();
               }
           });
           $('#airFilterHeight').on("change", function(){
               self.height = ($(this).val());                  
-               if(typeof self.width != 'undefined' && typeof self.height != 'undefined' && typeof self.depth != 'undefined'){
-                alert(self.width +" "+ self.height +" "+ self.depth);            
-                $('#afLandingImage').hide();
-                $('#afBrandImage').show();
+               if(typeof self.width != 'undefined' && typeof self.height != 'undefined' && typeof self.depth != 'undefined'){                        
+                $('#afLandingImage').hide();                
                 $('#noDataFound').show();
               }
           });
           $('#airFilterDepth').on("change", function(){
               self.depth = ($(this).val());              
               if(typeof self.width != 'undefined' && typeof self.height != 'undefined' && typeof self.depth != 'undefined'){                         
-                $('#afLandingImage').hide();
-                $('#afBrandImage').show();
+                $('#afLandingImage').hide();                
                 $('#noDataFound').show();
               }
-          });          
-          if(typeof self.width != '' && typeof self.height != '' && typeof self.depth != ''){
-            //alert(self.width +" "+ self.height +" "+ self.depth);            
-            $('#afLandingImage').show();
-            $('#afBrandImage').show();
-            $('#noDataFound').hide();
-           }
-
+          });                    
         }
     }
 }());
