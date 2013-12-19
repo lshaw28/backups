@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:TabPanel"
+		  title="No Model Found"
+		  xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<tabpanel jcr:primaryType="cq:TabPanel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<tab1   jcr:primaryType="cq:Widget"
+						allowBlank="{Boolean}true"
+						cropParameter="./image/imageCrop"
+						ddGroups="[media]" 
+						fileNameParameter="./image/fileName"
+						fileReferenceParameter="./image/fileReference" 
+						name="./image/file"
+						requestSuffix="/image.img.png" 
+						rotateParameter="./image/imageRotate"
+						title="No Model Found Image" 
+						uploadUrl="/tmp/upload/*" 
+						xtype="smartimage" />
+				<tab2
+					jcr:primaryType="cq:Widget"
+					title="No Model Found"
+					xtype="panel">
+					<items jcr:primaryType="cq:WidgetCollection">
+						<searchInstructionsTitle
+							jcr:primaryType="cq:Widget"
+							fieldLabel="Search Instructions"
+							fieldDescription="Enter text to replace default title. Character limit is 140"
+							name="./searchInstructionsTitle"
+							xtype="textfield" />
+						<searchInstructions
+							jcr:primaryType="cq:Widget"
+							fieldLabel="Search Instructions"
+							fieldDescription="Enter text to replace default instructions. Character limit is 140"
+							name="./searchInstructions"
+							xtype="textfield" />
+						<linkText
+							jcr:primaryType="cq:Widget"
+							fieldLabel="Model Number Finder Link Text"
+							fieldDescription="Enter text to replace default link text. Character limit is 42"
+							maxLength="42"
+							name="./linkText"
+							xtype="textfield" />
+							<resType
+							jcr:primaryType="cq:Widget"
+							ignoreData="{Boolean}true"
+							name="./image/sling:resourceType"
+							value="foundation/components/image"
+							xtype="hidden" />
+					</items>
+				</tab2>
+			</items>
+		</tabpanel>
+	</items>
+</jcr:root>
