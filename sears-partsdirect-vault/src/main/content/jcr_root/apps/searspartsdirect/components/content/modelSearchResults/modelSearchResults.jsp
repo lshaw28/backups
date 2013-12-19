@@ -66,10 +66,8 @@
 			<div class="span6 resultsFooterNav">
 				<a> <i class="icon-chevron-right"></i> <span
 					class="hidden-phone">Previous</span>
-				</a> <select>
-					<option value="1" selected>Page 1</option>
-					<option value="2">Page 2</option>
-					<option value="3">Page 3</option>
+				</a> <select id="pageNumber">
+					
 				</select> <a> <span class="hidden-phone">Next</span> <i
 					class="icon-chevron-left"></i>
 				</a>
