@@ -21,7 +21,7 @@ var airFilterDimension = Class.extend(function() {
         */
         bindEvent : function() {          
           var self = this;
-
+          $('#noDataFound').hide();
           $('#airFilterWidth').on("change", function(){
               self.width = ($(this).val());                  
                if(typeof self.width != 'undefined' && typeof self.height != 'undefined' && typeof self.depth != 'undefined'){                           
