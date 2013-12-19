@@ -115,6 +115,15 @@ public class EnvironmentSettings {
 		return getProperty(PD_JOBCODE_PARTS_API, Constants.EMPTY);
 	}
 
+	@Property(label = "PartsDirect AirFilter Parts",
+			   description = "API will get the airfilter parts",
+			   value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/air-filters/list")
+	public static final String PD_AIRFILTER_PARTS_API = "searspartsdirect.airfilter.parts.api";
+
+	public static String getPDAirFilterPartsApiUrl() {
+		return getProperty(PD_AIRFILTER_PARTS_API, Constants.EMPTY);
+	}
+	
 	@Property(label = "PartsDirect API Root",
 			description = "PartsDirect API Root",
 			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/")

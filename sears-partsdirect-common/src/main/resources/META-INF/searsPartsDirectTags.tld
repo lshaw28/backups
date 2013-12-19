@@ -512,6 +512,29 @@
 		</attribute>
 	</tag>
 	<tag>
+  		<name>getAirFilterParts</name>
+  		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAirFilterPartsTag</tag-class>
+  		<info>Gets the parts associated with AirFilter</info>
+  		<attribute>
+   			<name>width</name>
+   			<type>java.lang.String</type>
+   			<required>true</required>
+   			<rtexprvalue>true</rtexprvalue>
+  		</attribute>
+  		<attribute>
+   			<name>height</name>
+   			<type>java.lang.String</type>
+   			<required>true</required>
+   			<rtexprvalue>true</rtexprvalue>
+  		</attribute>
+  		<attribute>
+   			<name>length</name>
+   			<type>java.lang.String</type>
+   			<required>true</required>
+   			<rtexprvalue>true</rtexprvalue>
+  		</attribute>
+ 	</tag>
+	<tag>
 		<name>getHeaderHelperData</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetHeaderHelperTag</tag-class>
 		<info>Gets the My Profile Model Cookie for guest user and the api root information</info>
