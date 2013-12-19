@@ -64,11 +64,11 @@
 				<strong class="searchCount1"></strong>
 			</div>
 			<div class="span6 resultsFooterNav">
-				<a> <i class="icon-chevron-right"></i> <span
+				<a onclick='paging(-1)'> <i class="icon-chevron-right"></i> <span
 					class="hidden-phone">Previous</span>
 				</a> <select id="pageNumber">
 					
-				</select> <a> <span class="hidden-phone">Next</span> <i
+				</select> <a onclick='paging(1)'> <span class="hidden-phone">Next</span> <i
 					class="icon-chevron-left"></i>
 				</a>
 			</div>
@@ -96,4 +96,14 @@ $("#pageNumber").change(function () {
     flag=1;
     modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
 });
+function paging(vary){
+	   var selectedIndex = $('#pageNumber').prop('selectedIndex');
+	   var ddLength = $("#pageNumber option").length;
+	    var n=selectedIndex+vary;
+	    if(n<0||n>=ddLength){return;}
+	    else{
+	        $('#pageNumber').prop('selectedIndex', n);
+	        $("#pageNumber").change();
+	    }
+	}
 </script>
