@@ -1,12 +1,13 @@
 function modelSearchResults(searchModPar, pathTaken,flag,index) {
 
     var urlName="";
+    var offset=0;
 
     if(flag==1){
         $('.modelSearchResultsItemBkg').empty();
         $(".searchCount0").empty();
 		$(".searchCount1").empty();
-	    var offset=index*25;
+	    offset=index*25;
 	    urlName = "http://partsapivip.qa.ch3.s.com/pd-services/models?modelNumber="
 			+ searchModPar+"&offset="+offset+"&limit=25";
     }
@@ -33,7 +34,7 @@ function modelSearchResults(searchModPar, pathTaken,flag,index) {
                         else{$("#pageNumber").append("<option value=\""+i+"\" >Page "+i+"</option>");}
                     }}
 					$(".searchCount0").append(len);
-					$(".searchCount1").append("1-"+((len < 25) ? len : "25")+" of " + len);
+					 $(".searchCount1").append((offset+1)+"-"+(offset+25)+" of " + len);
 					for ( var i = 0; i < len; i++) {
 						if (i == 25) {
 							return;
