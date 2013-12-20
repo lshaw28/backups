@@ -569,10 +569,49 @@ var customAccordionForms = Class.extend(function () {
 			//Success handler for enrolment separated because there has to be a different request type in IE
 			xhrRespHandler.enroll = function(xhrResp) {
 				if (xhrResp.message == 'SUCCESS') {
-					$('.visible-desktop').html('enrolling');
-					$.ajax({
-						type:"GET",
-						url:'SubscriptionConfirmation.html',
+					$('.pageTitleHeader, .customAccordionForms').addClass('hidden');
+					$('.subscriptionConfirmation .subConBody').removeClass('hidden');
+					$('html, body').animate({
+						'scrollTop': $('a[name=backToTop]').offset().top
+					}, 1000);
+					$('#confirmNo').html(xhrResp.membershipId);
+					$('#confirmNew').attr('href', window.location);
+					$('#confirmShipFirst').html(xhrResp.shippingInfo.firstName);
+					$('#confirmShipLast').html(xhrResp.shippingInfo.lastName);
+					$('#confirmShipAddress').html(xhrResp.shippingInfo.address.address1);
+					if (xhrResp.shippingInfo.address.address2 != '') {
+						$('#confirmShipAddress + br').after(xhrResp.shippingInfo.address.address2 + '<br />');
+					}
+					$('#confirmShipCity').html(xhrResp.shippingInfo.address.city);
+					$('#confirmShipState').html(xhrResp.shippingInfo.address.state);
+					$('#confirmShipZip').html(xhrResp.shippingInfo.address.zipCode);
+					$('#confirmBillFirst').html(xhrResp.billingInfo.firstName);
+					$('#confirmBillLast').html(xhrResp.billingInfo.lastName);
+					$('#confirmBillAddress').html(xhrResp.billingInfo.address.address1);
+					if (xhrResp.billingInfo.address.address2 != '') {
+						$('#confirmBillAddress + br').after(xhrResp.billingInfo.address.address2 + '<br />');
+					}
+					$('#confirmBillCity').html(xhrResp.billingInfo.address.city);
+					$('#confirmBillState').html(xhrResp.billingInfo.address.state);
+					$('#confirmBillZip').html(xhrResp.billingInfo.address.zipCode);
+					$('#confirmBillCardType').html(xhrResp.paymentInfo.cardType);
+					$('#confirmBillCardNo').html(xhrResp.paymentInfo.cardNumber);
+					$('#confirmDate').html($('#startDate').html());
+					$('#confirmEmail').html($('#shippingEmail').val());
+					$('#confirmFreq').html($('.filFreq:checked').val());
+					$('#confirmPartNo').html($('#finalPartNumber').val());
+					$('#confirmPartDesc').html($('.filterFound a').html());
+					$('#confirmQty').html($('#waterFilterQuantity').val());
+					//Price formatting in case price is an even integer or tens of cents
+					var formattedUnitPrice = Math.round(xhrResp.price * 100).toString(),
+						formattedTax = (Math.round(xhrResp.paymentInfo.amount * 100) - Math.round(xhrResp.price * 100) * parseInt($('#waterFilterQuantity').val())).toString(),
+						formattedFinalPrice = Math.round(xhrResp.paymentInfo.amount * 100).toString();
+					$('#confirmUnitPrice').html(formattedUnitPrice.substring(0, formattedUnitPrice.length - 2) + '.' + formattedUnitPrice.substring(formattedUnitPrice.length - 2));
+					$('#confirmTax').html(formattedTax.substring(0, formattedTax.length - 2) + '.' + formattedTax.substring(formattedTax.length - 2));
+					$('#confirmTotalPrice').html(formattedFinalPrice.substring(0, formattedFinalPrice.length - 2) + '.' + formattedFinalPrice.substring(formattedFinalPrice.length - 2));
+					/*$.ajax({
+						type: "GET",
+						url: 'SubscriptionConfirmation.html',
 						success: function(pageResponse) {
 							$('.pageTitleHeader, .customAccordionForms').addClass('hidden');
 							$('.customAccordionForms').after($(pageResponse).find('.subscriptionConfirmation'));
@@ -618,7 +657,7 @@ var customAccordionForms = Class.extend(function () {
 						error: function(pageResponse) {
 							//console.log('fail');
 						}
-					});
+					});*/
 				} else {
 					
 				}
