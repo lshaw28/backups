@@ -8,19 +8,28 @@ function modelSearchResults(modelNumber, pathTaken,flag,index) {
 	        $("#searchCountDown").empty();
 			$(".pageCountResults").empty();
             $("#searchCountTotal").empty();
-
-                                $("#searchCountSYW").empty();
-
-                                $("#pageCountSYW").empty();
-
-                                $("#searchCountDown").empty();
-
-                               $(".pageCountResults").empty();
+            $("#searchCountSYW").empty();
+            $("#pageCountSYW").empty();
+            $("#searchCountDown").empty();
+            $(".pageCountResults").empty();
 		    offset=index*25;
-		    urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset="+offset+"&limit=25";
+		    urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset="+offset+"&limit=25&sortType=revelence";
 	    }
+        else if(flag==2){
+            $('#searchResultsDown').empty();
+	        $("#searchCountDown").empty();
+			$(".pageCountResults").empty();
+            $("#searchCountTotal").empty();
+            $("#searchCountSYW").empty();
+            $("#pageCountSYW").empty();
+            $("#searchCountDown").empty();
+            $(".pageCountResults").empty();
+            if(index==0){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence";}
+            else if(index==1){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=model-asc";}
+            else if(index==2){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=model-desc";}
+        }
 	    else{
-			urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25";
+			urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence";
 	    }
 
 
@@ -35,6 +44,7 @@ function modelSearchResults(modelNumber, pathTaken,flag,index) {
 				dataType : "json",
 				url : urlName,
                 success : function(data) {
+
                     var jsonResponse = data;
 					var jsonLength = Object.keys(jsonResponse).length;
 

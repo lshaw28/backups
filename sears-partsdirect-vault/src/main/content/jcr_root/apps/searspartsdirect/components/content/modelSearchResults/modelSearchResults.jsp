@@ -91,10 +91,10 @@
 <div class="row-fluid">
 	<div class="resultsHeaderBar">
 		<div class="la-anim-2"></div>
-		<span><strong class="pageCountResults"></strong>Sort by <select>
+		<span><strong class="pageCountResults"></strong>Sort by <select id="sorting">
 				<option value="relevance" selected>Relevance</option>
-				<option value="price">Price</option>
-				<option value="popularity">Popularity</option>
+				<option value="asscending">Model number asscending</option>
+				<option value="descending">Model number descending</option>
 		</select> </span>
 	</div>
 </div>
@@ -153,4 +153,10 @@ var index=0;
     	        $("#pageNumber").change();
     	    }
     	}
+    $("#sorting").change(function () {
+        index = $(this).children(":selected").index();
+        flag=2;
+        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
+
+    });
 </script>
