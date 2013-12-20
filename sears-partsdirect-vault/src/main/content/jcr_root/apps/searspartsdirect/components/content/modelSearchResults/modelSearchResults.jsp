@@ -35,7 +35,7 @@
 
 <!-- SYW Section START -->
 <div class="row-fluid" id="SYW1">
-	<h2 class="resultsHeadline">(<strong id="searchCountSYW"></strong>) model results found for <strong>Sears Partial Model # <%=searchModPar%></strong></h2>
+	<h2 class="resultsHeadline">(<strong id="searchCountSYW" class="searchCountSYW"></strong>) model results found for <strong>Sears Partial Model # <%=searchModPar%></strong></h2>
 </div>
 <div class="row-fluid" id="SYW2">
 	<div class="searchFilters">
@@ -66,7 +66,7 @@
 <!-- SYW Section END -->
 
 
-<div class="row-fluid">
+<div class="row-fluid" id="temp">
 	<h2 class="resultsHeadline">(<strong id="searchCountDown"></strong>) results found for <strong>model # <%= searchModPar%></strong></h2>
 </div>
 
@@ -91,7 +91,7 @@
 <div class="row-fluid">
 	<div class="resultsHeaderBar">
 		<div class="la-anim-2"></div>
-		<span><strong id="pageCountResults"></strong>Sort by <select>
+		<span><strong class="pageCountResults"></strong>Sort by <select>
 				<option value="relevance" selected>Relevance</option>
 				<option value="price">Price</option>
 				<option value="popularity">Popularity</option>
@@ -105,16 +105,14 @@
 	<div class="resultsFooterBar">
 		<div class="row-fluid">
 			<div class="span3 resultsFooterLeft hidden-phone">
-				<strong class="searchCount1"></strong>
+				<strong class="pageCountResults"></strong>
 			</div>
 			<div class="span6 resultsFooterNav">
-				<a> <i class="icon-chevron-right"></i> <span
+				<a onclick='paging(-1)'> <i class="icon-chevron-right"></i> <span
 					class="hidden-phone">Previous</span>
-				</a> <select>
-					<option value="1" selected>Page 1</option>
-					<option value="2">Page 2</option>
-					<option value="3">Page 3</option>
-				</select> <a> <span class="hidden-phone">Next</span> <i
+				</a> <select id="pageNumber">
+					
+				</select> <a onclick='paging(1)'> <span class="hidden-phone">Next</span> <i
 					class="icon-chevron-left"></i>
 				</a>
 			</div>
@@ -130,9 +128,29 @@
 	</div>
 </div>
 <script>
+var flag =0;
+var index=0;
+
     $(document).ready(function(){
-        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>');
+    	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
         populateBrandProductDetails('<%=searchModPar%>', '<%=brandURL%>', 'brand');
         populateBrandProductDetails('<%=searchModPar%>', '<%=productURL%>', 'product');
     });
+    
+    $("#pageNumber").change(function () {
+        index = $(this).children(":selected").index();
+        flag=1;
+        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
+    });
+    
+    function paging(vary){
+    	   var selectedIndex = $('#pageNumber').prop('selectedIndex');
+    	   var ddLength = $("#pageNumber option").length;
+    	    var n=selectedIndex+vary;
+    	    if(n<0||n>=ddLength){return;}
+    	    else{
+    	        $('#pageNumber').prop('selectedIndex', n);
+    	        $("#pageNumber").change();
+    	    }
+    	}
 </script>
