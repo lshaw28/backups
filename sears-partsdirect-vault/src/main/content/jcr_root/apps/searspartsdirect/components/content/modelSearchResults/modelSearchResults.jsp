@@ -13,49 +13,93 @@
 	<li class="<%= linkClass %>">Model Search Results for "<%= searchModPar%>"</li>
 </ul>
 -->
+<%
+	String brandURL = "http://partsapivip.qa.ch3.s.com/pd-services/models/brands?modelNumber=";
+	String productURL = "http://partsapivip.qa.ch3.s.com/pd-services/models/product-types?modelNumber=";
+%>
 
+<!-- Main Result Count -->
 <div class="row-fluid">
 	<div class="repairHelpHomeTitle">
 		<div class="pageTitleHeader">
 			<h1>
-                (<strong class="searchCount0"></strong>) results found for model #<strong><%= searchModPar%></strong>
+                (<strong id="searchCountTotal"></strong>) results found for model #<strong><%= searchModPar%></strong>
 				<p class="pull-right">
 					We also found <span><a>(1) part number</a></span>
 				</p>
 			</h1>
+            <h3 id="SYWHeader">In addition to model results, we found either a <strong>Sears item number,</strong> a <strong>partial model number,</strong> or a <strong>UPC code</strong> that matches the number you submitted.</h3>
 		</div>
 	</div>
 </div>
+
+<!-- SYW Section START -->
+<div class="row-fluid" id="SYW1">
+	<h2 class="resultsHeadline">(<strong id="searchCountSYW"></strong>) model results found for <strong>Sears Partial Model # <%=searchModPar%></strong></h2>
+</div>
+<div class="row-fluid" id="SYW2">
+	<div class="searchFilters">
+		<h4>Refine your search results</h4>
+		<div class="row-fluid">
+			<div class="span3">
+				<h4>By Brand:</h4>
+				<select class="brand">
+				</select>
+			</div>
+			<div class="span3">
+				<h4>By Product Type:</h4>
+				<select class="product">
+				</select>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row-fluid" id="SYW3">
+	<div class="resultsHeaderBar">
+		<div class="la-anim-2"></div>
+		<span><strong id="pageCountSYW"></strong></span>
+	</div>
+</div>
+<div class="modelSearchResultsItemBkg" id="searchResultsUp">
+
+</div>
+<!-- SYW Section END -->
+
+
+<div class="row-fluid">
+	<h2 class="resultsHeadline">(<strong id="searchCountDown"></strong>) results found for <strong>model # <%= searchModPar%></strong></h2>
+</div>
+
 <div class="row-fluid">
 	<div class="searchFilters">
 		<h4>Refine your search results</h4>
 		<div class="row-fluid">
 			<div class="span3">
 				<h4>By Brand:</h4>
-				<select id="brand">
+				<select class="brand">
 				</select>
 			</div>
 			<div class="span3">
 				<h4>By Product Type:</h4>
-				<select id="product">
+				<select class="product">
 				</select>
 			</div>
 		</div>
 	</div>
-
 </div>
+
 <div class="row-fluid">
 	<div class="resultsHeaderBar">
 		<div class="la-anim-2"></div>
-		<span><strong class="searchCount1"></strong>Sort by <select>
+		<span><strong id="pageCountResults"></strong>Sort by <select>
 				<option value="relevance" selected>Relevance</option>
 				<option value="price">Price</option>
 				<option value="popularity">Popularity</option>
 		</select> </span>
 	</div>
 </div>
-<div class="modelSearchResultsItemBkg">
-	
+<div class="modelSearchResultsItemBkg" id="searchResultsDown">
+
 </div>
 <div class="row-fluid">
 	<div class="resultsFooterBar">
@@ -64,11 +108,13 @@
 				<strong class="searchCount1"></strong>
 			</div>
 			<div class="span6 resultsFooterNav">
-				<a onclick='paging(-1)'> <i class="icon-chevron-right"></i> <span
+				<a> <i class="icon-chevron-right"></i> <span
 					class="hidden-phone">Previous</span>
-				</a> <select id="pageNumber">
-					
-				</select> <a onclick='paging(1)'> <span class="hidden-phone">Next</span> <i
+				</a> <select>
+					<option value="1" selected>Page 1</option>
+					<option value="2">Page 2</option>
+					<option value="3">Page 3</option>
+				</select> <a> <span class="hidden-phone">Next</span> <i
 					class="icon-chevron-left"></i>
 				</a>
 			</div>
@@ -84,26 +130,9 @@
 	</div>
 </div>
 <script>
-var flag =0;
-var index=0;
-$(document).ready(function(){
-    modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
-    modelBrandResults('<%=searchModPar%>');
-    modelProductResults('<%=searchModPar%>');
-});
-$("#pageNumber").change(function () {
-    index = $(this).children(":selected").index();
-    flag=1;
-    modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
-});
-function paging(vary){
-	   var selectedIndex = $('#pageNumber').prop('selectedIndex');
-	   var ddLength = $("#pageNumber option").length;
-	    var n=selectedIndex+vary;
-	    if(n<0||n>=ddLength){return;}
-	    else{
-	        $('#pageNumber').prop('selectedIndex', n);
-	        $("#pageNumber").change();
-	    }
-	}
+    $(document).ready(function(){
+        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>');
+        populateBrandProductDetails('<%=searchModPar%>', '<%=brandURL%>', 'brand');
+        populateBrandProductDetails('<%=searchModPar%>', '<%=productURL%>', 'product');
+    });
 </script>
