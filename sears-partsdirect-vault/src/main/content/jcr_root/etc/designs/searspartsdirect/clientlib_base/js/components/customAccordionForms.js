@@ -569,6 +569,7 @@ var customAccordionForms = Class.extend(function () {
 			//Success handler for enrolment separated because there has to be a different request type in IE
 			xhrRespHandler.enroll = function(xhrResp) {
 				if (xhrResp.message == 'SUCCESS') {
+					$('.visible-desktop').html('enrolling');
 					$.ajax({
 						type:"GET",
 						url:'SubscriptionConfirmation.html',
