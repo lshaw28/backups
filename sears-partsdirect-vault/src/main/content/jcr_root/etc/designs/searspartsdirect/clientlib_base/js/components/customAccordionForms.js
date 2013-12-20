@@ -206,12 +206,9 @@ var customAccordionForms = Class.extend(function () {
 						xdr = new XDomainRequest();
 						xdr.open('POST', apiPath + 'address/validate');
 						xdr.send('{"address1":"' + address + '","city":"' + city + '","zipCode":"' + zip + '","state":"' + state + '"}');
-						$('.visible-desktop').html('url: ' + apiPath + 'address/validate response: ' + xdr.responseText);
-						try {
-							//xhrRespHandler.getGeoCode($.parseJSON(xdr.responseText), address, city, state, zip);
-						} catch (e) {
-							$('.visible-desktop').html('error: ' + e.name + ' message: ' + e.message + ' sent: {"address1":"' + address + '","city":"' + city + '","zipCode":"' + zip + '","state":"' + state + '"} response: ' + $.parseJSON(xdr.responseText) + ' sent to: ' + apiPath + 'address/validate');
-						}
+						xdr.onload = function () {
+							xhrRespHandler.getGeoCode($.parseJSON(xdr.responseText), address, city, state, zip);
+						};
 					} else {
 						$.ajax({
 							type : "POST",
@@ -230,7 +227,6 @@ var customAccordionForms = Class.extend(function () {
 							url: apiPath + 'address/validate',
 							success: function(response) {
 								//console.log(response);
-								$('.visible-desktop').html('url: ' + apiPath + 'address/validate');
 								xhrRespHandler.getGeoCode(response, address, city, state, zip);
 							},
 							error: function(response) {
@@ -260,11 +256,9 @@ var customAccordionForms = Class.extend(function () {
 						xhReqTax.setRequestHeader("Accept","application/json");
 						xhReqTax.setRequestHeader("Content-type","application/json");
 						xhReqTax.send(dataReqTax);
-						try {
+						xdr.onload = function () {
 							xhrRespHandler.getTax(xhrResp, $.parseJSON(xhReqTax.responseText));
-						} catch (e) {
-							
-						}
+						};
 					} else {
 						$.ajax({
 							type : "POST",
@@ -330,11 +324,9 @@ var customAccordionForms = Class.extend(function () {
 							dataReqTax = '{"address":{"address1":"' + address + '","city":"' + city + '","geoCode":"' + xhrResp.validatedAddress.verifiedAddress.geoCode + '","zipCode":"' + zip + '","state":"' + state + '"},"partCompositeKey":{"partNumber":"' + $('#finalPartNumber').val() + '","productGroupId":"' + $('#finalGroupId').val() + '","supplierId":"' + $('#finalSupplierId').val() + '"},"quantity":' + parseInt($('#waterFilterQuantity').val()) + '}';
 						xdr.open('POST', apiPath + 'address/validate/taxandshipping', false);
 						xdr.send(dataReqTax);
-						try {
+						xdr.onload = function () {
 							xhrRespHandler.getTax(xhrResp, $.parseJSON(xdr.responseText));
-						} catch (e) {
-							$('.visible-desktop').html('error: ' + e.name + ' message: ' + e.message + ' sent: ' + dataReqTax + ' response: ' + $.parseJSON(xdr.responseText) + ' sent to: ' + apiPath + 'address/validate/taxandshipping');
-						}
+						};
 					} else {
 						$.ajax({
 							type : "POST",
@@ -492,17 +484,13 @@ var customAccordionForms = Class.extend(function () {
 				$('.accordion-toggle').removeAttr('href').attr('data-toggle', 'false');
 				$('#processingIcon').show();
 				if ($.browser.msie) {
-					var xhReqEnroll = new XMLHttpRequest(),
-						dataReqEnroll = '{"shippingInfo":{"firstName":"' + $('#shippingFirst').val() + '","lastName":"' + $('#shippingLast').val() + '","dayTimePhone":"' + $('#shippingPhone').val() + '","dayTimePhoneExt":"' + $('#shippingExt').val() + '","email":"' + $('#shippingEmail').val() + '","address":{"address1":"' + $('#shippingAddress').val() + '","address2":"' + $('#shippingApt').val() + '","city":"' + $('#shippingCity').val() + '","geoCode":"' + $('#finalGeocode').val() + '","zipCode":"' + $('#shippingZip').val() + '","state":"' + $('#shippingState').val() + '"}},"billingInfo":{"firstName":"' + $('#billingFirst').val() + '","lastName":"' + $('#billingLast').val() + '","dayTimePhone":"' + $('#shippingPhone').val() + '","dayTimePhoneExt":"' + $('#shippingExt').val() + '","address":{"address1":"' + $('#billingAddress').val() + '","address2":"' + $('#billingApt').val() + '","city":"' + $('#billingCity').val() + '","zipCode":"' + $('#billingZip').val() + '","state":"' + $('#billingState').val() + '"}},"isShippingBillingSame":' + $('#shippingSame').attr('checked') == 'checked' + ',"partCompositeKey":{"partNumber":"' + $('#finalPartNumber').val() + '","productGroupId":"' + $('#finalGroupId').val() + '","supplierId":"' + $('#finalSupplierId').val() + '"},"creditCard":{"cardNumber":"' + $('#payNumber').val() + '","cardType":"' + $('#finalCardType').val() + '","expMonth":' + parseInt($('#payMonth').val()) + ',"expYear":' + parseInt($('#payYear').val()) + ',"securityCode":' + parseInt($('#payCode').val()) + ',"name":"' + $('#payName').val() + '"},"subscriptionInfo":{"renewalPeriod":' + parseInt($('.filFreq:checked').val()) + ',"nextFullfillmentDate":"' + dateEntered.substr(6,4) + dateEntered.substr(0,2) + dateEntered.substr(3,2) + '"},"ldapUserInfo":{"casId":"' + NS('shc.pd').casId + '", "unitCenterId":"' + NS('shc.pd').unitCenterId + '"},"quantity":' + parseInt($('#waterFilterQuantity').val()) + '}';
-					xhReqEnroll.open('POST', apiPathSecure + 'subscriptionservice/enroll', false);
-					xhReqEnroll.setRequestHeader("Accept","application/json");
-					xhReqEnroll.setRequestHeader("Content-type","application/json");
-					xhReqEnroll.send(dataReqTax);
-					try {
-						xhrRespHandler.enroll($.parseJSON(xhReqEnroll.responseText));
-					} catch (e) {
-						$('.visible-desktop').html('error: ' + e.name + ' message: ' + e.message + ' sent: ' + dataReqTax + ' response: ' + $.parseJSON(xhReqVal.responseText));
-					}
+					var xdr = new XDomainRequest(),
+						dataReqEnroll = '{"shippingInfo":{"firstName":"' + $('#shippingFirst').val() + '","lastName":"' + $('#shippingLast').val() + '","dayTimePhone":"' + $('#shippingPhone').val() + '","dayTimePhoneExt":"' + $('#shippingExt').val() + '","email":"' + $('#shippingEmail').val() + '","address":{"address1":"' + $('#shippingAddress').val() + '","address2":"' + $('#shippingApt').val() + '","city":"' + $('#shippingCity').val() + '","geoCode":"' + $('#finalGeocode').val() + '","zipCode":"' + $('#shippingZip').val() + '","state":"' + $('#shippingState').val() + '"}},"billingInfo":{"firstName":"' + $('#billingFirst').val() + '","lastName":"' + $('#billingLast').val() + '","dayTimePhone":"' + $('#shippingPhone').val() + '","dayTimePhoneExt":"' + $('#shippingExt').val() + '","address":{"address1":"' + $('#billingAddress').val() + '","address2":"' + $('#billingApt').val() + '","city":"' + $('#billingCity').val() + '","zipCode":"' + $('#billingZip').val() + '","state":"' + $('#billingState').val() + '"}},"isShippingBillingSame":' + ($('#shippingSame').attr('checked') == 'checked') + ',"partCompositeKey":{"partNumber":"' + $('#finalPartNumber').val() + '","productGroupId":"' + $('#finalGroupId').val() + '","supplierId":"' + $('#finalSupplierId').val() + '"},"creditCard":{"cardNumber":"' + $('#payNumber').val() + '","cardType":"' + $('#finalCardType').val() + '","expMonth":' + parseInt($('#payMonth').val()) + ',"expYear":' + parseInt($('#payYear').val()) + ',"securityCode":' + parseInt($('#payCode').val()) + ',"name":"' + $('#payName').val() + '"},"subscriptionInfo":{"renewalPeriod":' + parseInt($('.filFreq:checked').val()) + ',"nextFullfillmentDate":"' + dateEntered.substr(6,4) + dateEntered.substr(0,2) + dateEntered.substr(3,2) + '"},"ldapUserInfo":{"casId":"' + NS('shc.pd').casId + '", "unitCenterId":"' + NS('shc.pd').unitCenterId + '"},"quantity":' + parseInt($('#waterFilterQuantity').val()) + '}';
+					xdr.open('POST', apiPathSecure + 'subscriptionservice/enroll', false);
+					xdr.send(dataReqEnroll);
+					xdr.onload = function () {
+						xhrRespHandler.enroll($.parseJSON(xdr.responseText));
+					};
 				} else {
 					$.ajax({
 						type: "POST",
@@ -1023,16 +1011,12 @@ var customAccordionForms = Class.extend(function () {
 					
 					if (cardType != '') {
 						if ($.browser.msie) {
-							var xhReqVal = new XMLHttpRequest();
-							xhReqVal.open('POST', apiPathSecure + 'validate/paymentcard', false);
-							xhReqVal.setRequestHeader("Accept","application/json");
-							xhReqVal.setRequestHeader("Content-type","application/json");
-							xhReqVal.send('{"cardNumber":"' + number + '","cardType":"' + cardType + '","expMonth":"' + month + '","expYear":"' + year + '","securityCode":"' + code + '","name":"' + name + '"}');
-							try {
-								xhrRespHandler.showPayValResult($.parseJSON(xhReqVal.responseText), cardType, thisToggle, completedToggles, nextToggle);
-							} catch (e) {
-								$('.visible-desktop').html('error: ' + e.name + ' message: ' + e.message + ' sent: ' + '{"cardNumber":"' + number + '","cardType":"' + cardType + '","expMonth":"' + month + '","expYear":"' + year + '","securityCode":"' + code + '","name":"' + name + '"}' + ' response: ' + $.parseJSON(xhReqVal.responseText));
-							}
+							var xdr = new XDomainRequest();
+							xdr.open('POST', apiPathSecure + 'validate/paymentcard', false);
+							xdr.send('{"cardNumber":"' + number + '","cardType":"' + cardType + '","expMonth":"' + month + '","expYear":"' + year + '","securityCode":"' + code + '","name":"' + name + '"}');
+							xdr.onload = function () {
+								xhrRespHandler.showPayValResult($.parseJSON(xdr.responseText), cardType, thisToggle, completedToggles, nextToggle);
+							};
 						} else {
 							$.ajax({
 								type: "POST",
