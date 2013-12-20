@@ -9,7 +9,7 @@ var customAccordionForms = Class.extend(function () {
 		 */
 		init: function () {
 			// Redirect if LDAP user isn't logged in and page is not on local
-			if (window.location.host.indexOf('localhost') < 0) {
+			/*if (window.location.host.indexOf('localhost') < 0) {
 				if (NS('shc.pd').roles == undefined) {
 					window.location = mainSitePathSecure + '/partsdirect/wfsLogin';
 				} else {
@@ -17,7 +17,7 @@ var customAccordionForms = Class.extend(function () {
 						window.location = mainSitePathSecure + '/partsdirect/wfsLogin';
 					}
 				}
-			}
+			}*/
 			// Render
 			this.bindEvents();
 		},
