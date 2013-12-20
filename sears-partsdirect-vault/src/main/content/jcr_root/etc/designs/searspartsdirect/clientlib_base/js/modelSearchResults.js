@@ -1,4 +1,28 @@
-function modelSearchResults(modelNumber, pathTaken) {
+function modelSearchResults(modelNumber, pathTaken,flag,index) {
+
+	 var urlName="";
+	 var offset=0;
+
+	    if(flag==1){
+	        $('#searchResultsDown').empty();
+	        $("#searchCountDown").empty();
+			$(".pageCountResults").empty();
+            $("#searchCountTotal").empty();
+
+                                $("#searchCountSYW").empty();
+
+                                $("#pageCountSYW").empty();
+
+                                $("#searchCountDown").empty();
+
+                               $(".pageCountResults").empty();
+		    offset=index*25;
+		    urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset="+offset+"&limit=25";
+	    }
+	    else{
+			urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25";
+	    }
+
 
     $("#SYWHeader").hide();
     $("#SYW1").hide();
@@ -9,31 +33,67 @@ function modelSearchResults(modelNumber, pathTaken) {
 				type : "GET",
 				cache : false,
 				dataType : "json",
-				url : "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber,
-				success : function(data) {
-					var jsonResponse = data;
+				url : urlName,
+                success : function(data) {
+                    var jsonResponse = data;
 					var jsonLength = Object.keys(jsonResponse).length;
 
 					var totalCount = jsonResponse[Object.keys(jsonResponse)[0]];
         			var sywCount = jsonResponse[Object.keys(jsonResponse)[1]];
-					$("#searchCountTotal").append(parseInt(totalCount)+parseInt(sywCount));
-        			$("#searchCountSYW").append(sywCount);
-        			$("#pageCountSYW").append("1-"+sywCount+" of " + sywCount);
-        			$("#searchCountDown").append(totalCount);
-        			$("#pageCountResults").append("1-"+((totalCount < 25) ? totalCount : "25")+" of " + totalCount);
+
+
+                   if(flag==0){
+	                    for( var i = 1; i <= Math.ceil(totalCount/25); i++){
+	                        if(i==1){
+                                $("#pageNumber").append("<option value=\""+i+"\" selected>Page "+i+"</option>");
+                            }
+	                        else{
+                                $("#pageNumber").append("<option value=\""+i+"\" >Page "+i+"</option>");
+                            }
+	                    }
+                    }
+
+                               $("#searchCountTotal").append(parseInt(totalCount)+parseInt(sywCount));
+
+                                $("#searchCountSYW").append(sywCount);
+
+                                $("#pageCountSYW").append("1-"+sywCount+" of " + sywCount);
+
+                                $("#searchCountDown").append(totalCount);
+
+                    var toshow = 0;
+                    if(totalCount < 25){
+                        toshow = totalCount;
+                    }else{
+
+                        if(totalCount - offset < 25){
+
+                            toshow = totalCount;
+                        }else{
+
+                        	toshow = offset + 25;
+                        }
+                    }
+
+                                $(".pageCountResults").append((offset+1)+"-"+toshow+" of " + totalCount);
+
+
+
+        			//$(".pageCountResults").append((offset+1)+"-"+(offset+25)+" of " + totalCount);
+
 
         			for ( var i = 2; i < jsonLength; i++) {
 						var searchResults = jsonResponse[Object.keys(jsonResponse)[2]];
         				searchResults = JSON.parse(searchResults);
-        				
+
         				for(var i = 0; i < searchResults.length; i++) {
         					var searchResultCount = 0;
                             var resultDetail = searchResults[Object.keys(searchResults)[i]];
-                         	
+
                             if(resultDetail.sywModel == false){
-                         		
+
                          		searchResultCount++;
-                         		
+
                          		if (searchResultCount < 25) {
                          			if (searchResultCount % 10 == 0 && searchResultCount != 0){
                              			$("#searchResultsDown").append(
@@ -101,8 +161,8 @@ function modelSearchResults(modelNumber, pathTaken) {
                                                     + "</div>" + "</div>");
                         	}
                         }
-        			}
-				},
+                    }
+                },				
 				error : function() {
 					console.log("Failed to retrieve data from server");
 				}

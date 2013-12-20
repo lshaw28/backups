@@ -42,6 +42,8 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			.getLogger(CategoryServlet.class);
 
 	private String modelNumber;
+	private String offset;
+	private String limit;
 
 	@Override
 	protected void doGet(SlingHttpServletRequest request,
@@ -49,12 +51,18 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			IOException {
 
 		modelNumber = request.getParameter("modelnumber");
+		offset = request.getParameter("offset");
+		limit = request.getParameter("limit");
+
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
 
-		if (StringUtils.isNotEmpty(modelNumber)) {
+		if (StringUtils.isNotEmpty(modelNumber)
+				&& StringUtils.isNotEmpty(offset)
+				&& StringUtils.isNotEmpty(limit)) {
 			try {
-				jsonObject = populateModelSearchResults(modelNumber);
+				jsonObject = populateModelSearchResults(modelNumber, offset,
+						limit);
 				response.getWriter().print(jsonObject.toString());
 			} catch (RepositoryException e) {
 				log.error("Error occured in ContainerServlet:doGet() "
@@ -67,14 +75,14 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	}
 
 	@SuppressWarnings("unused")
-	private JSONObject populateModelSearchResults(String modelNumber)
-			throws JSONException, ValueFormatException, PathNotFoundException,
-			RepositoryException {
+	private JSONObject populateModelSearchResults(String modelNumber,
+			String offset, String limit) throws JSONException,
+			ValueFormatException, PathNotFoundException, RepositoryException {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
 		final String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models?modelNumber="
-				+ modelNumber;
+				+ modelNumber + "&offset=" + offset + "&limit=" + limit;
 		GetMethod method = new GetMethod(PRODUCT_DETAILS_URL);
 
 		try {
@@ -90,14 +98,16 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				int statusCode = client.executeMethod(method);
 				// Read the response body.
 				byte[] responseBody = method.getResponseBody();
-				Header headerTotalCount = method.getResponseHeader("X-Total-Count");
-				Header headerSYWCount = method.getResponseHeader("X-Total-SYW-Count");
-				
+				Header headerTotalCount = method
+						.getResponseHeader("X-Total-Count");
+				Header headerSYWCount = method
+						.getResponseHeader("X-Total-SYW-Count");
+
 				JSONArray jsa = new JSONArray(new String(responseBody));
-				
+
 				result.put("X-Total-Count", headerTotalCount.getValue());
 				result.put("X-Total-SYW-Count", headerSYWCount.getValue());
-				result.put("jsonData", jsa.toJSONObject(jsa));
+				result.put("jsonData", jsa.toString());
 			}
 		} catch (HttpException e) {
 			log.error("Error occured in ContainerServlet:getProductInfo() "
