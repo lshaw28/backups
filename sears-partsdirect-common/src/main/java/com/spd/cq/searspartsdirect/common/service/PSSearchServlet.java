@@ -44,6 +44,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	private String modelNumber;
 	private String offset;
 	private String limit;
+	private String sort;
 
 	@Override
 	protected void doGet(SlingHttpServletRequest request,
@@ -53,16 +54,19 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 		modelNumber = request.getParameter("modelnumber");
 		offset = request.getParameter("offset");
 		limit = request.getParameter("limit");
+		sort = request.getParameter("sortType");
+		
 
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
 
 		if (StringUtils.isNotEmpty(modelNumber)
 				&& StringUtils.isNotEmpty(offset)
-				&& StringUtils.isNotEmpty(limit)) {
+				&& StringUtils.isNotEmpty(limit)
+				&& StringUtils.isNotEmpty(sort)){
 			try {
 				jsonObject = populateModelSearchResults(modelNumber, offset,
-						limit);
+						limit, sort);
 				response.getWriter().print(jsonObject.toString());
 			} catch (RepositoryException e) {
 				log.error("Error occured in ContainerServlet:doGet() "
@@ -76,13 +80,13 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 
 	@SuppressWarnings("unused")
 	private JSONObject populateModelSearchResults(String modelNumber,
-			String offset, String limit) throws JSONException,
+			String offset, String limit, String sort) throws JSONException,
 			ValueFormatException, PathNotFoundException, RepositoryException {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
 		final String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models?modelNumber="
-				+ modelNumber + "&offset=" + offset + "&limit=" + limit;
+				+ modelNumber + "&offset=" + offset + "&limit=" + limit + "&sortType=" + sort;
 		GetMethod method = new GetMethod(PRODUCT_DETAILS_URL);
 
 		try {
