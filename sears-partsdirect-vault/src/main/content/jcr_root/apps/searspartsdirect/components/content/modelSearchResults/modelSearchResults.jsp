@@ -157,6 +157,7 @@ var index=0;
         index = $(this).children(":selected").index();
         flag=2;
         modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
+        $('#pageNumber').prop('selectedIndex', 0);
 
     });
 </script>
