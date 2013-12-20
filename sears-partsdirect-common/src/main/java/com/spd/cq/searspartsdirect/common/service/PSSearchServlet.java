@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 import javax.jcr.ValueFormatException;
 import javax.servlet.ServletException;
 
@@ -22,8 +21,8 @@ import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.commons.json.JSONArray;
 import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
@@ -49,32 +48,13 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			SlingHttpServletResponse response) throws ServletException,
 			IOException {
 
-		//modelNumber = request.getParameter("modelnumber");
+		modelNumber = request.getParameter("modelnumber");
 		JSONObject jsonObject = new JSONObject();
-		try {
-			jsonObject = populateProductInfo();
-		} catch (ValueFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (PathNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		response.getWriter().print(jsonObject.toString());
 		response.setHeader("Content-Type", "application/json");
 
-		/*if (StringUtils.isNotEmpty(modelNumber)) {
+		if (StringUtils.isNotEmpty(modelNumber)) {
 			try {
-				ResourceResolver resourceResolver = request
-						.getResourceResolver();
-				Session session = resourceResolver.adaptTo(Session.class);
-				jsonObject = populateProductInfo(modelNumber);
+				jsonObject = populateModelSearchResults(modelNumber);
 				response.getWriter().print(jsonObject.toString());
 			} catch (RepositoryException e) {
 				log.error("Error occured in ContainerServlet:doGet() "
@@ -83,17 +63,18 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				log.error("Error occured in ContainerServlet:doGet() "
 						+ e.getMessage() + " Exception: ");
 			}
-		}*/
+		}
 	}
 
 	@SuppressWarnings("unused")
-	private JSONObject populateProductInfo()
+	private JSONObject populateModelSearchResults(String modelNumber)
 			throws JSONException, ValueFormatException, PathNotFoundException,
 			RepositoryException {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		final String PRODUCT_DETAILS_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models?modelNumber=123&offset=0&limit=5&sortType=Relevance&brand=Amana&productType=refrigerator";
+		final String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models?modelNumber="
+				+ modelNumber;
 		GetMethod method = new GetMethod(PRODUCT_DETAILS_URL);
 
 		try {
@@ -103,19 +84,20 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			int resultStatusCode = 200;
 
 			if (resultStatusCode != HttpStatus.SC_OK) {
-				log.error("pankajrohira populateProductInfo() failed-Status Code: "
+				log.error("populateProductInfo() failed-Status Code: "
 						+ method.getStatusLine());
 			} else {
 				int statusCode = client.executeMethod(method);
 				// Read the response body.
 				byte[] responseBody = method.getResponseBody();
-				//Header header = method.getResponseHeader("totalCount");
-
-				JSONObject productDetailsJsonObj = new JSONObject(new String(
-						responseBody));
-				// JSONArray jsa = new JSONArray();
-				result.put("totalCount", "pankajrohira");
-				result.put("jsonData", productDetailsJsonObj.toString());
+				Header headerTotalCount = method.getResponseHeader("X-Total-Count");
+				Header headerSYWCount = method.getResponseHeader("X-Total-SYW-Count");
+				
+				JSONArray jsa = new JSONArray(new String(responseBody));
+				
+				result.put("X-Total-Count", headerTotalCount.getValue());
+				result.put("X-Total-SYW-Count", headerSYWCount.getValue());
+				result.put("jsonData", jsa.toJSONObject(jsa));
 			}
 		} catch (HttpException e) {
 			log.error("Error occured in ContainerServlet:getProductInfo() "
