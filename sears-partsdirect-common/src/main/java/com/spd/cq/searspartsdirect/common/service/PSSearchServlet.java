@@ -48,6 +48,8 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	private String brand;
 	private String productType;
 	private String flag;
+	
+	
 
 	@Override
 	protected void doGet(SlingHttpServletRequest request,

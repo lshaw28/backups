@@ -138,6 +138,14 @@ var index=0;
         modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
     });
     
+    $("#sorting").change(function () {
+        index = $(this).children(":selected").index();
+        flag=2;
+        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
+        $('#pageNumber').prop('selectedIndex', 0);
+
+    });
+    
     $("#brand").change(function () {
         index = $(this).val();
         flag = 3;
@@ -160,11 +168,4 @@ var index=0;
     	        $("#pageNumber").change();
     	    }
     	}
-    $("#sorting").change(function () {
-        index = $(this).children(":selected").index();
-        flag=2;
-        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
-        $('#pageNumber').prop('selectedIndex', 0);
-
-    });
 </script>
