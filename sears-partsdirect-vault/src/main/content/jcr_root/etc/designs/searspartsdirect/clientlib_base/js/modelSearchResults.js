@@ -1,29 +1,26 @@
+function clearAll(){
+	$('#searchResultsDown').empty();
+    $("#searchCountDown").empty();
+	$(".pageCountResults").empty();
+    $("#searchCountTotal").empty();
+    $("#searchCountSYW").empty();
+    $("#pageCountSYW").empty();
+    $("#searchCountDown").empty();
+    $(".pageCountResults").empty();
+}
+
 function modelSearchResults(modelNumber, pathTaken,flag,index) {
 
 	 var urlName="";
 	 var offset=0;
 
 	    if(flag==1){
-	        $('#searchResultsDown').empty();
-	        $("#searchCountDown").empty();
-			$(".pageCountResults").empty();
-            $("#searchCountTotal").empty();
-            $("#searchCountSYW").empty();
-            $("#pageCountSYW").empty();
-            $("#searchCountDown").empty();
-            $(".pageCountResults").empty();
+	        clearAll();
 		    offset=index*25;
 		    urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset="+offset+"&limit=25&sortType=revelence";
 	    }
         else if(flag==2){
-            $('#searchResultsDown').empty();
-	        $("#searchCountDown").empty();
-			$(".pageCountResults").empty();
-            $("#searchCountTotal").empty();
-            $("#searchCountSYW").empty();
-            $("#pageCountSYW").empty();
-            $("#searchCountDown").empty();
-            $(".pageCountResults").empty();
+        	clearAll();
             if(index==0){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence";}
             else if(index==1){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=model-asc";}
             else if(index==2){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=model-desc";}
@@ -86,10 +83,6 @@ function modelSearchResults(modelNumber, pathTaken,flag,index) {
                     }
 
                                 $(".pageCountResults").append((offset+1)+"-"+toshow+" of " + totalCount);
-
-
-
-        			//$(".pageCountResults").append((offset+1)+"-"+(offset+25)+" of " + totalCount);
 
 
         			for ( var i = 2; i < jsonLength; i++) {
@@ -179,8 +172,8 @@ function modelSearchResults(modelNumber, pathTaken,flag,index) {
 			});
 }
 
-function populateBrandProductDetails(modelNumber, API, divID) {
-	var urlName = API + modelNumber;
+function populateBrandProductDetails(modelNumber) {
+	var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber;
 	$.ajax({
 				type : "GET",
 				cache : false,
@@ -189,11 +182,23 @@ function populateBrandProductDetails(modelNumber, API, divID) {
 				success : function(data) {
 					var jsonResponse = data;
 					var len = Object.keys(jsonResponse).length;
+					var searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
+        			searchResults = JSON.parse(searchResults);
+
 					var brandArr = [];
-					 for(var i=0; i < len; i++){
-						 var resultDetail = jsonResponse[Object.keys(jsonResponse)[i]];
-						 $("."+divID).append("<option value=\""+resultDetail.name+"\">"+resultDetail.seoFormattedName+"</option>");
-					 }
+					for(var i=0; i < searchResults.length; i++){
+						var resultDetail = searchResults[Object.keys(searchResults)[i]];
+						$(".brand").append("<option value=\""+resultDetail.name+"\">"+resultDetail.seoFormattedName+"</option>");
+					}
+					
+					searchResults = jsonResponse[Object.keys(jsonResponse)[1]];
+        			searchResults = JSON.parse(searchResults);
+
+					brandArr = [];
+					for(var i=0; i < searchResults.length; i++){
+						var resultDetail = searchResults[Object.keys(searchResults)[i]];
+						$(".product").append("<option value=\""+resultDetail.name+"\">"+resultDetail.seoFormattedName+"</option>");
+					}
 				},
 				error : function() {
 					console.log("Failed to retrieve data from server");
