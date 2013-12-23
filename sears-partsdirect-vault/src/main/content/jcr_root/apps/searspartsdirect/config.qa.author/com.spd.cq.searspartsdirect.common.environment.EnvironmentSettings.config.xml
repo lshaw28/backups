@@ -18,4 +18,7 @@
 	searspartsdirect.commercial.url="partscommercialvip.qa.ch3.s.com"
 	searspartsdirect.pd.security.path="/partsdirect/j_spring_cas_security_check"
 	searspartsdirect.sso.server="https://web301p.qa.ch3.s.com:5743/shccas/shcLogin"
-	searspartsdirect.247chat.flag="y" />
+	searspartsdirect.247chat.flag="y"
+	searspartsdirect.promo.flag="y"
+	searspartsdirect.promo.amount="$100"
+	searspartsdirect.promo.date="01/02/13 to 01/31/13" />

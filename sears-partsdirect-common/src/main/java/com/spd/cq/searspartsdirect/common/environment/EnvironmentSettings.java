@@ -185,6 +185,33 @@ public class EnvironmentSettings {
 		return getProperty(PD_247CHAT_FLAG, Constants.EMPTY);
 	}
 	
+	@Property(label = "PD promo flag",
+			description = "PD promo flag",
+			value = "y"
+		)
+	public static final String PD_PROMO_FLAG = "searspartsdirect.promo.flag";
+	public static String getPromoFlag() {
+		return getProperty(PD_PROMO_FLAG, Constants.EMPTY);
+	}
+	
+	@Property(label = "PD promo amount",
+			description = "PD promo amount text",
+			value = "$100 or more"
+		)
+	public static final String PD_PROMO_AMOUNT = "searspartsdirect.promo.amount";
+	public static String getPromoAmount() {
+		return getProperty(PD_PROMO_AMOUNT, Constants.EMPTY);
+	}
+	
+	@Property(label = "PD promo date",
+			description = "PD promo date text",
+			value = "$100 or more"
+		)
+	public static final String PD_PROMO_DATE = "searspartsdirect.promo.date";
+	public static String getPromoDate() {
+		return getProperty(PD_PROMO_DATE, Constants.EMPTY);
+	}
+	
 	
 	// ---- for testing ----
 	public void externalActivateForTesting(final ComponentContext context) throws Exception {
