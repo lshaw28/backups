@@ -77,7 +77,7 @@
 			</div>
 			<div class="span3">
 				<h4>By Product Type:</h4>
-				<select class="product">
+				<select class="product" id="productType">
 				</select>
 			</div>
 		</div>
@@ -139,10 +139,15 @@ var index=0;
     });
     
     $("#brand").change(function () {
-        index = $(this).children(":selected").value;
-        alert(index);
-        //flag=1;
-        //modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
+        index = $(this).val();
+        flag = 3;
+        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
+    });
+    
+    $("#productType").change(function () {
+        index = $(this).val();
+        flag = 4;
+        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
     });
     
     function paging(vary){
