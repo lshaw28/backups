@@ -35,17 +35,16 @@ function fillDropdown(modelNumber, param, param1, param2){
 }
 
 function modelSearchResults(modelNumber, pathTaken, flag, index) {
-
 	 var urlName="";
 	 var offset=0;
 
-	    if(flag==1){
+	    if(flag == 1){
             // page select
 	        clearAll();
 		    offset=index*25;
 		    urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset="+offset+"&limit=25&sortType=revelence&flag=1";
 	    }
-        else if(flag==2){
+        else if(flag == 2){
             // sort result
         	clearAll();
             if(index==0){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=2";}
@@ -98,31 +97,22 @@ function modelSearchResults(modelNumber, pathTaken, flag, index) {
                             }
 	                    }
                     }
-
-                               $("#searchCountTotal").append(parseInt(totalCount)+parseInt(sywCount));
-
-                                $("#searchCountSYW").append(sywCount);
-
-                                $("#pageCountSYW").append("1-"+sywCount+" of " + sywCount);
-
-                                $("#searchCountDown").append(totalCount);
+                   $("#searchCountTotal").append(parseInt(totalCount)+parseInt(sywCount));
+                   $("#searchCountSYW").append(sywCount);
+                   $("#pageCountSYW").append("1-"+sywCount+" of " + sywCount);
+                   $("#searchCountDown").append(totalCount);
 
                     var toshow = 0;
                     if(totalCount < 25){
                         toshow = totalCount;
                     }else{
-
                         if(totalCount - offset < 25){
-
                             toshow = totalCount;
                         }else{
-
                         	toshow = offset + 25;
                         }
                     }
-
-                                $(".pageCountResults").append((offset+1)+"-"+toshow+" of " + totalCount);
-
+                    $(".pageCountResults").append((offset+1)+"-"+toshow+" of " + totalCount);
 
         			for ( var i = 2; i < jsonLength; i++) {
 						var searchResults = jsonResponse[Object.keys(jsonResponse)[2]];
@@ -211,7 +201,7 @@ function modelSearchResults(modelNumber, pathTaken, flag, index) {
 			});
 }
 
-function populateBrandProductDetails(modelNumber, API, divID) {
+function populateBrandProductDetails(modelNumber) {
 	var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber;
 	$.ajax({
 				type : "GET",
