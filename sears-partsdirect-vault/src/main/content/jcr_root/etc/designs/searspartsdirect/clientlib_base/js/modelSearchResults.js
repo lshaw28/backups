@@ -1,3 +1,12 @@
+/*
+ * Flag 0: First Search Hit 
+ * Flag 1: Previous/Next
+ * Flag 2: Sort
+ * Flag 3: Brand Selection
+ * Flag 4: Product Selection
+ * Flag 5: SYW Previous/Next
+ * */
+
 function clearAll(){
 	$('#searchResultsDown').empty();
     $("#searchCountDown").empty();
@@ -39,8 +48,9 @@ function modelSearchResults(modelNumber, pathTaken, flag, index) {
 	 var offset=0;
 
 	    if(flag == 1){
-            // page select
+            // page change
 	        clearAll();
+	        $("#searchResultsUp").empty();
 		    offset=index*25;
 		    urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset="+offset+"&limit=25&sortType=revelence&flag=1";
 	    }
@@ -159,7 +169,8 @@ function modelSearchResults(modelNumber, pathTaken, flag, index) {
                                                         + "</div>" + "</div>");
             					}
                         	}
-                            else {
+                            else if((flag == 0 || (flag == 1 && index == 0)) && resultDetail.sywModel == true) {
+                            	// it should NOT get disturbed when clicking on "Sort (down)", "Prev/Next", "Model Refinement" -- Model Search Results section
                                 if(!$("#SYWHeader").is(":visible")){
                                     $("#SYWHeader").show();
                                     $("#SYW1").show();
