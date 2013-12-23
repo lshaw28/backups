@@ -128,14 +128,14 @@ var flag =0;
 var index=0;
 
     $(document).ready(function(){
-    	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
+    	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
         populateBrandProductDetails('<%=searchModPar%>');
     });
     
     $("#pageNumber").change(function () {
         index = $(this).children(":selected").index();
         flag=1;
-        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
+        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
     });
     
     $("#brand").change(function () {

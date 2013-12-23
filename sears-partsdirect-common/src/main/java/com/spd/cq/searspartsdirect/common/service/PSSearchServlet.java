@@ -44,9 +44,10 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	private String modelNumber;
 	private String offset;
 	private String limit;
-	private String sort;
+	private String sortType;
 	private String brand;
 	private String productType;
+	private String flag;
 
 	@Override
 	protected void doGet(SlingHttpServletRequest request,
@@ -54,29 +55,31 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			IOException {
 
 		modelNumber = request.getParameter("modelnumber");
+		flag = request.getParameter("flag");
 		offset = request.getParameter("offset") != null ? request.getParameter("offset") : null;
 		limit = request.getParameter("limit") != null ? request.getParameter("limit") : null;
-		sort = request.getParameter("sortType") != null ? request.getParameter("sortType") : null;
+		sortType = request.getParameter("sortType") != null ? request.getParameter("sortType") : null;
 		brand = request.getParameter("brand") != null ? request.getParameter("brand") : null;
 		productType = request.getParameter("productType") != null ? request.getParameter("productType") : null;
 
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
 
-		if (StringUtils.isNotEmpty(modelNumber)){
+		if (StringUtils.isNotEmpty(modelNumber) && StringUtils.isNotEmpty(flag)){
 			try {
-				if(StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sort)){
-					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sort);
-				}
-				else if(StringUtils.isNotEmpty(brand)){
-					jsonObject = populateProductBasedOnBrand(modelNumber, brand);
-				}
-				else if(StringUtils.isNotEmpty(productType)){
-					jsonObject = populateBrandBasedOnProduct(modelNumber, productType);
-				}
-				else{
+				if(StringUtils.equals(flag, "0")){
 					jsonObject = populateBrandProductList(modelNumber);
 				}
+				else if((StringUtils.equals(flag, "1") || StringUtils.equals(flag, "2")) && StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sortType)){
+					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType);
+				}
+				else if(StringUtils.equals(flag, "3") && StringUtils.isNotEmpty(brand)){
+					jsonObject = populateProductBasedOnBrand(modelNumber, brand);
+				}
+				else if(StringUtils.equals(flag, "4") && StringUtils.isNotEmpty(productType)){
+					jsonObject = populateBrandBasedOnProduct(modelNumber, productType);
+				}
+				
 				response.getWriter().print(jsonObject.toString());
 			} catch (RepositoryException e) {
 				log.error("Error occured in ContainerServlet:doGet() "
