@@ -39,7 +39,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger log = LoggerFactory
-			.getLogger(CategoryServlet.class);
+			.getLogger(PSSearchServlet.class);
 
 	private String modelNumber;
 	private String offset;
