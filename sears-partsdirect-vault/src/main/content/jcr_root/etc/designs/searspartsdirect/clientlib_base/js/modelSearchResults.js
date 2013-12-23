@@ -9,21 +9,60 @@ function clearAll(){
     $(".pageCountResults").empty();
 }
 
-function modelSearchResults(modelNumber, pathTaken,flag,index) {
+function fillDropdown(modelNumber, param, param1, param2){
+    var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&"+param1+"="+param;
+	$.ajax({
+				type : "GET",
+				cache : false,
+				dataType : "json",
+				url : urlName,
+				success : function(data) {
+					var jsonResponse = data;
+					var len = Object.keys(jsonResponse).length;
+					var searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
+        			searchResults = JSON.parse(searchResults);
+
+					var brandArr = [];
+					for(var i=0; i < searchResults.length; i++){
+						var resultDetail = searchResults[Object.keys(searchResults)[i]];
+						$("#"+param2).append("<option value=\""+resultDetail.name+"\">"+resultDetail.seoFormattedName+"</option>");
+					}
+				},
+				error : function() {
+					console.log("Failed to retrieve data from server");
+				}
+			});
+}
+
+function modelSearchResults(modelNumber, pathTaken, flag, index) {
 
 	 var urlName="";
 	 var offset=0;
 
 	    if(flag==1){
+            // page select
 	        clearAll();
 		    offset=index*25;
 		    urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset="+offset+"&limit=25&sortType=revelence";
 	    }
         else if(flag==2){
+            // sort result
         	clearAll();
             if(index==0){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence";}
             else if(index==1){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=model-asc";}
             else if(index==2){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=model-desc";}
+        }
+    	else if(flag == 3){
+            // Brand select >> change product
+        	clearAll();
+            urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&brand="+index;
+            fillDropdown(modelNumber, index, 'brand', 'productType');
+        }
+    	else if(flag == 4){
+            // Product select >> change brand
+        	clearAll();
+            urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&productType="+index;
+            fillDropdown(modelNumber, index, 'productType', 'brand');
         }
 	    else{
 			urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence";
@@ -172,7 +211,7 @@ function modelSearchResults(modelNumber, pathTaken,flag,index) {
 			});
 }
 
-function populateBrandProductDetails(modelNumber) {
+function populateBrandProductDetails(modelNumber, API, divID) {
 	var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber;
 	$.ajax({
 				type : "GET",

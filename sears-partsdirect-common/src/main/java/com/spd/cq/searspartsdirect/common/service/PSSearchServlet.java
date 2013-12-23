@@ -45,6 +45,8 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	private String offset;
 	private String limit;
 	private String sort;
+	private String brand;
+	private String productType;
 
 	@Override
 	protected void doGet(SlingHttpServletRequest request,
@@ -55,7 +57,8 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 		offset = request.getParameter("offset") != null ? request.getParameter("offset") : null;
 		limit = request.getParameter("limit") != null ? request.getParameter("limit") : null;
 		sort = request.getParameter("sortType") != null ? request.getParameter("sortType") : null;
-		
+		brand = request.getParameter("brand") != null ? request.getParameter("brand") : null;
+		productType = request.getParameter("productType") != null ? request.getParameter("productType") : null;
 
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
@@ -64,7 +67,14 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			try {
 				if(StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sort)){
 					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sort);
-				}else{
+				}
+				else if(StringUtils.isNotEmpty(brand)){
+					jsonObject = populateProductBasedOnBrand(modelNumber, brand);
+				}
+				else if(StringUtils.isNotEmpty(productType)){
+					jsonObject = populateBrandBasedOnProduct(modelNumber, productType);
+				}
+				else{
 					jsonObject = populateBrandProductList(modelNumber);
 				}
 				response.getWriter().print(jsonObject.toString());
@@ -76,6 +86,82 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 						+ e.getMessage() + " Exception: ");
 			}
 		}
+	}
+	
+	@SuppressWarnings("unused")
+	private JSONObject populateProductBasedOnBrand(String modelNumber, String brand) throws JSONException,
+			ValueFormatException, PathNotFoundException, RepositoryException {
+		JSONObject result = new JSONObject();
+		HttpClient client = new HttpClient();
+
+		final String PRODUCT_BRAND_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models/product-types?modelNumber="+modelNumber+"&brand="+brand;
+		GetMethod method = new GetMethod(PRODUCT_BRAND_URL);
+
+		try {
+			// Provide custom retry handler is necessary
+			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
+					new DefaultHttpMethodRetryHandler(2, false));
+			int resultStatusCode = 200;
+
+			if (resultStatusCode != HttpStatus.SC_OK) {
+				log.error("populateProductBasedOnBrand() failed-Status Code: "
+						+ method.getStatusLine());
+			} else {
+				int statusCode = client.executeMethod(method);
+				byte[] responseBody = method.getResponseBody();
+
+				JSONArray jsa = new JSONArray(new String(responseBody));
+				result.put("productList", jsa.toString());
+			}
+		} catch (HttpException e) {
+			log.error("Error occured in ContainerServlet:getProductInfo() "
+					+ e.getMessage() + " Exception: ");
+		} catch (IOException e) {
+			log.error("Error occured in ContainerServlet:getProductInfo() "
+					+ e.getMessage() + " Exception: ");
+		} finally {
+			// Release the connection.
+			method.releaseConnection();
+		}
+		return result;
+	}
+	
+	@SuppressWarnings("unused")
+	private JSONObject populateBrandBasedOnProduct(String modelNumber, String product) throws JSONException,
+			ValueFormatException, PathNotFoundException, RepositoryException {
+		JSONObject result = new JSONObject();
+		HttpClient client = new HttpClient();
+
+		final String BRAND_PRODUCT_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models/brands?modelNumber="+modelNumber+"&productType="+product;
+		GetMethod method = new GetMethod(BRAND_PRODUCT_URL);
+
+		try {
+			// Provide custom retry handler is necessary
+			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
+					new DefaultHttpMethodRetryHandler(2, false));
+			int resultStatusCode = 200;
+
+			if (resultStatusCode != HttpStatus.SC_OK) {
+				log.error("populateProductBasedOnBrand() failed-Status Code: "
+						+ method.getStatusLine());
+			} else {
+				int statusCode = client.executeMethod(method);
+				byte[] responseBody = method.getResponseBody();
+
+				JSONArray jsa = new JSONArray(new String(responseBody));
+				result.put("brandList", jsa.toString());
+			}
+		} catch (HttpException e) {
+			log.error("Error occured in ContainerServlet:getProductInfo() "
+					+ e.getMessage() + " Exception: ");
+		} catch (IOException e) {
+			log.error("Error occured in ContainerServlet:getProductInfo() "
+					+ e.getMessage() + " Exception: ");
+		} finally {
+			// Release the connection.
+			method.releaseConnection();
+		}
+		return result;
 	}
 	
 	@SuppressWarnings("unused")
