@@ -52,21 +52,21 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			IOException {
 
 		modelNumber = request.getParameter("modelnumber");
-		offset = request.getParameter("offset");
-		limit = request.getParameter("limit");
-		sort = request.getParameter("sortType");
+		offset = request.getParameter("offset") != null ? request.getParameter("offset") : null;
+		limit = request.getParameter("limit") != null ? request.getParameter("limit") : null;
+		sort = request.getParameter("sortType") != null ? request.getParameter("sortType") : null;
 		
 
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
 
-		if (StringUtils.isNotEmpty(modelNumber)
-				&& StringUtils.isNotEmpty(offset)
-				&& StringUtils.isNotEmpty(limit)
-				&& StringUtils.isNotEmpty(sort)){
+		if (StringUtils.isNotEmpty(modelNumber)){
 			try {
-				jsonObject = populateModelSearchResults(modelNumber, offset,
-						limit, sort);
+				if(StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sort)){
+					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sort);
+				}else{
+					jsonObject = populateBrandProductList(modelNumber);
+				}
 				response.getWriter().print(jsonObject.toString());
 			} catch (RepositoryException e) {
 				log.error("Error occured in ContainerServlet:doGet() "
@@ -77,6 +77,60 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			}
 		}
 	}
+	
+	@SuppressWarnings("unused")
+	private JSONObject populateBrandProductList(String modelNumber) throws JSONException,
+			ValueFormatException, PathNotFoundException, RepositoryException {
+		JSONObject result = new JSONObject();
+		HttpClient client = new HttpClient();
+
+		final String BRAND_DETAILS_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models/brands?modelNumber="
+				+ modelNumber;
+		final String PRODUCT_DETAILS_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models/product-types?modelNumber="
+				+ modelNumber;
+		result = getList(BRAND_DETAILS_URL, result);
+		result = getList(PRODUCT_DETAILS_URL, result);
+		
+		return result;
+	}
+	
+	@SuppressWarnings("unused")
+	private JSONObject getList(String URL, JSONObject result) throws JSONException,
+			ValueFormatException, PathNotFoundException, RepositoryException {
+		
+		HttpClient client = new HttpClient();
+
+		GetMethod method = new GetMethod(URL);
+
+		try {
+			// Provide custom retry handler is necessary
+			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
+					new DefaultHttpMethodRetryHandler(2, false));
+			int resultStatusCode = 200;
+
+			if (resultStatusCode != HttpStatus.SC_OK) {
+				log.error("getList failed-Status Code: "
+						+ method.getStatusLine());
+			} else {
+				int statusCode = client.executeMethod(method);
+				byte[] responseBody = method.getResponseBody();
+				
+				JSONArray jsa = new JSONArray(new String(responseBody));
+				String jsonKey = StringUtils.containsIgnoreCase(URL, "brand") ? "brand" : "product";
+				result.put(jsonKey, jsa.toString());
+			}
+		} catch (HttpException e) {
+			log.error("Error occured in ContainerServlet:getProductInfo() "
+					+ e.getMessage() + " Exception: ");
+		} catch (IOException e) {
+			log.error("Error occured in ContainerServlet:getProductInfo() "
+					+ e.getMessage() + " Exception: ");
+		} finally {
+			// Release the connection.
+			method.releaseConnection();
+		}
+		return result;
+	}
 
 	@SuppressWarnings("unused")
 	private JSONObject populateModelSearchResults(String modelNumber,
@@ -85,7 +139,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		final String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models?modelNumber="
+		final String PRODUCT_DETAILS_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models?modelNumber="
 				+ modelNumber + "&offset=" + offset + "&limit=" + limit + "&sortType=" + sort;
 		GetMethod method = new GetMethod(PRODUCT_DETAILS_URL);
 

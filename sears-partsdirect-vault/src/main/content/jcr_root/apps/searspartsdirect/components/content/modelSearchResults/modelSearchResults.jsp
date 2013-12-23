@@ -13,10 +13,6 @@
 	<li class="<%= linkClass %>">Model Search Results for "<%= searchModPar%>"</li>
 </ul>
 -->
-<%
-	String brandURL = "http://partsapivip.qa.ch3.s.com/pd-services/models/brands?modelNumber=";
-	String productURL = "http://partsapivip.qa.ch3.s.com/pd-services/models/product-types?modelNumber=";
-%>
 
 <!-- Main Result Count -->
 <div class="row-fluid">
@@ -76,7 +72,7 @@
 		<div class="row-fluid">
 			<div class="span3">
 				<h4>By Brand:</h4>
-				<select class="brand">
+				<select class="brand" id="brand">
 				</select>
 			</div>
 			<div class="span3">
@@ -133,14 +129,20 @@ var index=0;
 
     $(document).ready(function(){
     	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
-        populateBrandProductDetails('<%=searchModPar%>', '<%=brandURL%>', 'brand');
-        populateBrandProductDetails('<%=searchModPar%>', '<%=productURL%>', 'product');
+        populateBrandProductDetails('<%=searchModPar%>');
     });
     
     $("#pageNumber").change(function () {
         index = $(this).children(":selected").index();
         flag=1;
         modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
+    });
+    
+    $("#brand").change(function () {
+        index = $(this).children(":selected").value;
+        alert(index);
+        //flag=1;
+        //modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag,index);
     });
     
     function paging(vary){
