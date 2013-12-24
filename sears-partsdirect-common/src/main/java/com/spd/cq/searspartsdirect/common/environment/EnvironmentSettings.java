@@ -124,6 +124,15 @@ public class EnvironmentSettings {
 		return getProperty(PD_AIRFILTER_PARTS_API, Constants.EMPTY);
 	}
 	
+	@Property(label = "PartsDirect AirFilter Dimensions",
+			   description = "API will get the airfilter dimensions",
+			   value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/air-filters/dimensions")
+	public static final String PD_AIRFILTER_DIMENSIONS_API = "searspartsdirect.airfilter.dimension.api";
+
+	public static String getPDAirFilterDimensionApiUrl() {
+		return getProperty(PD_AIRFILTER_DIMENSIONS_API, Constants.EMPTY);
+	}
+	
 	@Property(label = "PartsDirect API Root",
 			description = "PartsDirect API Root",
 			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/")

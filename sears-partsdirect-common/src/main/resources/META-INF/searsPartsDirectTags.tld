@@ -533,7 +533,11 @@
    			<required>true</required>
    			<rtexprvalue>true</rtexprvalue>
   		</attribute>
- 	</tag>
+ 	</tag><tag>
+  		<name>getAirFilterDimensions</name>
+  		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAirFilterDimensionsTag</tag-class>
+  		<info>Gets the Dimensions associated with AirFilter</info>
+  	</tag>
 	<tag>
 		<name>getHeaderHelperData</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetHeaderHelperTag</tag-class>
