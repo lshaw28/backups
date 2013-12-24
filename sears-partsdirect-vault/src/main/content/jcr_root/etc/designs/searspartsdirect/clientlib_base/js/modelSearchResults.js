@@ -43,7 +43,7 @@ function fillDropdown(modelNumber, param, param1, param2){
 			});
 }
 
-function modelSearchResults(modelNumber, pathTaken, flag, index) {
+function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) {
 	 var urlName="";
 	 var offset=0;
 
@@ -57,21 +57,30 @@ function modelSearchResults(modelNumber, pathTaken, flag, index) {
         else if(flag == 2){
             // sort result
         	clearAll();
-            if(index==0){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=2";}
-            else if(index==1){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=model-asc&flag=2";}
-            else if(index==2){urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=model-desc&flag=2";}
+        	urlName="/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&flag=2";
+            if(index == 0){
+            	urlName = urlName + "&sortType=revelence";
+            }else if(index == 1){
+            	urlName = urlName + "&sortType=model-asc";
+            }else if(index == 2){
+            	urlName = urlName + "&sortType=model-desc";
+            }
         }
     	else if(flag == 3){
             // Brand select >> change product
         	clearAll();
-            urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&brand="+index+"&flag=3";
-            fillDropdown(modelNumber, index, 'brand', 'productType');
+        	urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&brand="+index+"&flag=3";
+        	if(typeof selectedValue !== 'undefined'){
+        		urlName = urlName + "&productType="+selectedValue;
+        	}
         }
     	else if(flag == 4){
             // Product select >> change brand
         	clearAll();
             urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&productType="+index+"&flag=4";
-            fillDropdown(modelNumber, index, 'productType', 'brand');
+            if(typeof selectedValue !== 'undefined'){
+        		urlName = urlName + "&brand="+selectedValue;
+        	}
         }
 	    else{
 			urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=0";

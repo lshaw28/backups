@@ -148,14 +148,28 @@ var index=0;
     
     $("#brand").change(function () {
         index = $(this).val();
+        var productIndex = $("#productType").children(":selected").index();
+        var productSelected = $("#productType").val();
         flag = 3;
-        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
+        if(productIndex == 0){
+        	fillDropdown(modelNumber, index, 'brand', 'productType');
+        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
+        }else{
+        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index, productSelected);
+        }
     });
     
     $("#productType").change(function () {
         index = $(this).val();
+        var brandIndex = $("#brand").children(":selected").index();
+        var brandSelected = $("#brand").val();
         flag = 4;
-        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
+        if(brandIndex == 0){
+        	fillDropdown(modelNumber, index, 'productType', 'brand');
+        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
+        }else{
+        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index, brandSelected);
+        }
     });
     
     function paging(vary){
