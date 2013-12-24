@@ -170,7 +170,7 @@ function modelSearchResults(modelNumber, pathTaken, flag, index) {
             					}
                         	}
                             else if((flag == 0 || (flag == 1 && index == 0)) && resultDetail.sywModel == true) {
-                            	// it should NOT get disturbed when clicking on "Sort (down)", "Prev/Next", "Model Refinement" -- Model Search Results section
+                            	// Search Your Way section
                                 if(!$("#SYWHeader").is(":visible")){
                                     $("#SYWHeader").show();
                                     $("#SYW1").show();
@@ -226,6 +226,7 @@ function populateBrandProductDetails(modelNumber) {
         			searchResults = JSON.parse(searchResults);
 
 					var brandArr = [];
+					$(".brand").append("<option value=\"Select\">--Select--</option>");
 					for(var i=0; i < searchResults.length; i++){
 						var resultDetail = searchResults[Object.keys(searchResults)[i]];
 						$(".brand").append("<option value=\""+resultDetail.name+"\">"+resultDetail.seoFormattedName+"</option>");
@@ -235,6 +236,7 @@ function populateBrandProductDetails(modelNumber) {
         			searchResults = JSON.parse(searchResults);
 
 					brandArr = [];
+					$(".product").append("<option value=\"Select\">--Select--</option>");
 					for(var i=0; i < searchResults.length; i++){
 						var resultDetail = searchResults[Object.keys(searchResults)[i]];
 						$(".product").append("<option value=\""+resultDetail.name+"\">"+resultDetail.seoFormattedName+"</option>");
