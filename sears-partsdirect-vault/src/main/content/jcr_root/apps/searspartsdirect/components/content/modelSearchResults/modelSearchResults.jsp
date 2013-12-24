@@ -19,72 +19,76 @@
 	<div class="repairHelpHomeTitle">
 		<div class="pageTitleHeader">
 			<h1>
-                (<strong id="searchCountTotal"></strong>) results found for model #<strong><%= searchModPar%></strong>
+                (<strong id="searchCountTotal" style="display:none;"></strong>) results found for model #<strong><%= searchModPar%></strong>
 				<p class="pull-right">
 					We also found <span><a>(1) part number</a></span>
 				</p>
 			</h1>
-            <h3 id="SYWHeader">In addition to model results, we found either a <strong>Sears item number,</strong> a <strong>partial model number,</strong> or a <strong>UPC code</strong> that matches the number you submitted.</h3>
+            <h3 id="SYWHeader" style="display:none;">In addition to model results, we found either a <strong>Sears item number,</strong> a <strong>partial model number,</strong> or a <strong>UPC code</strong> that matches the number you submitted.</h3>
 		</div>
 	</div>
 </div>
 
 <!-- SYW Section START -->
-<div class="row-fluid" id="SYW1">
-	<h2 class="resultsHeadline">(<strong id="searchCountSYW" class="searchCountSYW"></strong>) model results found for <strong>Sears Partial Model # <%=searchModPar%></strong></h2>
+<div class="row-fluid" id="SYW1" style="display:none;">
+    <h2 class="resultsHeadline">(<strong id="searchCountSYW" class="searchCountSYW"></strong>) model results found for <strong>Sears Partial Model # <%=searchModPar%></strong></h2>
 </div>
-<div class="row-fluid" id="SYW2">
+<div class="row-fluid" id="SYW2" style="display:none;">
 	<div class="searchFilters">
 		<h4>Refine your search results</h4>
 		<div class="row-fluid">
 			<div class="span3">
 				<h4>By Brand:</h4>
-				<select class="brand">
+				<select class="brand" id="sywBrand">
+                    <option value="Select">--Select--</option>
 				</select>
 			</div>
 			<div class="span3">
 				<h4>By Product Type:</h4>
-				<select class="product">
+				<select class="product" id="sywProductType">
+                    <option value="Select">--Select--</option>
 				</select>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="row-fluid" id="SYW3">
+<div class="row-fluid" id="SYW3" style="display:none;">
 	<div class="resultsHeaderBar">
 		<div class="la-anim-2"></div>
 		<span><strong id="pageCountSYW"></strong></span>
 	</div>
 </div>
-<div class="modelSearchResultsItemBkg" id="searchResultsUp">
+<div class="modelSearchResultsItemBkg" id="searchResultsUp" style="display:none;">
 
 </div>
 <!-- SYW Section END -->
 
 
-<div class="row-fluid" id="temp">
+<div class="row-fluid" id="search1" style="display:none;">
 	<h2 class="resultsHeadline">(<strong id="searchCountDown"></strong>) results found for <strong>model # <%= searchModPar%></strong></h2>
 </div>
 
-<div class="row-fluid">
+<div class="row-fluid" id="search2" style="display:none;">
 	<div class="searchFilters">
 		<h4>Refine your search results</h4>
 		<div class="row-fluid">
 			<div class="span3">
 				<h4>By Brand:</h4>
 				<select class="brand" id="brand">
+                    <option value="Select">--Select--</option>
 				</select>
 			</div>
 			<div class="span3">
 				<h4>By Product Type:</h4>
 				<select class="product" id="productType">
+                    <option value="Select">--Select--</option>
 				</select>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="row-fluid">
+<div class="row-fluid" id="search3" style="display:none;">
 	<div class="resultsHeaderBar">
 		<div class="la-anim-2"></div>
 		<span><strong class="pageCountResults"></strong>Sort by <select id="sorting">
@@ -94,10 +98,10 @@
 		</select> </span>
 	</div>
 </div>
-<div class="modelSearchResultsItemBkg" id="searchResultsDown">
+<div class="modelSearchResultsItemBkg" id="searchResultsDown" style="display:none;">
 
 </div>
-<div class="row-fluid">
+<div class="row-fluid" id="footer" style="display:none;">
 	<div class="resultsFooterBar">
 		<div class="row-fluid">
 			<div class="span3 resultsFooterLeft hidden-phone">
@@ -115,7 +119,7 @@
 		</div>
 	</div>
 </div>
-<div class="row-fluid modelSearchResultsNotSureMsg">
+<div class="row-fluid modelSearchResultsNotSureMsg" id="notsure" style="display:none;">
 	<div>
 		<h4>Not sure which model is yours?</h4>
 		<p>
@@ -152,7 +156,7 @@ var index=0;
         var productSelected = $("#productType").val();
         flag = 3;
         if(productIndex == 0){
-        	fillDropdown(modelNumber, index, 'brand', 'productType');
+        	fillDropdown('<%=searchModPar%>', index, 'brand', 'productType');
         	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
         }else{
         	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index, productSelected);
@@ -165,7 +169,33 @@ var index=0;
         var brandSelected = $("#brand").val();
         flag = 4;
         if(brandIndex == 0){
-        	fillDropdown(modelNumber, index, 'productType', 'brand');
+        	fillDropdown('<%=searchModPar%>', index, 'productType', 'brand');
+        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
+        }else{
+        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index, brandSelected);
+        }
+    });
+    
+    $("#sywBrand").change(function () {
+        index = $(this).val();
+        var productIndex = $("#sywProductType").children(":selected").index();
+        var productSelected = $("#sywProductType").val();
+        flag = 5;
+        if(productIndex == 0){
+        	fillDropdown('<%=searchModPar%>', index, 'brand', 'sywProductType');
+        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
+        }else{
+        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index, productSelected);
+        }
+    });
+    
+    $("#sywProductType").change(function () {
+        index = $(this).val();
+        var brandIndex = $("#sywBrand").children(":selected").index();
+        var brandSelected = $("#sywBrand").val();
+        flag = 6;
+        if(brandIndex == 0){
+        	fillDropdown('<%=searchModPar%>', index, 'productType', 'sywBrand');
         	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);
         }else{
         	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index, brandSelected);
