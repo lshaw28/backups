@@ -37,8 +37,7 @@
                     <c:forEach items="${airFilterDimensionList.length}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
     				</c:forEach>	                   
-                </select>  
-
+                </select>
             </div>
         </div>
     </form>
@@ -52,8 +51,8 @@
     <div class="brandImages">
         <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand1.png"/> 
         <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand2.png"/> 
-        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand3.png" class="last" /> 
-        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand4.png" class="thired_img" /> 
+        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand3.png"/> 
+        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand4.png" class="fourth_img" /> 
         <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand5.png"/>
     </div>
 </div>

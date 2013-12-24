@@ -2,55 +2,55 @@
 @import "../../../../clientlib_base/less/base.mixins.less";
 
 @media (max-width: 480px) {
-
-    .airfilterDimensionSection{
-        border: 4px solid red;
-        
-        margin-bottom: 10px;
-        .row-fluid{
-            text-align: center;
-            .span4{
-                .responsiveDropdown{
-                    min-width: 40%;
-                    margin-bottom: 20px;
-
-                    ul{
-                        li {
-                            border: 4px solid red;
-                            padding: 4px;
-                            text-align: center;
-                            
+    .airFilterDimension{
+        .airfilterDimensionSection{
+            border: 4px solid red;        
+            margin-bottom: 10px;
+            .row-fluid{
+                text-align: center;
+                .span4{
+                    .responsiveDropdown{
+                        min-width: 40%;
+                        margin-bottom: 20px;
+                        z-index: 99999;
+                        ul{
+                            li {
+                                border: 4px solid red;
+                                padding: 4px;
+                                text-align: center;                            
+                            }
                         }
-                        
-                        
+                        .new-btn-dropdown{
+                            .icon-chevron-sign-down{                            
+                                padding-left: 10px;
+                            }
+                        }
                     }
-                    .new-btn-dropdown{
-
-                        .icon-chevron-sign-down{
-                            
-                            padding-left: 10px;
-                        }
-                        
-                        
+                    .dimensionCross {
+                        float: right;
+                        line-height: 34px;
+                        font-weight: bolder;                      
                     }
                 }
-                .dimensionCross {
-                    float: right;
-                    line-height: 34px;
-                    font-weight: bolder;
-                    
-                }
-                
-                
             }
-            
-
+            #noDataFound{ 
+                h1{
+                    padding: 20px;  
+                }
+            }   
+        } 
+        .afBrandsRow{
+            .brandImages{ 
+                float: left;
+                margin:20px auto;
+                padding:0 !important;
+                img{
+                    margin:0px 10px 10px 10px !important;
+                }
+                .fourth_img{
+					margin:0px 10px 10px 55px !important;
+                }
+            }   
         }
-        #noDataFound{ 
-            h1{
-                padding: 20px;  
-            }
-        }   
     }
-
 }
