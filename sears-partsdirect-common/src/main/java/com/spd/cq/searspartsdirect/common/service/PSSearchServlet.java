@@ -66,20 +66,29 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
-
-		if (StringUtils.isNotEmpty(modelNumber) && StringUtils.isNotEmpty(flag)){
+		log.info("Step 1:"+brand);
+		if (StringUtils.isNotEmpty(modelNumber)){
 			try {
-				if(StringUtils.equals(flag, "0")){
-					jsonObject = populateBrandProductList(modelNumber);
+				if((StringUtils.equals(flag, "0") || StringUtils.equals(flag, "1") || StringUtils.equals(flag, "2")) && StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sortType)){
+					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, "", "");
 				}
-				else if((StringUtils.equals(flag, "1") || StringUtils.equals(flag, "2")) && StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sortType)){
-					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType);
+				else if((StringUtils.equals(flag, "3") || StringUtils.equals(flag, "4")) && StringUtils.isNotEmpty(brand) && StringUtils.isNotEmpty(productType)){
+					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, productType);
 				}
 				else if(StringUtils.equals(flag, "3") && StringUtils.isNotEmpty(brand)){
+					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, "");
+				}
+				else if(StringUtils.isNotEmpty(brand)){
 					jsonObject = populateProductBasedOnBrand(modelNumber, brand);
 				}
 				else if(StringUtils.equals(flag, "4") && StringUtils.isNotEmpty(productType)){
+					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, "", productType);
+				}
+				else if(StringUtils.isNotEmpty(productType)){
 					jsonObject = populateBrandBasedOnProduct(modelNumber, productType);
+				}
+				else if(StringUtils.equals(flag, "7")){
+					jsonObject = populateBrandProductList(modelNumber);
 				}
 				
 				response.getWriter().print(jsonObject.toString());
@@ -99,7 +108,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		final String PRODUCT_BRAND_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models/product-types?modelNumber="+modelNumber+"&brand="+brand;
+		final String PRODUCT_BRAND_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/product-types?modelNumber="+modelNumber+"&brand="+brand;
 		GetMethod method = new GetMethod(PRODUCT_BRAND_URL);
 
 		try {
@@ -107,14 +116,14 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
 					new DefaultHttpMethodRetryHandler(2, false));
 			int resultStatusCode = 200;
-
+			log.info("Step 3");
 			if (resultStatusCode != HttpStatus.SC_OK) {
 				log.error("populateProductBasedOnBrand() failed-Status Code: "
 						+ method.getStatusLine());
 			} else {
 				int statusCode = client.executeMethod(method);
 				byte[] responseBody = method.getResponseBody();
-
+				log.info("Step 4");
 				JSONArray jsa = new JSONArray(new String(responseBody));
 				result.put("productList", jsa.toString());
 			}
@@ -137,7 +146,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		final String BRAND_PRODUCT_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models/brands?modelNumber="+modelNumber+"&productType="+product;
+		final String BRAND_PRODUCT_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/brands?modelNumber="+modelNumber+"&productType="+product;
 		GetMethod method = new GetMethod(BRAND_PRODUCT_URL);
 
 		try {
@@ -175,9 +184,9 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		final String BRAND_DETAILS_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models/brands?modelNumber="
+		final String BRAND_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/brands?modelNumber="
 				+ modelNumber;
-		final String PRODUCT_DETAILS_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models/product-types?modelNumber="
+		final String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/product-types?modelNumber="
 				+ modelNumber;
 		result = getList(BRAND_DETAILS_URL, result);
 		result = getList(PRODUCT_DETAILS_URL, result);
@@ -225,13 +234,20 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 
 	@SuppressWarnings("unused")
 	private JSONObject populateModelSearchResults(String modelNumber,
-			String offset, String limit, String sort) throws JSONException,
+			String offset, String limit, String sort, String brand, String productType) throws JSONException,
 			ValueFormatException, PathNotFoundException, RepositoryException {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		final String PRODUCT_DETAILS_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/models?modelNumber="
+		String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models?modelNumber="
 				+ modelNumber + "&offset=" + offset + "&limit=" + limit + "&sortType=" + sort;
+		if(StringUtils.isNotEmpty(brand)){
+			PRODUCT_DETAILS_URL = PRODUCT_DETAILS_URL + "&brand="+brand;
+		}
+		if(StringUtils.isNotEmpty(productType)){
+			PRODUCT_DETAILS_URL = PRODUCT_DETAILS_URL + "&productType="+productType;
+		}
+		
 		GetMethod method = new GetMethod(PRODUCT_DETAILS_URL);
 
 		try {
