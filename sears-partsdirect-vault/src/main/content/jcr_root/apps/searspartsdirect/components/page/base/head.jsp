@@ -11,6 +11,7 @@
 %><head>
 
 <spd:getHeaderHelperData />
+<spd:getAirFilterPartDetails basePartNumber="9030" divisionNumber="046" plsNumber="003" />
 
 <c:choose>
 	<c:when test="${template eq '/apps/searspartsdirect/templates/modelHelp'}" >
