@@ -419,7 +419,7 @@
 		<name>getModelHeader</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetModelHeaderTag</tag-class>
 		<info>Pulls API information for display in Model Header</info>
-		
+
 		<attribute>
 			<name>model</name>
 			<type>java.lang.String</type>
@@ -448,7 +448,7 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-	
+
 	</tag>
 	<tag>
 		<name>getMostPopularGuide</name>
@@ -512,32 +512,56 @@
 		</attribute>
 	</tag>
 	<tag>
-  		<name>getAirFilterParts</name>
-  		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAirFilterPartsTag</tag-class>
-  		<info>Gets the parts associated with AirFilter</info>
-  		<attribute>
-   			<name>width</name>
-   			<type>java.lang.String</type>
-   			<required>true</required>
-   			<rtexprvalue>true</rtexprvalue>
-  		</attribute>
-  		<attribute>
-   			<name>height</name>
-   			<type>java.lang.String</type>
-   			<required>true</required>
-   			<rtexprvalue>true</rtexprvalue>
-  		</attribute>
-  		<attribute>
-   			<name>length</name>
-   			<type>java.lang.String</type>
-   			<required>true</required>
-   			<rtexprvalue>true</rtexprvalue>
-  		</attribute>
- 	</tag><tag>
-  		<name>getAirFilterDimensions</name>
-  		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAirFilterDimensionsTag</tag-class>
-  		<info>Gets the Dimensions associated with AirFilter</info>
-  	</tag>
+		<name>getAirFilterParts</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAirFilterPartsTag</tag-class>
+		<info>Gets the parts associated with AirFilter</info>
+		<attribute>
+			<name>width</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>length</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>getAirFilterDimensions</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAirFilterDimensionsTag</tag-class>
+		<info>Gets the Dimensions associated with AirFilter</info>
+	</tag>
+	<tag>
+		<name>getAirFilterPartDetails</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetAirFilterPartDetailsTag</tag-class>
+		<info>Gets the part details of an AirFilter</info>
+		<attribute>
+			<name>basePartNumber</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>divisionNumber</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>plsNumber</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 	<tag>
 		<name>getHeaderHelperData</name>
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetHeaderHelperTag</tag-class>

@@ -11,6 +11,7 @@
 	searspartsdirect.topparts.api="http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/modelTop/topParts"
 	searspartsdirect.jobcode.parts.api="http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/jobcodelist/partlist"
 	searspartsdirect.modelsub.api="http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/modelInfo"
+	searspartsdirect.airfilter.part.details.api="http://partsapivip.qa.ch3.s.com/pd-services/v1/air-filters/part-details"
 	searspartsdirect.api.root="http://partsapivip.qa.ch3.s.com/pd-services/v1/"
 	searspartsdirect.api.root.secure="https://partsapivip.qa.ch3.s.com/pd-services/v1/"
 	searspartsdirect.local.http="cqapp302p.qa.ch3.s.com:4703"
