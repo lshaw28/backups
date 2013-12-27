@@ -12,31 +12,27 @@
 <div class="airfilterDimensionSection  row-fluid">
     <form id="airFilterSelectionForm" method="post" action="">
         <div class="row-fluid">
-            <div class="span4">   
+            <div class="span4">
                 <select name="airFilterWidth" id="airFilterWidth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Width (in.)" data-display="true" data-changed="false">
-                    <!--<select class="airFilerDimSelect" name="airFilterWidth" id="airFilterWidth" onchange="airFilterWidthCall(this.value)">               -->
 					<c:forEach var="objDimension" items="${airFilterDimensionList.width}">
                         <option value="${objDimension}">${objDimension}</option>
-    				</c:forEach>                      
-                </select>  
-
+    				</c:forEach>
+                </select>
                 <span class="dimensionCross hidden-phone">X</span>
-            </div>       
+            </div>
             <div class="span4">
                 <select name="airFilterHeight" id="airFilterHeight" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Height (in.)" data-display="true" data-changed="false">
-                    <!--<select name="airFilterHeight" id="airFilterHeight" onchange="airFilterHeightCall(this.value)">-->
 					<c:forEach items="${airFilterDimensionList.height}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
-    				</c:forEach>                          
-                </select>   
+    				</c:forEach>
+                </select>
                 <span class="dimensionCross hidden-phone">X</span>
-            </div>       
+            </div>
             <div class="span4">
                 <select name="airFilterDepth" id="airFilterDepth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Depth (in.)" data-display="true" data-changed="false">
-                    <!--<select name="airFilterDepth" id="airFilterDepth" onchange="airFilterDepthCall(this.value)">-->
                     <c:forEach items="${airFilterDimensionList.length}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
-    				</c:forEach>	                   
+    				</c:forEach>
                 </select>
             </div>
         </div>
@@ -49,10 +45,10 @@
 <div class="afBrandsRow">
     <div class="powerdBy">Top air filter brands carried by Sears PartsDirect</div>
     <div class="brandImages">
-        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand1.png"/> 
-        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand2.png"/> 
-        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand3.png"/> 
-        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand4.png" class="fourth_img" /> 
+        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand1.png"/>
+        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand2.png"/>
+        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand3.png"/>
+        <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand4.png" class="fourth_img" />
         <img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand5.png"/>
     </div>
 </div>

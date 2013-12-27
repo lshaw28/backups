@@ -4,7 +4,7 @@
 @media (max-width: 480px) {
     .airFilterDimension{
         .airfilterDimensionSection{
-            border: 4px solid red;        
+            border: 4px solid red;
             margin-bottom: 10px;
             .row-fluid{
                 text-align: center;
@@ -17,11 +17,11 @@
                             li {
                                 border: 4px solid red;
                                 padding: 4px;
-                                text-align: center;                            
+                                text-align: center;
                             }
                         }
                         .new-btn-dropdown{
-                            .icon-chevron-sign-down{                            
+                            .icon-chevron-sign-down{
                                 padding-left: 10px;
                             }
                         }
@@ -29,18 +29,18 @@
                     .dimensionCross {
                         float: right;
                         line-height: 34px;
-                        font-weight: bolder;                      
+                        font-weight: bolder;
                     }
                 }
             }
-            #noDataFound{ 
+            #noDataFound{
                 h1{
-                    padding: 20px;  
+                    padding: 20px;
                 }
-            }   
-        } 
+            }
+        }
         .afBrandsRow{
-            .brandImages{ 
+            .brandImages{
                 float: left;
                 margin:20px auto;
                 padding:0 !important;
@@ -48,9 +48,111 @@
                     margin:0px 10px 10px 10px !important;
                 }
                 .fourth_img{
-					margin:0px 10px 10px 55px !important;
+                    margin:0px 10px 10px 55px !important;
                 }
-            }   
+            }
+        }
+    }
+}
+.airFilterSearchResult{
+    .AirFilterHeading_mobile{
+        font-size:@h4Size;
+        img{
+			margin-right: 10px;
+        }
+    }
+    .bulletHeading{
+        font-size:@pSize;
+        font-weight:bold;
+    }
+    .accordion{
+		float: left;
+        width: 100%;
+    }
+    .accordion-toggle, .accordion-inner {
+        border: 0;
+        padding: 0;
+        text-decoration: none;
+    }
+    .accordion-group, .accordion-inner {
+        border: 0;
+        background-color: @secondaryHueLighter;
+        p{
+            padding: 0px 5px 0 16px;
+        }
+    }
+    .accordion-inner {
+        padding-top: 0;
+    }
+    .accordion-group {
+        .borderRadius(0);
+        margin-bottom: 25px;
+        float: left;
+    }
+    .accordion-toggle {
+        color: @secondaryHueDark;
+        padding-left: 15px;
+        text-decoration: none;
+        padding: 0;
+        text-decoration: none;
+        h4 {
+            display: inline-block;
+        }
+        h4.shopPartsForMobile{
+            display: none;
+        }
+        i {
+            color: @primaryHueNormal;
+            display: inline-block;
+            font-size: @h4Size;
+            margin: 10px 0 0 10px;
+            vertical-align: middle;
+            float: right;
+        }
+        .icon-chevron-up {
+            display: none;
+        }
+        .icon-chevron-down {
+            display: inline-block;
+        }
+        &.collapsed {
+            .icon-chevron-up {
+                display: inline-block;
+            }
+            .icon-chevron-down {
+                display: none;
+            }
+        }
+    }
+    .airFilterPorductRow_mobile{
+        float: left;
+        width:100%;
+        display: block;
+        background-color:@bodyColor;
+        border-bottom: 4px solid @secondaryHueLight;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+        .productImage_mobile{
+            float: left;
+            img{
+                height: 61px;
+                width: 61px;
+                border: 1px solid @secondaryHueLightest;
+                padding: 9px;
+            }
+        }
+        .product_details{
+            float: right !important;
+            width: 200px;
+            .titleAnchor_mobile{
+                margin: 0 0 10px 0;
+                a{
+                    font-size:@h4Size;
+                }
+            }
+            p{
+				margin-bottom: 4px; 
+            }
         }
     }
 }
