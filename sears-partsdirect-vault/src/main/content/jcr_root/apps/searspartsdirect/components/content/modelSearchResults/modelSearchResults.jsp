@@ -155,6 +155,9 @@ var index=0;
         var productIndex = $("#productType").children(":selected").index();
         var productSelected = $("#productType").val();
         flag = 3;
+        if(index == 'Select'){
+        	index = 0;
+        }
         if(productIndex == 0){
         	fillDropdown('<%=searchModPar%>', index, 'brand', 'productType');
         	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, index);

@@ -99,8 +99,14 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
     	else if(flag == 3 || flag == 5){
             // Brand select >> change product
         	clearAll();
-            if(flag ==3){$('#searchResultsDown').empty();}
-        	urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&brand="+index+"&flag=3";
+        	urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=3";
+            if(flag == 3){
+            	$('#searchResultsDown').empty();
+            	if(index != 0){
+            		// if some other value is selected in dropdown, other than SELECT, then only we will pass BRAND parameter.
+            		urlName = urlName + "&brand="+index;
+            	}
+            }
         	if(typeof selectedValue !== 'undefined'){
         		urlName = urlName + "&productType="+selectedValue;
         	}
