@@ -75,8 +75,12 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				else if((StringUtils.equals(flag, "3") || StringUtils.equals(flag, "4")) && StringUtils.isNotEmpty(brand) && StringUtils.isNotEmpty(productType)){
 					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, productType);
 				}
-				else if(StringUtils.equals(flag, "3") && StringUtils.isNotEmpty(brand)){
-					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, "");
+				else if(StringUtils.equals(flag, "3")){
+					if(StringUtils.isNotEmpty(brand)){
+						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, "");
+					}else{
+						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, "", "");
+					}
 				}
 				else if(StringUtils.isNotEmpty(brand)){
 					jsonObject = populateProductBasedOnBrand(modelNumber, brand);
