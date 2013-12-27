@@ -291,7 +291,7 @@
         </div>
     </c:when>
     <c:otherwise>
-        <div id="noDataFound"><H1>Sorry We didn't find any Filters that match those dimensions mansi</H1></div>
+        <div id="noDataFound"><H1>Sorry We didn't find any Filters that match those dimensions </H1></div>
         <cq:include path="instructionsParsys" resourceType="foundation/components/parsys" />
     </c:otherwise>
 </c:choose>
