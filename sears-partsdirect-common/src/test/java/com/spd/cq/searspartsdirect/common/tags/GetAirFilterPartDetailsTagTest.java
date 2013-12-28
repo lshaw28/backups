@@ -1,11 +1,19 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.TagSupport;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.spd.cq.searspartsdirect.common.fixture.GetAirFilterPartDetailsFixture;
+import com.spd.cq.searspartsdirect.common.model.AirFilterPart;
 
 public class GetAirFilterPartDetailsTagTest extends MocksTag {
 
@@ -22,14 +30,12 @@ public class GetAirFilterPartDetailsTagTest extends MocksTag {
 
 	@Test
 	public void testSuccess() throws JspException {
-		assertTrue(true);
-//		setupTagAttributes();
-//		tag.doStartTag();
-//		tag.doEndTag();
-//		@SuppressWarnings("unchecked")
-//		List<AirFilterPart> airFilterParts = (ArrayList<AirFilterPart>) pageContext.getAttribute("airFilterParts");
-//		assertNotNull(airFilterParts);
-//		assertTrue(airFilterParts.size() > 1);
+		setupTagAttributes();
+		runsTagSkipsBodyEvalsPage();
+		@SuppressWarnings("unchecked")
+		List<AirFilterPart> airFilterParts = (ArrayList<AirFilterPart>) pageContext.getAttribute("airFilterParts");
+		assertNotNull(airFilterParts);
+		assertTrue(airFilterParts.size() > 1);
 	}
 
 	private void setupTagAttributes() {
@@ -38,4 +44,9 @@ public class GetAirFilterPartDetailsTagTest extends MocksTag {
 		tag.setPlsNumber("104");
 	}
 
+	private void runsTagSkipsBodyEvalsPage() throws JspException {
+		tag.setPageContext(pageContext);
+		assertThat(tag.doStartTag(),is(TagSupport.SKIP_BODY));
+		assertThat(tag.doEndTag(),is(TagSupport.EVAL_PAGE));
+	}
 }
