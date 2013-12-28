@@ -58,8 +58,8 @@ public class GetAirFilterPartDetailsTag extends CQBaseTag {
 				&& !StringUtils.isBlank(plsNumber)) {
 
 			apiUrlStrBuilder = new StringBuilder(EnvironmentSettings.getPDAirFilterPartDetailsApiUrl());
-			log.debug("*****apiUrlStrBuilder "+apiUrlStrBuilder);
-			
+			log.debug("*****apiUrlStrBuilder " + apiUrlStrBuilder);
+
 			apiUrlStrBuilder.append('?');
 			try {
 				apiUrlStrBuilder.append("number=");
