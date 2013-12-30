@@ -48,8 +48,6 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	private String brand;
 	private String productType;
 	private String flag;
-	
-	
 
 	@Override
 	protected void doGet(SlingHttpServletRequest request,
@@ -66,35 +64,34 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
-		log.info("Step 1:"+brand);
-		if (StringUtils.isNotEmpty(modelNumber)){
+		
+		if (StringUtils.isNotEmpty(modelNumber) && StringUtils.isNotEmpty(flag)){
 			try {
 				if((StringUtils.equals(flag, "0") || StringUtils.equals(flag, "1") || StringUtils.equals(flag, "2")) && StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sortType)){
 					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, "", "");
 				}
-				else if((StringUtils.equals(flag, "3") || StringUtils.equals(flag, "4")) && StringUtils.isNotEmpty(brand) && StringUtils.isNotEmpty(productType)){
-					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, productType);
-				}
-				else if(StringUtils.equals(flag, "3")){
-					if(StringUtils.isNotEmpty(brand)){
+				else if((StringUtils.equals(flag, "3") || StringUtils.equals(flag, "4")) && StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sortType)){
+					if((StringUtils.isNotEmpty(brand) && StringUtils.isNotEmpty(productType))){
+						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, productType);
+					}
+					else if(StringUtils.isNotEmpty(brand)){
 						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, "");
-					}else{
-						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, "", "");
+					}
+					else if(StringUtils.isNotEmpty(productType)){
+						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, "", productType);
 					}
 				}
-				else if(StringUtils.isNotEmpty(brand)){
-					jsonObject = populateProductBasedOnBrand(modelNumber, brand);
+				else if(StringUtils.equals(flag, "5")){
+					if(StringUtils.isNotEmpty(brand)){
+						jsonObject = populateProductBasedOnBrand(modelNumber, brand);
+					}
+					else if(StringUtils.isNotEmpty(productType)){
+						jsonObject = populateBrandBasedOnProduct(modelNumber, productType);
+					}
 				}
-				else if(StringUtils.equals(flag, "4") && StringUtils.isNotEmpty(productType)){
-					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, "", productType);
-				}
-				else if(StringUtils.isNotEmpty(productType)){
-					jsonObject = populateBrandBasedOnProduct(modelNumber, productType);
-				}
-				else if(StringUtils.equals(flag, "7")){
+				else if(StringUtils.equals(flag, "6")){
 					jsonObject = populateBrandProductList(modelNumber);
 				}
-				
 				response.getWriter().print(jsonObject.toString());
 			} catch (RepositoryException e) {
 				log.error("Error occured in ContainerServlet:doGet() "

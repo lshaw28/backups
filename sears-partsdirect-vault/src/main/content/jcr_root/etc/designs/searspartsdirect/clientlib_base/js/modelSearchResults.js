@@ -4,8 +4,6 @@
  * Flag 2: Sort - show
  * Flag 3: Brand Selection - show
  * Flag 4: Product Selection - show
- * Flag 5: SYW Brand
- * Flag 6: SYW Product
  * */
 
 function clearAll(){
@@ -14,40 +12,64 @@ function clearAll(){
     $("#searchCountTotal").empty();
     $("#searchCountSYW").empty();
     $("#pageCountSYW").empty();
-    $("#searchCountDown").empty();
     $(".pageCountResults").empty();
+    $('#searchResultsDown').empty();
+}
+
+function headerHide(){
+	$("#totalResultCount").hide();
+	$("#SYWHeader").hide();
+	$("#brandRefinement").hide();
+}
+
+function headerShow(){
+	$("#totalResultCount").show();
+	$("#SYWHeader").show();
+	$("#brandRefinement").show();
 }
 
 function sywHide(){
-    $("#SYWHeader").hide();
     $("#SYW1").hide();
     $("#SYW2").hide();
-    $("#SYW3").hide();
     $("#searchResultsUp").hide();
 }
 
 function sywShow(){
-    $("#SYWHeader").show();
     $("#SYW1").show();
     $("#SYW2").show();
-    $("#SYW3").show();
     $("#searchResultsUp").show();
 }
 
+function searchHide(){
+	$("#search1").hide();
+	$("#search2").hide();
+    $("#searchResultsDown").hide();
+    //if($("#SYWHeader").is(":visible")){
+    	//$("#search1").show();
+    //}
+}
+
 function searchShow(){
-	$("#searchCountTotal").show();
-	if($("#SYWHeader").is(":visible")){
-    	$("#search1").show();
-    }
-    $("#search2").show();
-    $("#search3").show();
+	$("#search1").show();
+	$("#search2").show();
     $("#searchResultsDown").show();
 	$("#footer").show();
     $("#notsure").show();
 }
 
-function fillDropdown(modelNumber, param, param1, param2){
-    var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&"+param1+"="+param;
+function footerHide(){
+	$("#footer").hide();
+    $("#notsure").hide();
+}
+
+function footerShow(){
+	$("#footer").show();
+    $("#notsure").show();
+}
+
+function fillDropdown(modelNumber, selectedValue, queryParam, dropDown){
+	// queryParam: brand or productType (Servlet will accept this parameter)
+    var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&"+queryParam+"="+selectedValue+"&flag=5";
 	$.ajax({
 				type : "GET",
 				cache : false,
@@ -60,11 +82,11 @@ function fillDropdown(modelNumber, param, param1, param2){
         			searchResults = JSON.parse(searchResults);
 
 					var brandArr = [];
-            		$("#"+param2).empty();
-            		$("#"+param2).append("<option value=\"Select\">--Select--</option>");
+            		$("#"+dropDown).empty();
+            		$("#"+dropDown).append("<option value=\"Select\">--Select--</option>");
 					for(var i=0; i < searchResults.length; i++){
 						var resultDetail = searchResults[Object.keys(searchResults)[i]];
-						$("#"+param2).append("<option value=\""+resultDetail.name+"\">"+resultDetail.seoFormattedName+"</option>");
+						$("#"+dropDown).append("<option value=\""+resultDetail.name+"\">"+resultDetail.seoFormattedName+"</option>");
 					}
 				},
 				error : function() {
@@ -76,6 +98,11 @@ function fillDropdown(modelNumber, param, param1, param2){
 function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) {
 	 var urlName="";
 	 var offset=0;
+	 
+	 headerHide();
+	 sywHide();
+	 searchHide();
+	 footerHide();
 
 	    if(flag == 1){
             // page change
@@ -96,26 +123,26 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
             	urlName = urlName + "&sortType=model-desc";
             }
         }
-    	else if(flag == 3 || flag == 5){
+    	else if(flag == 3){
             // Brand select >> change product
         	clearAll();
         	urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=3";
-            if(flag == 3){
-            	$('#searchResultsDown').empty();
-            	if(index != 0){
-            		// if some other value is selected in dropdown, other than SELECT, then only we will pass BRAND parameter.
-            		urlName = urlName + "&brand="+index;
-            	}
-            }
-        	if(typeof selectedValue !== 'undefined'){
+        	if(index != 0){
+        		// if some other value is selected in dropdown, other than SELECT, then only we will pass BRAND parameter.
+        		urlName = urlName + "&brand="+index;
+        	}
+            if(typeof selectedValue !== 'undefined'){
         		urlName = urlName + "&productType="+selectedValue;
         	}
         }
-    	else if(flag == 4 || flag == 6){
+    	else if(flag == 4){
             // Product select >> change brand
         	clearAll();
-            if(flag ==4){$('#searchResultsDown').empty();}
-            urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&productType="+index+"&flag=4";
+            urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=4";
+            if(index != 0){
+        		// if some other value is selected in dropdown, other than SELECT, then only we will pass productType parameter.
+        		urlName = urlName + "&productType="+index;
+        	}
             if(typeof selectedValue !== 'undefined'){
         		urlName = urlName + "&brand="+selectedValue;
         	}
@@ -137,13 +164,15 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                     var sywResultExist = false;
 
                     if(jsonLength != 0){
-
+                    	// these two will always present in json response whether ZERO
 						var totalCount = jsonResponse[Object.keys(jsonResponse)[0]];
         				var sywCount = jsonResponse[Object.keys(jsonResponse)[1]];
-
+        				
+        				/* Set Pagination Start */
                         if(flag == 0){
+                        	// Normal Search / First Time hit
 	                    	for( var i = 1; i <= Math.ceil(totalCount/25); i++){
-	                        	if(i==1){
+	                        	if(i == 1){
                                 	$("#pageNumber").append("<option value=\""+i+"\" selected>Page "+i+"</option>");
                             	}
 	                        	else{
@@ -151,18 +180,15 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                             	}
 	                    	}
                     	}
+                        /* Set Pagination End */
+                        
+                        /* Set Total Count Start */
                        $("#searchCountTotal").append(parseInt(totalCount)+parseInt(sywCount));
                        $("#searchCountSYW").append(sywCount);
-                       $("#pageCountSYW").append("1-"+sywCount+" of " + sywCount);
                        $("#searchCountDown").append(totalCount);
+                       $("#pageCountSYW").append("1-"+sywCount+" of " + sywCount);
 
-                       	/*if(flag == 2 || flag == 3 || flag == 4){
-                            sywShow();
-                        }else{
-                            sywHide();
-                        }*/
-
-                        var toshow = 0;
+                       	var toshow = 0;
                         if(totalCount < 25){
                             toshow = totalCount;
                         }else{
@@ -173,7 +199,9 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                             }
                         }
                         $(".pageCountResults").append((offset+1)+"-"+toshow+" of " + totalCount);
-
+                        /* Set Total Count Start */
+                        
+                        /* Show Results Start */
                         for ( var i = 2; i < jsonLength; i++) {
                             var searchResults = jsonResponse[Object.keys(jsonResponse)[2]];
                             searchResults = JSON.parse(searchResults);
@@ -225,18 +253,17 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                                     }
                                     searchResultCount++;
                                 }
-                                else if((flag == 0 || flag == 5 || flag == 6 || (flag == 1 && index == 0)) && resultDetail.sywModel == true) {
+                                else if((flag == 0 || flag == 3 || flag == 4 || (flag == 1 && index == 0)) && resultDetail.sywModel == true) {
                                     /*
                                      * Normal Result
-                                     * Flag 5: Brand Selection
-                                     * Flag 6: Product Selection
+                                     * Flag 3 - Brand Selection
+                                     * Flag 4 - Product Selection
                                      * Flag 1, index 0: Clicking on Previous and comes to first page
                                      * */
                                     if(sywResultExist == false){
                                         sywResultExist = true;
                                     }
-
-
+                                    
                                     /*if(!$("#SYWHeader").is(":visible")){
                                         $("#SYWHeader").show();
                                         $("#SYW1").show();
@@ -271,14 +298,28 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                                 }
                             }
                         }
+                        /* Show Results End */
+                    }else{
+                    	// It should get redirected to No Models Found Page
+                    	alert("No Models Found...");
                     }
-					if(sywResultExist == true){
+                    if(sywResultExist == true || searchResultExist == true){
+                        headerShow();
+                        footerShow();
+                    }
+                    if(sywResultExist == true){
                         sywShow();
+                    }else{
+                    	if(flag == 2){
+                    		// sorting
+                    		sywHide();
+                    	}
                     }
                     if(searchResultExist == true){
                         searchShow();
+                    }else{
+                    	searchHide();
                     }
-
                 },				
 				error : function() {
 					console.log("Failed to retrieve data from server");
@@ -287,7 +328,7 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
 }
 
 function populateBrandProductDetails(modelNumber) {
-	var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&flag=7";
+	var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&flag=6";
 	$.ajax({
 				type : "GET",
 				cache : false,
