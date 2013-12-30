@@ -40,7 +40,14 @@
    <div id="afLandingImage" class="span12 hidden-phone"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension.png"/> </div>
    <div id="afLandingMobileImage" class="span12 visible-phone"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension-mobile.png"/> </div>
    <div id="noDataFound"><H1>Sorry We didn't found any Filters that match those dimensions</H1></div>
-    <cq:include path="instructionsParsys" resourceType="foundation/components/parsys" />
+    <spd:resolveHazardTipWarning adhocField="noticeText" choiceField="tipChosen" placeholder=""/>
+    <c:set var="noticeIcon"><cq:text property="noticeIcon" placeholder=""/></c:set>
+    <c:if test="${empty noticeIcon}"><c:set var="noticeIcon" value="icon-info" /></c:if>
+    <cq:include path="/etc/spdAssets/globalConfig/tipPrefix" resourceType="searspartsdirect/components/content/tipPrefix" />
+        <div class="toolTip">
+            <div class="tipIcon"><i class="${noticeIcon} pull-left icon-3x">&nbsp;</i></div>
+            <div class="tipIconText"><em><c:out value="${tipPrefix}" /></em> <c:out value="${htwText}" />The official dimensions of your air filter may be slightly different than the measured length and width. Use the dimensions shown on your filter's label</div>
+        </div>	
 </div>
 <div class="afBrandsRow">
     <div class="powerdBy">Top air filter brands carried by Sears PartsDirect</div>
