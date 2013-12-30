@@ -94,10 +94,10 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				}
 				response.getWriter().print(jsonObject.toString());
 			} catch (RepositoryException e) {
-				log.error("Error occured in ContainerServlet:doGet() "
+				log.error("Error occured in PSSearchServlet:doGet() "
 						+ e.getMessage() + " Exception: ");
 			} catch (JSONException e) {
-				log.error("Error occured in ContainerServlet:doGet() "
+				log.error("Error occured in PSSearchServlet:doGet() "
 						+ e.getMessage() + " Exception: ");
 			}
 		}
@@ -117,22 +117,22 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
 					new DefaultHttpMethodRetryHandler(2, false));
 			int resultStatusCode = 200;
-			log.info("Step 3");
+			
 			if (resultStatusCode != HttpStatus.SC_OK) {
 				log.error("populateProductBasedOnBrand() failed-Status Code: "
 						+ method.getStatusLine());
 			} else {
 				int statusCode = client.executeMethod(method);
 				byte[] responseBody = method.getResponseBody();
-				log.info("Step 4");
+				
 				JSONArray jsa = new JSONArray(new String(responseBody));
 				result.put("productList", jsa.toString());
 			}
 		} catch (HttpException e) {
-			log.error("Error occured in ContainerServlet:getProductInfo() "
+			log.error("Error occured in PSSearchServlet:populateProductBasedOnBrand() "
 					+ e.getMessage() + " Exception: ");
 		} catch (IOException e) {
-			log.error("Error occured in ContainerServlet:getProductInfo() "
+			log.error("Error occured in PSSearchServlet:populateProductBasedOnBrand() "
 					+ e.getMessage() + " Exception: ");
 		} finally {
 			// Release the connection.
@@ -167,10 +167,10 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				result.put("brandList", jsa.toString());
 			}
 		} catch (HttpException e) {
-			log.error("Error occured in ContainerServlet:getProductInfo() "
+			log.error("Error occured in PSSearchServlet:populateBrandBasedOnProduct() "
 					+ e.getMessage() + " Exception: ");
 		} catch (IOException e) {
-			log.error("Error occured in ContainerServlet:getProductInfo() "
+			log.error("Error occured in PSSearchServlet:populateBrandBasedOnProduct() "
 					+ e.getMessage() + " Exception: ");
 		} finally {
 			// Release the connection.
@@ -221,10 +221,10 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				result.put(jsonKey, jsa.toString());
 			}
 		} catch (HttpException e) {
-			log.error("Error occured in ContainerServlet:getProductInfo() "
+			log.error("Error occured in PSSearchServlet:getList() "
 					+ e.getMessage() + " Exception: ");
 		} catch (IOException e) {
-			log.error("Error occured in ContainerServlet:getProductInfo() "
+			log.error("Error occured in PSSearchServlet:getList() "
 					+ e.getMessage() + " Exception: ");
 		} finally {
 			// Release the connection.
@@ -275,10 +275,10 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				result.put("jsonData", jsa.toString());
 			}
 		} catch (HttpException e) {
-			log.error("Error occured in ContainerServlet:getProductInfo() "
+			log.error("Error occured in PSSearchServlet:populateModelSearchResults() "
 					+ e.getMessage() + " Exception: ");
 		} catch (IOException e) {
-			log.error("Error occured in ContainerServlet:getProductInfo() "
+			log.error("Error occured in PSSearchServlet:populateModelSearchResults() "
 					+ e.getMessage() + " Exception: ");
 		} finally {
 			// Release the connection.
