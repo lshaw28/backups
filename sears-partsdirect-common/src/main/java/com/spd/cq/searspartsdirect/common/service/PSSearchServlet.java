@@ -255,13 +255,12 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			// Provide custom retry handler is necessary
 			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
 					new DefaultHttpMethodRetryHandler(2, false));
-			int resultStatusCode = 200;
-//log.info("Pankaj Status:"+method.getStatusCode());
-			if (resultStatusCode != HttpStatus.SC_OK) {
+			int statusCode = client.executeMethod(method);
+			
+			if (statusCode != HttpStatus.SC_OK) {
 				log.error("populateModelSearchResults() failed-Status Code: "
 						+ method.getStatusLine());
-			} else {
-				int statusCode = client.executeMethod(method);
+			}else {
 				// Read the response body.
 				byte[] responseBody = method.getResponseBody();
 				Header headerTotalCount = method
