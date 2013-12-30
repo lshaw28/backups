@@ -53,8 +53,6 @@ function searchShow(){
 	$("#search1").show();
 	$("#search2").show();
     $("#searchResultsDown").show();
-	$("#footer").show();
-    $("#notsure").show();
 }
 
 function footerHide(){
@@ -319,6 +317,10 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                         searchShow();
                     }else{
                     	searchHide();
+                    }
+                    if(sywCount == 0){
+                        $("#SYWHeader").hide();
+                        $("#search1").hide();
                     }
                 },				
 				error : function() {
