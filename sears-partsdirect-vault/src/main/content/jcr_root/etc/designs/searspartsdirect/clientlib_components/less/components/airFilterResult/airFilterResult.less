@@ -1,0 +1,92 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+.airFilterResult{
+    .airFilterSearchResult{
+        font-color:@secondaryHueDark;
+        
+        .totalProductCount{
+            font-size:@h4Size;
+            color:@secondaryHueDark;
+            display:block;
+            padding:10px 0 20px 0;
+        }
+        .typeOfAirFilterSearch p{ margin:0px; }
+        .typeOfAirFilterSearch{
+            float:left;
+            border: 3px solid @secondaryHueLighter;
+            padding:0px 23px 13px;
+            
+            .AirFilterHeading{
+                font-size:@h2Size;
+                
+                img{
+                    margin-right: 10px;
+                }
+            }
+            .bulletHeading{
+                font-size:@pSize;
+                font-weight:bold;
+            }
+            .rightDiv{
+                padding:0 20px 0 0;
+            }
+            .smallFont{
+                font-size:@smallPSize;
+            }
+        }
+        
+        .titleAnchor{
+            font-size:@smallPSize;
+        }
+        
+        .airFilterPorductRow{
+            width: 100%;
+            padding: 25px 0;
+            float: left;
+            border-bottom: 1px solid @secondaryHueLighter;
+            font-size: @pSize;
+            
+            .productImage{
+                img{
+                    height: 76px;
+                    width: 76px;
+                    border: 1px solid @secondaryHueLightest;
+                    padding: 9px;
+                }
+            }
+            .titleAnchor{
+                margin: 0 0 23px 0;
+                a{
+                    font-size:@h4Size;
+                }
+            }
+            .productPrice{
+                text-align: right;
+            }
+            .price{
+                font-size:20px;
+            }
+            .ProductDetailsAnchor{
+                padding:10px 18px;
+                border: 1px solid @primaryHueNormal;
+                border-radius: 4px;
+                color: #067bb5;
+                text-decoration: none;
+                float: right;
+            }
+            .freeShippingBox{
+                border: 1px solid @secondaryHueLightest;
+                border-radius: 4px;
+                background-color:@secondaryHueLightest;
+                padding: 4px 10px;
+                width: 300px;
+            }
+            .freeSS{
+                color:@highlightHueDarkest;
+            }
+        }
+    }
+}
+
+@import "airFilterResult.mobile";
+@import "airFilterResult.tablet";
