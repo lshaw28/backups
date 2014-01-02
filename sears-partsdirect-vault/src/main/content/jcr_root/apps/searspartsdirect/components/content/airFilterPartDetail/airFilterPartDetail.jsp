@@ -16,8 +16,9 @@
                 </div>
             </div>
             <div class="print">
-                <i class="icon-zoom-in color"></i>&nbsp;<a class="margin20px">Full Size</a>
-                <i class="icon-print color"></i>&nbsp;<a class="margin20px">Print </a>
+                <p><i class="icon-zoom-in"></i><a href="#"> Full Size</a></p>
+                <p><i class="icon-print"></i><a href="#"> Print</a></p>
+                <p><i class="svg-icon-photo"></i><a href="#"> Upload a photo</a></p>
             </div>
         </div>
         <div class="span7">
