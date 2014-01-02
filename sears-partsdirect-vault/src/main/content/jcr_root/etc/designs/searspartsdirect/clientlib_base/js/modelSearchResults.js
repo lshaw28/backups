@@ -83,8 +83,10 @@ function fillDropdown(modelNumber, selectedValue, queryParam, dropDown){
             		$("#"+dropDown).empty();
             		$("#"+dropDown).append("<option value=\"Select\">--Select--</option>");
 					for(var i=0; i < searchResults.length; i++){
+
 						var resultDetail = searchResults[Object.keys(searchResults)[i]];
-						$("#"+dropDown).append("<option value=\""+resultDetail.name+"\">"+resultDetail.seoFormattedName+"</option>");
+
+						$("#"+dropDown).append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
 					}
 				},
 				error : function() {
@@ -146,9 +148,10 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
         	}
         }
 	    else{
+            clearAll();
 			urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=0";
 	    }
-
+//console.log(urlName);
     	$.ajax({
 				type : "GET",
 				cache : false,
@@ -165,10 +168,11 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                     	// these two will always present in json response whether ZERO
 						var totalCount = jsonResponse[Object.keys(jsonResponse)[0]];
         				var sywCount = jsonResponse[Object.keys(jsonResponse)[1]];
-        				
+
         				/* Set Pagination Start */
                         if(flag == 0){
                         	// Normal Search / First Time hit
+                            $("#pageNumber").empty();
 	                    	for( var i = 1; i <= Math.ceil(totalCount/25); i++){
 	                        	if(i == 1){
                                 	$("#pageNumber").append("<option value=\""+i+"\" selected>Page "+i+"</option>");
@@ -179,7 +183,7 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
 	                    	}
                     	}
                         /* Set Pagination End */
-                        
+
                         /* Set Total Count Start */
                        $("#searchCountTotal").append(parseInt(totalCount)+parseInt(sywCount));
                        $("#searchCountSYW").append(sywCount);
@@ -198,16 +202,17 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                         }
                         $(".pageCountResults").append((offset+1)+"-"+toshow+" of " + totalCount);
                         /* Set Total Count Start */
-                        
+
                         /* Show Results Start */
                         for ( var i = 2; i < jsonLength; i++) {
                             var searchResults = jsonResponse[Object.keys(jsonResponse)[2]];
                             searchResults = JSON.parse(searchResults);
                             var searchResultCount = 0;
-    
-                            for(var i = 0; i < searchResults.length; i++) {
-    
-                                var resultDetail = searchResults[Object.keys(searchResults)[i]];
+                            console.log("search count: "+searchResults.length);
+
+                            for(var j = 0; j < searchResults.length; j++) {
+
+                                var resultDetail = searchResults[Object.keys(searchResults)[j]];
     
                                 if((flag == 0 || flag == 1 || flag == 2 || flag == 3 || flag == 4) && resultDetail.sywModel == false) {
     
@@ -233,7 +238,7 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                                                             + "\">"
                                                             + resultDetail.modelNumber
                                                             + "</a></span> ("
-                                                            + resultDetail.parts
+                                                            + resultDetail.partCount
                                                             + " parts)</p>"
                                                             + "<span class=\"hidden-phone\"><a>View manuals</a><a>Repair Help</a></span>"
                                                             + "</div>"
@@ -278,7 +283,7 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                                                         + "\">"
                                                         + resultDetail.modelNumber
                                                         + "</a></span> ("
-                                                        + resultDetail.parts
+                                                        + resultDetail.partCount
                                                         + " parts)</p>"
                                                         + "<span class=\"hidden-phone\"><a>View manuals</a><a>Repair Help</a></span>"
                                                         + "</div>"
@@ -329,7 +334,8 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
 			});
 }
 
-function populateBrandProductDetails(modelNumber) {
+function populateBrandProductDetails(modelNumber, divID) {
+	// divID parameter -- in case we want to fill only one dropdown.
 	var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&flag=6";
 	$.ajax({
 				type : "GET",
@@ -339,24 +345,55 @@ function populateBrandProductDetails(modelNumber) {
 				success : function(data) {
 					var jsonResponse = data;
 					var len = Object.keys(jsonResponse).length;
+					
 					var searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
         			searchResults = JSON.parse(searchResults);
 
 					var brandArr = [];
+					
+					if(typeof divID === 'undefined'){
+                        $("#brand").append("<option value=\"Select\">--Select--</option>");
+						for(var i=0; i < searchResults.length; i++){
+							var resultDetail = searchResults[Object.keys(searchResults)[i]];
+							$("#brand").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
+						}
 
-					for(var i=0; i < searchResults.length; i++){
-						var resultDetail = searchResults[Object.keys(searchResults)[i]];
-						$(".brand").append("<option value=\""+resultDetail.name+"\">"+resultDetail.seoFormattedName+"</option>");
+						searchResults = jsonResponse[Object.keys(jsonResponse)[1]];
+	        			searchResults = JSON.parse(searchResults);
+
+						brandArr = [];
+                        $("#productType").append("<option value=\"Select\">--Select--</option>");
+						for(var i=0; i < searchResults.length; i++){
+							var resultDetail = searchResults[Object.keys(searchResults)[i]];
+							$("#productType").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
+						}
 					}
+					else if(typeof divID !== 'undefined'){
+						if(divID == 'brand'){
+                            var selected = $("#brand").val();
+                            console.log("this was: "+selected);
+                            $("#brand").empty();
+                            $("#brand").append("<option value=\"Select\">--Select--</option>");
+							for(var i=0; i < searchResults.length; i++){
+								var resultDetail = searchResults[Object.keys(searchResults)[i]];
+                                console.log(resultDetail.name);
+								$("#brand").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
+							}
+                            $("#brand > [value='"+selected+"']").attr("selected", "true");
+						}
+						if(divID == 'productType'){
+                            var selected = $("#productType").val();
+                            $("#productType").empty();
+                            $("#productType").append("<option value=\"Select\">--Select--</option>");
 
-					searchResults = jsonResponse[Object.keys(jsonResponse)[1]];
-        			searchResults = JSON.parse(searchResults);
-
-					brandArr = [];
-
-					for(var i=0; i < searchResults.length; i++){
-						var resultDetail = searchResults[Object.keys(searchResults)[i]];
-						$(".product").append("<option value=\""+resultDetail.name+"\">"+resultDetail.seoFormattedName+"</option>");
+                            searchResults = jsonResponse[Object.keys(jsonResponse)[1]];
+	        				searchResults = JSON.parse(searchResults);
+							for(var i=0; i < searchResults.length; i++){
+								var resultDetail = searchResults[Object.keys(searchResults)[i]];
+								$("#productType").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
+							}
+                            $("#productType > [value='"+selected+"']").attr("selected", "true");
+						}
 					}
 				},
 				error : function() {

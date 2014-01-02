@@ -27,6 +27,7 @@ import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.net.URLEncoder;
 
 @Component
 @Service
@@ -59,8 +60,8 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 		offset = request.getParameter("offset") != null ? request.getParameter("offset") : null;
 		limit = request.getParameter("limit") != null ? request.getParameter("limit") : null;
 		sortType = request.getParameter("sortType") != null ? request.getParameter("sortType") : null;
-		brand = request.getParameter("brand") != null ? request.getParameter("brand") : null;
-		productType = request.getParameter("productType") != null ? request.getParameter("productType") : null;
+		brand = request.getParameter("brand") != null ? URLEncoder.encode(request.getParameter("brand"), "UTF-8") : null;
+		productType = request.getParameter("productType") != null ? URLEncoder.encode(request.getParameter("productType"), "UTF-8") : null;
 
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
