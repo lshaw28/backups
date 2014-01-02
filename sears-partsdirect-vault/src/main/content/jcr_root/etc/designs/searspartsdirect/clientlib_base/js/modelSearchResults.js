@@ -304,7 +304,7 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                         /* Show Results End */
                     }else{
                     	// It should get redirected to No Models Found Page
-                    	alert("No Models Found...");
+                    	$(window.location).attr('href', 'no-models-found.html?modelNum='+modelNumber);
                     }
                     if(sywResultExist == true || searchResultExist == true){
                         headerShow();
