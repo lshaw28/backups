@@ -60,7 +60,39 @@ var searchPanel = Class.extend(function () {
 			$('#pathTaken').attr('value', el.data('pathtaken'));
 			// Update form action
 			//$('#searchBarForm').attr('action', action + encodeURIComponent(value));
-			$('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
+			//$('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
+			 $('#searchBarForm').click(function( event ){
+
+
+	                var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=0";
+	                $.ajax({
+					type : "GET",
+					cache : false,
+					dataType : "json",
+					url : urlName,
+	                success : function(data) {
+
+	                  	var jsonResponse = data;
+						var jsonLength = Object.keys(jsonResponse).length;
+	                    var searchResultExist = false;
+	                    var sywResultExist = false;
+
+	                    if(jsonLength != 0){
+	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
+	                        //$(window.location).attr('href', 'modelsearchresults.html');
+	                        $('#searchBarForm').submit();
+
+	                    }
+	                    else{
+	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-models-found.html");
+							//$(window.location).attr('href', 'no-models-found.html');
+	                        $('#searchBarForm').submit();
+
+	                    }
+	                }
+	            });  
+		    });
+			 
 		},
 		/**
 		 * Sanitises the current value
@@ -132,7 +164,7 @@ var searchPanel = Class.extend(function () {
 				e.preventDefault();
 
 				if (self.getValue() !== '' && $(selectStatement).length > 0) {
-					$('#searchBarForm').submit();
+					//$('#searchBarForm').submit();
 					$('#searchBarField').removeClass('error');
 				} else {
 					$('#searchBarField').addClass('error');
