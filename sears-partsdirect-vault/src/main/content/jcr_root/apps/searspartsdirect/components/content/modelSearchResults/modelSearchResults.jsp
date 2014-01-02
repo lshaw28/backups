@@ -34,15 +34,15 @@
 		<h4>Refine your search results</h4>
 		<div class="row-fluid">
 			<div class="span3 new-span-responsive">
-				<h4>By Brand: <span class="pull-right filterClearLink"><a href="#">clear </a><i class="icon-remove-sign"></i></span></h4>
+				<h4>By Brand: <span class="pull-right filterClearLink"><a onclick="brandClear()" href="#">clear</a><i class="icon-remove-sign"></i></span></h4>
 				<select class="brand" id="brand">
-                    <option value="Select">--Select--</option>
+                    
 				</select>
 			</div>
 			<div class="span3 new-span-responsive">
-				<h4>By Product Type: <span class="pull-right filterClearLink"><a href="#">clear </a><i class="icon-remove-sign"></i></span></h4>
-				<select class="product" id="productType">
-                    <option value="Select">--Select--</option>
+				<h4>By Product Type: <span class="pull-right filterClearLink"><a onclick="productClear()" href="#">clear</a><i class="icon-remove-sign"></i></span></h4>
+				<select class="productType" id="productType">
+                    
 				</select>
 			</div>
 		</div>
@@ -61,7 +61,6 @@
 	</div>
 </div>
 <div class="modelSearchResultsItemBkg" id="searchResultsUp" style="display:none;">
-
 </div>
 <!-- SYW Section END -->
 
@@ -131,13 +130,58 @@ var selectedValue=0;
         $('#pageNumber').prop('selectedIndex', 0);
 
     });
+
+    function brandClear(){
+    	// will fill it again on the basis of modelNumber and productType selected
+    	// if No productType is selected, we will fill it again with modelNumber
+
+        //$("#brand").empty();
+        var productSelected = $("#productType option:selected").text();
+        populateBrandProductDetails('<%=searchModPar%>', 'productType');
+    	if(productSelected != '--Select--'){
+            selectedValue = 0;
+            //console.log("selected product:"+productSelected);
+            flag = 3;
+    		fillDropdown('<%=searchModPar%>', productSelected, 'productType', 'brand');
+            // model search results with modelNumber, productType
+            modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue, productSelected);
+    	}else{
+            flag = 0;
+            populateBrandProductDetails('<%=searchModPar%>', 'brand');
+            // model search results with modelNumber
+            modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue);
+    	}
+    	// filling another dropdown again
+    }
+
+    function productClear(){
+    	// will fill it again on the basis of modelNumber and brand selected
+    	// if No brand is selected, we will fill it again with modelNumber
+        //$("#productType").empty();
+    	var brandSelected = $("#brand option:selected").text();
+        populateBrandProductDetails('<%=searchModPar%>', 'brand');
+    	if(brandSelected != '--Select--'){
+            selectedValue = 0;
+            //console.log("selected brand:"+brandSelected);
+            flag = 4;
+    		fillDropdown('<%=searchModPar%>', brandSelected, 'brand', 'productType');
+            modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue, brandSelected);
+    	}else{
+
+            flag = 0;
+            populateBrandProductDetails('<%=searchModPar%>', 'productType');
+            modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue);
+    	}
+    	// filling another dropdown again
+    }
     
     $("#brand").change(function () {
-    	selectedValue = $(this).val();
+    	selectedValue = $("#brand option:selected").text();
+
         var productIndex = $("#productType").children(":selected").index();
-        var productSelected = $("#productType").val();
+        var productSelected = $("#productType option:selected").text();
         flag = 3;
-        if(selectedValue == 'Select'){
+        if(selectedValue == '--Select--'){
         	selectedValue = 0;
         }
         if(productIndex == 0){
@@ -147,12 +191,16 @@ var selectedValue=0;
         	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue, productSelected);
         }
     });
-    
+
     $("#productType").change(function () {
-    	selectedValue = $(this).val();
+    	selectedValue = $("#productType option:selected").text();
+
         var brandIndex = $("#brand").children(":selected").index();
-        var brandSelected = $("#brand").val();
+        var brandSelected = $("#brand option:selected").text();
         flag = 4;
+        if(selectedValue == '--Select--'){
+        	selectedValue = 0;
+        }
         if(brandIndex == 0){
         	fillDropdown('<%=searchModPar%>', selectedValue, 'productType', 'brand');
         	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue);
