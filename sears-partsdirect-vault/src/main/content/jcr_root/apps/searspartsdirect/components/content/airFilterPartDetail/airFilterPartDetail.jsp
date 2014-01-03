@@ -5,7 +5,7 @@
 
 <div class="partDetailPage">
     <h1>Fabreze 20x30x1 Pleated Replacement Air Filter - MERV 12</h1>
-    <div class="partNumber">PART #: 8534854 - 4</div>
+    <div class="partNumber">PART #: 8534854 - <span>4</span></div>
     <div class="productDetail">
         <div class="span5">
             <div class="productMainImage">
@@ -18,127 +18,67 @@
             <div class="print">
                 <p><i class="icon-zoom-in"></i><a href="#"> Full Size</a></p>
                 <p><i class="icon-print"></i><a href="#"> Print</a></p>
-                <p><i class="svg-icon-photo"></i><a href="#"> Upload a photo</a></p>
             </div>
         </div>
+
         <div class="span7">
             <div class="price">
-                <h2>$14.98</h2>
-                <div class="inStock">In stock</div>
+                <h2 id="price">$14.98</h2>
+                <p id="" class="inStock">In stock</p>
             </div>
-            <div class="packSizeDiv">
-                <p>Choose your pack size</p>
-                <div class="diffPacks">
-                    <a class="current border">4 pack</a>
-                    <a class="border">6 pack</a>
-                    <a class="border">12 pack</a>
-                </div>
-                <p>How often would you like to recieve this product?</p>
-                <div class="recieveProduct hidden-phone">
-                    <a>One time<br />order</a>
-                    <a>Every 3<br />months</a>
-                    <a>Every 6<br />month</a>
-                    <a>Every 12<br />month</a>
-                </div>
-                <div class="recieveProduct_mobile visible-phone">
-                    <a>One time order</a>
-                    <a>Every 3 months</a>
-                    <a>Every 6 month&nbsp;</a>
-                    <a>Every 12 month</a>
-                </div>
+
+            <p class="packOptions">Choose your pack size</p>
+            <div class="row-fluid">
+                <button id="" class="packBox active">4 Pack</button>
+                <button id="" class="packBox">6 Pack</button>
+                <button id="" class="packBox">12 Pack</button>
             </div>
-            <div class="freeShippin">
+
+            <p class="packOptions">How often would you like to receive this product?</p>
+            <div class="row-fluid">
+                <button id="" class="packBox wide active">One-time order</button>
+                <button id="" class="packBox wide">Every 3 months</button>
+                <button id="" class="packBox wide">Every 6 months</button>
+                <button id="" class="packBox wide">Every 12 months</button>
+            </div>
+
+            <div class="row-fluid">
                 <div class="freeShippingBox">
-                    <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/>&nbsp;&nbsp;Eligible for <span class="freeSS">FREE Standard Shipping</span> <br />with Automatic Reorder today! 
-                    <a>Details</a>
+                    <p><i class="svg-icon-truck"></i> Set up automatic reorder and get <span>FREE Standard Shipping</span> today! <a href="#"> Details</a></p>
+                    <!--<p><i class="svg-icon-truck"></i> Eligible for <span>FREE Standard Shipping</span> with Automatic Reorder today! <a href="#"> Details</a></p>-->
                 </div>
             </div>
-            <div class="addToCartDiv">
-                <div class="partListItemQuantity">
+
+            <div class="row-fluid">
+                <div class="pdpQuantityLine">
                     <label>Qty</label>
                     <input type="text" class="addToCartQuantity_js" value="1" />
-                </div>
-                <div class="partListItemAdd">
                     <button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
                 </div>
             </div>
-            <div><i class="icon-truck icon-flip-horizontal"></i> <a>Estimated Delivery Date</a> |  <a>Return Policy</a> </div>
-            <div class="shopYourWayRewards">
-                <div class="shopWayImg"><img src="/etc/designs/searspartsdirect/clientlib_base/img/shopYourWay.png" /></div>
-                <div class="shopWayText">SHOP YOUR WAY REWARDS SM Members earn XXX points if they purchase this item. <a>Learn More</a></div>
+
+            <div class="sameDayShip">
+                <i class="icon-truck icon-flip-horizontal"></i> <a>Estimated Delivery Date </a>&#124;<a> Return Policy</a>
             </div>
+
+            <div class="shopYourWay">
+                <img  class="pull-left" src="/etc/designs/searspartsdirect/clientlib_base/img/shopYourWay.png">
+                <p>SHOP YOUR WAY REWARDS&#8480; Members earn <span id="swyPoints">XXX</span> points if they purchase this item. <a href="#">Learn more</a></p>
+            </div>
+
             <div class="partInfo">
-                <h2>Part Information</h2>
-                <p><a>MERV Rating:</a> 13<br />
-                    Need help installing your air filter? Read our repair guide, <a>how to replace an HVAC air filter</a></p>
-                <h2>Specifications</h2>
-                <p>
-                    <strong>Category:</strong> Refrigerators and Freezers<br />
-                    <strong>Shipping Weight:</strong> 0.01 lbs<br />
-                    <strong>Shipping Length:</strong> 1 in<br />
-                    <strong>Shipping Width:</strong> 0.75 in<br />
-                    <strong>Shipping Height:</strong> 0.5 in<br />
-                </p>
+                <h3>Part Information</h3>
+                <p><a>MERV Rating</a>: 13</p>
+                <p>Need help installing your air filter? Read our repair guide, <a href="#">how to replace an HVAC air filter</a></p>
+                <h3>Specifications</h3>
+                <ul>
+                    <li><strong>Category: </strong>Refrigerators and Freezers</li>
+                    <li><strong>Shipping Weight: </strong>0.01lbs</li>
+                    <li><strong>Shipping Length: </strong>1in</li>
+                    <li><strong>Shipping Width: </strong>0.75in</li>
+                    <li><strong>Shipping Height: </strong>0.5in</li>
+                </ul>
             </div>
-        </div>
-    </div>
-    
-    <div class="customersHeading">Customers who bought this part also bought:</div>
-    <div class="partAlsoBought">
-        <div>
-            <div class="span6 bottomPartInfo">
-                <div>
-                    <div class="partImage"><img src="/etc/designs/searspartsdirect/clientlib_base/img/BestQualityFiltersIcon.png" /></div>
-                    <div class="partDetalis">
-                        <a>Part Super Long Name and no trunk</a><br />
-                        PART #: 140356<br />
-                        <i class="icon-mail-forward icon-flip-vertical color"></i> Substitution: 145009<br />
-                    </div>
-                </div>
-                <div class="addToCartDivBottom">
-                    <label>Qty</label>
-                    <div class="price">
-                        $44.98<br />
-                        <span>In Stock</span>
-                    </div>
-                    <div class="partListItemQuantity hidden-phone">
-                        <input type="text" class="addToCartQuantity_js" value="1" />
-                    </div>
-                    <div class="partListItemQuantity_mobile  visible-phone">
-                        <input type="text" class="addToCartQuantity_js" value="1" />
-                    </div>
-                    <div class="partListItemAdd">
-                        <button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <div class="span6">
-                <div>
-                    <div class="partImage"><img src="/etc/designs/searspartsdirect/clientlib_base/img/BestQualityFiltersIcon.png" /></div>
-                    <div class="partDetalis">
-                        <a>Part Super Long Name and no trunk</a><br />
-                        PART #: 140356<br />
-                        <i class="icon-mail-forward icon-flip-vertical color"></i> Substitution: 145009<br />
-                    </div>
-                </div>
-                <div class="addToCartDivBottom">
-                    <label>Qty</label>
-                    <div class="price">
-                        $44.98<br />
-                        <span>In Stock</span>
-                    </div>
-                    <div class="partListItemQuantity hidden-phone">
-                        <input type="text" class="addToCartQuantity_js" value="1" />
-                    </div>
-                    <div class="partListItemQuantity_mobile  visible-phone">
-                        <input type="text" class="addToCartQuantity_js" value="1" />
-                    </div>
-                    <div class="partListItemAdd">
-                        <button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            
         </div>
     </div>
 </div>

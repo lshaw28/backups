@@ -77,30 +77,3 @@
             </div>
         </div>
     </div>
-
-    <div class="row-fluid">
-        <h4 class="alsoBoughtItem-title">Customers who bought this part also bought:</h4>
-            <div class="span5 alsoBoughtItem">
-                 <img class="partImage pull-left" src="/etc/designs/searspartsdirect/clientlib_base/img/BestQualityFiltersIcon.png" />
-                 <h5><a href="#">Part Super Long Name and no trunk</a></h5>
-                 <p class="partDetails">PART #: 140356<br /><span><i class="icon-mail-forward icon-flip-vertical color"></i> Substitution: 145009</span></p>
-                 <div class="pdpQuantityLine">
-                    <p class="price pull-left">$44.98<br /> <span>In stock</span></p>
-                    <label>Qty</label> <br />
-                    <input type="text" class="addToCartQuantity_js" value="1" />
-                    <button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
-                 </div>
-            </div>
-            <div class="span5 alsoBoughtItem">
-                <img class="partImage pull-left" src="/etc/designs/searspartsdirect/clientlib_base/img/BestQualityFiltersIcon.png" />
-                <h5><a href="#">Part Super Long Name</a></h5>
-                <p class="partDetails">PART #: 140356<br /><span><i class="icon-mail-forward icon-flip-vertical color"></i> Substitution: 145009</span></p>
-                <div class="pdpQuantityLine">
-                    <p class="price pull-left">$44.98<br /> <span>In stock</span></p>
-                    <label>Qty</label> <br />
-                    <input type="text" class="addToCartQuantity_js" value="1" />
-                    <button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
-                </div>
-            </div>
-    </div>
-</div>
