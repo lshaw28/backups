@@ -7,12 +7,13 @@
  * */
 
 function clearAll(){
-	$("#searchCountDown").empty();
-	$(".pageCountResults").empty();
+$("#searchCountDown").empty();
+$(".pageCountResults").empty();
     $("#searchCountTotal").empty();
     $("#searchCountSYW").empty();
     $("#pageCountSYW").empty();
     $(".pageCountResults").empty();
+    $('#searchResultsUp').empty();
     $('#searchResultsDown').empty();
 }
 
@@ -334,70 +335,75 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
 			});
 }
 
-function populateBrandProductDetails(modelNumber, divID) {
+function populateBrandProductDetails(modelNumber, divID, isSelf) {
 	// divID parameter -- in case we want to fill only one dropdown.
 	var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&flag=6";
 	$.ajax({
-				type : "GET",
-				cache : false,
-				dataType : "json",
-				url : urlName,
-				success : function(data) {
-					var jsonResponse = data;
-					var len = Object.keys(jsonResponse).length;
-					
-					var searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
-        			searchResults = JSON.parse(searchResults);
+	type : "GET",
+	cache : false,
+	dataType : "json",
+	url : urlName,
+	success : function(data) {
+	var jsonResponse = data;
+	var len = Object.keys(jsonResponse).length;
 
-					var brandArr = [];
-					
-					if(typeof divID === 'undefined'){
-                        $("#brand").append("<option value=\"Select\">--Select--</option>");
-						for(var i=0; i < searchResults.length; i++){
-							var resultDetail = searchResults[Object.keys(searchResults)[i]];
-							$("#brand").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
-						}
+	var searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
+	        searchResults = JSON.parse(searchResults);
 
-						searchResults = jsonResponse[Object.keys(jsonResponse)[1]];
-	        			searchResults = JSON.parse(searchResults);
+	var brandArr = [];
+	if(typeof divID === 'undefined'){
+	                        $("#brand").append("<option value=\"Select\">--Select--</option>");
+	for(var i=0; i < searchResults.length; i++){
+	var resultDetail = searchResults[Object.keys(searchResults)[i]];
+	$("#brand").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
+	}
 
-						brandArr = [];
-                        $("#productType").append("<option value=\"Select\">--Select--</option>");
-						for(var i=0; i < searchResults.length; i++){
-							var resultDetail = searchResults[Object.keys(searchResults)[i]];
-							$("#productType").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
-						}
-					}
-					else if(typeof divID !== 'undefined'){
-						if(divID == 'brand'){
-                            var selected = $("#brand").val();
-                            console.log("this was: "+selected);
-                            $("#brand").empty();
-                            $("#brand").append("<option value=\"Select\">--Select--</option>");
-							for(var i=0; i < searchResults.length; i++){
-								var resultDetail = searchResults[Object.keys(searchResults)[i]];
-                                console.log(resultDetail.name);
-								$("#brand").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
-							}
-                            $("#brand > [value='"+selected+"']").attr("selected", "true");
-						}
-						if(divID == 'productType'){
-                            var selected = $("#productType").val();
-                            $("#productType").empty();
-                            $("#productType").append("<option value=\"Select\">--Select--</option>");
+	searchResults = jsonResponse[Object.keys(jsonResponse)[1]];
+	       
+	searchResults = JSON.parse(searchResults);
 
-                            searchResults = jsonResponse[Object.keys(jsonResponse)[1]];
-	        				searchResults = JSON.parse(searchResults);
-							for(var i=0; i < searchResults.length; i++){
-								var resultDetail = searchResults[Object.keys(searchResults)[i]];
-								$("#productType").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
-							}
-                            $("#productType > [value='"+selected+"']").attr("selected", "true");
-						}
-					}
-				},
-				error : function() {
-					console.log("Failed to retrieve data from server");
-				}
-			});
-}
+	brandArr = [];
+	                        $("#productType").append("<option value=\"Select\">--Select--</option>");
+	for(var i=0; i < searchResults.length; i++){
+	var resultDetail = searchResults[Object.keys(searchResults)[i]];
+	$("#productType").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
+	}
+	}
+	else if(typeof divID !== 'undefined'){
+	                        if(divID == 'brand'){
+	                            var selected = $("#brand").val();
+	                            $("#brand").empty();
+	                            $("#brand").append("<option value=\"Select\">--Select--</option>");
+	for(var i=0; i < searchResults.length; i++){
+	var resultDetail = searchResults[Object.keys(searchResults)[i]];
+	                                $("#brand").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
+	}
+	                            if(typeof isSelf !== 'undefined' && isSelf == 'false'){
+	                            
+	$("#brand > [value='"+selected+"']").attr("selected", "true");
+	                            }
+	}
+	if(divID == 'productType'){
+	var selected = $("#productType").val();
+	                            $("#productType").empty();
+	                            $("#productType").append("<option value=\"Select\">--Select--</option>");
+
+	                            searchResults = jsonResponse[Object.keys(jsonResponse)[1]];
+	       
+	searchResults = JSON.parse(searchResults);
+	for(var i=0; i < searchResults.length; i++){
+	var resultDetail = searchResults[Object.keys(searchResults)[i]];
+	$("#productType").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
+	}
+	if(typeof isSelf !== 'undefined' && isSelf == 'false'){
+	                            
+	$("#productType > [value='"+selected+"']").attr("selected", "true");
+	                            }
+	}
+	}
+	},
+	error : function() {
+	console.log("Failed to retrieve data from server");
+	}
+	});
+	}
