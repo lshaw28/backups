@@ -104,7 +104,7 @@
             margin: 5px;
             &.active {
               border: 4px solid @primaryHueNormal;
-              background: @lightBlueButtonBkg;
+              background: #e7f1f6;
               font-weight: bold;
             }
           }
@@ -139,11 +139,11 @@
 
           .shopYourWay {
             margin: 20px 0;
+            border-top: 1px solid @secondaryHueLight;
+            border-bottom: 1px solid @secondaryHueLight;
+            padding: 10px 0 10px 0;
             img {
               margin: 0 10px 20px 0px;
-              border-top: 1px solid @secondaryHueLight;
-              border-bottom: 1px solid @secondaryHueLight;
-              padding: 10px 0 10px 0;
             }
             p {
               font-size: @pSize;
@@ -154,5 +154,5 @@
         }
   }
 
-@import "airFilterPartDetail.mobile";
-@import "airFilterPartDetail.tablet";
+@import "airFilterPartDetail.mobile.less";
+@import "airFilterPartDetail.tablet.less";
