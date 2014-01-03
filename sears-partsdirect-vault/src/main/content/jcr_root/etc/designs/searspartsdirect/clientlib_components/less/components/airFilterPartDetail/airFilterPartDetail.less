@@ -2,7 +2,12 @@
 @import "../../../../clientlib_base/less/base.mixins.less";
 
 .airFilterPartDetail{
-    .partDetailPage{
+        ul {
+          margin: 0;
+          li {
+            list-style-type: none;
+          }
+        }
         .partName {
             font-size: @h1Size;
             color: @secondaryHueDark;
@@ -144,156 +149,8 @@
             }
           }
 
-          /*
-            .packSizeDiv{
-                font-size:@pSize;
-                margin: 0 0 20px 0;
-                float: left;
-                width: 100%;
-                p{
-                    font-weight: bold;
-                    margin: 0px;
-                    padding: 12px 0 2px 0;
-                    float: left;
-                    width: 100%;
-                }
-                .diffPacks{
-                    float: left;
-                    width: 100%;
-                    a{
-                        float: left;
-                        border: 1px solid @primaryHueDark;
-                        color: @primaryHueDark;
-                        text-decoration: none;
-                        padding: 12px 20px;
-                        margin: 0 5px 0 0;
-                        cursor: pointer;
-                        text-align: center;
-                    }
-                    a:hover{ 
-                        border: 3px solid @primaryHueDark;
-                        color:@primaryHueDark;
-                        padding: 10px 17px 10px 16px;
-                        font-weight: bold;
-                        background: #ddedf5;
-                    }
-                    a.current{ 
-                        border: 3px solid @primaryHueDark;
-                        color:@primaryHueDark;
-                        padding: 10px 17px 10px 16px;
-                        font-weight: bold;
-                        background: #ddedf5;
-                    }
-                }
-                .recieveProduct{
-                    float: left;
-                    width: 100%;
-                    a{
-                        float: left;
-                        border: 1px solid @primaryHueDark;
-                        color: @primaryHueDark;
-                        text-decoration: none;
-                        padding: 3px 20px;
-                        margin: 0 5px 10px 0;
-                        cursor: pointer;
-                        text-align: center;
-                    }
-                    a:hover{ 
-                        border: 3px solid @primaryHueDark;
-                        color:@primaryHueDark;
-                        padding: 1px 16px 1px 16px;
-                        font-weight: bold;
-                        background: #ddedf5;
-                    }
-                    a.current{ 
-                        border: 3px solid @primaryHueDark;
-                        color:@primaryHueDark;
-                        padding: 1px 16px 1px 16px;
-                        font-weight: bold;
-                        background: #ddedf5;
-                    }
-                }
-            }
-            .freeShippin{
-                float: left;
-                width: 100%;
-                .freeShippingBox{
-                    float: left;
-                    border: 1px solid @secondaryHueLightest;
-                    border-radius: 4px;
-                    background-color:@secondaryHueLightest;
-                    padding: 4px 10px;
-                    width: 300px;
-                    clear: both;
-                }
-            }
-            .addToCartDiv{
-                float: left;
-                width: 100%;
-                margin: 15px 0px;
-                
-                .partListItemQuantity {
-                    label{
-                        float: left;
-                        margin: 4px 15px 0 0;
-                    }
-                    input[type="text"] {
-                        float: left;
-                        .boxSizing(border-box);
-                        display: block;
-                        height: 32px;
-                        line-height: @largeHeight;
-                        width: 40px;
-                        text-align: center;
-                    }
-                }
-                .partListItemAdd {
-                    text-align: center;
-                    float: left;
-                    margin: 0 0 0 20px;
-                    button {
-                        .boxSizing(border-box);
-                        margin: 0;
-                        width: 100%;
-                    }
-                }
-            }
-            .shopYourWayRewards{
-                float: left;
-                width: 100%;
-                margin: 10px 0px 15px 0;
-                padding:17px 0px;
-                border: 1px solid @secondaryHueLighter;
-                border-left: 0px;
-                border-right: 0px;
-                
-                .shopWayImg{
-                    float: left;
-                    margin:0;
-                    width:18%;
-                }
-                .shopWayText{
-                    float: left;
-                    width: 70%;
-                    padding: 0 0 0 10px;
-                }
-            }
-            .partInfo{
-                float: left;
-                width: 100%;
-                margin: 0 0 10px 0;
-                h2{
-                    font-size: @h4Size;
-                    font-color: @secondaryHueDark;
-                    font-family: @bodyFont;
-                    margin: 0;
-                }
-            }
-
         }
-    */
-    }
-}
+  }
 
 @import "airFilterPartDetail.mobile";
 @import "airFilterPartDetail.tablet";
