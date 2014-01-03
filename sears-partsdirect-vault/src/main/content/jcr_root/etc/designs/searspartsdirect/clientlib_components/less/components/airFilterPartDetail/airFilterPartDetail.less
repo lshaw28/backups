@@ -3,7 +3,7 @@
 
 .airFilterPartDetail{
     .partDetailPage{
-        h1{
+        .partName {
             font-size: @h1Size;
             color: @secondaryHueDark;
         }
@@ -47,6 +47,7 @@
                     }
                 }
             }
+
             .print{
                 width: 100%;
                 margin: 10px 0px;
@@ -59,19 +60,91 @@
                     margin: 0 20px 0 0;
                 }
             }
+
             .price{
-                color:@secondaryHueDarker;
-                h2{
-                    font-size:@h2Size;
-                    margin: 0px;
-                    padding: 0px;
-                }
+                color: @secondaryHueDarker;
+                font-size: @h3Size;
+                margin-bottom: 5px;
+                font-weight: 600;
                 .inStock{
                     font-size:@pSize;
                     padding: 0px;
                     margin: -12px 0 5px 2px;
                 }
             }
+
+          .freeShippingBox {
+            background: @secondaryHueLightest;
+            padding: 6px 12px;
+            width: 300px;
+            margin:10px 0 30px 0;
+            line-height: 17px;
+            p {
+              margin: 0px;
+              span {
+                color: @highlightHueLight;
+                font-weight: 600;
+              }
+            }
+          }
+
+          .packBox {
+            border: 1px solid @primaryHueNormal;
+            background: white;
+            min-width: 100px;
+            max-width: 100px;
+            color: #067bb5;
+            outline: none;
+            padding: 10px;
+            margin: 5px;
+            &.active {
+              border: 4px solid @primaryHueNormal;
+              background: @lightBlueButtonBkg;
+              font-weight: bold;
+            }
+          }
+
+          .pdpQuantityLine {
+            vertical-align: middle;
+            margin: 10px 0;
+            label {
+              display: inline;
+            }
+            input {
+              color: @secondaryHueLight;
+              text-align: center;
+              margin: 10px;
+              width: 35px;
+            }
+            button {
+              margin-right: 10px;
+            }
+          }
+
+          .sameDayShip {
+            margin-top: 10px;
+            p {
+              margin: 10px 20px 30px 0;
+              font-size: @pSize;
+            }
+            a {
+              font-size: @pSize;
+            }
+          }
+
+          .shopYourWay {
+            margin: 20px 0;
+            img {
+              margin: 0 10px 20px 0px;
+              width:25%;
+            }
+            p {
+              font-size: @pSize;
+              max-width: 90%;
+            }
+          }
+
+          /*
             .packSizeDiv{
                 font-size:@pSize;
                 margin: 0 0 20px 0;
@@ -216,76 +289,9 @@
                     margin: 0;
                 }
             }
+
         }
-        .customersHeading{
-            font-size: @h4Size;
-            font-color: @secondaryHueDark;
-            font-weight: normal;
-            float: left;
-            width: 100%;
-            margin: 0 0 20px 0;
-        }
-        .partAlsoBought{
-            .partDetalis{
-                .color{
-                    color: #a1b0d2;
-                }
-            }
-            .partImage{
-                float: left;
-                margin:  0 20px 0 0;
-                img{
-                    height: 40px;
-                    width: 36px;
-                    border: 1px solid @secondaryHueLighter;
-                    padding: 5px;
-                }
-            }
-            .addToCartDivBottom{
-                float: left;
-                width:100%;
-                padding: 10px 0 0 0;
-                label{
-                    padding: 0 0 0 92px;
-                }
-                .price{
-                    font-size:@h3Size;
-                    float: left;
-                    margin: 0 20px 0 0;
-                    span{
-                        font-size:@pSize;
-                    }
-                }
-                .partListItemQuantity {
-                    label{
-                        float: left;
-                        margin: 4px 15px 0 0;
-                    }
-                    input[type="text"] {
-                        float: left;
-                        .boxSizing(border-box);
-                        display: block;
-                        height: 32px;
-                        line-height: @largeHeight;
-                        width: 40px;
-                        text-align: center;
-                    }
-                }
-                .partListItemAdd {
-                    text-align: center;
-                    float: left;
-                    margin: 0 0 0 20px;
-                    button {
-                        .boxSizing(border-box);
-                        margin: 0;
-                        width: 100%;
-                    }
-                }
-                
-            }
-            
-        }
-        
+    */
     }
 }
 

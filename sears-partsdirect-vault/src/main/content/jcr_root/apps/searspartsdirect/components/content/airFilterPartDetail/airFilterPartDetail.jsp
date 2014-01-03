@@ -4,7 +4,7 @@
     %>
 
 <div class="partDetailPage">
-    <h1>Fabreze 20x30x1 Pleated Replacement Air Filter - MERV 12</h1>
+    <h1 class="partName">Fabreze 20x30x1 Pleated Replacement Air Filter - MERV 12</h1>
     <div class="partNumber">PART #: 8534854 - <span>4</span></div>
     <div class="productDetail">
         <div class="span5">
