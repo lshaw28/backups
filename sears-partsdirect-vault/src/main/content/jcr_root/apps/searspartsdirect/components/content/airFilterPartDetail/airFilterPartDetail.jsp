@@ -9,7 +9,7 @@
     <div class="productDetail">
         <div class="span5">
             <div class="productMainImage">
-                <img src="/etc/designs/searspartsdirect/clientlib_base/img/BestQualityFiltersIcon.png" />
+                <img src="/etc/designs/searspartsdirect/clientlib_base/img/no_part.gif" />
                 <div class="plus_minus  hidden-phone">
                     <div class="plus">+</div>
                     <div class="minus">-</div>
@@ -61,7 +61,7 @@
                 <i class="icon-truck icon-flip-horizontal"></i> <a>Estimated Delivery Date </a>&#124;<a> Return Policy</a>
             </div>
 
-            <div class="shopYourWay">
+            <div class="row-fluid shopYourWay">
                 <img  class="pull-left" src="/etc/designs/searspartsdirect/clientlib_base/img/shopYourWay.png">
                 <p>SHOP YOUR WAY REWARDS&#8480; Members earn <span id="swyPoints">XXX</span> points if they purchase this item. <a href="#">Learn more</a></p>
             </div>
