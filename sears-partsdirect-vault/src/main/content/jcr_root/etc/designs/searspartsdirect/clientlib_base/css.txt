@@ -1,5 +1,6 @@
 #base=css/.
 modelsearchresults.css
+textimage.css
 
 #base=less/.
 bootstrap/bootstrap-sears.less

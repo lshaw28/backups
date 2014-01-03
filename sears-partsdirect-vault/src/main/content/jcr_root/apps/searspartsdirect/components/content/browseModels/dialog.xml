@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:TabPanel"
+		  activeTab="0"
+		  xtype="tabpanel">
+<items jcr:primaryType="cq:WidgetCollection">
+<items jcr:primaryType="cq:WidgetCollection">
+<tab2 jcr:primaryType="cq:Widget" cropParameter="./image/imageCrop" fileNameParameter="./image/fileName" fileReferenceParameter="./image/fileReference" mapParameter="./image/imageMap" name="./image/file" requestSuffix="/image.img.png" rotateParameter="./image/imageRotate" sizeLimit="100" title="Image" xtype="html5smartimage"/>
+</items>
+</items>
+</jcr:root>
