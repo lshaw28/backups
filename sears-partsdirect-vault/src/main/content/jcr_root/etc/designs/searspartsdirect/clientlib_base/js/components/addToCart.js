@@ -23,6 +23,7 @@ var addToCart = Class.extend(function () {
 			this.partNumber = '';
 			this.divId = '';
 			this.plsId = '';
+			this.subPer = 0;
 			// Elements
 			this.cartItems = {
 				header: null,
@@ -49,6 +50,9 @@ var addToCart = Class.extend(function () {
 			self.partNumber = self.el.data('partnumber');
 			self.divId = self.el.data('divid');
 			self.plsId = self.el.data('plsid');
+			if (self.el.data('subper') != undefined) {
+				self.subPer = self.el.data('subper');
+			}
 			// Retrieve elements
 			self.cartItems.header = $('#cartShop .cartShopHeader_js');
 			self.cartItems.checkOut = $('#cartShop .cartShopCheckOut_js');
@@ -83,6 +87,10 @@ var addToCart = Class.extend(function () {
 				// Add cart ID param if available
 				if (NS('shc.pd.cookies').cid !== '') {
 					params.cid = NS('shc.pd.cookies').cid;
+				}
+				// Add subscription period if part is to be subscribed
+				if (self.subPer > 0) {
+					params.renewalPeriod = self.subPer;
 				}
 
 				// Make an AJAX call
