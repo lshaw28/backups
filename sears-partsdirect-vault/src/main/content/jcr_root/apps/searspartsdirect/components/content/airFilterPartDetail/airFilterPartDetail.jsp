@@ -23,7 +23,7 @@
 
         <div class="span7">
             <div class="price">
-                <h2 id="price">$14.98</h2>
+                <h2 id="price" class="price">$14.98</h2>
                 <p id="inStock" class="inStock">In stock</p>
             </div>
 
