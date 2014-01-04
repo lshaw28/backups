@@ -17,6 +17,7 @@
         <div class="row-fluid">
             <div class="span4">
                 <select name="airFilterWidth" id="airFilterWidth" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Width (in.)" data-display="true" data-changed="false">
+                        <option value="8">8</option>
                     <c:forEach items="${airFilterDimensionList.length}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
                     </c:forEach>
@@ -25,7 +26,8 @@
             </div>
             <div class="span4">
                 <select name="airFilterHeight" id="airFilterHeight" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Height (in.)" data-display="true" data-changed="false">
-					<c:forEach items="${airFilterDimensionList.height}" var="objDimension">
+                    <option value="4">4</option>
+                    <c:forEach items="${airFilterDimensionList.height}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
     				</c:forEach>
                 </select>
@@ -33,6 +35,7 @@
             </div>
             <div class="span4">
                 <select name="airFilterDepth" id="airFilterDepth" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Depth (in.)" data-display="true" data-changed="false">
+                    <option value="14">14</option>
                     <c:forEach items="${airFilterDimensionList.length}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
     				</c:forEach>
@@ -42,7 +45,42 @@
     </form>
    <div id="afLandingImage" class="span12 hidden-phone"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension.png"/> </div>
    <div id="afLandingMobileImage" class="span12 visible-phone"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension-mobile.png"/> </div>
-   <div id="noDataFound"><H1>Sorry We didn't found any Filters that match those dimensions</H1></div>
+
+    <section id="bestAirFilters" class="filterResults">
+        <heading class="setHeading">
+            <h2 class="bestHeading setDescription">Best Quality Filters</h2>
+            <div class="row-fluid">
+                <div class="span6">
+                    <p><span class="bulletHeading">MERV ratings:</span> 13-16 <a href="/content/searspartsdirect/en/merv-rating.html" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
+                    <p><span class="bulletHeading">Removes:</span> 95% or more airborne contaminants 0.3 microns or larger</p>
+                </div>
+                <div class="span6 rightDiv">
+                    <p><span class="bulletHeading">Ideal for:</span> The most efficient filtration, suitable for hospitals and healthcare facilities </p>
+                    <p><span class="bulletHeading">Life:</span> Lasts up to 90 days</p>
+                </div>
+            </div>
+        </heading>
+        <ul class="setList">
+        </ul>
+    </section>
+
+    <section id="betterAirFilters" class="filterResults">
+        <heading class="setHeading setDescription">
+            <h2 class="betterHeading">Better Quality Filters</h2>
+        </heading>
+        <ul class="setList">
+        </ul>
+    </section>
+
+    <section id="goodAirFilters" class="filterResults">
+        <heading class="setDescription">
+            <h2 class="goodHeading setHeading">Good Quality Filters</h2>
+        </heading>
+        <ul class="setList">
+        </ul>
+    </section>
+
+    <div id="noDataFound"><H1>Sorry We didn't found any Filters that match those dimensions</H1></div>
     <spd:resolveHazardTipWarning adhocField="noticeText" choiceField="tipChosen" placeholder=""/>
     <c:set var="noticeIcon"><cq:text property="noticeIcon" placeholder=""/></c:set>
     <c:if test="${empty noticeIcon}"><c:set var="noticeIcon" value="icon-info" /></c:if>

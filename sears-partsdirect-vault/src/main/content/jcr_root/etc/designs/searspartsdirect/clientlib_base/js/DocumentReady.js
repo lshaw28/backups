@@ -274,23 +274,23 @@
 
 
 		/**
-		 *
-		 * NOTE:
-		 * Please update your the code in the bindEvents fn to
-		 * more specifically select the accordion(aka collapse) components
-		 * that are required in the mervRatingHelp update.
-		 *
-		 * As it stands, your code will now break the other accordions used
-		 * throughout the project. Thanks!
-		 *
-		 * (See recommendedParts.less for an example of how this works with less,
-		 * no js/jquery needed.
-		 *
-		 */
+            *
+        * NOTE:
+        * Please update your the code in the bindEvents fn to
+        * more specifically select the accordion(aka collapse) components
+        * that are required in the mervRatingHelp update.
+            *
+        * As it stands, your code will now break the other accordions used
+        * throughout the project. Thanks!
+            *
+        * (See recommendedParts.less for an example of how this works with less,
+            * no js/jquery needed.
+            *
+        */
 
-		//Merv Rating Help
-		//var newMervRatingHelp = new mervRatingHelp($(this));
-		/**
+        //Merv Rating Help
+        //var newMervRatingHelp = new mervRatingHelp($(this));
+        /**
 		 * airFilterDimension class setup
 		 */
         var newFilterDim = new airFilterDimension();  
