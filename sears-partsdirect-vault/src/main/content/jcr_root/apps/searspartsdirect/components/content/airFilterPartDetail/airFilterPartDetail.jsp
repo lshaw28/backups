@@ -44,10 +44,10 @@
 
             <div class="row-fluid pull-left">
                 <div class="freeShippingBox">
-                    <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today! <a class="span4 modal" data-toggle="modal" data-target="#automaticReorderDetailsModal"> Details</a>
+                    <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today! <a href="#automaticReorderDetailsModal" role="button" class="span4" data-toggle="modal"> Details</a>
                     <!--<p><i class="svg-icon-truck"></i> Set up automatic reorder and get <span class="freeSS">FREE Standard Shipping</span> today! <a href="#"> Details</a></p>-->
                 </div>
-                <div id="automaticReorderDetailsModal" class="modal hide fade" role="dialog">
+                <div id="automaticReorderDetailsModal" class="modal hide fade" tabindex="-1" role="dialog">
                     <div class="model-dialog">
                         <div class=model-content">
                             <div class="modal-header">
