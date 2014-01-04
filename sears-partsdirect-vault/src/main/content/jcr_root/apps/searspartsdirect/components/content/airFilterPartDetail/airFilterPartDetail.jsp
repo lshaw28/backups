@@ -44,10 +44,25 @@
 
             <div class="row-fluid pull-left">
                 <div class="freeShippingBox">
-                    <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today! <a href="#"> Details</a>
+                    <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today! <a class="span4 modal" data-toggle="modal" data-target="#automaticReorderDetailsModal"> Details</a>
                     <!--<p><i class="svg-icon-truck"></i> Set up automatic reorder and get <span class="freeSS">FREE Standard Shipping</span> today! <a href="#"> Details</a></p>-->
                 </div>
-            </div>
+                <div id="automaticReorderDetailsModal" class="modal hide fade" role="dialog">
+                    <div class="model-dialog">
+                        <div class=model-content">
+                            <div class="modal-header">
+                                <h3>Automatic Reorder Details</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p class="bodyContent">Receive free shipping on all automatic reorders with subscription</p>
+                                <p class="bodyContent">Note: This offer is only valid in the contigious U.S.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn closeModal" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             <div class="row-fluid">
                 <div class="pdpQuantityLine">
