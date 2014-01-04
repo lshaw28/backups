@@ -44,23 +44,18 @@
 
             <div class="row-fluid pull-left">
                 <div class="freeShippingBox">
-                    <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today! <a href="#automaticReorderDetailsModal" role="button" class="span4" data-toggle="modal"> Details</a>
-                    <!--<p><i class="svg-icon-truck"></i> Set up automatic reorder and get <span class="freeSS">FREE Standard Shipping</span> today! <a href="#"> Details</a></p>-->
+                    <p>
+                        <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today!
+                        <a data-toggle="modal" data-target="#airFilterPromoModal"> Details</a>
+                        <!--<p><i class="svg-icon-truck"></i> Set up automatic reorder and get <span class="freeSS">FREE Standard Shipping</span> today! <a href="#"> Details</a></p>-->
+                    </p>
                 </div>
-                <div id="automaticReorderDetailsModal" class="modal hide fade" tabindex="-1" role="dialog">
-                    <div class="model-dialog">
-                        <div class=model-content">
-                            <div class="modal-header">
-                                <h3>Automatic Reorder Details</h3>
-                            </div>
-                            <div class="modal-body">
-                                <p class="bodyContent">Receive free shipping on all automatic reorders with subscription</p>
-                                <p class="bodyContent">Note: This offer is only valid in the contigious U.S.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn closeModal" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
+                <div id="airFilterPromoModal" class="modal hide fade" role="dialog" aria-labelledby="afpromoModalLabel" aria-hidden="true">
+                    <h1>Automatic Reorder Details</h1>
+                    <p>Receive free shipping on all automatic reorders with subscription</p>
+                    <p>Note: This offer is only valid in the contigious U.S.</p>
+                    <div class="pull-right">
+                        <button type="button" class="new-btn" data-dismiss="modal" data-cancel="true" aria-hidden="true">Close</button>
                     </div>
                 </div>
 
