@@ -50,7 +50,7 @@
                         <!--<p><i class="svg-icon-truck"></i> Set up automatic reorder and get <span class="freeSS">FREE Standard Shipping</span> today! <a href="#"> Details</a></p>-->
                     </p>
                 </div>
-               
+
 
             <div class="row-fluid">
                 <div class="pdpQuantityLine">
