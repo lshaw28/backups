@@ -2,26 +2,29 @@
 %><spd:getAirFilterDimensions /><%
 %>
 
-<H1>Air Filters for Furnace, HVAC, Air Conditioner</H1>
-<H3>Air filters when you want them. Plus <span class="freeShipping">FREE SHIPPING*</span></H3>
-<p><img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/>&nbsp;&nbsp;*You choose how often to get delivery. We'll automatically ship your new filters when you want them. It's that simple. 
-    Enjoy FREE SHIPPING on every order that includes an automatic reorder of air filters.<a data-toggle="modal" data-target="#airFilterPromoModal">Promotional Details</a></p>
+<h1>Air Filters for Furnace, HVAC, Air Conditioner</h1>
+<h3>Air filters when you want them. Plus <span class="freeShipping">FREE Standard Shipping</span>*</h3>
+<i class="truckIcon svg-icon-truck"></i>
+<p class="shippingDisclaimer">*You choose how often to get delivery. We'll automatically ship your new filters when you want them. It's that simple. Enjoy FREE SHIPPING on every order that includes an automatic reorder of air filters.</p>
+<a class="shippingDisclaimer" data-toggle="modal" data-target="#airFilterPromoModal">Promotional Details</a>
 
-<H4>To find the right filter, please select your dimensions</H4>
+
 
 <div class="airfilterDimensionSection  row-fluid">
+
     <form id="airFilterSelectionForm" method="post" action="">
+    <h4>To find the right filter, please select your dimensions</h4>
         <div class="row-fluid">
             <div class="span4">
-                <select name="airFilterWidth" id="airFilterWidth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Width (in.)" data-display="true" data-changed="false">
-					<c:forEach var="objDimension" items="${airFilterDimensionList.width}">
+                <select name="airFilterWidth" id="airFilterWidth" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Width (in.)" data-display="true" data-changed="false">
+                    <c:forEach items="${airFilterDimensionList.length}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
-    				</c:forEach>
+                    </c:forEach>
                 </select>
                 <span class="dimensionCross hidden-phone">X</span>
             </div>
             <div class="span4">
-                <select name="airFilterHeight" id="airFilterHeight" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Height (in.)" data-display="true" data-changed="false">
+                <select name="airFilterHeight" id="airFilterHeight" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Height (in.)" data-display="true" data-changed="false">
 					<c:forEach items="${airFilterDimensionList.height}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
     				</c:forEach>
@@ -29,7 +32,7 @@
                 <span class="dimensionCross hidden-phone">X</span>
             </div>
             <div class="span4">
-                <select name="airFilterDepth" id="airFilterDepth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Depth (in.)" data-display="true" data-changed="false">
+                <select name="airFilterDepth" id="airFilterDepth" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Depth (in.)" data-display="true" data-changed="false">
                     <c:forEach items="${airFilterDimensionList.length}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
     				</c:forEach>

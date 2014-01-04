@@ -28,8 +28,12 @@
                     .responsiveDropdown{
                         min-width: 40%;
                         margin-bottom: 20px;
-                        z-index: 99999;
-                        ul{
+
+                        ul {
+
+                          &.active {
+                            z-index: 10000;
+                          }
                             li {
                                 border: 4px solid red;
                                 padding: 4px;

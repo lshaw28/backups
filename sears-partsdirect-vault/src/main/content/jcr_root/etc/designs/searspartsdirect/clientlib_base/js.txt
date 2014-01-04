@@ -35,6 +35,7 @@ modelHeader.js
 modelNumberSearch.js
 recommendedParts.js
 responsiveDropdown.js
+responsiveFilterDropdown.js
 responsiveCollapse.js
 responsiveImage.js
 responsivePinchImage.js

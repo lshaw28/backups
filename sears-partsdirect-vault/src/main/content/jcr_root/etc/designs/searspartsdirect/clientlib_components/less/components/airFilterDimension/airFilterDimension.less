@@ -20,20 +20,45 @@
     .freeShipping{
         color: @highlightHueDarkest;
     }
+
+    .truckIcon {
+      float: left;
+      min-height: 25px;
+      min-width: 25px;
+    }
+
+    .shippingDisclaimer {
+      margin-left: 35px;
+      margin-bottom: 0;
+    }
+
     .airFilerDimSelect {
         height: 30px;
     }
     .airfilterDimensionSection{
-        border: 2px solid @secondaryHueLightest;
+        border: 3px solid @secondaryHueLight;
         margin-bottom: 10px;
+        margin-top: 15px;
+
+        h4 {
+          margin-bottom: 20px;
+          text-align: center;
+        }
+
         .row-fluid{
             text-align: center;
             .span4{
                 .responsiveDropdown{
-                    min-width: 40%;
+                    width: 60%;
+                    cursor: pointer;
                     ul{
                         position: absolute;
-                        width: 135px;
+                        width: 100%;
+                        box-shadow: none;
+                        max-height: 200px;
+                        overflow: auto;
+                        overflow-x: hidden;
+
                         li {
                             border: 0;
                             padding: 2px;
@@ -47,6 +72,11 @@
                         .icon-chevron-sign-down{
                             padding-left: 10px;
                         }
+
+                      &.filterValSelected {
+                        background-color: @secondaryHueDark;
+                        color: @bodyColor;
+                      }
                     }
                 }
                 .dimensionCross {
@@ -63,7 +93,7 @@
         }
     }
     #airFilterSelectionForm {
-        background-color:@secondaryHueLightest;
+        background-color:@secondaryHueLight;
         padding: 20px;
     }
     #afLandingImage{
@@ -90,5 +120,5 @@
         }
     }
 }
-@import "airFilterDimension.mobile";
-@import "airFilterDimension.tablet";
+@import "airFilterDimension.mobile.less";
+@import "airFilterDimension.tablet.less";

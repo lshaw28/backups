@@ -120,11 +120,18 @@
 			var newResponsivePinchImage = new responsivePinchImage($(this));
 		});
 		/**
-		 * responsiveDropdown class setup
-		 */
-		$('[data-toggle="responsive-dropdown"]').each(function () {
-			var newResponsiveDropdown = new responsiveDropdown($(this));
-		});
+         * responsiveDropdown class setup
+         */
+        $('[data-toggle="responsive-dropdown"]').each(function () {
+            var newResponsiveDropdown = new responsiveDropdown($(this));
+        });
+        /**
+         * responsiveFilterDropdown class setup
+         */
+        $('[data-toggle="responsive-filter-dropdown"]').each(function () {
+            var newResponsiveDropdown = new responsiveFilterDropdown($(this));
+
+        });
 		/**
 		 * video class setup
 		 */
