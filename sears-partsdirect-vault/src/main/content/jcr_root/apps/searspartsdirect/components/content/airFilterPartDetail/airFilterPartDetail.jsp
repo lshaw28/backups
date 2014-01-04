@@ -42,7 +42,7 @@
                 <button id="twelveMonths" class="packBox wide">Every 12 months</button>
             </div>
 
-            <div class="row-fluid pull-left">
+            <div class="row-fluid">
                 <div class="freeShippingBox">
                     <p>
                         <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today!
@@ -50,6 +50,7 @@
                         <!--<p><i class="svg-icon-truck"></i> Set up automatic reorder and get <span class="freeSS">FREE Standard Shipping</span> today! <a href="#"> Details</a></p>-->
                     </p>
                 </div>
+            </div>
 
 
             <div class="row-fluid">
@@ -60,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="sameDayShip">
+            <div class="row-fluid sameDayShip">
                 <i class="icon-truck icon-flip-horizontal"></i> <a>Estimated Delivery Date </a>&#124;<a> Return Policy</a>
             </div>
 
