@@ -4,67 +4,22 @@
 @media (max-width: 480px) {
     
     .airFilterPartDetail{
-        .partDetailPage{
-            .productDetail{
-                .productMainImage{
-                    img{
-                        padding: 30px;
-                    }
-                }                
-            }
-            .bottomPartInfo{
-                float: left;
-                margin: 0 0 20px 0;
-                padding: 0 0 15px 0;
-                border-bottom: 1px solid @secondaryHueLightest;
-            }
-            
-            .packSizeDiv{
-                .recieveProduct_mobile{
-                    float: left;
-                    width: 100%;
-                    a{
-                        float: left;
-                        border: 1px solid @primaryHueDark;
-                        color: @primaryHueDark;
-                        text-decoration: none;
-                        padding: 12px 20px;
-                        margin: 0 5px 10px 0;
-                        cursor: pointer;
-                        text-align: center;
-                    }
-                    a:hover{ 
-                        border: 3px solid @primaryHueDark;
-                        color:@primaryHueDark;
-                        padding: 10px 16px 10px 15px;
-                        font-weight: bold;
-                        background: #ddedf5;
-                    }
-                    a.current{ 
-                        border: 3px solid @primaryHueDark;
-                        color:@primaryHueDark;
-                        padding: 10px 16px 10px 15px;
-                        font-weight: bold;
-                        background: #ddedf5;
-                    }
-                }                
-            }
-            .addToCartDivBottom{
-                .partListItemQuantity_mobile {
-                    label{
-                        float: left;
-                        margin: 4px 15px 0 0;
-                    }
-                    input[type="text"] {
-                        float: left;
-                        .boxSizing(border-box);
-                        display: block;
-                        height: 45px;
-                        width: 50px;
-                        text-align: center;
-                    }
-                }                
+        .productDetail{
+            .productMainImage{
+                img{
+                   padding: 30px;
+                }
             }
         }
+      .packBox.wide {
+        width:100%;
+        max-width:150px;
+
+      }
+      .packBox {
+        max-width: 96px;
+        min-width: 95px;
+      }
+
     }
 }
