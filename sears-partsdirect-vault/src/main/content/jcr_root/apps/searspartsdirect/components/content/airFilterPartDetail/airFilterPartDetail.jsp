@@ -5,7 +5,7 @@
 
 <div class="airFilterPartDetail">
     <h1 class="partName">Fabreze 20x30x1 Pleated Replacement Air Filter - MERV 12</h1>
-    <div class="partNumber">PART #: 8534854 - <span>4</span></div>
+    <div class="partNumber">PART #: 8534854 - <span id="packNumber">4</span></div>
     <div class="productDetail">
         <div class="span5">
             <div class="productMainImage">
@@ -24,28 +24,28 @@
         <div class="span7">
             <div class="price">
                 <h2 id="price">$14.98</h2>
-                <p id="" class="inStock">In stock</p>
+                <p id="inStock" class="inStock">In stock</p>
             </div>
 
             <p class="packOptions">Choose your pack size</p>
             <div class="row-fluid">
-                <button id="" class="packBox active">4 Pack</button>
-                <button id="" class="packBox">6 Pack</button>
-                <button id="" class="packBox">12 Pack</button>
+                <button id="fourPack" class="packBox active">4 Pack</button>
+                <button id="sixPack" class="packBox">6 Pack</button>
+                <button id="twelvePack" class="packBox">12 Pack</button>
             </div>
 
             <p class="packOptions">How often would you like to receive this product?</p>
             <div class="row-fluid">
-                <button id="" class="packBox wide active">One-time order</button>
-                <button id="" class="packBox wide">Every 3 months</button>
-                <button id="" class="packBox wide">Every 6 months</button>
-                <button id="" class="packBox wide">Every 12 months</button>
+                <button id="oneTime" class="packBox wide active">One-time order</button>
+                <button id="threeMonths" class="packBox wide">Every 3 months</button>
+                <button id="sixMonths" class="packBox wide">Every 6 months</button>
+                <button id="twelveMonths" class="packBox wide">Every 12 months</button>
             </div>
 
-            <div class="row-fluid">
+            <div class="row-fluid pull-left">
                 <div class="freeShippingBox">
-                    <p><i class="svg-icon-truck"></i> Set up automatic reorder and get <span>FREE Standard Shipping</span> today! <a href="#"> Details</a></p>
-                    <!--<p><i class="svg-icon-truck"></i> Eligible for <span>FREE Standard Shipping</span> with Automatic Reorder today! <a href="#"> Details</a></p>-->
+                    <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today! <a href="#"> Details</a>
+                    <!--<p><i class="svg-icon-truck"></i> Set up automatic reorder and get <span class="freeSS">FREE Standard Shipping</span> today! <a href="#"> Details</a></p>-->
                 </div>
             </div>
 

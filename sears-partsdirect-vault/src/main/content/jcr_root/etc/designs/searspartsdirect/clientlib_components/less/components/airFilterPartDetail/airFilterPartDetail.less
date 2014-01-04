@@ -3,10 +3,10 @@
 
 .airFilterPartDetail{
         ul {
-          margin: 0;
-          li {
-            list-style-type: none;
-          }
+            margin: 0;
+            li {
+              list-style-type: none;
+            }
         }
         .partName {
             font-size: @h1Size;
@@ -78,78 +78,78 @@
                 }
             }
 
-          .freeShippingBox {
-            background: @secondaryHueLightest;
-            padding: 6px 12px;
-            width: 300px;
-            margin:10px 0 30px 0;
-            line-height: 17px;
-            p {
-              margin: 0px;
-              span {
-                color: @highlightHueLight;
-                font-weight: 600;
-              }
+            .freeShippingBox {
+                border: 1px solid @secondaryHueLightest;
+                background: @secondaryHueLightest;
+                margin:10px 0 30px 0;
+                border-radius: 4px;
+                padding: 4px 10px;
+                width: 300px;
+                float: left;
+                clear: both;
+                .freeSS {
+                    color: @highlightHueLight;
+                    font-weight: 600;
+                }
             }
-          }
 
-          .packBox {
-            border: 1px solid @primaryHueNormal;
-            background: white;
-            min-width: 100px;
-            max-width: 100px;
-            color: #067bb5;
-            outline: none;
-            padding: 10px;
-            margin: 5px;
-            &.active {
-              border: 4px solid @primaryHueNormal;
-              background: #e7f1f6;
-              font-weight: bold;
+            .packBox {
+                border: 1px solid @primaryHueNormal;
+                background: white;
+                min-width: 100px;
+                max-width: 100px;
+                color: #067bb5;
+                outline: none;
+                padding: 10px;
+                margin: 5px;
+                &.active {
+                  border: 4px solid @primaryHueNormal;
+                  background: #e7f1f6;
+                  font-weight: bold;
+                }
             }
-          }
 
-          .pdpQuantityLine {
-            vertical-align: middle;
-            margin: 10px 0;
-            label {
-              display: inline;
+            .pdpQuantityLine {
+                vertical-align: middle;
+                margin: 10px 0;
+                label {
+                  display: inline;
+                }
+                input {
+                  color: @secondaryHueLight;
+                  text-align: center;
+                  margin: 10px;
+                  width: 35px;
+                }
+                button {
+                  margin-right: 10px;
+                }
             }
-            input {
-              color: @secondaryHueLight;
-              text-align: center;
-              margin: 10px;
-              width: 35px;
-            }
-            button {
-              margin-right: 10px;
-            }
-          }
 
-          .sameDayShip {
-            margin-top: 10px;
-            p {
-              margin: 10px 20px 30px 0;
-              font-size: @pSize;
+            .sameDayShip {
+                margin-top: 10px;
+                p {
+                  margin: 10px 20px 30px 0;
+                  font-size: @pSize;
+                }
+                a {
+                  font-size: @pSize;
+                }
             }
-            a {
-              font-size: @pSize;
-            }
-          }
 
-          .shopYourWay {
-            margin: 20px 0;
-            border-top: 1px solid @secondaryHueLight;
-            border-bottom: 1px solid @secondaryHueLight;
-            padding: 10px 0 10px 0;
-            img {
-              margin: 0 10px 20px 0px;
+            .shopYourWay {
+                margin: 20px 0;
+                border-top: 1px solid @secondaryHueLight;
+                border-bottom: 1px solid @secondaryHueLight;
+                padding: 10px 0 10px 0;
+                img {
+                  margin: 0 10px 20px 0px;
+                }
+                p {
+                  font-size: @pSize;
+                  max-width: 90%;
+                }
             }
-            p {
-              font-size: @pSize;
-              max-width: 90%;
-            }
-          }
 
         }
   }
