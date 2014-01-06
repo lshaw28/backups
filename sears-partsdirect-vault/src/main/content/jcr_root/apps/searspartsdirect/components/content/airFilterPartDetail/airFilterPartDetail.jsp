@@ -45,7 +45,7 @@
             <div class="row-fluid">
                 <div class="freeShippingBox">
                     <p>
-                        <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Set up automatic reorder and get <span class="freeSS">FREE Standard Shipping</span> today!
+                        <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Set up automatic reorder and get <br /> <span class="freeSS">FREE Standard Shipping</span> today!
                         <a class="airFilterPromoModal" data-toggle="modal" data-target="#airFilterPromoModal"> Details</a>
                         <!--<p><i class="svg-icon-truck"></i>  Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today! <a href="#"> Details</a></p>-->
                     </p>

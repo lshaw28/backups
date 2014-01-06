@@ -4,7 +4,9 @@
 @media (max-width: 768px) {
     .airFilterPartDetail{
       .row-fluid [class*="span"] {
-        float: left;
+        &:first-child {
+          float: left;
+        }
       }
 
       .responsivePinchImage {
