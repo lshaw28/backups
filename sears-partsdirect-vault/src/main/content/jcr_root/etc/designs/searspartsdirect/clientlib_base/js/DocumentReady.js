@@ -133,6 +133,12 @@
 
         });
 		/**
+         * airFilterPartDetail class setup
+         */
+        $('.airFilterPartDetail').each(function () {
+            var newAFPD = new airFilterPartDetail($(this));
+        });
+		/**
 		 * video class setup
 		 */
 		$('.video div[data-youtubeid]').each(function () {

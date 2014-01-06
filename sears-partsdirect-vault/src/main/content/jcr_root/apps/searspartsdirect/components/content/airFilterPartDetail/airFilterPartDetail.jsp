@@ -56,8 +56,8 @@
             <div class="row-fluid">
                 <div class="pdpQuantityLine">
                     <label>Qty</label>
-                    <input type="text" class="addToCartQuantity_js" value="1"  onfocus="this.value = '';"/>
-                    <button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
+                    <input type="text" class="addToCartQuantity_js" value="1" onfocus="this.value = '';"/>
+                    <button type="button" id="addFilterToCart" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" data-subper=0 class="new-btn new-btn-search addToCart_js">Add to Cart</button>
                 </div>
             </div>
 
@@ -72,11 +72,11 @@
 
             <div class="partInfo">
                 <h3>Part Information</h3>
-                <p><a href="#">MERV Rating</a>: 13</p>
+                <p><a href="#">MERV Rating</a>: <span id="mervRating">13</span></p>
                 <p>Need help installing your air filter? Read our repair guide, <a href="#">how to replace an HVAC air filter</a></p>
                 <h3>Specifications</h3>
                 <ul>
-                    <li><strong>Category: </strong>Refrigerators and Freezers</li>
+                    <li><strong>Category: </strong><span id="filterCat">Refrigerators and Freezers</span></li>
                     <li><strong>Shipping Weight: </strong><span id="shippingWeight">0.01</span>lbs</li>
                     <li><strong>Shipping Length: </strong><span id="shippingLength">1</span>in</li>
                     <li><strong>Shipping Width: </strong><span id="shippingWidth">0.75</span>in</li>

@@ -25,6 +25,7 @@ WindowResize.js
 
 #base=js/components/.
 addToCart.js
+airFilterPartDetail.js
 cartNav.js
 collapse101.js
 commonParts.js
