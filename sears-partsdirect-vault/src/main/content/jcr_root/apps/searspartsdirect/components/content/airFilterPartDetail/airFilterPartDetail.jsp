@@ -22,7 +22,7 @@
         </div>
 
         <div class="span7">
-            <div class="price">
+            <div class="price row-fluid pull-left">
                 <h2 id="price" class="price">$14.98</h2>
                 <p id="inStock" class="inStock">In stock</p>
             </div>
