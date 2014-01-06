@@ -3,11 +3,11 @@
     %><spd:uniqueID /><%
     %>
 
-<div class="airFilterPartDetail">
     <h1 class="partName">Fabreze 20x30x1 Pleated Replacement Air Filter - MERV 12</h1>
     <div class="partNumber">PART #: 8534854 - <span id="packNumber">4</span></div>
     <div class="productDetail">
         <div class="span5">
+            <!--<cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />-->
             <div class="productMainImage">
                 <img src="/etc/designs/searspartsdirect/clientlib_base/img/no_part.gif" />
                 <div class="plus_minus  hidden-phone">
@@ -46,7 +46,7 @@
                 <div class="freeShippingBox">
                     <p>
                         <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today!
-                        <a data-toggle="modal" data-target="#airFilterPromoModal"> Details</a>
+                        <a class="airFilterPromoModal" data-toggle="modal" data-target="#airFilterPromoModal"> Details</a>
                         <!--<p><i class="svg-icon-truck"></i> Set up automatic reorder and get <span class="freeSS">FREE Standard Shipping</span> today! <a href="#"> Details</a></p>-->
                     </p>
                 </div>
@@ -62,17 +62,17 @@
             </div>
 
             <div class="row-fluid sameDayShip">
-                <i class="icon-truck icon-flip-horizontal"></i> <a>Estimated Delivery Date </a>&#124;<a> Return Policy</a>
+                <i class="icon-truck icon-flip-horizontal"></i> <a data-toggle="modal" data-target="">Estimated Delivery Date </a>&#124;<a data-toggle="modal" data-target=""> Return Policy</a>
             </div>
 
             <div class="row-fluid shopYourWay">
                 <img  class="pull-left" src="/etc/designs/searspartsdirect/clientlib_base/img/shopYourWay.png">
-                <p>SHOP YOUR WAY REWARDS&#8480; Members earn <span id="swyPoints">XXX</span> points if they purchase this item. <a href="#">Learn more</a></p>
+                <p>SHOP YOUR WAY REWARDS&#8480; Members earn <span id="swyPoints">XXX</span> points if they purchase this item. <a data-toggle="modal" data-target="">Learn more</a></p>
             </div>
 
             <div class="partInfo">
                 <h3>Part Information</h3>
-                <p><a>MERV Rating</a>: 13</p>
+                <p><a href="#">MERV Rating</a>: 13</p>
                 <p>Need help installing your air filter? Read our repair guide, <a href="#">how to replace an HVAC air filter</a></p>
                 <h3>Specifications</h3>
                 <ul>
@@ -85,4 +85,3 @@
             </div>
         </div>
     </div>
-</div>
