@@ -89,19 +89,27 @@ var airFilterPartDetail = Class.extend(function () {
 							case 4:
 								pack4 = temp;
 								break;
-							case 8:
+							case 6:
 								pack6 = temp;
-								$('#fourPack').removeClass('active');
-								$('#sixPack').addClass('active');
 								break;
 							case 12:
 								pack12 = temp;
-								$('#fourPack').removeClass('active');
-								$('#twelvePack').addClass('active');
 								break;
 							default:
 								//Error
 						}
+					}
+					switch(response[0].packSize) {
+						case 6:
+							$('#fourPack').removeClass('active');
+							$('#sixPack').addClass('active');
+							break;
+						case 12:
+							$('#fourPack').removeClass('active');
+							$('#twelvePack').addClass('active');
+							break;
+						default:
+							//Error
 					}
 					self.displayFilter(filter);
 					self.displayPack(response[0].packSize);
