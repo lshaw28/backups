@@ -7,8 +7,8 @@
     <div class="partNumber">PART #: <span id="partNumber">8534854</span> - <span id="packNumber">4</span></div>
     <div class="productDetail">
         <div class="span5">
-            <!--<cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />-->
-            <div class="productMainImage">
+            <cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />
+            <!--<div class="productMainImage">
                 <img src="/etc/designs/searspartsdirect/clientlib_base/img/no_part.gif" />
                 <div class="plus_minus  hidden-phone">
                     <div class="plus">+</div>
@@ -18,7 +18,7 @@
             <div class="print">
                 <i class="icon-zoom-in color"></i><a href="#" class="margin20px"> Full Size</a>
                 <i class="icon-print color"></i><a href="#" class="margin20px"> Print</a>
-            </div>
+            </div>-->
         </div>
 
         <div class="span7">
