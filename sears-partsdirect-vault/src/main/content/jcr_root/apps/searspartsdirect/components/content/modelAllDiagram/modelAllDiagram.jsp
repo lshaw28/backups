@@ -1,6 +1,12 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <script type="text/javascript" src="/etc/designs/searspartsdirect/clientlib_base/js/modelSearchResults.js" ></script>
 
+<%
+String modelNumber = (request.getParameter("modelNumber") != null) ? request.getParameter("modelNumber") : "";
+String brandId = (request.getParameter("brandId") != null) ? request.getParameter("brandId") : "";
+String categoryId = (request.getParameter("categoryId") != null) ? request.getParameter("categoryId") : "";
+%>
+
 						<div id="searchRightShadow" class="search-shadow"></div>
 						<a name="findMyModel"></a>
 						<div class="modelFinder">
@@ -120,114 +126,9 @@
 									<div class="span12">
 										<section class=" pattern">
 											<div class = "allDiagramContainer">
-												<ul class = "grid">
+												<ul class = "grid" id="allDiagramContainer">
 
-													<a class="disableDesktop" href="#">
-													<li class="grid-item">
-												        <div class="diagramContainer model">
-															<img src="img/allDiagrams/diagramElectrical.jpg" />
-															<p class="diagramTitle"><a class="disableMobile" href="#">Electrical</a></p></a>
-														</div>
-												     </li>
-												 	</a>
-
-												    <a class="disableDesktop" href="#">
-												     <li class="grid-item">
-												        <div class="diagramContainer promo">
-															<img src="img/waterFilterPromo.png" />
-															<p class="diagramTitle"><a class="disableMobile" href="#">Refrigerator water <br />filter 9030</a></p>
-															<p><i class="svg-icon-truck"></i><span>  FREE SHIPPING * </span><br />with automatic reorder</p>
-														</div>
-												     </li>
-												 	</a>
-
-												 	<a class="disableDesktop" href="#">
-												     <li class="grid-item">
-												        <div class="diagramContainer model">
-															<img src="img/allDiagrams/diagramMowerDeck.jpg" />
-															<p class="diagramTitle"><a class="disableMobile" href="#">Drive</a></p>
-														</div>
-												     </li>
-												 	</a>
-
-												 	<a class="disableDesktop" href="#">
-												     <li class="grid-item">
-												        <div class="diagramContainer topParts">
-															<img src="img/topParts.png" />
-															<h5 class="diagramTitle disableMobile">Top parts in this model</h5>
-															<ul class="topParts-list">
-																<li><a href="#">Deck Mandrel Bearing</a></li>
-																<li><a href="#">Stainless Steel Magic</a></li>
-																<li><a href="#">Push Nut</a></li>
-																<li><a href="#">Control Panel</a></li>
-															</ul>
-														</div>
-												     </li>
-												 	</a>
-
-												 	<a class="disableDesktop" href="#">
-												     <li class="grid-item">
-												        <div class="diagramContainer model">
-															<img src="img/allDiagrams/diagramChassis.jpg" />
-															<p class="diagramTitle"><a class="disableMobile" href="#">Chassis and Enclosure</a></p>
-														</div>
-												     </li>
-												 	</a>
-												    
-												 	<a class="disableDesktop" href="#">
-												     <li class="grid-item">
-												        <div class="diagramContainer model">
-															<img src="img/allDiagrams/diagramMowerDeck.jpg" />
-															<p class="diagramTitle"><a class="disableMobile" href="#">Drive</a></p>
-															<ul class="topParts-list">
-															<p>Top parts in this diagram</p>	
-																<li><a class="disableMobile" href="#">V-Belt</a></li>
-																<li><a class="disableMobile" href="#">Deck Mandrel Bearing</a></li>
-																<li><a class="disableMobile" href="#">Push Nut</a></li>
-															</ul>
-														</div>
-												     </li>
-												 	</a>
-												    
-												    <a class="disableDesktop" href="#">
-												     <li class="grid-item">
-												        <div class="diagramContainer model">
-															<img src="img/allDiagrams/diagramMowerDeck.jpg" />
-															<p class="diagramTitle"><a class="disableMobile" href="#">Mower deck</a></p>
-															<ul class="topParts-list">
-															<p>Top parts in this diagram</p>	
-																<li><a class="disableMobile" href="#">V-Belt</a></li>
-																<li><a class="disableMobile" href="#">Deck Mandrel Bearing</a></li>
-																<li><a class="disableMobile" href="#">Push Nut</a></li>
-															</ul>
-														</div>
-												     </li>
-													</a>
-
-													<a class="disableDesktop" href="#">
-												     <li class="grid-item">
-												        <div class="diagramContainer model">
-															<img src="img/allDiagrams/diagramChassis.jpg" />
-															<p class="diagramTitle"><a class="disableMobile" href="#">Chassis and Enclosure</a></p>
-														</div>
-												     </li>
-												    </a>
-												     
-												    <a class="disableDesktop" href="#">
-												     <li class="grid-item">
-												        <div class="diagramContainer model">
-															<img src="img/allDiagrams/diagramChassis.jpg" />
-															<p class="diagramTitle"><a class="disableMobile" href="#">Chassis and Enclosure</a></p>
-															
-															<ul class="topParts-list">
-															<p>Top parts in this diagram</p>	
-																<li><a class="disableMobile" href="#">V-Belt</a></li>
-																<li><a class="disableMobile" href="#">Deck Mandrel Bearing</a></li>
-																<li><a class="disableMobile" href="#">Push Nut</a></li>
-															</ul>
-														</div>
-												     </li>
-												    </a>
+													
 												</ul>
 											</div>
 										</section>
@@ -359,4 +260,4 @@
 
 				<script type="text/javascript" src="js/components/modelHeader.js"></script>
 
-				
+				<script>allModelDiagram('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>');</script>
