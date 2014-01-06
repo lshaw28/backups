@@ -77,10 +77,10 @@
                 <h3>Specifications</h3>
                 <ul>
                     <li><strong>Category: </strong><span id="filterCat">Refrigerators and Freezers</span></li>
-                    <li><strong>Shipping Weight: </strong><span id="shippingWeight">0.01</span>lbs</li>
-                    <li><strong>Shipping Length: </strong><span id="shippingLength">1</span>in</li>
-                    <li><strong>Shipping Width: </strong><span id="shippingWidth">0.75</span>in</li>
-                    <li><strong>Shipping Height: </strong><span id="shippingHeight">0.5</span>in</li>
+                    <li><strong>Shipping Weight: </strong><span id="shippingWeight">0.01</span> lbs</li>
+                    <li><strong>Shipping Length: </strong><span id="shippingLength">1</span> in</li>
+                    <li><strong>Shipping Width: </strong><span id="shippingWidth">0.75</span> in</li>
+                    <li><strong>Shipping Height: </strong><span id="shippingHeight">0.5</span> in</li>
                 </ul>
             </div>
         </div>
