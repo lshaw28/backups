@@ -4,7 +4,7 @@
     %>
 
     <h1 class="partName">Fabreze 20x30x1 Pleated Replacement Air Filter - MERV 12</h1>
-    <div class="partNumber">PART #: <span id="partNumber">8534854</span> - <span id="packNumber">4</span></div>
+    <div class="partNumber">Part #: <span id="partNumber">8534854</span> - <span id="packNumber">4</span></div>
     <div class="productDetail">
         <div class="span5">
             <cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />
@@ -45,9 +45,9 @@
             <div class="row-fluid">
                 <div class="freeShippingBox">
                     <p>
-                        <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today!
+                        <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Set up automatic reorder and get <span class="freeSS">FREE Standard Shipping</span> today!
                         <a class="airFilterPromoModal" data-toggle="modal" data-target="#airFilterPromoModal"> Details</a>
-                        <!--<p><i class="svg-icon-truck"></i> Set up automatic reorder and get <span class="freeSS">FREE Standard Shipping</span> today! <a href="#"> Details</a></p>-->
+                        <!--<p><i class="svg-icon-truck"></i>  Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today! <a href="#"> Details</a></p>-->
                     </p>
                 </div>
             </div>

@@ -1,9 +1,17 @@
 @import "../../../../clientlib_base/less/base.variables.less";
 @import "../../../../clientlib_base/less/base.mixins.less";
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
     .airFilterPartDetail{
-      #airFilterPromoModal {
+      .row-fluid [class*="span"] {
+        float: left;
+      }
+
+      .responsivePinchImage {
+        max-width: 300px;
+      }
+
+        #airFilterPromoModal {
         top: 25%;
         height: 200px;
         width: 80%;
