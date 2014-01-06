@@ -16,7 +16,7 @@
 	<packaging>pom</packaging>
 
 	<!--  NOTE: This project needs to be built with NO modules enabled for the first build to seed the parent. --> 
-	<modules> 
+	<modules>
 		<module>../sears-partsdirect-common</module>
 		<module>../sears-partsdirect-vault</module>
 	</modules>

@@ -4,7 +4,7 @@
     %>
 
     <h1 class="partName">Fabreze 20x30x1 Pleated Replacement Air Filter - MERV 12</h1>
-    <div class="partNumber">PART #: 8534854 - <span id="packNumber">4</span></div>
+    <div class="partNumber">PART #: <span id="partNumber">8534854</span> - <span id="packNumber">4</span></div>
     <div class="productDetail">
         <div class="span5">
             <!--<cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />-->
@@ -77,10 +77,10 @@
                 <h3>Specifications</h3>
                 <ul>
                     <li><strong>Category: </strong>Refrigerators and Freezers</li>
-                    <li><strong>Shipping Weight: </strong>0.01lbs</li>
-                    <li><strong>Shipping Length: </strong>1in</li>
-                    <li><strong>Shipping Width: </strong>0.75in</li>
-                    <li><strong>Shipping Height: </strong>0.5in</li>
+                    <li><strong>Shipping Weight: </strong><span id="shippingWeight">0.01</span>lbs</li>
+                    <li><strong>Shipping Length: </strong><span id="shippingLength">1</span>in</li>
+                    <li><strong>Shipping Width: </strong><span id="shippingWidth">0.75</span>in</li>
+                    <li><strong>Shipping Height: </strong><span id="shippingHeight">0.5</span>in</li>
                 </ul>
             </div>
         </div>
