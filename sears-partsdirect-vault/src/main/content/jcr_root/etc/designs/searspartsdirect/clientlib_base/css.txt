@@ -2,6 +2,7 @@
 modelsearchresults.css
 textimage.css
 noModelsFound.css
+modelalldiagram.css
 
 #base=less/.
 bootstrap/bootstrap-sears.less

@@ -66,6 +66,35 @@ function footerShow(){
     $("#notsure").show();
 }
 
+function allModelDiagram(modelNumber, brandId, categoryId){
+	var urlName = "http://partsapivip.qa.ch3.s.com/pd-services/models/"+modelNumber+"/components?brandId="+brandId+"&productCategoryId="+categoryId;
+    
+	$.ajax({
+		type : "GET",
+		cache : false,
+		dataType : "json",
+		url : urlName,
+        success : function(data) {
+          	var jsonResponse = data.components;
+			var jsonLength = jsonResponse.length;
+            if(jsonLength != 0){
+				     for(var j = 0; j < jsonResponse.length; j++) {
+
+                                $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"#\">"
+											+ "<li class=\"grid-item\">"
+											+ "<div class=\"diagramContainer model\">"
+											+ "<img src=\""+jsonResponse[j].diagramImageUrl+"\" />"
+											+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"#\">"+jsonResponse[j].componentDescription+"</a></p></a>"
+											+ "</div></li></a>");
+                            }
+                        }
+        },				
+		error : function() {
+			console.log("Failed to retrieve data from server");
+		}
+	});
+}
+
 function fillDropdown(modelNumber, selectedValue, queryParam, dropDown){
 	// queryParam: brand or productType (Servlet will accept this parameter)
     var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&"+queryParam+"="+selectedValue+"&flag=5";
@@ -234,7 +263,7 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                                         $("#searchResultsDown").append(""
                                                             + "<div class=\"row-fluid modelSearchResultsItem\">"
                                                             + "<div class=\"span5 modelSearchResultsItemLeft\">"
-                                                            + "<p>Model <span><a href=\""
+                                                            + "<p>Model <span><a href=\"/content/searspartsdirect/en/modelalldiagram.html?modelNumber="+resultDetail.modelNumber+"&brandId="+resultDetail.brandId+"&categoryId="+resultDetail.categoryId+"\""
                                                             + resultDetail.modelComponentsLink
                                                             + "\">"
                                                             + resultDetail.modelNumber
