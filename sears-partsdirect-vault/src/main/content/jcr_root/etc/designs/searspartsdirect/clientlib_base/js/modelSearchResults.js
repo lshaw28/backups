@@ -80,7 +80,7 @@ function allModelDiagram(modelNumber, brandId, categoryId){
             if(jsonLength != 0){
 				     for(var j = 0; j < jsonResponse.length; j++) {
 
-                                $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"#\">"
+                                $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"
 											+ "<li class=\"grid-item\">"
 											+ "<div class=\"diagramContainer model\">"
 											+ "<img src=\""+jsonResponse[j].diagramImageUrl+"\" />"
