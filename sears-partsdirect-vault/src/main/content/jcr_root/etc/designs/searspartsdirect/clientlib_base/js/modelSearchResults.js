@@ -84,7 +84,7 @@ function allModelDiagram(modelNumber, brandId, categoryId){
 											+ "<li class=\"grid-item\">"
 											+ "<div class=\"diagramContainer model\">"
 											+ "<img src=\""+jsonResponse[j].diagramImageUrl+"\" />"
-											+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"#\">"+jsonResponse[j].componentDescription+"</a></p></a>"
+											+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+jsonResponse[j].componentDescription+"</a></p></a>"
 											+ "</div></li></a>");
                             }
                         }
