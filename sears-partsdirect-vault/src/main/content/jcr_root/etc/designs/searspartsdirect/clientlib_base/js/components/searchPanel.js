@@ -61,37 +61,47 @@ var searchPanel = Class.extend(function () {
 			// Update form action
 			//$('#searchBarForm').attr('action', action + encodeURIComponent(value));
 			//$('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
-			 $('#searchBarForm').click(function( event ){
+			
+			
+			var selectStatement = '#searchContent .dropdown-menu li.selected a';
+			// Bind event on button
+			$('#searchModelsParts').bind('click', function (e) {
+				e.preventDefault();
 
+				if ($(selectStatement).length > 0) {
+					
+					 var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=0";
+		                $.ajax({
+						type : "GET",
+						cache : false,
+						dataType : "json",
+						url : urlName,
+		                success : function(data) {
 
-	                var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=0";
-	                $.ajax({
-					type : "GET",
-					cache : false,
-					dataType : "json",
-					url : urlName,
-	                success : function(data) {
+		                  	var jsonResponse = data;
+							var jsonLength = Object.keys(jsonResponse).length;
+		                    var searchResultExist = false;
+		                    var sywResultExist = false;
 
-	                  	var jsonResponse = data;
-						var jsonLength = Object.keys(jsonResponse).length;
-	                    var searchResultExist = false;
-	                    var sywResultExist = false;
-
-	                    if(jsonLength != 0){
-	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
-	                        //$(window.location).attr('href', 'modelsearchresults.html');
-	                        $('#searchBarForm').submit();
-
-	                    }
-	                    else{
-	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-models-found.html");
-							//$(window.location).attr('href', 'no-models-found.html');
-	                        $('#searchBarForm').submit();
-
-	                    }
-	                }
-	            });  
-		    });
+		                    if(jsonLength != 0){
+		                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
+		                    }
+		                       		                    }
+		                    else{
+		                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-models-found.html");
+								
+		                    }
+		                }
+		            );  
+					$('#searchBarForm').submit();
+					$('#searchBarField').removeClass('error');
+				} else {
+					$('#searchBarField').addClass('error');
+				}
+			});
+		
+	               
+	
 			 
 		},
 		/**
@@ -159,17 +169,7 @@ var searchPanel = Class.extend(function () {
 				}
 			});
 
-			// Bind event on button
-			$('#searchModelsParts').bind('click', function (e) {
-				e.preventDefault();
-
-				if (self.getValue() !== '' && $(selectStatement).length > 0) {
-					//$('#searchBarForm').submit();
-					$('#searchBarField').removeClass('error');
-				} else {
-					$('#searchBarField').addClass('error');
-				}
-			});
+			
 		}
 	}
 }());
