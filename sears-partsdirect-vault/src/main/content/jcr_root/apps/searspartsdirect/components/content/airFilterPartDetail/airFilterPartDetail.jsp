@@ -21,7 +21,7 @@
             </div>-->
         </div>
 
-        <div class="productDetail span7">
+        <div class="span7">
             <div class="price">
                 <h2 id="price" class="price">$14.98</h2>
                 <p id="inStock" class="inStock">In stock</p>
