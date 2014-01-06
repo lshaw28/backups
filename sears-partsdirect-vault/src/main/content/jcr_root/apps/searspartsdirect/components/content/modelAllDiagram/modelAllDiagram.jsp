@@ -5,6 +5,8 @@
 String modelNumber = (request.getParameter("modelNumber") != null) ? request.getParameter("modelNumber") : "";
 String brandId = (request.getParameter("brandId") != null) ? request.getParameter("brandId") : "";
 String categoryId = (request.getParameter("categoryId") != null) ? request.getParameter("categoryId") : "";
+String brandName = (request.getParameter("brandName") != null) ? request.getParameter("brandName") : "";
+String modelDescription = (request.getParameter("modelDescription") != null) ? request.getParameter("modelDescription") : "";
 %>
 
 						<div id="searchRightShadow" class="search-shadow"></div>
@@ -63,7 +65,7 @@ String categoryId = (request.getParameter("categoryId") != null) ? request.getPa
 							<div class="row-fluid">
 								<div class="repairHelpHomeTitle">
 									<div class="pageTitleHeader">
-										<h1>Model # 2135235325 Kenmore Refrigerator<p class="pull-right">Model Info <i class="icon-chevron-down"></i></p></h1>
+										<h1>Model # <%=modelNumber %> <%=brandName %> <%=modelDescription %><p class="pull-right">Model Info <i class="icon-chevron-down"></i></p></h1>
 									</div>
 								</div>
 							</div>
@@ -164,96 +166,7 @@ String categoryId = (request.getParameter("categoryId") != null) ? request.getPa
 							</div>
 						</div>
 					</div>
-				</article>
-
-
-				<div class="globalFooter global_footer"><div id="footerDivider"></div>
-					<div id="footerContent">
-						<div id="footerColumn1">
-							<div class="footerIcon" id="lpchatbutton4" style="visibility: visible;"><a href="javascript:;" onclick="lpMTagConfig.dynButton0.actionHook();"><img src="/partsdirect/assets/img/live_person/chat_footer.gif"></a></div>
-							<div class="footerIcon" id="lpvoicebutton4" style="visibility: visible;"><div style="background-color:#ffffff; height: 0px; width: auto;"></div></div>
-							<p><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/faq.pd?pop=flush&amp;commercialUI=false"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-question icon-light"></i></span> FAQs<br>
-								<span class="footerIconHelp hidden-mobile">Check out the most frequently asked questions</span></a></p>
-								<p><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/contactus.pd"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-envelope icon-light"></i></span> Email us<br>
-									<span class="footerIconHelp hidden-mobile">We'll reply within 24 hours</span></a></p>
-									<p><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/how-to-use-this-site/"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i> <i class="icon-play-sign icon-light"></i> </span> Video<br>
-										<span class="footerIconHelp hidden-mobile">How to use the site (3:58)</span></a></p>
-						</div>
-						<div id="footerColumn2">
-							<div class="footerPromo">
-								<div class="footerPromoIcon"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-truck icon-light"></i></span></div>
-								<div class="footerPromoContent">
-									<h3><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/faq.pd?pop=flush&amp;commercialUI=false#returnsFAQ">fast shipping</a></h3>
-									<p>Sears PartsDirect ships from regionally-located warehouses for timely delivery.</p>
-									<p><a class="new-btn new-btn-square" href="http://partsbetavip.qa.ch3.s.com/partsdirect/faq.pd?pop=flush&amp;commercialUI=false#returnsFAQ">Learn More</a></p>
-								</div>
-							</div>
-							<div class="footerPromo">
-								<div class="footerPromoIcon"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-check-sign icon-light"></i></span></div>
-								<div class="footerPromoContent">
-									<h3><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/faq.pd?pop=flush?pop=flush?pop=flush&amp;commercialUI=false#returnsFAQ">guaranteed fit</a></h3>
-									<p>All parts are manufacturer-approved, to ensure proper fit and to keep appliances running for years to come.</p>
-									<p><a class="new-btn new-btn-square" href="http://partsbetavip.qa.ch3.s.com/partsdirect/faq.pd?pop=flush&amp;commercialUI=false#returnsFAQ">Learn More</a></p>
-								</div>
-							</div>
-						</div>
-
-						<div id="persistentChat_sidePanel" class="hidden-phone">
-							<div id="pC_panelContent">
-								<div class="pC_persistent_icons_content">
-									<h3>for questions or assistance, call <span class="semi-bold"> </span></h3>
-									<p>M-F&nbsp;&nbsp;6:30 a.m. - 10:30 p.m. CT</p>
-									<p>Sat&nbsp;&nbsp;&nbsp;7:00 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
-									<p>Sun&nbsp;&nbsp;7:30 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
-								</div>
-							</div>
-							<div id="pC_panelHandle">
-								<div class="p_icons">
-									<div class="pC_icons_div" id="pC_call_id"><i class="icon-phone icon-2x"></i><br>Call</div>
-									<div class="pC_icons_div pC_top_bot_border ChatNotAvailable" id="pC_chat_id"><i class="icon-comments-alt icon-2x"></i><br>Chat</div>
-									<div class="pC_icons_div pC_top_bot_border" id="pC_chat_offline_id"><i class="icon-comments-alt icon-2x"></i><br>Chat offline</div>
-									<div class="pC_icons_div"><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/contactus.pd"><i class="icon-envelope icon-2x"></i><br>Email</a></div>
-								</div>
-							</div>
-						</div>
-
-						<div id="footerColumn3">
-							<h3>for questions or assistance, call <span class="semi-bold">1-800-252-1698</span></h3>
-							<p>M-F&nbsp;&nbsp;6:30 a.m. - 10:30 p.m. CT</p>
-							<p>Sat&nbsp;&nbsp;&nbsp;7:00 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
-							<p>Sun&nbsp;&nbsp;7:30 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
-							<ul id="footerAboutLinks">
-								<li><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/aboutUs.pd">About Us</a></li>
-								<li><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/contactus.pd">Contact Us</a></li>
-								<li><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/topPart.pd">Top Parts</a></li>
-								<li><a href="https://signup.cj.com/member/brandedPublisherSignUp.do?air_refmerchantid=2590972" target="_blank">Affiliate Program</a></li>
-								<li><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/part-repair-stores/landingPage" target="_blank">Parts Store Locations</a></li>
-							</ul>
-							<ul>
-								<li><a target="_blank" href="http://www.searscommercialparts.com">Sears Commercial Parts</a></li>
-								<li><a target="_blank" href="http://searscommercial.com/">Sears Commercial</a></li>
-								<li><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/brands/">All Brands</a></li>
-								<li><a href="http://partsbetavip.qa.ch3.s.com/partsdirect/product-types/">All Categories</a></li>
-							</ul>
-						</div>
-					</div>
-					<div id="footerLegal">
-						<div class="footerGlow"></div>
-						<div class="copyright">PartsDirect™ © 2013</div>
-						<div class="footerLegalLinks">
-							<a href="http://partsbetavip.qa.ch3.s.com/partsdirect/privacyPolicy.pd" class="popupTrigger">Privacy policy</a>
-							<a target="_blank" href="http://partsbetavip.qa.ch3.s.com/partsdirect/caliPrivacyPolicy.pd" class="popupTrigger">California privacy policy</a>
-							<a target="_blank" href="http://www.searsholdings.com/careers/">Careers</a>
-							<a href="http://www.sears.com/shc/s/nb_10153_12608_NB_CSrecalls" target="_blank" title="Product recalls">Product recalls</a>
-							<a href="http://partsbetavip.qa.ch3.s.com/partsdirect/termsOfUse.pd" class="popupTrigger">Terms of use</a>
-						</div>
-						<div class="footerLogos">
-							<img src="http://c.searspartsdirect.com/cons-148/assets/img/home_images/veriSign.jpg">
-							<img src="http://c.searspartsdirect.com/cons-148/assets/img/home_images/bbb.jpg">
-						</div>
-					</div>
-				</div>
-				
+				</article>				
   				
 			
 				<script type="text/javascript" src="js/clientlib_base-ck.js"></script>

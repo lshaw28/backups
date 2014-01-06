@@ -263,7 +263,7 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
                                         $("#searchResultsDown").append(""
                                                             + "<div class=\"row-fluid modelSearchResultsItem\">"
                                                             + "<div class=\"span5 modelSearchResultsItemLeft\">"
-                                                            + "<p>Model <span><a href=\"/content/searspartsdirect/en/modelalldiagram.html?modelNumber="+resultDetail.modelNumber+"&brandId="+resultDetail.brandId+"&categoryId="+resultDetail.categoryId+"\""
+                                                            + "<p>Model <span><a href=\"/content/searspartsdirect/en/modelalldiagram.html?modelNumber="+resultDetail.modelNumber+"&brandId="+resultDetail.brandId+"&categoryId="+resultDetail.categoryId+"&brandName="+resultDetail.brandName+"&modelDescription="+resultDetail.modelDescription+"\""
                                                             + resultDetail.modelComponentsLink
                                                             + "\">"
                                                             + resultDetail.modelNumber
