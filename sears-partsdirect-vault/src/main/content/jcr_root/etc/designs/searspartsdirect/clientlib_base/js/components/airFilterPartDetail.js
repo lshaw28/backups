@@ -8,7 +8,8 @@ var airFilterPartDetail = Class.extend(function () {
 			weight: '',
 			price: '',
 			sub: [false, false, false],
-			avail: ''
+			avail: '',
+			syw: 0
 		},
 		pack6 = {
 			number: '',
@@ -17,7 +18,8 @@ var airFilterPartDetail = Class.extend(function () {
 			weight: '',
 			price: '',
 			sub: [false, false, false],
-			avail: ''
+			avail: '',
+			syw: 0
 		},
 		pack12 = {
 			number: '',
@@ -26,7 +28,8 @@ var airFilterPartDetail = Class.extend(function () {
 			weight: '',
 			price: '',
 			sub: [false, false, false],
-			avail: ''
+			avail: '',
+			syw: 0
 		};
 
 	return {
@@ -67,7 +70,8 @@ var airFilterPartDetail = Class.extend(function () {
 							weight: response[0].availablePacks[i].shippingWeight,
 							price: response[0].availablePacks[i].priceForParts,
 							sub: [false, false, false],
-							avail: response[0].availablePacks[i].availabilityStatus
+							avail: response[0].availablePacks[i].availabilityStatus,
+							syw: 0
 						};
 						var periods = response[0].availablePacks[i].subscriptions.length;
 						$.grep(response[0].availablePacks[i].subscriptions, function(e) {
@@ -113,6 +117,16 @@ var airFilterPartDetail = Class.extend(function () {
 					}
 					self.displayFilter(filter);
 					self.displayPack(response[0].packSize);
+					//Get Shop Your Way points for packs this part has
+					if (pack4.number != '') {
+						self.getSYW(filter, pack4, 4);
+					}
+					if (pack6.number != '') {
+						self.getSYW(filter, pack6, 6);
+					}
+					if (pack12.number != '') {
+						self.getSYW(filter, pack12, 12);
+					}
 				},
 				error: function(response) {
 					//console.log('fail');
@@ -163,6 +177,44 @@ var airFilterPartDetail = Class.extend(function () {
 				$('.packBox.wide').removeClass('active');
 				$(this).addClass('active');
 				$('#addFilterToCart').attr('data-subper', 12);
+			});
+		},
+		/**
+		 * Get Shop Your Way points
+		 * @return {void}
+		 */
+		getSYW: function (filter, pack, size) {
+			$.ajax({
+				type: "GET",
+				cache: false,
+				dataType: "json",
+				data: {
+					partNumber: filter.number + '-' + size,
+					divId: pack.div,
+					plsNumber: pack.pls
+				},
+				url: apiPath.replace('v1/','') + 'syw/points',
+				success: function(response) {
+					if ($('#packNumber').html() == size) {
+						$('#swyPoints').html(response.points);
+					}
+					switch (size) {
+						case 4:
+							pack4.syw = response.points;
+							break;
+						case 6:
+							pack6.syw = response.points;
+							break;
+						case 12:
+							pack12.syw = response.points;
+							break;
+						default:
+							//Error
+					}
+				},
+				error: function(response) {
+					//console.log('fail');
+				}
 			});
 		},
 		/**
@@ -232,6 +284,7 @@ var airFilterPartDetail = Class.extend(function () {
 				$('#twelveMonths').addClass('hidden');
 			}
 			$('#addFilterToCart').attr('data-partnumber', current.number).attr('data-divid', current.div).attr('data-plsid', current.pls);
+			$('#swyPoints').html(current.syw);
 			$('#shippingWeight').html(current.weight);
 		}
 	};
