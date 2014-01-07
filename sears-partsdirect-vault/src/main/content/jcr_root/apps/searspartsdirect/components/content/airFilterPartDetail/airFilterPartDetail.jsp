@@ -46,7 +46,7 @@
                 <div class="freeShippingBox">
                     <p>
                         <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Set up automatic reorder and get <br /> <span class="freeSS">FREE Standard Shipping</span> today!
-                        <a class="airFilterPromoModal" data-toggle="modal" data-target="#airFilterPromoModal"> Details</a>
+                        <a data-toggle="modal" data-target="#airFilterPromoModal"> Details</a>
                         <!--<p><i class="svg-icon-truck"></i>  Eligible for  <span class="freeSS">FREE Standard Shipping</span> <br /> with Automatic Reorder today! <a href="#"> Details</a></p>-->
                     </p>
                 </div>
@@ -67,7 +67,7 @@
 
             <div class="row-fluid shopYourWay">
                 <img  class="pull-left" src="/etc/designs/searspartsdirect/clientlib_base/img/shopYourWay.png">
-                <p>SHOP YOUR WAY REWARDS&#8480; Members earn <span id="swyPoints">XXX</span> points if they purchase this item. <a data-toggle="modal" data-target="#shopYourWayModal">Learn more</a></p>
+                <p>SHOP YOUR WAY REWARDS&#8480; Members earn <span id="swyPoints">XXX</span> points if they purchase this item. <a data-toggle="modal" data-target="#shopYourWayModal"> Learn more</a></p>
             </div>
 
             <div class="partInfo">
