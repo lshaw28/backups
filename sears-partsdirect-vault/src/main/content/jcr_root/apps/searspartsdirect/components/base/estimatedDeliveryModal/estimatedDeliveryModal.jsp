@@ -5,8 +5,8 @@
     <table>
         <tbody>
             <tr>
-                <th width="35%"><strong>Shipping method</strong></th>
-                <th width="65%"><strong>Estimated arrival date</strong></th>
+                <td><strong>Shipping method</strong></td>
+                <td><strong>Estimated arrival date</strong></td>
             </tr>
             <tr>
                 <td>Standard</td>
