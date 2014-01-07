@@ -119,6 +119,43 @@
             text-align: center;
         }
     }
+
+    .airFilterSearchResults {
+
+      .airFilterSearchResultsItem {
+        border-bottom: 1px solid @secondaryHueDark;
+        padding: 10px 0;
+
+        .airFilterSearchResultsItemLeft {
+          img {
+            float: left;
+          }
+
+          .partListingLink {
+            font-size: @h5Height;
+            font-weight: bold;
+          }
+          .freeShippingPromoBox {
+            background-color: @secondaryHueLight;
+            padding: 5px 10px;
+          }
+        }
+        .airFilterSearchResultsItemRight {
+          float: right;
+          line-height:@smallestPHeight;
+          text-align: right;
+
+
+          .featurePackLarge {
+            font-weight: bold;
+          }
+          .featurePriceLarge {
+            font-size: @h5Height;
+            font-weight: bold;
+          }
+        }
+      }
+    }
 }
 @import "airFilterDimension.mobile.less";
 @import "airFilterDimension.tablet.less";
