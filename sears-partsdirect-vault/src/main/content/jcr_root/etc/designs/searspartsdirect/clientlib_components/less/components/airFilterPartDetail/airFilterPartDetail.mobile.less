@@ -5,26 +5,19 @@
     
     .airFilterPartDetail{
         .productDetail{
-            .productMainImage{
-                img{
-                   padding: 30px;
-                }
+          .packBox {
+            max-width: 96px;
+            min-width: 95px;
+          }
+          .packBox.wide {
+            width:100%;
+            max-width:150px;
+          }
+          .responsivePinchImage {
+            .control.icon-minus,.control.icon-plus {
+              display: none;
             }
+          }
         }
-      .packBox.wide {
-        width:100%;
-        max-width:150px;
-
-      }
-      .packBox {
-        max-width: 96px;
-        min-width: 95px;
-      }
-      .responsivePinchImage {
-        .control.icon-minus,.control.icon-plus {
-          display: none;
-        }
-      }
-
     }
 }
