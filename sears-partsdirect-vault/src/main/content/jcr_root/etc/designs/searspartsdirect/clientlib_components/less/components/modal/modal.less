@@ -62,7 +62,7 @@
     width: 345px;
     left: 50%;
     margin-left: -222px;
-    padding: 30px 50px;
+    padding: 30px 50px 0;
     height: 230px;
     top: 25%;
     button {
@@ -71,13 +71,11 @@
       padding: 8px;
     }
     h1 {
-      line-height: 3.0rem;
-      text-align: center;
       font-size: @h1Size;
       margin-bottom: 20px;
     }
   }
 }
 
-@import "modal.tablet";
-@import "modal.mobile";
+@import "modal.tablet.less";
+@import "modal.mobile.less";
