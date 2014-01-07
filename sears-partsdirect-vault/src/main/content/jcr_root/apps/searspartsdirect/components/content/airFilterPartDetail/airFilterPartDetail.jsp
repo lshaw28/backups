@@ -62,7 +62,7 @@
             </div>
 
             <div class="row-fluid sameDayShip">
-                <i class="icon-truck icon-flip-horizontal"></i> <a data-toggle="modal" data-target="estimatedDeliveryModal">Estimated Delivery Date </a>&#124;<a data-toggle="modal" data-target="#returnPolicyModal"> Return Policy</a>
+                <i class="icon-truck icon-flip-horizontal"></i> <a data-toggle="modal" data-target="#estimatedDeliveryModal">Estimated Delivery Date </a>&#124;<a data-toggle="modal" data-target="#returnPolicyModal"> Return Policy</a>
             </div>
 
             <div class="row-fluid shopYourWay">
