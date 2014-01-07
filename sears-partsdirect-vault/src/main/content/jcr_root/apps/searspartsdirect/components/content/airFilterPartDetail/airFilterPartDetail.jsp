@@ -62,12 +62,12 @@
             </div>
 
             <div class="row-fluid sameDayShip">
-                <i class="icon-truck icon-flip-horizontal"></i> <a data-toggle="modal" data-target="">Estimated Delivery Date </a>&#124;<a data-toggle="modal" data-target=""> Return Policy</a>
+                <i class="icon-truck icon-flip-horizontal"></i> <a data-toggle="modal" data-target="estimatedDeliveryModal">Estimated Delivery Date </a>&#124;<a data-toggle="modal" data-target="#returnPolicyModal"> Return Policy</a>
             </div>
 
             <div class="row-fluid shopYourWay">
                 <img  class="pull-left" src="/etc/designs/searspartsdirect/clientlib_base/img/shopYourWay.png">
-                <p>SHOP YOUR WAY REWARDS&#8480; Members earn <span id="swyPoints">XXX</span> points if they purchase this item. <a data-toggle="modal" data-target="">Learn more</a></p>
+                <p>SHOP YOUR WAY REWARDS&#8480; Members earn <span id="swyPoints">XXX</span> points if they purchase this item. <a data-toggle="modal" data-target="#shopYourWayModal">Learn more</a></p>
             </div>
 
             <div class="partInfo">
