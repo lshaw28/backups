@@ -79,12 +79,23 @@ function allModelDiagram(modelNumber, brandId, categoryId){
 			var jsonLength = jsonResponse.length;
             if(jsonLength != 0){
 				     for(var j = 0; j < jsonResponse.length; j++) {
+				    	 var topPartsList = "";
+				    	 if(jsonResponse[j].parts.length > 0){
+				    		 topPartsList = "<ul class=\"topParts-list\">"
+									+ "<p>Top parts in this diagram</p>";
+				    		 for(var i = 0; i<jsonResponse[j].parts.length; i++){
+				    			 var jsonTopParts = jsonResponse[j].parts[i].description;
+				    			 topPartsList = topPartsList + "<li><a class=\"disableMobile\" href=\"#\">"+jsonTopParts+"</a></li>";
+				    		 }
+				    		 topPartsList = topPartsList + "</ul>";
+				    	 }
 
                                 $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"
 											+ "<li class=\"grid-item\">"
 											+ "<div class=\"diagramContainer model\">"
 											+ "<img src=\""+jsonResponse[j].diagramImageUrl+"\" />"
 											+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+jsonResponse[j].componentDescription+"</a></p></a>"
+											+ topPartsList
 											+ "</div></li></a>");
                             }
                         }

@@ -120,22 +120,18 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 
 							<div class="row-fluid">
 								<p class="selectDiagram">Select a diagram to see associated parts</p>
-							</div>
-
+							</div>							
 							
-							
-								<div class="row-fluid">
-									<div class="span12">
-										<section class=" pattern">
-											<div class = "allDiagramContainer">
-												<ul class = "grid" id="allDiagramContainer">
-
-													
-												</ul>
-											</div>
-										</section>
-									</div>
+							<div class="row-fluid">
+								<div class="span12">
+									<section class=" pattern">
+										<div class = "allDiagramContainer">
+											<ul class = "grid" id="allDiagramContainer">													
+											</ul>
+										</div>
+									</section>
 								</div>
+							</div>
 		
 						<!-- ************* / Model Page (All Diagram) ************* -->
 
