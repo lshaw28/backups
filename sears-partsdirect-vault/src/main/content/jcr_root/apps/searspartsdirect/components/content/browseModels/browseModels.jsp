@@ -1,4 +1,10 @@
 <%@include file="/libs/foundation/global.jsp"%>
+<head>
+<link rel="stylesheet" type="text/css" href="/etc/designs/searspartsdirect/clientlib_base/css/noModelsFound.css"/>
+</head>
+<script type="text/javascript" src="/etc/designs/searspartsdirect/clientlib_base/js/browseModels.js" ></script>
+
+
 <div class="row-fluid lookUpBuckets">
 	<div class="span6 lookUpBucket">
 		<h2>Browse Models</h2>
@@ -17,82 +23,9 @@
 	</div>
 </div>
 
-
 <script>
 	 $(document).ready(function(){
     	fillDropdowns();
     });
-    function fillDropdowns(){
-        var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber=0+&flag=99";
-	$.ajax({
-	type : "GET",
-	cache : false,
-	dataType : "json",
-	url : urlName,
-	success : function(data) {
-	var jsonResponse = data;
-	var len = Object.keys(jsonResponse).length;
-
-	var searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
-	        searchResults = JSON.parse(searchResults);
-
-	var brandArr = [];
-	if(typeof divID === 'undefined'){
-	                        $("#brand").append("<option value=\"Select\">--Select--</option>");
-	for(var i=0; i < searchResults.length; i++){
-	var resultDetail = searchResults[Object.keys(searchResults)[i]];
-	$("#brand").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
-	}
-
-	searchResults = jsonResponse[Object.keys(jsonResponse)[1]];
-
-	searchResults = JSON.parse(searchResults);
-
-	brandArr = [];
-	                        $("#productType").append("<option value=\"Select\">--Select--</option>");
-	for(var i=0; i < searchResults.length; i++){
-	var resultDetail = searchResults[Object.keys(searchResults)[i]];
-	$("#productType").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
-	}
-	}
-	else if(typeof divID !== 'undefined'){
-	                        if(divID == 'brand'){
-	                            var selected = $("#brand").val();
-	                            $("#brand").empty();
-	                            $("#brand").append("<option value=\"Select\">--Select--</option>");
-	for(var i=0; i < searchResults.length; i++){
-	var resultDetail = searchResults[Object.keys(searchResults)[i]];
-	                                $("#brand").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
-	}
-	                            if(typeof isSelf !== 'undefined' && isSelf == 'false'){
-
-	$("#brand > [value='"+selected+"']").attr("selected", "true");
-	                            }
-	}
-	if(divID == 'productType'){
-	var selected = $("#productType").val();
-	                            $("#productType").empty();
-	                            $("#productType").append("<option value=\"Select\">--Select--</option>");
-
-	                            searchResults = jsonResponse[Object.keys(jsonResponse)[1]];
-
-	searchResults = JSON.parse(searchResults);
-	for(var i=0; i < searchResults.length; i++){
-	var resultDetail = searchResults[Object.keys(searchResults)[i]];
-	$("#productType").append("<option value=\""+resultDetail.id+"\">"+resultDetail.name+"</option>");
-	}
-	if(typeof isSelf !== 'undefined' && isSelf == 'false'){
-
-	$("#productType > [value='"+selected+"']").attr("selected", "true");
-	                            }
-	}
-	}
-	},
-	error : function() {
-	console.log("Failed to retrieve data from server");
-	}
-	});
-	}
-
 
 </script>
