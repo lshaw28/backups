@@ -10,6 +10,6 @@
 	ranking="71">
 	<jcr:content
 		jcr:primaryType="cq:PageContent"
-		sling:resourceType="searspartsdirect/components/content/airFilterPartDetail"
+		sling:resourceType="searspartsdirect/components/page/airFilterPartDetails"
 		cq:designPath="/etc/designs/searspartsdirect" />
 </jcr:root>
