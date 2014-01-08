@@ -83,16 +83,17 @@ var airFilterDimension = Class.extend(function() {
                     "mervRating" : obj.mervRating,
                     "inStock" : obj.inStock,
                     "backOrdered" : obj.backOrdered,
-                    "packs" : {}
+                    "packs" : []
                 }
             };
             for( var x in subSet){
                 // get possible existing , or setup with new prototype
                 returnSet[ subSet[x]['basePartNumber']] = returnSet[subSet[x]['basePartNumber']] || prototype(subSet[x]);
-                returnSet[ subSet[x]['basePartNumber'] ]['packs'][subSet[x]['packSize']] = {
+                returnSet[ subSet[x]['basePartNumber'] ]['packs'].push( {
+                    "size" : subSet[x]['packSize'],
                     "price" : subSet[x]['priceForParts'],
                     "partNumber" : subSet[x]['partNumber']
-                }
+                });
             }
             return returnSet;
         },
@@ -113,14 +114,9 @@ var airFilterDimension = Class.extend(function() {
             var tempData = {
                 title : this.renderTitle(rowData.manufacturer, 'Pleated Air Filter Replacement', rowData.mervRating),
                 imgSrc : "img/fridge_demo.png",
-                packSizes : [
-                    {size:4, price:10},
-                    {size:6, price:12},
-                ]
+                packSizes : rowData.packs.sort(function(a,b){return a.size - b.size})
             };
-
             el.html( this.template( tempData ) );
-
             return el;
         },
 
