@@ -76,7 +76,7 @@
             <div class="partInfo">
                 <h3 class="partInfoHeading">Part Information</h3>
                 <p><a href="/replacement-parts/hvac-air-filters/merv-rating.html">MERV Rating</a>: <span id="mervRating">13</span></p>
-                <p>Need help installing your air filter? Read our repair guide, <a href="#">how to replace an HVAC air filter</a></p>
+                <!-- <p>Need help installing your air filter? Read our repair guide, <a href="#">how to replace an HVAC air filter</a></p> -->
                 <h3 class="partInfoHeading">Specifications</h3>
                 <ul>
                     <li><span class="bold">Category: </span><span id="filterCat">Refrigerators and Freezers</span></li>
