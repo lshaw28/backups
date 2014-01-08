@@ -110,12 +110,14 @@
     <div class="airFilterSearchResults">
         <div class="airFilterSearchResultsItemBkg">
             <div class="row-fluid airFilterSearchResultsItem">
-                <div class="span5 airFilterSearchResultsItemLeft">
-                    <div class="airFilterSearchResultsItemThumb">
-                        <img src="{{imgSrc}}" />
-                    </div>
+                <div class="span7 airFilterSearchResultsItemLeft">
+
+                    <img class="filterImg" src="{{imgSrc}}" />
+
                     <a class="partListingLink" href="#">{{title}}</a>
-                    <p class="freeShippingPromoBox hidden-phone"><span><i class="svg-icon-truck"></i> Eligible for <span class="freeShipping">FREE Standard Shipping</span><br>with Automatic Reorder Today! <span><a href="#">Details</a></span></span></p>
+                    <div class="freeShippingPromo hidden-phone">
+                        <p class="freeShippingPromoBox"><span><i class="svg-icon-truck"></i> Eligible for <span class="freeShipping">FREE Standard Shipping</span><br>with Automatic Reorder Today! <span><a href="#">Details</a></span></span></p>
+                    </div>
                 </div>
                 <div class="span3 airFilterSearchResultsItemRight">
                     <ul class="airFilterList">
@@ -123,7 +125,7 @@
                         <li class="packOption">{{size}}-pack <span class="packPrice">{{price}}</span></li>
                         {{/packSizes}}
                     </ul>
-                    <button class="new-btn new-btn-square hidden-phone">Product Details</button>
+                    <button class="new-btn new-btn-square filterResultBtn hidden-phone">Product Details</button>
                 </div>
 
             </div>

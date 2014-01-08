@@ -8,10 +8,10 @@ var airFilterDimension = Class.extend(function() {
         * Initializes airFilterDimension class
         * @param {object} el Target element
         */
-        init : function(el) {            
+        init : function(el) {
             //var width,height,depth;
             // Parameters
-            this.el = el;            
+            this.el = el;
             // Events
             this.bindEvent();
             this.width = this.height = this.depth = false;
@@ -20,7 +20,7 @@ var airFilterDimension = Class.extend(function() {
         },
         /**
         * toggle airFilter section
-        * 
+        *
         * @return {void}
         */
 
@@ -113,8 +113,11 @@ var airFilterDimension = Class.extend(function() {
 
             var tempData = {
                 title : this.renderTitle(rowData.manufacturer, 'Pleated Air Filter Replacement', rowData.mervRating),
-                imgSrc : "img/fridge_demo.png",
-                packSizes : rowData.packs.sort(function(a,b){return a.size - b.size})
+                imgSrc : "/etc/designs/searspartsdirect/clientlib_base/img/defaultFilterImg_TEMP.png",
+                packSizes : [
+                    {size:4, price:10},
+                    {size:6, price:12},
+                ]
             };
             el.html( this.template( tempData ) );
             return el;
@@ -161,14 +164,14 @@ var airFilterDimension = Class.extend(function() {
         },
 
         // end to view or template
-        bindEvent : function() {          
+        bindEvent : function() {
           var self = this;
           $('#airFilterWidth').on("change", function(){
               self.width = ($(this).val());
               self.getResults();
           });
           $('#airFilterHeight').on("change", function(){
-              self.height = ($(this).val());                  
+              self.height = ($(this).val());
               self.getResults();
           });
           $('#airFilterDepth').on("change", function(){
