@@ -17,7 +17,7 @@
         <div class="row-fluid">
             <div class="span4">
                 <select name="airFilterWidth" id="airFilterWidth" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Width (in.)" data-display="true" data-changed="false">
-                        <option value="8">8</option>
+                    <option value="8">8</option>
                     <c:forEach items="${airFilterDimensionList.length}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
                     </c:forEach>
@@ -26,7 +26,6 @@
             </div>
             <div class="span4">
                 <select name="airFilterHeight" id="airFilterHeight" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Height (in.)" data-display="true" data-changed="false">
-                    <option value="4">4</option>
                     <c:forEach items="${airFilterDimensionList.height}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
     				</c:forEach>
@@ -35,7 +34,6 @@
             </div>
             <div class="span4">
                 <select name="airFilterDepth" id="airFilterDepth" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Depth (in.)" data-display="true" data-changed="false">
-                    <option value="14">14</option>
                     <c:forEach items="${airFilterDimensionList.length}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
     				</c:forEach>
@@ -43,10 +41,10 @@
             </div>
         </div>
     </form>
-   <div id="afLandingImage" class="span12 hidden-phone"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension.png"/> </div>
-   <div id="afLandingMobileImage" class="span12 visible-phone"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension-mobile.png"/> </div>
 
-    <section id="bestAirFilters" class="filterResults">
+   <div id="afLandingImage" class="span12 hidden-phone initialDiagrams"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension.png"/> </div>
+   <div id="afLandingMobileImage" class="span12 visible-phone initialDiagrams"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension-mobile.png"/> </div>
+    <section id="bestAirFilters" class="filterResults hide">
         <heading class="setHeading">
             <h2 class="bestHeading setDescription">Best Quality Filters</h2>
             <div class="row-fluid">
@@ -64,15 +62,16 @@
         </ul>
     </section>
 
-    <section id="betterAirFilters" class="filterResults">
+    <section id="betterAirFilters" class="filterResults hide">
         <heading class="setHeading setDescription">
             <h2 class="betterHeading">Better Quality Filters</h2>
         </heading>
         <ul class="setList">
+
         </ul>
     </section>
 
-    <section id="goodAirFilters" class="filterResults">
+    <section id="goodAirFilters" class="filterResults hide">
         <heading class="setDescription">
             <h2 class="goodHeading setHeading">Good Quality Filters</h2>
         </heading>
@@ -80,7 +79,10 @@
         </ul>
     </section>
 
-    <div id="noDataFound"><H1>Sorry We didn't found any Filters that match those dimensions</H1></div>
+    <section id="noAirFilters" class="hide">
+        Sorry, we didn't find any air filters that match those dimensions.
+    </section>
+
     <spd:resolveHazardTipWarning adhocField="noticeText" choiceField="tipChosen" placeholder=""/>
     <c:set var="noticeIcon"><cq:text property="noticeIcon" placeholder=""/></c:set>
     <c:if test="${empty noticeIcon}"><c:set var="noticeIcon" value="icon-info" /></c:if>
