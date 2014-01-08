@@ -23,6 +23,7 @@ Utilities.js
 DocumentReady.js
 WindowResize.js
 modelSearchResults.js
+browseModels.js
 
 #base=js/components/.
 addToCart.js
