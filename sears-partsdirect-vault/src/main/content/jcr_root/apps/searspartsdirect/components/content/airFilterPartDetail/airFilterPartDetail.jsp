@@ -2,6 +2,9 @@
     %><%@ page import="com.day.cq.commons.jcr.JcrConstants" %><%
     %><spd:uniqueID /><%
     %>
+    <c:set var="partNumber" value="${slingRequest.requestPathInfo.selectors[0]}" />
+    <c:set var="divId" value="${slingRequest.requestPathInfo.selectors[1]}" />
+    <c:set var="plsNumber" value="${slingRequest.requestPathInfo.selectors[2]}" />
 
     <h1 class="partName">Fabreze 20x30x1 Pleated Replacement Air Filter - MERV 12</h1>
     <div class="partNumber">Part #: <span id="partNumber">8534854</span> - <span id="packNumber">4</span></div>
