@@ -1,4 +1,5 @@
-<%@ include file="/apps/searspartsdirect/global.jsp" %>
+    <%@ include file="/apps/searspartsdirect/global.jsp" %>
+
 
 Hello World!
 ${slingRequest.requestPathInfo.selectors[0]}
