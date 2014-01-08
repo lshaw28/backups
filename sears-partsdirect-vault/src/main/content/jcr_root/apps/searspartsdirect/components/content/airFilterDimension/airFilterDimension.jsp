@@ -44,6 +44,7 @@
 
    <div id="afLandingImage" class="span12 hidden-phone initialDiagrams"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension.png"/> </div>
    <div id="afLandingMobileImage" class="span12 visible-phone initialDiagrams"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension-mobile.png"/> </div>
+
     <section id="bestAirFilters" class="filterResults hide">
         <heading class="setHeading">
             <h2 class="bestHeading setDescription">Best Quality Filters</h2>
@@ -58,7 +59,7 @@
                 </div>
             </div>
         </heading>
-        <ul class="setList">
+        <ul class="setList airFilterSearchResults">
         </ul>
     </section>
 
@@ -66,7 +67,7 @@
         <heading class="setHeading setDescription">
             <h2 class="betterHeading">Better Quality Filters</h2>
         </heading>
-        <ul class="setList">
+        <ul class="setList airFilterSearchResults">
 
         </ul>
     </section>
@@ -75,7 +76,7 @@
         <heading class="setDescription">
             <h2 class="goodHeading setHeading">Good Quality Filters</h2>
         </heading>
-        <ul class="setList">
+        <ul class="setList airFilterSearchResults">
         </ul>
     </section>
 
@@ -103,3 +104,26 @@
     </div>
 </div>
 <p>Did you know that dirty air filters leave particles like dust, mites, pollen and pet dander in the air, which reduces air quality in your home? Dirty air filters also reduce the efficiency of your HVAC system. Sears PartsDirect has top air filter brands such as BMC Air Flow and DuPont for a variety of HVAC systems at great prices. Save energy and improve air quality with replacement furnace filters and air conditioner filters from Sears PartsDirect. Check your owner's manual or enter in your filter dimensions to find the right air filter for your furnace or AC unit.</p>
+
+
+<script id="js_airFilterResultTemplate" type="text/x-handlebars-template"">
+    <div class="airFilterSearchResults">
+        <div class="airFilterSearchResultsItemBkg">
+            <div class="row-fluid airFilterSearchResultsItem">
+                <div class="span5 airFilterSearchResultsItemLeft">
+                    <div class="airFilterSearchResultsItemThumb">
+                        <img src="{{imgSrc}}" />
+                    </div>
+                    <a class="partListingLink" href="#">{{title}}</a>
+                    <p class="freeShippingPromoBox hidden-phone"><span><i class="truckIcon svg-icon-truck"></i>Eligible for <span class="freeShipping">FREE Standard Shipping</span><br>with Automatic Reorder Today!<span><a href="#">Details</a></span></span></p>
+                </div>
+                <ul class="span3">
+                    {{#packSizes}}
+                    <li class="packOption">{{size}}-pack <span class="packPrice">{{price}}</span></li>
+                    {{/packSizes}}
+                </ul>
+                <button class="new-btn new-btn-square hidden-phone">Product Details</button>
+            </div>
+        </div>
+    </div>
+</script>

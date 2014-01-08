@@ -15,6 +15,7 @@ var airFilterDimension = Class.extend(function() {
             // Events
             this.bindEvent();
             this.width = this.height = this.depth = false;
+            this.template = Handlebars.compile( $('#js_airFilterResultTemplate').html() );
 
         },
         /**
@@ -38,9 +39,9 @@ var airFilterDimension = Class.extend(function() {
             return this;
         },
 
-        resultsFromApi : function(callback){
+        resultsFromApi : function(ajaxOpts){
             var self = this;
-            $.ajax({
+            var ajaxObj = {
                 url : 'http://partsapivip.qa.ch3.s.com/pd-services/v1/air-filters/list',
                 data :{
                     w : this.width,
@@ -49,19 +50,26 @@ var airFilterDimension = Class.extend(function() {
                 },
                 context : this,
                 success : function( data ){
-                   if(typeof callback === "function"){
-                       callback.call( self, data );
-                   }
+                    if(typeof callback === "function"){
+                        callback.call( self, data );
+                    }
                 }
-            });
+            };
+            ajaxObj = $.extend(ajaxObj, ajaxOpts);
+            $.ajax(ajaxObj);
         },
 
         getResults : function(){
             if(this.width && this.height && this.depth){
-                this.resultsFromApi( this.renderResults );
+                this.resultsFromApi( {success: this.renderResults, error : this.showErrorstate} );
             }else{
 
             }
+        },
+
+        showErrorState : function(){
+            $('.initialDiagrams').addClass('hide');
+            $('#noResults').removeClass('hide');
         },
 
         coalesceData:function(subSet){
@@ -101,7 +109,17 @@ var airFilterDimension = Class.extend(function() {
 
         renderResultRow : function(rowData){
             var el = $('<li/>');
-            el.html( this.renderTitle(rowData.manufacturer, 'Pleated Air Filter Replacement', rowData.mervRating));
+
+            var tempData = {
+                title : this.renderTitle(rowData.manufacturer, 'Pleated Air Filter Replacement', rowData.mervRating),
+                imgSrc : "img/fridge_demo.png",
+                packSizes : [
+                    {size:4, price:10},
+                    {size:6, price:12},
+                ]
+            };
+
+            el.html( this.template( tempData ) );
 
             return el;
         },
@@ -129,7 +147,6 @@ var airFilterDimension = Class.extend(function() {
 
             if(typeof resultSet != 'object') return false;
             // else render result sets
-
             if( resultSet.bestAirFilters && resultSet.bestAirFilters.part ){
                 resultSet.bestAirFilters.part = this.coalesceData ( resultSet.bestAirFilters.part );
                 this.renderResultType ( resultSet.bestAirFilters.part, '#bestAirfilters' );
