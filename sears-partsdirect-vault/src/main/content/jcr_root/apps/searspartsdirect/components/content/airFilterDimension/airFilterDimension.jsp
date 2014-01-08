@@ -115,14 +115,17 @@
                         <img src="{{imgSrc}}" />
                     </div>
                     <a class="partListingLink" href="#">{{title}}</a>
-                    <p class="freeShippingPromoBox hidden-phone"><span><i class="truckIcon svg-icon-truck"></i>Eligible for <span class="freeShipping">FREE Standard Shipping</span><br>with Automatic Reorder Today!<span><a href="#">Details</a></span></span></p>
+                    <p class="freeShippingPromoBox hidden-phone"><span><i class="svg-icon-truck"></i> Eligible for <span class="freeShipping">FREE Standard Shipping</span><br>with Automatic Reorder Today! <span><a href="#">Details</a></span></span></p>
                 </div>
-                <ul class="span3">
-                    {{#packSizes}}
-                    <li class="packOption">{{size}}-pack <span class="packPrice">{{price}}</span></li>
-                    {{/packSizes}}
-                </ul>
-                <button class="new-btn new-btn-square hidden-phone">Product Details</button>
+                <div class="span3 airFilterSearchResultsItemRight">
+                    <ul class="airFilterList">
+                        {{#packSizes}}
+                        <li class="packOption">{{size}}-pack <span class="packPrice">{{price}}</span></li>
+                        {{/packSizes}}
+                    </ul>
+                    <button class="new-btn new-btn-square hidden-phone">Product Details</button>
+                </div>
+
             </div>
         </div>
     </div>

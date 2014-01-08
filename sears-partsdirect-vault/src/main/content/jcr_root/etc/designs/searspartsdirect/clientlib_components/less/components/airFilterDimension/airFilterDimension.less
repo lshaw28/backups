@@ -121,12 +121,14 @@
     }
 
     .airFilterSearchResults {
+      list-style-type: none;
 
       .airFilterSearchResultsItem {
         border-bottom: 1px solid @secondaryHueDark;
         padding: 10px 0;
 
         .airFilterSearchResultsItemLeft {
+          text-align: left;
           img {
             float: left;
           }
@@ -145,6 +147,9 @@
           line-height:@smallestPHeight;
           text-align: right;
 
+          .airFilterList {
+            list-style-type: none;
+          }
 
           .featurePackLarge {
             font-weight: bold;
