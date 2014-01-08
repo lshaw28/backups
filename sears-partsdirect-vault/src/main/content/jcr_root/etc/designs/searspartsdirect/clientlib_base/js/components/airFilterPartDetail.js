@@ -9,7 +9,10 @@ var airFilterPartDetail = Class.extend(function () {
 			price: '',
 			sub: [false, false, false],
 			avail: '',
-			syw: 0
+			syw: 0,
+			sDate: '',
+			pDate: '',
+			eDate: ''
 		},
 		pack6 = {
 			number: '',
@@ -19,7 +22,10 @@ var airFilterPartDetail = Class.extend(function () {
 			price: '',
 			sub: [false, false, false],
 			avail: '',
-			syw: 0
+			syw: 0,
+			sDate: '',
+			pDate: '',
+			eDate: ''
 		},
 		pack12 = {
 			number: '',
@@ -29,7 +35,10 @@ var airFilterPartDetail = Class.extend(function () {
 			price: '',
 			sub: [false, false, false],
 			avail: '',
-			syw: 0
+			syw: 0,
+			sDate: '',
+			pDate: '',
+			eDate: ''
 		};
 
 	return {
@@ -71,7 +80,10 @@ var airFilterPartDetail = Class.extend(function () {
 							price: response[0].availablePacks[i].priceForParts,
 							sub: [false, false, false],
 							avail: response[0].availablePacks[i].availabilityStatus,
-							syw: 0
+							syw: 0,
+							sDate: '',
+							pDate: '',
+							eDate: ''
 						};
 						var periods = response[0].availablePacks[i].subscriptions.length;
 						$.grep(response[0].availablePacks[i].subscriptions, function(e) {
@@ -117,15 +129,18 @@ var airFilterPartDetail = Class.extend(function () {
 					}
 					self.displayFilter(filter);
 					self.displayPack(response[0].packSize);
-					//Get Shop Your Way points for packs this part has
+					//Get Shop Your Way points and estimated delivery dates for packs this part has
 					if (pack4.number != '') {
 						self.getSYW(filter, pack4, 4);
+						self.getDates(filter, pack4, 4);
 					}
 					if (pack6.number != '') {
 						self.getSYW(filter, pack6, 6);
+						self.getDates(filter, pack6, 6);
 					}
 					if (pack12.number != '') {
 						self.getSYW(filter, pack12, 12);
+						self.getDates(filter, pack12, 12);
 					}
 				},
 				error: function(response) {
@@ -218,6 +233,82 @@ var airFilterPartDetail = Class.extend(function () {
 			});
 		},
 		/**
+		 * Get estimated delivery dates
+		 * @return {void}
+		 */
+		getDates: function (filter, pack, size) {
+			$.ajax({
+				type: "GET",
+				cache: false,
+				dataType: "json",
+				data: {
+					partNumber: filter.number + '-' + size,
+					divId: pack.div,
+					plsNumber: pack.pls
+				},
+				url: apiPath.replace('v1/','') + 'ead/prioritydates',
+				success: function(response) {
+					var standard = '',
+						priority = '',
+						expedited = '';
+					
+					if (response.standardEAD != undefined) {
+						standard = response.standardEAD;
+					}
+					if (response.priorityEAD != undefined) {
+						priority = response.priorityEAD;
+					}
+					if (response.expeditedEAD != undefined) {
+						expedited = response.expeditedEAD;
+					}
+					if ($('#packNumber').html() == size) {
+						//Sets delivery dates and hides if date is missing
+						if (standard == '') {
+							$('#standardLabel, #standardDelivery').addClass('hidden');
+						} else {
+							$('#standardLabel, #standardDelivery').removeClass('hidden');
+							$('#standardDelivery').html(standard);
+						}
+						if (expedited == '') {
+							$('#expeditedLabel, #expeditedDelivery').addClass('hidden');
+						} else {
+							$('#expeditedLabel, #expeditedDelivery').removeClass('hidden');
+							$('#expeditedDelivery').html(expedited);
+						}
+						if (priority == '') {
+							$('#priorityLabel, #priorityDelivery').addClass('hidden');
+						} else {
+							$('#priorityLabel, #priorityDelivery').removeClass('hidden');
+							$('#priorityDelivery').html(priority);
+						}
+					}
+					
+					switch (size) {
+						case 4:
+							pack4.sDate = standard;
+							pack4.pDate = priority;
+							pack4.eDate = expedited;
+							break;
+						case 6:
+							pack6.sDate = standard;
+							pack6.pDate = priority;
+							pack6.eDate = expedited;
+							break;
+						case 12:
+							pack12.sDate = standard;
+							pack12.pDate = priority;
+							pack12.eDate = expedited;
+							break;
+						default:
+							//Error
+					}
+				},
+				error: function(response) {
+					//console.log('fail');
+				}
+			});
+		},
+		/**
 		 * Display air information (constant between packs)
 		 * @return {void}
 		 */
@@ -268,10 +359,16 @@ var airFilterPartDetail = Class.extend(function () {
 			//Modify message based on availability
 			if (current.avail == 'BORD') {
 				$('#inStock').html('Back Order');
+				$('.pdpQuantityLine').removeClass('hidden');
+				$('.sameDayShip').removeClass('hidden');
 			} else if (current.avail == 'NLA') {
 				$('#inStock').html('Not Available');
+				$('.pdpQuantityLine').addClass('hidden');
+				$('.sameDayShip').addClass('hidden');
 			} else {
 				$('#inStock').html('In stock');
+				$('.pdpQuantityLine').removeClass('hidden');
+				$('.sameDayShip').removeClass('hidden');
 			}
 			//Check for missing subscription periods
 			if (!current.sub[0]) {
@@ -284,6 +381,26 @@ var airFilterPartDetail = Class.extend(function () {
 				$('#twelveMonths').addClass('hidden');
 			}
 			$('#addFilterToCart').attr('data-partnumber', current.number).attr('data-divid', current.div).attr('data-plsid', current.pls);
+			
+			//Sets delivery dates and hides if date is missing
+			if (current.sDate == '') {
+				$('#standardLabel, #standardDelivery').addClass('hidden');
+			} else {
+				$('#standardLabel, #standardDelivery').removeClass('hidden');
+				$('#standardDelivery').html(current.sDate);
+			}
+			if (current.eDate == '') {
+				$('#expeditedLabel, #expeditedDelivery').addClass('hidden');
+			} else {
+				$('#expeditedLabel, #expeditedDelivery').removeClass('hidden');
+				$('#expeditedDelivery').html(current.eDate);
+			}
+			if (current.pDate == '') {
+				$('#priorityLabel, #priorityDelivery').addClass('hidden');
+			} else {
+				$('#priorityLabel, #priorityDelivery').removeClass('hidden');
+				$('#priorityDelivery').html(current.pDate);
+			}
 			$('#swyPoints').html(current.syw);
 			$('#shippingWeight').html(current.weight);
 		}
