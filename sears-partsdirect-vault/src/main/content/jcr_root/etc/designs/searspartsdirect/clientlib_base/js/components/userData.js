@@ -242,7 +242,7 @@ var userData = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils,
 				quantity = 0,
-				li = new cartItemTemplate(item.part, item.quantity);
+				li = new cartItemTemplate(item, item.quantity);
 
 			// Retrieve quantity
 			quantity = item.quantity;
