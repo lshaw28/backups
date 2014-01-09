@@ -35,7 +35,6 @@ var addToCart = Class.extend(function () {
 			}
 			this.cartEmpty = null;
 			// Setup
-			this.setProperties();
 			this.bindEvents();
 		},
 		/**
@@ -47,11 +46,11 @@ var addToCart = Class.extend(function () {
 				su = window.SPDUtils;
 
 			// Retrieve properties
-			self.partNumber = self.el.data('partnumber');
-			self.divId = self.el.data('divid');
-			self.plsId = self.el.data('plsid');
-			if (self.el.data('subper') != undefined) {
-				self.subPer = self.el.data('subper');
+			self.partNumber = self.el.attr('data-partnumber');
+			self.divId = self.el.attr('data-divid');
+			self.plsId = self.el.attr('data-plsid');
+			if (self.el.attr('data-subper') != undefined) {
+				self.subPer = self.el.attr('data-subper');
 			}
 			// Retrieve elements
 			self.cartItems.header = $('#cartShop .cartShopHeader_js');
@@ -233,6 +232,8 @@ var addToCart = Class.extend(function () {
 
 			self.el.bind('click', function (e) {
 				e.preventDefault();
+				//Properties are set here in case data on the Add to Cart button is updated with javascript
+                self.setProperties();
 				self.addItem();
 			});
 		}
