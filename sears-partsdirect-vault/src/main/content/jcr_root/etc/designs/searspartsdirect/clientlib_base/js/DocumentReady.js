@@ -133,10 +133,10 @@
 
         });
 		/**
-         * airFilterPartDetail class setup
+         * airFilterPartDetails class setup
          */
-        $('.airFilterPartDetail').each(function () {
-            var newAFPD = new airFilterPartDetail($(this));
+        $('.airFilterPartDetails').each(function () {
+            var newAFPD = new airFilterPartDetails($(this));
         });
 		/**
 		 * video class setup

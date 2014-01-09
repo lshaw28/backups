@@ -1,5 +1,5 @@
 /*global $:true, Class:true */
-var airFilterPartDetail = Class.extend(function () {
+var airFilterPartDetails = Class.extend(function () {
 	"use strict";
 	var pack4 = {
 			number: '',
