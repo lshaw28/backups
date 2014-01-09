@@ -47,13 +47,13 @@
 
     <section id="bestAirFilters" class="filterResults hide">
         <heading class="setHeading">
-            <h2 class="bestHeading setDescription">Best Quality Filters</h2>
+            <h2 class="bestHeading setDescription"><img src="/etc/designs/searspartsdirect/clientlib_base/img/BestQualityFiltersIcon.png"  height="30" width="30" /> Best Quality Filters</h2>
             <div class="row-fluid">
                 <div class="span6">
-                    <p><span class="bulletHeading">MERV ratings:</span> 13-16 <a href="/content/searspartsdirect/en/merv-rating.html" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
+                    <p><span class="bulletHeading">MERV ratings:</span> 13-16 <a href="#" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
                     <p><span class="bulletHeading">Removes:</span> 95% or more airborne contaminants 0.3 microns or larger</p>
                 </div>
-                <div class="span6 rightDiv">
+                <div class="span6">
                     <p><span class="bulletHeading">Ideal for:</span> The most efficient filtration, suitable for hospitals and healthcare facilities </p>
                     <p><span class="bulletHeading">Life:</span> Lasts up to 90 days</p>
                 </div>
@@ -65,7 +65,17 @@
 
     <section id="betterAirFilters" class="filterResults hide">
         <heading class="setHeading setDescription">
-            <h2 class="betterHeading">Better Quality Filters</h2>
+            <h2 class="betterHeading"><img src="/etc/designs/searspartsdirect/clientlib_base/img/BetterQualityFiltersIcon.png"  height="30" width="30" /> Better Quality Filters</h2>
+			 <div class="row-fluid">
+                <div class="span6">
+                    <p><span class="bulletHeading">MERV ratings:</span> 9-12 <a href="#" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
+                    <p><span class="bulletHeading">Removes:</span> Up to 89% of airborne contaminants one micron or larger</p>
+                </div>
+                <div class="span6">
+                    <p><span class="bulletHeading">Ideal for:</span>A very high level of filtration, good for homes prone to allergies or asthma</p>
+                    <p><span class="bulletHeading">Life:</span> Lasts up to 90 days</p>
+                </div>
+            </div>
         </heading>
         <ul class="setList airFilterSearchResults">
 
@@ -74,7 +84,17 @@
 
     <section id="goodAirFilters" class="filterResults hide">
         <heading class="setDescription">
-            <h2 class="goodHeading setHeading">Good Quality Filters</h2>
+            <h2 class="goodHeading setHeading"><img src="/etc/designs/searspartsdirect/clientlib_base/img/GoodQualityFiltersIcon.png"  height="30" width="30" /> Good Quality Filters</h2>
+			<div class="row-fluid">
+                <div class="span6">
+                    <p><span class="bulletHeading">MERV ratings:</span> 5-8 <a href="#" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
+                    <p><span class="bulletHeading">Removes:</span> Up to 80% of airborne contaminants three microns or larger</p>
+                </div>
+                <div class="span6">
+                    <p><span class="bulletHeading">Ideal for:</span> Efficient air filtration for homes on a budget, good for homes with minor allergies</p>
+                    <p><span class="bulletHeading">Life:</span> Lasts up to 90 days</p>
+                </div>
+            </div>
         </heading>
         <ul class="setList airFilterSearchResults">
         </ul>
@@ -110,9 +130,16 @@
     <div class="airFilterSearchResults">
         <div class="airFilterSearchResultsItemBkg">
             <div class="row-fluid airFilterSearchResultsItem">
-                <div class="span7 airFilterSearchResultsItemLeft">
+                <div class="span8 airFilterSearchResultsItemLeft">
 
-                    <img class="filterImg" src="{{imgSrc}}" />
+                    <c:choose>
+                        <c:when test="${imgSrc != null}">
+                        	<img class="filterImg" src="{{imgSrc}}" />
+                        </c:when>
+                        <c:otherwise>
+                        	<img class="filterImg" src="/etc/designs/searspartsdirect/clientlib_base/img/NoImage_desktop.png" />
+                        </c:otherwise>
+                    </c:choose>
 
                     <a class="partListingLink" href="#">{{title}}</a>
                     <div class="freeShippingPromo hidden-phone">

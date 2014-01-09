@@ -125,7 +125,8 @@
 
       .airFilterSearchResultsItem {
         border-bottom: 1px solid @secondaryHueLight;
-        padding: 10px 0;
+        padding: 15px 0 10px 0;
+        width: 98%;
 
         .airFilterSearchResultsItemLeft {
           text-align: left;
@@ -134,7 +135,7 @@
             float: left;
             height: 100px;
             margin-bottom: 10px;
-            margin-right: 10px;
+            margin-right: 20px;
             padding: 10px;
             width: 100px;
           }
@@ -144,14 +145,15 @@
             font-weight: bold;
           }
           .freeShippingPromo {
-              margin-left: 130px;
+              margin-left: 144px;
               margin-top: 20px;
               width: inherit;
-          .freeShippingPromoBox {
+            .freeShippingPromoBox {
               background-color: @secondaryHueLightest;
-            padding: 5px 10px;
+              padding: 5px 10px;
+			  border-radius: 4px;
+            }
           }
-        }
 
         }
         .airFilterSearchResultsItemRight {
@@ -170,6 +172,7 @@
 
           .filterResultBtn {
             margin-top: 10px;
+			border-radius: 4px;
           }
 
           .featurePackLarge {
@@ -182,91 +185,29 @@
         }
       }
     }
-  .airFilterSearchResult{
-    font-color:@secondaryHueDark;
-
-    .totalProductCount{
-      font-size:@h4Size;
-      color:@secondaryHueDark;
-      display:block;
-      padding:10px 0 20px 0;
-    }
-    .typeOfAirFilterSearch p{ margin:0px; }
-    .typeOfAirFilterSearch{
-      float:left;
-      border: 3px solid @secondaryHueLighter;
-      padding:0px 23px 13px;
-
-      .AirFilterHeading{
-        font-size:@h2Size;
-
-        img{
-          margin-right: 10px;
+    .setHeading{
+        border: 3px solid @secondaryHueLighter;
+        padding: 15px 20px;
+        float: left;
+        margin: 0px 23px 23px 23px;
+        
+        .bestHeading{
+            font-size:@h2Size;
         }
-      }
-      .bulletHeading{
-        font-size:@pSize;
-        font-weight:bold;
-      }
-      .rightDiv{
-        padding:0 20px 0 0;
-      }
-      .smallFont{
-        font-size:@smallPSize;
-      }
-    }
-
-    .titleAnchor{
-      font-size:@smallPSize;
-    }
-
-    .airFilterPorductRow{
-      width: 100%;
-      padding: 25px 0;
-      float: left;
-      border-bottom: 1px solid @secondaryHueLighter;
-      font-size: @pSize;
-
-      .productImage{
-        img{
-          height: 76px;
-          width: 76px;
-          border: 1px solid @secondaryHueLightest;
-          padding: 9px;
+        .bulletHeading{
+            font-size:@pSize;
+            font-weight:bold;
         }
-      }
-      .titleAnchor{
-        margin: 0 0 23px 0;
-        a{
-          font-size:@h4Size;
+        .rightDiv{
+            padding:0 20px 0 0;
         }
-      }
-      .productPrice{
-        text-align: right;
-      }
-      .price{
-        font-size:20px;
-      }
-      .ProductDetailsAnchor{
-        padding:10px 18px;
-        border: 1px solid @primaryHueNormal;
-        border-radius: 4px;
-        color: #067bb5;
-        text-decoration: none;
-        float: right;
-      }
-      .freeShippingBox{
-        border: 1px solid @secondaryHueLightest;
-        border-radius: 4px;
-        background-color:@secondaryHueLightest;
-        padding: 4px 10px;
-        width: 300px;
-      }
-      .freeSS{
-        color:@highlightHueDarkest;
-      }
+        .span6 p{
+            text-align: left;
+        }
+        .smallFont{
+            font-size:@smallPSize;
+        }
     }
-  }
 }
 @import "airFilterDimension.mobile.less";
 @import "airFilterDimension.tablet.less";
