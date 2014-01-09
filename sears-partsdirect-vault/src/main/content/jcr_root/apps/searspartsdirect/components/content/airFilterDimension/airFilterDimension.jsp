@@ -131,16 +131,7 @@
         <div class="airFilterSearchResultsItemBkg">
             <div class="row-fluid airFilterSearchResultsItem">
                 <div class="span8 airFilterSearchResultsItemLeft">
-
-                    <c:choose>
-                        <c:when test="${imgSrc != null}">
-                        	<img class="filterImg" src="{{imgSrc}}" />
-                        </c:when>
-                        <c:otherwise>
-                        	<img class="filterImg" src="/etc/designs/searspartsdirect/clientlib_base/img/NoImage_desktop.png" />
-                        </c:otherwise>
-                    </c:choose>
-
+                    <img class="filterImg" src="/etc/designs/searspartsdirect/clientlib_base/img/NoImage_desktop.png" />
                     <a class="partListingLink" href="#">{{title}}</a>
                     <div class="freeShippingPromo hidden-phone">
                         <p class="freeShippingPromoBox"><span><i class="svg-icon-truck"></i> Eligible for <span class="freeShipping">FREE Standard Shipping</span><br>with Automatic Reorder Today! <span><a href="#">Details</a></span></span></p>
