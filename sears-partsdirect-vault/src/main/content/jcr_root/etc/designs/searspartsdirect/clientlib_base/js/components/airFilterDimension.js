@@ -139,7 +139,7 @@ var airFilterDimension = Class.extend(function() {
         renderResults : function(resultSet){
 
             $('.initialDiagrams').addClass('hide');
-            $('.airFilterDimensionSection').css("border", "none" );
+            $('.airfilterDimensionSection').css("border", "none" );
             $('.toolTip').addClass('hide');
 
             // show no found and the result set will clear it very quickly
