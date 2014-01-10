@@ -252,7 +252,7 @@ var customAccordionForms = Class.extend(function () {
 					if ($.browser.msie) {
 						var xhReqTax = new XMLHttpRequest(),
 							dataReqTax = '{"address":{"address1":"' + $('#shippingAddress').val() + '","city":"' + $('#shippingCity').val() + '","geoCode":"' + $('#shippingCounty').val() + '","zipCode":"' + $('#shippingZip').val() + '","state":"' + $('#shippingState').val() + '"},"partCompositeKey":{"partNumber":"' + $('#finalPartNumber').val() + '","productGroupId":"' + $('#finalGroupId').val() + '","supplierId":"' + $('#finalSupplierId').val() + '"},"quantity":' + parseInt($('#waterFilterQuantity').val()) + '}';
-						xhReqTax.open('POST', apiPath + 'address/validate/taxandshipping', false);
+						xhReqTax.open('POST', apiPathSecure + 'address/validate/taxandshipping', false);
 						xhReqTax.setRequestHeader("Accept","application/json");
 						xhReqTax.setRequestHeader("Content-type","application/json");
 						xhReqTax.send(dataReqTax);
@@ -283,7 +283,7 @@ var customAccordionForms = Class.extend(function () {
 								},
 								"quantity": parseInt($('#waterFilterQuantity').val())
 							}),
-							url: apiPath + 'address/validate/taxandshipping',
+							url: apiPathSecure + 'address/validate/taxandshipping',
 							success: function(response) {
 								xhrRespHandler.getTax(response, response2);
 							},
@@ -322,7 +322,7 @@ var customAccordionForms = Class.extend(function () {
 					if ($.browser.msie) {
 						var xdr = new XDomainRequest(),
 							dataReqTax = '{"address":{"address1":"' + address + '","city":"' + city + '","geoCode":"' + xhrResp.validatedAddress.verifiedAddress.geoCode + '","zipCode":"' + zip + '","state":"' + state + '"},"partCompositeKey":{"partNumber":"' + $('#finalPartNumber').val() + '","productGroupId":"' + $('#finalGroupId').val() + '","supplierId":"' + $('#finalSupplierId').val() + '"},"quantity":' + parseInt($('#waterFilterQuantity').val()) + '}';
-						xdr.open('POST', apiPath + 'address/validate/taxandshipping', false);
+						xdr.open('POST', apiPathSecure + 'address/validate/taxandshipping', false);
 						xdr.send(dataReqTax);
 						xdr.onload = function () {
 							xhrRespHandler.getTax(xhrResp, $.parseJSON(xdr.responseText));
@@ -351,7 +351,7 @@ var customAccordionForms = Class.extend(function () {
 								},
 								"quantity": parseInt($('#waterFilterQuantity').val())
 							}),
-							url: apiPath + 'address/validate/taxandshipping',
+							url: apiPathSecure + 'address/validate/taxandshipping',
 							success: function(response2) {
 								//console.log(response2);
 								xhrRespHandler.getTax(xhrResp, response2);
