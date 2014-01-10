@@ -17,7 +17,6 @@
         <div class="row-fluid">
             <div class="span4">
                 <select name="airFilterWidth" id="airFilterWidth" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Width (in.)" data-display="true" data-changed="false">
-                    <option value="8">8</option>
                     <c:forEach items="${airFilterDimensionList.length}" var="objDimension">
                         <option value="${objDimension}">${objDimension}</option>
                     </c:forEach>

@@ -126,9 +126,22 @@
             var newResponsiveDropdown = new responsiveDropdown($(this));
         });
         /**
+         * scrub values in select options to remove '.00'
+         * for responsive filter dropdown
+         */
+        $('[data-toggle="responsive-filter-dropdown"] option').each(function () {
+            var temp;
+            if (this.innerHTML.indexOf('.00') != -1) {
+                temp = this.innerHTML.slice(0, -3);
+                this.innerHTML = temp;
+                this.value = temp;
+            }
+        });
+        /**
          * responsiveFilterDropdown class setup
          */
         $('[data-toggle="responsive-filter-dropdown"]').each(function () {
+
             var newResponsiveDropdown = new responsiveFilterDropdown($(this));
 
         });
