@@ -21,6 +21,7 @@ var responsiveFilterDropdown = Class.extend(function () {
             this.buttonClass = 'new-btn-select';
             this.buttonContent = 'Select';
             this.groupClass = '';
+            this.dimAbbrev = '';
             this.hiddenField = null;
             this.link = false;
             this.navigate = false;
@@ -54,11 +55,14 @@ var responsiveFilterDropdown = Class.extend(function () {
             // Set button content
             if (su.validString(self.el.data('buttoncontent')) !== '') {
                 self.buttonContent = self.el.data('buttoncontent');
+                // Set dimension abbreviation
+                self.dimAbbrev = self.buttonContent.slice(0,1).toLowerCase();
             }
             // Set group class
             if (su.validString(self.el.data('groupclass')) !== '') {
                 self.groupClass = self.el.data('groupclass');
             }
+
             // Set optional hidden field to update
             if (self.el.data('hiddenfield')) {
                 self.hiddenfield = $(self.el.data('hiddenfield'));
@@ -210,7 +214,7 @@ var responsiveFilterDropdown = Class.extend(function () {
 
             val = val.toString();
             valStripped = val.replace('#');
-            buttonTxt = text+self.unitString;
+            buttonTxt = text+self.unitString+ ' ('+self.dimAbbrev+')';
 
             // Make sure the anchor exists
             try {

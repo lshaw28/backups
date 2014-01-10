@@ -101,11 +101,15 @@ var airFilterDimension = Class.extend(function() {
         // to view or template
 
         renderDimensionString : function(){
-            return this.width+'x'+this.height+'x'+this.depth
+            return this.width+' x '+this.height+' x '+this.depth
         },
 
         renderTitle : function(maker, string, merv){
             return maker+' '+this.renderDimensionString()+' '+string+' - MERV '+merv;
+        },
+
+        renderURL : function(partDiv, partNum, partPls ) {
+            return '/' + partDiv + '/' + partNum + '/' + partPls + '.html';
         },
 
         renderResultRow : function(rowData){
@@ -113,11 +117,9 @@ var airFilterDimension = Class.extend(function() {
 
             var tempData = {
                 title : this.renderTitle(rowData.manufacturer, 'Pleated Air Filter Replacement', rowData.mervRating),
-                imgSrc : "/etc/designs/searspartsdirect/clientlib_base/img/defaultFilterImg_TEMP.png",
-                packSizes : [
-                    {size:4, price:10},
-                    {size:6, price:12},
-                ]
+                imgSrc : "img/fridge_demo.png",
+                packSizes : rowData.packs.sort(function(a,b){return a.size - b.size}),
+                pdpURL : this.renderLink('1','2','3')
             };
             el.html( this.template( tempData ) );
             return el;

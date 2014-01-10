@@ -131,7 +131,7 @@
 			<div class="row-fluid airFilterSearchResultsItem">
 				<div class="span8 airFilterSearchResultsItemLeft">
 					<img class="filterImg" src="/etc/designs/searspartsdirect/clientlib_base/img/NoImage_desktop.png" />
-					<a class="partListingLink" href="#">{{title}}</a>
+					<a class="partListingLink" href={{pdpURL}}>{{title}}</a>
 					<div class="freeShippingPromo hidden-phone">
 						<p class="freeShippingPromoBox"><span><i class="svg-icon-truck"></i> Eligible for <span class="freeShipping">FREE Standard Shipping</span><br>with Automatic Reorder Today! <span><a href="#">Details</a></span></span></p>
 					</div>
@@ -142,7 +142,7 @@
 						<li class="packOption">{{size}}-pack <span class="packPrice">{{price}}</span></li>
 						{{/packSizes}}
 					</ul>
-					<button class="new-btn new-btn-square filterResultBtn hidden-phone">Product Details</button>
+					<a href={{pdpURL}} class="new-btn new-btn-square filterResultBtn hidden-phone">Product Details</a>
 				</div>
 
 			</div>
