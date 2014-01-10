@@ -28,8 +28,8 @@
     org.apache.sling.api.scripting.SlingBindings,
     org.apache.sling.engine.auth.Authenticator,
     org.apache.sling.engine.auth.NoAuthenticationHandlerException,
-    com.day.cq.wcm.api.WCMMode" %><%!
-
+    com.day.cq.wcm.api.WCMMode" %>
+<%--
     private boolean isAnonymousUser(HttpServletRequest request) {
         return request.getAuthType() == null
             || request.getRemoteUser() == null;
@@ -71,12 +71,12 @@
     // So we fall back to plain old 404/NOT FOUND
     
 %>
-
+--%>
 <% String serverName = request.getServerName();
-if (serverName.contains("searshomeservices")) {
-	response.sendRedirect("/content/searshomeservices/en/errorpage.html"); 
-} else if (serverName.contains("searspartsdirect")) {
+if (serverName.contains("searshomeservices") || serverName.contains("shsvip")) {
+	response.sendRedirect("/services/errorpage.html"); 
+} else if (serverName.contains("searspartsdirect" )) {
 	response.sendRedirect("/404.html");
 } else { %>
-	<%@include file="/apps/sling/servlet/errorhandler/default.jsp"%>
+	<%@include file="/libs/sling/servlet/errorhandler/default.jsp"%>
 <% } %>
