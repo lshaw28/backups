@@ -72,6 +72,9 @@ var airFilterPartDetails = Class.extend(function () {
 						packs = response[0].availablePacks.length;
 					
 					for (var i = 0; i < packs; i++) {
+						//Special formatting for price because it's stored as a float
+						var stringPrice = (response[0].availablePacks[i].priceForParts * 100).toString();
+						stringPrice = stringPrice.substring(0, stringPrice.length - 2) + '.' + stringPrice.substring(stringPrice.length - 2);
 						var temp = {
 							number: response[0].availablePacks[i].packPartNumber,
 							div: response[0].availablePacks[i].packPartDivId,
@@ -316,6 +319,13 @@ var airFilterPartDetails = Class.extend(function () {
 			$('.partName').html(filter.manufacturer + ' ' + filter.desc + ' Pleated Replacement Air Filter - MERV ' + filter.merv);
 			$('#partNumber').html(filter.number);
 			//Add code for images
+			if (filter.image == null) {
+				$('.responsivePinchImage').addClass('hidden');
+				$('.responsivePinchImage').after('<img src="http://partsbetavip.qa.ch3.s.com/partsdirect/assets/img/images/no_part.gif" />');
+			} else {
+				$('.responsivePinchImage [data-toggle=pinch-image]').attr('data-desktopimage', filter.image);
+				$('.responsivePinchImage [data-toggle=pinch-image]').change();
+			}
 			
 			//Check if it lacks packs
 			if (pack4.number == '') {

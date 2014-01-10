@@ -8,6 +8,7 @@ var responsivePinchImage = Class.extend(function () {
 		 * @param {object} el Target element
 		 */
 		init: function (el) {
+			var self = this;
 			// Elements
 			this.el = el;
 			this.container = $('[data-toggle="pinch-image"]', this.el);
@@ -39,6 +40,14 @@ var responsivePinchImage = Class.extend(function () {
 				this.renderControls();
 				this.bindEvents();
 			}
+			
+			//Bound event here as events aren't bounded if there isn't already image (must call change event when adding an image path with javascript)
+			this.container.bind('change', function () {
+				self.getProperties();
+				self.renderImage();
+				self.renderControls();
+				self.bindEvents();
+			});
 		},
 		/**
 		 * Retrieves image paths
@@ -49,9 +58,9 @@ var responsivePinchImage = Class.extend(function () {
 				su = window.SPDUtils;
 
 			// Retrieve images
-			self.desktopImage = su.validString(self.container.data('desktopimage'));
-			self.tabletImage = su.validString(self.container.data('tabletimage'));
-			self.mobileImage = su.validString(self.container.data('mobileimage'));
+			self.desktopImage = su.validString(self.container.attr('data-desktopimage'));
+			self.tabletImage = su.validString(self.container.attr('data-tabletimage'));
+			self.mobileImage = su.validString(self.container.attr('data-mobileimage'));
 			if (self.desktopImage !== '' || self.tabletImage !== '' || self.mobileImage !== '') {
 				self.hasImage = true;
 			}
