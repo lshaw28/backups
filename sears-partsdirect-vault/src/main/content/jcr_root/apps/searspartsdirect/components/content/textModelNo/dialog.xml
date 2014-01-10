@@ -3,11 +3,11 @@
 		  jcr:primaryType="cq:TabPanel"
 		  activeTab="0"
 		  xtype="tabpanel">
-		  <items jcr:primaryType="cq:WidgetCollection">
-<tab1 jcr:primaryType="cq:Widget" title="Plain Text" xtype="panel">
-<items jcr:primaryType="cq:WidgetCollection">
-<text jcr:primaryType="cq:Widget" fieldLabel="Text" name="./text" xtype="textarea"/>
-</items>
-</tab1>
-</items>
+	<items jcr:primaryType="cq:WidgetCollection">
+	   <tab1 jcr:primaryType="cq:Widget" title="Plain Text" xtype="panel">
+	      <items jcr:primaryType="cq:WidgetCollection">
+	         <text jcr:primaryType="cq:Widget" fieldLabel="Text" name="./text" xtype="textarea"/>
+	      </items>
+	   </tab1>
+	</items>
 </jcr:root>
