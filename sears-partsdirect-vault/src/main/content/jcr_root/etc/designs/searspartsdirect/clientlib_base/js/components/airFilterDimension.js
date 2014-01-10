@@ -8,10 +8,10 @@ var airFilterDimension = Class.extend(function() {
         * Initializes airFilterDimension class
         * @param {object} el Target element
         */
-        init : function(el) {
+        init : function(el) {            
             //var width,height,depth;
             // Parameters
-            this.el = el;
+            this.el = el;            
             // Events
             this.bindEvent();
             this.width = this.height = this.depth = false;
@@ -20,7 +20,7 @@ var airFilterDimension = Class.extend(function() {
         },
         /**
         * toggle airFilter section
-        *
+        * 
         * @return {void}
         */
 
@@ -80,6 +80,8 @@ var airFilterDimension = Class.extend(function() {
                     "subscribable" : obj.subscribable,
                     "quality" : obj.quality,
                     "basePartNumber" : obj.basePartNumber,
+                    "partDivId" : obj.partDivId,
+                    "partPls" : obj.partPls,
                     "mervRating" : obj.mervRating,
                     "inStock" : obj.inStock,
                     "backOrdered" : obj.backOrdered,
@@ -108,8 +110,8 @@ var airFilterDimension = Class.extend(function() {
             return maker+' '+this.renderDimensionString()+' '+string+' - MERV '+merv;
         },
 
-        renderURL : function(partDiv, partNum, partPls ) {
-            return '/' + partDiv + '/' + partNum + '/' + partPls + '.html';
+        renderURL : function(partNum, partDiv, partPls ) {
+            return '/replacement-parts/hvac-air-filters/part-number/' + partNum + '/' + partDiv + '/' + partPls + '.html';
         },
 
         renderResultRow : function(rowData){
@@ -119,7 +121,7 @@ var airFilterDimension = Class.extend(function() {
                 title : this.renderTitle(rowData.manufacturer, 'Pleated Air Filter Replacement', rowData.mervRating),
                 imgSrc : "img/fridge_demo.png",
                 packSizes : rowData.packs.sort(function(a,b){return a.size - b.size}),
-                pdpURL : this.renderLink('1','2','3')
+                pdpURL : this.renderURL(rowData.packs[0].partNumber,rowData.partDivId,rowData.partPls)
             };
             el.html( this.template( tempData ) );
             return el;
@@ -168,14 +170,14 @@ var airFilterDimension = Class.extend(function() {
         },
 
         // end to view or template
-        bindEvent : function() {
+        bindEvent : function() {          
           var self = this;
           $('#airFilterWidth').on("change", function(){
               self.width = ($(this).val());
               self.getResults();
           });
           $('#airFilterHeight').on("change", function(){
-              self.height = ($(this).val());
+              self.height = ($(this).val());                  
               self.getResults();
           });
           $('#airFilterDepth').on("change", function(){
