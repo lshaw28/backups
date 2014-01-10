@@ -204,7 +204,7 @@ var customAccordionForms = Class.extend(function () {
 					}, 1000);
 					if ($.browser.msie) {
 						xdr = new XDomainRequest();
-						xdr.open('POST', apiPath + 'address/validate');
+						xdr.open('POST', apiPathSecure + 'address/validate');
 						xdr.send('{"address1":"' + address + '","city":"' + city + '","zipCode":"' + zip + '","state":"' + state + '"}');
 						xdr.onload = function () {
 							xhrRespHandler.getGeoCode($.parseJSON(xdr.responseText), address, city, state, zip);
