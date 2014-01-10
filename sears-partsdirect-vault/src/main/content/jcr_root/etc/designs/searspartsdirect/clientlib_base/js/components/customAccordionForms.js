@@ -224,7 +224,7 @@ var customAccordionForms = Class.extend(function () {
 								'zipCode': zip,
 								'state': state
 							}),
-							url: apiPath + 'address/validate',
+							url: apiPathSecure + 'address/validate',
 							success: function(response) {
 								//console.log(response);
 								xhrRespHandler.getGeoCode(response, address, city, state, zip);
