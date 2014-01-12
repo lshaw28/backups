@@ -239,8 +239,8 @@ var airFilterPartDetails = Class.extend(function () {
             $('#js_hasFreeShipping').addClass('hide');
         },
         showHasShipping : function(){
-            $('#js_getFreeShipping').removeClass('hide');
-            $('#js_hasFreeShipping').addClass('hide');
+            $('#js_getFreeShipping').addClass('hide');
+            $('#js_hasFreeShipping').removeClass('hide');
         },
 
 
