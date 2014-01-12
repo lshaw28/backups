@@ -54,7 +54,6 @@ var airFilterPartDetails = Class.extend(function () {
                success: this.renderView
             });
 
-
 			this.bindEvents();
 		},
 
@@ -240,8 +239,8 @@ var airFilterPartDetails = Class.extend(function () {
             $('#js_hasFreeShipping').addClass('hide');
         },
         showHasShipping : function(){
-            $('#js_getFreeShipping').addClass('hide');
-            $('#js_hasFreeShipping').removeClass('hide');
+            $('#js_getFreeShipping').removeClass('hide');
+            $('#js_hasFreeShipping').addClass('hide');
         },
 
 
