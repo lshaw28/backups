@@ -224,7 +224,7 @@ var airFilterPartDetails = Class.extend(function () {
 				$('.packBox.wide').removeClass('active');
 				$(this).addClass('active');
 				$('#addFilterToCart').attr('data-subper', 0);
-                this.showGetShipping();
+                self.showGetShipping();
 			});
 			$('.js_automatic').on('click', function (e) {
 				$('.packBox.wide').removeClass('active');
