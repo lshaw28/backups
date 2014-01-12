@@ -363,8 +363,8 @@ var airFilterPartDetails = Class.extend(function () {
 		 * @return {void}
 		 */
 		displayFilter: function (filter) {
-
-            filter.desc = filter.desc.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
+            // strtolower -> ucwords : should be a util? 
+            filter.desc = filter.desc.toLowerCase().replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
                 function($1){
                     return $1.toUpperCase();
                 });
