@@ -144,7 +144,6 @@
 					</ul>
 					<a href={{pdpURL}} class="new-btn new-btn-square filterResultBtn hidden-phone">Product Details</a>
 				</div>
-
 			</div>
 		</div>
 	</div>

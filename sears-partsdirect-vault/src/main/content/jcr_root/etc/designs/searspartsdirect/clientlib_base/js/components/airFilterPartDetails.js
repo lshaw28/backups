@@ -13,7 +13,7 @@ var airFilterPartDetails = Class.extend(function () {
 			sDate: '',
 			pDate: '',
 			eDate: ''
-		},
+        },
 		pack6 = {
 			number: '',
 			div: '',
@@ -45,113 +45,158 @@ var airFilterPartDetails = Class.extend(function () {
 		/**
 		 * Initializes guideNavigation class
 		 */
+        baseHistoryUrl : "/replacement-parts/hvac-air-filters/part-number/",
 		init: function () {
-			var self = this;
-			$.ajax({
-				type: "GET",
-				cache: false,
-				dataType: "json",
-				data: {
-					number: 'FA08X14A-12',
-					div: '0042',
-					pls: '104'
-				},
-				url: apiPath + 'air-filters/part-details',
-				success: function(response) {
-					var filter = {
-							manufacturer: response[0].manufacturer,
-							desc: response[0].partDesc,
-							number: response[0].basePartNumber,
-							merv: response[0].mervRating,
-							image: response[0].imageUrl,
-							cat: response[0].productGroupDescription,
-							length: response[0].shippingLength,
-							width: response[0].shippingWidth,
-							height: response[0].shippingHeight
-						},
-						packs = response[0].availablePacks.length;
-					
-					for (var i = 0; i < packs; i++) {
-						//Special formatting for price because it's stored as a float
-						var stringPrice = (response[0].availablePacks[i].priceForParts * 100).toString();
-						stringPrice = stringPrice.substring(0, stringPrice.length - 2) + '.' + stringPrice.substring(stringPrice.length - 2);
-						var temp = {
-							number: response[0].availablePacks[i].packPartNumber,
-							div: response[0].availablePacks[i].packPartDivId,
-							pls: response[0].availablePacks[i].packPartPls,
-							weight: response[0].availablePacks[i].shippingWeight,
-							price: response[0].availablePacks[i].priceForParts,
-							sub: [false, false, false],
-							avail: response[0].availablePacks[i].availabilityStatus,
-							syw: 0,
-							sDate: '',
-							pDate: '',
-							eDate: ''
-						};
-						var periods = response[0].availablePacks[i].subscriptions.length;
-						$.grep(response[0].availablePacks[i].subscriptions, function(e) {
-							switch(e.renewalPeriod) {
-								case 3:
-									temp.sub[0] = true;
-									break;
-								case 6:
-									temp.sub[1] = true;
-									break;
-								case 12:
-									temp.sub[2] = true;
-									break;
-								default:
-									//Error
-							}
-						});
-						switch(response[0].availablePacks[i].packSize) {
-							case 4:
-								pack4 = temp;
-								break;
-							case 6:
-								pack6 = temp;
-								break;
-							case 12:
-								pack12 = temp;
-								break;
-							default:
-								//Error
-						}
-					}
-					switch(response[0].packSize) {
-						case 6:
-							$('#fourPack').removeClass('active');
-							$('#sixPack').addClass('active');
-							break;
-						case 12:
-							$('#fourPack').removeClass('active');
-							$('#twelvePack').addClass('active');
-							break;
-						default:
-							//Error
-					}
-					self.displayFilter(filter);
-					self.displayPack(response[0].packSize);
-					//Get Shop Your Way points and estimated delivery dates for packs this part has
-					if (pack4.number != '') {
-						self.getSYW(filter, pack4, 4);
-						self.getDates(filter, pack4, 4);
-					}
-					if (pack6.number != '') {
-						self.getSYW(filter, pack6, 6);
-						self.getDates(filter, pack6, 6);
-					}
-					if (pack12.number != '') {
-						self.getSYW(filter, pack12, 12);
-						self.getDates(filter, pack12, 12);
-					}
-				},
-				error: function(response) {
-					//console.log('fail');
-				}
-			});
+
+           // History.pushState(null,null,'/testUrl');
+            this.setFromUrl();
+            this.detailsFromApi({
+               success: this.renderView
+            });
+
+
 			this.bindEvents();
 		},
+
+        setFromUrl : function(){
+            var path = window.location.pathname.replace(this.baseHistoryUrl,'').split('/');
+            this.setPartNumber(path[0]);
+            this.setDivId(path[1]);
+            this.setPls(path[2].replace('.html',''));
+        },
+        setToUrl : function(){
+            var path = this.baseHistoryUrl+this.partNumber+'/'+this.divId+'/'+this.pls+'.html';
+            History.replaceState(null,'Part Detail',path);
+        },
+        // model
+        setPartNumber : function(partNo){
+          this.partNumber = partNo;
+          this.currentPack = partNo.slice(partNo.lastIndexOf('-')+1);
+          return this;
+        },
+
+        setDivId : function(divId){
+            this.divId = divId;
+            return this;
+        },
+
+        setPls : function(pls){
+            this.pls = pls;
+            return this;
+        },
+
+        detailsFromApi : function(ajaxOpts){
+            var ajaxObj = {
+                type: "GET",
+                cache: false,
+                dataType: "json",
+                url: apiPath + 'air-filters/part-details',
+                context:this,
+                data: {
+                    number: this.partNumber,
+                    div: this.divId,
+                    pls: this.pls
+                }
+            }
+            ajaxObj = $.extend(ajaxObj, ajaxOpts);
+            $.ajax(ajaxObj);
+        },
+
+        generateUrl : function(partNum, pls, divId){
+            return this.baseHistoryUrl+'/'+partNum+'/'+divId+'/'+pls+'.html';
+        },
+
+        // view
+
+        renderView : function(response) {
+            var filter = {
+                    manufacturer: response[0].manufacturer,
+                    desc: response[0].partDesc,
+                    number: response[0].basePartNumber,
+                    merv: response[0].mervRating,
+                    image: response[0].imageUrl,
+                    cat: response[0].productGroupDescription,
+                    length: response[0].shippingLength,
+                    width: response[0].shippingWidth,
+                    height: response[0].shippingHeight
+                },
+                packs = response[0].availablePacks.length;
+                this.basePartNumber = response[0].basePartNumber;
+            for (var i = 0; i < packs; i++) {
+                //Special formatting for price because it's stored as a float
+                var stringPrice = (response[0].availablePacks[i].priceForParts * 100).toString();
+                stringPrice = stringPrice.substring(0, stringPrice.length - 2) + '.' + stringPrice.substring(stringPrice.length - 2);
+                var temp = {
+                    number: response[0].availablePacks[i].packPartNumber,
+                    div: response[0].availablePacks[i].packPartDivId,
+                    pls: response[0].availablePacks[i].packPartPls,
+                    weight: response[0].availablePacks[i].shippingWeight,
+                    price: response[0].availablePacks[i].priceForParts,
+                    sub: [false, false, false],
+                    avail: response[0].availablePacks[i].availabilityStatus,
+                    syw: 0,
+                    sDate: '',
+                    pDate: '',
+                    eDate: ''
+                };
+                var periods = response[0].availablePacks[i].subscriptions.length;
+                $.grep(response[0].availablePacks[i].subscriptions, function(e) {
+                    switch(e.renewalPeriod) {
+                        case 3:
+                            temp.sub[0] = true;
+                            break;
+                        case 6:
+                            temp.sub[1] = true;
+                            break;
+                        case 12:
+                            temp.sub[2] = true;
+                            break;
+                        default:
+                        //Error
+                    }
+                });
+                switch(response[0].availablePacks[i].packSize) {
+                    case 4:
+                        pack4 = temp;
+                        break;
+                    case 6:
+                        pack6 = temp;
+                        break;
+                    case 12:
+                        pack12 = temp;
+                        break;
+                    default:
+                    //Error
+                }
+            }
+            switch(response[0].packSize) {
+                case 6:
+                    $('#fourPack').removeClass('active');
+                    $('#sixPack').addClass('active');
+                    break;
+                case 12:
+                    $('#fourPack').removeClass('active');
+                    $('#twelvePack').addClass('active');
+                    break;
+                default:
+                //Error
+            }
+            this.displayFilter(filter);
+            this.displayPack(response[0].packSize);
+            //Get Shop Your Way points and estimated delivery dates for packs this part has
+            if (pack4.number != '') {
+                this.getSYW(filter, pack4, 4);
+                this.getDates(filter, pack4, 4);
+            }
+            if (pack6.number != '') {
+                this.getSYW(filter, pack6, 6);
+                this.getDates(filter, pack6, 6);
+            }
+            if (pack12.number != '') {
+                this.getSYW(filter, pack12, 12);
+                this.getDates(filter, pack12, 12);
+            }
+        },
 		/**
 		 * Bind events
 		 * @return {void}
@@ -180,23 +225,26 @@ var airFilterPartDetails = Class.extend(function () {
 				$('.packBox.wide').removeClass('active');
 				$(this).addClass('active');
 				$('#addFilterToCart').attr('data-subper', 0);
+                this.showGetShipping();
 			});
-			$('#threeMonths').on('click', function (e) {
+			$('.js_automatic').on('click', function (e) {
 				$('.packBox.wide').removeClass('active');
 				$(this).addClass('active');
-				$('#addFilterToCart').attr('data-subper', 3);
+				$('#addFilterToCart').attr('data-subper', $(this).attr('data-subper'));
+                self.showHasShipping();
 			});
-			$('#sixMonths').on('click', function (e) {
-				$('.packBox.wide').removeClass('active');
-				$(this).addClass('active');
-				$('#addFilterToCart').attr('data-subper', 6);
-			});
-			$('#twelveMonths').on('click', function (e) {
-				$('.packBox.wide').removeClass('active');
-				$(this).addClass('active');
-				$('#addFilterToCart').attr('data-subper', 12);
-			});
+
 		},
+        showGetShipping : function(){
+            $('#js_getFreeShipping').removeClass('hide');
+            $('#js_hasFreeShipping').addClass('hide');
+        },
+        showHasShipping : function(){
+            $('#js_getFreeShipping').addClass('hide');
+            $('#js_hasFreeShipping').removeClass('hide');
+        },
+
+
 		/**
 		 * Get Shop Your Way points
 		 * @return {void}
@@ -316,7 +364,14 @@ var airFilterPartDetails = Class.extend(function () {
 		 * @return {void}
 		 */
 		displayFilter: function (filter) {
-			$('.partName').html(filter.manufacturer + ' ' + filter.desc + ' Pleated Replacement Air Filter - MERV ' + filter.merv);
+
+            filter.desc = filter.desc.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
+                function($1){
+                    return $1.toUpperCase();
+                });
+
+			$('.partName').html(filter.desc + ' Pleated Replacement Air Filter - MERV ' + filter.merv);
+
 			$('#partNumber').html(filter.number);
 			//Add code for images
 			if (filter.image == null) {
@@ -350,6 +405,7 @@ var airFilterPartDetails = Class.extend(function () {
 		 */
 		displayPack: function(e) {
 			var current;
+            this.currentPack = e;
 			switch(e) {
 				case 4:
 					current = pack4;
@@ -364,7 +420,7 @@ var airFilterPartDetails = Class.extend(function () {
 					//Error
 			}
 			$('#packNumber').html(e);
-			
+
 			$('#price').html('$' + current.price);
 			//Modify message based on availability
 			if (current.avail == 'BORD') {
@@ -413,6 +469,8 @@ var airFilterPartDetails = Class.extend(function () {
 			}
 			$('#swyPoints').html(current.syw);
 			$('#shippingWeight').html(current.weight);
+            this.setPartNumber(this.basePartNumber+'-'+this.currentPack);
+            this.setToUrl();
 		}
 	};
 }());

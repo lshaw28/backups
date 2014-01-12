@@ -68,7 +68,6 @@ var airFilterDimension = Class.extend(function() {
         },
 
         showErrorState : function(){
-            alert('no results');
             $('.initialDiagrams').addClass('hide');
             $('#noResults').removeClass('hide');
         },
@@ -127,6 +126,7 @@ var airFilterDimension = Class.extend(function() {
                 packSizes : rowData.packs.sort(function(a,b){return a.size - b.size}),
                 pdpURL : this.renderURL(rowData.packs[0].partNumber,rowData.partDivId,rowData.partPls)
             };
+
             el.html( this.template( tempData ) );
             return el;
         },
