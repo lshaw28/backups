@@ -177,7 +177,7 @@ var airFilterDimension = Class.extend(function() {
 
         // end to view or template
         bindEvent : function() {
-          console.log("Init Bindings --- ");
+
           var self = this;
           $('#airFilterWidth').on("change", function(){
               var w = $(this).val();
