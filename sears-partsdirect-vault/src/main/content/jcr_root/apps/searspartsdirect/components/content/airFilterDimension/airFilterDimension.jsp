@@ -10,7 +10,7 @@
 
 
 
-<div class="airfilterDimensionSection  row-fluid">
+<div id="js_AirFilterDimensionSelection" class="airfilterDimensionSection  row-fluid">
 
 	<form id="airFilterSelectionForm" method="post" action="">
 	<h4>To find the right filter, please select your dimensions</h4>
@@ -63,7 +63,7 @@
 	</section>
 
 	<section id="betterAirFilters" class="filterResults hide">
-		<heading class="setHeading setDescription">
+		<heading class="setHeading">
 			<h2 class="betterHeading"><img src="/etc/designs/searspartsdirect/clientlib_base/img/BetterQualityFiltersIcon.png"  height="30" width="30" /> Better Quality Filters</h2>
 			<div class="row-fluid">
 				<div class="span6">
@@ -82,8 +82,8 @@
 	</section>
 
 	<section id="goodAirFilters" class="filterResults hide">
-		<heading class="setDescription">
-			<h2 class="goodHeading setHeading"><img src="/etc/designs/searspartsdirect/clientlib_base/img/GoodQualityFiltersIcon.png"  height="30" width="30" /> Good Quality Filters</h2>
+		<heading class="setHeading">
+			<h2 class="goodHeading"><img src="/etc/designs/searspartsdirect/clientlib_base/img/GoodQualityFiltersIcon.png"  height="30" width="30" /> Good Quality Filters</h2>
 			<div class="row-fluid">
 				<div class="span6">
 					<p><span class="bulletHeading">MERV ratings:</span> 5-8 <a href="#" class="smallFont" target="_blank">Learn about MERV ratings</a></p>

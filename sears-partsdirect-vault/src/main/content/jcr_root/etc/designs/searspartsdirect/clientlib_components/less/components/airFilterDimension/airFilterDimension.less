@@ -52,6 +52,7 @@
             .span4{
                 .responsiveDropdown{
                     width: 60%;
+                    min-width:150px;
                     cursor: pointer;
                     ul{
                         position: absolute;
@@ -145,11 +146,11 @@
           .partListingLink {
             font-size: @h5Height;
             font-weight: bold;
+            display:block;
           }
           .freeShippingPromo {
-              margin-left: 144px;
-              margin-top: 20px;
-              width: inherit;
+             float:left;
+             margin-left:10px;
             .freeShippingPromoBox {
               background-color: @secondaryHueLightest;
               padding: 5px 10px;
@@ -192,7 +193,9 @@
         padding: 15px 20px;
         float: left;
         margin-bottom: 23px;
-        
+        p{
+          margin-bottom:0px;
+        }
         .bestHeading{
             font-size:@h2Size;
         }

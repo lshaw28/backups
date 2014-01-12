@@ -8,7 +8,8 @@ var airFilterDimension = Class.extend(function() {
         * Initializes airFilterDimension class
         * @param {object} el Target element
         */
-        init : function(el) {            
+        init : function(el) {
+            if( $('#js_AirFilterDimensionSelection').length != 1 ) return false;
             //var width,height,depth;
             // Parameters
             this.el = el;            
@@ -16,7 +17,6 @@ var airFilterDimension = Class.extend(function() {
             this.bindEvent();
             this.width = this.height = this.depth = false;
             this.template = Handlebars.compile( $('#js_airFilterResultTemplate').html() );
-
         },
         /**
         * toggle airFilter section
@@ -35,7 +35,6 @@ var airFilterDimension = Class.extend(function() {
         },
         setDepth : function( depth ) {
             this.depth = depth || false;
-
             return this;
         },
 
@@ -61,6 +60,7 @@ var airFilterDimension = Class.extend(function() {
 
         getResults : function(){
             if(this.width && this.height && this.depth){
+                $('#goodAirFilters,#betterAirFilters,#bestAirFilters').find('.setList').empty();
                 this.resultsFromApi( {success: this.renderResults, error : this.showErrorstate} );
             }else{
 
@@ -68,6 +68,7 @@ var airFilterDimension = Class.extend(function() {
         },
 
         showErrorState : function(){
+            alert('no results');
             $('.initialDiagrams').addClass('hide');
             $('#noResults').removeClass('hide');
         },
@@ -115,11 +116,14 @@ var airFilterDimension = Class.extend(function() {
         },
 
         renderResultRow : function(rowData){
+            // falsiness rules on rowdata
+            if( !rowData.manufacturer || !rowData.mervRating ) return false;
+
             var el = $('<li/>');
 
             var tempData = {
                 title : this.renderTitle(rowData.manufacturer, 'Pleated Air Filter Replacement', rowData.mervRating),
-                imgSrc : "img/fridge_demo.png",
+                imgSrc : (typeof rowData.imageUrl === "string" && rowData.imageUrl.length > 1) ? rowData.imageUrl : '/etc/designs/searspartsdirect/clientlib_base/img/NoImage_desktop.png',
                 packSizes : rowData.packs.sort(function(a,b){return a.size - b.size}),
                 pdpURL : this.renderURL(rowData.packs[0].partNumber,rowData.partDivId,rowData.partPls)
             };
@@ -130,10 +134,12 @@ var airFilterDimension = Class.extend(function() {
         renderResultType : function(resultSet, setGroupSelector){
             if( resultSet ) {
                 var frag = [];
+
                 for( var x in resultSet ) {
                     frag.push( this.renderResultRow( resultSet[x] ) );
                 }
-                $(setGroupSelector).find('.setList').append(frag).end().removeClass('hide');
+
+                $(setGroupSelector).find('.setList').empty().append(frag).end().removeClass('hide');
                 $('#noResults').addClass('hide');
             }else{
                 $(setGroupSelector).addClass('hide');
@@ -154,7 +160,7 @@ var airFilterDimension = Class.extend(function() {
             // else render result sets
             if( resultSet.bestAirFilters && resultSet.bestAirFilters.part ){
                 resultSet.bestAirFilters.part = this.coalesceData ( resultSet.bestAirFilters.part );
-                this.renderResultType ( resultSet.bestAirFilters.part, '#bestAirfilters' );
+                this.renderResultType ( resultSet.bestAirFilters.part, '#bestAirFilters' );
             }
 
             if( resultSet.betterAirFilters && resultSet.betterAirFilters.part ){
@@ -170,21 +176,30 @@ var airFilterDimension = Class.extend(function() {
         },
 
         // end to view or template
-        bindEvent : function() {          
+        bindEvent : function() {
+          console.log("Init Bindings --- ");
           var self = this;
           $('#airFilterWidth').on("change", function(){
-              self.width = ($(this).val());
-              self.getResults();
+              var w = $(this).val();
+              if(w != self.width){
+                self.setWidth( w );
+                self.getResults();
+              }
           });
           $('#airFilterHeight').on("change", function(){
-              self.height = ($(this).val());                  
-              self.getResults();
+              var h = $(this).val();
+              if( h != self.height){
+                  self.setHeight( h );
+                  self.getResults();
+              }
           });
           $('#airFilterDepth').on("change", function(){
-              self.depth = ($(this).val());
-              self.getResults();
+              var d = $(this).val();
+              if(d != self.depth){
+                self.setDepth( d );
+                self.getResults();
+              }
           });
         }
-
     }
 }());

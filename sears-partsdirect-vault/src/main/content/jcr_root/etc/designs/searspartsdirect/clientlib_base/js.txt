@@ -23,6 +23,7 @@ Utilities.js
 DocumentReady.js
 WindowResize.js
 handlebars-v1.3.0.js
+history.js
 
 #base=js/components/.
 addToCart.js
