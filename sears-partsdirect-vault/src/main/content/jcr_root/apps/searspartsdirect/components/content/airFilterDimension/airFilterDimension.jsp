@@ -49,7 +49,7 @@
 			<h2 class="bestHeading setDescription"><img src="/etc/designs/searspartsdirect/clientlib_base/img/BestQualityFiltersIcon.png"  height="30" width="30" /> Best Quality Filters</h2>
 			<div class="row-fluid">
 				<div class="span6">
-					<p><span class="bulletHeading">MERV ratings:</span> 13-16 <a href="#" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
+					<p><span class="bulletHeading">MERV ratings:</span> 13-16 <a href="/repair-help/mervRating.html" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
 					<p><span class="bulletHeading">Removes:</span> 95% or more airborne contaminants 0.3 microns or larger</p>
 				</div>
 				<div class="span6">
@@ -64,10 +64,11 @@
 
 	<section id="betterAirFilters" class="filterResults hide">
 		<heading class="setHeading">
-			<h2 class="betterHeading"><img src="/etc/designs/searspartsdirect/clientlib_base/img/BetterQualityFiltersIcon.png"  height="30" width="30" /> Better Quality Filters</h2>
+			<h2 class="betterHeading">
+            <img src="/etc/designs/searspartsdirect/clientlib_base/img/BetterQualityFiltersIcon.png"  height="30" width="30" /> Better Quality Filters</h2>
 			<div class="row-fluid">
 				<div class="span6">
-					<p><span class="bulletHeading">MERV ratings:</span> 9-12 <a href="#" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
+					<p><span class="bulletHeading">MERV ratings:</span> 9-12 <a href="/repair-help/mervRating.html" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
 					<p><span class="bulletHeading">Removes:</span> Up to 89% of airborne contaminants one micron or larger</p>
 				</div>
 				<div class="span6">
@@ -86,7 +87,7 @@
 			<h2 class="goodHeading"><img src="/etc/designs/searspartsdirect/clientlib_base/img/GoodQualityFiltersIcon.png"  height="30" width="30" /> Good Quality Filters</h2>
 			<div class="row-fluid">
 				<div class="span6">
-					<p><span class="bulletHeading">MERV ratings:</span> 5-8 <a href="#" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
+					<p><span class="bulletHeading">MERV ratings:</span> 5-8 <a href="/repair-help/mervRating.html" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
 					<p><span class="bulletHeading">Removes:</span> Up to 80% of airborne contaminants three microns or larger</p>
 				</div>
 				<div class="span6">
