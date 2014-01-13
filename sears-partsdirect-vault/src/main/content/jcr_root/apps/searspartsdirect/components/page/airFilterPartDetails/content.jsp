@@ -56,7 +56,7 @@
                                         </p>
                                         <p id="js_hasFreeShipping" class="hide">
                                             <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/>
-                                            Enjoy FREE <span class="freeSS">FREE Standard Shipping</span> today!
+                                            Enjoy <span class="freeSS">FREE Standard Shipping</span> today!
                                             <a data-toggle="modal" data-target="#airFilterPromoModal"> Details</a>
                                         </p>
                                     </div>
@@ -76,7 +76,7 @@
 
                                 <div class="row-fluid shopYourWay">
                                     <img  class="pull-left" src="/etc/designs/searspartsdirect/clientlib_base/img/shopYourWay.png">
-                                    <p>SHOP YOUR WAY REWARDS&#8480; Members earn <span id="swyPoints">XXX</span> points if they purchase this item. <a data-toggle="modal" data-target="#shopYourWayModal"> Learn more</a></p>
+                                    <p>SHOP YOUR WAY REWARDS<sup>SM</sup> Members earn <span id="swyPoints">XXX</span> points if they purchase this item. <a data-toggle="modal" data-target="#shopYourWayModal"> Learn more</a></p>
                                 </div>
 
                                 <div class="partInfo">
