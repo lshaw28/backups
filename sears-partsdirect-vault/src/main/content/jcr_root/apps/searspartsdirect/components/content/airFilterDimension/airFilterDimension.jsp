@@ -115,12 +115,10 @@
 </div>
 <div class="afBrandsRow">
 	<div class="powerdBy">Top air filter brands carried by Sears PartsDirect</div>
-	<div class="brandImages">
+	<div class="brandImages row-fluid">
 		<img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand1.png"/>
-		<img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand2.png"/>
 		<img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand3.png"/>
 		<img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand4.png" class="fourth_img" />
-		<img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand5.png"/>
 	</div>
 </div>
 <p>Did you know that dirty air filters leave particles like dust, mites, pollen and pet dander in the air, which reduces air quality in your home? Dirty air filters also reduce the efficiency of your HVAC system. Sears PartsDirect has top air filter brands such as BMC Air Flow and DuPont for a variety of HVAC systems at great prices. Save energy and improve air quality with replacement furnace filters and air conditioner filters from Sears PartsDirect. Check your owner's manual or enter in your filter dimensions to find the right air filter for your furnace or AC unit.</p>
