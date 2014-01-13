@@ -1,9 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
 
-    <c:set var="partNumber" value="${slingRequest.requestPathInfo.selectors[0]}" />
-    <c:set var="divId" value="${slingRequest.requestPathInfo.selectors[1]}" />
-    <c:set var="plsNumber" value="${slingRequest.requestPathInfo.selectors[2]}" />
-
 <article id="content" data-templatename="Basepage">
     <div class="articleFix">
         <div class="row-fluid">
@@ -11,12 +7,12 @@
                 <div class="parsys">
 
                     <div class="airFilterPartDetails">
-                        <h1 class="partName">Fabreze 20x30x1 Pleated Replacement Air Filter - MERV 12</h1>
-                        <div class="partNumber">Part #: <span id="partNumber">8534854</span> - <span id="packNumber">4</span></div>
+                        <h1 class="partName"></h1>
+                        <div class="partNumber">Part #: <span id="partNumber"></span> - <span id="packNumber"></span></div>
                         <div class="productDetail">
                             <div class="span5">
-                        <cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />
-                        <!-- <div class="productMainImage">
+                                <cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />
+                                <!--<div class="productMainImage">
                                 <img src="/etc/designs/searspartsdirect/clientlib_base/img/no_part.gif" />
                                 <div class="plus_minus  hidden-phone">
                                 <div class="plus">+</div>
@@ -26,12 +22,12 @@
                                 <div class="print">
                                 <i class="icon-zoom-in color"></i><a href="#" class="margin20px"> Full Size</a>
                                 <i class="icon-print color"></i><a href="#" class="margin20px"> Print</a>
-                                </div> -->
+                                </div>-->
                             </div><!-- /span5 -->
 
                             <div class="span7">
                                 <div class="price row-fluid pull-left">
-                                    <h2 id="price" class="price">$14.98</h2>
+                                    <h2 id="price" class="price"></h2>
                                     <p id="inStock" class="inStock">In stock</p>
                                 </div>
 
@@ -45,21 +41,24 @@
                                 <p class="packOptions">How often would you like to receive this product?</p>
                                 <div class="row-fluid">
                                     <button id="oneTime" class="packBox wide active">One-time order</button>
-                                    <button id="threeMonths" class="packBox wide">Every 3 months</button>
-                                    <button id="sixMonths" class="packBox wide">Every 6 months</button>
-                                    <button id="twelveMonths" class="packBox wide">Every 12 months</button>
+                                    <button id="threeMonths" class="packBox wide js_automatic" data-subper="3">Every 3 months</button>
+                                    <button id="sixMonths" class="packBox wide js_automatic" data-subper="6">Every 6 months</button>
+                                    <button id="twelveMonths" class="packBox wide js_automatic" data-subper="12">Every 12 months</button>
                                 </div>
 
                                 <div class="row-fluid">
                                     <div class="freeShippingBox">
-                                        <p class="shippingAlert-A show">
-                                            <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Set up automatic reorder and get <br /> <span class="freeSS">FREE Standard Shipping</span> today!
+                                        <p id="js_getFreeShipping">
+                                            <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/>
+                                            Set up automatic reorder and get <br />
+                                            <span class="freeSS">FREE Standard Shipping</span> today!
                                             <a data-toggle="modal" data-target="#airFilterPromoModal"> Details</a>
                                         </p>
-                                        <p class="shippingAlert-B hide">
-                                            <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/> Enjoy FREE <span class="freeSS">FREE Standard Shipping</span> today! <a data-toggle="modal" data-target="#airFilterPromoModal"> Details</a>
+                                        <p id="js_hasFreeShipping" class="hide">
+                                            <img src="/etc/designs/searspartsdirect/clientlib_base/img/freeShippingPromoIcon.png"/>
+                                            Enjoy FREE <span class="freeSS">FREE Standard Shipping</span> today!
+                                            <a data-toggle="modal" data-target="#airFilterPromoModal"> Details</a>
                                         </p>
-
                                     </div>
                                 </div>
 
