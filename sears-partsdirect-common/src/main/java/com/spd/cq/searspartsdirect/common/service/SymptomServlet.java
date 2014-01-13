@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -58,50 +59,29 @@ public class SymptomServlet extends SlingSafeMethodsServlet {
         resourceResolver = request.getResourceResolver();
         session = resourceResolver.adaptTo(Session.class);
         Map<String, String> repairHelpInfo = new HashMap<String, String>();
-        String model = request.getParameter("model");
+        String model = request.getParameter("modelNumber");
         String brand = request.getParameter("brand");
         String category = request.getParameter("category");
         String repairHelpPageUrl = "";
         String repairHelpCount = "";
+        Map<String,String> categoryFilters = new HashMap<String,String>();
+        categoryFilters.put("property", "jcr:content/jcr:title");
+        categoryFilters.put("property.value", category);
+        SearchResult categoryResult = getDataFromCQRepository(Constants.ASSETS_PRODUCT_CATEGORY_PATH, categoryFilters);
+        Map<String,String> brandFilters = new HashMap<String,String>();
+        brandFilters.put("property", "jcr:content/jcr:title");
+        brandFilters.put("property.value", brand);
+        SearchResult brandResult = getDataFromCQRepository(Constants.ASSETS_BRAND_PATH, brandFilters);
 
-        Map<String, String> categoryMap = new HashMap<String, String>();
-        categoryMap.put("path", Constants.ASSETS_PATH + "/"
-                + Constants.ASSETS_PRODUCT_CATEGORY_PATH);
-        categoryMap.put("type", Constants.CQ_PAGE);
-        categoryMap.put("property", "jcr:content/jcr:title");
-        categoryMap.put("property.value", category);
-
-        QueryBuilder categoryBuilder = resourceResolver
-                .adaptTo(QueryBuilder.class);
-        Query categoryQuery = categoryBuilder.createQuery(
-                PredicateGroup.create(categoryMap), session);
-        SearchResult categoryResult = categoryQuery.getResult();
-
-        Map<String, String> brandMap = new HashMap<String, String>();
-        brandMap.put("path", Constants.ASSETS_PATH + "/brand");
-        brandMap.put("type", Constants.CQ_PAGE);
-        brandMap.put("property", "jcr:content/jcr:title");
-        brandMap.put("property.value", brand);
-
-        QueryBuilder brandBuilder = resourceResolver
-                .adaptTo(QueryBuilder.class);
-        Query brandQuery = brandBuilder.createQuery(
-                PredicateGroup.create(brandMap), session);
-        SearchResult brandResult = brandQuery.getResult();
-
-        if (categoryResult.getHits().size() > 0
-                && brandResult.getHits().size() > 0) {
-            ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(
-                    model);
-            PDModelSubcomponentModel subcomponents = apiHelper
-                    .getModelSubcomponents(request);
+        if (categoryResult.getHits().size() > 0 && brandResult.getHits().size() > 0) {
+            ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(model);
+            PDModelSubcomponentModel subcomponents = apiHelper.getModelSubcomponents(request);
             List<SymptomModel> symptoms = getCQSymptomsForCategory(subcomponents, request);
             if ( !symptoms.isEmpty()) {
                 try {
                     String brandTrueName = "";
                     if (brandResult.getHits().size() > 0) {
-                        brandTrueName = brandResult.getHits().get(0).getNode()
-                                .getName();
+                        brandTrueName = brandResult.getHits().get(0).getNode().getName();
                     } else {
                         brandTrueName = JcrUtil.createValidName(brand);
                     }
@@ -121,30 +101,38 @@ public class SymptomServlet extends SlingSafeMethodsServlet {
 
         Gson gson = new Gson();
         String jsonString = gson.toJson(repairHelpInfo);
-        System.out.println("Json String1: " + repairHelpInfo.get("pageUrl"));
-        System.out.println("Json String2: " + repairHelpInfo.get("count"));
         response.getWriter().print(jsonString);
 
+    }
+
+    private SearchResult getDataFromCQRepository(String path, Map<String,String> filterProperties) {
+        Map<String, String> propertyMap = new HashMap<String, String>();
+        propertyMap.put("path", Constants.ASSETS_PATH + "/"+path);
+        propertyMap.put("type", Constants.CQ_PAGE);
+        for (Entry<String, String> entry : filterProperties.entrySet()) {
+            propertyMap.put(entry.getKey(), entry.getValue());
+        }
+
+        QueryBuilder queryyBuilder = resourceResolver.adaptTo(QueryBuilder.class);
+        Query categoryQuery = queryyBuilder.createQuery(PredicateGroup.create(propertyMap), session);
+        SearchResult searchResult = categoryQuery.getResult();
+        return searchResult;
     }
 
     private List<SymptomModel> getCQSymptomsForCategory(PDModelSubcomponentModel subcomponents,SlingHttpServletRequest request) {
         List<SymptomModel> symptoms = new ArrayList<SymptomModel>();
         if (subcomponents != null) {
 
+            Map<String,String> symptomFilters = new HashMap<String,String>();
             for (int i = 0; i < subcomponents.getSymptomsArr().length; i++) {
-
-                session = request.getResourceResolver().adaptTo(Session.class);
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("path", Constants.ASSETS_PATH + "/symptom");
-                map.put("type", Constants.CQ_PAGE);
-                map.put("property", Constants.ASSETS_ID_REL_PATH);
-                map.put("property.value",subcomponents.getSymptomsArr()[i].getId());
-
-                QueryBuilder builder = resourceResolver.adaptTo(QueryBuilder.class);
-                Query symptomQuery = builder.createQuery(PredicateGroup.create(map), session);
-                SearchResult result = symptomQuery.getResult();
                 
-                for (Hit hit : result.getHits()) {
+                symptomFilters.clear();
+                symptomFilters.put("property", Constants.ASSETS_ID_REL_PATH);
+                symptomFilters.put("property.value",subcomponents.getSymptomsArr()[i].getId());
+                
+                SearchResult SymptomResult = getDataFromCQRepository(Constants.ASSETS_SYMPTOM_PATH, symptomFilters);
+               
+                for (Hit hit : SymptomResult.getHits()) {
                     try {
                         ValueMap props = hit.getProperties();
                         if (props != null) {
