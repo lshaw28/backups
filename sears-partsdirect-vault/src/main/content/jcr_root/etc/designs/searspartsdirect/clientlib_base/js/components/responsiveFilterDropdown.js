@@ -10,9 +10,11 @@ var responsiveFilterDropdown = Class.extend(function () {
          * Initializes responsiveDropdown class
          * @param {object} el Target element
          */
-        init: function (el) {
+        init: function (el, index) {
             // Parameters
             this.el = $(el);
+            this.zIndex = 1000 * (5-Number(index));
+            console.log('z-index: '+this.zIndex);
             // Elements
             this.buttonGroup = $('<div />');
             this.button = $('<div />');
@@ -173,12 +175,19 @@ var responsiveFilterDropdown = Class.extend(function () {
 
             if (isMobile && isMobileBrowser) {
                 self.el.focus();
+            } else if (isMobile) {
+                // adjust z-index
+                self.buttonGroup.css({'z-index' : self.zIndex});
+                //self.dropdownItems.css({'z-index' : self.zIndex-1});
+                self.dropdownItems.toggleClass('active');
+                setTimeout(function() {
+                    self.dropDownClickOutside();
+                }, 500);
             } else {
                 self.dropdownItems.toggleClass('active');
                 setTimeout(function() {
                     self.dropDownClickOutside();
                 }, 500);
-
 
             }
 

@@ -150,6 +150,7 @@ var airFilterDimension = Class.extend(function() {
         renderResults : function(resultSet){
 
             $('.initialDiagrams').addClass('hide');
+            $('#afLandingMobileImage').css('display', 'none');
             $('.airfilterDimensionSection').css("border", "none" );
             $('.toolTip').addClass('hide');
 

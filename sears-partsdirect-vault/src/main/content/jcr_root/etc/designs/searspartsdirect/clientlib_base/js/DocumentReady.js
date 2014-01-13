@@ -140,9 +140,9 @@
         /**
          * responsiveFilterDropdown class setup
          */
-        $('[data-toggle="responsive-filter-dropdown"]').each(function () {
+        $('[data-toggle="responsive-filter-dropdown"]').each(function (index) {
 
-            var newResponsiveDropdown = new responsiveFilterDropdown($(this));
+            var newResponsiveDropdown = new responsiveFilterDropdown($(this), index);
 
         });
 		/**
