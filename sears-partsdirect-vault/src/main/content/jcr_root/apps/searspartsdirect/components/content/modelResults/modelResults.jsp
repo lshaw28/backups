@@ -1,15 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
-<%@page import="com.spd.cq.searspartsdirect.common.helpers.PSsettingsHelper"%>
-<%
-PSsettingsHelper shObject =  sling.getService(PSsettingsHelper.class);
-String apiKey="";
- 
-if(shObject.getPartsDirectProductAPI()!=null){
-	apiKey = shObject.getPartsDirectProductAPI();
-}
-// above api if fetched from felix to be used
-%>
 
 <script type="text/javascript" src="/etc/designs/searspartsdirect/clientlib_base/js/modelSearchResults.js" ></script>
 

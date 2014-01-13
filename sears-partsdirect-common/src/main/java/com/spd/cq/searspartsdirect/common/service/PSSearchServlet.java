@@ -18,7 +18,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Properties;
 import org.apache.felix.scr.annotations.Property;
+import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
+import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
@@ -28,13 +30,18 @@ import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.net.URLEncoder;
+import com.spd.cq.searspartsdirect.common.helpers.PSsettingsHelper;
 
 @Component
-@Service
+@Service(value = { javax.servlet.Servlet.class,
+        javax.servlet.ServletConfig.class, java.io.Serializable.class,
+        PSSearchServlet.class })
 @Properties({
 		@Property(name = "sling.servlet.extensions", value = "json"),
 		@Property(name = "sling.servlet.paths", value = "/bin/searspartsdirect/search/searchservlet"),
 		@Property(name = "sling.servlet.methods", value = "GET") })
+
+
 public class PSSearchServlet extends SlingSafeMethodsServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -42,6 +49,10 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	private static final Logger log = LoggerFactory
 			.getLogger(PSSearchServlet.class);
 
+	@Reference
+	PSsettingsHelper settingsHelperObj;
+	
+	
 	private String modelNumber;
 	private String offset;
 	private String limit;
@@ -55,6 +66,8 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			SlingHttpServletResponse response) throws ServletException,
 			IOException {
 
+		String felixApi =  settingsHelperObj.getPartsDirectProductAPI();
+		
 		modelNumber = request.getParameter("modelnumber");
 		flag = request.getParameter("flag");
 		offset = request.getParameter("offset") != null ? request.getParameter("offset") : null;
@@ -69,32 +82,32 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 		if (StringUtils.isNotEmpty(modelNumber) && StringUtils.isNotEmpty(flag)){
 			try {
 				if((StringUtils.equals(flag, "0") || StringUtils.equals(flag, "1") || StringUtils.equals(flag, "2")) && StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sortType)){
-					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, "", "");
+					jsonObject = populateModelSearchResults(felixApi,modelNumber, offset, limit, sortType, "", "");
 				}
 				else if((StringUtils.equals(flag, "3") || StringUtils.equals(flag, "4")) && StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sortType)){
 					if((StringUtils.isNotEmpty(brand) && StringUtils.isNotEmpty(productType))){
-						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, productType);
+						jsonObject = populateModelSearchResults(felixApi,modelNumber, offset, limit, sortType, brand, productType);
 					}
 					else if(StringUtils.isNotEmpty(brand)){
-						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, "");
+						jsonObject = populateModelSearchResults(felixApi,modelNumber, offset, limit, sortType, brand, "");
 					}
 					else if(StringUtils.isNotEmpty(productType)){
-						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, "", productType);
+						jsonObject = populateModelSearchResults(felixApi,modelNumber, offset, limit, sortType, "", productType);
 					}
 				}
 				else if(StringUtils.equals(flag, "5")){
 					if(StringUtils.isNotEmpty(brand)){
-						jsonObject = populateProductBasedOnBrand(modelNumber, brand);
+						jsonObject = populateProductBasedOnBrand(felixApi,modelNumber, brand);
 					}
 					else if(StringUtils.isNotEmpty(productType)){
-						jsonObject = populateBrandBasedOnProduct(modelNumber, productType);
+						jsonObject = populateBrandBasedOnProduct(felixApi,modelNumber, productType);
 					}
 				}
 				else if(StringUtils.equals(flag, "6")){
-					jsonObject = populateBrandProductList(modelNumber);
+					jsonObject = populateBrandProductList(felixApi,modelNumber);
 				}
 				else if(StringUtils.equals(flag, "99")){
-					jsonObject = populateNoModelsFoundBrandProductList();
+					jsonObject = populateNoModelsFoundBrandProductList(felixApi);
 				}
 				response.getWriter().print(jsonObject.toString());
 			} catch (RepositoryException e) {
@@ -109,13 +122,13 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	
 	
 	@SuppressWarnings("unused")
-	private JSONObject populateNoModelsFoundBrandProductList() throws JSONException,
+	private JSONObject populateNoModelsFoundBrandProductList(String felixApi) throws JSONException,
 			ValueFormatException, PathNotFoundException, RepositoryException {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		final String BRAND_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/brands";
-		final String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/product-types";
+		final String BRAND_DETAILS_URL = felixApi+"brands";
+		final String PRODUCT_DETAILS_URL = felixApi+"product-types";
 		result = getList(BRAND_DETAILS_URL, result);
 		result = getList(PRODUCT_DETAILS_URL, result);
 		
@@ -127,12 +140,12 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	
 	
 	@SuppressWarnings("unused")
-	private JSONObject populateProductBasedOnBrand(String modelNumber, String brand) throws JSONException,
+	private JSONObject populateProductBasedOnBrand(String felixApi,String modelNumber, String brand) throws JSONException,
 			ValueFormatException, PathNotFoundException, RepositoryException {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		final String PRODUCT_BRAND_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/product-types?modelNumber="+modelNumber+"&brand="+brand;
+		final String PRODUCT_BRAND_URL = felixApi+"product-types?modelNumber="+modelNumber+"&brand="+brand;
 		GetMethod method = new GetMethod(PRODUCT_BRAND_URL);
 
 		try {
@@ -165,12 +178,12 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	}
 	
 	@SuppressWarnings("unused")
-	private JSONObject populateBrandBasedOnProduct(String modelNumber, String product) throws JSONException,
+	private JSONObject populateBrandBasedOnProduct(String felixApi,String modelNumber, String product) throws JSONException,
 			ValueFormatException, PathNotFoundException, RepositoryException {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		final String BRAND_PRODUCT_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/brands?modelNumber="+modelNumber+"&productType="+product;
+		final String BRAND_PRODUCT_URL = felixApi+"brands?modelNumber="+modelNumber+"&productType="+product;
 		GetMethod method = new GetMethod(BRAND_PRODUCT_URL);
 
 		try {
@@ -203,14 +216,14 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	}
 	
 	@SuppressWarnings("unused")
-	private JSONObject populateBrandProductList(String modelNumber) throws JSONException,
+	private JSONObject populateBrandProductList(String felixApi,String modelNumber) throws JSONException,
 			ValueFormatException, PathNotFoundException, RepositoryException {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		final String BRAND_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/brands?modelNumber="
+		final String BRAND_DETAILS_URL = felixApi+"brands?modelNumber="
 				+ modelNumber;
-		final String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/product-types?modelNumber="
+		final String PRODUCT_DETAILS_URL = felixApi+"product-types?modelNumber="
 				+ modelNumber;
 		result = getList(BRAND_DETAILS_URL, result);
 		result = getList(PRODUCT_DETAILS_URL, result);
@@ -257,13 +270,13 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	}
 
 	@SuppressWarnings("unused")
-	private JSONObject populateModelSearchResults(String modelNumber,
+	private JSONObject populateModelSearchResults(String felixApi,String modelNumber,
 			String offset, String limit, String sort, String brand, String productType) throws JSONException,
 			ValueFormatException, PathNotFoundException, RepositoryException {
 		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
 
-		String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models?modelNumber="
+		String PRODUCT_DETAILS_URL = felixApi+"?modelNumber="
 				+ modelNumber + "&offset=" + offset + "&limit=" + limit + "&sortType=" + sort;
 		if(StringUtils.isNotEmpty(brand)){
 			PRODUCT_DETAILS_URL = PRODUCT_DETAILS_URL + "&brand="+brand;
