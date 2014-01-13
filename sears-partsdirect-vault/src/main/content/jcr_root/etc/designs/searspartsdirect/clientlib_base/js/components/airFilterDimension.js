@@ -85,6 +85,7 @@ var airFilterDimension = Class.extend(function() {
                     "mervRating" : obj.mervRating,
                     "inStock" : obj.inStock,
                     "backOrdered" : obj.backOrdered,
+                    "imageUrl" : obj.imageUrl,
                     "packs" : []
                 }
             };
@@ -122,7 +123,7 @@ var airFilterDimension = Class.extend(function() {
 
             var tempData = {
                 title : this.renderTitle(rowData.manufacturer, 'Pleated Air Filter Replacement', rowData.mervRating),
-                imgSrc : (typeof rowData.imageUrl === "string" && rowData.imageUrl.length > 1) ? rowData.imageUrl : '/etc/designs/searspartsdirect/clientlib_base/img/NoImage_desktop.png',
+                imageUrl : (typeof rowData.imageUrl === "string" && rowData.imageUrl.length > 1) ? rowData.imageUrl+'?wid=100&hei=100' : '/etc/designs/searspartsdirect/clientlib_base/img/NoImage_desktop.png',
                 packSizes : rowData.packs.sort(function(a,b){return a.size - b.size}),
                 pdpURL : this.renderURL(rowData.packs[0].partNumber,rowData.partDivId,rowData.partPls)
             };
