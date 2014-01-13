@@ -1,24 +1,41 @@
 @import "../../../../clientlib_base/less/base.variables.less";
 @import "../../../../clientlib_base/less/base.mixins.less";
 
-@media (max-width: 768px) {
+@media (max-width: 768px) and (min-width: 650px){
     .airFilterPartDetails {
-        .responsivePinchImage {
-          max-width: 300px;
+      .productDetail{
+        .span5 {
+          width: 40%;
+          float: left;
+          padding-right: 10px;
         }
-
-        #airFilterPromoModal {
-          top: 25%;
-          height: 200px;
-          width: 80%;
-          margin: 0 auto;
-          padding: 20px;
-          .h1 {
-            text-align: center;
-          }
-          p {
-            margin-top: 15px;
-          }
+        .span7 {
+          width: 60%;
+          float: left;
+          padding-left: 15px;
+        }
+          .responsivePinchImage {
+          max-width: 250px;
+          max-height: 250px;
+        }
+      .packOptions {
+        font-size: 14px;
+        margin-bottom: 5px;
+        margin-top: 10px;
+      }
+      .packBox {
+        width: 20%;
+        min-width: 75px;
+        font-size: 14px;
+        margin: 0;
+        height: 50px;
+        padding: 0;
+      }
+        .price {
+          margin-top: 0;
         }
     }
+
+  }
+
 }

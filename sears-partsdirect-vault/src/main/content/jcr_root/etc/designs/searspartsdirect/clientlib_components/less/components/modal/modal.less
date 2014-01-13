@@ -60,57 +60,86 @@
   }
 
   &#airFilterPromoModal {
-    border-radius: 0;
-    width: 345px;
-    height: auto;
-    margin-left: -222px;
-    padding: 30px 50px;
-    left: 50%;
-    top: 15%;
-    button {
-      margin-top: 20px;
-      width: 100px;
-      padding: 8px;
-    }
-    h1 {
-      font-size: @h1Size;
-      margin-bottom: 20px;
+    .borderRadius(0);
+    padding: 0px;
+    max-width: 500px;
+    min-height: 275px;
+    margin-left: -250px;
+    .contentModal {
+      border: 0;
+      padding: 10px;
+      width: 350px;
+      height: 200px;
+      margin: 30px auto;
+      overflow: hidden;
+      h1 {
+        margin-bottom: 20px;
+      }
+      button {
+        margin-top: 20px;
+      }
     }
   }
 
   &#estimatedDeliveryModal {
-    border-radius: 0;
-    width: 360px;
-    max-height: 500px;
-    height: auto;
-    margin-left: -230px;
-    left:50%;
-    top:15%;
-    .bold {
-      font-weight: 600;
-    }
-    ul {
-      width: 100%;
-      margin: 20px 0;
-      li {
-        list-style: none;
+    .borderRadius(0);
+    padding: 0px;
+    max-width: 500px;
+    min-height: 350px;
+    margin-left: -250px;
+    .contentModal {
+      border: 0;
+      padding: 10px;
+      width: 360px;
+      height: 280px;
+      margin: 30px auto;
+      overflow: hidden;
+      .bold {
+        font-weight: 600;
       }
-    }
-    button {
-      margin-top: 20px;
+      ul {
+        width: 100%;
+        margin: 20px 0;
+        li {
+          list-style: none;
+        }
+      }
+      button {
+        margin-top: 20px;
+      }
     }
   }
 
   &#shopYourWayModal {
-    border-radius: 0;
-    height: auto;
-    top: 15%;
+    .borderRadius(0);
+    padding: 0px;
+    max-width: 500px;
+    min-height: 300px;
+    margin-left: -250px;
+    .contentModal {
+      border: 0;
+      padding: 10px;
+      width: 360px;
+      height: 220px;
+      margin: 30px auto;
+      overflow: hidden;
+    }
   }
 
   &#returnPolicyModal {
-    border-radius: 0;
-    height: auto;
-    top: 15%;
+    .borderRadius(0);
+    padding: 0px;
+    max-width: 500px;
+    min-height: 490px;
+    margin-left: -250px;
+    .contentModal {
+      border: 0;
+      padding: 10px;
+      width: 360px;
+      height: 410px;
+      margin: 30px auto;
+      overflow: hidden;
+    }
   }
 
 }
