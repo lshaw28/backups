@@ -42,7 +42,7 @@
 	</form>
 
 <div id="afLandingImage" class="span12 hidden-phone initialDiagrams"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension.png"/> </div>
-<div id="afLandingMobileImage" class="span12 visible-phone initialDiagrams"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension-mobile.png"/> </div>
+<div id="afLandingMobileImage" class="span12 initialDiagrams"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension-mobile.png"/> </div>
 
 	<section id="bestAirFilters" class="filterResults hide">
 		<heading class="setHeading">
