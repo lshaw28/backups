@@ -76,7 +76,7 @@
 
                                 <div class="row-fluid shopYourWay">
                                     <img  class="pull-left" src="/etc/designs/searspartsdirect/clientlib_base/img/shopYourWay.png">
-                                    <p>SHOP YOUR WAY REWARDS<sup>SM</sup> Members earn <span id="swyPoints">XXX</span> points if they purchase this item. <a data-toggle="modal" data-target="#shopYourWayModal"> Learn more</a></p>
+                                    <p>SHOP YOUR WAY REWARDS<sup>SM</sup> Members earn <span id="swyPoints"></span> points if they purchase this item. <a data-toggle="modal" data-target="#shopYourWayModal"> Learn more</a></p>
                                 </div>
 
                                 <div class="partInfo">

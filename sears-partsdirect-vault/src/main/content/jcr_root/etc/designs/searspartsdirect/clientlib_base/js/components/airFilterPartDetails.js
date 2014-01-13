@@ -419,7 +419,7 @@ var airFilterPartDetails = Class.extend(function () {
 					//Error
 			}
 			$('#packNumber').html(e);
-
+            $('.partName').html($('.partName').html().replace(/(4|6|12){1}\s{1}pack{1}/i,e+' Pack'));
 			$('#price').html('$' + current.price);
 			//Modify message based on availability
 			if (current.avail == 'BORD') {
