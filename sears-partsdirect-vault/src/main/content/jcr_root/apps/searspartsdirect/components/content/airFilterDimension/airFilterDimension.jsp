@@ -44,8 +44,8 @@
 <div id="afLandingImage" class="span12 hidden-phone initialDiagrams"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension.png"/> </div>
 <div id="afLandingMobileImage" class="span12 initialDiagrams"><img src="/etc/designs/searspartsdirect/clientlib_base/img/airFilterDimension-mobile.png"/> </div>
 
-	<section id="bestAirFilters" class="filterResults hide">
-		<heading class="setHeading">
+	<div id="bestAirFilters" class="filterResults hide">
+		<div class="setHeading">
 			<h2 class="bestHeading setDescription"><img src="/etc/designs/searspartsdirect/clientlib_base/img/BestQualityFiltersIcon.png"  height="30" width="30" /> Best Quality Filters</h2>
 			<div class="row-fluid">
 				<div class="span6">
@@ -57,15 +57,15 @@
 					<p><span class="bulletHeading">Life:</span> Lasts up to 90 days</p>
 				</div>
 			</div>
-		</heading>
+		</div>
 		<ul class="setList airFilterSearchResults">
 		</ul>
-	</section>
+	</div>
 
-	<section id="betterAirFilters" class="filterResults hide">
-		<heading class="setHeading">
+	<div id="betterAirFilters" class="filterResults hide">
+		<div class="setHeading">
 			<h2 class="betterHeading">
-            <img src="/etc/designs/searspartsdirect/clientlib_base/img/BetterQualityFiltersIcon.png"  height="30" width="30" /> Better Quality Filters</h2>
+			<img src="/etc/designs/searspartsdirect/clientlib_base/img/BetterQualityFiltersIcon.png"  height="30" width="30" /> Better Quality Filters</h2>
 			<div class="row-fluid">
 				<div class="span6">
 					<p><span class="bulletHeading">MERV ratings:</span> 9-12 <a href="/repair-help/mervRating.html" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
@@ -76,14 +76,14 @@
 					<p><span class="bulletHeading">Life:</span> Lasts up to 90 days</p>
 				</div>
 			</div>
-		</heading>
+		</div>
 		<ul class="setList airFilterSearchResults">
 
 		</ul>
-	</section>
+	</div>
 
-	<section id="goodAirFilters" class="filterResults hide">
-		<heading class="setHeading">
+	<div id="goodAirFilters" class="filterResults hide">
+		<div class="setHeading">
 			<h2 class="goodHeading"><img src="/etc/designs/searspartsdirect/clientlib_base/img/GoodQualityFiltersIcon.png"  height="30" width="30" /> Good Quality Filters</h2>
 			<div class="row-fluid">
 				<div class="span6">
@@ -95,14 +95,14 @@
 					<p><span class="bulletHeading">Life:</span> Lasts up to 90 days</p>
 				</div>
 			</div>
-		</heading>
+		</div>
 		<ul class="setList airFilterSearchResults">
 		</ul>
-	</section>
+	</div>
 
-	<section id="noAirFilters" class="hide">
+	<div id="noAirFilters" class="hide">
 		Sorry, we didn't find any air filters that match those dimensions.
-	</section>
+	</div>
 
 	<spd:resolveHazardTipWarning adhocField="noticeText" choiceField="tipChosen" placeholder=""/>
 	<c:set var="noticeIcon"><cq:text property="noticeIcon" placeholder=""/></c:set>
