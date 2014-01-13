@@ -47,8 +47,10 @@ var airFilterDimension = Class.extend(function() {
                     h : this.height,
                     d : this.depth
                 },
+                dataType : 'json',
                 context : this,
                 success : function( data ){
+
                     if(typeof callback === "function"){
                         callback.call( self, data );
                     }
@@ -133,13 +135,12 @@ var airFilterDimension = Class.extend(function() {
         },
 
         renderResultType : function(resultSet, setGroupSelector){
+
             if( resultSet ) {
                 var frag = [];
-
                 for( var x in resultSet ) {
                     frag.push( this.renderResultRow( resultSet[x] ) );
                 }
-
                 $(setGroupSelector).find('.setList').empty().append(frag).end().removeClass('hide');
                 $('#noResults').addClass('hide');
             }else{
@@ -179,7 +180,6 @@ var airFilterDimension = Class.extend(function() {
 
         // end to view or template
         bindEvent : function() {
-
           var self = this;
           $('#airFilterWidth').on("change", function(){
               var w = $(this).val();
