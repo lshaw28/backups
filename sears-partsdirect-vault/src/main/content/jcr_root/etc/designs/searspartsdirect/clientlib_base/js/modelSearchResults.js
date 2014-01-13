@@ -90,13 +90,14 @@ function allModelDiagram(modelNumber, brandId, categoryId){
 				    		 topPartsList = topPartsList + "</ul>";
 				    	 }
 
-                                $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"
-											+ "<li class=\"grid-item\">"
-											+ "<div class=\"diagramContainer model\">"
-											+ "<img src=\""+jsonResponse[j].diagramImageUrl+"\" />"
-											+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+jsonResponse[j].componentDescription+"</a></p></a>"
-											+ topPartsList
-											+ "</div></li></a>");
+                        $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"/content/searspartsdirect/en/modelpartlist.html"
+                        			+ "?modelNumber="+modelNumber+"&brandId="+brandId+"&categoryId="+categoryId+"&diagramPageId="+jsonResponse[j].diagramPageId+"&documentId="+jsonResponse[j].documentId+"\">"
+									+ "<li class=\"grid-item\">"
+									+ "<div class=\"diagramContainer model\">"
+									+ "<img src=\""+jsonResponse[j].diagramImageUrl+"\" />"
+									+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+jsonResponse[j].componentDescription+"</a></p></a>"
+									+ topPartsList
+									+ "</div></li></a>");
                             }
                         }
         },				
