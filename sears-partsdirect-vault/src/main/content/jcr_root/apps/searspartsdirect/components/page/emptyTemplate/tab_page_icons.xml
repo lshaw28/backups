@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="cq:Panel"
+	width="500"
+	title="Icons">
+	<items jcr:primaryType="cq:WidgetCollection">
+        <subcontainer2
+			jcr:primaryType="cq:Widget"
+                  flex="{Long}1"
+                  height="250"
+                  xtype="dialogfieldset">
+        	<items jcr:primaryType="cq:WidgetCollection">
+	        	<iconImages
+		            jcr:primaryType="nt:unstructured"
+		            fieldLabel="Choose Icon(s)"
+		            name="./iconImages"
+		            type="select"
+		            xtype="selection">
+		            <options jcr:primaryType="cq:WidgetCollection"
+                   		path="/apps/searspartsdirect/components/page/base/list_page_icons.infinity.json"
+                    	xtype="cqinclude"/>	
+				</iconImages>
+			</items>
+        </subcontainer2>
+	</items>
+</jcr:root>

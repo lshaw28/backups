@@ -66,6 +66,11 @@ function footerShow(){
     $("#notsure").show();
 }
 
+function preparePrint() {
+	$('#diagramBox').height($('#diagram').height());
+	$('#diagramBox').width($('#diagram').width());								
+};
+
 function allModelDiagram(modelNumber, brandId, categoryId){
 	var urlName = "http://partsapivip.qa.ch3.s.com/pd-services/models/"+modelNumber+"/components?brandId="+brandId+"&productCategoryId="+categoryId;
     

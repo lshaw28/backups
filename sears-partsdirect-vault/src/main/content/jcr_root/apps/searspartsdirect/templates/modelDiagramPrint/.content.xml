@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+	xmlns:cq="http://www.day.com/jcr/cq/1.0" 
+	xmlns:jcr="http://www.jcp.org/jcr/1.0" 
+	xmlns:sling="http://sling.apache.org/jcr/sling/1.0" 
+	jcr:primaryType="cq:Template"
+	jcr:title="Sears PartsDirect Model Diagram Print Template"
+	jcr:description="Template for the model search results page of the Sears PartsDirect site."
+	allowedPaths="[/content/searspartsdirect/([^/]*)]"
+	ranking="10">
+	<jcr:content
+		jcr:primaryType="cq:PageContent"
+		sling:resourceType="searspartsdirect/components/page/modelDiagramPrint"
+		cq:designPath="/etc/designs/searspartsdirect">
+	</jcr:content>
+</jcr:root>

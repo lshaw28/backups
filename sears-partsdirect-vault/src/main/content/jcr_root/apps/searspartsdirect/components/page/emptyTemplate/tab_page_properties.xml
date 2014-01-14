@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="cq:Panel"
+	title="Page Properties">
+	<items jcr:primaryType="cq:WidgetCollection">
+
+		<subcontainer2
+			jcr:primaryType="cq:Widget"
+				  flex="{Long}1"
+				  xtype="dialogfieldset">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<abstracttext jcr:primaryType="cq:Widget"
+							fieldLabel="Abstract Text"
+							fieldDescription="Character limit is 400"
+							name="./abstracttext"
+							maxLength="400"
+							xtype="textarea" />
+
+				<authors jcr:primaryType="cq:Widget"
+							fieldLabel="Authors"
+							fieldDescription="Author(s) for this article"
+							hideLabel="{Boolean}false"
+							treeRootPath="/content/searspartsdirect/en/author"
+							name="./authors"
+							xtype="pagemapper" />
+
+				<resType
+					jcr:primaryType="cq:Widget"
+					ignoreData="{Boolean}true"
+					xtype="hidden"
+					name="./image/sling:resourceType"
+					value="foundation/components/image"/>
+			</items>
+		</subcontainer2>
+
+	</items>
+</jcr:root>

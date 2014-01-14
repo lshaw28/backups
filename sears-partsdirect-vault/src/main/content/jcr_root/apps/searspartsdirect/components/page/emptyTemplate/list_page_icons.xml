@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		jcr:primaryType="cq:WidgetCollection">
+	<iconNoneSpecified
+		jcr:primaryType="nt:unstructured"
+		text="(none specified)"
+		value=""/>
+	<iconNoIconAtAll
+		jcr:primaryType="nt:unstructured"
+		text="No Icon"
+		value="none"/><!-- Must match Constants.NO_ICON -->
+    <iconChainsaw
+        jcr:primaryType="nt:unstructured"
+        text="Chainsaw"
+        value="svg-icon-chainsaw"/>
+    <iconDishwasher
+        jcr:primaryType="nt:unstructured"
+        text="Dishwasher"
+        value="svg-icon-dishwasher"/>
+    <iconDryerGasElectric
+        jcr:primaryType="nt:unstructured"
+        text="Gas/Electric Dryer"
+        value="svg-icon-dryer-gaselectric"/>
+    <iconER
+        jcr:primaryType="nt:unstructured"
+        text="ERROR"
+        value="svg-icon-er"/>
+    <iconGarageDoorOpener
+        jcr:primaryType="nt:unstructured"
+        text="Garage Door Opener"
+        value="svg-icon-garagedooropener"/>
+    <iconGrassLineTrimmer
+        jcr:primaryType="nt:unstructured"
+        text="Grass Line Trimmer"
+        value="svg-icon-grasslinetrimmer"/>
+    <iconGrill
+        jcr:primaryType="nt:unstructured"
+        text="Grill"
+        value="svg-icon-grill"/>
+    <iconLawnmowerRiding
+        jcr:primaryType="nt:unstructured"
+        text="Riding Lawnmower"
+        value="svg-icon-lawnmower-riding"/>
+    <iconLawnmowerWalkBehind
+        jcr:primaryType="nt:unstructured"
+        text="Walk Behind Lawnmower"
+        value="svg-icon-lawnmower-walkbehind"/>
+    <iconOvenGasElectric
+        jcr:primaryType="nt:unstructured"
+        text="Gas/Electric Oven"
+        value="svg-icon-oven-gaselectric"/>
+    <iconRangeGasElectric
+        jcr:primaryType="nt:unstructured"
+        text="Gas/Electric Range"
+        value="svg-icon-range-gaselectric"/>
+    <iconRefrigerator
+        jcr:primaryType="nt:unstructured"
+        text="Refrigerator"
+        value="svg-icon-refrigerator"/>
+    <iconSnowblower
+        jcr:primaryType="nt:unstructured"
+        text="Snowblower"
+        value="svg-icon-snowblower"/>
+    <iconVacuum
+        jcr:primaryType="nt:unstructured"
+        text="Vacuum"
+        value="svg-icon-vacuum"/>
+    <iconWasherFrontLoad
+        jcr:primaryType="nt:unstructured"
+        text="Front-Loading Washer"
+        value="svg-icon-washer-frontload"/>
+    <iconWasherTopLoad
+        jcr:primaryType="nt:unstructured"
+        text="Top-Loading Washer"
+        value="svg-icon-washer-topload"/>
+</jcr:root>
