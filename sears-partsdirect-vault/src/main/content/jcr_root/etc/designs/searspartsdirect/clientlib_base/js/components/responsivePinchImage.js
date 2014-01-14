@@ -290,17 +290,19 @@ var responsivePinchImage = Class.extend(function () {
 		 * @params {boolean} print Optional image printing
 		 */
 		openImage: function (print) {
-			var self = this,
+			var
+                self = this,
 				image = self.chooseImage(self.desktopImage, self.tabletImage, self.mobileImage),
-				newWindow = window.open('', '', 'width=100%,height=100%');
+				newWindow = window.open('', '', 'width=100%, height=100%');
 
 			// Render the image
 			newWindow.document.write('<img src="' + image + '" />');
-			// Optionally kick off printing
+            // Resize Window
 			if (print === true) {
 				newWindow.focus();
 				newWindow.print();
 			}
 		}
+
 	};
 }());

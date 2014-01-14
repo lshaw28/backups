@@ -65,7 +65,7 @@
                                 <div class="row-fluid">
                                     <div class="pdpQuantityLine">
                                         <label>Qty</label>
-                                        <input type="text" class="addToCartQuantity_js" value="1" onfocus="this.value = '';"/>
+                                        <input type="text" class="addToCartQuantity_js" value="1" maxlength="3" />
                                         <button type="button" id="addFilterToCart" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" data-subper=0 class="new-btn new-btn-search addToCart_js">Add to Cart</button>
                                     </div>
                                 </div>
