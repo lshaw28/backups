@@ -113,6 +113,8 @@
     .afBrandsRow{
         float: left;
         width:100%;
+        border-top: 1px solid @secondaryHueLight;
+        padding-top: 5px;
         .brandImages{ 
             float: left;
             margin:20px auto;
@@ -132,9 +134,15 @@
       list-style-type: none;
       margin: 0 0 10px 0;
 
-      .airFilterSearchResultsItem {
+      .airFilterItemBottomBorder {
         border-bottom: 1px solid @secondaryHueLight;
+      }
+
+      .airFilterSearchResultsItem {
+
         padding: 15px 0 10px 0;
+
+
 
         .airFilterSearchResultsItemLeft {
           text-align: left;
@@ -149,13 +157,14 @@
           }
 
           .partListingLink {
+            display:block;
             font-size: @h5Height;
             font-weight: bold;
-            display:block;
+            margin-bottom: 20px;
           }
           .freeShippingPromo {
              float:left;
-             margin-left:10px;
+
             .freeShippingPromoBox {
               background-color: @secondaryHueLightest;
               padding: 5px 10px;
@@ -201,8 +210,9 @@
         p{
           margin-bottom:0px;
         }
-        .bestHeading{
+        .bestBetterGoodHeading{
             font-size:@h2Size;
+            margin: 0 0 10px 0;
         }
         .bulletHeading{
             font-size:@pSize;

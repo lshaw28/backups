@@ -14,7 +14,6 @@ var responsiveFilterDropdown = Class.extend(function () {
             // Parameters
             this.el = $(el);
             this.zIndex = 1000 * (5-Number(index));
-            console.log('z-index: '+this.zIndex);
             // Elements
             this.buttonGroup = $('<div />');
             this.button = $('<div />');

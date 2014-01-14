@@ -92,6 +92,7 @@ var airFilterDimension = Class.extend(function() {
                 }
             };
             for( var x in subSet){
+
                 // get possible existing , or setup with new prototype
                 returnSet[ subSet[x]['basePartNumber']] = returnSet[subSet[x]['basePartNumber']] || prototype(subSet[x]);
                 returnSet[ subSet[x]['basePartNumber'] ]['packs'].push( {
@@ -117,7 +118,7 @@ var airFilterDimension = Class.extend(function() {
             return '/replacement-parts/hvac-air-filters/part-number/' + partNum + '/' + partDiv + '/' + partPls + '.html';
         },
 
-        renderResultRow : function(rowData){
+        renderResultRow : function(rowData, lastChild){
             // falsiness rules on rowdata
             if( !rowData.manufacturer || !rowData.mervRating ) return false;
 
@@ -131,15 +132,30 @@ var airFilterDimension = Class.extend(function() {
             };
 
             el.html( this.template( tempData ) );
+            if (!lastChild) {
+                el.addClass('airFilterItemBottomBorder');
+            }
+
             return el;
         },
 
         renderResultType : function(resultSet, setGroupSelector){
 
             if( resultSet ) {
-                var frag = [];
+                var frag = [],
+                    numRows = 0,
+                    count = 0,
+                    lastChild = false;
+
+                // first, loop thru to get num of rows
+                for (var y in resultSet) {
+                    numRows++;
+                }
+
                 for( var x in resultSet ) {
-                    frag.push( this.renderResultRow( resultSet[x] ) );
+                    count++;
+                    if (count === numRows) lastChild = true;
+                    frag.push( this.renderResultRow( resultSet[x], lastChild ) );
                 }
                 $(setGroupSelector).find('.setList').empty().append(frag).end().removeClass('hide');
                 $('#noResults').addClass('hide');

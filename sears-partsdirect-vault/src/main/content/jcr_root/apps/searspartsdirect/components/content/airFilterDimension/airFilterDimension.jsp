@@ -46,7 +46,7 @@
 
 	<div id="bestAirFilters" class="filterResults hide">
 		<div class="setHeading">
-			<h2 class="bestHeading setDescription"><img src="/etc/designs/searspartsdirect/clientlib_base/img/BestQualityFiltersIcon.png"  height="30" width="30" /> Best Quality Filters</h2>
+			<h2 class="bestBetterGoodHeading setDescription"><img src="/etc/designs/searspartsdirect/clientlib_base/img/BestQualityFiltersIcon.png"  height="30" width="30" /> Best Quality Filters</h2>
 			<div class="row-fluid">
 				<div class="span6">
 					<p><span class="bulletHeading">MERV ratings:</span> 13-16 <a href="/repair-help/mervRating.html" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
@@ -64,7 +64,7 @@
 
 	<div id="betterAirFilters" class="filterResults hide">
 		<div class="setHeading">
-			<h2 class="betterHeading">
+			<h2 class="bestBetterGoodHeading">
 			<img src="/etc/designs/searspartsdirect/clientlib_base/img/BetterQualityFiltersIcon.png"  height="30" width="30" /> Better Quality Filters</h2>
 			<div class="row-fluid">
 				<div class="span6">
@@ -84,7 +84,7 @@
 
 	<div id="goodAirFilters" class="filterResults hide">
 		<div class="setHeading">
-			<h2 class="goodHeading"><img src="/etc/designs/searspartsdirect/clientlib_base/img/GoodQualityFiltersIcon.png"  height="30" width="30" /> Good Quality Filters</h2>
+			<h2 class="bestBetterGoodHeading"><img src="/etc/designs/searspartsdirect/clientlib_base/img/GoodQualityFiltersIcon.png"  height="30" width="30" /> Good Quality Filters</h2>
 			<div class="row-fluid">
 				<div class="span6">
 					<p><span class="bulletHeading">MERV ratings:</span> 5-8 <a href="/repair-help/mervRating.html" class="smallFont" target="_blank">Learn about MERV ratings</a></p>
@@ -132,7 +132,7 @@
 					<img class="filterImg" src="{{imageUrl}}" />
 					<a class="partListingLink" href={{pdpURL}}>{{title}}</a>
 					<div class="freeShippingPromo hidden-phone">
-						<p class="freeShippingPromoBox"><span><i class="svg-icon-truck"></i> Eligible for <span class="freeShipping">FREE Standard Shipping</span><br>with Automatic Reorder Today! <span><a href="#">Details</a></span></span></p>
+						<p class="freeShippingPromoBox"><span><i class="svg-icon-truck"></i> Eligible for <span class="freeShipping">FREE Standard Shipping</span><br>with Automatic Reorder Today! <span><a data-toggle="modal" data-target="#airFilterPromoModal">Details</a></span></span></p>
 					</div>
 				</div>
 				<div class="span3 airFilterSearchResultsItemRight">
