@@ -63,15 +63,20 @@ var airFilterDimension = Class.extend(function() {
         getResults : function(){
             if(this.width && this.height && this.depth){
                 $('#goodAirFilters,#betterAirFilters,#bestAirFilters').find('.setList').empty();
-                this.resultsFromApi( {success: this.renderResults, error : this.showErrorstate} );
+                this.resultsFromApi( {success: this.renderResults, error : this.showErrorState} );
             }else{
 
             }
         },
 
         showErrorState : function(){
+            // hide stuff
             $('.initialDiagrams').addClass('hide');
-            $('#noResults').removeClass('hide');
+            $('#afLandingMobileImage').css('display', 'none');
+            $('.airfilterDimensionSection').css("border", "none" );
+            $('.toolTip').addClass('hide');
+            // show "not found" msg
+            $('#noAirFilters').removeClass('hide');
         },
 
         coalesceData:function(subSet){
@@ -158,9 +163,10 @@ var airFilterDimension = Class.extend(function() {
                     frag.push( this.renderResultRow( resultSet[x], lastChild ) );
                 }
                 $(setGroupSelector).find('.setList').empty().append(frag).end().removeClass('hide');
-                $('#noResults').addClass('hide');
+                $('#noAirFilters').addClass('hide');
             }else{
                 $(setGroupSelector).addClass('hide');
+
             }
         },
 
@@ -173,7 +179,7 @@ var airFilterDimension = Class.extend(function() {
 
             // show no found and the result set will clear it very quickly
             // less ideal as it forces a repaint
-            $('#noResults').removeClass('hide');
+            $('#noAirFilters').removeClass('hide');
 
             if(typeof resultSet != 'object') return false;
             // else render result sets

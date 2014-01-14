@@ -100,7 +100,7 @@
 		</ul>
 	</div>
 
-	<div id="noAirFilters" class="hide">
+	<div id="noAirFilters" class="hide noFiltersFoundMsg">
 		Sorry, we didn't find any air filters that match those dimensions.
 	</div>
 
