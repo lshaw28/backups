@@ -233,6 +233,18 @@ var airFilterPartDetails = Class.extend(function () {
                 self.showHasShipping();
 			});
 
+            $('.addToCartQuantity_js').keydown(function(event) {
+                if ( $.inArray(event.keyCode,[8,9,13,27,46]) !== -1 ||
+                    (event.keyCode >= 35 && event.keyCode <= 39)) {
+                    return;
+                }
+                else {
+                    if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+                        event.preventDefault();
+                    }
+                }
+            });
+
 		},
         showGetShipping : function(){
             $('#js_getFreeShipping').removeClass('hide');
