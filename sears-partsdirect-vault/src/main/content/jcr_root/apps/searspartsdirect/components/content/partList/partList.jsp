@@ -7,6 +7,8 @@ String brandId = (request.getParameter("brandId") != null) ? request.getParamete
 String categoryId = (request.getParameter("categoryId") != null) ? request.getParameter("categoryId") : "";
 String diagramPageId = (request.getParameter("diagramPageId") != null) ? request.getParameter("diagramPageId") : "";
 String documentId = (request.getParameter("documentId") != null) ? request.getParameter("documentId") : "";
+String diagramUrl = (request.getParameter("diagramUrl") != null) ? request.getParameter("diagramUrl") : "";
+request.setAttribute("diagramUrl", diagramUrl);
 %>
 
 <div class="row-fluid">

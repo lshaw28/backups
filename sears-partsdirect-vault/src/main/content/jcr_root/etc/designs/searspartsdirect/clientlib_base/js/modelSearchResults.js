@@ -91,7 +91,7 @@ function allModelDiagram(modelNumber, brandId, categoryId){
 				    	 }
 
                         $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"/content/searspartsdirect/en/modelpartlist.html"
-                        			+ "?modelNumber="+modelNumber+"&brandId="+brandId+"&categoryId="+categoryId+"&diagramPageId="+jsonResponse[j].diagramPageId+"&documentId="+jsonResponse[j].documentId+"\">"
+                        			+ "?modelNumber="+modelNumber+"&brandId="+brandId+"&categoryId="+categoryId+"&diagramPageId="+jsonResponse[j].diagramPageId+"&documentId="+jsonResponse[j].documentId+"&diagramUrl="+jsonResponse[j].diagramImageUrl+"\">"
 									+ "<li class=\"grid-item\">"
 									+ "<div class=\"diagramContainer model\">"
 									+ "<img src=\""+jsonResponse[j].diagramImageUrl+"\" />"

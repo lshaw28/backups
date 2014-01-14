@@ -1,6 +1,6 @@
 function modelDiagramPartList(modelNumber, brandId, categoryId, diagramPageId,
 		documentId) {
-	console.log("called");
+	
 	var urlName = "http://partsapivip.qa.ch3.s.com/pd-services/models/"
 			+ modelNumber + "?brandId=" + brandId + "&productCategoryId="
 			+ categoryId + "&diagramPageId=" + diagramPageId + "&documentId="
@@ -42,8 +42,23 @@ function modelDiagramPartList(modelNumber, brandId, categoryId, diagramPageId,
 							// Technician Required
 							// do nothing
 						}
-
-						$("#partListItems").append("<div class=\"partListItem row-fluid\">"
+						
+						if(j ==0 && typeof jsonResponse[j].typeOfPart !== 'undefined' && jsonResponse[j].typeOfPart == "water_filter_part"){
+							$("#partListItems").append("<div class=\"partListItem row-fluid\">"
+										+ "<div class=\"new-span-general partListItemDescription\">"
+										+ "* Official water filter for this model"
+										+ (typeof jsonResponse[j].partImage.imageURL !== 'undefined' ? "<div class=\"partListItemImage\"><img src=\""+jsonResponse[j].partImage.imageURL+"\" /></div>" : "")
+										+ "<p><a href=\"http://www.urlforthepart.com\">"+jsonResponse[j].description+"</a><br />"
+											+ "Part #: "+jsonResponse[j].partCompositeKey.partNumber
+										+ "</p>"
+									+ "</div>"
+									+ "<div class=\"new-span-general partListItemCart\">"
+										+ topPartsList
+									+ "</div>"
+									+ "<br/><div>Set up Automatic Reorder on this product and get FREE Standard Shipping today! Details</div>"
+									+ "</div>");
+						}else{
+							$("#partListItems").append("<div class=\"partListItem row-fluid\">"
 													+ "<div class=\"new-span-general diagramPosition\">"
 														+ "<p><span>"+jsonResponse[j].keyId+"</span><br />on diagram</p>"
 													+ "</div>"
@@ -59,6 +74,7 @@ function modelDiagramPartList(modelNumber, brandId, categoryId, diagramPageId,
 													+ "<div class=\"new-span-general partListItemCart\">"
 														+ topPartsList
 													+ "</div></div>");
+							}
 						}
 					}
 				},
