@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<script type="text/javascript" src="/etc/designs/searspartsdirect/clientlib_base/js/modelSearchResults.js" ></script>
+<cq:includeClientLib js="apps.searspartsdirect,apps.searspartsdirect.base" />
 
 <%
 String modelNumber = (request.getParameter("modelNumber") != null) ? request.getParameter("modelNumber") : "";
@@ -93,8 +93,8 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 											<div class="modelNumberSearchInputs">
 												<div class="form-inline">
 													<div class="input-append">
-													<input type="text" id="" name="" maxlength="42" data-inputhelp="ex. screw, gate, switch" data-inputhelpmobile="ex. screw, gate, switch" value="ex. screw, gate, switch">
-													<span class="add-on"><button><i class="icon-search">&nbsp;</i></button></span>
+													<input type="text" id="searchPart" name="" maxlength="42" data-inputhelp="ex. screw, gate, switch" data-inputhelpmobile="ex. screw, gate, switch" value="ex. screw, gate, switch">
+													<span class="add-on"><button id="searchByPartName"><i class="icon-search">&nbsp;</i></button></span>
 													</div>
 												</div>
 											</div>
@@ -170,3 +170,22 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 				<script type="text/javascript" src="js/components/modelHeader.js"></script>
 
 				<script>allModelDiagram('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>');</script>
+				
+				<script>
+					$('#searchByPartName').bind('click', function (e) {
+						e.preventDefault();
+	console.log("calling");
+	console.log($("#searchPart").length);
+	console.log($("#searchPart").val());
+						if ($("#searchPart").length > 0) {
+							var modelNumber = "<%=modelNumber%>";
+							var brandId = "<%=brandId%>";
+							var categoryId = "<%=categoryId%>";
+														
+							var description = $("#searchPart").val();
+							
+							window.location.href="/content/searspartsdirect/en/searchbypartname.html"
+                			+ "?modelNumber="+modelNumber+"&brandId="+brandId+"&categoryId="+categoryId+"&description="+description;
+						}
+					});
+				</script>

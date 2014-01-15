@@ -1,10 +1,7 @@
-function modelDiagramPartList(modelNumber, brandId, categoryId, diagramPageId,
-		documentId) {
+function modelSearchByPartName(modelNumber, brandId, categoryId, description) {
 	
-	var urlName = "http://partsapivip.qa.ch3.s.com/pd-services/models/"
-			+ modelNumber + "?brandId=" + brandId + "&productCategoryId="
-			+ categoryId + "&diagramPageId=" + diagramPageId + "&documentId="
-			+ documentId;
+	var urlName = "http://partsapivip.qa.ch3.s.com/pd-services/models/"+modelNumber+"/components/parts"
+			+"?description="+description+"&brandId="+brandId+"&productCategoryId="+categoryId;
 	console.log(urlName);
 	$.ajax({
 			type : "GET",
@@ -64,7 +61,7 @@ function modelDiagramPartList(modelNumber, brandId, categoryId, diagramPageId,
 									+ "<br/><div>Set up Automatic Reorder on this product and get FREE Standard Shipping today! Details</div>"
 									+ "</div>");
 						}else{
-							$("#partListItems").append("<div class=\"partListItem row-fluid\">"
+							$("#partNameResults").append("<div class=\"partListItem row-fluid\">"
 													+ "<div class=\"new-span-general diagramPosition\">"
 														+ "<p><span>"+jsonResponse[j].keyId+"</span><br />on diagram</p>"
 													+ "</div>"

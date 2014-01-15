@@ -1,5 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<script type="text/javascript" src="/etc/designs/searspartsdirect/clientlib_base/js/modelDiagram.js"></script>
+<cq:includeClientLib js="apps.searspartsdirect,apps.searspartsdirect.base" />
 
 <%
 String modelNumber = (request.getParameter("modelNumber") != null) ? request.getParameter("modelNumber") : "";

@@ -11,7 +11,7 @@ if(shObject.getPartsDirectProductAPI()!=null){
 // above api if fetched from felix to be used
 %>
 
-<script type="text/javascript" src="/etc/designs/searspartsdirect/clientlib_base/js/modelSearchResults.js" ></script>
+<cq:includeClientLib js="apps.searspartsdirect,apps.searspartsdirect.base" />
 
 <!--  
 <ul class="breadcrumb"><%
