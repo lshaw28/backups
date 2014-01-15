@@ -458,3 +458,9 @@ function populateBrandProductDetails(modelNumber, divID, isSelf) {
 	}
 	});
 	}
+
+
+function preparePrint() {
+	$('#diagramBox').height($('#diagram').height());
+	$('#diagramBox').width($('#diagram').width());								
+};
