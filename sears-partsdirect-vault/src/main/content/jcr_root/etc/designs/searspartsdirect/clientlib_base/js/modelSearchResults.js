@@ -66,11 +66,6 @@ function footerShow(){
     $("#notsure").show();
 }
 
-function preparePrint() {
-	$('#diagramBox').height($('#diagram').height());
-	$('#diagramBox').width($('#diagram').width());								
-};
-
 function allModelDiagram(modelNumber, brandId, categoryId){
 	var urlName = "http://partsapivip.qa.ch3.s.com/pd-services/models/"+modelNumber+"/components?brandId="+brandId+"&productCategoryId="+categoryId;
     
@@ -82,6 +77,7 @@ function allModelDiagram(modelNumber, brandId, categoryId){
         success : function(data) {
           	var jsonResponse = data.components;
 			var jsonLength = jsonResponse.length;
+			var waterFilterPart = (typeof data.waterFilterPart !== 'undefined') ? data.waterFilterPart : "";
             if(jsonLength != 0){
 				     for(var j = 0; j < jsonResponse.length; j++) {
 				    	 var topPartsList = "";
@@ -94,16 +90,30 @@ function allModelDiagram(modelNumber, brandId, categoryId){
 				    		 }
 				    		 topPartsList = topPartsList + "</ul>";
 				    	 }
+				    	 
+				    	 if(j==1 && waterFilterPart.length!=0){
 
-                                $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"
-											+ "<li class=\"grid-item\">"
-											+ "<div class=\"diagramContainer model\">"
-											+ "<img src=\""+jsonResponse[j].diagramImageUrl+"\" />"
-											+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+jsonResponse[j].componentDescription+"</a></p></a>"
-											+ topPartsList
-											+ "</div></li></a>");
-                            }
-                        }
+                             $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"\">"
+									+ "<li class=\"grid-item\">"
+									+ "<div class=\"diagramContainer model\">"
+									+ "<img src=\""+waterFilterPart.partImage.imageURL+"\" />"
+									+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+waterFilterPart.description+"</a></p></a>"
+									+ "</div></li></a>");
+
+                           }
+                         else{
+
+                        $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"/content/searspartsdirect/en/modelpartlist.html"
+                        			+ "?modelNumber="+modelNumber+"&brandId="+brandId+"&categoryId="+categoryId+"&diagramPageId="+jsonResponse[j].diagramPageId+"&documentId="+jsonResponse[j].documentId+"&diagramUrl="+jsonResponse[j].diagramImageUrl+"\">"
+									+ "<li class=\"grid-item\">"
+									+ "<div class=\"diagramContainer model\">"
+									+ "<img src=\""+jsonResponse[j].diagramImageUrl+"\" />"
+									+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+jsonResponse[j].componentDescription+"</a></p></a>"
+									+ topPartsList
+									+ "</div></li></a>");
+                         }
+                      }
+                  }
         },				
 		error : function() {
 			console.log("Failed to retrieve data from server");

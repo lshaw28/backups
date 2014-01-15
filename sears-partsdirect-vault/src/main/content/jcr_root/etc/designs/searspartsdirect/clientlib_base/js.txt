@@ -1,5 +1,7 @@
 #base=js/.
 bootstrap.min.js
+modelDiagram.js
+modelSearchResults.js
 plugins/regula-1.2.3.min.js
 plugins/jquery.hammer-1.0.5.min.js
 plugins/bootstrap-inputmask.js
