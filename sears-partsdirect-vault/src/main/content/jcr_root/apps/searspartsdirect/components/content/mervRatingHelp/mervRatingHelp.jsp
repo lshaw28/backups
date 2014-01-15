@@ -6,7 +6,7 @@
 <div class="hidden-phone">
 	<div class="border1px">
 		<h3>What is a MERV rating?</h3>
-		<p>MERV stands for Mimium Efficiency Rating Value.It's an industry standard rating system, provided by <a href="/replacement-parts/hvac-air-filters/dimensions.html">air filter</a> manufacturers,
+		<p>MERV stands for Minimium Efficiency Rating Value.It's an industry standard rating system, provided by <a href="/replacement-parts/hvac-air-filters/dimensions.html">air filter</a> manufacturers,
 			designed to help choose which efficiency works best for your household. A MERV rating is a numerical value
 			ranging from 1 (lowest efficiency) to 16 (highest efficiency) and tells the consumer how well the filter captures and holds dirt and dust.
 		</p>
