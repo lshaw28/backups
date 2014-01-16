@@ -72,8 +72,8 @@ function modelDiagramPartList(modelNumber, brandId, categoryId, diagramPageId,
 														+ (typeof jsonResponse[j].partImage.imageURL !== 'undefined' ? "<div class=\"partListItemImage\"><img src=\""+jsonResponse[j].partImage.imageURL+"\" /></div>" : "")
 																								
 														+ "<p><a href=\"http://www.urlforthepart.com\">"+jsonResponse[j].description+"</a><br />"
-															+ "Part #: "+jsonResponse[j].partCompositeKey.partNumber
-															+ ((jsonResponse[j].partRestrictions.length > 0 && jsonResponse[j].priceAndAvailability.availabilityStatus == "INST") ? "<br /><small><i class=\"icon-share flip-vertical\">&nbsp;</i> Substitution: YYYYYYYY</small>" : "")
+															+ "Part #: "+jsonResponse[j].priceAndAvailability.originalPartNumber
+															+ (((jsonResponse[j].priceAndAvailability.originalPartNumber != jsonResponse[j].partCompositeKey.partNumber) && jsonResponse[j].priceAndAvailability.availabilityStatus == "INST") ? "<br /><small><i class=\"icon-share flip-vertical\">&nbsp;</i> Substitution: "+jsonResponse[j].partCompositeKey.partNumber+"</small>" : "")
 															+ ((jsonResponse[j].priceAndAvailability.partReturnable == false && jsonResponse[j].priceAndAvailability.availabilityStatus == "INST") ? "<br /><span class=\"error\">This item is not returnable</span>" : "")
 														+ "</p>"
 													+ "</div>"

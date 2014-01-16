@@ -2,7 +2,7 @@ function modelSearchByPartName(modelNumber, brandId, categoryId, description) {
 	
 	var urlName = "http://partsapivip.qa.ch3.s.com/pd-services/models/"+modelNumber+"/components/parts"
 			+"?description="+description+"&brandId="+brandId+"&productCategoryId="+categoryId;
-	console.log(urlName);
+	
 	$.ajax({
 			type : "GET",
 			cache : false,
@@ -10,7 +10,7 @@ function modelSearchByPartName(modelNumber, brandId, categoryId, description) {
 			url : urlName,
 			success : function(data) {
 				console.log("Success");
-				var jsonResponse = data.parts;
+				var jsonResponse = data;
 				var jsonLength = jsonResponse.length;
 				if (jsonLength != 0) {
 					for ( var j = 0; j < jsonResponse.length; j++) {
@@ -42,7 +42,7 @@ function modelSearchByPartName(modelNumber, brandId, categoryId, description) {
 						}
 						
 						if(j ==0 && typeof jsonResponse[j].typeOfPart !== 'undefined' && jsonResponse[j].typeOfPart == "water_filter_part"){
-							$("#partListItems").append("<div class=\"partListItem row-fluid\">"
+							$("#partNameResults").append("<div class=\"partListItem row-fluid\">"
 										+ "<div class=\"new-span-general partListItemDescription\">"
 										+ "* Official water filter for this model"
 										+ (typeof jsonResponse[j].partImage.imageURL !== 'undefined' ? "<div class=\"partListItemImage\"><img src=\""+jsonResponse[j].partImage.imageURL+"\" /></div>" : "")
@@ -62,16 +62,14 @@ function modelSearchByPartName(modelNumber, brandId, categoryId, description) {
 									+ "</div>");
 						}else{
 							$("#partNameResults").append("<div class=\"partListItem row-fluid\">"
-													+ "<div class=\"new-span-general diagramPosition\">"
-														+ "<p><span>"+jsonResponse[j].keyId+"</span><br />on diagram</p>"
-													+ "</div>"
 													+ "<div class=\"new-span-general partListItemDescription\">"
-														+ (typeof jsonResponse[j].partImage.imageURL !== 'undefined' ? "<div class=\"partListItemImage\"><img src=\""+jsonResponse[j].partImage.imageURL+"\" /></div>" : "")
-																								
+                                                         + (typeof jsonResponse[j].partImage.imageURL !== 'undefined' ? "<div class=\"partListItemImage\"><img style=\"width:100px; height:100px;\" src=\""+jsonResponse[j].partImage.imageURL+"\" /></div>" : "")
+
 														+ "<p><a href=\"http://www.urlforthepart.com\">"+jsonResponse[j].description+"</a><br />"
-															+ "Part #: "+jsonResponse[j].partCompositeKey.partNumber
-															+ ((jsonResponse[j].partRestrictions.length > 0 && jsonResponse[j].priceAndAvailability.availabilityStatus == "INST") ? "<br /><small><i class=\"icon-share flip-vertical\">&nbsp;</i> Substitution: YYYYYYYY</small>" : "")
-															+ ((jsonResponse[j].priceAndAvailability.partReturnable == false && jsonResponse[j].priceAndAvailability.availabilityStatus == "INST") ? "<br /><span class=\"error\">This item is not returnable</span>" : "")
+															+ "Part #: "+jsonResponse[j].priceAndAvailability.originalPartNumber
+                                                            + "<br/>Found in diagram: "+jsonResponse[j].foundInDiargamDescription
+															+ (((jsonResponse[j].priceAndAvailability.originalPartNumber != jsonResponse[j].partCompositeKey.partNumber) && jsonResponse[j].priceAndAvailability.availabilityStatus == "INST") ? "<br /><small><i class=\"icon-share flip-vertical\">&nbsp;</i> Substitution: "+jsonResponse[j].partCompositeKey.partNumber+"</small>" : "")
+															+ ((jsonResponse[j].priceAndAvailability.partReturnable == false && jsonResponse[j].priceAndAvailability.availabilityStatus == "INST") ? "<br /><br/><span class=\"error\">This item is not returnable</span>" : "")
 														+ "</p>"
 													+ "</div>"
 													+ "<div class=\"new-span-general partListItemCart\">"
