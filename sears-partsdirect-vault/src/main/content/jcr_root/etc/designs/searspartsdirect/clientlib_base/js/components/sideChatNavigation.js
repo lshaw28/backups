@@ -20,6 +20,16 @@ var sideChatNavigation = Class.extend(function() {
 		bindEvents: function() {
 			var self = this;
 
+			this.el.swipe({
+			    swipeLeft:function(event, direction, distance, duration, fingerCount) {
+			    	self.show();
+			    },
+			    swipeRight:function(event, direction, distance, duration, fingerCount) {
+			    	self.hide();
+			    },
+
+			});
+
 			$('[data-toggle="sidechattoggle"]', self.el).toggle(function () {
 				self.show();
 			}, function () {

@@ -5,7 +5,7 @@
 	bottom: 100px;
 	position: fixed;
 	right: -340px;
-	width: 384px;
+	width: 396px;
 	z-index: 999;
 
 	.sideChatNavigationContent, .sideChatNavigationControls {
@@ -13,11 +13,19 @@
 	}
 	.sideChatNavigationContent {
 		background-color: @bodyColor;
-		border: 3px solid @primaryHueDarker;
+		border: 3px solid @primaryHueNormal;
 		border-right: 0;
 		height: 200px;
 		padding: 15px;
 		width: 307px;
+
+		h3 {
+			line-height: 22px;
+		}
+
+		p {
+			margin: 0;
+		}
 	}
 	.sideChatNavigationControls {
 		height: auto;
@@ -30,7 +38,11 @@
 			font-size: @smallPSize;
 			padding: 10px 0;
 			text-align: center;
-			width: 44px;
+			width: 56px;
+
+			.icon-envelope:before{
+				content: "\f0e0";
+			}
 
 			a {
 				color: @bodyColor;

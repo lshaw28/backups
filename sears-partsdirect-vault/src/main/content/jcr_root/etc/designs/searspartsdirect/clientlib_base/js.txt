@@ -60,6 +60,7 @@ TouchCarousel.js
 ResponsiveTable.js
 SearchPanelFinder.js
 SearchPanelFinderResult.js
+touchSwipe.js
 
 #base=js/templates/.
 cartItemTemplate.js
