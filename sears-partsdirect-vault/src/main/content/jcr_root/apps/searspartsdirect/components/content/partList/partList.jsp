@@ -20,3 +20,11 @@ request.setAttribute("diagramUrl", diagramUrl);
 </div>
 
 <script>modelDiagramPartList('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>', '<%=diagramPageId%>', '<%=documentId%>');</script>
+<script>
+    function getDiagramPagePreview(){
+        $('.partListItemQuantity').remove();
+        $('.partListItemAdd').remove();
+		var pageHtml= $('#partListItems').parent().html();
+        return pageHtml;
+    }
+</script>
