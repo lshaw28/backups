@@ -65,7 +65,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 							<div class="row-fluid">
 								<div class="repairHelpHomeTitle">
 									<div class="pageTitleHeader">
-										<h1>Model # <%=modelNumber %> <%=brandName %> <%=modelDescription %><p class="pull-right">Model Info <i class="icon-chevron-down"></i></p></h1>
+										<h1>Model # <%=modelNumber %> <%=brandName %> <%=modelDescription %></h1>
 									</div>
 								</div>
 							</div>
@@ -174,18 +174,17 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 				<script>
 					$('#searchByPartName').bind('click', function (e) {
 						e.preventDefault();
-	console.log("calling");
-	console.log($("#searchPart").length);
-	console.log($("#searchPart").val());
 						if ($("#searchPart").length > 0) {
 							var modelNumber = "<%=modelNumber%>";
 							var brandId = "<%=brandId%>";
 							var categoryId = "<%=categoryId%>";
+							var brandName = "<%=brandName %>"; 
+							var modelDescription = "<%=modelDescription %>";
 														
 							var description = $("#searchPart").val();
 							
 							window.location.href="/content/searspartsdirect/en/searchbypartname.html"
-                			+ "?modelNumber="+modelNumber+"&brandId="+brandId+"&categoryId="+categoryId+"&description="+description;
+                			+ "?modelNumber="+modelNumber+"&brandId="+brandId+"&categoryId="+categoryId+"&description="+description+"&brandName="+brandName+"&modelDescription="+modelDescription;
 						}
 					});
 				</script>
