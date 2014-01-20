@@ -4,6 +4,11 @@
 		  title="modelSearch"
 		  xtype="tabpanel">
 	<items jcr:primaryType="cq:WidgetCollection">
-        
-    </items>
+		<tab1 jcr:primaryType="cq:Widget" cropParameter="./image/imageCrop"
+			fileNameParameter="./image/fileName" fileReferenceParameter="./image/fileReference"
+			mapParameter="./image/imageMap" name="./image/file" requestSuffix="/image.img.png"
+			rotateParameter="./image/imageRotate" sizeLimit="100" title="Image"
+			xtype="html5smartimage" />
+	
+	</items>
 </jcr:root>

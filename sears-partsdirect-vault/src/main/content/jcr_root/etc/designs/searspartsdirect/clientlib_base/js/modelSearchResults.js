@@ -66,7 +66,7 @@ function footerShow() {
 	$("#notsure").show();
 }
 
-function allModelDiagram(modelNumber, brandId, categoryId) {
+function allModelDiagram(modelNumber, brandId, categoryId,topSellingImagePath) {
 	var urlName = "http://partsapivip.qa.ch3.s.com/pd-services/models/"
 			+ modelNumber + "/components?brandId=" + brandId
 			+ "&productCategoryId=" + categoryId;
@@ -79,65 +79,90 @@ function allModelDiagram(modelNumber, brandId, categoryId) {
 				success : function(data) {
 					var jsonResponse = data.components;
 					var jsonLength = jsonResponse.length;
-					var waterFilterPart = (typeof data.waterFilterPart !== 'undefined') ? data.waterFilterPart
-							: "";
-					if (jsonLength != 0) {
-						for ( var j = 0; j < jsonResponse.length; j++) {
-							var topPartsList = "";
-							if (jsonResponse[j].parts.length > 0) {
-								topPartsList = "<ul class=\"topParts-list\">"
-										+ "<p>Top parts in this diagram</p>";
-								for ( var i = 0; i < jsonResponse[j].parts.length; i++) {
-									var jsonTopParts = jsonResponse[j].parts[i].description;
-									topPartsList = topPartsList
-											+ "<li><a class=\"disableMobile\" href=\"#\">"
-											+ jsonTopParts + "</a></li>";
-								}
-								topPartsList = topPartsList + "</ul>";
-							}
+					var waterFilterPart = (typeof data.waterFilterPart !== 'undefined') ? data.waterFilterPart : "";
+					
+		            var topSellingParts = (typeof data.parts !== 'undefined') ? data.parts : "";
+		            var topSellingDivDesc=new Array();
+		            var topSellingDivLink=new Array();
+		            var topSellingDiv="";
+		            if(topSellingParts.length !=0){
+		                for(var j = 0; j < topSellingParts.length; j++) {
+		                    topSellingDivDesc[j]=topSellingParts[j].description;
+		                    topSellingDivLink[j]="http://www.searspartsdirect.com/partsdirect/part-number/"+topSellingParts[j].partCompositeKey.partNumber+"/"+topSellingParts[j].partCompositeKey.productGroupId+"/"+topSellingParts[j].partCompositeKey.supplierId;
+		                    topSellingDiv=topSellingDiv+"<li><a href=\""+topSellingDivLink[j]+"\">"+topSellingDivDesc[j]+"</a></li>";
+		                }
+		            }
 
-							if (j == 1 && waterFilterPart.length != 0) {
+		            if(jsonLength != 0){
+						     for(var j = 0; j < jsonResponse.length; j++) {
+						    	 var topPartsList = "";
 
-								$("#allDiagramContainer")
-										.append(
-												"<a class=\"disableDesktop\" href=\"\">"
-														+ "<li class=\"grid-item\">"
-														+ "<div class=\"diagramContainer model\">"
-														+ "<img src=\""
-														+ waterFilterPart.partImage.imageURL
-														+ "\" />"
-														+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"
-														+ waterFilterPart.description
-														+ "</a></p></a>"
-														+ "</div></li></a>");
+		                         if(jsonResponse[j].parts.length > 0){
+						    		 topPartsList = "<ul class=\"topParts-list\">"
+											+ "<p>Top parts in this diagram</p>";
+						    		 for(var i = 0; i<jsonResponse[j].parts.length; i++){
+						    			 var jsonTopParts = jsonResponse[j].parts[i].description;
+						    			 topPartsList = topPartsList + "<li><a class=\"disableMobile\" href=\"#\">"+jsonTopParts+"</a></li>";
+						    		 }
+						    		 topPartsList = topPartsList + "</ul>";
+						    	 }
 
-							} else {
+		                         $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"/content/searspartsdirect/en/modelpartlist.html"
+		                        			+ "?modelNumber="+modelNumber+"&brandId="+brandId+"&categoryId="+categoryId+"&diagramPageId="+jsonResponse[j].diagramPageId+"&documentId="+jsonResponse[j].documentId+"&diagramUrl="+jsonResponse[j].diagramImageUrl+"\">"
+											+ "<li class=\"grid-item\">"
+											+ "<div class=\"diagramContainer model\">"
+											+ "<img src=\""+jsonResponse[j].diagramImageUrl+"\" />"
+											+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+jsonResponse[j].componentDescription+"</a></p></a>"
+											+ topPartsList
+											+ "</div></li></a>");
 
-								$("#allDiagramContainer")
-										.append(
-												"<a class=\"disableDesktop\" href=\"/content/searspartsdirect/en/modelpartlist.html"
-														+ "?modelNumber="
-														+ modelNumber
-														+ "&brandId="
-														+ brandId
-														+ "&categoryId="
-														+ categoryId
-														+ "&diagramPageId="
-														+ jsonResponse[j].diagramPageId
-														+ "&documentId="
-														+ jsonResponse[j].documentId
-														+ "\">"
-														+ "<li class=\"grid-item\">"
-														+ "<div class=\"diagramContainer model\">"
-														+ "<img src=\""
-														+ jsonResponse[j].diagramImageUrl
-														+ "\" />"
-														+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"
-														+ jsonResponse[j].componentDescription
-														+ "</a></p></a>"
-														+ topPartsList
-														+ "</div></li></a>");
-							}
+								if(waterFilterPart.length!=0 && topSellingParts.length!=0){
+		                                    if(j==0){
+		                                        $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"\">"
+		                                            + "<li class=\"grid-item\">"
+		                                            + "<div class=\"diagramContainer model\">"
+		                                            + "<img src=\""+waterFilterPart.partImage.imageURL+"\" />"
+		                                            + "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+waterFilterPart.description+"</a></p></a>"
+		                                            + "</div></li></a>");
+		                                    }
+		                                    else if(j==1){
+		                                        $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"#\">"
+		                                                        +"<li class=\"grid-item\">"
+		                                                              +"<div class=\"diagramContainer topParts\">"
+		                                                                    +"<img src=\""+topSellingImagePath+"\" />"
+		                                                                    +"<h5 class=\"diagramTitle disableMobile\">Top parts in this model</h5>"
+		                                                                    +"<ul class=\"topParts-list\">"
+																			+topSellingDiv
+																			+"</ul>"
+		                                                               +"</div>"
+		                                                         +"</li>"
+		                                                    +"</a>");							
+		                                    }
+
+								 }
+								 else if(j==0 && waterFilterPart.length!=0 && topSellingParts.length==0){
+		                             $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"\">"
+											+ "<li class=\"grid-item\">"
+											+ "<div class=\"diagramContainer model\">"
+											+ "<img src=\""+waterFilterPart.partImage.imageURL+"\" />"
+											+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+waterFilterPart.description+"</a></p></a>"
+											+ "</div></li></a>");
+		                         }
+		                         else if(j==0&&topSellingParts.length!=0 &&  waterFilterPart.length==0){
+		                             //for 2nd position water filter not present and top selling is present
+		                             //in this case will show Top selling
+										 $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"#\">"
+		                                                        +"<li class=\"grid-item\">"
+		                                                              +"<div class=\"diagramContainer topParts\">"
+		                                                                    +"<img src=\""+topSellingImagePath+"\" />"
+		                                                                    +"<h5 class=\"diagramTitle disableMobile\">Top parts in this model</h5>"
+		                                                                    +"<ul class=\"topParts-list\">"
+																			+topSellingDiv
+																			+"</ul>"
+		                                                               +"</div>"
+		                                                         +"</li>"
+		                                                    +"</a>");	
+		                         }
 						}
 					}
 				},

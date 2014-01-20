@@ -7,6 +7,11 @@ String brandId = (request.getParameter("brandId") != null) ? request.getParamete
 String categoryId = (request.getParameter("categoryId") != null) ? request.getParameter("categoryId") : "";
 String brandName = (request.getParameter("brandName") != null) ? request.getParameter("brandName") : "";
 String modelDescription = (request.getParameter("modelDescription") != null) ? request.getParameter("modelDescription") : "";
+
+String topSellingImagePath="/etc/designs/searspartsdirect/clientlib_base/img/topParts.png";
+if(currentNode.hasNode("image/file/jcr:content")){
+	topSellingImagePath=currentNode.getNode("image/file/jcr:content").getProperty("jcr:data").getPath();
+}
 %>
 
 						<div id="searchRightShadow" class="search-shadow"></div>
@@ -169,7 +174,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 
 				<script type="text/javascript" src="js/components/modelHeader.js"></script>
 
-				<script>allModelDiagram('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>');</script>
+				<script>allModelDiagram('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>','<%=topSellingImagePath%>');</script>
 				
 				<script>
 					$('#searchByPartName').bind('click', function (e) {
