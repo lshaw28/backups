@@ -83,6 +83,11 @@ function modelDiagramPartList(modelNumber, brandId, categoryId, diagramPageId,
 							}
 						}
 					}
+					var imageURL = data.components[0].diagramImage.imageURL;
+
+                	var plant = document.getElementById('diagramImage');
+                	plant.setAttribute('data-desktopimage',imageURL);
+                	var fruitCount = plant.getAttribute('data-desktopimage');
 				},
 				error : function() {
 					console.log("Failed to retrieve data from server");

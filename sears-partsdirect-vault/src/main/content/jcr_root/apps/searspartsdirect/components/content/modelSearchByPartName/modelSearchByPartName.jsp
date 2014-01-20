@@ -72,8 +72,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 						if ($("#searchPart").length > 0) {
 							var modelNumber = "<%=modelNumber%>";
 							var brandId = "<%=brandId%>";
-							var categoryId = "<%=categoryId%>
-	";
+							var categoryId = "<%=categoryId%>";
 
 							var description = $("#searchPart").val();
 

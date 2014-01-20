@@ -126,8 +126,6 @@ function allModelDiagram(modelNumber, brandId, categoryId) {
 														+ jsonResponse[j].diagramPageId
 														+ "&documentId="
 														+ jsonResponse[j].documentId
-														+ "&diagramUrl="
-														+ jsonResponse[j].diagramImageUrl
 														+ "\">"
 														+ "<li class=\"grid-item\">"
 														+ "<div class=\"diagramContainer model\">"
