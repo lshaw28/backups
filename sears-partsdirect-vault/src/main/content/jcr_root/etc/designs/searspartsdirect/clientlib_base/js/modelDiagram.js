@@ -18,6 +18,10 @@ function modelDiagramPartList(modelNumber, brandId, categoryId, diagramPageId,
 				if (jsonLength != 0) {
 					for ( var j = 0; j < jsonResponse.length; j++) {
 						var topPartsList = "";
+						var isDescriptionClickable = false;
+						if(jsonResponse[j].priceAndAvailability.availabilityStatus == "INST" || jsonResponse[j].priceAndAvailability.availabilityStatus == "PNF" || jsonResponse[j].priceAndAvailability.availabilityStatus == "BORD"){
+							isDescriptionClickable = true;
+						}
 						if(jsonResponse[j].priceAndAvailability.availabilityStatus == "INST"){
 							// In Stock
 							topPartsList = "<div class=\"partListItemPrice\">"
@@ -44,12 +48,14 @@ function modelDiagramPartList(modelNumber, brandId, categoryId, diagramPageId,
 							// do nothing
 						}
 						
+						var description = (isDescriptionClickable == true) ? "<a href=\"http://www.urlforthepart.com\">"+jsonResponse[j].description+"</a>" : jsonResponse[j].description;
+						
 						if(j ==0 && typeof jsonResponse[j].typeOfPart !== 'undefined' && jsonResponse[j].typeOfPart == "water_filter_part"){
 							$("#partListItems").append("<div class=\"partListItem row-fluid\">"
 										+ "<div class=\"new-span-general partListItemDescription\">"
 										+ "* Official water filter for this model"
 										+ (typeof jsonResponse[j].partImage.imageURL !== 'undefined' ? "<div class=\"partListItemImage\"><img src=\""+jsonResponse[j].partImage.imageURL+"\" /></div>" : "")
-										+ "<p><a href=\"http://www.urlforthepart.com\">"+jsonResponse[j].description+"</a><br />"
+										+ "<p>" + description + "<br />"
 											+ "Part #: "+jsonResponse[j].partCompositeKey.partNumber
 										+ "</p>"
 									+ "</div>"
@@ -71,7 +77,7 @@ function modelDiagramPartList(modelNumber, brandId, categoryId, diagramPageId,
 													+ "<div class=\"new-span-general partListItemDescription\">"
 														+ (typeof jsonResponse[j].partImage.imageURL !== 'undefined' ? "<div class=\"partListItemImage\"><img src=\""+jsonResponse[j].partImage.imageURL+"\" /></div>" : "")
 																								
-														+ "<p><a href=\"http://www.urlforthepart.com\">"+jsonResponse[j].description+"</a><br />"
+														+ "<p>" + description + "<br />"
 															+ "Part #: "+jsonResponse[j].priceAndAvailability.originalPartNumber
 															+ (((jsonResponse[j].priceAndAvailability.originalPartNumber != jsonResponse[j].partCompositeKey.partNumber) && jsonResponse[j].priceAndAvailability.availabilityStatus == "INST") ? "<br /><small><i class=\"icon-share flip-vertical\">&nbsp;</i> Substitution: "+jsonResponse[j].partCompositeKey.partNumber+"</small>" : "")
 															+ ((jsonResponse[j].priceAndAvailability.partReturnable == false && jsonResponse[j].priceAndAvailability.availabilityStatus == "INST") ? "<br /><span class=\"error\">This item is not returnable</span>" : "")
