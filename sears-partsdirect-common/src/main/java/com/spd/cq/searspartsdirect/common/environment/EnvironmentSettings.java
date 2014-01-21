@@ -238,6 +238,15 @@ public class EnvironmentSettings {
 	public static String getPromoDate() {
 		return getProperty(PD_PROMO_DATE, Constants.EMPTY);
 	}
+	
+	@Property(label = "Air Filter Banner Flag",
+			description = "Air Filter Banner Flag",
+			value = "y"
+		)
+	public static final String PD_AF_BANNER_FLAG = "searspartsdirect.airfilter.banner.flag";
+	public static String getAFBannerFlag() {
+		return getProperty(PD_AF_BANNER_FLAG, Constants.EMPTY);
+	}
 
 
 	// ---- for testing ----

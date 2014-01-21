@@ -1,0 +1,64 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+#bannerContainer{
+    .banner{
+        width: 143px;
+        float: left;
+        padding: 3px 0 0 3px;
+        margin: 20px 0 0 0;
+        a{
+            float: left;
+            border: 1px solid @secondaryHueLight;
+            border-radius: 3px;
+            padding:40px 0 0 0;
+            position: relative;
+            text-decoration: none;
+            
+            span{
+                float: left;
+                padding: 0px 13px 0 15px;
+            }
+            .newRibbonIcon{
+                position: absolute;
+                left: -3px;
+                top: -3px
+            }
+            .AFText{
+                font-size: @h3Size;
+                line-height:@h2Height;
+                letter-spacing: 1px;
+            }
+            .SignUpText{
+                color: @secondaryHueDark;
+                font-size: @pSize;
+                margin: 20px 0 45px 0;
+            }
+            .shopAF_btn{
+                border: 1px solid @primaryHueLight;
+                border-radius: 3px;
+                padding: 6px 12px;
+                margin: 0 15px 20px;
+            }
+            .airBannerAd{
+                margin: 10px 0 -25px 0;
+            }
+            .freeShipping{
+                border-top: 1px dotted @secondaryHueLightest;
+                background-color: #f0f0f0;
+                float: left;
+                padding: 10px 10px;
+                font-size:@smallPSize;
+                color:@secondaryHueDark;
+                i{
+                    color:@highlightHueDarkest;
+                    font-style: normal;
+                }
+                img{
+                    padding: 0 0 0 40px;
+                }
+            }
+        }
+    }
+}
+@import "banners.mobile.less";
+@import "banners.tablet.less";

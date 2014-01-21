@@ -24,10 +24,21 @@
 				</div>
 			</div>
 			<div class="row-fluid">
-				<div class="span12">
-					<cq:include path="categoryListing" resourceType="searspartsdirect/components/content/categoryListing" />
-					<cq:include path="parsys" resourceType="foundation/components/parsys" />
-				</div>
+			    <c:if test="${afBannerFlag eq 'y'}">
+				    <div class="span10">
+	                    <cq:include path="categoryListing" resourceType="searspartsdirect/components/content/categoryListing" />
+	                    <cq:include path="parsys" resourceType="foundation/components/parsys" />
+	                </div>
+	                <div class="span2">
+	                    <cq:include path="banners" resourceType="searspartsdirect/components/content/banners" />
+	                </div>
+			    </c:if>
+			    <c:if test="${not afBannerFlag eq 'y'}">
+					<div class="span12">
+						<cq:include path="categoryListing" resourceType="searspartsdirect/components/content/categoryListing" />
+						<cq:include path="parsys" resourceType="foundation/components/parsys" />
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</div>

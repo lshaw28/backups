@@ -312,6 +312,11 @@
         /**
 		 * airFilterDimension class setup
 		 */
-        var newFilterDim = new airFilterDimension();  
+        var newFilterDim = new airFilterDimension();
+		
+		/**
+		 * (Air/Water) Filter Banners class setup
+		 */
+        var newBanners = new banners(); 
 	});
 }(window));
