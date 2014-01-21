@@ -1,7 +1,11 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %><%
 %><%
 %>
+<<<<<<< HEAD
 <div id="bannerContainer"></div>
+=======
+<div id="bannerContainer" class="visible-desktop hidden-phone hidden-tablet"></div>
+>>>>>>> [Mingle #7804] - Air filters: add HVAC banners on CQ pages
 <script id="js_filterBannerTemplate" type="text/x-handlebars-template">
     <div class="banner">
         <a href="{{pageUrl}}">
