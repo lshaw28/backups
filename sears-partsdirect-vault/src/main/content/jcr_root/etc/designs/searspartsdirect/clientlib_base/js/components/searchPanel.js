@@ -61,9 +61,10 @@ var searchPanel = Class.extend(function () {
 			// Update form action
 			//$('#searchBarForm').attr('action', action + encodeURIComponent(value));
 			//$('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
+			
 			 $('#searchBarForm').click(function( event ){
-
-
+				 
+				if(el.data('pathtaken') === 'modelSearch'){
 	                var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=0";
 	                $.ajax({
 					type : "GET",
@@ -85,7 +86,31 @@ var searchPanel = Class.extend(function () {
 	                    }
 	                    $('#searchBarForm').submit();
 	                }
-	            });  
+	               }); 
+				} else if(el.data('pathtaken') === 'partSearch'){
+					var urlName = "http://partsapivip.qa.ch3.s.com/pd-services/parts?partNumber="+partNumber;
+	                $.ajax({
+					type : "GET",
+					cache : false,
+					dataType : "json",
+					url : urlName,
+	                success : function(data) {
+
+	                  	var jsonResponse = data;
+						var jsonLength = Object.keys(jsonResponse).length;
+	                    var searchResultExist = false;
+	                    var sywResultExist = false;
+
+	                    if(jsonLength != 0){
+	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/partsearchresults.html");
+	                    }
+	                    else{
+	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-parts-found.html");
+	                    }
+	                    $('#searchBarForm').submit();
+	                }
+	               });
+				}
 		    });
 			 
 		},
