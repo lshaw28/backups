@@ -11,6 +11,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.ServletException;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Properties;
@@ -64,36 +65,43 @@ public class SymptomServlet extends SlingSafeMethodsServlet {
         String category = request.getParameter("category");
         String repairHelpPageUrl = "";
         String repairHelpCount = "";
-        Map<String,String> categoryFilters = new HashMap<String,String>();
-        categoryFilters.put("property", "jcr:content/jcr:title");
-        categoryFilters.put("property.value", category);
-        SearchResult categoryResult = getDataFromCQRepository(Constants.ASSETS_PRODUCT_CATEGORY_PATH, categoryFilters);
-        Map<String,String> brandFilters = new HashMap<String,String>();
-        brandFilters.put("property", "jcr:content/jcr:title");
-        brandFilters.put("property.value", brand);
-        SearchResult brandResult = getDataFromCQRepository(Constants.ASSETS_BRAND_PATH, brandFilters);
-
-        if (categoryResult.getHits().size() > 0 && brandResult.getHits().size() > 0) {
-            ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(model);
-            PDModelSubcomponentModel subcomponents = apiHelper.getModelSubcomponents(request);
-            List<SymptomModel> symptoms = getCQSymptomsForCategory(subcomponents, request);
-            if ( !symptoms.isEmpty()) {
-                try {
-                    String brandTrueName = "";
-                    if (brandResult.getHits().size() > 0) {
-                        brandTrueName = brandResult.getHits().get(0).getNode().getName();
-                    } else {
-                        brandTrueName = JcrUtil.createValidName(brand);
+        
+        if (StringUtils.isNotBlank(model) && StringUtils.isNotBlank(brand) && StringUtils.isNotBlank(category)) {
+            
+            model = StringUtils.capitalize(model.toLowerCase());
+            brand = StringUtils.capitalize(brand.toLowerCase());
+            category = StringUtils.capitalize(category.toLowerCase());
+            Map<String,String> categoryFilters = new HashMap<String,String>();
+            categoryFilters.put("property", "jcr:content/jcr:title");
+            categoryFilters.put("property.value", category);
+            SearchResult categoryResult = getDataFromCQRepository(Constants.ASSETS_PRODUCT_CATEGORY_PATH, categoryFilters);
+            Map<String,String> brandFilters = new HashMap<String,String>();
+            brandFilters.put("property", "jcr:content/jcr:title");
+            brandFilters.put("property.value", brand);
+            SearchResult brandResult = getDataFromCQRepository(Constants.ASSETS_BRAND_PATH, brandFilters);
+    
+            if (categoryResult.getHits().size() > 0 && brandResult.getHits().size() > 0) {
+                ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(model);
+                PDModelSubcomponentModel subcomponents = apiHelper.getModelSubcomponents(request);
+                List<SymptomModel> symptoms = getCQSymptomsForCategory(subcomponents, request);
+                if ( !symptoms.isEmpty()) {
+                    try {
+                        String brandTrueName = "";
+                        if (brandResult.getHits().size() > 0) {
+                            brandTrueName = brandResult.getHits().get(0).getNode().getName();
+                        } else {
+                            brandTrueName = JcrUtil.createValidName(brand);
+                        }
+                        String categoryTrueName = categoryResult.getHits().get(0)
+                                .getNode().getName();
+                        repairHelpPageUrl = "/" + brandTrueName + "/"
+                                + categoryTrueName + "/model-" + model + "-repair.html";
+                        repairHelpCount = String.valueOf(symptoms.size());
+                        repairHelpInfo.put("pageUrl", repairHelpPageUrl);
+                        repairHelpInfo.put("count", repairHelpCount);
+                    } catch (Exception e) {
+                        log.error(ExceptionUtils.getFullStackTrace(e));
                     }
-                    String categoryTrueName = categoryResult.getHits().get(0)
-                            .getNode().getName();
-                    repairHelpPageUrl = "/" + brandTrueName + "/"
-                            + categoryTrueName + "/model-" + model + "-repair.html";
-                    repairHelpCount = String.valueOf(symptoms.size());
-                    repairHelpInfo.put("pageUrl", repairHelpPageUrl);
-                    repairHelpInfo.put("count", repairHelpCount);
-                } catch (Exception e) {
-                    log.error(ExceptionUtils.getFullStackTrace(e));
                 }
             }
         }
