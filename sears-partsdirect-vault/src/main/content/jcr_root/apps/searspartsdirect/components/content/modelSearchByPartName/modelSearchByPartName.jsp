@@ -58,6 +58,9 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 
 	</div>
 </div>
+<div class="row-fluid" id="searchCountDiv" style="display:none;">
+	<h2 class="resultsHeadline"><span id="searchCount"></span> parts found for "<%= description%>"</h2>
+</div>
 <div class="row-fluid">
 	<div class="new-span-general partListItems" id="partNameResults">
 	</div>

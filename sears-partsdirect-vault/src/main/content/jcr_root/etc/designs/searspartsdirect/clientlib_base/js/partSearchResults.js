@@ -11,6 +11,7 @@ function partSearchResults(partNumber) {
 				var jsonResponse = data;
 				var jsonLength = jsonResponse.length;
 				if (jsonLength != 0) {
+					$("#searchCount").append(jsonLength);
 					for ( var j = 0; j < jsonResponse.length; j++) {
 						var topPartsList = "";
 						var isDescriptionClickable = false;

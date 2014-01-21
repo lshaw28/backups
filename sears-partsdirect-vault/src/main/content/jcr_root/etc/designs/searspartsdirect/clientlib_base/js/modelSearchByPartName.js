@@ -13,6 +13,8 @@ function modelSearchByPartName(modelNumber, brandId, categoryId, description) {
 				var jsonResponse = data;
 				var jsonLength = jsonResponse.length;
 				if (jsonLength != 0) {
+					$("#searchCountDiv").show();
+					$("#searchCount").append(jsonLength);
 					for ( var j = 0; j < jsonResponse.length; j++) {
 						var topPartsList = "";
 						var isDescriptionClickable = false;
