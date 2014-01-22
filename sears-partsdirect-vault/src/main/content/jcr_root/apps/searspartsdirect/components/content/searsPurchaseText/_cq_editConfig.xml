@@ -9,4 +9,5 @@
 </image>
 </cq:dropTargets>
 <cq:inplaceEditing jcr:primaryType="cq:InplaceEditingConfig" active="true" configPath="../../dialog/items/tab1/items/text" editorType="text"/>
+<cq:listeners jcr:primaryType="cq:EditListenersConfig" afteredit="REFRESH_PAGE"/>
 </jcr:root>

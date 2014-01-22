@@ -93,9 +93,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				else if(StringUtils.equals(flag, "6")){
 					jsonObject = populateBrandProductList(modelNumber);
 				}
-				else if(StringUtils.equals(flag, "99")){
-					jsonObject = populateNoModelsFoundBrandProductList();
-				}
+
 				response.getWriter().print(jsonObject.toString());
 			} catch (RepositoryException e) {
 				log.error("Error occured in PSSearchServlet:doGet() "
@@ -106,24 +104,6 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			}
 		}
 	}
-	
-	
-	@SuppressWarnings("unused")
-	private JSONObject populateNoModelsFoundBrandProductList() throws JSONException,
-			ValueFormatException, PathNotFoundException, RepositoryException {
-		JSONObject result = new JSONObject();
-		HttpClient client = new HttpClient();
-
-		final String BRAND_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/brands";
-		final String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models/product-types";
-		result = getList(BRAND_DETAILS_URL, result);
-		result = getList(PRODUCT_DETAILS_URL, result);
-		
-		return result;
-	}
-	
-	
-	
 	
 	
 	@SuppressWarnings("unused")
