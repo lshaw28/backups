@@ -12,6 +12,7 @@ var sideChatNavigation = Class.extend(function() {
 			this.el = el;
 			// Perform setup
 			this.bindEvents();
+			this.bindSwipes();
 		},
 		/**
 		 * Bind events
@@ -20,7 +21,17 @@ var sideChatNavigation = Class.extend(function() {
 		bindEvents: function() {
 			var self = this;
 
-			this.el.swipe({
+			$('[data-toggle="sidechattoggle"]', self.el).click(function () {
+				self.show();
+			}, function() {
+				self.hide();
+			});
+
+		},
+		bindSwipes: function() {
+			var self = this;
+
+			self.el.swipe({
 			    swipeLeft:function(event, direction, distance, duration, fingerCount) {
 			    	self.show();
 			    },
@@ -28,12 +39,6 @@ var sideChatNavigation = Class.extend(function() {
 			    	self.hide();
 			    },
 
-			});
-
-			$('[data-toggle="sidechattoggle"]', self.el).toggle(function () {
-				self.show();
-			}, function () {
-				self.hide();
 			});
 		},
 		/**

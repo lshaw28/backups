@@ -1,6 +1,12 @@
 @import "../../../../clientlib_base/less/base.variables.less";
 @import "../../../../clientlib_base/less/base.mixins.less";
 
+@media (max-width: 650px) {
+	.sideChatNavigation {
+		display: none !important;
+	}
+}
+
 .sideChatNavigation {
 	bottom: 100px;
 	position: fixed;
@@ -17,7 +23,7 @@
 		border: 3px solid @primaryHueNormal;
 		border-right: 0;
 		height: 200px;
-		padding: 15px;
+		padding: 15px 15px 13px;
 		width: 307px;
 
 		h3 {
@@ -30,6 +36,8 @@
 	}
 	.sideChatNavigationControls {
 		height: auto;
+		line-height: 1.3;
+
 
 		.sideChatNavigationIcon {
 			background-color: @primaryHueNormal;
@@ -37,7 +45,7 @@
 			color: @bodyColor;
 			cursor: pointer;
 			font-size: @smallPSize;
-			padding: 10px 0;
+			padding: 16px 0 15px;
 			text-align: center;
 			width: 56px;
 
