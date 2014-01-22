@@ -4,15 +4,6 @@
 		  activeTab="0"
 		  xtype="tabpanel">
 <items jcr:primaryType="cq:WidgetCollection">
-<tab2 jcr:primaryType="cq:Widget" cropParameter="./image/imageCrop" fileNameParameter="./image/fileName" fileReferenceParameter="./image/fileReference" mapParameter="./image/imageMap" name="./image/file" requestSuffix="/image.img.png" rotateParameter="./image/imageRotate" sizeLimit="100" title="Image" xtype="html5smartimage"/>
-<tab3 jcr:primaryType="cq:Widget" title="Advanced Image Properties" xtype="panel">
-<items jcr:primaryType="cq:WidgetCollection">
-<title jcr:primaryType="cq:Widget" fieldLabel="Title" name="./image/jcr:title" xtype="textfield"/>
-<alt jcr:primaryType="cq:Widget" fieldDescription="(leave empty to use the title defined above)" fieldLabel="Alt Text" name="./image/alt" xtype="textfield"/>
-<linkURL jcr:primaryType="cq:Widget" fieldDescription="Drop files or pages from the Content Finder" fieldLabel="Link to" name="./image/linkURL" xtype="pathfield"/>
-<size jcr:primaryType="cq:Widget" fieldLabel="Size" heightParameter="./image/height" widthParameter="./image/width" xtype="sizefield"/>
-<resType jcr:primaryType="cq:Widget" ignoreData="true" name="./image/sling:resourceType" value="foundation/components/image" xtype="hidden"/>
-</items>
-</tab3>
+
 </items>
 </jcr:root>

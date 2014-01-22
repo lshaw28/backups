@@ -52,9 +52,7 @@
 			<items jcr:primaryType="cq:WidgetCollection">
 				<title jcr:primaryType="cq:Widget" fieldLabel="Title"
 					name="./image/jcr:title" xtype="textfield" />
-				<alt jcr:primaryType="cq:Widget"
-					fieldDescription="(leave empty to use the title defined above)"
-					fieldLabel="Alt Text" name="./image/alt" xtype="textfield" />
+				
 				<linkURL jcr:primaryType="cq:Widget"
 					fieldDescription="Drop files or pages from the Content Finder"
 					fieldLabel="Link to" name="./image/linkURL" xtype="pathfield" />

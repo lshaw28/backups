@@ -20,7 +20,7 @@ if (!(currentNode.hasNode("image/file/jcr:content")||currentNode.hasProperty("te
             	link=link+".html";
             }
         }
-        if(currentNode.getNode("image").hasProperty("width")&&currentNode.getNode("image").hasProperty("width")){
+        if(currentNode.getNode("image").hasProperty("height")&&currentNode.getNode("image").hasProperty("width")){
             height=currentNode.getNode("image").getProperty("height").getString()+"px";
             width=currentNode.getNode("image").getProperty("width").getString()+"px";
 
