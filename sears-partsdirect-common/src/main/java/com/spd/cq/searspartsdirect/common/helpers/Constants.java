@@ -28,6 +28,7 @@ public final class Constants {
 	public static final String ASSETS_IMAGE_REL_PATH = ident("jcr:content/image");
 	public static final String ASSETS_ICON_ATTR = ident("iconImages");
 	public static final String ASSETS_PRODUCT_CATEGORY_PATH = ident("productCategory");
+	       public static final String ASSETS_BRAND_PATH = ident("brand");
 	public static final String ASSETS_PAGES_PATH = ident("pages");
 	public static final String ASSETS_SYMPTOM_PATH = ident("symptom");
 	public static final String ASSETS_PART_TYPE_PATH = ident("partType");
@@ -74,6 +75,7 @@ public final class Constants {
 	public static final String MODEL_REPAIR_PAGE_NO_EXT = ident("/model-repair");
 	public static final String MARKUP_EXT = ident(".html");
 	public static final String CATEGORIES_PFX = ident("/categories");
+	public static final String AIRFILTER_PART_DETAILS_PFX = ident("replacement-parts/hvac-air-filters/part-number");
 
 	public static final String AUTHOR_REL_PATH = ident("jcr:content/authors");
 	public static final String TEMPLATE_REL_PATH = ident("jcr:content/cq:template");

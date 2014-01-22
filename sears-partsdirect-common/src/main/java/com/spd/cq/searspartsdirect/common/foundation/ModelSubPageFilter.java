@@ -42,6 +42,9 @@ public class ModelSubPageFilter implements Filter {
 	private final static Pattern brandCatModelRest = Pattern
 			.compile("^/([^/]*)/([^/]*)/" + Constants.MODELNO_PFX + "([^/]*)"
 					+ Constants.MODELNO_SFX + "(.*\\"+Constants.MARKUP_EXT+")$");
+	private final static Pattern airFilterPartDetailsPattern = Pattern
+							.compile(Constants.AIRFILTER_PART_DETAILS_PFX + "/([^/]*)/([^/]*)/([^/]*)"
+									+ "(.*\\"+Constants.MARKUP_EXT+")$");
 	private final static Pattern repairGuide = Pattern.compile("^"
 			+ Constants.REPAIR_GUIDES_ROOT);
 	private final static Pattern categoryRepair = Pattern.compile("^/[^/]*"
@@ -95,6 +98,17 @@ public class ModelSubPageFilter implements Filter {
 				}
 			}
 
+			// Look for Air Filter Part Details page pattern
+			Matcher airFilterPartDetailsMatcher = airFilterPartDetailsPattern.matcher(resPath);
+			if (airFilterPartDetailsMatcher.find()) {
+				selectors.add(airFilterPartDetailsMatcher.group(1));
+				selectors.add(airFilterPartDetailsMatcher.group(2));
+				selectors.add(airFilterPartDetailsMatcher.group(3));
+				resPath = resPath.substring(0, airFilterPartDetailsMatcher.start(1) - 1) + Constants.MARKUP_EXT;
+				resPath = resPath.replace("part-number", "part-details");
+				mustForward = true;
+			}
+
 			Matcher symptom = symptomatic.matcher(resPath);
 			if (symptom.find()) {
 				// start of symptom-id group, - 1 to remove the slash or .
@@ -114,7 +128,7 @@ public class ModelSubPageFilter implements Filter {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher(forwardUrl);
 
 			//if (requestDispatcher == null) throw new RuntimeException("No dispatcher for "+forwardUrl);
-			log.debug("Forwarding to "+forwardUrl);
+			log.debug("Forwarding to " + forwardUrl);
 			requestDispatcher.forward(request, response);
 
 		} else {

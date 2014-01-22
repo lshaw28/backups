@@ -12,7 +12,6 @@ public class Part {
 
 	public Part(String partNumber, String productGroupId, String supplierId,
 			String description) {
-		super();
 		this.partNumber = partNumber;
 		this.productGroupId = productGroupId;
 		this.supplierId = supplierId;

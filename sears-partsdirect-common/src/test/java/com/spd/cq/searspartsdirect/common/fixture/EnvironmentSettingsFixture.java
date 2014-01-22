@@ -33,6 +33,7 @@ public class EnvironmentSettingsFixture {
 		ourHash.put(EnvironmentSettings.PD_TOPPARTS_API, EnvironmentSettings.PD_TOPPARTS_API);
 		ourHash.put(EnvironmentSettings.PD_MODELSUB_API, EnvironmentSettings.PD_MODELSUB_API);
 		ourHash.put(EnvironmentSettings.PD_JOBCODE_PARTS_API, EnvironmentSettings.PD_JOBCODE_PARTS_API);
+		ourHash.put(EnvironmentSettings.PD_AIRFILTER_PART_DETAILS_API, EnvironmentSettings.PD_AIRFILTER_PART_DETAILS_API);
 		ourHash.put(EnvironmentSettings.PD_API_ROOT, EnvironmentSettings.PD_API_ROOT);
 		ourHash.put(EnvironmentSettings.LOCAL_HTTP_N_PORT, EnvironmentSettings.LOCAL_HTTP_N_PORT);
 		ourHash.put(EnvironmentSettings.LOCAL_HTTPS_N_PORT, EnvironmentSettings.LOCAL_HTTPS_N_PORT);
@@ -56,6 +57,7 @@ public class EnvironmentSettingsFixture {
 		ourHash.put(EnvironmentSettings.PD_TOPPARTS_API, "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/modelTop/topParts");
 		ourHash.put(EnvironmentSettings.PD_MODELSUB_API, "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/modelInfo");
 		ourHash.put(EnvironmentSettings.PD_JOBCODE_PARTS_API, "http://partsapivip.qa.ch3.s.com/pd-services/intra/v1/commonSymptoms/jobcodelist/partlist");
+		ourHash.put(EnvironmentSettings.PD_AIRFILTER_PART_DETAILS_API, "http://partsapivip.qa.ch3.s.com/pd-services/v1/air-filters/part-details");
 		ourHash.put(EnvironmentSettings.PD_API_ROOT, "http://partsapivip.qa.ch3.s.com/pd-services/v1/");
 		ourHash.put(EnvironmentSettings.LOCAL_HTTP_N_PORT, "localhost:4502");
 		ourHash.put(EnvironmentSettings.LOCAL_HTTPS_N_PORT, "localhost:5433");

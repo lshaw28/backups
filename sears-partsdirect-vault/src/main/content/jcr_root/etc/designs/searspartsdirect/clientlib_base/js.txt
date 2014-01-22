@@ -5,6 +5,7 @@ plugins/jquery.hammer-1.0.5.min.js
 plugins/bootstrap-inputmask.js
 plugins/bootstrap-datepicker.js
 Class.js
+html5shiv.js
 core/Namespace.js
 fx/Easing.js
 fx/Translate3d.js
@@ -22,9 +23,12 @@ src/Carousel.js
 Utilities.js
 DocumentReady.js
 WindowResize.js
+handlebars-v1.3.0.js
+history.js
 
 #base=js/components/.
 addToCart.js
+airFilterPartDetails.js
 cartNav.js
 collapse101.js
 commonParts.js
@@ -35,6 +39,7 @@ modelHeader.js
 modelNumberSearch.js
 recommendedParts.js
 responsiveDropdown.js
+responsiveFilterDropdown.js
 responsiveCollapse.js
 responsiveImage.js
 responsivePinchImage.js
@@ -45,6 +50,8 @@ sideChatNavigation.js
 svgIcon.js
 userData.js
 video.js
+mervRatingHelp.js
+airFilterDimension.js
 
 #base=js/widgets/.
 AdUnit.js

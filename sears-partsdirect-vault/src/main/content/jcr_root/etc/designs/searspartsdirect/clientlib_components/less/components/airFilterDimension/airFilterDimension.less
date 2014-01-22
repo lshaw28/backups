@@ -1,0 +1,240 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.airFilterDimension{
+    .toolTip{
+        text-align: left;
+		margin: 0 auto;
+		width: 70%;
+        .tipIcon{
+			float:left;
+            width:40px;
+			color: @primaryHueLight;
+        }
+        .tipIconText{
+			float: left;
+            padding: 0 0px 20px 0;
+            width: 90%;
+        }
+    }
+    .freeShipping{
+        color: @highlightHueDarkest;
+    }
+
+    .truckIcon {
+      float: left;
+      min-height: 25px;
+      min-width: 25px;
+    }
+
+    .shippingDisclaimer {
+      margin-left: 35px;
+      margin-bottom: 0;
+    }
+
+    .airFilerDimSelect {
+        height: 30px;
+    }
+
+    #afLandingMobileImage {
+      display: none;
+    }
+
+    .airfilterDimensionSection{
+        border: 3px solid @secondaryHueLightest;
+        margin-bottom: 10px;
+        margin-top: 15px;
+
+        h4 {
+          margin-bottom: 20px;
+          text-align: center;
+        }
+        .noFiltersFoundMsg {
+          font-size: @h4Height;
+          color:@secondaryHueDark;
+          margin: 10px 0;
+          text-align: center;
+        }
+
+        .borderHidden {
+          border: none;
+        }
+        .row-fluid{
+            text-align: center;
+            .span4{
+                .responsiveDropdown{
+                    width: 60%;
+                    min-width:150px;
+                    cursor: pointer;
+                    ul{
+                        position: absolute;
+                        width: 100%;
+                        box-shadow: none;
+                        max-height: 200px;
+                        overflow: auto;
+                        overflow-x: hidden;
+
+                        li {
+                            border: 0;
+                            padding: 2px;
+                            text-align: center;
+                        }
+                    }
+                    .new-btn-dropdown{
+                        background-color: @bodyColor;
+                        color: @primaryHueDark;  
+                        font-weight: bold;
+                        .icon-chevron-sign-down{
+                            padding-left: 10px;
+                        }
+
+                      &.filterValSelected {
+                        background-color: @secondaryHueDark;
+                        color: @bodyColor;
+                      }
+                    }
+                }
+                .dimensionCross {
+                    float: right;
+                    line-height: 34px;
+                    font-weight: bolder;
+                }  
+            }
+        }
+        #noDataFound{
+            h1{
+                padding: 20px;
+            }
+        }
+    }
+    #airFilterSelectionForm {
+        background-color:@secondaryHueLightest;
+        padding: 20px;
+    }
+    #afLandingImage{
+        margin: 0 10px 20px 10px;
+        position:relative;
+        left:10%;
+    }
+    
+    .afBrandsRow{
+        float: left;
+        width:100%;
+        border-top: 1px solid @secondaryHueLight;
+        padding-top: 15px;
+        .brandImages{ 
+            float: left;
+            margin:20px auto;
+            padding: 0 0 0 33%;
+            img{
+                margin:0px 30px 0 0;
+            }
+        }
+        .powerdBy{
+            font-size:@h4Size;
+            color:@secondaryHueDark;
+            text-align: center;
+        }
+    }
+
+    .airFilterSearchResults {
+      list-style-type: none;
+      margin: 0 0 10px 0;
+
+      .airFilterItemBottomBorder {
+        border-bottom: 1px solid @secondaryHueLight;
+      }
+
+      .airFilterSearchResultsItem {
+
+        padding: 15px 0 10px 0;
+
+
+
+        .airFilterSearchResultsItemLeft {
+          text-align: left;
+          .filterImg {
+            border: 1px solid @secondaryHueLight;
+            float: left;
+            height: auto;
+            margin-bottom: 10px;
+            margin-right: 20px;
+            padding: 10px;
+            width: 100px;
+          }
+
+          .partListingLink {
+            display:block;
+            font-size: @h5Height;
+            font-weight: bold;
+            margin-bottom: 20px;
+          }
+          .freeShippingPromo {
+             float:left;
+
+            .freeShippingPromoBox {
+              background-color: @secondaryHueLightest;
+              padding: 5px 10px;
+              .borderRadius(3px);
+            }
+          }
+
+        }
+        .airFilterSearchResultsItemRight {
+          float: right;
+          line-height:@smallestPHeight;
+          text-align: right;
+
+          .airFilterList {
+            list-style-type: none;
+          }
+
+          .airFilterList li:first-child {
+            font-size: @h5Height;
+            font-weight: bold;
+          }
+
+          .filterResultBtn {
+            margin-top: 10px;
+            .borderRadius(3px);
+          }
+
+          .featurePackLarge {
+            font-weight: bold;
+          }
+          .featurePriceLarge {
+            font-size: @h5Height;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    .setHeading{
+        border: 3px solid @secondaryHueLighter;
+        padding: 15px 20px;
+        float: left;
+        margin-bottom: 23px;
+        p{
+          margin-bottom:0px;
+        }
+        .bestBetterGoodHeading{
+            font-size:@h2Size;
+            margin: 0 0 10px 0;
+        }
+        .bulletHeading{
+            font-size:@pSize;
+            font-weight:bold;
+        }
+        .rightDiv{
+            padding:0 20px 0 0;
+        }
+        .span6 p{
+            text-align: left;
+        }
+        .smallFont{
+            font-size:@smallPSize;
+        }
+    }
+}
+@import "airFilterDimension.mobile.less";
+@import "airFilterDimension.tablet.less";

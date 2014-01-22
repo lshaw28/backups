@@ -8,7 +8,7 @@
                 <h4 class="shopPartsForMobile">Shop Parts <i class="icon-chevron-up"></i><i class="icon-chevron-down"></i></h4>
             </a>
         </div>
-        <div class="accordion-body collapse row-fluid" id="#${uniqueId}">
+        <div class="accordion-body collapse in row-fluid" id="#${uniqueId}">
             <div class="accordion-inner">
                 <cq:include path="displayRecommendedParts" resourceType="searspartsdirect/components/content/displayRecommendedParts" />
             </div>

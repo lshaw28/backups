@@ -2,7 +2,7 @@
  * Fix jQuery XHR bug
  */
 $.ajaxTransport("+*", function( options, originalOptions, jqXHR ) {
-	if(jQuery.browser.msie && window.XDomainRequest) {
+	if(jQuery.browser.msie && window.XDomainRequest && originalOptions.url.split('/')[2] != location.href.split('/')[2]) {
 		var xdr;
 
 		return {

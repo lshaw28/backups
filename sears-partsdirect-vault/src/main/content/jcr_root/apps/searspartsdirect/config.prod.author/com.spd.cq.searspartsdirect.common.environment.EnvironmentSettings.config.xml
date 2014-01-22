@@ -11,6 +11,7 @@
 	searspartsdirect.topparts.api="http://partsapivip.prod.ch4.s.com/pd-services/intra/v1/modelTop/topParts"
 	searspartsdirect.jobcode.parts.api="http://partsapivip.prod.ch4.s.com/pd-services/intra/v1/commonSymptoms/jobcodelist/partlist"
 	searspartsdirect.modelsub.api="http://partsapivip.prod.ch4.s.com/pd-services/intra/v1/commonSymptoms/modelInfo"
+	searspartsdirect.airfilter.part.details.api="http://partsapivip.prod.ch4.s.com/pd-services/v1/air-filters/part-details"
 	searspartsdirect.api.root="http://www.searspartsdirectapis.com/pd-services/v1/"
 	searspartsdirect.api.root.secure="https://www.searspartsdirectapis.com/pd-services/v1/"
 	searspartsdirect.local.http="searspartsdirect.com:2280"
@@ -18,4 +19,7 @@
 	searspartsdirect.commercial.url="commercial.searspartsdirect.com"
 	searspartsdirect.pd.security.path="/partsdirect/j_spring_cas_security_check"
 	searspartsdirect.sso.server="https://sso.shld.net/shccas/shcLogin"
-	searspartsdirect.247chat.flag="" />
+	searspartsdirect.247chat.flag=""
+	searspartsdirect.promo.flag="y"
+	searspartsdirect.promo.amount="$100"
+	searspartsdirect.promo.date="01/02/13 to 01/31/13" />

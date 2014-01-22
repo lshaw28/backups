@@ -26,6 +26,13 @@ public class GetPartsDirectEnvDetailsTag extends CQBaseTag {
 		
 		pageContext.setAttribute("pd247ChatFlag", EnvironmentSettings.getPD247ChatFlag());
 		
+		//PD-11234
+		pageContext.setAttribute("promoFlag", EnvironmentSettings.getPromoFlag());
+		pageContext.setAttribute("promoAmount", EnvironmentSettings.getPromoAmount());
+		pageContext.setAttribute("promoDate", EnvironmentSettings.getPromoDate());
+		
+		log.debug("$$$AIR filter API URL "+EnvironmentSettings.getPDAirFilterPartDetailsApiUrl());
+		
 		return SKIP_BODY;
 	}
 
