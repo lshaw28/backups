@@ -70,7 +70,7 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="waterFilterQuantity">Qty</label>
-								<input class="cafText" name="quantity" id="waterFilterQuantity" value="1" pattern="[0-9]*" />
+								<input type="tel" class="cafText" name="quantity" id="waterFilterQuantity" value="1" pattern="[0-9]*" />
 							</div>
 						</div>
 					</fieldset>
@@ -203,7 +203,7 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingZip">ZIP Code <span>Required</span></label>
-								<input type="text" class="cafText cafZip" name="zip" id="shippingZip" pattern="[0-9]*" data-mask="99999" data-placeholder=" " />
+								<input type="tel" class="cafText cafZip" name="zip" id="shippingZip" pattern="[0-9]*" data-mask="99999" data-placeholder=" " />
 							</div>
 						</div>
 						<div class="row-fluid countyRow hidden">
@@ -222,24 +222,24 @@
 							<div class="span10 offset1">
 								<div class="cafSameRow phoneWidth">
 									<label for="shippingPhone">Phone Number <span>Required</span></label>
-									<input type="text" class="cafText cafZip" name="phone" id="shippingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
+									<input type="tel" class="cafText cafZip" name="phone" id="shippingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
 								</div>
 								<div class="cafSameRow">
 									<label for="shippingExt">Ext. # <span>Optional</span></label>
-									<input type="text" class="cafText cafExt" name="ext" id="shippingExt" pattern="[0-9]*" />
+									<input type="tel" class="cafText cafExt" name="ext" id="shippingExt" pattern="[0-9]*" />
 								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingEmail">Email Address <span>Required</span></label>
-								<input type="text" class="cafText cafCity" name="email" id="shippingEmail" />
+								<input type="email" class="cafText cafCity" name="email" id="shippingEmail" />
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingConfirm">Confirm Email Address <span>Required</span></label>
-								<input type="text" class="cafText cafCity" name="confirm" id="shippingConfirm" />
+								<input type="email" class="cafText cafCity" name="confirm" id="shippingConfirm" />
 							</div>
 						</div>
 						<div class="row-fluid cafCheckboxField">
