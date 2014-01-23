@@ -5,10 +5,7 @@
 <h1>Air Filters for Furnace, HVAC, Air Conditioner</h1>
 <h3>Air filters when you want them. Plus <span class="freeShipping">FREE Standard Shipping</span>*</h3>
 <i class="truckIcon svg-icon-truck"></i>
-<p class="shippingDisclaimer">*You choose how often to get delivery. We'll automatically ship you new filters when you want them. It's that simple. Enjoy FREE SHIPPING on every order that includes an automatic reorder of air filters.</p>
-<a class="shippingDisclaimer" data-toggle="modal" data-target="#airFilterPromoModal">Promotional Details</a>
-
-
+<p class="shippingDisclaimer">*You choose how often to get delivery. We'll automatically ship you new filters when you want them. It's that simple. Enjoy FREE SHIPPING on every order that includes an automatic reorder of air filters. <a data-toggle="modal" data-target="#airFilterPromoModal">Promotional Details</a></p>
 
 <div id="js_AirFilterDimensionSelection" class="airfilterDimensionSection  row-fluid">
 
