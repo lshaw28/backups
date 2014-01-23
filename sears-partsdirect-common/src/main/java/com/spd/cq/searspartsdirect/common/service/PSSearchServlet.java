@@ -49,6 +49,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	private String brand;
 	private String productType;
 	private String flag;
+	private String partNumber;
 
 	@Override
 	protected void doGet(SlingHttpServletRequest request,
@@ -62,6 +63,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 		sortType = request.getParameter("sortType") != null ? request.getParameter("sortType") : null;
 		brand = request.getParameter("brand") != null ? URLEncoder.encode(request.getParameter("brand"), "UTF-8") : null;
 		productType = request.getParameter("productType") != null ? URLEncoder.encode(request.getParameter("productType"), "UTF-8") : null;
+		partNumber = request.getParameter("partnumber");
 
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
@@ -69,17 +71,18 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 		if (StringUtils.isNotEmpty(modelNumber) && StringUtils.isNotEmpty(flag)){
 			try {
 				if((StringUtils.equals(flag, "0") || StringUtils.equals(flag, "1") || StringUtils.equals(flag, "2")) && StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sortType)){
-					jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, "", "");
+					populateModelSearchResults(jsonObject, modelNumber, offset, limit, sortType, "", "");
+					populatePartSearchResults(jsonObject, modelNumber);
 				}
 				else if((StringUtils.equals(flag, "3") || StringUtils.equals(flag, "4")) && StringUtils.isNotEmpty(offset) && StringUtils.isNotEmpty(limit) && StringUtils.isNotEmpty(sortType)){
 					if((StringUtils.isNotEmpty(brand) && StringUtils.isNotEmpty(productType))){
-						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, productType);
+						populateModelSearchResults(jsonObject, modelNumber, offset, limit, sortType, brand, productType);
 					}
 					else if(StringUtils.isNotEmpty(brand)){
-						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, brand, "");
+						populateModelSearchResults(jsonObject, modelNumber, offset, limit, sortType, brand, "");
 					}
 					else if(StringUtils.isNotEmpty(productType)){
-						jsonObject = populateModelSearchResults(modelNumber, offset, limit, sortType, "", productType);
+						populateModelSearchResults(jsonObject, modelNumber, offset, limit, sortType, "", productType);
 					}
 				}
 				else if(StringUtils.equals(flag, "5")){
@@ -93,7 +96,18 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				else if(StringUtils.equals(flag, "6")){
 					jsonObject = populateBrandProductList(modelNumber);
 				}
-
+				response.getWriter().print(jsonObject.toString());
+			} catch (RepositoryException e) {
+				log.error("Error occured in PSSearchServlet:doGet() "
+						+ e.getMessage() + " Exception: ");
+			} catch (JSONException e) {
+				log.error("Error occured in PSSearchServlet:doGet() "
+						+ e.getMessage() + " Exception: ");
+			}
+		} else if (StringUtils.isNotEmpty(partNumber)){
+			try{
+				populatePartSearchResults(jsonObject, partNumber);
+				populateModelSearchResults(jsonObject, partNumber, "0", "25", "relevance", "", "");
 				response.getWriter().print(jsonObject.toString());
 			} catch (RepositoryException e) {
 				log.error("Error occured in PSSearchServlet:doGet() "
@@ -119,13 +133,12 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			// Provide custom retry handler is necessary
 			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
 					new DefaultHttpMethodRetryHandler(2, false));
-			int resultStatusCode = 200;
+			int statusCode = client.executeMethod(method);
 			
-			if (resultStatusCode != HttpStatus.SC_OK) {
+			if (statusCode != HttpStatus.SC_OK) {
 				log.error("populateProductBasedOnBrand() failed-Status Code: "
 						+ method.getStatusLine());
 			} else {
-				int statusCode = client.executeMethod(method);
 				byte[] responseBody = method.getResponseBody();
 				
 				JSONArray jsa = new JSONArray(new String(responseBody));
@@ -157,13 +170,12 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			// Provide custom retry handler is necessary
 			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
 					new DefaultHttpMethodRetryHandler(2, false));
-			int resultStatusCode = 200;
-
-			if (resultStatusCode != HttpStatus.SC_OK) {
-				log.error("populateProductBasedOnBrand() failed-Status Code: "
+			int statusCode = client.executeMethod(method);
+			
+			if (statusCode != HttpStatus.SC_OK) {
+				log.error("populateBrandBasedOnProduct() failed-Status Code: "
 						+ method.getStatusLine());
 			} else {
-				int statusCode = client.executeMethod(method);
 				byte[] responseBody = method.getResponseBody();
 
 				JSONArray jsa = new JSONArray(new String(responseBody));
@@ -210,13 +222,12 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			// Provide custom retry handler is necessary
 			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
 					new DefaultHttpMethodRetryHandler(2, false));
-			int resultStatusCode = 200;
-
-			if (resultStatusCode != HttpStatus.SC_OK) {
-				log.error("getList failed-Status Code: "
+			int statusCode = client.executeMethod(method);
+			
+			if (statusCode != HttpStatus.SC_OK) {
+				log.error("PSSearchServlet:getList() failed-Status Code: "
 						+ method.getStatusLine());
 			} else {
-				int statusCode = client.executeMethod(method);
 				byte[] responseBody = method.getResponseBody();
 				
 				JSONArray jsa = new JSONArray(new String(responseBody));
@@ -237,12 +248,10 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 	}
 
 	@SuppressWarnings("unused")
-	private JSONObject populateModelSearchResults(String modelNumber,
+	private void populateModelSearchResults(JSONObject jsonObject, String modelNumber,
 			String offset, String limit, String sort, String brand, String productType) throws JSONException,
 			ValueFormatException, PathNotFoundException, RepositoryException {
-		JSONObject result = new JSONObject();
 		HttpClient client = new HttpClient();
-
 		String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/models?modelNumber="
 				+ modelNumber + "&offset=" + offset + "&limit=" + limit + "&sortType=" + sort;
 		if(StringUtils.isNotEmpty(brand)){
@@ -259,7 +268,6 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
 					new DefaultHttpMethodRetryHandler(2, false));
 			int statusCode = client.executeMethod(method);
-			
 			if (statusCode != HttpStatus.SC_OK) {
 				log.error("populateModelSearchResults() failed-Status Code: "
 						+ method.getStatusLine());
@@ -273,9 +281,9 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 
 				JSONArray jsa = new JSONArray(new String(responseBody));
 
-				result.put("X-Total-Count", headerTotalCount.getValue());
-				result.put("X-Total-SYW-Count", headerSYWCount.getValue());
-				result.put("jsonData", jsa.toString());
+				jsonObject.put("totalCount", headerTotalCount.getValue());
+				jsonObject.put("totalSYWCount", headerSYWCount.getValue());
+				jsonObject.put("modelResults", jsa.toString());
 			}
 		} catch (HttpException e) {
 			log.error("Error occured in PSSearchServlet:populateModelSearchResults() "
@@ -287,6 +295,42 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 			// Release the connection.
 			method.releaseConnection();
 		}
-		return result;
+	}
+	
+	@SuppressWarnings("unused")
+	private void populatePartSearchResults(JSONObject jsonObject, String partNumber) throws JSONException,
+			ValueFormatException, PathNotFoundException, RepositoryException {
+		HttpClient client = new HttpClient();
+
+		String PRODUCT_DETAILS_URL = "http://partsapivip.qa.ch3.s.com/pd-services/parts?partNumber="+partNumber;
+		
+		GetMethod method = new GetMethod(PRODUCT_DETAILS_URL);
+
+		try {
+			// Provide custom retry handler is necessary
+			method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
+					new DefaultHttpMethodRetryHandler(2, false));
+			int statusCode = client.executeMethod(method);
+			if (statusCode != HttpStatus.SC_OK) {
+				log.error("populatePartSearchResults() failed-Status Code: "
+						+ method.getStatusLine());
+			}else {
+				// Read the response body.
+				byte[] responseBody = method.getResponseBody();
+
+				JSONArray jsa = new JSONArray(new String(responseBody));
+
+				jsonObject.put("partResults", jsa.toString());
+			}
+		} catch (HttpException e) {
+			log.error("Error occured in PSSearchServlet:populatePartSearchResults() "
+					+ e.getMessage() + " Exception: ");
+		} catch (IOException e) {
+			log.error("Error occured in PSSearchServlet:populatePartSearchResults() "
+					+ e.getMessage() + " Exception: ");
+		} finally {
+			// Release the connection.
+			method.releaseConnection();
+		}
 	}
 }

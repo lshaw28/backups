@@ -5,7 +5,16 @@
 String partNumber = (request.getParameter("searchModPar") != null) ? request.getParameter("searchModPar") : "";
 %>
 <div class="row-fluid">
-	<h2 class="resultsHeadline">(<span id="searchCount"></span>) results found for part #<strong><%= partNumber%></strong></h2>
+	<div class="repairHelpHomeTitle">
+		<div class="pageTitleHeader">
+			<h1 id="partCountHeader" style="display:none;">
+                (<span id="partCount"></span>) results found for part #<strong><%= partNumber%></strong>
+				<p id="modelCountHeader" class="pull-right">
+					We also found <span><a href="/content/searspartsdirect/en/modelsearchresults.html?searchModPar=<%=partNumber%>">(<span id="modelCount"></span>) model number</a></span>
+				</p>
+			</h1>
+		</div>
+	</div>
 </div>
 <div class="row-fluid">
 	<div class="new-span-general partListItems" id="partSearchResults">

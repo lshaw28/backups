@@ -18,11 +18,11 @@ if(shObject.getPartsDirectProductAPI()!=null){
     String linkClass = "hidden-phone visible-tablet visible-desktop";
     String homeClass = "visible-phone visible-tablet visible-desktop breadcrumb-back";
     String delimStr = "&nbsp;&gt;&nbsp;";
-    String searchModPar = (request.getParameter("searchModPar") != null) ? request.getParameter("searchModPar") : "";
+    String modelNumber = (request.getParameter("searchModPar") != null) ? request.getParameter("searchModPar") : "";
     String pathTaken = (request.getParameter("pathTaken") != null) ? request.getParameter("pathTaken") : "";
     %>
 	<li class="<%=homeClass%>"><a href="http://www.searspartsdirect.com/">Home</a><%= delimStr%></li>
-	<li class="<%= linkClass %>">Model Search Results for "<%= searchModPar%>"</li>
+	<li class="<%= linkClass %>">Model Search Results for "<%= modelNumber%>"</li>
 </ul>
 -->
 
@@ -31,9 +31,9 @@ if(shObject.getPartsDirectProductAPI()!=null){
 	<div class="repairHelpHomeTitle">
 		<div class="pageTitleHeader">
 			<h1 id="totalResultCount" style="display:none;">
-                (<strong id="searchCountTotal"></strong>) results found for model #<strong><%= searchModPar%></strong>
-				<p class="pull-right">
-					We also found <span><a>(1) part number</a></span>
+                (<strong id="searchCountTotal"></strong>) results found for model #<strong><%= modelNumber%></strong>
+				<p id="partCountHeader" class="pull-right">
+					We also found <span><a href="/content/searspartsdirect/en/partsearchresults.html?searchModPar=<%=modelNumber%>">(<span id="partCount"></span>) part number</a></span>
 				</p>
 			</h1>
             <h3 id="SYWHeader" style="display:none;">In addition to model results, we found either a <strong>Sears item number,</strong> a <strong>partial model number,</strong> or a <strong>UPC code</strong> that matches the number you submitted.</h3>
@@ -63,7 +63,7 @@ if(shObject.getPartsDirectProductAPI()!=null){
 
 <!-- SYW Section START -->
 <div class="row-fluid" id="SYW1" style="display:none;">
-    <h2 class="resultsHeadline">(<strong id="searchCountSYW" class="searchCountSYW"></strong>) model results found for <strong>Sears Partial Model # <%=searchModPar%></strong></h2>
+    <h2 class="resultsHeadline">(<strong id="searchCountSYW" class="searchCountSYW"></strong>) model results found for <strong>Sears Partial Model # <%=modelNumber%></strong></h2>
 </div>
 
 <div class="row-fluid" id="SYW2" style="display:none;">
@@ -77,7 +77,7 @@ if(shObject.getPartsDirectProductAPI()!=null){
 <!-- SYW Section END -->
 
 <div class="row-fluid" id="search1" style="display:none;">
-	<h2 class="resultsHeadline">(<strong id="searchCountDown"></strong>) results found for <strong>model # <%= searchModPar%></strong></h2>
+	<h2 class="resultsHeadline">(<strong id="searchCountDown"></strong>) results found for <strong>model # <%= modelNumber%></strong></h2>
 </div>
 
 <div class="row-fluid" id="search2" style="display:none;">
@@ -125,20 +125,20 @@ var flag =0;
 var selectedValue=0;
 
     $(document).ready(function(){
-    	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue);
-        populateBrandProductDetails('<%=searchModPar%>');
+    	modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
+        populateBrandProductDetails('<%=modelNumber%>');
     });
     
     $("#pageNumber").change(function () {
     	selectedValue = $(this).children(":selected").index();
         flag=1;
-        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue);
+        modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
     });
     
     $("#sorting").change(function () {
     	selectedValue = $(this).children(":selected").index();
         flag=2;
-        modelSearchResults('<%=searchModPar%>','<%=pathTaken%>',flag, selectedValue);
+        modelSearchResults('<%=modelNumber%>','<%=pathTaken%>',flag, selectedValue);
         $('#pageNumber').prop('selectedIndex', 0);
 
     });
@@ -150,19 +150,19 @@ var selectedValue=0;
             //$("#brand").empty();
             var productSelected = $("#productType option:selected").text();
           // other dropdown should contain all the options
-            populateBrandProductDetails('<%=searchModPar%>', 'productType', 'false');
+            populateBrandProductDetails('<%=modelNumber%>', 'productType', 'false');
         if(productSelected != '--Select--'){
                 selectedValue = 0;
                 //console.log("selected product:"+productSelected);
                 flag = 3;
-        fillDropdown('<%=searchModPar%>', productSelected, 'productType', 'brand');
+        fillDropdown('<%=modelNumber%>', productSelected, 'productType', 'brand');
                 // model search results with modelNumber, productType
-                modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue, productSelected);
+                modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue, productSelected);
         }else{
                 flag = 0;
-                populateBrandProductDetails('<%=searchModPar%>', 'brand', 'true');
+                populateBrandProductDetails('<%=modelNumber%>', 'brand', 'true');
                 // model search results with modelNumber
-                modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue);
+                modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
         }
         // filling another dropdown again
         }
@@ -173,18 +173,18 @@ var selectedValue=0;
             //$("#productType").empty();
         var brandSelected = $("#brand option:selected").text();
         // other dropdown should contain all the options
-            populateBrandProductDetails('<%=searchModPar%>', 'brand', 'false');
+            populateBrandProductDetails('<%=modelNumber%>', 'brand', 'false');
         if(brandSelected != '--Select--'){
         selectedValue = 0;
                 //console.log("selected brand:"+brandSelected);
                 flag = 4;
-        fillDropdown('<%=searchModPar%>', brandSelected, 'brand', 'productType');
-                modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue, brandSelected);
+        fillDropdown('<%=modelNumber%>', brandSelected, 'brand', 'productType');
+                modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue, brandSelected);
         }else{
     // nothing is selected in brand dropdown
     flag = 0;
-                populateBrandProductDetails('<%=searchModPar%>', 'productType', 'true');
-                modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue);
+                populateBrandProductDetails('<%=modelNumber%>', 'productType', 'true');
+                modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
         }
         // filling another dropdown again
     }
@@ -200,10 +200,10 @@ var selectedValue=0;
         	selectedValue = 0;
         }
         if(productIndex == 0){
-        	fillDropdown('<%=searchModPar%>', selectedValue, 'brand', 'productType');
-        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue);
+        	fillDropdown('<%=modelNumber%>', selectedValue, 'brand', 'productType');
+        	modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
         }else{
-        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue, productSelected);
+        	modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue, productSelected);
         }
     });
 
@@ -217,10 +217,10 @@ var selectedValue=0;
         	selectedValue = 0;
         }
         if(brandIndex == 0){
-        	fillDropdown('<%=searchModPar%>', selectedValue, 'productType', 'brand');
-        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue);
+        	fillDropdown('<%=modelNumber%>', selectedValue, 'productType', 'brand');
+        	modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
         }else{
-        	modelSearchResults('<%=searchModPar%>','<%=pathTaken%>', flag, selectedValue, brandSelected);
+        	modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue, brandSelected);
         }
     });
     

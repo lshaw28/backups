@@ -1,5 +1,5 @@
 function partSearchResults(partNumber) {
-	var urlName = "http://partsapivip.qa.ch3.s.com/pd-services/parts?partNumber="+partNumber;
+	var urlName = "/bin/searspartsdirect/search/searchservlet?partnumber="+partNumber;
 	
 	$.ajax({
 			type : "GET",
@@ -7,14 +7,30 @@ function partSearchResults(partNumber) {
 			dataType : "json",
 			url : urlName,
 			success : function(data) {
-				console.log("Success");
-				var jsonResponse = data;
+				var jsonResponse = data.partResults;
+				jsonResponse = JSON.parse(jsonResponse);
 				var jsonLength = jsonResponse.length;
+				
+				var modelCount = 0;
+				
+				if(typeof data.totalCount !== 'undefined' && typeof data.totalSYWCount !== 'undefined'){
+					modelCount = parseInt(data.totalCount) + parseInt(data.totalSYWCount);
+					console.log("Model Count: "+modelCount);
+				}
 				if (jsonLength != 0) {
-					$("#searchCount").append(jsonLength);
-					for ( var j = 0; j < jsonResponse.length; j++) {
+					$("#partCountHeader").show();
+					$("#partCount").empty();
+					$("#partCount").append(jsonLength);
+					
+					if(modelCount != 0){
+						$("#modelCountHeader").show();
+						$("#modelCount").empty();
+						$("#modelCount").append(modelCount);
+					}
+					for ( var j = 0; j < jsonLength; j++) {
 						var topPartsList = "";
 						var isDescriptionClickable = false;
+						
 						if(jsonResponse[j].priceAndAvailability.availabilityStatus == "INST" || jsonResponse[j].priceAndAvailability.availabilityStatus == "PNF" || jsonResponse[j].priceAndAvailability.availabilityStatus == "BORD"){
 							isDescriptionClickable = true;
 						}

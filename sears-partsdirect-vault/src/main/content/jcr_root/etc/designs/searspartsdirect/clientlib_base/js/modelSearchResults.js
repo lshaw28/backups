@@ -277,17 +277,33 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
 				dataType : "json",
 				url : urlName,
 				success : function(data) {
-
+console.log("SUccess..");
 					var jsonResponse = data;
 					var jsonLength = Object.keys(jsonResponse).length;
 					var searchResultExist = false;
 					var sywResultExist = false;
+					
+					var partCount = 0;
+					
+					if(typeof data.partResults !== 'undefined'){
+						var partResults = data.partResults;
+						partResults = JSON.parse(partResults);
+						console.log(partResults);
+						var partCount = partResults.length;
+						console.log("Part Count: "+partCount);
+					}
 
 					if (jsonLength != 0) {
 						// these two will always present in json response
 						// whether ZERO
 						var totalCount = jsonResponse[Object.keys(jsonResponse)[0]];
 						var sywCount = jsonResponse[Object.keys(jsonResponse)[1]];
+						
+						if(partCount != 0){
+							$("#partCountHeader").show();
+							$("#partCount").empty();
+							$("#partCount").append(partCount);
+						}
 
 						/* Set Pagination Start */
 						if (flag == 0) {

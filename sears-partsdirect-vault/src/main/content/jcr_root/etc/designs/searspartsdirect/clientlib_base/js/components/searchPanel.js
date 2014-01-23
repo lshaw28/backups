@@ -66,49 +66,63 @@ var searchPanel = Class.extend(function () {
 				 
 				if(el.data('pathtaken') === 'modelSearch'){
 	                var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=0";
+	                console.log(urlName);
+	                console.log("Calling Servlet thru ajax");
 	                $.ajax({
 					type : "GET",
 					cache : false,
 					dataType : "json",
 					url : urlName,
 	                success : function(data) {
-
-	                  	var jsonResponse = data;
-						var jsonLength = Object.keys(jsonResponse).length;
-	                    var searchResultExist = false;
-	                    var sywResultExist = false;
-
-	                    if(jsonLength != 0){
-	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
-	                    }
-	                    else{
+	                	console.log("AJAX -- Success");
+	                	if(typeof data.modelResults !== 'undefined'){
+	                		var modelResults = data.modelResults;
+	                		modelResults = JSON.parse(modelResults);
+							var length = modelResults.length;
+							if(length != 0){
+								$('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
+							}else{
+								$('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-models-found.html");
+							}
+	                	}
+	                	else {
 	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-models-found.html");
 	                    }
 	                    $('#searchBarForm').submit();
-	                }
+	                },
+					error : function() {
+						console.log("AJAX -- FAILURE");
+					}
 	               }); 
 				} else if(el.data('pathtaken') === 'partSearch'){
-					var urlName = "http://partsapivip.qa.ch3.s.com/pd-services/parts?partNumber="+partNumber;
+					var urlName = "/bin/searspartsdirect/search/searchservlet?partnumber="+partNumber;
+					console.log(urlName);
+					console.log("Calling Servlet thru ajax");
 	                $.ajax({
 					type : "GET",
 					cache : false,
 					dataType : "json",
 					url : urlName,
 	                success : function(data) {
-
-	                  	var jsonResponse = data;
-						var jsonLength = Object.keys(jsonResponse).length;
-	                    var searchResultExist = false;
-	                    var sywResultExist = false;
-
-	                    if(jsonLength != 0){
-	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/partsearchresults.html");
-	                    }
-	                    else{
+	                	console.log("AJAX -- Success");
+	                	if(typeof data.partResults !== 'undefined'){
+	                		var partResults = data.partResults;
+							partResults = JSON.parse(partResults);
+							var length = partResults.length;
+							if(length != 0){
+								$('#searchBarForm').attr('action', "/content/searspartsdirect/en/partsearchresults.html");
+							}else{
+								$('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-parts-found.html");
+							}
+	                	}
+	                	else {
 	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-parts-found.html");
 	                    }
 	                    $('#searchBarForm').submit();
-	                }
+	                },
+					error : function() {
+						console.log("AJAX -- FAILURE");
+					}
 	               });
 				}
 		    });
