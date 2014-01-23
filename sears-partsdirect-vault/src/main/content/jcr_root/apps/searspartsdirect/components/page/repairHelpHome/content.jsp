@@ -25,22 +25,30 @@
 			</div>
 			<div class="row-fluid">
 			    <c:choose>
-			         <c:when test="${afBannerFlag eq 'y'}">
-					    <div class="span10">
-		                    <cq:include path="categoryListing" resourceType="searspartsdirect/components/content/categoryListing" />
-		                    <cq:include path="parsys" resourceType="foundation/components/parsys" />
-		                </div>
-		                <div class="span2">
-		                    <cq:include path="banners" resourceType="searspartsdirect/components/content/banners" />
-		                </div>
-				    </c:when>
+                    <c:when test="${afBannerFlag eq 'y'}">
+                        <div class="visible-desktop hidden-phone hidden-tablet">
+                            <div class="span10">
+                                <cq:include path="categoryListing" resourceType="searspartsdirect/components/content/categoryListing" />
+                                <cq:include path="parsys" resourceType="foundation/components/parsys" />
+                            </div>
+                            <div class="span2">
+                                  <cq:include path="banners" resourceType="searspartsdirect/components/content/banners" />
+                            </div>
+                        </div>
+                        <div class="hidden-desktop visible-phone visible-tablet">
+                            <div class="span12">
+                                <cq:include path="categoryListing" resourceType="searspartsdirect/components/content/categoryListing" />
+                                <cq:include path="parsys" resourceType="foundation/components/parsys" />
+                            </div>
+                        </div>
+                    </c:when>
                     <c:otherwise>
-						<div class="span12">
-							<cq:include path="categoryListing" resourceType="searspartsdirect/components/content/categoryListing" />
-							<cq:include path="parsys" resourceType="foundation/components/parsys" />
-						</div>
-					</c:otherwise>
-				</c:choose>
+                        <div class="span12">
+                            <cq:include path="categoryListing" resourceType="searspartsdirect/components/content/categoryListing" />
+                            <cq:include path="parsys" resourceType="foundation/components/parsys" />
+                        </div>
+                    </c:otherwise>
+                </c:choose>
 			</div>
 		</div>
 	</div>
