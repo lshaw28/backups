@@ -5,7 +5,7 @@
 <h1>Air Filters for Furnace, HVAC, Air Conditioner</h1>
 <h3>Air filters when you want them. Plus <span class="freeShipping">FREE Standard Shipping</span>*</h3>
 <i class="truckIcon svg-icon-truck"></i>
-<p class="shippingDisclaimer">*You choose how often to get delivery. We'll automatically ship your new filters when you want them. It's that simple. Enjoy FREE SHIPPING on every order that includes an automatic reorder of air filters.</p>
+<p class="shippingDisclaimer">*You choose how often to get delivery. We'll automatically ship you new filters when you want them. It's that simple. Enjoy FREE SHIPPING on every order that includes an automatic reorder of air filters.</p>
 <a class="shippingDisclaimer" data-toggle="modal" data-target="#airFilterPromoModal">Promotional Details</a>
 
 
@@ -13,7 +13,7 @@
 <div id="js_AirFilterDimensionSelection" class="airfilterDimensionSection  row-fluid">
 
 	<form id="airFilterSelectionForm" method="post" action="">
-	<h4>To find the right filter, please select your dimensions</h4>
+	<h4>To find the right filter, please select your dimensions. All fields are required.</h4>
 		<div class="row-fluid">
 			<div class="span4">
 				<select name="airFilterWidth" id="airFilterWidth" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Width (in.)" data-display="true" data-changed="false">
