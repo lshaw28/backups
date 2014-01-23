@@ -66,15 +66,12 @@ var searchPanel = Class.extend(function () {
 				 
 				if(el.data('pathtaken') === 'modelSearch'){
 	                var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=0";
-	                console.log(urlName);
-	                console.log("Calling Servlet thru ajax");
 	                $.ajax({
 					type : "GET",
 					cache : false,
 					dataType : "json",
 					url : urlName,
 	                success : function(data) {
-	                	console.log("AJAX -- Success");
 	                	if(typeof data.modelResults !== 'undefined'){
 	                		var modelResults = data.modelResults;
 	                		modelResults = JSON.parse(modelResults);
@@ -91,20 +88,17 @@ var searchPanel = Class.extend(function () {
 	                    $('#searchBarForm').submit();
 	                },
 					error : function() {
-						console.log("AJAX -- FAILURE");
+						console.log("searchPanel -- No Response from Model Search API");
 					}
 	               }); 
 				} else if(el.data('pathtaken') === 'partSearch'){
 					var urlName = "/bin/searspartsdirect/search/searchservlet?partnumber="+partNumber;
-					console.log(urlName);
-					console.log("Calling Servlet thru ajax");
 	                $.ajax({
 					type : "GET",
 					cache : false,
 					dataType : "json",
 					url : urlName,
 	                success : function(data) {
-	                	console.log("AJAX -- Success");
 	                	if(typeof data.partResults !== 'undefined'){
 	                		var partResults = data.partResults;
 							partResults = JSON.parse(partResults);
@@ -121,7 +115,7 @@ var searchPanel = Class.extend(function () {
 	                    $('#searchBarForm').submit();
 	                },
 					error : function() {
-						console.log("AJAX -- FAILURE");
+						console.log("searchPanel -- No Response from Part Search API");
 					}
 	               });
 				}

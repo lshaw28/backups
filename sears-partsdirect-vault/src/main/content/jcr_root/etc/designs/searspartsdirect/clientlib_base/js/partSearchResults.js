@@ -15,7 +15,6 @@ function partSearchResults(partNumber) {
 				
 				if(typeof data.totalCount !== 'undefined' && typeof data.totalSYWCount !== 'undefined'){
 					modelCount = parseInt(data.totalCount) + parseInt(data.totalSYWCount);
-					console.log("Model Count: "+modelCount);
 				}
 				if (jsonLength != 0) {
 					$("#partCountHeader").show();

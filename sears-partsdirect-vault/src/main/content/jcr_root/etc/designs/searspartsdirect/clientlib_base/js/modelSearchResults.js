@@ -269,15 +269,12 @@ function modelSearchResults(modelNumber, pathTaken, flag, index, selectedValue) 
 		urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="
 				+ modelNumber + "&offset=0&limit=25&sortType=revelence&flag=0";
 	}
-	// console.log(urlName);
-	$
-			.ajax({
+	$.ajax({
 				type : "GET",
 				cache : false,
 				dataType : "json",
 				url : urlName,
 				success : function(data) {
-console.log("SUccess..");
 					var jsonResponse = data;
 					var jsonLength = Object.keys(jsonResponse).length;
 					var searchResultExist = false;
@@ -288,9 +285,7 @@ console.log("SUccess..");
 					if(typeof data.partResults !== 'undefined'){
 						var partResults = data.partResults;
 						partResults = JSON.parse(partResults);
-						console.log(partResults);
 						var partCount = partResults.length;
-						console.log("Part Count: "+partCount);
 					}
 
 					if (jsonLength != 0) {
@@ -354,10 +349,7 @@ console.log("SUccess..");
 									.keys(jsonResponse)[2]];
 							searchResults = JSON.parse(searchResults);
 							var searchResultCount = 0;
-							console
-									.log("search count: "
-											+ searchResults.length);
-
+							
 							for ( var j = 0; j < searchResults.length; j++) {
 
 								var resultDetail = searchResults[Object
