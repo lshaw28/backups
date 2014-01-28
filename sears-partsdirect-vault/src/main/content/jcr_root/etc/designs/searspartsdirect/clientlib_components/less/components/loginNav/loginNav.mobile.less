@@ -1,6 +1,10 @@
 @import "../../../../clientlib_base/less/base.variables.less";
 @import "../../../../clientlib_base/less/base.mixins.less";
 
+.mobile-only {
+	display: none;
+}
+
 @media (max-width: 650px) {
 	.loginNav {
 		background-color: transparent;
@@ -48,6 +52,9 @@
 				&.ChatNotAvailable {
 					display: none !important;
 				}
+				&.mobile-only {
+					display: block;
+				}
 			}
 		}
 	}
@@ -62,3 +69,5 @@
 		z-index: 2;
 	}
 }
+
+
