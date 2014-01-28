@@ -1,0 +1,91 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+@media (max-width: 650px) {
+  .modelAllDiagram {
+
+    .disableMobile {
+      pointer-events: none;
+      cursor: default;
+    }
+    .disableDesktop {
+      display: block;
+    }
+    .searchContainer {
+      background: @bodyColor;
+      padding: 0 0 0 20px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .selectDiagram {
+      font-size: @h3Size;
+      line-height: 1.2;
+      padding-left: 20px;
+    }
+    .pattern {
+      .allDiagramContainer {
+        background: @secondaryHueLightest;
+        padding-bottom: 20px;
+        .grid {
+          padding: 0;
+          .grid-item {
+            float: none;
+            min-height: 300px;
+            width: 50%;
+            margin: 0 auto;
+            display: block;
+
+            .diagramContainer {
+              margin: 0 auto;
+              margin-top: 20px;
+            }
+
+            .model {
+              background: @bodyColor;
+
+              .topParts-list {
+                p {
+                  font-weight: 600;
+                  margin: 0;
+                }
+                li {
+                  a {
+                    color: @secondaryHueDark;
+                  }
+                }
+              }
+            }
+            .topParts {
+              height: 200px;
+              img {
+                margin-top: 0;
+              }
+              .topParts-list {
+                li {
+                  margin: 10px 0;
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@media all and (min-width: 480px) {
+  .grid-item {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+}
+@media all and (min-width: 650px) {
+  .grid-item {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+}

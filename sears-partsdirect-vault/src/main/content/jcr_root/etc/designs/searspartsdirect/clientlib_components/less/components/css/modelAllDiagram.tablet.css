@@ -1,0 +1,6 @@
+@media (max-width: 768px) {
+  .modelAllDiagram .disableMobile {
+    pointer-events: none;
+    cursor: default;
+  }
+}

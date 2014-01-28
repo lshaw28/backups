@@ -1,0 +1,189 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.modelAllDiagram {
+
+  /************Reset**************/
+  * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  ol, ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+
+  ul {
+    margin: 0 auto;
+
+    li {
+      list-style-type: none;
+      text-align: left;
+      a {
+        color: @primaryHueNormal;
+        font-weight: normal;
+      }
+    }
+  }
+
+
+  .input-append {
+    input[type="text"] {
+      padding: 19px;
+      color: @secondaryHueNormal;
+    }
+    .add-on{
+      padding: 9px 12px 29px;
+    }
+  }
+
+
+  .searchContainer {
+    background: @secondaryHueLightest;
+    padding: 15px;
+    margin: 20px 0 20px;
+    line-height: 1;
+    width: 100%;
+
+    [class*="span"] {
+      padding-top: 0;
+    }
+    .searchHeading {
+      font-size: @h4Size;
+      font-weight: 600;
+      margin: 20px 0;
+    }
+    .columns {
+      margin:0;
+      -webkit-columns: 2;
+      -moz-columns: 2;
+      columns: 2;
+    }
+
+  }
+
+  .selectDiagram {
+    font-size: @h2Size;
+    padding: 15px;
+  }
+
+
+
+  .boxed-callout {
+    width: 100%;
+    margin-top:20px;
+  }
+
+  .pattern {
+    background: none repeat scroll 0 0 #fff;
+    overflow: hidden;
+    .allDiagramContainer {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1200px;
+      background: @bodyColor;
+      .grid {
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 10px 0 0 10px;
+        .grid-item {
+          padding: 0 20px 20px 0;
+          margin: 0 auto;
+          float: left;
+          min-width: 240px;
+          min-height: 400px;
+          .diagramContainer {
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            max-width: 300px;
+            min-width: 240px;
+            padding: 20px;
+            .diagramTitle {
+              font-size:@h5Size;
+              font-weight: 600;
+              margin: 20px 0;
+              a {
+                font-weight: 600;
+              }
+            }
+            img {
+              margin: 0 auto;
+            }
+            ul {
+              margin: 0;
+            }
+          }
+          .model {
+            border: 1px solid @secondaryHueLight;
+            border-bottom: 5px solid @secondaryHueLight;
+            .diagramTitle {
+              text-align: left;
+
+            }
+            img {
+              max-width: 200px;
+              width: 100%;
+            }
+            .topParts-list {
+              text-align: left;
+              p {
+                font-weight: 600;
+                margin: 0;
+              }
+            }
+          }
+
+          .promo {
+            p {
+              margin: 0px;
+              line-height: 1.4;
+              span {
+                color: @highlightHueLight;
+                font-weight: 600;
+              }
+            }
+            img {
+              width: 60px;
+            }
+
+          }
+
+          .topParts {
+            .diagramTitle {
+              margin: 10px auto;
+              color: @secondaryHueDark;
+            }
+            img {
+              width: 60px;
+              margin-top: 30px;
+            }
+            .topParts-list {
+              li {
+                text-align: center;
+                font-size: @h5Size;
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  @media all and (min-width: 60em) {
+    .grid-item {
+      width: 33.3333%;
+      margin:0 auto;
+    }
+  }
+
+}
+
+@import "modelAllDiagram.tablet";
+@import "modelAllDiagram.mobile";
