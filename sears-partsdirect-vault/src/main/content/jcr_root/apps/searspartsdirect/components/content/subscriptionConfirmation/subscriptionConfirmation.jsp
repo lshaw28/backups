@@ -5,7 +5,7 @@
 <div class="subConBody hidden">
 	<div class="row-fluid">
 		<div class="span12">
-			<h1>Subscription Confirmation # <span id="confirmNo">9999999</span> <a href="${mainSitePath}/partsdirect/myprofile/logout.action" onclick="SPDUtils.setCookie(\'username\', \'\');" class="new-btn new-btn-search">Log Out</a></h1>
+			<h1>Subscription Confirmation # <span id="confirmNo">9999999</span> <a href="${mainSitePath}/partsdirect/myprofile/logout.action" onclick="SPDUtils.setCookie(\'username\', \'\');" class="new-btn new-btn-search">Log Out</a><button id="confirmNew" class="new-btn new-btn-search">Create Next Enrollment</button></h1>
 		</div>
 	</div>
 	<div class="row-fluid">
