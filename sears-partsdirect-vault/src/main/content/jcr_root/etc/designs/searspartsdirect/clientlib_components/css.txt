@@ -46,9 +46,9 @@ modal/modal.less
 modelAllDiagram/modelAllDiagram.less
 modelHeader/modelHeader.less
 modelNumberSearch/modelNumberSearch.less
-modelSearchResults.less
+modelSearchResults/modelSearchResults.less
 modelSymptoms/modelSymptoms.less
-moModelsFound.less
+noModelsFound/moModelsFound.less
 notice/notice.less
 overviewImage/overviewImage.less
 partList/partList.less
