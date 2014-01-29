@@ -1,0 +1,74 @@
+@import "../../../../base.variables.less";
+@import "../../../../base.mixins.less";
+
+@media (max-width: 768px) {
+	.modelSearchResults {
+
+		.resultsFooterBar {
+			background-color: @secondaryHueLighter;
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 0;
+
+			 .resultsFooterNav {
+            	float: none;
+           		width: 100%;
+			 	padding: 0;
+
+            	a {
+            		width: 125px;
+            		background-color: @secondaryHueLight;
+               
+					i {
+						
+						margin: 0;
+						padding: 0 20px;
+					}
+
+					&.resultsFooterButtonLeft {
+						float: left;
+						padding: 10px 20px 10px 5px;
+						span {
+							p {
+								display: inline;
+							}
+						}
+					}
+
+					&.resultsFooterButtonRight {
+						float: right;
+						padding: 10px 5px 10px 20px;
+
+						span {
+							p {
+								display: inline;
+							}
+							float: right;
+						}
+					}
+
+					.icon-chevron-left {
+						
+						display: inline;
+					}
+
+					.icon-chevron-right {
+						
+						display: inline;
+						
+					}
+
+				}
+
+				.resultsFooterNavSelect {
+					left: 50%;
+					margin: 10px 0 0 -40px;
+					position: absolute;
+					width: 80px;
+				}
+				
+            }
+        }
+	}
+}

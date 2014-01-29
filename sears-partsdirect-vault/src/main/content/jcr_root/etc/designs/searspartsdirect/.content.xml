@@ -89,6 +89,7 @@
        	</repairHelpHome>
 	</jcr:content>
 	<clientlib_base/>
+    <clientlib_components/>
 	<clientlib_cq/>
 	<clientlib_social/>
 </jcr:root>

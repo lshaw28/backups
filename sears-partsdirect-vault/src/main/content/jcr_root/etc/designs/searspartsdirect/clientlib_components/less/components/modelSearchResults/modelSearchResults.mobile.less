@@ -1,0 +1,150 @@
+@import "../../../../base.variables.less";
+@import "../../../../base.mixins.less";
+
+@media (max-width: 650px) {
+	
+	article {
+		padding: 15px 0 0 0;
+	}
+
+	// # Quarter on desktop, third on tablet, full width on mobile
+	.row-fluid {
+		.new-span-responsive {
+			.spanWidth(12);
+		}
+	}
+
+	.modelSearchResults {
+
+		h2 {
+			padding: 0 10px;
+		}
+
+		.repairHelpHomeTitle {
+			h1 {
+				padding: 0 10px;
+			}
+			h3 {
+				padding: 0 10px;
+			}
+		}
+
+		.modelSearchResultsItemBkg {
+			background-color: @secondaryHueLightest;
+			padding: 5px 0px;
+		}
+
+		.modelSearchResultsItem {
+			border-bottom: 0;
+			background-color: @bodyColor;
+			.boxShadow(0 8px 6px -6px @secondaryHueLight);
+			margin: 10px 10px 10px 10px;
+			width: 95%;
+
+			p {
+				font-size: 16px;
+			}
+
+			.modelSearchResultsItemLeft {
+				max-width: 90%;
+			}
+
+			.modelSearchResultsItemCenter {
+            	margin-left: 30px;
+            	padding-top: 0;
+
+            	p {
+            		font-size: 14px;
+            	}
+        	}
+		}
+
+		.modelSearchResultsNotSureMsg {
+			border-bottom: 0;
+			width: 95%;
+			margin-left: 30px;
+		}
+
+		.modelSearchResultsItem + .modelSearchResultsNotSureMsg {
+	        h4, p {
+	            margin-left: 0;
+	        }
+    	}
+
+		.modelSearchResultsNotSureMsg + .modelSearchResultsItem {
+        	border-top: none;
+    	}
+
+
+		.resultsFooterBar {
+			background-color: @secondaryHueLighter;
+			border-top: 1px solid @secondaryHueNormal;
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 0 0 10px 0;
+
+			 .resultsFooterNav {
+			 	padding: 0;
+            	float: none;
+
+            	a {
+            		background-color: @secondaryHueLighter;
+            		width: auto;
+               
+					i {
+						background-color: @secondaryHueLight;
+						margin: 0;
+						padding: 20px;
+					}
+
+					&.resultsFooterButtonLeft {
+						float: left;
+						margin-top: 7px;
+						padding: 10px 20px 10px 0;
+						span {
+							p {
+								display: none !important;
+							}
+						} 
+					}
+
+					&.resultsFooterButtonRight {
+						float: right;
+						margin-top: 7px;
+						padding: 10px 0 10px 20px;
+						span {
+							p {
+								display: none !important;
+							}
+						} 
+					}
+
+					.icon-chevron-left {
+						
+						display: inline;
+					}
+
+					.icon-chevron-right {
+						
+						display: inline;
+					}
+
+				}
+
+
+				.resultsFooterNavSelect {
+
+					left: 50%;
+					margin: 20px 0 0 -40px;
+					position: absolute;
+					width: 80px;
+
+				}
+				
+            }
+
+            
+		}
+	}
+}

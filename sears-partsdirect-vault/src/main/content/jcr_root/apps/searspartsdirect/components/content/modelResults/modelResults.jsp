@@ -11,8 +11,6 @@ if(shObject.getPartsDirectProductAPI()!=null){
 // above api if fetched from felix to be used
 %>
 
-<cq:includeClientLib js="apps.searspartsdirect,apps.searspartsdirect.base" />
-
 <!--  
 <ul class="breadcrumb"><%
     String linkClass = "hidden-phone visible-tablet visible-desktop";

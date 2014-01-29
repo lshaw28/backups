@@ -1,0 +1,49 @@
+@import "../../../../base.variables.less";
+@import "../../../..//base.mixins.less";
+
+@media (max-width: 650px) {
+	
+	article {
+		padding: 15px 0 0 0;
+	}
+
+	.doubleCheckImg {
+		display: inline;
+	}
+
+	 .doubleCheckHeader {
+	 	display: inline;
+	 	float: right;
+     }
+
+	// # Quarter on desktop, third on tablet, full width on mobile
+	.row-fluid {
+		.new-span-responsive {
+			.spanWidth(12);
+		}
+
+
+
+		  .lookUpBuckets {
+
+		  	margin: 5px;
+            padding: 5px;
+            width: 95%;
+
+		  	.lookUpBucket {
+		  		margin: 20px 5px;
+		  		padding: 15px 10px;
+
+		  		.searchGraphic {
+	                
+	                display: none;
+	            }
+
+	            .purchaseLookUpCopy {
+                	margin-right: 0;
+            	}
+		  	}
+
+		  }
+	}
+}
