@@ -7,14 +7,22 @@
 		padding: 15px 0 0 0;
 	}
 
-	// # Quarter on desktop, third on tablet, full width on mobile
-	.row-fluid {
-		.new-span-responsive {
-			.spanWidth(12);
-		}
-	}
+
 
 	.modelSearchResults {
+
+      // # Quarter on desktop, third on tablet, full width on mobile
+      .row-fluid {
+        .new-span-responsive {
+          .spanWidth(12);
+        }
+      }
+      .searchFilters {
+        select {
+          width: 60%;
+        }
+      }
+
 
 		h2 {
 			padding: 0 10px;
@@ -47,10 +55,14 @@
 
 			.modelSearchResultsItemLeft {
 				max-width: 90%;
+                p {
+                  margin-left: 10px;
+                }
+
 			}
 
 			.modelSearchResultsItemCenter {
-            	margin-left: 30px;
+            	margin-left: 10px;
             	padding-top: 0;
 
             	p {

@@ -3,12 +3,19 @@
 
 .modelSearchResults {
 
+  // # third on desktop, third on tablet, full width on mobile
+  .row-fluid {
+    .new-span-responsive {
+      .spanWidth(4);
+    }
+  }
+
   select {
     -webkit-appearance: menulist;
     height: 20px;
     line-height: 20px;
     vertical-align: top;
-    width: auto;
+    width: 93%;
 
   }
 
@@ -23,6 +30,16 @@
 
   }
 
+  .filterClearLink {
+
+    color: @primaryHueNormal;
+    padding-right: 20px;
+
+    a {
+      margin-right: 5px;
+    }
+
+  }
 
   .resultsHeaderBar {
     background-color: @secondaryHueDark;
@@ -42,6 +59,7 @@
 
     select {
       margin: 0 10px;
+      width: auto;
     }
 
 
@@ -101,6 +119,9 @@
       line-height: @pSize;
       margin-left: 75px;
 
+      .brandName {
+        font-weight: bold;
+      }
       p {
         margin-bottom: 3px;
       }
@@ -140,7 +161,7 @@
     margin-top: 25px;
     padding: 10px;
 
-    resultsFooterLeft {
+    .resultsFooterLeft {
       margin-left: 20px;
     }
 
@@ -175,11 +196,15 @@
 
       }
 
+      .resultsFooterNavSelect {
+        width: auto;
+      }
+
     }
   }
 
 
 }
 
-@import "modelSearchResults.mobile";
 @import "modelSearchResults.tablet";
+@import "modelSearchResults.mobile";

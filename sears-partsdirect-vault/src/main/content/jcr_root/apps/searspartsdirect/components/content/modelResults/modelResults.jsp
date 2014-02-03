@@ -43,13 +43,13 @@ if(shObject.getPartsDirectProductAPI()!=null){
 	<div class="searchFilters">
 		<h4>Refine your search results</h4>
 		<div class="row-fluid">
-			<div class="span3 new-span-responsive">
+			<div class="new-span-responsive">
 				<h4>By Brand: <span class="pull-right filterClearLink"><a onclick="brandClear()" href="#">clear</a><i class="icon-remove-sign"></i></span></h4>
 				<select class="brand" id="brand">
                     
 				</select>
 			</div>
-			<div class="span3 new-span-responsive">
+			<div class="new-span-responsive">
 				<h4>By Product Type: <span class="pull-right filterClearLink"><a onclick="productClear()" href="#">clear</a><i class="icon-remove-sign"></i></span></h4>
 				<select class="productType" id="productType">
                     
@@ -81,9 +81,9 @@ if(shObject.getPartsDirectProductAPI()!=null){
 <div class="row-fluid" id="search2" style="display:none;">
 	<div class="resultsHeaderBar">
 		<div class="la-anim-2"></div>
-		<span><strong class="pageCountResults"></strong>Sort by <select id="sorting">
+		<span><strong class="pageCountResults"></strong>Sort By: <select id="sorting">
 				<option value="relevance" selected>Relevance</option>
-				<option value="asscending">Model number asscending</option>
+				<option value="ascending">Model number ascending</option>
 				<option value="descending">Model number descending</option>
 		</select> </span>
 	</div>
@@ -95,17 +95,21 @@ if(shObject.getPartsDirectProductAPI()!=null){
 <div class="row-fluid" id="footer" style="display:none;">
 	<div class="resultsFooterBar">
 		<div class="row-fluid">
-			<div class="span3 resultsFooterLeft hidden-phone">
+			<div class="span3 resultsFooterLeft visible-desktop">
 				<strong class="pageCountResults"></strong>
 			</div>
 			<div class="span6 resultsFooterNav">
-				<a onclick='paging(-1)'> <i class="icon-chevron-right"></i> <span
-					class="hidden-phone">Previous</span>
-				</a> <select id="pageNumber">
-					
-				</select> <a onclick='paging(1)'> <span class="hidden-phone">Next</span> <i
-					class="icon-chevron-left"></i>
+				<a class="resultsFooterButtonLeft" onclick='paging(-1)'>
+                    <span><i class="icon-chevron-right"></i>
+                    <p>Previous</p></span>
 				</a>
+                <select id="pageNumber" class="resultsFooterNavSelect">
+					
+				</select>
+                <a class="resultsFooterButtonRight" onclick='paging(1)'>
+                    <span><p>Next</p>
+                    <i class="icon-chevron-left"></i></span>
+                </a>
 			</div>
 		</div>
 	</div>
