@@ -1,9 +1,6 @@
 <%@include file="/libs/foundation/global.jsp"%>
-<head>
-<link rel="stylesheet" type="text/css" href="/etc/designs/searspartsdirect/clientlib_base/css/noModelsFound.css"/>
-</head>
-<script type="text/javascript" src="/etc/designs/searspartsdirect/clientlib_base/js/browseModels.js" ></script>
 
+<cq:includeClientLib js="apps.searspartsdirect,apps.searspartsdirect.base" />
 
 <div class="row-fluid lookUpBuckets">
 	<div class="span6 lookUpBucket">
