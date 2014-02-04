@@ -2,14 +2,9 @@
 @import "../../../../clientlib_base/less/base.mixins.less";
 
 @media (max-width: 650px) {
-	
-	article {
-		padding: 15px 0 0 0;
-	}
-
-
 
 	.modelSearchResults {
+
 
       // # Quarter on desktop, third on tablet, full width on mobile
       .row-fluid {
@@ -80,6 +75,7 @@
 		.modelSearchResultsItem + .modelSearchResultsNotSureMsg {
 	        h4, p {
 	            margin-left: 0;
+                margin-right: 30px;
 	        }
     	}
 
@@ -87,7 +83,10 @@
         	border-top: none;
     	}
 
-
+        .resultsHeaderBar {
+            padding: 10px 0;
+            min-width: 100%;
+        }
 		.resultsFooterBar {
 			background-color: @secondaryHueLighter;
 			border-top: 1px solid @secondaryHueNormal;
