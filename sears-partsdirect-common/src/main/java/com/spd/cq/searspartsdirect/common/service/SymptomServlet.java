@@ -72,9 +72,7 @@ public class SymptomServlet extends SlingSafeMethodsServlet {
                         Map<String, String> brandFilters = new HashMap<String, String>();
                         brandFilters.put("property", "jcr:content/jcr:title");
                         brandFilters.put("property.value", brand);
-                        log.debug("Done Category Search");
                         SearchResult brandResult = getDataFromCQRepository(Constants.ASSETS_BRAND_PATH, brandFilters, request.getResourceResolver());
-                        log.debug("Done Brand Search");
                         if (categoryResult.getHits().size() > 0 && brandResult.getHits().size() > 0) {
                                 ModelSubcomponentAPIHelper apiHelper = new ModelSubcomponentAPIHelper(model);
                                 PDModelSubcomponentModel subcomponents = apiHelper.getModelSubcomponents(request);
@@ -110,7 +108,6 @@ public class SymptomServlet extends SlingSafeMethodsServlet {
                 String jsonString = gson.toJson(repairHelpInfo);
                 response.getWriter().print(jsonString);
                 request.getResourceResolver().close();
-                log.debug("application end");
         }
 
         private SearchResult getDataFromCQRepository(String path, Map<String, String> filterProperties, ResourceResolver resourceResolver) {
