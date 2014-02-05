@@ -150,10 +150,15 @@ var searchPanel = Class.extend(function () {
 				e.preventDefault();
 				if (self.getValue() !== '' && $(selectStatement).length > 0) {
 					var ifairfilterpart = 'false',
-						searchTerm = self.getValue();
+						searchTerm = self.getValue(),
+						UpdatedSearchTerm = searchTerm.toUpperCase();
 
 					for (i = 0; i < self.airFilterParts.length; ++i) {
-						if (searchTerm == self.airFilterParts[i].name) {
+						
+						var airFilterPartsName = self.airFilterParts[i].name,
+						UpdatedAirFilterPartsName = airFilterPartsName.toUpperCase();
+						
+						if (UpdatedSearchTerm == UpdatedAirFilterPartsName) {
 							ifairfilterpart = 'true';
 						}
 					}
