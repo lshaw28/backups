@@ -92,6 +92,9 @@ if(shObject.getPartsDirectProductAPI()!=null){
 <div class="modelSearchResultsItemBkg" id="searchResultsDown" style="display:none;">
 </div>
 
+<div class="modelSearchResultsMain">
+</div>
+
 <div class="row-fluid" id="footer" style="display:none;">
 	<div class="resultsFooterBar">
 		<div class="row-fluid">
@@ -122,118 +125,3 @@ if(shObject.getPartsDirectProductAPI()!=null){
 		</p>
 	</div>
 </div>
-<script>
-var flag =0;
-var selectedValue=0;
-
-    $(document).ready(function(){
-    	modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
-        populateBrandProductDetails('<%=modelNumber%>');
-    });
-    
-    $("#pageNumber").change(function () {
-    	selectedValue = $(this).children(":selected").index();
-        flag=1;
-        modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
-    });
-    
-    $("#sorting").change(function () {
-    	selectedValue = $(this).children(":selected").index();
-        flag=2;
-        modelSearchResults('<%=modelNumber%>','<%=pathTaken%>',flag, selectedValue);
-        $('#pageNumber').prop('selectedIndex', 0);
-
-    });
-
-    function brandClear(){
-        // will fill it again on the basis of modelNumber and productType selected
-        // if No productType is selected, we will fill it again with modelNumber
-
-            //$("#brand").empty();
-            var productSelected = $("#productType option:selected").text();
-          // other dropdown should contain all the options
-            populateBrandProductDetails('<%=modelNumber%>', 'productType', 'false');
-        if(productSelected != '--Select--'){
-                selectedValue = 0;
-                //console.log("selected product:"+productSelected);
-                flag = 3;
-        fillDropdown('<%=modelNumber%>', productSelected, 'productType', 'brand');
-                // model search results with modelNumber, productType
-                modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue, productSelected);
-        }else{
-                flag = 0;
-                populateBrandProductDetails('<%=modelNumber%>', 'brand', 'true');
-                // model search results with modelNumber
-                modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
-        }
-        // filling another dropdown again
-        }
-
-    function productClear(){
-        // will fill it again on the basis of modelNumber and brand selected
-        // if No brand is selected, we will fill it again with modelNumber
-            //$("#productType").empty();
-        var brandSelected = $("#brand option:selected").text();
-        // other dropdown should contain all the options
-            populateBrandProductDetails('<%=modelNumber%>', 'brand', 'false');
-        if(brandSelected != '--Select--'){
-        selectedValue = 0;
-                //console.log("selected brand:"+brandSelected);
-                flag = 4;
-        fillDropdown('<%=modelNumber%>', brandSelected, 'brand', 'productType');
-                modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue, brandSelected);
-        }else{
-    // nothing is selected in brand dropdown
-    flag = 0;
-                populateBrandProductDetails('<%=modelNumber%>', 'productType', 'true');
-                modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
-        }
-        // filling another dropdown again
-    }
-
-    
-    $("#brand").change(function () {
-    	selectedValue = $("#brand option:selected").text();
-
-        var productIndex = $("#productType").children(":selected").index();
-        var productSelected = $("#productType option:selected").text();
-        flag = 3;
-        if(selectedValue == '--Select--'){
-        	selectedValue = 0;
-        }
-        if(productIndex == 0){
-        	fillDropdown('<%=modelNumber%>', selectedValue, 'brand', 'productType');
-        	modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
-        }else{
-        	modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue, productSelected);
-        }
-    });
-
-    $("#productType").change(function () {
-    	selectedValue = $("#productType option:selected").text();
-
-        var brandIndex = $("#brand").children(":selected").index();
-        var brandSelected = $("#brand option:selected").text();
-        flag = 4;
-        if(selectedValue == '--Select--'){
-        	selectedValue = 0;
-        }
-        if(brandIndex == 0){
-        	fillDropdown('<%=modelNumber%>', selectedValue, 'productType', 'brand');
-        	modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue);
-        }else{
-        	modelSearchResults('<%=modelNumber%>','<%=pathTaken%>', flag, selectedValue, brandSelected);
-        }
-    });
-    
-    function paging(vary){
-    	   var selectedIndex = $('#pageNumber').prop('selectedIndex');
-    	   var ddLength = $("#pageNumber option").length;
-    	    var n=selectedIndex+vary;
-    	    if(n<0||n>=ddLength){return;}
-    	    else{
-    	        $('#pageNumber').prop('selectedIndex', n);
-    	        $("#pageNumber").change();
-    	    }
-    	}
-</script>

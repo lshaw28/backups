@@ -7,7 +7,7 @@
 	$(document).ready(function () {
 		/**
 		 * IE support
-		 */
+		 *
 		if ($.browser.msie) {
 			var v = $.browser.version;
 			v = v.slice(0, v.indexOf('.'));
@@ -19,6 +19,19 @@
 			}
 			$('html').addClass('ie-v' + v);
 		}
+        */
+        if (BrowserDetect.browser == 'Explorer') {
+            var v = BrowserDetect.version;
+            v = v.slice(0, v.indexOf('.'));
+            if (window.SPDUtils.validNumber(v, 1000) < 10) {
+                $('html').addClass('lt-ie10');
+            }
+            if (window.SPDUtils.validNumber(v, 1000) < 9) {
+                $('html').addClass('lt-ie9');
+            }
+            $('html').addClass('ie-v' + v);
+        }
+
 		/**
 		 * Set up userData singleton class before all else
 		 */
@@ -264,5 +277,9 @@
 		$('.sideChatNavigation').each(function () {
 			var newSideChatNavigation = new sideChatNavigation($(this));
 		});
+
+        $('.modelSearchResultsMain').each(function() {
+            var msrExperiment = new modelSearchResults($(this));
+        });
 	});
 }(window));

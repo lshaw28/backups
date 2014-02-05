@@ -62,7 +62,7 @@ var userData = Class.extend(function () {
 				userAddress = ajaxSitePath + '/partsdirect/retrieveSessionUserInfo.pd?d=' + dateObj.getTime();
 
 			// Make an AJAX call
-			if ($.browser.msie) {
+			if (!$.support.ajax) {
 				var xhReq = new XMLHttpRequest();
 				var dateObj = new Date();
 				xhReq.open('GET', userAddress, false);
