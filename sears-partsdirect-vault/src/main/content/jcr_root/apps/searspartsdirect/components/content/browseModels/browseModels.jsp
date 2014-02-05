@@ -9,10 +9,7 @@
         <div class="lookUpSelect">
             <p class="categoryType"><b>Category</b></p>
 			<select class="categoryType" id="categoryType">
-                <option value="select">Select</option>
-				<option value="c1">1234</option>
-                <option value="c2">123</option>
-                <option value="c3">222</option>
+
 			</select>
 		</div>
 		<div class="lookUpSelect">
@@ -37,6 +34,7 @@
 
     $(document).ready(function(){
     	hideAll();
+    	fillAllCategory();
     });
 
      $("#categoryType").change(function () {
@@ -60,7 +58,7 @@
               $(".brand").show();
              $("#findModels").show();
              $("#brand").empty();
-             fillBrandType(categoryTypeSelected, selectedValue, 'productType', 'brand');
+             fillBrandType(categoryTypeSelected, selectedValue);
          }
      });
 

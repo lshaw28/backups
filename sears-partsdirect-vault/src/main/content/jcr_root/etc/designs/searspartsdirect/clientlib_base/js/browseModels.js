@@ -3,6 +3,36 @@
          $(".brand").hide();
          $("#findModels").hide();
     }
+   
+   function fillAllCategory(){
+	   var urlName = "/bin/searspartsdirect/search/nomodelsservlet?flag=1";
+	$.ajax({
+				type : "GET",
+				cache : false,
+				dataType : "json",
+				url : urlName,
+				success : function(data) {
+					var jsonResponse = data;
+					var len = Object.keys(jsonResponse).length;
+                    searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
+					searchResults = JSON.parse(searchResults);
+						$("#categoryType").append(
+								"<option value=\"Select\">Select</option>");
+						for ( var i = 0; i < searchResults.length; i++) {
+							var resultDetail = searchResults[Object.keys(searchResults)[i]];
+							$("#categoryType").append(
+									"<option value=\"" + resultDetail.id
+											+ "\">" + resultDetail.browseCategory
+											+ "</option>");
+						}
+				},
+				error : function() {
+					console.log("Failed to retrieve data from server");
+				}
+			});
+	   
+   }
+   
     function fillProductType(categoryType){
         if(selectedValue=="Select"){
             //do nothing}
@@ -13,10 +43,8 @@
     }
 
     function populateProductDetails(categoryType) {
-	// divID parameter -- in case we want to fill only one dropdown.
-	var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="
-			+ categoryType + "&flag=6";
-	$.ajax({
+	var urlName = "/bin/searspartsdirect/search/nomodelsservlet?flag=2&category="+encodeURIComponent(categoryType);
+		$.ajax({
 				type : "GET",
 				cache : false,
 				dataType : "json",
@@ -24,19 +52,14 @@
 				success : function(data) {
 					var jsonResponse = data;
 					var len = Object.keys(jsonResponse).length;
-
-						searchResults = jsonResponse[Object.keys(jsonResponse)[1]];
-
-						searchResults = JSON.parse(searchResults);
-
-						brandArr = [];
-						$("#productType").append(
-								"<option value=\"Select\">Select</option>");
+                    searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
+					searchResults = JSON.parse(searchResults);
+					$("#productType").append(
+					"<option value=\"Select\">Select</option>");
 						for ( var i = 0; i < searchResults.length; i++) {
-							var resultDetail = searchResults[Object
-									.keys(searchResults)[i]];
+							var resultDetail = searchResults[Object.keys(searchResults)[i]];
 							$("#productType").append(
-									"<option value=\"" + resultDetail.id
+									"<option value=\"" + resultDetail.seoFormattedName
 											+ "\">" + resultDetail.name
 											+ "</option>");
 						}
@@ -48,38 +71,31 @@
 			});
     }
 
-function fillBrandType(categoryTypeSelected, selectedValue, queryParam, dropDown) {
-	// queryParam: brand or productType (Servlet will accept this parameter)
-	var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="
-			+ categoryTypeSelected + "&" + queryParam + "=" + selectedValue + "&flag=5";
-	$
-			.ajax({
-				type : "GET",
-				cache : false,
-				dataType : "json",
-				url : urlName,
-				success : function(data) {
-					var jsonResponse = data;
-					var len = Object.keys(jsonResponse).length;
-					var searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
-					searchResults = JSON.parse(searchResults);
-
-					var brandArr = [];
-					$("#" + dropDown).empty();
-					$("#" + dropDown).append(
-							"<option value=\"Select\">Select</option>");
+function fillBrandType(categoryType, productType) {
+	var urlName = "/bin/searspartsdirect/search/nomodelsservlet?flag=3&category="+encodeURIComponent(categoryType)+"&productType="+encodeURIComponent(productType);
+	$.ajax({
+			type : "GET",
+			cache : false,
+			dataType : "json",
+			url : urlName,
+			success : function(data) {
+				var jsonResponse = data;
+				var len = Object.keys(jsonResponse).length;
+                searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
+				searchResults = JSON.parse(searchResults);
+				$("#brand").append(
+				"<option value=\"Select\">Select</option>");
 					for ( var i = 0; i < searchResults.length; i++) {
-
-						var resultDetail = searchResults[Object
-								.keys(searchResults)[i]];
-
-						$("#" + dropDown).append(
-								"<option value=\"" + resultDetail.id + "\">"
-										+ resultDetail.name + "</option>");
+						var resultDetail = searchResults[Object.keys(searchResults)[i]];
+						$("#brand").append(
+								"<option value=\"" + resultDetail.seoFormattedName
+										+ "\">" + resultDetail.name
+										+ "</option>");
 					}
-				},
-				error : function() {
-					console.log("Failed to retrieve data from server");
-				}
-			});
+
+			},
+			error : function() {
+				console.log("Failed to retrieve data from server");
+			}
+		});
 }
