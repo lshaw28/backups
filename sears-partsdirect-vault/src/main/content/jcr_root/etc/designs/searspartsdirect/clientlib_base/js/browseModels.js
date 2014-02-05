@@ -36,7 +36,6 @@
     function fillProductType(categoryType){
         if(categoryType!="Category"){
 			populateProductDetails(categoryType);
-            alert("hi");
         }
     }
 
