@@ -39,7 +39,7 @@
 			<p class="purchaseLookUpCopy">Find model numbers for products you've purchased or had serviced by Sears</p>
 
         <%}%>
-        <a class="searchGraphicCTAButton new-btn new-btn-square" href="#">Find my models</a><br/><br/>
+        <a class="searchGraphicCTAButton new-btn new-btn-square" href="http://www.searspartsdirect.com/partsdirect/validateProfilePromoPage.pd?page=learnMorePage">Find my models</a><br/><br/>
         <%if(currentNode.hasNode("image/file/jcr:content")){%>
 
         <a href="<%=link%>"><img title="<%=text%>" src="<%=currentNode.getNode("image/file/jcr:content").getProperty("jcr:data").getPath()%>" height="<%=height%>" width="<%=width%>" /></a>

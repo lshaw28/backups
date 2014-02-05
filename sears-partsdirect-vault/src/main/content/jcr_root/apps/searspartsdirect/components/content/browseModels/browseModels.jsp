@@ -7,19 +7,16 @@
 		<h2>Let's Make Your Search Easier</h2>
 		<p>Find parts by category, product type and brand</p>
         <div class="lookUpSelect">
-            <p class="categoryType"><b>Category</b></p>
-			<select class="categoryType" id="categoryType">
+          	<select class="categoryType" id="categoryType">
 
 			</select>
 		</div>
 		<div class="lookUpSelect">
-            <p class="productType"><b>Product type</b></p>
 			<select class="productType" id="productType">
 
 			</select>
 		</div>
 		<div class="lookUpSelect">
-            <p class="brand"><b>Brand</b></p>
 			<select class="brand" id="brand">
 
 			</select>
@@ -28,7 +25,6 @@
 	</div>
 </div>
 <script>
-
     var selectedValue=0;
     var categoryTypeSelected=0;
 
@@ -39,9 +35,9 @@
 
      $("#categoryType").change(function () {
     	selectedValue = $("#categoryType option:selected").text();
-         if(selectedValue=="Select"){hideAll();}
+         if(selectedValue=="Category"){hideAll();}
          else{
-             $(".productType").show();
+             $("#productType").show();
              $("#productType").empty();
              fillProductType(selectedValue);
          }
@@ -50,12 +46,12 @@
      $("#productType").change(function () {
     	selectedValue = $("#productType option:selected").text();
         categoryTypeSelected = $("#categoryType option:selected").text();
-         if(selectedValue=="Select"){
-             $(".brand").hide();
+         if(selectedValue=="Product Type"){
+             $("#brand").hide();
              $("#findModels").hide();
          }
          else{
-              $(".brand").show();
+              $("#brand").show();
              $("#findModels").show();
              $("#brand").empty();
              fillBrandType(categoryTypeSelected, selectedValue);
@@ -63,12 +59,17 @@
      });
 
     function navigateTo(){
-        var brandTypeSelected= $("#brand option:selected").text();
+        var productTypeSelected= $("#productType option:selected").val();
+        var brandTypeSelected= $("#brand option:selected").val();
+        var url="http://www.searspartsdirect.com/partsdirect/";
+
         if(brandTypeSelected!="Select"){
-            alert("navigate to Category+Product+Brand Type landing page");
+			url=url+"brands-products/"+brandTypeSelected+"/"+productTypeSelected;
+            window.location.href=url;
         }
         else{
-            alert("navigate to Category+Product Type landing page");
+			url=url+"product-types/"+productTypeSelected;
+             window.location.href=url;
         }
     }
 

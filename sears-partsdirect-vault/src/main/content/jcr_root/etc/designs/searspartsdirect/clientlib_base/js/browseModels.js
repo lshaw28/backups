@@ -1,6 +1,6 @@
    function hideAll(){
-		$(".productType").hide();
-         $(".brand").hide();
+		$("#productType").hide();
+         $("#brand").hide();
          $("#findModels").hide();
     }
    
@@ -17,7 +17,7 @@
                     searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
 					searchResults = JSON.parse(searchResults);
 						$("#categoryType").append(
-								"<option value=\"Select\">Select</option>");
+								"<option value=\"Select\">Category</option>");
 						for ( var i = 0; i < searchResults.length; i++) {
 							var resultDetail = searchResults[Object.keys(searchResults)[i]];
 							$("#categoryType").append(
@@ -34,11 +34,9 @@
    }
    
     function fillProductType(categoryType){
-        if(selectedValue=="Select"){
-            //do nothing}
-        }
-        else{
-			populateProductDetails(categoryType)
+        if(categoryType!="Category"){
+			populateProductDetails(categoryType);
+            alert("hi");
         }
     }
 
@@ -55,7 +53,7 @@
                     searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
 					searchResults = JSON.parse(searchResults);
 					$("#productType").append(
-					"<option value=\"Select\">Select</option>");
+					"<option value=\"Select\">Product Type</option>");
 						for ( var i = 0; i < searchResults.length; i++) {
 							var resultDetail = searchResults[Object.keys(searchResults)[i]];
 							$("#productType").append(
@@ -84,7 +82,7 @@ function fillBrandType(categoryType, productType) {
                 searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
 				searchResults = JSON.parse(searchResults);
 				$("#brand").append(
-				"<option value=\"Select\">Select</option>");
+				"<option value=\"Select\">Brand</option>");
 					for ( var i = 0; i < searchResults.length; i++) {
 						var resultDetail = searchResults[Object.keys(searchResults)[i]];
 						$("#brand").append(
