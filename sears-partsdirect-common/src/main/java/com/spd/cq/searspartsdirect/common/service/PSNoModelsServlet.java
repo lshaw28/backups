@@ -43,6 +43,7 @@ public class PSNoModelsServlet extends SlingSafeMethodsServlet {
 	private static final Logger log = LoggerFactory
 			.getLogger(PSNoModelsServlet.class);
 
+	
 	private String category;
 	private String productType;
 	private String flag;
