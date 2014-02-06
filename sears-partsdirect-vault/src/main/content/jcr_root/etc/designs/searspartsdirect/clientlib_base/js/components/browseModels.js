@@ -1,3 +1,5 @@
+//mingle story id: 7922
+
    function hideAll(){
 		$("#productType").hide();
          $("#brand").hide();

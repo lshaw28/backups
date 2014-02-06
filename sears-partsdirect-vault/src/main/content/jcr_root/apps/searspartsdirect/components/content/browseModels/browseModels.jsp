@@ -1,3 +1,6 @@
+<!-- 
+mingle story id - 7922
+ -->
 <%@include file="/libs/foundation/global.jsp"%>
 
 <cq:includeClientLib js="apps.searspartsdirect,apps.searspartsdirect.base" />
