@@ -1,18 +1,15 @@
-<%@ include file="/apps/searspartsdirect/global.jsp" %>
-<%
+<%@include file="/apps/searspartsdirect/global.jsp" %>
+<cq:includeClientLib js="apps.searspartsdirect,apps.searspartsdirect.base" />
 
-	    String modelNo="";
-		if(request.getParameter("searchModPar")!=null){
-			modelNo = request.getParameter("searchModPar");
-		}
-		else{
- 			modelNo = "model no. not found";
-		}
-%>
 <div class="row-fluid">
 	<div class="repairHelpHomeTitle">
 		<div class="pageTitleHeader">
-			<h1><%=properties.get("text","(0) results found for model # ")%><strong><%=modelNo%></strong><p class="pull-right">We also found <span><a>(1) part number</a></span></p></h1>
+            <h1><span class="textToDisplay"></span><span class="displaySearchType"></span> #<strong class="displaySearchModPar"></strong><p id="weAlsoFound" class="pull-right">We also found <span><a class="alsoFound" href=""></a></span></p></h1>
 		</div>
 	</div>
 </div>
+<script>
+    $(document).ready(function(){
+    	checkModelPartCount('<%=request.getParameter("searchModPar")%>','<%=request.getParameter("pathTaken")%>','<%=properties.get("text","(0) results found for ")%>');
+    });   
+</script>

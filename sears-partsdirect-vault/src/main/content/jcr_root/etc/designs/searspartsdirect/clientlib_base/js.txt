@@ -53,6 +53,7 @@ sideChatNavigation.js
 svgIcon.js
 userData.js
 video.js
+textModelNo.js
 
 #base=js/widgets/.
 AdUnit.js
