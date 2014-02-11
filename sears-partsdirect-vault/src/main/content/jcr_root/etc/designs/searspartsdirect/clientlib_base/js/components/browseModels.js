@@ -1,5 +1,9 @@
-//mingle story id: 7922
-
+/*mingle story id: 7922
+ * 
+ * Flag=1 Gets list of All Categories
+ * Flag=2 Gets list of Product Types for selected Category
+ * Flag=3 Gets list of Brands for selected Category and Product Type
+*/
    function hideAll(){
 		$("#productType").hide();
          $("#brand").hide();
