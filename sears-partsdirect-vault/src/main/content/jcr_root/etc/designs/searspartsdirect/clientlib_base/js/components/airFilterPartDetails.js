@@ -168,7 +168,11 @@ var airFilterPartDetails = Class.extend(function () {
                     //Error
                 }
             }
-            switch(response[0].packSize) {
+            switch(parseInt(this.currentPack)) {
+                case 4:
+        		    $('#fourPack').addClass('active');
+        		    $('#sixPack, #twelvePack').removeClass('active');
+        		    break;
                 case 6:
                     $('#fourPack').removeClass('active');
                     $('#sixPack').addClass('active');
