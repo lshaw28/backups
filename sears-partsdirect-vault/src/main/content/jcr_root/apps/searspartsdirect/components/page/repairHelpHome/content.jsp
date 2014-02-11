@@ -1,4 +1,15 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
+<script type="text/javascript">//<![CDATA[
+var _uzactions= _uzactions|| [];
+_uzactions.push(['_setID', '0AA910F83490E31190590022196C4538']);
+_uzactions.push(['_setSID', '09A910F83490E31190590022196C4538']);
+_uzactions.push(['_start']);
+(function() {
+  var uz = document.createElement('script'); uz.type = 'text/javascript'; uz.async = true; uz.charset = 'utf-8';
+  uz.src = ('https:' == document.location.protocol ? 'https://&#39; : 'http://&#39;) + 'cdn4.userzoom.com/trueintent/js/uz_til.js?cuid=AB85F1DE49F6DF1188490022196C4538';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uz, s);
+})();
+//]]></script> 
 <article id="content" data-templatename="RepairHelpHomepage"><div class="articleFix">
 	<div class="row-fluid">
 		<div class="span10 desktop-offset1">
