@@ -14,18 +14,18 @@
   -->
   <groupId>com.searshc.partsdirect</groupId>
   <artifactId>pd-cq-parent</artifactId>
-  <version>4.129.0-SNAPSHOT</version>
+  <version>4.110.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <!--
     ~ More Project Information
   -->
-  <name>PartsDirect Parent Aggregator</name>
+  <name>PartsDirect CQ Parent Aggregator</name>
   <description>
     CQ PartsDirect Parent Aggregator to facilitate building the projects conveniently.
   </description>
   <!--<url>http://dev.searspartsdirect.com</url>-->
-  <inceptionYear>2007</inceptionYear>
+  <inceptionYear>2013</inceptionYear>
   <organization>
     <name>Sears Holdings Corporation</name>
     <url>http://searshc.com</url>
@@ -43,7 +43,7 @@
     ~ Environment Settings
   -->
   <scm>
-    <connection>scm:git:ssh://git@git301p.prod.ch3.s.com/partsdirect</connection>
+    <connection>scm:git:ssh://git@git301p.prod.ch3.s.com/aempd</connection>
     <!--<developerConnection>-->
     <!--scm:git:[fetch=]http://mywebserver.org/path_to_repository[push=]ssh://username@otherserver:8898/~/repopath.git-->
     <!--</developerConnection>-->
@@ -405,7 +405,7 @@
         <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-scr-plugin</artifactId>
-          <version>>1.9.0</version>
+          <version>1.9.0</version>
           <executions>
             <execution>
               <id>generate-scr-scrdescriptor</id>
@@ -414,6 +414,17 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.4.1</version>
+          <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <scmCommentPrefix xml:space="preserve">[partsdirect-release] </scmCommentPrefix>
+            <tagNameFormat>v@{project.version}</tagNameFormat>
+            <updateBranchVersions>true</updateBranchVersions>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.sling</groupId>
@@ -438,6 +449,22 @@
               <phase>install</phase>
               <goals>
                 <goal>install</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>1.8</version>
+          <configuration>
+            <propertyPrefix>parsed</propertyPrefix>
+          </configuration>
+          <executions>
+            <execution>
+              <id>default-parse-version</id>
+              <goals>
+                <goal>parse-version</goal>
               </goals>
             </execution>
           </executions>
@@ -542,6 +569,53 @@
           </snapshots>
         </pluginRepository>
       </pluginRepositories>
+    </profile>
+    <profile>
+      <!--
+        ~ The profile provides a handy shortcut that wraps maven-release-plugin
+        ~ configuration parameters used to create release branch from 'master'
+        ~ branch (via release:branch goal).
+        ~ Since the goal release:branch is not bound to any phase, one must
+        ~ invoke 'validate' phase *together* with release:branch so that the
+        ~ boilerplate properties become available before having the goal
+        ~ release:branch invoked.
+        ~ The property 'maven.release.date' that reflects the target release
+        ~ date must be injected via command-line in 'yyyyMMdd' format.
+        ~ Thus the command would typically look like so:
+        ~
+        ~ `mvn -P release-branch -D maven.release.date=20130415 \
+        ~        validate release:branch`
+        ~
+        ~ For subsequent release goals, viz., release:prepare, release:perform,
+        ~ we kept our convention as simple as possible so that they can be
+        ~ invoked with without additional command line properties.
+        ~
+        ~ See: http://wiki.intra.sears.com/confluence/display/PARTSDIR/PartsDirect+Release+Process
+      -->
+      <id>release-branch</id>
+      <properties>
+        <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
+        <maven.release.date>${maven.build.timestamp}</maven.release.date>
+        <maven.release.currentTarget>${parsed.majorVersion}.${parsed.minorVersion}.${maven.release.date}</maven.release.currentTarget>
+        <maven.release.nextTarget>${parsed.majorVersion}.${parsed.nextMinorVersion}.${parsed.incrementalVersion}</maven.release.nextTarget>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+              <branchName>releases/${maven.release.currentTarget}</branchName>
+              <developmentVersion>${maven.release.nextTarget}-${parsed.qualifier}</developmentVersion>
+              <releaseVersion>${maven.release.currentTarget}-01-${parsed.qualifier}</releaseVersion>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 </project>
