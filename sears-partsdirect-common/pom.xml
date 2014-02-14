@@ -7,7 +7,7 @@
   <parent>
     <groupId>com.searshc.partsdirect</groupId>
     <artifactId>pd-cq-parent</artifactId>
-    <version>4.110.20140214-01-SNAPSHOT</version>
+    <version>4.110.20140214-01</version>
   </parent>
   <artifactId>searspartsdirect-common</artifactId>
   <packaging>bundle</packaging>
