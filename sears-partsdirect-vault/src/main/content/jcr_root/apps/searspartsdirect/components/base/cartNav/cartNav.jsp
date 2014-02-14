@@ -7,7 +7,7 @@
 			<ul class="dropdown-menu"></ul>
 		</div>
 	</li>
-	<li id="cartModels" classgit st="cartNavItem">
+	<li id="cartModels" class="cartNavItem">
 		<div class="btn-group">
 			<a data-toggle="dropdown" href="#">My Models&nbsp;<span class="count-badge parentheses">0</span>&nbsp;<i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
