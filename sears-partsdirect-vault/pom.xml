@@ -10,7 +10,7 @@
   <parent>
     <groupId>com.searshc.partsdirect</groupId>
     <artifactId>pd-cq-parent</artifactId>
-    <version>4.110.20140214-02-SNAPSHOT</version>
+    <version>4.110.20140214-02</version>
   </parent>
   <artifactId>searspartsdirect-vault</artifactId>
   <!-- TODO FIX ME: - -->
