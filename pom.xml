@@ -436,7 +436,12 @@
             <user>${crx_user}</user>
             <password>${crx_password}</password>
           </configuration>
-          <executions>
+          <!--
+            ~ Commented out below section as while running the complete build at jenkins we do not want to install
+            ~ this package to anywhere. Developers should use explicitely sling:install/sling:uninstall goal from
+            ~ command line.
+          -->
+          <!-- <executions>
             <execution>
               <id>uninstall-from-cq</id>
               <phase>uninstall</phase>
@@ -451,7 +456,7 @@
                 <goal>install</goal>
               </goals>
             </execution>
-          </executions>
+          </executions>  -->
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
