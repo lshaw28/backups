@@ -53,10 +53,10 @@
 					name="./textIsRich" value="true" xtype="hidden" />
 			</items>
 		</tab1>
-		<tab2 jcr:primaryType="cq:Widget" cropParameter="./image/imageCrop"
+		<tab2 jcr:primaryType="cq:Widget" 
 			fileNameParameter="./image/fileName" fileReferenceParameter="./image/fileReference"
-			mapParameter="./image/imageMap" name="./image/file" requestSuffix="/image.img.png"
-			rotateParameter="./image/imageRotate" sizeLimit="100" title="Image"
+			name="./image/file" requestSuffix="/image.img.png"
+			sizeLimit="100" title="Image"
 			xtype="html5smartimage" />
 		<tab3 jcr:primaryType="cq:Widget" title="Advanced Image Properties"
 			xtype="panel">
