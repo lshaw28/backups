@@ -76,6 +76,7 @@ var airFilterDimension = Class.extend(function() {
 			$('.airfilterDimensionSection').css("border", "none" );
 			$('.toolTip').addClass('hide');
 			// show "not found" msg
+			$('.filterResults').addClass('hide');
 			$('#noAirFilters').removeClass('hide');
 		},
 
@@ -112,7 +113,7 @@ var airFilterDimension = Class.extend(function() {
 		// to view or template
 
 		renderDimensionString : function(){
-			return this.width+' x '+this.height+' x '+this.depth
+			return this.width+' x '+this.height+' x'
 		},
 
 		renderTitle : function(maker, string, merv){

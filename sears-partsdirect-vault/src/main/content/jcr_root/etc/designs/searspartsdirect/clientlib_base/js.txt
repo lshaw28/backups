@@ -52,6 +52,7 @@ userData.js
 video.js
 mervRatingHelp.js
 airFilterDimension.js
+banners.js
 
 #base=js/widgets/.
 AdUnit.js
@@ -60,6 +61,7 @@ TouchCarousel.js
 ResponsiveTable.js
 SearchPanelFinder.js
 SearchPanelFinderResult.js
+touchSwipe.js
 
 #base=js/templates/.
 cartItemTemplate.js

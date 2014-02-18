@@ -168,7 +168,11 @@ var airFilterPartDetails = Class.extend(function () {
                     //Error
                 }
             }
-            switch(response[0].packSize) {
+            switch(parseInt(this.currentPack)) {
+                case 4:
+        		    $('#fourPack').addClass('active');
+        		    $('#sixPack, #twelvePack').removeClass('active');
+        		    break;
                 case 6:
                     $('#fourPack').removeClass('active');
                     $('#sixPack').addClass('active');
@@ -181,7 +185,7 @@ var airFilterPartDetails = Class.extend(function () {
                 //Error
             }
             this.displayFilter(filter);
-            this.displayPack(response[0].packSize);
+            this.displayPack(parseInt(this.currentPack));
             //Get Shop Your Way points and estimated delivery dates for packs this part has
             if (pack4.number != '') {
                 this.getSYW(filter, pack4, 4);

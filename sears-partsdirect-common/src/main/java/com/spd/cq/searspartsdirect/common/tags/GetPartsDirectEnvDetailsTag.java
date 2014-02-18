@@ -31,6 +31,8 @@ public class GetPartsDirectEnvDetailsTag extends CQBaseTag {
 		pageContext.setAttribute("promoAmount", EnvironmentSettings.getPromoAmount());
 		pageContext.setAttribute("promoDate", EnvironmentSettings.getPromoDate());
 		
+		pageContext.setAttribute("afBannerFlag", EnvironmentSettings.getAFBannerFlag());
+		
 		log.debug("$$$AIR filter API URL "+EnvironmentSettings.getPDAirFilterPartDetailsApiUrl());
 		
 		return SKIP_BODY;

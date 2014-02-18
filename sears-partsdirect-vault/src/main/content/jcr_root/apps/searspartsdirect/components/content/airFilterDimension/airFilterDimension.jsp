@@ -5,15 +5,12 @@
 <h1>Air Filters for Furnace, HVAC, Air Conditioner</h1>
 <h3>Air filters when you want them. Plus <span class="freeShipping">FREE Standard Shipping</span>*</h3>
 <i class="truckIcon svg-icon-truck"></i>
-<p class="shippingDisclaimer">*You choose how often to get delivery. We'll automatically ship your new filters when you want them. It's that simple. Enjoy FREE SHIPPING on every order that includes an automatic reorder of air filters.</p>
-<a class="shippingDisclaimer" data-toggle="modal" data-target="#airFilterPromoModal">Promotional Details</a>
-
-
+<p class="shippingDisclaimer">*You choose how often to get delivery. We'll automatically ship you new filters when you want them. It's that simple. Enjoy FREE SHIPPING on every order that includes an automatic reorder of air filters. <a data-toggle="modal" data-target="#airFilterPromoModal">Promotional Details</a></p>
 
 <div id="js_AirFilterDimensionSelection" class="airfilterDimensionSection  row-fluid">
 
 	<form id="airFilterSelectionForm" method="post" action="">
-	<h4>To find the right filter, please select your dimensions</h4>
+	<h4>To find the right filter, please select your dimensions. All fields are required.</h4>
 		<div class="row-fluid">
 			<div class="span4">
 				<select name="airFilterWidth" id="airFilterWidth" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Width (in.)" data-display="true" data-changed="false">
@@ -121,7 +118,7 @@
 		<img src="/etc/designs/searspartsdirect/clientlib_base/img/brands/png/afBrand4.png" class="fourth_img" />
 	</div>
 </div>
-<p>Did you know that dirty air filters leave particles like dust, mites, pollen and pet dander in the air, which reduces air quality in your home? Dirty air filters also reduce the efficiency of your HVAC system. Sears PartsDirect has top air filter brands such as BMC Air Flow and DuPont for a variety of HVAC systems at great prices. Save energy and improve air quality with replacement furnace filters and air conditioner filters from Sears PartsDirect. Check your owner's manual or enter in your filter dimensions to find the right air filter for your furnace or AC unit.</p>
+<p>Did you know that dirty air filters leave particles like dust, mites, pollen and pet dander in the air, which reduces air quality in your home? Dirty air filters also reduce the efficiency of your HVAC system. Sears PartsDirect has top air filter brands such as BMC Air Flow and DuPont for a variety of HVAC systems at great prices. Save energy and improve air quality with replacement furnace filters and air conditioner filters from Sears PartsDirect. Check your <a href="${mainSitePath}/partsdirect/user-manuals">owner's manual</a> or enter in your filter dimensions to find the right air filter for your furnace or AC unit.</p>
 
 
 <script id="js_airFilterResultTemplate" type="text/x-handlebars-template"">
