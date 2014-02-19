@@ -27,7 +27,7 @@
 						for ( var i = 0; i < searchResults.length; i++) {
 							var resultDetail = searchResults[Object.keys(searchResults)[i]];
 							$("#categoryType").append(
-									"<option value=\"" + resultDetail.id
+									"<option value=\"" + resultDetail.formattedBrowseCategoryName
 											+ "\">" + resultDetail.browseCategory
 											+ "</option>");
 						}
@@ -40,9 +40,7 @@
    }
    
     function fillProductType(categoryType){
-        if(categoryType!="Category"){
 			populateProductDetails(categoryType);
-        }
     }
 
     function populateProductDetails(categoryType) {

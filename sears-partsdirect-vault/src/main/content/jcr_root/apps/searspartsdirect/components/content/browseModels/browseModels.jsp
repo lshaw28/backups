@@ -37,8 +37,8 @@ mingle story id - 7922
     });
 
      $("#categoryType").change(function () {
-    	selectedValue = $("#categoryType option:selected").text();
-         if(selectedValue=="Category"){hideAll();}
+    	selectedValue = $("#categoryType option:selected").val();
+         if(selectedValue=="Select"){hideAll();}
          else{
              $("#productType").show();
              $("#productType").empty();
@@ -47,9 +47,9 @@ mingle story id - 7922
      });
 
      $("#productType").change(function () {
-    	selectedValue = $("#productType option:selected").text();
-        categoryTypeSelected = $("#categoryType option:selected").text();
-         if(selectedValue=="Product Type"){
+    	selectedValue = $("#productType option:selected").val();
+        categoryTypeSelected = $("#categoryType option:selected").val();
+         if(selectedValue=="Select"){
              $("#brand").hide();
              $("#findModels").hide();
          }

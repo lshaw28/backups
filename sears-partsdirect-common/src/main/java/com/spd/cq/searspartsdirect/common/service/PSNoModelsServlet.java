@@ -32,7 +32,7 @@ import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.spd.cq.searspartsdirect.common.helpers.PSsettingsHelper;
+import com.spd.cq.searspartsdirect.common.helpers.PSSettingsHelper;
 
 import java.net.URLEncoder;
 
@@ -53,12 +53,8 @@ public class PSNoModelsServlet extends SlingSafeMethodsServlet {
 	private String productType;
 	private String flag;
 
-	// PRODUCT_BRAND_URL is hard-coded temporary, once we get final API we fetch
-	// it from felix
-	private String PRODUCT_BRAND_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/categories/";
-
 	@Reference
-    PSsettingsHelper settingsHelper;
+    PSSettingsHelper settingsHelper;
 	@Override
 	protected void doGet(SlingHttpServletRequest request,
 			SlingHttpServletResponse response) throws ServletException,
@@ -72,8 +68,8 @@ public class PSNoModelsServlet extends SlingSafeMethodsServlet {
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
 		
-		int reqIndex = settingsHelper.getPartsDirectProductAPI().lastIndexOf("/");
-		 String PRODUCT_BRAND_URL= settingsHelper.getPartsDirectProductAPI().substring(0, reqIndex-6)+"categories/";
+		String PRODUCT_BRAND_URL= settingsHelper.getAPIRoot()+"categories/";
+		 
 
 		if (StringUtils.isNotEmpty(flag)) {
 			try {
