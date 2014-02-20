@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="sling:OsgiConfig"
+    flagMessage="[INST|In Stock,BORD|Back Ordered,TECH|Technician Required,PNF|Contact customer support for availability: 1-800-252-1698,NLA|We're sorry\, this item is no longer available]"    
+/>
