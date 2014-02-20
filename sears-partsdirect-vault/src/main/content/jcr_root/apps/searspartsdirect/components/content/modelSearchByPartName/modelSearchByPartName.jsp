@@ -1,14 +1,16 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
-<cq:includeClientLib
-	js="apps.searspartsdirect,apps.searspartsdirect.base" />
+<%@page import="java.net.URLDecoder,
+				org.apache.sling.commons.json.JSONObject,
+				com.spd.cq.searspartsdirect.common.helpers.PSFlagStatus" %>
+<cq:includeClientLib categories="apps.searspartsdirect,apps.searspartsdirect.base" />
 
 <%
 String modelNumber = (request.getParameter("modelNumber") != null) ? request.getParameter("modelNumber") : "";
 String brandId = (request.getParameter("brandId") != null) ? request.getParameter("brandId") : "";
 String categoryId = (request.getParameter("categoryId") != null) ? request.getParameter("categoryId") : "";
 String description = (request.getParameter("description") != null) ? request.getParameter("description") : "";
-String brandName = (request.getParameter("brandName") != null) ? request.getParameter("brandName") : "";
-String modelDescription = (request.getParameter("modelDescription") != null) ? request.getParameter("modelDescription") : "";
+String brandName = (request.getParameter("brandName") != null) ? URLDecoder.decode(request.getParameter("brandName"), "UTF-8") : "";
+String modelDescription = (request.getParameter("modelDescription") != null) ? URLDecoder.decode(request.getParameter("modelDescription"), "UTF-8") : "";
 %>
 <div class="row-fluid">
 	<div class="repairHelpHomeTitle">
@@ -32,8 +34,8 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 							<input type="text" id="searchPart" name="" maxlength="42"
 								data-inputhelp="ex. screw, gate, switch"
 								data-inputhelpmobile="ex. screw, gate, switch"
-								value="ex. screw, gate, switch"> <span class="add-on"><button
-									id="searchByPartName">
+								value="ex. screw, gate, switch"/> <span class="add-on"><button
+									id="searchByPartName" onclick="showSearchByPartName('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>', '<%=brandName %>', '<%=modelDescription %>', $('#searchPart').val())">>
 									<i class="icon-search">&nbsp;</i>
 								</button></span>
 						</div>
@@ -65,29 +67,11 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 	<div class="new-span-general partListItems" id="partNameResults">
 	</div>
 </div>
+<%
+	PSFlagStatus flagStatus = sling.getService(PSFlagStatus.class);	// calling PSFlagStatus -- to get data from Felix
+	JSONObject flagMessage = flagStatus.getStockAvailabilityMessage();
+%>
 
-<script>modelSearchByPartName('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>', '<%=description%>');
+<script>modelSearchByPartName('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>', '<%=description%>', '<%=flagMessage%>');
 </script>
 
-<script>
-					$('#searchByPartName').bind('click', function (e) {
-						e.preventDefault();
-						if ($("#searchPart").length > 0) {
-							var modelNumber = "<%=modelNumber%>";
-							var brandId = "<%=brandId%>";
-							var categoryId = "<%=categoryId%>";
-
-							var description = $("#searchPart").val();
-
-							window.location.href = "/content/searspartsdirect/en/searchbypartname.html"
-									+ "?modelNumber="
-									+ modelNumber
-									+ "&brandId="
-									+ brandId
-									+ "&categoryId="
-									+ categoryId
-									+ "&description="
-									+ description;
-						}
-					});
-</script>

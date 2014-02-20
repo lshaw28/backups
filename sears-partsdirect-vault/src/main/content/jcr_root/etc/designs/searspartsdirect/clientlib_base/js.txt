@@ -55,6 +55,7 @@ userData.js
 video.js
 textModelNo.js
 headerPD.js
+modelAllDiagram.js
 
 #base=js/widgets/.
 AdUnit.js
