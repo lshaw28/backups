@@ -2,6 +2,7 @@
 All pages including this files should describe below parameters
 modelNumber, brandId, categoryId, brandName,  modelDescription.
  -->
+<div id="headerPD">
 <div class="row-fluid">
 	<div class="repairHelpHomeTitle">
 		<div class="pageTitleHeader">
@@ -20,5 +21,6 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
 		<ul id="dynamicTabs">
 		</ul>
 	</div>
+</div>
 </div>
 <script>getDynamicTabs('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>');</script>
