@@ -15,7 +15,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 <%@include file="/apps/searspartsdirect/components/content/headerPD/headerPD.jsp"%>
 				
 <div class="row-fluid">
-	<div class="new-span-general partListDiagram">
+	<div id="partListDiagram" class="new-span-general partListDiagram">
 		<cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />
 	</div>
 	<div class="new-span-general partListItems" id="partListItems">
