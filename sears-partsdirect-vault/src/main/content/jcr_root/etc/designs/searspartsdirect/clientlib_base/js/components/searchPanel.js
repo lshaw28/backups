@@ -13,6 +13,7 @@ var searchPanel = Class.extend(function () {
 			// Initialize events
 			this.findItems();
 			this.bindEvents();
+			this.airFilterParts = this.checkIfAirFilterPart();
 		},
 		/**
 		 * Finds dropdown items
@@ -81,6 +82,24 @@ var searchPanel = Class.extend(function () {
 			return value;
 		},
 		/**
+		 * checkIfAirFilterPart
+		 * @return airfilter partsearch term
+		 */
+		checkIfAirFilterPart : function() {
+
+			return [ 
+			         {name : 'airfilter'},
+			         {name : 'airfilters'},
+			         {name : 'hvacfilter'},
+			         {name : 'hvacfilter'},
+			         {name : 'heatingfilter'},
+			         {name : 'heaterfilter'},
+			         {name : 'coolingfilter'},
+			         {name : 'acfilter'},
+			         {name : 'airconditioner'}
+			         ];
+		},
+		/**
 		 * Perform initial event binding
 		 * @return {void}
 		 */
@@ -129,10 +148,28 @@ var searchPanel = Class.extend(function () {
 			// Bind event on button
 			$('#searchModelsParts').bind('click', function (e) {
 				e.preventDefault();
-
 				if (self.getValue() !== '' && $(selectStatement).length > 0) {
-					$('#searchBarForm').submit();
-					$('#searchBarField').removeClass('error');
+					var ifairfilterpart = 'false',
+						searchTerm = self.getValue(),
+						UpdatedSearchTerm = searchTerm.toUpperCase();
+
+					for (i = 0; i < self.airFilterParts.length; ++i) {
+						
+						var airFilterPartsName = self.airFilterParts[i].name,
+						UpdatedAirFilterPartsName = airFilterPartsName.toUpperCase();
+						
+						if (UpdatedSearchTerm == UpdatedAirFilterPartsName) {
+							ifairfilterpart = 'true';
+						}
+					}
+					if (ifairfilterpart == 'true') {
+						e.preventDefault();
+						var loc = mainSitePath + '/replacement-parts/hvac-air-filters/dimensions.html';
+						window.location.href = loc;
+					} else {
+						$('#searchBarForm').submit();
+						$('#searchBarField').removeClass('error');
+					}
 				} else {
 					$('#searchBarField').addClass('error');
 				}

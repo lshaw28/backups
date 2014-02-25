@@ -1,0 +1,109 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+@media (max-width: 480px) {
+    .airFilterResult{
+        .airFilterSearchResult{
+            .AirFilterHeading_mobile{
+                font-size:@h4Size;
+                img{
+                    margin-right: 10px;
+                }
+            }
+            .bulletHeading{
+                font-size:@pSize;
+                font-weight:bold;
+            }
+            .accordion{
+                float: left;
+                width: 100%;
+            }
+            .accordion-toggle, .accordion-inner {
+                border: 0;
+                padding: 0;
+                text-decoration: none;
+            }
+            .accordion-group, .accordion-inner {
+                border: 0;
+                background-color: @secondaryHueLighter;
+                p{
+                    padding: 0px 5px 0 16px;
+                }
+            }
+            .accordion-inner {
+                padding-top: 0;
+            }
+            .accordion-group {
+                .borderRadius(0);
+                margin-bottom: 25px;
+                float: left;
+            }
+            .accordion-toggle {
+                color: @secondaryHueDark;
+                padding-left: 15px;
+                text-decoration: none;
+                padding: 0;
+                text-decoration: none;
+                h4 {
+                    display: inline-block;
+                }
+                h4.shopPartsForMobile{
+                    display: none;
+                }
+                i {
+                    color: @primaryHueNormal;
+                    display: inline-block;
+                    font-size: @h4Size;
+                    margin: 10px 0 0 10px;
+                    vertical-align: middle;
+                    float: right;
+                }
+                .icon-chevron-up {
+                    display: none;
+                }
+                .icon-chevron-down {
+                    display: inline-block;
+                }
+                &.collapsed {
+                    .icon-chevron-up {
+                        display: inline-block;
+                    }
+                    .icon-chevron-down {
+                        display: none;
+                    }
+                }
+            }
+            .airFilterPorductRow_mobile{
+                float: left;
+                width:100%;
+                display: block;
+                background-color:@bodyColor;
+                border-bottom: 4px solid @secondaryHueLight;
+                margin-bottom: 16px;
+                padding-bottom: 10px;
+                .productImage_mobile{
+                    float: left;
+                    img{
+                        height: 61px;
+                        width: 61px;
+                        border: 1px solid @secondaryHueLightest;
+                        padding: 9px;
+                    }
+                }
+                .product_details{
+                    float: right !important;
+                    width: 200px;
+                    .titleAnchor_mobile{
+                        margin: 0 0 10px 0;
+                        a{
+                            font-size:@h4Size;
+                        }
+                    }
+                    p{
+                        margin-bottom: 4px; 
+                    }
+                }
+            }
+        }        
+    }
+}

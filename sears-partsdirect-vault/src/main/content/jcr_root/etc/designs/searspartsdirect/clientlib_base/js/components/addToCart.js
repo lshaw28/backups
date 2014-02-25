@@ -23,6 +23,7 @@ var addToCart = Class.extend(function () {
 			this.partNumber = '';
 			this.divId = '';
 			this.plsId = '';
+			this.subPer = 0;
 			// Elements
 			this.cartItems = {
 				header: null,
@@ -34,7 +35,6 @@ var addToCart = Class.extend(function () {
 			}
 			this.cartEmpty = null;
 			// Setup
-			this.setProperties();
 			this.bindEvents();
 		},
 		/**
@@ -46,9 +46,12 @@ var addToCart = Class.extend(function () {
 				su = window.SPDUtils;
 
 			// Retrieve properties
-			self.partNumber = self.el.data('partnumber');
-			self.divId = self.el.data('divid');
-			self.plsId = self.el.data('plsid');
+			self.partNumber = self.el.attr('data-partnumber');
+			self.divId = self.el.attr('data-divid');
+			self.plsId = self.el.attr('data-plsid');
+			if (self.el.attr('data-subper') != undefined) {
+				self.subPer = self.el.attr('data-subper');
+			}
 			// Retrieve elements
 			self.cartItems.header = $('#cartShop .cartShopHeader_js');
 			self.cartItems.checkOut = $('#cartShop .cartShopCheckOut_js');
@@ -83,6 +86,10 @@ var addToCart = Class.extend(function () {
 				// Add cart ID param if available
 				if (NS('shc.pd.cookies').cid !== '') {
 					params.cid = NS('shc.pd.cookies').cid;
+				}
+				// Add subscription period if part is to be subscribed
+				if (self.subPer > 0) {
+					params.renewalPeriod = self.subPer;
 				}
 
 				// Make an AJAX call
@@ -225,6 +232,8 @@ var addToCart = Class.extend(function () {
 
 			self.el.bind('click', function (e) {
 				e.preventDefault();
+				//Properties are set here in case data on the Add to Cart button is updated with javascript
+                self.setProperties();
 				self.addItem();
 			});
 		}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:TabPanel"
+    title="Air Filter Part Details Page"
+    xtype="dialog">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <tabpanel jcr:primaryType="cq:TabPanel">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <tab1
+                    jcr:primaryType="cq:Widget"
+                    allowBlank="{Boolean}true"
+                    cropParameter="./image/imageCrop"
+                    ddGroups="[media]"
+                    fileNameParameter="./image/fileName"
+                    fileReferenceParameter="./image/fileReference"
+                    name="./image/file"
+                    requestSuffix="/image.img.png"
+                    rotateParameter="./image/imageRotate"
+                    title="Author Photo"
+                    uploadUrl="/tmp/upload/*"
+                    xtype="smartimage"/>
+                <tab2
+                    jcr:primaryType="cq:Widget"
+                    title="Details"
+                    xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <optionalDescription
+                            jcr:primaryType="cq:Widget"
+                            allowBlank="{Boolean}true"
+                            fieldLabel="Author description"
+                            maxlength="600"
+                            name="./authorDescription"
+                            xtype="richtext">
+                            <rtePlugins
+                                jcr:primaryType="nt:unstructured"
+                                path="/apps/searspartsdirect/components/content/text/limitedConfig.infinity.json"
+                                xtype="cqinclude"/>
+                        </optionalDescription>
+                        <resType
+                            jcr:primaryType="cq:Widget"
+                            ignoreData="{Boolean}true"
+                            name="./image/sling:resourceType"
+                            value="foundation/components/image"
+                            xtype="hidden"/>
+                    </items>
+                </tab2>
+            </items>
+        </tabpanel>
+    </items>
+</jcr:root>

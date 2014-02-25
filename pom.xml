@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <!--
+    ~ Shared aggregator model for CQ PartsDirect projects. Used to facilitate
+    ~ building CQ PartsDirect projects conveniently from top level.
+  -->
+
+  <!--
+    ~ The Basics
+  -->
+  <groupId>com.searshc.partsdirect</groupId>
+  <artifactId>pd-cq-parent</artifactId>
+  <version>4.130.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <!--
+    ~ More Project Information
+  -->
+  <name>PartsDirect CQ Parent Aggregator</name>
+  <description>
+    CQ PartsDirect Parent Aggregator to facilitate building the projects conveniently.
+  </description>
+  <!--<url>http://dev.searspartsdirect.com</url>-->
+  <inceptionYear>2013</inceptionYear>
+  <organization>
+    <name>Sears Holdings Corporation</name>
+    <url>http://searshc.com</url>
+  </organization>
+
+  <!--
+    ~ Modules
+  -->
+  <modules>
+    <module>sears-partsdirect-common</module>
+    <module>sears-partsdirect-vault</module>   
+  </modules>
+  
+    <!--
+    ~ Environment Settings
+  -->
+  <scm>
+    <connection>scm:git:ssh://git@git301p.prod.ch3.s.com/aempd</connection>
+    <!--<developerConnection>-->
+    <!--scm:git:[fetch=]http://mywebserver.org/path_to_repository[push=]ssh://username@otherserver:8898/~/repopath.git-->
+    <!--</developerConnection>-->
+    <!--<url>http://browsable_URL</url>-->
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <system>Jira</system>
+    <url>https://jira.intra.sears.com/jira/browse/PD</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>Jenkins</system>
+    <url>pdci301p.dev.ch3.s.com:8180/jenkins</url>
+  </ciManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>sears-releases</id>
+      <name>Sears Internal Distribution Repository for Releases</name>
+      <url>http://obuartifactoryvip.dev.ch3.s.com/artifactory/libs-release-local</url>
+    </repository>
+    <snapshotRepository>
+      <id>sears-snapshots</id>
+      <name>Sears Internal Distribution Repository for Snapshots</name>
+      <url>http://obuartifactoryvip.dev.ch3.s.com/artifactory/libs-snapshot-local</url>
+      <!--<uniqueVersion>false</uniqueVersion>-->
+    </snapshotRepository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>sears-releases</id>
+      <name>Sears Internal Distribution Repository for Releases</name>
+      <url>http://obuartifactoryvip.dev.ch3.s.com/artifactory/repo</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>sears-snapshots</id>
+      <name>Sears Internal Distribution Repository for Snapshots</name>
+      <url>http://obuartifactoryvip.dev.ch3.s.com/artifactory/repo</url>
+    </repository>
+  </repositories>
+  
+  <!--
+    ~ Configuration Properties
+    ~
+    ~ This section is deprecated and mostly meaningless, though site plugin uses this.
+    ~ Minimum maven version is controlled by maven-enforcer-plugin rule.
+  -->
+  <prerequisites>
+    <maven>3.0.5</maven>
+  </prerequisites>
+  
+    <!--
+    ~ Configuration Properties
+  -->
+  <properties>
+    <!-- Maven settings, used by Maven core and some plugins -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.sourceBase>${project.basedir}/src/main</project.build.sourceBase>
+    <project.build.testSourceBase>${project.basedir}/src/test</project.build.testSourceBase>
+    <project.build.resourceDirectory>${project.build.sourceBase}/resources</project.build.resourceDirectory>
+    <project.build.testResourceDirectory>${project.build.testSourceBase}/resources</project.build.testResourceDirectory>
+
+    <!-- Shared compiler settings, used by maven-compiler-plugin, aspectj-maven-plugin etc. -->
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+    
+    <!-- project specific -->
+    <!-- FIX ME: not used anywhere? -->
+    <spring.version>2.0.8</spring.version>
+  </properties>
+  
+    <!--
+    ~ Dependency Settings
+    ~
+    ~ All the dependencies used in the children projects are defined here in
+    ~ a centralized manner so that individual projects can just refer to a
+    ~ minimal set of dependency configurations with groupId:artifactId and
+    ~ proceed to build.
+    ~
+    ~ The dependencies are arranged in the order of scope (compile, provided,
+    ~ runtime, test, system) followed by ascending lexical order for added
+    ~ convenience of quickly locating a dependency. However, while this works
+    ~ great in `project.dependencyManagement.dependencies` section, this
+    ~ should be done with caution in `project.dependencies` section on newer
+    ~ versions of Maven (2.0.9+). Newer versions of Maven allows classpath
+    ~ ordering. Thus, the dependencies are loaded by the reactor in the order
+    ~ in which the dependencies are declared.
+    ~
+    ~ See: http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html
+    ~      http://stackoverflow.com/a/3167930
+    ~      http://jira.codehaus.org/browse/MNG-1412
+  -->
+  <dependencyManagement>
+    <dependencies>
+      <!-- ~ Compile scope: available in all classpath, transitive -->
+      <dependency>
+        <groupId>com.adobe.granite</groupId>
+        <artifactId>com.adobe.granite.workflow.api</artifactId>
+        <version>1.0.2</version>
+      </dependency>
+      <dependency>
+        <groupId>com.day.commons</groupId>
+        <artifactId>day-commons-gfx</artifactId>
+        <version>2.1.4</version>
+        <type>jar</type>
+      </dependency>
+      <dependency>
+        <groupId>com.day.commons</groupId>
+        <artifactId>day-commons-text</artifactId>
+        <version>1.1.8</version>
+      </dependency>
+      <dependency>
+        <groupId>com.day.cq</groupId>
+        <artifactId>cq-commons</artifactId>
+        <version>5.6.2</version>
+        <type>jar</type>
+      </dependency>
+      <dependency>
+        <groupId>com.day.cq</groupId>
+        <artifactId>cq-tagging</artifactId>
+        <version>5.5.0</version>
+        <type>jar</type>
+      </dependency>
+      <dependency>
+        <groupId>com.day.cq</groupId>
+        <artifactId>cq-search</artifactId>
+        <version>5.6.2</version>
+        <type>jar</type>
+      </dependency>
+      <dependency>
+        <groupId>com.day.cq.dam</groupId>
+        <artifactId>cq-dam-api</artifactId>
+        <version>5.5.0</version>
+        <type>jar</type>
+      </dependency>
+      <dependency>
+        <groupId>javax.jcr</groupId>
+        <artifactId>jcr</artifactId>
+        <version>2.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cocoon</groupId>
+        <artifactId>cocoon-xml</artifactId>
+        <version>2.0.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.api</artifactId>
+        <version>2.3.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.commons.json</artifactId>
+        <version>2.0.6</version>
+        <type>jar</type>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.jcr.api</artifactId>
+        <version>2.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.rewriter</artifactId>
+        <version>1.0.4</version>
+      </dependency>
+      <!-- ~ Provided scope: -->
+      <dependency>
+        <groupId>com.adobe.cq.social</groupId>
+        <artifactId>cq-social-commons</artifactId>
+        <version>1.1.23</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.adobe.granite</groupId>
+        <artifactId>com.adobe.granite.replication.core</artifactId>
+        <version>5.5.38</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.day.cq.wcm</groupId>
+        <artifactId>cq-wcm-api</artifactId>
+        <version>5.5.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.day.cq.wcm</groupId>
+        <artifactId>cq-wcm-core</artifactId>
+        <version>5.6.10</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.day.cq.wcm</groupId>
+        <artifactId>cq-wcm-foundation</artifactId>
+        <version>5.5.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.2.4</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jsp-api</artifactId>
+        <version>2.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <!-- FIX ME: Are we using it? -->
+      <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>jsp-api</artifactId>
+        <version>2.1</version>
+        <scope>provided</scope>
+      </dependency>
+      <!-- OSGI Dependencies -->
+      <dependency>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.apache.felix.scr.annotations</artifactId>
+        <version>1.9.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.compendium</artifactId>
+        <version>4.1.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.core</artifactId>
+        <version>4.1.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.6.4</version>
+        <scope>provided</scope>
+      </dependency>
+      <!-- ~ Test Scope -->
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-all</artifactId>
+        <version>1.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-library</artifactId>
+        <version>1.2.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-all</artifactId>
+        <version>1.8.4</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit-dep</artifactId>
+        <version>4.10</version>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+    <!--
+    ~ Build Settings
+  -->
+  <build>
+
+    <!--
+      ~ Resources Settings
+    -->
+    <resources>
+      <resource>
+        <directory>${project.build.resourceDirectory}</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>${project.build.testResourceDirectory}</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+
+    <!--
+      ~ Plugin Settings
+      ~
+      ~ Just like the dependencies (see in `project.dependencyManagement`
+      ~ section above) all the plugins used in the children projects are
+      ~ defined here in a centralized manner so that individual projects
+      ~ can just refer to a minimal set of plugin configurations with
+      ~ groupId:artifactId (and optional configuration) and proceed to
+      ~ build.
+      ~
+      ~ The plugins are arranged in ascending lexical order for added
+      ~ convenience of quickly locating a plugin.
+    -->
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.day.jcr.vault</groupId>
+          <artifactId>content-package-maven-plugin</artifactId>
+          <version>0.0.16</version>
+          <configuration>
+            <name>${project.artifactId}</name>
+            <failOnError>true</failOnError>
+            <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
+            <builtContentDirectory>src/main/content/jcr_root</builtContentDirectory>
+            <packageFile>target/${project.artifactId}-${project.version}.zip</packageFile>
+            <targetURL>${crx_url}/crx/packmgr/service.jsp</targetURL>
+            <userId>${crx_user}</userId>
+            <password>${crx_password}</password>
+            <verbose>true</verbose>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>package</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>2.3.7</version>
+          <extensions>true</extensions>
+          <configuration>
+            <instructions>
+              <Import-Package>*</Import-Package>
+              <Export-Package>com.spd.cq.searspartsdirect.common.*</Export-Package>
+            </instructions>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-scr-plugin</artifactId>
+          <version>1.9.0</version>
+          <executions>
+            <execution>
+              <id>generate-scr-scrdescriptor</id>
+              <goals>
+                <goal>scr</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.4.1</version>
+          <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <scmCommentPrefix xml:space="preserve">[partsdirect-release] </scmCommentPrefix>
+            <tagNameFormat>v@{project.version}</tagNameFormat>
+            <updateBranchVersions>true</updateBranchVersions>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.sling</groupId>
+          <artifactId>maven-sling-plugin</artifactId>
+          <version>2.1.0</version>
+          <configuration>
+            <slingUrl>${crx_url}/libs/sling/install</slingUrl>
+            <usePut>true</usePut>
+            <user>${crx_user}</user>
+            <password>${crx_password}</password>
+          </configuration>
+          <!--
+            ~ Commented out below section as while running the complete build at jenkins we do not want to install
+            ~ this package to anywhere. Developers should use explicitely sling:install/sling:uninstall goal from
+            ~ command line.
+          -->
+          <!-- <executions>
+            <execution>
+              <id>uninstall-from-cq</id>
+              <phase>uninstall</phase>
+              <goals>
+                <goal>uninstall</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>install-to-cq</id>
+              <phase>install</phase>
+              <goals>
+                <goal>install</goal>
+              </goals>
+            </execution>
+          </executions>  -->
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>1.8</version>
+          <configuration>
+            <propertyPrefix>parsed</propertyPrefix>
+          </configuration>
+          <executions>
+            <execution>
+              <id>default-parse-version</id>
+              <goals>
+                <goal>parse-version</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.1</version>
+          <executions>
+            <execution>
+              <id>Sears PartsDirect JavaScript Unit Tester</id>
+              <phase>test</phase>
+              <goals>
+                <goal>exec</goal>
+              </goals>
+              <configuration>
+                <executable>phantomjs</executable>
+                <!-- TODO FIX ME: Why the test folder is under main directory? It should be under src/test/ -->
+                <workingDirectory>src/main/test</workingDirectory>
+                <arguments>
+                  <argument>phantomjs_jasminexml_runner.js</argument>
+                  <argument>test_runner.html</argument>
+                  <argument>${project.build.directory}/surefire-reports</argument>
+                </arguments>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <!--
+         ~ This plugin's configuration is used to store Eclipse m2e settings only.
+         ~ It has no influence on the Maven build itself.
+        -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-scr-plugin</artifactId>
+                    <versionRange>[1.9.0,)</versionRange>
+                    <goals>
+                      <goal>scr</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  
+  <!--
+    ~ Profile Settings
+  -->
+  <profiles>
+    <!-- ~ This maven2 repository provides access to public artifacts used in conjunction with developing java-based ~ applications 
+      on Adobe frameworks. ~ Adobe Terms Apply: http://www.adobe.com/misc/terms.html -->
+    <profile>
+      <id>adobe-public</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <releaseRepository-Id>adobe-public-releases</releaseRepository-Id>
+        <releaseRepository-Name>Adobe Public Releases</releaseRepository-Name>
+        <releaseRepository-URL>http://repo.adobe.com/nexus/content/groups/public</releaseRepository-URL>
+      </properties>
+      <repositories>
+        <repository>
+          <id>adobe-public-releases</id>
+          <name>Adobe Public Repository</name>
+          <url>http://repo.adobe.com/nexus/content/groups/public</url>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>adobe-public-releases</id>
+          <name>Adobe Public Repository</name>
+          <url>http://repo.adobe.com/nexus/content/groups/public</url>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+    <profile>
+      <!--
+        ~ The profile provides a handy shortcut that wraps maven-release-plugin
+        ~ configuration parameters used to create release branch from 'master'
+        ~ branch (via release:branch goal).
+        ~ Since the goal release:branch is not bound to any phase, one must
+        ~ invoke 'validate' phase *together* with release:branch so that the
+        ~ boilerplate properties become available before having the goal
+        ~ release:branch invoked.
+        ~ The property 'maven.release.date' that reflects the target release
+        ~ date must be injected via command-line in 'yyyyMMdd' format.
+        ~ Thus the command would typically look like so:
+        ~
+        ~ `mvn -P release-branch -D maven.release.date=20130415 \
+        ~        validate release:branch`
+        ~
+        ~ For subsequent release goals, viz., release:prepare, release:perform,
+        ~ we kept our convention as simple as possible so that they can be
+        ~ invoked with without additional command line properties.
+        ~
+        ~ See: http://wiki.intra.sears.com/confluence/display/PARTSDIR/PartsDirect+Release+Process
+      -->
+      <id>release-branch</id>
+      <properties>
+        <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
+        <maven.release.date>${maven.build.timestamp}</maven.release.date>
+        <maven.release.currentTarget>${parsed.majorVersion}.${parsed.minorVersion}.${maven.release.date}</maven.release.currentTarget>
+        <maven.release.nextTarget>${parsed.majorVersion}.${parsed.nextMinorVersion}.${parsed.incrementalVersion}</maven.release.nextTarget>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+              <branchName>releases/${maven.release.currentTarget}</branchName>
+              <developmentVersion>${maven.release.nextTarget}-${parsed.qualifier}</developmentVersion>
+              <releaseVersion>${maven.release.currentTarget}-01-${parsed.qualifier}</releaseVersion>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
+

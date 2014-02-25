@@ -15,7 +15,9 @@ var cartItemTemplate = function (item, quantity) {
 		partNumber = su.validString(item.partNumber),
 		partUrl = su.validString(item.partUrl),
 		productGroupId = su.validNumber(item.productGroupId),
-		supplierId = su.validNumber(item.supplierId);
+		supplierId = su.validNumber(item.supplierId),
+		renewel = su.validNumber(item.renewalPeriod),
+		subNote = '';
 
 	// Data validation
 	if (su.validNumber(quantity) === 0) {
@@ -27,9 +29,12 @@ var cartItemTemplate = function (item, quantity) {
 	if (partUrl === '' && productGroupId > 0 && supplierId > 0) {
 		partUrl = '/partsdirect/part-number/' + partNumber + '/' + productGroupId + '/' + supplierId;
 	}
+	if (renewel !== 0) {
+		subNote = '<div class="cart-sub"><span class="svg-icon-truck"></span><span>Automatic Reorder</span></div><div class="cart-sub-freq"><span>Set: every ' + renewel + ' months</span></div>';
+	}
 
 	li.addClass('cart-item');
-	li.html('<span class="cart-part"><a href="' + mainSitePath + partUrl + '">' + partNumber + '</a>' + (description !== '' ? '<br />' + description : '') + '</span><span class="cart-quantity">' + quantity + '</span>');
+	li.html('<span class="cart-part"><a href="' + mainSitePath + partUrl + '">' + partNumber + '</a>' + (description !== '' ? '<br />' + description : '') + '</span><span class="cart-quantity">' + quantity + '</span>' + subNote);
 
 	return li;
 };
