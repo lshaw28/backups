@@ -51,7 +51,14 @@ public class ModelSubPageFilter implements Filter {
 			+ Constants.MODELNO_SFX + "[\\./]");
 	private final static Pattern symptomatic = Pattern
 			.compile(Constants.SYMPTOM_ROOT + "([^\\./]+)");
+	
+	private final static String CMS_URL_PREFIX = "/content/searspartsdirect/en";
+	
+	private final static Pattern PRCPattern = Pattern
+			.compile(Constants.PRC_PFX + "/([^/]*)/([^/]*)"
+					+ "(.*\\"+Constants.MARKUP_EXT+")$");
 
+	
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain fc) throws IOException, ServletException {
 
@@ -121,6 +128,12 @@ public class ModelSubPageFilter implements Filter {
 				resPath = Constants.CATEGORIES_PFX + resPath;
 				mustForward = true;
 			}
+			
+			/* Check for PRC Pattern */
+			Matcher prc = PRCPattern.matcher(resPath);
+			if(prc.find()){
+				redirectPRCURL(request, response, resPath);
+			}
 		}
 
 		if (mustForward) {
@@ -136,6 +149,28 @@ public class ModelSubPageFilter implements Filter {
 		}
 		return;
 
+	}
+	
+	private static void redirectPRCURL(SlingHttpServletRequest request, SlingHttpServletResponse response, String pagePath) throws ServletException, IOException{
+		log.info("PRCPageFilter: doFilter(): for url " + pagePath);
+		
+		String cmsPageUrl = mapURLToCMSPagePath(pagePath);
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(cmsPageUrl);
+
+		if (requestDispatcher == null) throw new RuntimeException("PRCPageFilter: doFilter(): No dispatcher for " + cmsPageUrl);
+		
+		log.info("PRCPageFilter: doFilter(): forwarding request to " + cmsPageUrl);
+		requestDispatcher.forward(request, response);
+	}
+	
+	private static String mapURLToCMSPagePath(String pagePath) {
+		
+		StringBuffer fullPagePath = new StringBuffer();
+		fullPagePath.append(CMS_URL_PREFIX);
+		int lastIndex = pagePath.lastIndexOf("/");
+		fullPagePath.append(pagePath.substring(0,lastIndex)+'-'+pagePath.substring(lastIndex+1));
+		return fullPagePath.toString();
 	}
 
 	boolean hasRepairGuide(String path) {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2013-05-23T16:44:54.231-04:00"
+        cq:lastModifiedBy="admin"
+        cq:targetPath="/content/searspartsdirect/en/part-repair-stores"
+        cq:targetTemplate="/apps/searspartsdirect/templates/partsRepairCenter"
+        cq:template="/libs/wcm/scaffolding/templates/scaffolding"
+        jcr:description="Parts Repair Center Scaffold"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Parts Repair Center"
+        sling:resourceType="searspartsdirect/components/scaffolding/partsRepairCenterScaffolding">
+        <dialog/>
+    </jcr:content>
+</jcr:root>

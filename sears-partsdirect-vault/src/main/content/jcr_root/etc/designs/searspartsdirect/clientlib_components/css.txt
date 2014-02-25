@@ -74,3 +74,7 @@ mervRatingHelp/mervRatingHelp.less
 airFilterPartDetails/airFilterPartDetails.less
 airFilterResult/airFilterResult.less
 banners/banners.less
+partsRepairCenter/address/address.less
+partsRepairCenter/teamMembers/teamMembers.less
+partsRepairCenter/hoursOfOperation/hoursOfOperation.less
+partsRepairCenter/topCategoriesAndServices/topCategoriesAndServices.less
