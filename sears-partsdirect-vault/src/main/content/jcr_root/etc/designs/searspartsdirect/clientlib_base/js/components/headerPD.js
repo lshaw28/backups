@@ -1,5 +1,8 @@
+
 function getDynamicTabs(modelNumber,brandId,categoryId){
+	if(modelNumber!="" && brandId!="" && categoryId!=""){
     var urlName = "/bin/searspartsdirect/model/dynamictabs?modelNumber="+modelNumber+"&brandId="+encodeURIComponent(brandId)+"&categoryId="+encodeURIComponent(categoryId);
+    $("#headerPD").show();
     $("#dynamicTabs").empty();
     $.ajax({
 				type : "GET",
@@ -28,10 +31,17 @@ function getDynamicTabs(modelNumber,brandId,categoryId){
 					console.log("Get Dynamic Tabs -- API Failure");
 				}
 			});
+	}
+	else{
+		$("#headerPD").hide();
+		console.log("Get Dynamic Tabs -- parameters not valid");
+	}
 }
 
 
 function checkCookie(modelNumber, brandId, categoryId){
+
+	if(modelNumber!="" && brandId!="" && categoryId!=""){
     var modelsCookie=getCookie("myProfileModels");
     if (modelsCookie != ""){
         // if cookie exists, send cookie details with API
@@ -53,6 +63,10 @@ function checkCookie(modelNumber, brandId, categoryId){
         //if cookie doesn't exist, create new one
     	setDataForCookies(modelNumber, brandId, categoryId);
     }
+	}
+	else{
+		console.log("check cookie-- parameters not valid");
+	}
 }
 
 function setDataForCookies(modelNumber,brandId,categoryId){
