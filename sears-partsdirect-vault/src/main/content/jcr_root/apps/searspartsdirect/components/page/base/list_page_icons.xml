@@ -53,6 +53,10 @@
         jcr:primaryType="nt:unstructured"
         text="Gas/Electric Range"
         value="svg-icon-range-gaselectric"/>
+    <iconCooktop
+        jcr:primaryType="nt:unstructured"
+        text="Cooktop"
+        value="svg-icon-cooktop"/>
     <iconRefrigerator
         jcr:primaryType="nt:unstructured"
         text="Refrigerator"
