@@ -14109,6 +14109,9 @@ Handlebars.template = Handlebars.VM.template;
       if (fragment == null) {
         if (this._hasPushState || !this._wantsHashChange || forcePushState) {
           fragment = this.location.pathname;
+          // dan added following line
+          if (!this.root) this.root = '';
+          //
           var root = this.root.replace(trailingSlash, '');
           if (!fragment.indexOf(root)) fragment = fragment.substr(root.length);
         } else {

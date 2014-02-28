@@ -277,9 +277,10 @@
 		$('.sideChatNavigation').each(function () {
 			var newSideChatNavigation = new sideChatNavigation($(this));
 		});
-
+        /*
         $('.modelSearchResultsMain').each(function() {
             var msrExperiment = new modelSearchResults($(this));
         });
+        */
 	});
 }(window));
