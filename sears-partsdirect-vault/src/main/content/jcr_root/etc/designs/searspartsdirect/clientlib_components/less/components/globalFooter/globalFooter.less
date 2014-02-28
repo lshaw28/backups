@@ -137,16 +137,21 @@
 }
 
 #footerColumn3 {
-	h3 {
+	.headingH3 {
 		color: @secondaryHueDark;
 		font-weight: normal;
 		line-height: 30px;
 		margin: 0 0 10px 0;
 		padding: 0 0 10px 0;
+		float: left;
+		font-size: @h3Size;
 
-		span {
-			display: inline-block;
-			font-weight: bold;
+		.spanishStyle{
+            font-weight: normal !important;
+            font-size: @pSize;
+            color: @secondaryHueDark !important;
+            float: none;
+            margin: 0px;
 		}
 	}
 	p {
