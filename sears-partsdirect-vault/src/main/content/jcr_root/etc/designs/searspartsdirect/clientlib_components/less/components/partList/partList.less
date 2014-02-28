@@ -23,6 +23,7 @@
 		color: @secondaryHueNormal;
 		font-size: @noteSize;
 		text-align: center;
+        margin: 30px 0;
 		.spanWidth(2);
 
 		span {
@@ -30,7 +31,7 @@
 		}
 	}
 	.partListItemDescription {
-		.spanWidth(6);
+		.spanWidth(7);
 
 		.partListItemImage {
 			border: 1px solid @secondaryHueLight;
@@ -51,17 +52,18 @@
 		}
 	}
 	.partListItemCart {
-		.spanWidth(4);
+		.spanWidth(3);
 
 		.partListItemPrice, .partListItemQuantity {
 			clear: none;
 			float: left;
 			margin-bottom: 5px;
-			width: 50%;
+            width: 50%;
 		}
 		.partListItemPrice {
 			color: @secondaryHueDarkest;
-
+            padding-left: 2em;
+            width: 33%;
 			strong {
 				display: inline-block;
 				font-size: @h4Size;
@@ -74,8 +76,12 @@
 				.boxSizing(border-box);
 				display: block;
 				padding: 16px 8px;
-				width: 100%;
+				width: 28px;
+                float: right;
 			}
+            label {
+                float: right;
+            }
 		}
 		.partListItemAdd {
 			text-align: center;
@@ -87,6 +93,24 @@
 			}
 		}
 	}
+}
+#partListDiagram {
+  .spanWidth(4);
+}
+#partListItems {
+  .spanWidth(8);
+}
+#diagramPosition {
+  .spanWidth(2);
+}
+#partListItemDescription {
+  .spanWidth(7);
+}
+#partListItemCart {
+  .spanWidth(3);
+}
+#partListItemQuantity {
+  width: 50px;
 }
 
 @import "partList.tablet";

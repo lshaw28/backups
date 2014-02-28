@@ -21,6 +21,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Properties;
 import org.apache.felix.scr.annotations.Property;
+import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -30,17 +31,20 @@ import org.apache.sling.commons.json.JSONException;
 import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.spd.cq.searspartsdirect.common.helpers.PSSettingsHelper;
+
 import java.net.URLEncoder;
 
 @Component
-@Service
+@Service(value = { javax.servlet.Servlet.class,
+        javax.servlet.ServletConfig.class, java.io.Serializable.class,
+        PSNoModelsServlet.class })
 @Properties({
 		@Property(name = "sling.servlet.extensions", value = "json"),
 		@Property(name = "sling.servlet.paths", value = "/bin/searspartsdirect/search/nomodelsservlet"),
 		@Property(name = "sling.servlet.methods", value = "GET") })
 public class PSNoModelsServlet extends SlingSafeMethodsServlet {
-
-	private static final long serialVersionUID = 1L;
 
 	private static final Logger log = LoggerFactory
 			.getLogger(PSNoModelsServlet.class);
@@ -49,10 +53,8 @@ public class PSNoModelsServlet extends SlingSafeMethodsServlet {
 	private String productType;
 	private String flag;
 
-	// PRODUCT_BRAND_URL is hard-coded temporary, once we get final API we fetch
-	// it from felix
-	private String PRODUCT_BRAND_URL = "http://pdapp301p.dev.ch3.s.com:8580/pd-services/categories/";
-
+	@Reference
+    PSSettingsHelper settingsHelper;
 	@Override
 	protected void doGet(SlingHttpServletRequest request,
 			SlingHttpServletResponse response) throws ServletException,
@@ -65,16 +67,19 @@ public class PSNoModelsServlet extends SlingSafeMethodsServlet {
 				.getParameter("productType") : null;
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
+		
+		String PRODUCT_BRAND_URL= settingsHelper.getAPIRoot()+"categories/";
+		 
 
 		if (StringUtils.isNotEmpty(flag)) {
 			try {
 				if (StringUtils.equals(flag, "1")) {
-					jsonObject = populateCategoryList();
+					jsonObject = populateCategoryList(PRODUCT_BRAND_URL);
 				} else if (StringUtils.equals(flag, "2") && category != null) {
-					jsonObject = populateProductList(category);
+					jsonObject = populateProductList(PRODUCT_BRAND_URL,category);
 				} else if (StringUtils.equals(flag, "3") && category != null
 						&& productType != null) {
-					jsonObject = populateBrandList(category, productType);
+					jsonObject = populateBrandList(PRODUCT_BRAND_URL,category, productType);
 				}
 				response.getWriter().print(jsonObject.toString());
 			} catch (RepositoryException e) {
@@ -88,7 +93,7 @@ public class PSNoModelsServlet extends SlingSafeMethodsServlet {
 	}
 
 	@SuppressWarnings("unused")
-	private JSONObject populateCategoryList() throws JSONException,
+	private JSONObject populateCategoryList(String PRODUCT_BRAND_URL) throws JSONException,
 			ValueFormatException, PathNotFoundException, RepositoryException {
 
 		JSONObject result = new JSONObject();
@@ -126,7 +131,7 @@ public class PSNoModelsServlet extends SlingSafeMethodsServlet {
 	}
 
 	@SuppressWarnings("unused")
-	private JSONObject populateProductList(String category)
+	private JSONObject populateProductList(String PRODUCT_BRAND_URL,String category)
 			throws JSONException, ValueFormatException, PathNotFoundException,
 			RepositoryException, UnsupportedEncodingException {
 		JSONObject result = new JSONObject();
@@ -166,7 +171,7 @@ public class PSNoModelsServlet extends SlingSafeMethodsServlet {
 	}
 
 	@SuppressWarnings("unused")
-	private JSONObject populateBrandList(String category, String productType)
+	private JSONObject populateBrandList(String PRODUCT_BRAND_URL, String category, String productType)
 			throws JSONException, ValueFormatException, PathNotFoundException,
 			RepositoryException, UnsupportedEncodingException {
 

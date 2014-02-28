@@ -5,15 +5,20 @@
 	.partList {
 		.partListDiagram {
 			width: 100%;
+            div {
+              width:100%;
+            }
 		}
 		.partListItems {
 			margin-left: 0;
 			width: 100%;
 		}
 		.diagramPosition {
-			.spanWidth(1);
+			.spanWidth(1.4);
+            margin-top:20px;
 		}
 		.partListItemDescription {
+            .spanWidth(5.66);
 			.partListItemImage {
 				height: 78px;
 				width: 78px;
@@ -31,8 +36,12 @@
 			.partListItemQuantity {
 				input[type="text"] {
 					padding: 20px 10px;
-					width: 90%;
+					width: 60%;
+                    float: none;
 				}
+                label {
+                    float: none;
+                }
 			}
 			.partListItemAdd {
 				.spanWidth(6);
@@ -43,4 +52,29 @@
 			}
 		}
 	}
+  #partListDiagram {
+    width: 100%;
+    div {
+      width:100%;
+    }
+  }
+  #partListItems {
+    width: 100%;
+  }
+  #diagramPosition {
+    .spanWidth(1.4);
+    margin-top:20px;
+  }
+  #partListItemDescription {
+    .spanWidth(5.66);
+  }
+  #partListItemCart {
+    .spanWidth(5);
+  }
+  #partListItemQuantity {
+    .spanWidth(3);
+  }
+  #partListItemAdd {
+    .spanWidth(6);
+  }
 }

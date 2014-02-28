@@ -1,5 +1,9 @@
-//mingle story id: 7922
-
+/*mingle story id: 7922
+ * 
+ * Flag=1 Gets list of All Categories
+ * Flag=2 Gets list of Product Types for selected Category
+ * Flag=3 Gets list of Brands for selected Category and Product Type
+*/
    function hideAll(){
 		$("#productType").hide();
          $("#brand").hide();
@@ -23,7 +27,7 @@
 						for ( var i = 0; i < searchResults.length; i++) {
 							var resultDetail = searchResults[Object.keys(searchResults)[i]];
 							$("#categoryType").append(
-									"<option value=\"" + resultDetail.id
+									"<option value=\"" + resultDetail.formattedBrowseCategoryName
 											+ "\">" + resultDetail.browseCategory
 											+ "</option>");
 						}
@@ -36,9 +40,7 @@
    }
    
     function fillProductType(categoryType){
-        if(categoryType!="Category"){
 			populateProductDetails(categoryType);
-        }
     }
 
     function populateProductDetails(categoryType) {

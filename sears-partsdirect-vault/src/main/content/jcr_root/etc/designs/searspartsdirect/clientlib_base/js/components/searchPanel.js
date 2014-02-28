@@ -106,11 +106,11 @@ var searchPanel = Class.extend(function () {
 							if(length != 0){
 								$('#searchBarForm').attr('action', "/content/searspartsdirect/en/partsearchresults.html");
 							}else{
-								$('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-parts-found.html");
+								$('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-models-found.html");
 							}
 	                	}
 	                	else {
-	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-parts-found.html");
+	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-models-found.html");
 	                    }
 	                    $('#searchBarForm').submit();
 	                },
