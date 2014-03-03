@@ -30,7 +30,7 @@
 		</div>
 	</div>
 	<div id="footerColumn3">
-		<h3>for questions or assistance, call <span class="semi-bold">1-800-252-1698</span></h3>
+		<div class="headingH3">for questions or assistance, call <strong>1-800-252-1698 </strong><span class="spanishStyle">(Se Habla Español)</span></div>
 		<p>M-F&nbsp;&nbsp;6:30 a.m. - 10:30 p.m. CT</p>
 		<p>Sat&nbsp;&nbsp;&nbsp;7:00 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
 		<p>Sun&nbsp;&nbsp;7:30 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
