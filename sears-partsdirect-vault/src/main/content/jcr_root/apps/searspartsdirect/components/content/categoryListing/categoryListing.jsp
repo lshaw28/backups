@@ -19,3 +19,17 @@
 	</c:forEach></div>
 </c:if>
 </c:forEach>
+
+<script type="text/javascript">
+    function trackOmni(){
+            if (CQ_Analytics.Sitecatalyst) {
+                CQ_Analytics.record({
+                    values: {
+                        channel: 'Home Page'
+                    },
+                    componentPath: '<%=resource.getResourceType()%>'
+                });
+            }
+    }
+    </script>
+   
