@@ -1,6 +1,5 @@
 package com.spd.cq.searspartsdirect.common.environment;
 
-
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -13,264 +12,222 @@ import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 // We must make use of the raw type for 'props' to meet OSGi's requirements
 @SuppressWarnings("rawtypes")
-@Component(label="Sears PartsDirect Environment Settings",description="Environment specific variables",immediate=true,metatype=true)
-@Service(value=com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings.class)
-
+@Component(label = "Sears PartsDirect Environment Settings", description = "Environment specific variables", immediate = true, metatype = true)
+@Service(value = com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings.class)
 public class EnvironmentSettings {
 
-	private static Dictionary<?, ?> props;
+    private static Dictionary<?, ?> props;
 
-	static {
-		props = new Hashtable();
-	}
+    static {
+        props = new Hashtable();
+    }
 
-	@Property(label = "404 Handler Redirect URL",
-			description = "Page that will be redirected to when a page is not found",
-			value = "/content/searspartsdirect/en/404.html"
-		)
-	public static final String HANDLE_404_URL = "searspartsdirect.error.404.url";
+    @Property(label = "404 Handler Redirect URL", description = "Page that will be redirected to when a page is not found", value = "/content/searspartsdirect/en/404.html")
+    public static final String HANDLE_404_URL = "searspartsdirect.error.404.url";
 
-	public static String get404HandlerURL() {
-		return getProperty(HANDLE_404_URL, Constants.EMPTY);
-	}
+    public static String get404HandlerURL() {
+        return getProperty(HANDLE_404_URL, Constants.EMPTY);
+    }
 
-	@Property(label = "Sitemap Start Paths",
-			description = "Paths to start generating the sitemap from",
-			value = "/content/searspartsdirect/en"
-		)
-	public static final String SITEMAP_START_PATHS = "searspartsdirect.sitemap.paths.start";
+    @Property(label = "Sitemap Start Paths", description = "Paths to start generating the sitemap from", value = "/content/searspartsdirect/en")
+    public static final String SITEMAP_START_PATHS = "searspartsdirect.sitemap.paths.start";
 
-	public static String getSitemapStartPaths() {
-		return getProperty(SITEMAP_START_PATHS,Constants.EMPTY);
-	}
+    public static String getSitemapStartPaths() {
+        return getProperty(SITEMAP_START_PATHS, Constants.EMPTY);
+    }
 
-	@Property(label = "Sitemap Stop Paths",
-			description = "Paths to stop generating the sitemap at",
-			value = "")
-	public static final String SITEMAP_STOP_PATHS = "searspartsdirect.sitemap.paths.stop";
+    @Property(label = "Sitemap Stop Paths", description = "Paths to stop generating the sitemap at", value = "")
+    public static final String SITEMAP_STOP_PATHS = "searspartsdirect.sitemap.paths.stop";
 
-	public static String getSitemapStopPaths() {
-		return getProperty(SITEMAP_STOP_PATHS,Constants.EMPTY);
-	}
+    public static String getSitemapStopPaths() {
+        return getProperty(SITEMAP_STOP_PATHS, Constants.EMPTY);
+    }
 
-	@Property(label = "External Url Added Prefix",
-			description = "Prefix to prepend to external page URLs",
-			value = "http://www.searspartsdirect.com")
-	public static final String EXTERNAL_ADDED_PREFIX = "searspartsdirect.external.added.prefix";
+    @Property(label = "External Url Added Prefix", description = "Prefix to prepend to external page URLs", value = "http://www.searspartsdirect.com")
+    public static final String EXTERNAL_ADDED_PREFIX = "searspartsdirect.external.added.prefix";
 
-	public static String getExternalAddedPrefix() {
-		return getProperty(EXTERNAL_ADDED_PREFIX,Constants.EMPTY);
-	}
+    public static String getExternalAddedPrefix() {
+        return getProperty(EXTERNAL_ADDED_PREFIX, Constants.EMPTY);
+    }
 
-	@Property(label = "External Url Added Suffix",
-			description = "Suffix to append to external page URLs",
-			value = ".html")
-	public static final String EXTERNAL_ADDED_SUFFIX = "searspartsdirect.external.added.suffix";
+    @Property(label = "External Url Added Suffix", description = "Suffix to append to external page URLs", value = ".html")
+    public static final String EXTERNAL_ADDED_SUFFIX = "searspartsdirect.external.added.suffix";
 
-	public static String getExternalAddedSuffix() {
-		return getProperty(EXTERNAL_ADDED_SUFFIX,Constants.EMPTY);
-	}
+    public static String getExternalAddedSuffix() {
+        return getProperty(EXTERNAL_ADDED_SUFFIX, Constants.EMPTY);
+    }
 
-	@Property(label = "PartsDirect User Data API",
-			description = "API will get PD user shopping cart, profile models and logged in state",
-			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username=")
-	public static final String PD_USERDATA_API = "searspartsdirect.userdata.api";
+    @Property(label = "PartsDirect User Data API", description = "API will get PD user shopping cart, profile models and logged in state", value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/userservice/retrive?username=")
+    public static final String PD_USERDATA_API = "searspartsdirect.userdata.api";
 
-	public static String getPDUserDataApiUrl() {
-		return getProperty(PD_USERDATA_API,Constants.EMPTY);
-	}
+    public static String getPDUserDataApiUrl() {
+        return getProperty(PD_USERDATA_API, Constants.EMPTY);
+    }
 
-	@Property(label = "PartsDirect URL",
-			description = "Configurable PartsDirect Url for QA, Stress and production env",
-			value = "partsbetavip.qa.ch3.s.com")
-	public static final String PD_URL = "searspartsdirect.url";
-	public static String getPDUrl() {
-		return getProperty(PD_URL,Constants.EMPTY);
-	}
+    @Property(label = "PartsDirect URL", description = "Configurable PartsDirect Url for QA, Stress and production env", value = "partsbetavip.qa.ch3.s.com")
+    public static final String PD_URL = "searspartsdirect.url";
 
-	@Property(label = "PartsDirect Top Parts API",
-			description = "API will get top parts for a model, category, and brand",
-			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/modelTop/topParts")
-	public static final String PD_TOPPARTS_API = "searspartsdirect.topparts.api";
+    public static String getPDUrl() {
+        return getProperty(PD_URL, Constants.EMPTY);
+    }
 
-	public static String getPDTopPartsApiUrl() {
-		return getProperty(PD_TOPPARTS_API,Constants.EMPTY);
-	}
+    @Property(label = "PartsDirect Top Parts API", description = "API will get top parts for a model, category, and brand", value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/modelTop/topParts")
+    public static final String PD_TOPPARTS_API = "searspartsdirect.topparts.api";
 
-	@Property(label = "PartsDirect Model Subcomponents API",
-			description = "API will get API description, symptom frequencies, and header tabs for a model",
-			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/modelInfo")
-	public static final String PD_MODELSUB_API = "searspartsdirect.modelsub.api";
+    public static String getPDTopPartsApiUrl() {
+        return getProperty(PD_TOPPARTS_API, Constants.EMPTY);
+    }
 
-	public static String getPDModelSubApiUrl() {
-		return getProperty(PD_MODELSUB_API,Constants.EMPTY);
-	}
+    @Property(label = "PartsDirect Model Subcomponents API", description = "API will get API description, symptom frequencies, and header tabs for a model", value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/modelInfo")
+    public static final String PD_MODELSUB_API = "searspartsdirect.modelsub.api";
 
-	@Property(label = "PartsDirect JobCode Parts API",
-			description = "API will get the parts associated for each jobCode",
-			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcodelist/partlist")
-	public static final String PD_JOBCODE_PARTS_API = "searspartsdirect.jobcode.parts.api";
+    public static String getPDModelSubApiUrl() {
+        return getProperty(PD_MODELSUB_API, Constants.EMPTY);
+    }
 
-	public static String getPDJobCodePartsApiUrl() {
-		return getProperty(PD_JOBCODE_PARTS_API, Constants.EMPTY);
-	}
+    @Property(label = "PartsDirect Model List for the cAtegories API", description = "API will get models for the provided category", value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/modelSearch/modelListSearch")
+    public static final String PD_MODELLIST_API = "searspartsdirect.modellist.api";
 
-	@Property(label = "PartsDirect AirFilter Parts",
-			description = "API will get the airfilter parts",
-			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/air-filters/list")
-	public static final String PD_AIRFILTER_PARTS_API = "searspartsdirect.airfilter.parts.api";
+    public static String getPDModelListApiUrl() {
+        return getProperty(PD_MODELLIST_API, Constants.EMPTY);
+    }
 
-	public static String getPDAirFilterPartsApiUrl() {
-		return getProperty(PD_AIRFILTER_PARTS_API, Constants.EMPTY);
-	}
+    @Property(label = "PartsDirect JobCode Parts API", description = "API will get the parts associated for each jobCode", value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/commonSymptoms/jobcodelist/partlist")
+    public static final String PD_JOBCODE_PARTS_API = "searspartsdirect.jobcode.parts.api";
 
-	@Property(label = "PartsDirect AirFilter Dimensions",
-			description = "API will get the airfilter dimensions",
-			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/air-filters/dimensions")
-	public static final String PD_AIRFILTER_DIMENSIONS_API = "searspartsdirect.airfilter.dimension.api";
+    public static String getPDJobCodePartsApiUrl() {
+        return getProperty(PD_JOBCODE_PARTS_API, Constants.EMPTY);
+    }
 
-	public static String getPDAirFilterDimensionApiUrl() {
-		return getProperty(PD_AIRFILTER_DIMENSIONS_API, Constants.EMPTY);
-	}
+    @Property(label = "PartsDirect AirFilter Parts", description = "API will get the airfilter parts", value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/air-filters/list")
+    public static final String PD_AIRFILTER_PARTS_API = "searspartsdirect.airfilter.parts.api";
 
-	@Property(label = "PartsDirect AirFilter Part Details",
-			description = "API will get the airfilter part details",
-			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/air-filters/part-details")
-	public static final String PD_AIRFILTER_PART_DETAILS_API = "searspartsdirect.airfilter.part.details.api";
+    public static String getPDAirFilterPartsApiUrl() {
+        return getProperty(PD_AIRFILTER_PARTS_API, Constants.EMPTY);
+    }
 
-	public static String getPDAirFilterPartDetailsApiUrl() {
-		return getProperty(PD_AIRFILTER_PART_DETAILS_API, Constants.EMPTY);
-	}
+    @Property(label = "PartsDirect AirFilter Dimensions", description = "API will get the airfilter dimensions", value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/air-filters/dimensions")
+    public static final String PD_AIRFILTER_DIMENSIONS_API = "searspartsdirect.airfilter.dimension.api";
 
-	@Property(label = "PartsDirect API Root",
-			description = "PartsDirect API Root",
-			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/")
-	public static final String PD_API_ROOT = "searspartsdirect.api.root";
-	public static String getPDApiRoot() {
-		return getProperty(PD_API_ROOT, Constants.EMPTY);
-	}
+    public static String getPDAirFilterDimensionApiUrl() {
+        return getProperty(PD_AIRFILTER_DIMENSIONS_API, Constants.EMPTY);
+    }
 
-	@Property(label = "PartsDirect API Root Secure",
-			description = "PartsDirect API Root Secure",
-			value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/")
-	public static final String PD_API_ROOT_SECURE = "searspartsdirect.api.root.secure";
-	public static String getPDApiRootSecure() {
-		return getProperty(PD_API_ROOT_SECURE, Constants.EMPTY);
-	}
+    @Property(label = "PartsDirect AirFilter Part Details", description = "API will get the airfilter part details", value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/air-filters/part-details")
+    public static final String PD_AIRFILTER_PART_DETAILS_API = "searspartsdirect.airfilter.part.details.api";
 
-	@Property(label = "HTTP local host name and port",
-			description = "HTTP local host name and port",
-			value = "localhost:4502")
-	public static final String LOCAL_HTTP_N_PORT = "searspartsdirect.local.http";
-	public static String getLocalHttpAndPort() {
-		return getProperty(LOCAL_HTTP_N_PORT, Constants.EMPTY);
-	}
+    public static String getPDAirFilterPartDetailsApiUrl() {
+        return getProperty(PD_AIRFILTER_PART_DETAILS_API, Constants.EMPTY);
+    }
 
-	@Property(label = "HTTPS local host name and port",
-			description = "HTTPS local host name and port",
-			value = "localhost:5433")
-	public static final String LOCAL_HTTPS_N_PORT = "searspartsdirect.local.https";
-	public static String getLocalHttpsAndPort() {
-		return getProperty(LOCAL_HTTPS_N_PORT, Constants.EMPTY);
-	}
+    @Property(label = "PartsDirect API Root", description = "PartsDirect API Root", value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/")
+    public static final String PD_API_ROOT = "searspartsdirect.api.root";
 
-	@Property(label = "Commercial site Url",
-			description = "Commercial site url",
-			value = "partscommercialvip.qa.ch3.s.com")
-	public static final String PD_COMMERCIAL_URL = "searspartsdirect.commercial.url";
-	public static String getCommercialSiteUrl() {
-		return getProperty(PD_COMMERCIAL_URL, Constants.EMPTY);
-	}
+    public static String getPDApiRoot() {
+        return getProperty(PD_API_ROOT, Constants.EMPTY);
+    }
 
-	@Property(label = "SSO Server URL",
-			description = "SSO server url",
-			value = "https://web301p.qa.ch3.s.com:5743/shccas/shcLogin"
-		)
-	public static final String SSO_SERVER_URL = "searspartsdirect.sso.server";
+    @Property(label = "PartsDirect API Root Secure", description = "PartsDirect API Root Secure", value = "http://partsapivip.qa.ch3.s.com/pd-services/v1/")
+    public static final String PD_API_ROOT_SECURE = "searspartsdirect.api.root.secure";
 
-	public static String getSSOServerURL() {
-		return getProperty(SSO_SERVER_URL, Constants.EMPTY);
-	}
+    public static String getPDApiRootSecure() {
+        return getProperty(PD_API_ROOT_SECURE, Constants.EMPTY);
+    }
 
-	@Property(label = "PD Security Path",
-			description = "PD Security Path",
-			value = "/partsdirect/j_spring_cas_security_check"
-		)
-	public static final String PD_SECURITY_PATH = "searspartsdirect.pd.security.path";
+    @Property(label = "HTTP local host name and port", description = "HTTP local host name and port", value = "localhost:4502")
+    public static final String LOCAL_HTTP_N_PORT = "searspartsdirect.local.http";
 
-	public static String getPDSecurityPath() {
-		return getProperty(PD_SECURITY_PATH, Constants.EMPTY);
-	}
+    public static String getLocalHttpAndPort() {
+        return getProperty(LOCAL_HTTP_N_PORT, Constants.EMPTY);
+    }
 
-	@Property(label = "PD 24*7 chat flag",
-			description = "PD  24*7 chat flag",
-			value = "y"
-		)
-	public static final String PD_247CHAT_FLAG = "searspartsdirect.247chat.flag";
+    @Property(label = "HTTPS local host name and port", description = "HTTPS local host name and port", value = "localhost:5433")
+    public static final String LOCAL_HTTPS_N_PORT = "searspartsdirect.local.https";
 
-	public static String getPD247ChatFlag() {
-		return getProperty(PD_247CHAT_FLAG, Constants.EMPTY);
-	}
+    public static String getLocalHttpsAndPort() {
+        return getProperty(LOCAL_HTTPS_N_PORT, Constants.EMPTY);
+    }
 
-	@Property(label = "PD promo flag",
-			description = "PD promo flag",
-			value = "y"
-		)
-	public static final String PD_PROMO_FLAG = "searspartsdirect.promo.flag";
-	public static String getPromoFlag() {
-		return getProperty(PD_PROMO_FLAG, Constants.EMPTY);
-	}
+    @Property(label = "Commercial site Url", description = "Commercial site url", value = "partscommercialvip.qa.ch3.s.com")
+    public static final String PD_COMMERCIAL_URL = "searspartsdirect.commercial.url";
 
-	@Property(label = "PD promo amount",
-			description = "PD promo amount text",
-			value = "$100 or more"
-		)
-	public static final String PD_PROMO_AMOUNT = "searspartsdirect.promo.amount";
-	public static String getPromoAmount() {
-		return getProperty(PD_PROMO_AMOUNT, Constants.EMPTY);
-	}
+    public static String getCommercialSiteUrl() {
+        return getProperty(PD_COMMERCIAL_URL, Constants.EMPTY);
+    }
 
-	@Property(label = "PD promo date",
-			description = "PD promo date text",
-			value = "$100 or more"
-		)
-	public static final String PD_PROMO_DATE = "searspartsdirect.promo.date";
-	public static String getPromoDate() {
-		return getProperty(PD_PROMO_DATE, Constants.EMPTY);
-	}
-	
-	@Property(label = "Air Filter Banner Flag",
-			description = "Air Filter Banner Flag",
-			value = "y"
-		)
-	public static final String PD_AF_BANNER_FLAG = "searspartsdirect.airfilter.banner.flag";
-	public static String getAFBannerFlag() {
-		return getProperty(PD_AF_BANNER_FLAG, Constants.EMPTY);
-	}
+    @Property(label = "SSO Server URL", description = "SSO server url", value = "https://web301p.qa.ch3.s.com:5743/shccas/shcLogin")
+    public static final String SSO_SERVER_URL = "searspartsdirect.sso.server";
 
+    public static String getSSOServerURL() {
+        return getProperty(SSO_SERVER_URL, Constants.EMPTY);
+    }
 
-	// ---- for testing ----
-	public void externalActivateForTesting(final ComponentContext context) throws Exception {
-		activate(context);
-	}
+    @Property(label = "PD Security Path", description = "PD Security Path", value = "/partsdirect/j_spring_cas_security_check")
+    public static final String PD_SECURITY_PATH = "searspartsdirect.pd.security.path";
 
-	// ----< SCR Integration >--------------------------------------------------
-	protected void activate( final ComponentContext context ) throws Exception {
-		// retrieve config values
-		props = context.getProperties();
-	}
+    public static String getPDSecurityPath() {
+        return getProperty(PD_SECURITY_PATH, Constants.EMPTY);
+    }
 
-	protected void deactivate( ComponentContext context ) {
-	}
+    @Property(label = "PD 24*7 chat flag", description = "PD  24*7 chat flag", value = "y")
+    public static final String PD_247CHAT_FLAG = "searspartsdirect.247chat.flag";
 
-	// A note - we do depend here on the properties being the correct types, which contract
-	// we maintain elsewhere. In all cases so far, these are Strings.
-	@SuppressWarnings("unchecked")
-	private static <T> T getProperty(String prop, T defaultValue) {
-		if (props.get(prop) == null) {
-			return defaultValue;
-		} else {
-			return (T)props.get(prop);
-		}
-	}
+    public static String getPD247ChatFlag() {
+        return getProperty(PD_247CHAT_FLAG, Constants.EMPTY);
+    }
+
+    @Property(label = "PD promo flag", description = "PD promo flag", value = "y")
+    public static final String PD_PROMO_FLAG = "searspartsdirect.promo.flag";
+
+    public static String getPromoFlag() {
+        return getProperty(PD_PROMO_FLAG, Constants.EMPTY);
+    }
+
+    @Property(label = "PD promo amount", description = "PD promo amount text", value = "$100 or more")
+    public static final String PD_PROMO_AMOUNT = "searspartsdirect.promo.amount";
+
+    public static String getPromoAmount() {
+        return getProperty(PD_PROMO_AMOUNT, Constants.EMPTY);
+    }
+
+    @Property(label = "PD promo date", description = "PD promo date text", value = "$100 or more")
+    public static final String PD_PROMO_DATE = "searspartsdirect.promo.date";
+
+    public static String getPromoDate() {
+        return getProperty(PD_PROMO_DATE, Constants.EMPTY);
+    }
+
+    @Property(label = "Air Filter Banner Flag", description = "Air Filter Banner Flag", value = "y")
+    public static final String PD_AF_BANNER_FLAG = "searspartsdirect.airfilter.banner.flag";
+
+    public static String getAFBannerFlag() {
+        return getProperty(PD_AF_BANNER_FLAG, Constants.EMPTY);
+    }
+
+    // ---- for testing ----
+    public void externalActivateForTesting(final ComponentContext context)
+            throws Exception {
+        activate(context);
+    }
+
+    // ----< SCR Integration >--------------------------------------------------
+    protected void activate(final ComponentContext context) throws Exception {
+        // retrieve config values
+        props = context.getProperties();
+    }
+
+    protected void deactivate(ComponentContext context) {
+    }
+
+    // A note - we do depend here on the properties being the correct types,
+    // which contract
+    // we maintain elsewhere. In all cases so far, these are Strings.
+    @SuppressWarnings("unchecked")
+    private static <T> T getProperty(String prop, T defaultValue) {
+        if (props.get(prop) == null) {
+            return defaultValue;
+        } else {
+            return (T) props.get(prop);
+        }
+    }
 }

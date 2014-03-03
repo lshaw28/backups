@@ -148,6 +148,7 @@ public final class Constants {
 	public static final String ERROR_CODE_TEMPLATE = ident("/apps/searspartsdirect/templates/errorCodesBrands");
 	public static final String REPAIR_GUIDE_TEMPLATE = ident("/apps/searspartsdirect/templates/repairGuide");
 	public static final String COMMON_PARTS_TEMPLATE = ident("/apps/searspartsdirect/templates/commonParts");
+	public static final String CATEGORY_SYMPTOM_TEMPLATE = ident("/apps/searspartsdirect/templates/categorySymptom");
 
 	public static final String DEFAULT_ICON = ident("svg-icon-er");
 	public static final String NO_ICON = ident("none");

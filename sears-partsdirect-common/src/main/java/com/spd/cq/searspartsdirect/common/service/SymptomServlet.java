@@ -142,7 +142,6 @@ public class SymptomServlet extends SlingSafeMethodsServlet {
                                 symptomFilters.clear();
                                 symptomFilters.put("property", Constants.ASSETS_ID_REL_PATH);
                                 symptomFilters.put("property.value", subcomponents.getSymptomsArr()[i].getId());
-                                log.debug("Done Symptom check Before");
                                 SearchResult SymptomResult = getDataFromCQRepository(Constants.ASSETS_SYMPTOM_PATH, symptomFilters, resourceResolver);
 
                                 for (Hit hit : SymptomResult.getHits()) {
