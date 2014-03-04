@@ -5,5 +5,9 @@
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
 	jcr:primaryType="cq:Component"
 	jcr:title="Sears PartsDirect Air Filter Part Details"
-	componentGroup=".hidden"
-	sling:resourceSuperType="searspartsdirect/components/page/base" />
+	componentGroup="SearsPartsDirect"
+	sling:resourceSuperType="searspartsdirect/components/page/base">
+	<analytics
+		jcr:primaryType="nt:unstructured"
+		cq:trackvars="atcLocation" />
+</jcr:root>
