@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +30,7 @@ import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Properties;
@@ -47,22 +47,12 @@ import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//JIJU :: /etc/spdAssets/scaffolding/productCategory
-/*
- 0 * * * * ?
- on 0 second every minute, every day, every hour… you get the idea.
- 0 15 12 * * ?
- on 0 second, of 15th minute, of 12th hour, every day…. at 12:15 trigger event.
- 0 0-5 10,12,2 ? JAN,APR,JUL,OCT 2012-2020
- on 0 second, of 0 minute through 5th minute, at 10am 12noon AND 2pm, everyday, in January, April, July AND October, from 2012 until 2020.
- */
 
 @Component(immediate = false, metatype = true, label = "SiteMap", description = "Component returns sitemap xml")
 @Service(value = { java.lang.Runnable.class, CategorySiteMapHelper.class })
 @Properties({
         @Property(name = "scheduler.expression", label = "Schedular expression", value = "", description = "specify cron expression"),
-        // @Property(name = "scheduler.period", longValue = 120, description =
-        // "The time in seconds between task execution, default is 1 hr."),
+
         @Property(name = "scheduler.concurrent", label = "run concurrent jobs?", boolValue = false, description = "Run jobs concurrently, default is false.") })
 // @Property(name = "scheduler.expression", value = "0 15 4 * * ?", description
 public class CategorySiteMapHelper implements Runnable {
@@ -70,8 +60,7 @@ public class CategorySiteMapHelper implements Runnable {
     @Reference
     private ResourceResolverFactory resourceResolverFactory;
 
-    private static final Logger log = LoggerFactory
-            .getLogger(CategorySiteMapHelper.class);
+    private static final Logger log = LoggerFactory.getLogger(CategorySiteMapHelper.class);
 
     protected ComponentContext context = null;
 
@@ -128,7 +117,6 @@ public class CategorySiteMapHelper implements Runnable {
     public List<String> getJCRCategories() throws LoginException {
 
         List<String> categoryList = new ArrayList<String>();
-        // Node currentNode = getCurrentNode();
         ResourceResolver resourceResolver = null;
         resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
         Session session = resourceResolver.adaptTo(Session.class);
@@ -137,7 +125,7 @@ public class CategorySiteMapHelper implements Runnable {
                 + "and contains('cq:template','/apps/searspartsdirect/templates/category')";
 
         try {
-//            log.info("getJCRCategories()");
+           log.info("getJCRCategories()");
 
             Query query = session.getWorkspace().getQueryManager()
                     .createQuery(searchString, Query.JCR_SQL2);
@@ -163,14 +151,13 @@ public class CategorySiteMapHelper implements Runnable {
     public Set<String> getJCRSymptoms(String category) throws LoginException {
 
         Set<String> symptoms = new HashSet<String>();
-        // Node currentNode = getCurrentNode();
         ResourceResolver resourceResolver = null;
         resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
         Session session = resourceResolver.adaptTo(Session.class);
         String searchString = "SELECT * FROM [cq:PageContent] WHERE ISDESCENDANTNODE([/etc/spdAssets/scaffolding/symptom/"+ category.toLowerCase() + "/])";
-//        log.info("rekkkkk:" + searchString);
+
         try {
-            log.info("getJCRSymptoms for:step1 " + category);
+//            log.info("getJCRSymptoms for:step1 " + category);
 
             Query query = session.getWorkspace().getQueryManager()
                     .createQuery(searchString, Query.JCR_SQL2);
@@ -179,7 +166,6 @@ public class CategorySiteMapHelper implements Runnable {
             while (it.hasNext()) {
                 Node node = it.nextNode();
                 String symptom = node.getProperty("id").getString();
-//                log.info("getJCRSymptoms: Category and title: step2 "+ category + " " + symptom);
                 symptoms.add(symptom);
             }
 
@@ -194,14 +180,12 @@ public class CategorySiteMapHelper implements Runnable {
     public List<String> getJCRBrands() throws LoginException {
 
         List<String> brands = new ArrayList<String>();
-        // Node currentNode = getCurrentNode();
         ResourceResolver resourceResolver = null;
         resourceResolver = resourceResolverFactory.getAdministrativeResourceResolver(null);
         Session session = resourceResolver.adaptTo(Session.class);
 
         String searchString = "SELECT * FROM [cq:PageContent] WHERE ISDESCENDANTNODE([/etc/spdAssets/scaffolding/brand/]) and"
                 + " contains('cq:scaffolding','/etc/scaffolding/brand')";
-//        log.info("brand Query:" + searchString);
         try {
             Query query = session.getWorkspace().getQueryManager().createQuery(searchString, Query.JCR_SQL2);
             QueryResult results = query.execute();
@@ -209,7 +193,6 @@ public class CategorySiteMapHelper implements Runnable {
             while (it.hasNext()) {
                 Node node = it.nextNode();
                 String brand = node.getProperty("jcr:title").getString();
-//                log.info("getJCRSymptoms: Category and title: step2 "+ category + " " + symptom);
                 brands.add(brand);
             }
 
@@ -223,34 +206,40 @@ public class CategorySiteMapHelper implements Runnable {
 
 
     public void createSiteMap(List<String> categoryList, List<String> brandList)
-            throws ValueFormatException, PathNotFoundException,
-            UnsupportedEncodingException, JSONException, RepositoryException,
-            LoginException {
-        StringBuffer sitemapEntryStr = new StringBuffer();
-        int fileIndex = 0;
-        // log.info("Category : " + categoryList.size());
-
+        throws ValueFormatException, PathNotFoundException,
+        UnsupportedEncodingException, JSONException, RepositoryException, LoginException {
+        List sitemapEntries = new ArrayList<StringBuilder>();
         for (String categoryStr : categoryList) {
-           if (categoryStr.equals("Range")) {
-            JSONObject jsonObject = new JSONObject();
-            Set<String> cqSymptoms = getJCRSymptoms(categoryStr.trim().replace(" ", "-"));
+        
+        JSONObject jsonObject = new JSONObject();
+        Set<String> cqSymptoms = getJCRSymptoms(categoryStr.trim().replace(" ", "-"));
 
-            parseAPIResponse(jsonObject, categoryStr, 0, 0);
-            Set<String> pdSymptoms = getPdSymptoms(jsonObject);
-            List jsonArrayList = new ArrayList();
-            jsonArrayList.add(retrieveJSONArray(jsonObject));
-            jsonArrayList = checkforMoreData(jsonObject, jsonArrayList,categoryStr);
-
-            // jsonObject.put("models", allModels);
-            if (isCategoryWithSymptoms(cqSymptoms,pdSymptoms)) {
-                sitemapEntryStr.append(createSiteMapURLs(jsonArrayList,brandList));
-                saveSitemapURL(sitemapEntryStr, categoryStr);
-                log.info("appending sitemaps for " + categoryStr);
-            }
-            fileIndex++;
-            sitemapEntryStr.delete(0, sitemapEntryStr.length());
-            }
+        parseAPIResponse(jsonObject, categoryStr, 0, 0);
+        Set<String> pdSymptoms = getPdSymptoms(jsonObject);
+        if (isCategoryWithSymptoms(cqSymptoms,pdSymptoms)) {
+               List jsonArrayList = new ArrayList();
+               jsonArrayList.add(retrieveJSONArray(jsonObject));
+               jsonArrayList = checkforMoreData(jsonObject, jsonArrayList,categoryStr);
+               List<JSONObject> jsonObjects = getModelObjects(jsonArrayList);
+            
+                  sitemapEntries.addAll(createSiteMapURLs(jsonObjects,brandList));
+                  saveSitemapURL(sitemapEntries, categoryStr);
+                   log.info("appending sitemaps for " + categoryStr);
+               }
+            sitemapEntries.clear();
+        }
+        log.info("******************SiteMaps are created *******************");
     }
+
+    private List<JSONObject> getModelObjects(List jsonArrayList) throws JSONException {
+        List<JSONObject> jsonObjects = new ArrayList<JSONObject>();
+        for(int i=0;i<jsonArrayList.size();i++) {
+            JSONArray jsa = (JSONArray)jsonArrayList.get(i);
+            for (int j = 0; j < jsa.length(); j++) {
+                jsonObjects.add(jsa.getJSONObject(j));
+            }
+        }
+        return jsonObjects;
     }
 
     private Set<String> getPdSymptoms(JSONObject jsonObject) throws JSONException {
@@ -267,15 +256,14 @@ public class CategorySiteMapHelper implements Runnable {
                 symptoms.add(tokenizer.nextToken().trim());
             }
         }
-        log.info("getPdSymptoms() "+symptoms.toString());
+//        log.info("getPdSymptoms() "+symptoms.toString());
         return symptoms;
     }
 
     private List checkforMoreData( JSONObject jsonObject, List jsonArrayList,String categoryStr) throws JSONException, ValueFormatException,
             PathNotFoundException, UnsupportedEncodingException, RepositoryException {
+        
         JSONObject tmpObj = new JSONObject(jsonObject.getString("jsonCategoryDetails"));
-        log.info("getting checkFor more data");
-        List allModels = new ArrayList();
         int count = 0;
         int offset = 0;
         int maxResults = 0;
@@ -290,31 +278,30 @@ public class CategorySiteMapHelper implements Runnable {
         }
         offset = offset + maxResults;
         maxResults = count;
-        log.info("offset "+offset);
-        log.info("maxResults "+maxResults);
-        log.info("count "+count);
+//        log.info("offset "+offset);
+//        log.info("maxResults "+maxResults);
+//        log.info("count "+count);
         while (offset < count) {
             jsonObject = new JSONObject(); 
             parseAPIResponse(jsonObject, categoryStr, offset, maxResults);
             tmpObj = new JSONObject(jsonObject.getString("jsonCategoryDetails"));
-            allModels.add((JSONArray)tmpObj.get("models"));
+            jsonArrayList.add((JSONArray)tmpObj.get("models"));
             count = tmpObj.getInt("count");
             offset = tmpObj.getInt("offset");
             maxResults = tmpObj.getInt("maxResults");
-            log.info("offset inside"+offset);
-            log.info("maxResults inside"+maxResults);
-            log.info("count inside"+count);
+//            log.info("offset inside"+offset);
+//            log.info("maxResults inside"+maxResults);
+//            log.info("count inside"+count);
             offset = offset + maxResults;
             maxResults = count;
         }
-        return allModels;
+        return jsonArrayList;
     }
 
     private boolean isCategoryWithSymptoms(Set<String> cqSymptoms ,Set<String> pdSymptoms  ){
         boolean result = false;
         for(String symptom:pdSymptoms) {
             if ( cqSymptoms.contains(symptom)) {
-                log.info("Matching Symptom "+symptom);
                 result = true;
                 break;
             }
@@ -322,78 +309,60 @@ public class CategorySiteMapHelper implements Runnable {
         return result;
     }
 
-
-
-    // ex: //brand/cat/model
     // http://www.searspartsdirect.com/kenmore/dishwasher/model-66513213k900-repair.html
-    private StringBuffer createSiteMapURLs(List jsonjsonArrayList,List<String> brandList)
-            throws JSONException {
+    private List<StringBuilder> createSiteMapURLs(List<JSONObject> jsonObjects,List<String> brandList) throws JSONException {
 //        JSONArray jsa = new JSONArray();
-        StringBuffer sitemapEntryStr = new StringBuffer();
-        if (!jsonjsonArrayList.isEmpty()) {
-            sitemapEntryStr
-            .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-            sitemapEntryStr
-            .append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\">");
-
-//            log.info("jsonjsonArrayList while building sitemap :"+jsonjsonArrayList.toString());
-            for(Object array:jsonjsonArrayList) {
-                JSONArray jsa = (JSONArray)array;
-                for (int i = 0; i < jsa.length(); i++) {
-                     String brand = jsa.getJSONObject(i).get("brandName").toString().trim();
-                     if ( brandList.contains(brand)) {
-                        sitemapEntryStr.append("<url>");
-                        sitemapEntryStr.append("<loc>");
-                        sitemapEntryStr.append("http://www.searspartsdirect.com/");
-                        sitemapEntryStr.append(jsa.getJSONObject(i).get("brandName").toString());
-                        sitemapEntryStr.append("/");
-                        sitemapEntryStr.append(jsa.getJSONObject(i).get("categoryName").toString().trim());
-                        sitemapEntryStr.append("/");
-                        sitemapEntryStr.append("model-");
-                        sitemapEntryStr.append(jsa.getJSONObject(i).get("modelNumber").toString().trim());
-                        sitemapEntryStr.append("-repair.html");
-                        sitemapEntryStr.append("</loc>");
-                        sitemapEntryStr.append("<priority>1.0</priority>");
-                        sitemapEntryStr.append("</url>");
-                        sitemapEntryStr.append(System.getProperty("line.separator"));
-                    } 
-                        
+        List<StringBuilder> urlList = new ArrayList<StringBuilder>();
+        StringBuilder sitemapEntryStr = new StringBuilder();
+        boolean fileStart =Boolean.TRUE;
+        int count = 0;
+        if (!(jsonObjects.isEmpty())) {
+            for(int i=0;i<jsonObjects.size();i++) {
+               if ( fileStart ) {
+                   sitemapEntryStr = new StringBuilder();
+                   sitemapEntryStr.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+                   sitemapEntryStr
+                   .append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\">");
+               fileStart = Boolean.FALSE;
+               }
+                JSONObject  jsonObject = jsonObjects.get(i);
+                 String brand = jsonObject.get("brandName").toString().trim();
+                 if ( brandList.contains(brand)) {
+                     count++;
+                    sitemapEntryStr.append("<url>");
+                    sitemapEntryStr.append("<loc>");
+                    sitemapEntryStr.append("http://www.searspartsdirect.com/");
+                    sitemapEntryStr.append(StringEscapeUtils.escapeXml(jsonObject.get("brandName").toString()));
+                    sitemapEntryStr.append("/");
+                    sitemapEntryStr.append(StringEscapeUtils.escapeXml(jsonObject.get("categoryName").toString().trim()));
+                    sitemapEntryStr.append("/");
+                    sitemapEntryStr.append("model-");
+                    sitemapEntryStr.append(StringEscapeUtils.escapeXml(jsonObject.get("modelNumber").toString().trim()));
+                    sitemapEntryStr.append("-repair.html");
+                    sitemapEntryStr.append("</loc>");
+                    sitemapEntryStr.append("<priority>1.0</priority>");
+                    sitemapEntryStr.append("</url>");
+                    sitemapEntryStr.append(System.getProperty("line.separator"));
                 }
-    
+                 /**
+                  * The maximum number of entries in a site map file is 50000
+                  */
+             if ( (count+1 == 50000) || (i+1 == jsonObjects.size()) ) {
+//                 log.info("count in createSiteMapURLs is "+count);
+//                 log.info("i in createSiteMapURLs is "+i);
+                 sitemapEntryStr.append("</urlset>");
+                 urlList.add(sitemapEntryStr);
+                 fileStart = Boolean.TRUE;
+                 count = 0;
+             }
             }
-            sitemapEntryStr.append("</urlset>");
+
         }
-       /* if (tmpObj.has("models")) {
-            sitemapEntryStr
-                    .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-            sitemapEntryStr
-                    .append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\">");
 
-            jsa = tmpObj.getJSONArray("models");
-            for (int i = 0; i < jsa.length(); i++) {
-                sitemapEntryStr.append("<url>");
-                sitemapEntryStr.append("<loc>");
-                sitemapEntryStr.append("http://www.searspartsdirect.com/");
-                sitemapEntryStr.append(jsa.getJSONObject(i).get("brandName").toString());
-                sitemapEntryStr.append("/");
-                sitemapEntryStr.append(jsa.getJSONObject(i).get("categoryName").toString());
-                sitemapEntryStr.append("/");
-                sitemapEntryStr.append("model-");
-                sitemapEntryStr.append(jsa.getJSONObject(i).get("modelNumber").toString());
-                sitemapEntryStr.append("-repair.html");
-                sitemapEntryStr.append("</loc>");
-                sitemapEntryStr.append("<priority>1.0</priority>");
-                sitemapEntryStr.append("</url>");
-                sitemapEntryStr.append(System.getProperty("line.separator"));
-            }
-
-            sitemapEntryStr.append("</urlset>");
-            // log.info("CHECK: " + sitemapEntryStr.toString());
-        }*/
-        return sitemapEntryStr;
+        return urlList;
     }
 
-    private void saveSitemapURL(StringBuffer mapStr, String category)
+    private void saveSitemapURL(List<StringBuilder> mapStr, String category)
             throws UnsupportedRepositoryOperationException,
             RepositoryException, LoginException {
         ResourceResolver resourceResolver = null;
@@ -402,18 +371,20 @@ public class CategorySiteMapHelper implements Runnable {
         String destinationNodePath = "var/pdsitemap";
         Node rootNode = session.getRootNode();
         Node parentNode = rootNode.getNode(destinationNodePath);
-        String localFileName = "sitemap_" + category + ".xml";
-        String pathUrl = parentNode.getPath() + "/" + localFileName;
+        for(int i =0; i<mapStr.size();i++) {
+            String localFileName = "sitemap-model-repair-" + category +"_"+i+ ".xml";
+            String pathUrl = parentNode.getPath() + "/" + localFileName;
 
-        Value data = session.getValueFactory().createValue(mapStr.toString());
+            Value data = session.getValueFactory().createValue(mapStr.get(i).toString());
 
-        Node myNewNode = parentNode.addNode(localFileName, "nt:file");
-        Node contentNode = myNewNode.addNode("jcr:content", "nt:resource");
+            Node myNewNode = parentNode.addNode(localFileName, "nt:file");
+            Node contentNode = myNewNode.addNode("jcr:content", "nt:resource");
 
-        contentNode.setProperty("jcr:data", data);
-        contentNode.setProperty("jcr:mimeType", "text/xml");
+            contentNode.setProperty("jcr:data", data);
+            contentNode.setProperty("jcr:mimeType", "text/xml");
 
-        session.save();
+            session.save();
+        }
         log.info("*****************Completed savesitemap**************************");
 
     }
@@ -422,8 +393,6 @@ public class CategorySiteMapHelper implements Runnable {
     private void parseAPIResponse(JSONObject jsonObject, String categoryId, int offset,int maxResults) throws JSONException, ValueFormatException,
             PathNotFoundException, RepositoryException, UnsupportedEncodingException {
         HttpClient client = new HttpClient();
-        log.info("calling the api : offset "+offset);
-        log.info("calling the api : maxResults "+maxResults);
         String API_URL = "http://partsapivip.qa.ch3.s.com/pd-services/v1/modelSearch/modelListSearch?category=";
         API_URL = API_URL + URLEncoder.encode(categoryId, "UTF-8");
         if (offset != 0) {
