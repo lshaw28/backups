@@ -24,6 +24,7 @@ var addToCart = Class.extend(function () {
 			this.divId = '';
 			this.plsId = '';
 			this.subPer = 0;
+			this.component = '';
 			// Elements
 			this.cartItems = {
 				header: null,
@@ -42,8 +43,7 @@ var addToCart = Class.extend(function () {
 		 * @return {void}
 		 */
 		setProperties: function () {
-			var self = this,
-				su = window.SPDUtils;
+			var self = this;
 
 			// Retrieve properties
 			self.partNumber = self.el.attr('data-partnumber');
@@ -52,6 +52,8 @@ var addToCart = Class.extend(function () {
 			if (self.el.attr('data-subper') != undefined) {
 				self.subPer = self.el.attr('data-subper');
 			}
+			self.location = self.el.attr('data-location');
+			self.component = self.el.attr('data-component');
 			// Retrieve elements
 			self.cartItems.header = $('#cartShop .cartShopHeader_js');
 			self.cartItems.checkOut = $('#cartShop .cartShopCheckOut_js');
@@ -60,6 +62,16 @@ var addToCart = Class.extend(function () {
 			self.cartItems.count = $('.cartShopCount_js', self.cartItems.totals);
 			self.cartItems.countBadge = $('#cartShop .count-badge');
 			self.cartEmpty = $('#cartShop .cartShopEmpty_js');
+		},
+		/**
+		 * Set instance Omniture for the click event
+		 * @return {void}
+		 */
+		setOmniture: function () {
+			var self = this;
+
+			// Set CQ values
+			SPDUtils.trackEvent({event: '', values: {atcLocation: self.location}, componentPath: self.component}, 'Add_To_Cart_#templateName');
 		},
 		/**
 		 * Add item to cart
@@ -234,6 +246,7 @@ var addToCart = Class.extend(function () {
 				e.preventDefault();
 				//Properties are set here in case data on the Add to Cart button is updated with javascript
                 self.setProperties();
+                self.setOmniture();
 				self.addItem();
 			});
 		}
