@@ -9,5 +9,6 @@
 	sling:resourceSuperType="searspartsdirect/components/page/base">
 	<analytics
 		jcr:primaryType="nt:unstructured"
+		cq:trackevents="atcEvent"
 		cq:trackvars="atcLocation" />
 </jcr:root>
