@@ -362,7 +362,6 @@
 				componentName = componentName.replace('#templateName', templateName);
 			}
 			params.values.componentName = componentName;
-			console.log('should call omniture here');
 
 			// Check tracking is available
 			if (typeof CQ_Analytics.record === 'function') {

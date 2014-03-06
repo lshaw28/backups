@@ -41,7 +41,7 @@
 					<input type="text" class="addToCartQuantity_js" value="1" />
 				</div>
 				<div class="partListItemAdd">
-					<button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
+					<button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" data-location="Symptom Part List Page" data-component="<%=resource.getResourceType()%>" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
 				</div>
 			</div>
 		</div>
@@ -83,7 +83,7 @@
 				</div>
 				<div class="partListItemAdd">
 					<% // Please replace the values in the data- attributes with actual values %>
-					<button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
+					<button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" data-location="Symptom Part List Page" data-component="<%=resource.getResourceType()%>" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
 				</div>
 			</div>
 		</div>

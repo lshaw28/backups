@@ -45,7 +45,7 @@
 					<span class="Qty">Qty </span><input type="text" class="addToCartQuantity_js" value="1" />
 				</div>
 				<div class="span3">
-					<button type="button" data-partnumber="${part.number}" data-divid="${part.productGroupId}" data-plsid="${part.supplierId}" class="new-btn addToCart_js">Add to Cart</button>
+					<button type="button" data-partnumber="${part.number}" data-divid="${part.productGroupId}" data-plsid="${part.supplierId}" data-location="Symptom Part List Page" data-component="<%=resource.getResourceType()%>" class="new-btn addToCart_js">Add to Cart</button>
 				</div>
 			</div>
 		</div>

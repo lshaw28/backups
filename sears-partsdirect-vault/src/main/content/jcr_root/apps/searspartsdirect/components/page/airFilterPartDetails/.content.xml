@@ -10,5 +10,5 @@
 	<analytics
 		jcr:primaryType="nt:unstructured"
 		cq:trackevents="atcEvent"
-		cq:trackvars="atcLocation" />
+		cq:trackvars="atcLocation, atcProduct" />
 </jcr:root>

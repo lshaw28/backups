@@ -71,7 +71,7 @@ var addToCart = Class.extend(function () {
 			var self = this;
 
 			// Set CQ values
-			SPDUtils.trackEvent({event: '', values: {atcLocation: self.location}, componentPath: self.component}, 'Add_To_Cart_#templateName');
+			SPDUtils.trackEvent({event: 'atcEvent', values: {atcLocation: self.location, atcProduct: ';' + self.divId + self.plsId + self.partNumber}, componentPath: self.component}, 'Add_To_Cart_#templateName');
 		},
 		/**
 		 * Add item to cart
