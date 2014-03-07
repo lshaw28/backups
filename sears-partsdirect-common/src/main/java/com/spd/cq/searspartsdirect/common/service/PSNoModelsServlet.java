@@ -68,7 +68,7 @@ public class PSNoModelsServlet extends SlingSafeMethodsServlet {
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
 		
-		String PRODUCT_BRAND_URL= settingsHelper.getAPIRoot()+"categories/";
+		String PRODUCT_BRAND_URL= settingsHelper.getPartsDirectProductAPI()+"categories/";
 		 
 
 		if (StringUtils.isNotEmpty(flag)) {

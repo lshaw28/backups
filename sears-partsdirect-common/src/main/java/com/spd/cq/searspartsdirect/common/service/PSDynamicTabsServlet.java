@@ -63,7 +63,7 @@ public class PSDynamicTabsServlet extends SlingSafeMethodsServlet {
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
 		
-		String API_URL = settingsHelper.getAPIRoot()+"model-tabs-details?formattedModelNumber=";
+		String API_URL = settingsHelper.getPartsDirectProductAPI()+"model-tabs-details?formattedModelNumber=";
 		
 		if (StringUtils.isNotEmpty(modelNumber)&&StringUtils.isNotEmpty(brandId)&&StringUtils.isNotEmpty(categoryId)){
 			try {

@@ -37,11 +37,14 @@
 <c:if test="${empty searchInstructions}"><c:set var="searchInstructions">Enter your whole model number, including dashes (-) and periods (.). Watch out for characters that look similar, such as the letter "O" and the numeral "0".</c:set></c:if>
 	<p><c:out value="${searchInstructions}" /></p>
 
+<c:set var="needHelp"><cq:text property="needHelp" placeholder="" /></c:set>
+<c:if test="${empty needHelp}"><c:set var="needHelp">Need help? Use our </c:set></c:if>
+
 <c:set var="linkText"><cq:text property="linkText" placeholder="" /></c:set>
 <c:if test="${empty linkText}"><c:set var="linkText" value="model number finder" /></c:if>
 <c:set var="linkText"><cq:text property="linkText" placeholder=""/></c:set><%--
 	--%><c:if test="${empty linkText}"><c:set var="linkText">model number finder</c:set></c:if><%--
-	--%><p><a href="#findMyModel" class="searchPanelFinder_js"><c:out value="${linkText}" /></a></p>
+	--%><p><c:out value="${needHelp}" /><a href="#findMyModel" class="searchPanelFinder_js"><c:out value="${linkText}" /></a></p>
 
 <script>
 var flag =0;

@@ -70,7 +70,7 @@ public class PSModelDiagramPartListServlet extends SlingSafeMethodsServlet {
 		JSONObject jsonObject = new JSONObject();
 		response.setHeader("Content-Type", "application/json");
 		
-		API_ROOT = serviceHelper.getAPIRoot();
+		API_ROOT = serviceHelper.getPartsDirectProductAPI();
 		
 		if (StringUtils.isNotEmpty(modelNumber) && StringUtils.isNotEmpty(brandId) && StringUtils.isNotEmpty(productCategoryId)
 				&& StringUtils.isNotEmpty(diagramPageId) && StringUtils.isNotEmpty(documentId)){

@@ -1,8 +1,8 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 
-<%@page import="com.spd.cq.searspartsdirect.common.helpers.PSsettingsHelper"%>
+<%@page import="com.spd.cq.searspartsdirect.common.helpers.PSSettingsHelper"%>
 <%
-PSsettingsHelper shObject =  sling.getService(PSsettingsHelper.class);
+PSSettingsHelper shObject =  sling.getService(PSSettingsHelper.class);
 String apiKey="";
  
 if(shObject.getPartsDirectProductAPI()!=null){

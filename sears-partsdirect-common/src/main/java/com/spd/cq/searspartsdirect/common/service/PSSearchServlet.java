@@ -84,7 +84,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 		response.setHeader("Content-Type", "application/json");
 		
 		// getting api root from felix
-		API_ROOT = serviceHelper.getAPIRoot();
+		API_ROOT = serviceHelper.getPartsDirectProductAPI();
 		
 		if (StringUtils.isNotEmpty(modelNumber) && StringUtils.isNotEmpty(flag)){
 			try {

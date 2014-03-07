@@ -29,7 +29,7 @@ public class PSSettingsHelper {
 		log.info("PartsDirect SettingsHelper : deactivate() is called.");
 	}
 
-	public String getAPIRoot() {
+	public String getPartsDirectProductAPI() {
 		Object apiKey = (Object) context.getProperties().get("apiUrl");
 		if (apiKey == null) {
 			return null;
