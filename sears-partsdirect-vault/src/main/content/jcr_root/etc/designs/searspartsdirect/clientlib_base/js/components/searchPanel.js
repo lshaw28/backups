@@ -35,8 +35,9 @@ var searchPanel = Class.extend(function () {
 		 */
 		selectType: function (el, click) {
 			var self = this,
-				value = self.getValue(),
 				action = mainSitePath + '/partsdirect/' + el.data('postpath') + '/',
+				selectType = el.data('postpath'),
+				value = self.getValue(selectType),
 				label = el.data('label'),
 				modelNumber = '',
 				partNumber = '';
@@ -66,19 +67,51 @@ var searchPanel = Class.extend(function () {
 		 * Sanitises the current value
 		 * @return Sanitised value
 		 */
-		getValue: function () {
+		getValue: function (selectType) {
 			var self = this,
 				field = $('#searchBarField'),
-				value = field.attr('value');
+				selectMethod = selectType,
+				value = field.attr('value'),
+                searchedTerm = value;
 
 			// Make sure the value isn't the help text
 			if (value === field.data('inputhelp') || value === field.data('inputhelpmobile')) {
 				value = '';
 			}
-			// Sanitise non-alpha-numeric characters
-			value = value.replace(/[^0-9A-Za-z]/g, '');
-			field.attr('value', value);
 
+			if(selectMethod === 'part-number') {
+	            value = value.replace(/\$/g, '');
+	            if (value.indexOf('/') != -1){
+	            	value = value.replace(/\//g, '@SLASH@');
+	            } else if ( value.indexOf('%') != -1 ){
+	            	value = value.replace(/\%/g, '@SLASHPERCENT@');
+	            }
+			} else {
+				value = value.replace(/\'/g, '');            
+				value = value.replace(/\%/g, '');	           
+				value = value.replace(/\#/g, '');	           
+				value = value.replace(/\&/g, '');
+				value = value.replace(/\(/g, '');
+				value = value.replace(/\)/g, '');
+				value = value.replace(/\-/g, '');
+				value = value.replace(/\*/g, '');
+				value = value.replace(/\$/g, '');
+				value = value.replace(/\^/g, '');
+				value = value.replace(/\,/g, '');
+				value = value.replace(/\"/g, '');
+		        value = value.replace(/\//g, '');
+		        value = value.replace(/\?/g, '');
+		        value = value.replace(/\\/g, '');
+
+	            if (value.indexOf('/') != -1){
+	            	value = value.replace(/\//g, '');
+	            } else if ( value.indexOf('%') != -1 ){
+	            	value = value.replace(/\%/g, '');
+	            }
+			}
+			searchedTerm = searchedTerm.replace(/[^0-9A-Za-z]/g, '');
+			// Sanitise non-alpha-numeric characters
+			field.attr('value', searchedTerm);
 			return value;
 		},
 		/**
@@ -154,7 +187,7 @@ var searchPanel = Class.extend(function () {
 						UpdatedSearchTerm = searchTerm.toUpperCase();
 
 					for (i = 0; i < self.airFilterParts.length; ++i) {
-						
+
 						var airFilterPartsName = self.airFilterParts[i].name,
 						UpdatedAirFilterPartsName = airFilterPartsName.toUpperCase();
 						
