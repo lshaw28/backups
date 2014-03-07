@@ -1,6 +1,7 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%><%
 %><body class="${cqCssClass}"><%
 %><cq:include path="clientcontext" resourceType="cq/personalization/components/clientcontext" /><%
+%> <a id="skip-nav" href="#content" tabindex="0">skip navigation</a><%
 %>	<a name="brandBar"></a><%
 %><cq:include path="brandBar" resourceType="/apps/searspartsdirect/components/base/brandBar" /><%
 %>	<div id="viewport">

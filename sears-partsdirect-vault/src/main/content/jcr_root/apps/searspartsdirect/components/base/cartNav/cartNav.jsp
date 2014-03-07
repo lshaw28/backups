@@ -3,13 +3,13 @@
 	<div class="cartNavShadow"></div>
 	<li id="cartRecents" class="cartNavItem">
 		<div class="btn-group">
-			<a data-toggle="false">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
+			<a href="#" tabindex="0" data-toggle="false">Recently Viewed <i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu"></ul>
 		</div>
 	</li>
 	<li id="cartModels" class="cartNavItem">
 		<div class="btn-group">
-			<a data-toggle="dropdown" href="#">My Models&nbsp;<span class="count-badge parentheses">0</span>&nbsp;<i class="icon-caret-down">&nbsp;</i></a>
+			<a tabindex="0" data-toggle="dropdown" href="#">My Models&nbsp;<span class="count-badge parentheses">0</span>&nbsp;<i class="icon-caret-down">&nbsp;</i></a>
 			<ul class="dropdown-menu">
 				<li id="cartModelItems" class="inactive"></li>
 				<li id="cartUserEdit" class="inactive"><a class="new-btn" href="${secureMainSitePath}/partsdirect/myProfileMyOwnedModels.pd">Edit List</a></li>
@@ -21,7 +21,7 @@
 	</li>
 	<li id="cartShop" class="cartNavItem">
 		<div class="btn-group">
-			<a data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i><span class="hidden-phone"> Cart</span>&nbsp;<span class="count-badge">0</span>&nbsp;<i class="icon-caret-down hidden-phone">&nbsp;</i></a>
+			<a tabindex="0" data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i><span class="hidden-phone"> Cart</span>&nbsp;<span class="count-badge">0</span>&nbsp;<i class="icon-caret-down hidden-phone">&nbsp;</i></a>
 			<ul class="dropdown-menu">
 				<li class="cart-title"><strong>Your Shopping Cart</strong></li>
 				<li class="cartShopCheckout_js cartShopCheckOut_js inactive"><a class="new-btn new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Checkout Now</a></li>
