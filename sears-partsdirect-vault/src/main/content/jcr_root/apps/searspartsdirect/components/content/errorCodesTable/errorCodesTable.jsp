@@ -9,7 +9,7 @@
 </c:if>
 
 <div class="table-wrapper">
-	<table class="responsiveTable">
+	<table class="responsiveTable" summary="Error Codes">
 		<thead>
 			<tr>
 				<th class="tbl-col-error-code">Error Code</th>

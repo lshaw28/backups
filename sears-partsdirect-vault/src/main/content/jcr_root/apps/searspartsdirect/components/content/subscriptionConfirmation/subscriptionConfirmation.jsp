@@ -46,7 +46,7 @@
 	</div>
 	<div class="row-fluid">
 		<div class="span10 offset1">
-			<table class="responsiveTable alwaysOpen">
+			<table class="responsiveTable alwaysOpen" summary="Subscription Detail">
 				<thead>
 					<tr>
 						<th>Part #</th>
