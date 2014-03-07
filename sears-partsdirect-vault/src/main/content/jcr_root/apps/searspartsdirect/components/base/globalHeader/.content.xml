@@ -9,5 +9,5 @@
 	componentGroup="SearsPartsDirect">
 <analytics
 		jcr:primaryType="nt:unstructured"
-		cq:trackvars="channel" />
+		cq:trackvars="channel,pageNameVar" />
 </jcr:root>
