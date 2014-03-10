@@ -93,7 +93,6 @@ var searchPanel = Class.extend(function () {
 				value = value.replace(/\&/g, '');
 				value = value.replace(/\(/g, '');
 				value = value.replace(/\)/g, '');
-				value = value.replace(/\-/g, '');
 				value = value.replace(/\*/g, '');
 				value = value.replace(/\$/g, '');
 				value = value.replace(/\^/g, '');
