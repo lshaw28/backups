@@ -23,7 +23,7 @@ var addToCart = Class.extend(function () {
 			this.partNumber = '';
 			this.divId = '';
 			this.plsId = '';
-			this.subPer = 0;
+			this.subPer = -1;
 			this.component = '';
 			// Elements
 			this.cartItems = {
@@ -68,10 +68,14 @@ var addToCart = Class.extend(function () {
 		 * @return {void}
 		 */
 		setOmniture: function () {
-			var self = this;
+			var self = this,
+				prodVar = ';' + self.divId + self.plsId + self.partNumber;
 
 			// Set CQ values
-			SPDUtils.trackEvent({event: 'atcEvent', values: {atcLocation: self.location, atcProduct: ';' + self.divId + self.plsId + self.partNumber}, componentPath: self.component}, 'Add_To_Cart_#templateName');
+			if (self.subPer > -1) {
+				prodVar += ';;;eVar=57=' + self.subPer;
+			}
+			SPDUtils.trackEvent({event: 'atcEvent', values: {atcLocation: self.location, atcProduct: prodVar}, componentPath: self.component}, 'Add_To_Cart_#templateName');
 		},
 		/**
 		 * Add item to cart
