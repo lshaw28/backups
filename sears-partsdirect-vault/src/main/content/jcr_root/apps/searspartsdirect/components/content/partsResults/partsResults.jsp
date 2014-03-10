@@ -1,4 +1,6 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
+<%@ page import="org.apache.sling.commons.json.JSONObject,
+				com.spd.cq.searspartsdirect.common.helpers.PSFlagStatus" %>
 <cq:includeClientLib js="apps.searspartsdirect,apps.searspartsdirect.base" />
 
 <%
@@ -21,4 +23,8 @@ String partNumber = (request.getParameter("searchModPar") != null) ? request.get
 	</div>
 </div>
 
-<script>partSearchResults('<%=partNumber%>');</script>
+<%
+	PSFlagStatus flagStatus = sling.getService(PSFlagStatus.class);	// calling PSFlagStatus -- to get data from Felix
+	JSONObject flagMessage = flagStatus.getStockAvailabilityMessage();
+%>
+<script>partSearchResults('<%=partNumber%>', '<%=flagMessage%>');</script>

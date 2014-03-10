@@ -1,7 +1,6 @@
-
 function getDynamicTabs(modelNumber,brandId,categoryId){
 	if(modelNumber!="" && brandId!="" && categoryId!=""){
-    var urlName = "/bin/searspartsdirect/model/dynamictabs?modelNumber="+modelNumber+"&brandId="+encodeURIComponent(brandId)+"&categoryId="+encodeURIComponent(categoryId);
+    var urlName = "/bin/searspartsdirect/model/dynamictabs?modelNumber="+encodeURIComponent(modelNumber)+"&brandId="+encodeURIComponent(brandId)+"&categoryId="+encodeURIComponent(categoryId);
     $("#headerPD").show();
     $("#dynamicTabs").empty();
     $.ajax({
@@ -45,7 +44,7 @@ function checkCookie(modelNumber, brandId, categoryId){
     var modelsCookie=getCookie("myProfileModels");
     if (modelsCookie != ""){
         // if cookie exists, send cookie details with API
-        var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&brandId="+brandId+"&productCategoryId="+categoryId+"&cookieId="+modelsCookie+"&flag=108";
+        var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+encodeURIComponent(modelNumber)+"&brandId="+brandId+"&productCategoryId="+categoryId+"&cookieId="+modelsCookie+"&flag=108";
         $.ajax({
 			type : "GET",
 			cache : false,
@@ -71,7 +70,7 @@ function checkCookie(modelNumber, brandId, categoryId){
 
 function setDataForCookies(modelNumber,brandId,categoryId){
 	// Setting Cookie for User
-	var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&brandId="+brandId+"&productCategoryId="+categoryId+"&flag=107";
+	var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+encodeURIComponent(modelNumber)+"&brandId="+brandId+"&productCategoryId="+categoryId+"&flag=107";
 	$.ajax({
 		type : "GET",
 		cache : false,

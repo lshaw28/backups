@@ -1,6 +1,6 @@
-function modelSearchByPartName(modelNumber, brandId, categoryId, description, flagMessage) {
+function modelSearchByPartName(modelNumber, formattedModelNumber, brandId, categoryId, description, flagMessage) {
 	
-	var urlName = "/bin/searspartsdirect/model/searchbypartname?modelnumber="+modelNumber
+	var urlName = "/bin/searspartsdirect/model/searchbypartname?modelnumber="+formattedModelNumber
 			+"&brandId="+brandId+"&productCategoryId="+categoryId+"&partDescription="+description;
 	
 	flagMessage = flagMessage.replace("&#39;","'");

@@ -1,5 +1,5 @@
-function allModelDiagram(modelNumber, brandId, productCategoryId, topSellingImagePath, brandName, modelDescription) {
-	var urlName = "/bin/searspartsdirect/model/modelalldiagram?modelnumber="+modelNumber+"&brandId="+brandId+"&productCategoryId="+productCategoryId;
+function allModelDiagram(modelNumber, formattedModelNumber, brandId, productCategoryId, topSellingImagePath, brandName, modelDescription) {
+	var urlName = "/bin/searspartsdirect/model/modelalldiagram?modelnumber="+formattedModelNumber+"&brandId="+brandId+"&productCategoryId="+productCategoryId;
 	
 	$.ajax({
 				type : "GET",
@@ -28,7 +28,7 @@ function allModelDiagram(modelNumber, brandId, productCategoryId, topSellingImag
 			            var engineDiv = "";
 			            if(engineLength != 0){
 			            	engineDiv = "<div> <a href=\http://www.searspartsdirect.com/partsdirect/part-model/" + jsonEngine.brandName + "-Parts/All-Products-Parts/Model-" + jsonEngine.engineModel + "/" + jsonEngine.brandId + "/" + jsonEngine.categoryId  + ">View all engine parts </a>for " + jsonEngine.brandName + " Engine Model Number " + jsonEngine.engineModel + "</div>";
-			            	 $("#allDiagramContainer").append(engineDiv);
+			            	 $("#engineModelsContainer").append(engineDiv);
 						}
 			           
 			            if(jsonLength != 0){
@@ -45,14 +45,14 @@ function allModelDiagram(modelNumber, brandId, productCategoryId, topSellingImag
 						    		 topPartsList = topPartsList + "</ul>";
 						    	 }
 
-		                         $("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"/content/searspartsdirect/en/modelpartlist.html"
-		                        			+ "?modelNumber="+modelNumber+"&brandId="+brandId+"&categoryId="+productCategoryId+"&brandname="+brandName+"&modelDescription="+modelDescription+"&diagramPageId="+jsonResponse[j].diagramPageId+"&documentId="+jsonResponse[j].documentId+"&diagramUrl="+jsonResponse[j].diagramImageUrl+"\">"
-											+ "<li class=\"grid-item\">"
-											+ "<div class=\"diagramContainer model\">"
-											+ "<img src=\""+jsonResponse[j].diagramImageUrl+"\" />"
-											+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+jsonResponse[j].componentDescription+"</a></p></a>"
-											+ topPartsList
-											+ "</div></li></a>");
+		                         $("#allDiagramContainer").append("<li class=\"grid-item\">"
+                                         +"<a class=\"disableDesktop\" href=\"/content/searspartsdirect/en/modelpartlist.html"
+                                         + "?modelNumber="+modelNumber+"&formattedModelNumber="+formattedModelNumber+"&brandId="+brandId+"&categoryId="+productCategoryId+"&brandname="+brandName+"&modelDescription="+modelDescription+"&diagramPageId="+jsonResponse[j].diagramPageId+"&documentId="+jsonResponse[j].documentId+"&diagramUrl="+jsonResponse[j].diagramImageUrl+"\">"
+                                         + "<span class=\"diagramContainer model\">"
+                                         + "<img height=\"100px\" width=\"100px\" src=\""+jsonResponse[j].diagramImageUrl+"\" />"
+                                         + "<p class=\"diagramTitle\">"+jsonResponse[j].componentDescription+"</p>"
+                                         + topPartsList
+                                         + "</span></a></li>");
 
 								if(waterFilterPart.length!=0 && topSellingParts.length!=0){
 									if(j==0){
@@ -82,32 +82,31 @@ function allModelDiagram(modelNumber, brandId, productCategoryId, topSellingImag
 }
 
 function addWaterFilterPart(waterFilterImage, waterFilterDescription){
-	$("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"\">"
-			+ "<li class=\"grid-item\">"
-			+ "<div class=\"diagramContainer model\">"
+	$("#allDiagramContainer").append("<li class=\"grid-item\"><a class=\"disableDesktop\" href=\"\">"
+			+ "<span class=\"diagramContainer model\">"
 			+ "<img src=\""+waterFilterImage+"\" />"
 			+ "<p class=\"diagramTitle\"><a class=\"disableMobile\" href=\"/content/searspartsdirect/en/modelpartlist.html\">"+waterFilterDescription+"</a></p></a>"
-			+ "</div></li></a>");
+			+ "</span></a></li>");
 }
 
 function addTopSellingPart(topSellingPartImage, topSellingDiv){
-	$("#allDiagramContainer").append("<a class=\"disableDesktop\" href=\"#\">"
-			+"<li class=\"grid-item\">"
-			+"<div class=\"diagramContainer topParts\">"
+	$("#allDiagramContainer").append("<li class=\"grid-item\"><a class=\"disableDesktop\" href=\"#\">"
+			+"<span class=\"diagramContainer topParts\">"
 			+"<img src=\""+topSellingPartImage+"\" />"
 			+"<h5 class=\"diagramTitle disableMobile\">Top parts in this model</h5>"
 			+"<ul class=\"topParts-list\">"
 			+topSellingDiv
 			+"</ul>"
-			+"</div>"
-			+"</li>"
-			+"</a>");
+			+"</span>"
+			+"</a></li>");
 }
 
-function showSearchByPartName(modelNumber, brandId, categoryId, brandName, modelDescription, description){
+function showSearchByPartName(modelNumber, formattedModelNumber, brandId, categoryId, brandName, modelDescription, description){
 	window.location.href = "/content/searspartsdirect/en/searchbypartname.html"
 		+ "?modelNumber="
 		+ modelNumber
+		+ "&formattedModelNumber="
+		+ formattedModelNumber
 		+ "&brandId="
 		+ brandId
 		+ "&categoryId="

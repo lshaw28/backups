@@ -5,6 +5,7 @@
 
 <%
 String modelNumber = (request.getParameter("modelNumber") != null) ? request.getParameter("modelNumber") : "";
+String formattedModelNumber = (request.getParameter("formattedModelNumber") != null) ? request.getParameter("formattedModelNumber") : "";
 String brandId = (request.getParameter("brandId") != null) ? request.getParameter("brandId") : "";
 String categoryId = (request.getParameter("categoryId") != null) ? request.getParameter("categoryId") : "";
 String diagramPageId = (request.getParameter("diagramPageId") != null) ? request.getParameter("diagramPageId") : "";
@@ -15,7 +16,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 <%@include file="/apps/searspartsdirect/components/content/headerPD/headerPD.jsp"%>
 				
 <div class="row-fluid">
-	<div id="partListDiagram" class="new-span-general partListDiagram">
+	<div class="new-span-general partListDiagram">
 		<cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />
 	</div>
 	<div class="new-span-general partListItems" id="partListItems">
@@ -25,7 +26,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 	PSFlagStatus flagStatus = sling.getService(PSFlagStatus.class);	// calling PSFlagStatus -- to get data from Felix
 	JSONObject flagMessage = flagStatus.getStockAvailabilityMessage();
 %>
-<script>modelDiagramPartList('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>', '<%=diagramPageId%>', '<%=documentId%>', '<%=flagMessage%>');</script>
+<script>modelDiagramPartList('<%=modelNumber%>', '<%=formattedModelNumber%>', '<%=brandId%>', '<%=categoryId%>', '<%=diagramPageId%>', '<%=documentId%>', '<%=flagMessage%>','<%=brandName%>','<%=modelDescription%>');</script>
 
 <script>
     function getDiagramPagePreview(){

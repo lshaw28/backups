@@ -53,7 +53,7 @@
 					name="./textIsRich" value="true" xtype="hidden" />
 			</items>
 		</tab1>
-		<tab2 jcr:primaryType="cq:Widget" 
+		<tab2 jcr:primaryType="cq:Widget"
 			fileNameParameter="./image/fileName" fileReferenceParameter="./image/fileReference"
 			name="./image/file" requestSuffix="/image.img.png"
 			sizeLimit="100" title="Image"

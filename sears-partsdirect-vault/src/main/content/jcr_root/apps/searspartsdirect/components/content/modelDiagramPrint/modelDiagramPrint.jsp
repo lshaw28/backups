@@ -1,5 +1,4 @@
-<script type="text/javascript" src="/etc/designs/searspartsdirect/clientlib_base/js/modelSearchResults.js" ></script>
-
+<cq:includeClientLib categories="apps.searspartsdirect,apps.searspartsdirect.base" />
 
 <%
     String imageUrl = (request.getParameter("imageUrl") != null) ? request.getParameter("imageUrl") : "";

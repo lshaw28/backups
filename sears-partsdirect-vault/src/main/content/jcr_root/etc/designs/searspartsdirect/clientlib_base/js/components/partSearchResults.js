@@ -52,7 +52,7 @@ function partSearchResults(partNumber, flagMessage) {
 							topPartsList = showFlagMessage(flagJson, jsonResponse[j].priceAndAvailability.availabilityStatus);
 						}
 						
-						var description = (isDescriptionClickable == true) ? "<a href=\"http://www.urlforthepart.com\">"+jsonResponse[j].description+"</a>" : jsonResponse[j].description;
+						var description = (isDescriptionClickable == true) ? "<a href=\"/content/searspartsdirect/en/partdetail.html\">"+jsonResponse[j].description+"</a>" : jsonResponse[j].description;
 						
 						$("#partSearchResults").append("<div class=\"partListItem row-fluid\">"
 								+ "<div class=\"new-span-general partListItemDescription\">"

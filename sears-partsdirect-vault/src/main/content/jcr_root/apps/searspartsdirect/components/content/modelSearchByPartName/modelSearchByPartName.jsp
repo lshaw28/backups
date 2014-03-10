@@ -6,6 +6,7 @@
 
 <%
 String modelNumber = (request.getParameter("modelNumber") != null) ? request.getParameter("modelNumber") : "";
+String formattedModelNumber = (request.getParameter("formattedModelNumber") != null) ? request.getParameter("formattedModelNumber") : "";
 String brandId = (request.getParameter("brandId") != null) ? request.getParameter("brandId") : "";
 String categoryId = (request.getParameter("categoryId") != null) ? request.getParameter("categoryId") : "";
 String description = (request.getParameter("description") != null) ? request.getParameter("description") : "";
@@ -16,7 +17,8 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? U
 	<div class="repairHelpHomeTitle">
 		<div class="pageTitleHeader">
 			<h1>
-				Model # <%=modelNumber %> <%=brandName %> <%=modelDescription %></h1>
+				Model # <%=modelNumber %> <%=brandName %> <%=URLDecoder.decode(modelDescription, "UTF-8") %>
+			</h1>
 		</div>
 	</div>
 </div>
@@ -35,7 +37,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? U
 								data-inputhelp="ex. screw, gate, switch"
 								data-inputhelpmobile="ex. screw, gate, switch"
 								value="ex. screw, gate, switch"/> <span class="add-on"><button
-									id="searchByPartName" onclick="showSearchByPartName('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>', '<%=brandName %>', '<%=modelDescription %>', $('#searchPart').val())">>
+									id="searchByPartName" onclick="showSearchByPartName('<%=modelNumber%>', '<%=formattedModelNumber %>', '<%=brandId%>', '<%=categoryId%>', '<%=brandName %>', '<%=modelDescription %>', $('#searchPart').val())">>
 									<i class="icon-search">&nbsp;</i>
 								</button></span>
 						</div>
@@ -72,6 +74,6 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? U
 	JSONObject flagMessage = flagStatus.getStockAvailabilityMessage();
 %>
 
-<script>modelSearchByPartName('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>', '<%=description%>', '<%=flagMessage%>');
+<script>modelSearchByPartName('<%=modelNumber%>', '<%formattedModelNumber=%>', '<%=brandId%>', '<%=categoryId%>', '<%=description%>', '<%=flagMessage%>');
 </script>
 

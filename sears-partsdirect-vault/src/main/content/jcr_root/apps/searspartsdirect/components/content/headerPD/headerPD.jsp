@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder" %>
 <!-- 
 All pages including this files should describe below parameters
 modelNumber, brandId, categoryId, brandName,  modelDescription.
@@ -10,7 +11,7 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
 				Model #
 				<%=modelNumber %>
 				<%=brandName %>
-				<%=modelDescription %>
+				<%=URLDecoder.decode(modelDescription, "UTF-8") %>
 				</h1>
 		</div>
 	</div>
