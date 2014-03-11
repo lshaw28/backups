@@ -15,12 +15,29 @@
 							name="./abstracttext"
 							maxLength="400"
 							xtype="textarea" />
-				<channel jcr:primaryType="cq:Widget"
-							fieldLabel="Channel"
-							fieldDescription="Character limit is 50"
-							name="./channel"
-							maxLength="50"
-							xtype="textfield" />
+
+				<channel
+		            jcr:primaryType="nt:unstructured"
+		            fieldLabel="Channel"
+		            name="./channel"
+		            type="select"
+		            xtype="selection">
+		            <options jcr:primaryType="cq:WidgetCollection">
+		                <l1
+		                    jcr:primaryType="nt:unstructured"
+		                    text="Repair Help"
+		                    value="Repair Help"/>
+		                <l2
+		                    jcr:primaryType="nt:unstructured"
+		                    text="Air Filter"
+		                    value="Air Filter"/>
+						<l3
+		                    jcr:primaryType="nt:unstructured"
+		                    text="Air Filter - Part Detail"
+		                    value="Air Filter - Part Detail"/>
+						
+		            </options>
+		        </channel>
 				<authors jcr:primaryType="cq:Widget"
 							fieldLabel="Authors"
 							fieldDescription="Author(s) for this article"
