@@ -86,7 +86,7 @@ var searchPanel = Class.extend(function () {
 	            } else if ( value.indexOf('%') != -1 ){
 	            	value = value.replace(/\%/g, '@SLASHPERCENT@');
 	            }
-			} else {
+			} else if (selectMethod === 'part-model') {
 				value = value.replace(/\'/g, '');            
 				value = value.replace(/\%/g, '');	           
 				value = value.replace(/\#/g, '');	           
@@ -98,17 +98,23 @@ var searchPanel = Class.extend(function () {
 				value = value.replace(/\^/g, '');
 				value = value.replace(/\,/g, '');
 				value = value.replace(/\"/g, '');
-		        value = value.replace(/\//g, '');
 		        value = value.replace(/\?/g, '');
 		        value = value.replace(/\\/g, '');
 
-	            if (value.indexOf('/') != -1){
-	            	value = value.replace(/\//g, '');
+		        if (value.indexOf('/') != -1){
+	            	value = value.replace(/\//g, '@SLASH@');
 	            } else if ( value.indexOf('%') != -1 ){
-	            	value = value.replace(/\%/g, '');
+	            	value = value.replace(/\%/g, '@SLASHPERCENT@');
 	            }
 			}
-			searchedTerm = searchedTerm.replace(/[^0-9A-Za-z]/g, '');
+			searchedTerm = value;
+			
+			 if (searchedTerm.indexOf('@SLASH@') != -1){
+	            	searchedTerm = searchedTerm.replace('@SLASH@','/');
+	            } else if ( searchedTerm.indexOf('@SLASHPERCENT@') != -1 ){
+	            	searchedTerm = searchedTerm.replace('@SLASHPERCENT@','%');
+	            }
+			
 			// Sanitise non-alpha-numeric characters
 			field.attr('value', searchedTerm);
 			return value;
