@@ -21,6 +21,7 @@
 				            fieldLabel="Channel (Omniture)"
 				            name="./channel"
 				            type="select"
+				            autoScroll ="{Boolean}true"
 				            xtype="selection">
 				            <options jcr:primaryType="cq:WidgetCollection">
 				                <l1
@@ -45,8 +46,8 @@
 				                    value="Home Page"/>
 				                <l6
 				                    jcr:primaryType="nt:unstructured"
-				                    text="Model results page"
-				                    value="Model results page"/>
+				                    text="Repair Help"
+				                    value="Repair Help"/>
 				                <l7
 				                    jcr:primaryType="nt:unstructured"
 				                    text="Manuals"
@@ -57,8 +58,8 @@
 				                    value="Shopping Cart"/>
 			                    <l9
 				                    jcr:primaryType="nt:unstructured"
-				                    text="Checkout(2011)"
-				                    value="Checkout(2011)"/>
+				                    text="Air Filter"
+				                    value="Air Filter"/>
 				                 <l10
 				                    jcr:primaryType="nt:unstructured"
 				                    text="Questions-&-Answers"
@@ -85,8 +86,8 @@
 				                    value="Category browse"/> 
 				                  <l16
 				                    jcr:primaryType="nt:unstructured"
-				                    text="Repair Help"
-				                    value="Repair Help"/> 
+				                    text="Model results page"
+				                    value="Model results page"/> 
 				                    
 				                  <l17
 				                    jcr:primaryType="nt:unstructured"
@@ -186,8 +187,8 @@
 				                    value="My Admin"/>    
 				                  <l41
 				                    jcr:primaryType="nt:unstructured"
-				                    text="Air Filter"
-				                    value="Air Filter"/>   
+				                    text="Checkout(2011)"
+				                    value="Checkout(2011)"/>   
 				                              
 				            </options>
 				        </channel>
