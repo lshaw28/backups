@@ -15,29 +15,182 @@
 							name="./abstracttext"
 							maxLength="400"
 							xtype="textarea" />
-
-				<channel
-		            jcr:primaryType="nt:unstructured"
-		            fieldLabel="Channel"
-		            name="./channel"
-		            type="select"
-		            xtype="selection">
-		            <options jcr:primaryType="cq:WidgetCollection">
-		                <l1
-		                    jcr:primaryType="nt:unstructured"
-		                    text="Repair Help"
-		                    value="Repair Help"/>
-		                <l2
-		                    jcr:primaryType="nt:unstructured"
-		                    text="Air Filter"
-		                    value="Air Filter"/>
-						<l3
-		                    jcr:primaryType="nt:unstructured"
-		                    text="Air Filter - Part Detail"
-		                    value="Air Filter - Part Detail"/>
 						
-		            </options>
-		        </channel>
+					<channel
+				            jcr:primaryType="nt:unstructured"
+				            fieldLabel="Channel (Omniture)"
+				            name="./channel"
+				            type="select"
+				            xtype="selection">
+				            <options jcr:primaryType="cq:WidgetCollection">
+				                <l1
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Site Sections"
+				                    value="Site Sections"/>
+				                <l2
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Model Search"
+				                    value="Model Search"/>
+								<l3
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Model detail page"
+				                    value="Model detail page"/>
+								<l4
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Part Search"
+				                    value="Part Search"/>
+								<l5
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Home Page"
+				                    value="Home Page"/>
+				                <l6
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Model results page"
+				                    value="Model results page"/>
+				                <l7
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Manuals"
+				                    value="Manuals"/>
+			                    <l8
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Shopping Cart"
+				                    value="Shopping Cart"/>
+			                    <l9
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Checkout(2011)"
+				                    value="Checkout(2011)"/>
+				                 <l10
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Questions-&-Answers"
+				                    value="Questions-&-Answers"/>
+				                  <l11
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Help"
+				                    value="Help"/>
+				                  <l12
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Brand browse"
+				                    value="Brand browse"/>
+				                  <l13
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Order Status"
+				                    value="Order Status"/> 
+				                  <l14
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Common Symptom & Repair"
+				                    value="Common Symptom & Repair"/> 
+				                  <l15
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Category browse"
+				                    value="Category browse"/> 
+				                  <l16
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Repair Help"
+				                    value="Repair Help"/> 
+				                    
+				                  <l17
+				                    jcr:primaryType="nt:unstructured"
+				                    text="My Profile"
+				                    value="My Profile"/>  
+				                  <l18
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Login.Omniture.channel"
+				                    value="Login.Omniture.channel"/> 
+				                   <l19
+				                    jcr:primaryType="nt:unstructured"
+				                    text="General"
+				                    value="General"/> 
+				                  <l20
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Availability Status"
+				                    value="Availability Status"/>    
+				                   <l21
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Profile Promo"
+				                    value="Profile Promo"/>   
+				                   <l22
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Browse Categories"
+				                    value="Browse Categories"/>  
+				                   <l23
+				                    jcr:primaryType="nt:unstructured"
+				                    text="PartFitment"
+				                    value="PartFitment"/>   
+				                   <l24
+				                    jcr:primaryType="nt:unstructured"
+				                    text="How-to-lawn-garden"
+				                    value="How-to-lawn-garden"/>   
+				                   <l25
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Store Locator"
+				                    value="Store Locator"/>  
+				                   <l26
+				                    jcr:primaryType="nt:unstructured"
+				                    text="PartFitment"
+				                    value="PartFitment"/>   
+				                    <l27
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Store Locator"
+				                    value="Store Locator"/>  
+				                   <l28
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Error"
+				                    value="Error"/>   
+				                   <l29
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Parent Category page"
+				                    value="Parent Category page"/>   
+				                   <l30
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Common Pairs Modal"
+				                    value="Common Pairs Modal"/>   
+				                  <l31
+				                    jcr:primaryType="nt:unstructured"
+				                    text="SPD Water Filter"
+				                    value="SPD Water Filter"/>  
+				                   <l32
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Return Flow"
+				                    value="Return Flow"/> 
+				                   <l33
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Landing Page"
+				                    value="Landing Page"/> 
+				                  <l34
+				                    jcr:primaryType="nt:unstructured"
+				                    text="UGC Part Images"
+				                    value="UGC Part Images"/>   
+				                  <l35
+				                    jcr:primaryType="nt:unstructured"
+				                    text="SOLR-search-results"
+				                    value="SOLR-search-results"/>
+				                   <l36
+				                    jcr:primaryType="nt:unstructured"
+				                    text="BrandCategoryModel.Omniture.channel"
+				                    value="BrandCategoryModel.Omniture.channel"/> 
+				                   <l37
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Checkout"
+				                    value="Checkout"/> 
+				                   <l38
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Store Availability"
+				                    value="Store Availability"/> 
+				                   <l39
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Brand.Omniture.channel"
+				                    value="Brand.Omniture.channel"/>  
+				                  <l40
+				                    jcr:primaryType="nt:unstructured"
+				                    text="My Admin"
+				                    value="My Admin"/>    
+				                  <l41
+				                    jcr:primaryType="nt:unstructured"
+				                    text="Air Filter"
+				                    value="Air Filter"/>   
+				                              
+				            </options>
+				        </channel>
 				<authors jcr:primaryType="cq:Widget"
 							fieldLabel="Authors"
 							fieldDescription="Author(s) for this article"
