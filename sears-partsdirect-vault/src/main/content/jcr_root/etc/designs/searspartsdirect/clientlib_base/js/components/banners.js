@@ -10,12 +10,12 @@ var banners = Class.extend(function() {
         renderFilterData : function() {
             var el = $('#bannerContainer');
             var airFilterData ={ 
-                pageUrl: "/content/searspartsdirect/en/replacement-parts/hvac-air-filters/dimensions.html",
+                pageUrl: "/content/searspartsdirect/en/replacement-parts/hvac-air-filters/dimensions.html&intcmp=AirFilters",
                 bannerHeading: "Air filters when you want them",
                 filterImageUrl: "/etc/designs/searspartsdirect/clientlib_base/img/banners/airFilterBanner.png"
             };
             var waterFilterData ={ 
-                pageUrl: "/content/searspartsdirect/en/replacement-parts/hvac-air-filters/dimensions.html",
+                pageUrl: "/content/searspartsdirect/en/replacement-parts/hvac-air-filters/dimensions.html&intcmp=AirFilters",
                 bannerHeading: "Water filters when you want them",
                 filterImageUrl: "/etc/designs/searspartsdirect/clientlib_base/img/banners/waterFilterBanner.png"
             };
