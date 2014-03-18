@@ -76,7 +76,7 @@ var addToCart = Class.extend(function () {
 				if (self.subPer == 0) {
 					prodVar += ';;;eVar=57="One-Time Purchase"';
 				} else {
-					prodVar += ';;;eVar=57="Every ' + self.subPer + 'Months"';
+					prodVar += ';;;eVar=57="Every ' + self.subPer + ' Months"';
 				}
 			}
 			SPDUtils.trackEvent({event: 'atcEvent', values: {atcLocation: self.location, atcProduct: prodVar}, componentPath: self.component}, 'Add_To_Cart_#templateName');
