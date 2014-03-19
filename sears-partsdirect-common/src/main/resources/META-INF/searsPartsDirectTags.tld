@@ -588,4 +588,9 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.BrowseGlossaryTag</tag-class>
 		<info>Gets the Common Category Parts</info>
 	</tag>
+	<tag>
+		<name>respImagePoc</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.ResponsiveImagePOCITag</tag-class>
+		<info>Displays Responsive POC image</info>
+	</tag>
 </taglib>
