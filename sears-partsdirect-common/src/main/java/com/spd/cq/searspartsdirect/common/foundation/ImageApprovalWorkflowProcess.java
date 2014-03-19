@@ -45,10 +45,18 @@ public class ImageApprovalWorkflowProcess implements WorkflowProcess {
                 Session jcrSession = session.adaptTo(Session.class); 
                 Node node = (Node) jcrSession.getItem(path);
                 if (node != null) {
+                	//node.setPrimaryType("dam:Asset");
+                	//log.debug("node.getName() "+node.getName());
+                	//log.debug("node path "+Constants.DAM_APPROVED_PATH + "/" + node.getName());
+                	if (jcrSession.nodeExists(Constants.DAM_APPROVED_PATH + "/"+ node.getName())) {
+                		//log.debug("$$$node exists");
+                		jcrSession.removeItem(Constants.DAM_APPROVED_PATH + "/"+ node.getName());
+                	}
                 	jcrSession.move(node.getPath(), node.getPath().replace(Constants.DAM_PENDING_APPROVAL_PATH, Constants.DAM_APPROVED_PATH));
                 }
             } catch (RepositoryException e) {
-                throw new WorkflowException(e.getMessage(), e);
+            	log.error("^^image approval error" + e);
+                //throw new WorkflowException(e.getMessage(), e);
             }
         }
     }
