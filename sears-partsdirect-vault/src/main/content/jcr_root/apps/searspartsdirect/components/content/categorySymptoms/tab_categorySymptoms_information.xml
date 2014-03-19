@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="cq:Panel"
+	title="Component Information"
+    width="500">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <showImage jcr:primaryType="cq:Widget"
+            fieldLabel="Show Product Type Image"
+            name="./showImage"
+            type="checkbox"
+            xtype="selection"/>
+        <text1 jcr:primaryType="cq:Widget"
+            fieldLabel="Text before product-type name"
+            name="./text1"
+            xtype="textfield"
+            maxlength="42"/>
+        <text2 jcr:primaryType="cq:Widget"
+            fieldLabel="Text after product-type name"
+            name="./text2"
+            xtype="textfield"
+            maxlength="42"/>
+        <optionalDescription jcr:primaryType="cq:Widget"
+            fieldLabel="Optional Description"
+            name="./optionalDescription"
+            xtype="richtext"
+            maxlength="500"
+            allowBlank="{Boolean}true">
+            <rtePlugins
+                jcr:primaryType="nt:unstructured"
+                path="/apps/searspartsdirect/components/content/text/limitedConfig.infinity.json"
+                xtype="cqinclude"/>
+        </optionalDescription>
+    </items>
+</jcr:root>

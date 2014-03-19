@@ -9,6 +9,7 @@
    <c:set var="linkURL" value="${linkURL}.html" />
 </c:if>
 
+<c:set var="captionClick"><cq:text property="captionClickable" placeholder=""/></c:set>
 <c:set var="linkTarget"><cq:text property="linkTarget" placeholder=""/></c:set>
 <c:set var="imageCaption"><cq:text property="imageCaption" placeholder=""/></c:set>
 <c:set var="photoCredit"><cq:text property="photoCredit" placeholder=""/></c:set>
@@ -19,5 +20,13 @@
 </div>
 
 <c:if test="${imageCaption ne ''}">
-	<p class="imageCaption"><c:out value="${imageCaption} "/></p>
+	<p class="imageCaption">
+		<c:if test="${captionClick}">
+			<a href="${linkURL}">
+		</c:if>
+		<c:out value="${imageCaption} "/>
+		<c:if test="${captionClick}">
+			</a>
+		</c:if>
+    </p>
 </c:if>
