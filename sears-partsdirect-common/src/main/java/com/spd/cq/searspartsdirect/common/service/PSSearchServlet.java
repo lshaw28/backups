@@ -304,10 +304,10 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 						.getResponseHeader("X-Total-SYW-Count");
 
 				JSONArray jsa = new JSONArray(new String(responseBody));
-
+				
 				jsonObject.put("totalCount", headerTotalCount.getValue());
 				jsonObject.put("totalSYWCount", headerSYWCount.getValue());
-				jsonObject.put("modelResults", jsa.toString());
+				jsonObject.put("modelResults", jsa);
 			}
 		} catch (HttpException e) {
 			log.error("Error occured in PSSearchServlet:populateModelSearchResults() "
@@ -341,7 +341,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 
 				JSONArray jsa = new JSONArray(new String(responseBody));
 
-				jsonObject.put("partResults", jsa.toString());
+				jsonObject.put("partResults", jsa);
 			}
 		} catch (HttpException e) {
 			log.error("Error occured in PSSearchServlet:populatePartSearchResults() "
