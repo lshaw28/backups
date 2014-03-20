@@ -6,6 +6,9 @@
   .row-fluid [class*="new-span"]:nth-child(2) {
     margin-left: 0px;
   }
+  .row-fluid [class*="span10"] {
+    width: 100%;
+  }
   .topCategoriesAndServicesContainer,
   .hoursOfOperationContainer,
   .teamMemberContainer,
@@ -13,5 +16,10 @@
   .address {
     max-width: 280px;
   }
+}
 
+@media (max-width: 860px) and (min-width: 650px) {
+  .row-fluid [class*="span10"] {
+    width: 100%;
+  }
 }

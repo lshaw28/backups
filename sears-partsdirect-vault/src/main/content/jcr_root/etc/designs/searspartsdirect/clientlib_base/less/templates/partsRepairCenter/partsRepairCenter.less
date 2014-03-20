@@ -1,15 +1,20 @@
 @import "../../base.variables.less";
 @import "../../base.mixins.less";
 
-
+  .row-fluid [class*="span10"] {
+    margin-left: 0px;
+  }
+  .row-fluid [class*="new-span-responsive"] {
+    margin-left: 0px;
+    max-width: 300px;
+  }
   .prcTitle {
     font-size: @h1Size;
-    margin: 40px 0 0;
+    margin: 25px 0 20px;
   }
-
   .prcSubTitle {
     font-size: @h3Size;
-    margin: 40px 0 10px 0;
+    margin: 30px 0 10px 0;
   }
   .viewMapAndDirectionsButton {
     margin: 20px 0;
@@ -33,7 +38,8 @@
   .teamMemberContainer,
   .addressContainer,
   .address {
-    min-width: 300px;
+    min-width: 280px;
+    max-width: 280px;
   }
   .banners {
     #bannerContainer {
@@ -46,6 +52,19 @@
     display: none;
   }
 
+  .bizHeader,
+  .vcardHeader,
+  .topListTitle,
+  {
+    margin-top: 0px;
+  }
+  .partsRepairCenter {
+    p {
+      margin-bottom: 10px;
+    }
+  }
 
-@import "partsRepairCenter.mobile";
-@import "partsRepairCenter.tablet";
+
+    @import "partsRepairCenter.mobile";
+    @import "partsRepairCenter.tablet";
+  }
