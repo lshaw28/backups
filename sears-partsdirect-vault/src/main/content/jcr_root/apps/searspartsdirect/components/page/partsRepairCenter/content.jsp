@@ -1,7 +1,5 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <%@ page import="java.net.URLEncoder"%>
-<cq:include script="/libs/wcm/core/components/init/init.jsp"/>
-<cq:includeClientLib css="apps.searspartsdirect.base" />
 
 <%
 	String address = properties.get("parAddress/address/address1","") +" "+ properties.get("parAddress/address/address2","")+" " +properties.get("parAddress/address/city","")+" " + properties.get("parAddress/address/state","")+" " + properties.get("parAddress/address/zipcode","");
