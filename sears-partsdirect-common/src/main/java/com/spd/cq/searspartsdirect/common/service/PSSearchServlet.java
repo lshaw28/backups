@@ -168,7 +168,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				byte[] responseBody = method.getResponseBody();
 				
 				JSONArray jsa = new JSONArray(new String(responseBody));
-				result.put("productList", jsa.toString());
+				result.put("productList", jsa);
 			}
 		} catch (HttpException e) {
 			log.error("Error occured in PSSearchServlet:populateProductBasedOnBrand() "
@@ -206,7 +206,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				byte[] responseBody = method.getResponseBody();
 
 				JSONArray jsa = new JSONArray(new String(responseBody));
-				result.put("brandList", jsa.toString());
+				result.put("brandList", jsa);
 			}
 		} catch (HttpException e) {
 			log.error("Error occured in PSSearchServlet:populateBrandBasedOnProduct() "
@@ -257,7 +257,7 @@ public class PSSearchServlet extends SlingSafeMethodsServlet {
 				
 				JSONArray jsa = new JSONArray(new String(responseBody));
 				String jsonKey = StringUtils.containsIgnoreCase(URL, "brand") ? "brand" : "product";
-				result.put(jsonKey, jsa.toString());
+				result.put(jsonKey, jsa);
 			}
 		} catch (HttpException e) {
 			log.error("Error occured in PSSearchServlet:getList() "
