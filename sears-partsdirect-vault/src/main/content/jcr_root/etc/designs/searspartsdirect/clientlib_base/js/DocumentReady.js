@@ -317,6 +317,11 @@
 		/**
 		 * (Air/Water) Filter Banners class setup
 		 */
-        var newBanners = new banners(); 
+
+        var filterBannerTemplate = $('#js_filterBannerTemplate').length;
+        if (filterBannerTemplate !== 1 ) return false;
+        else {
+            var newBanners = new banners();
+        }
 	});
 }(window));
