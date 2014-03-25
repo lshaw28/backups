@@ -18,12 +18,13 @@
         image.setDoctype(Doctype.fromRequest(request));
         String divId = "cq-textimage-jsp-" + resource.getPath();
         // div around image for additional formatting
-        %><div class="memberImage pull-left" id="<%= divId %>"><%
+        %><div class="memberImage" id="<%= divId %>"><%
         %><% image.draw(out); %><br><%
         %></div>
         <%
     }
     %>
+    <div class="memberBio">
         <h5 class="memberName"><cq:text property="memberName" tagClass="text"/></h5>
         <p class="memberTitle"><cq:text property="memberTitle" tagClass="text"/></p>
     	<ul class="memberInfo">
@@ -38,4 +39,5 @@
         	<li class="memberEmail"><cq:text property="memberEmail" tagClass="text"/></li>
         	<li class="memberPhone"><a href="tel:<%=properties.get("memberPhone", "")%>"><%=properties.get("memberPhone", "")%></a></li>
     	</ul>
+    </div>
 </div>
