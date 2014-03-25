@@ -76,6 +76,7 @@ public final class Constants {
 	public static final String MARKUP_EXT = ident(".html");
 	public static final String CATEGORIES_PFX = ident("/categories");
 	public static final String AIRFILTER_PART_DETAILS_PFX = ident("replacement-parts/hvac-air-filters/part-number");
+	public static final String PRC_PFX = ident("/part-repair-stores");
 
 	public static final String AUTHOR_REL_PATH = ident("jcr:content/authors");
 	public static final String TEMPLATE_REL_PATH = ident("jcr:content/cq:template");

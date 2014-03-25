@@ -14,5 +14,5 @@
 </div>
 
 <c:if test="${imageCaption ne ''}">
-	<p><c:out value="${imageCaption} "/></p>
+	<p class="imageCaption"><c:out value="${imageCaption} "/></p>
 </c:if>

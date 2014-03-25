@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:TabPanel"
+    title="PRC Hours of Operation"
+    xtype="dialog">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <tabpanel jcr:primaryType="cq:TabPanel">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <tab1
+                    jcr:primaryType="cq:Widget"
+                    title="Scaff Title"
+                    xtype="panel">
+                    <items jcr:primaryType="cq:WidgetCollection">
+                        <mon
+                            jcr:primaryType="cq:Widget"
+                            fieldLabel="Monday Hours"
+                            name="./mon"
+                            xtype="textfield"/>
+                        <tue
+                            jcr:primaryType="cq:Widget"
+                            fieldLabel="Tuesday Hours"
+                            name="./tue"
+                            xtype="textfield"/>
+                        <wed
+                            jcr:primaryType="cq:Widget"
+                            fieldLabel="Wednesday Hours"
+                            name="./wed"
+                            xtype="textfield"/>
+                        <thu
+                            jcr:primaryType="cq:Widget"
+                            fieldLabel="Thursday Hours"
+                            name="./thu"
+                            xtype="textfield"/>
+                        <fri
+                            jcr:primaryType="cq:Widget"
+                            fieldLabel="Friday Hours"
+                            name="./fri"
+                            xtype="textfield"/>
+                        <sat
+                            jcr:primaryType="cq:Widget"
+                            fieldLabel="Saturday Hours"
+                            name="./sat"
+                            xtype="textfield"/>
+                        <sun
+                            jcr:primaryType="cq:Widget"
+                            fieldLabel="Sunday Hours"
+                            name="./sun"
+                            xtype="textfield"/>
+                        <optionalmessage
+                            jcr:primaryType="cq:Widget"
+                            fieldLabel="Optional Message"
+                            name="./optionalmessage"
+                            xtype="textfield"/>
+                    </items>
+                </tab1>
+            </items>
+        </tabpanel>
+    </items>
+</jcr:root>

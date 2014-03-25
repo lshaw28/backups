@@ -2,7 +2,7 @@
 var banners = Class.extend(function() {
     "use strict";
     return {        
-        init : function(el) { 
+        init : function(el) {
             this.el = el; 
        		this.template = Handlebars.compile( $('#js_filterBannerTemplate').html() );
             this.bindEvent(); 

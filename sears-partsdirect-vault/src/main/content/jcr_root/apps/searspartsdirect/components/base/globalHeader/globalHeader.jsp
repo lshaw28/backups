@@ -18,7 +18,7 @@
 	<cq:include path="searchPanel" resourceType="/apps/searspartsdirect/components/base/searchPanel" />
 	
 	 <c:if test="${promoFlag eq 'y'}">
-		<cq:include path="headerPromo" resourceType="/apps/searspartsdirect/components/base/headerPromo" />
+		<cq:include path="headaerPromo" resourceType="/apps/searspartsdirect/components/base/headerPromo" />
      </c:if>
 	
 </div>
