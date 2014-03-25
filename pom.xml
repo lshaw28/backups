@@ -14,7 +14,7 @@
   -->
   <groupId>com.searshc.partsdirect</groupId>
   <artifactId>pd-cq-parent</artifactId>
-  <version>4.132.20140325-01-SNAPSHOT</version>
+  <version>4.133.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <!--
@@ -48,7 +48,7 @@
     <!--scm:git:[fetch=]http://mywebserver.org/path_to_repository[push=]ssh://username@otherserver:8898/~/repopath.git-->
     <!--</developerConnection>-->
     <!--<url>http://browsable_URL</url>-->
-    <tag>releases/4.132.20140325</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
