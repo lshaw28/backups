@@ -1,12 +1,15 @@
 @import "../../base.variables.less";
 @import "../../base.mixins.less";
 
+  .hideElement {
+    display: none
+  }
   .row-fluid [class*="span10"] {
     margin-left: 0px;
   }
   .row-fluid [class*="new-span-responsive"] {
     margin-left: 0px;
-    max-width: 300px;
+    min-width: 45%;
   }
   .prcTitle {
     font-size: @h1Size;
@@ -38,8 +41,7 @@
   .teamMemberContainer,
   .addressContainer,
   .address {
-    min-width: 280px;
-    max-width: 280px;
+    width: 100%;
   }
   .banners {
     #bannerContainer {
