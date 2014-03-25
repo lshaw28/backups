@@ -319,9 +319,17 @@
 		 */
 
         var filterBannerTemplate = $('#js_filterBannerTemplate').length;
-        if (filterBannerTemplate !== 1 ) return false;
-        else {
+        if (filterBannerTemplate === 1 ) {
             var newBanners = new banners();
         }
+
+        /**
+         * (PRC) Fix to hide the header-promo message and side-chat on PRC Landing Page
+         */
+        if ($('#partsRepairCenter').length > 0) {
+            $(".headerPromo").addClass('hideElement');
+            $(".sideChatNavigation").addClass('hideElement');
+        }
+
 	});
 }(window));

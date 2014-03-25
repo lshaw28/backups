@@ -12,7 +12,7 @@
         <div class="row-fluid">
             <div class="span10 desktop-offset1">
 
-                <div class="partsRepairCenter">
+                <div id="partsRepairCenter" class="partsRepairCenter">
                     <div class="row-fluid">
                         <div class="span12 prcTitle">
                             <h1><%=properties.get("jcr:title", "")%></h1>
