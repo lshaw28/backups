@@ -55,7 +55,7 @@ public class ModelSubPageFilter implements Filter {
 	private final static String CMS_URL_PREFIX = "/content/searspartsdirect/en";
 	
 	private final static Pattern PRCPattern = Pattern
-			.compile(Constants.PRC_PFX + "/([^/]*)/([^/]*)"
+			.compile(Constants.PRC_PFX + "/([^/]*)"
 					+ "(.*\\"+Constants.MARKUP_EXT+")$");
 
 	
@@ -168,8 +168,11 @@ public class ModelSubPageFilter implements Filter {
 		
 		StringBuffer fullPagePath = new StringBuffer();
 		fullPagePath.append(CMS_URL_PREFIX);
-		int lastIndex = pagePath.lastIndexOf("/");
-		fullPagePath.append(pagePath.substring(0,lastIndex)+'-'+pagePath.substring(lastIndex+1));
+		log.info("Step 1: "+pagePath);
+		//int lastIndex = pagePath.lastIndexOf("/");
+		//fullPagePath.append(pagePath.substring(0,lastIndex)+'-'+pagePath.substring(lastIndex+1));
+		fullPagePath.append(pagePath);
+		log.info("Step 2: "+fullPagePath.toString());
 		return fullPagePath.toString();
 	}
 

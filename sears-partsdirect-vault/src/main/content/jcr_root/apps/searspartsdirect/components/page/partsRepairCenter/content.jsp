@@ -5,6 +5,9 @@
 	String address = properties.get("parAddress/address/address1","") +" "+ properties.get("parAddress/address/address2","")+" " +properties.get("parAddress/address/city","")+" " + properties.get("parAddress/address/state","")+" " + properties.get("parAddress/address/zipcode","");
 	address = URLEncoder.encode(address, "utf-8");
 	String fullAddress = "https://www.google.com/maps/place/" + address;
+	
+	String productsServicesText = properties.get("parProductsServices/text/text","");
+	String ourTeamText = properties.get("parOurTeam/text/text","");
 %>
 
 <article id="content" data-templatename="partsRepairCenter">
@@ -42,7 +45,12 @@
                             </div>
 
                             <div class="row-fluid">
-                                <h3 class=prcSubTitle><%=properties.get("jcr:title", "")%> Products & Services</h3>
+                            	<% if(productsServicesText.length() > 0) {
+                            		%>
+                            		<h3 class=prcSubTitle><%=properties.get("jcr:title", "")%> Products & Services</h3>
+                            		<%
+                            	}
+                            	%>
                                 <cq:include path="parProductsServices" resourceType="foundation/components/parsys" />
                             </div>
 
@@ -55,7 +63,12 @@
                                 </div>
                             </div>
                             <div class="row-fluid">
-                                <h3 class="prcSubTitle">Our Team</h3>
+                            	<% if(ourTeamText.length() > 0) {
+                            		%>
+                            		<h3 class="prcSubTitle">Our Team</h3>
+                            		<%
+                            	}
+                            	%>
                                 <cq:include path="parOurTeam" resourceType="foundation/components/parsys" />
                             </div>
                             <div class="row-fluid">
