@@ -168,11 +168,7 @@ public class ModelSubPageFilter implements Filter {
 		
 		StringBuffer fullPagePath = new StringBuffer();
 		fullPagePath.append(CMS_URL_PREFIX);
-		log.info("Step 1: "+pagePath);
-		//int lastIndex = pagePath.lastIndexOf("/");
-		//fullPagePath.append(pagePath.substring(0,lastIndex)+'-'+pagePath.substring(lastIndex+1));
 		fullPagePath.append(pagePath);
-		log.info("Step 2: "+fullPagePath.toString());
 		return fullPagePath.toString();
 	}
 
