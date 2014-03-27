@@ -14,36 +14,43 @@
                         <mon
                             jcr:primaryType="cq:Widget"
                             fieldLabel="Monday Hours"
+                            allowBlank="false"
                             name="./mon"
                             xtype="textfield"/>
                         <tue
                             jcr:primaryType="cq:Widget"
                             fieldLabel="Tuesday Hours"
+                            allowBlank="false"
                             name="./tue"
                             xtype="textfield"/>
                         <wed
                             jcr:primaryType="cq:Widget"
                             fieldLabel="Wednesday Hours"
+                            allowBlank="false"
                             name="./wed"
                             xtype="textfield"/>
                         <thu
                             jcr:primaryType="cq:Widget"
                             fieldLabel="Thursday Hours"
+                            allowBlank="false"
                             name="./thu"
                             xtype="textfield"/>
                         <fri
                             jcr:primaryType="cq:Widget"
                             fieldLabel="Friday Hours"
+                            allowBlank="false"
                             name="./fri"
                             xtype="textfield"/>
                         <sat
                             jcr:primaryType="cq:Widget"
                             fieldLabel="Saturday Hours"
+                            allowBlank="false"
                             name="./sat"
                             xtype="textfield"/>
                         <sun
                             jcr:primaryType="cq:Widget"
                             fieldLabel="Sunday Hours"
+                            allowBlank="false"
                             name="./sun"
                             xtype="textfield"/>
                         <optionalmessage

@@ -8,9 +8,10 @@
 				<items jcr:primaryType="cq:WidgetCollection">
 					<trueName jcr:primaryType="cq:Widget" allowBlank="false"
 						blankText="True name is required" fieldLabel="Store True Name"
-						fieldDescription="format: state-city-storename" name=":name"
+						fieldDescription="(this will appear in URL) ex.: grand-junction-colorado-75113-part-repair-store" name=":name"
 						regex="/^[a-zA-Z0-9-]*$/" regexText="True name may only contain letters, digits or hyphens" />
 					<storename jcr:primaryType="cq:Widget" fieldLabel="Store Name"
+						fieldDescription="(this will appear on page as store title)"
 						allowBlank="false" name="./jcr:content/jcr:title" />
 				</items>
 			</tab1>
@@ -196,6 +197,7 @@
 						xtype="textfield" />
 					<sat jcr:primaryType="cq:Widget" fieldLabel="Saturday Hours"
 						allowBlank="false"
+						fieldDescription="(if store is closed on these days, specify Closed)"
 						name="./jcr:content/parHoursOfOperation/hoursOfOperation/sat"
 						xtype="textfield" />
 					<sun jcr:primaryType="cq:Widget" fieldLabel="Sunday Hours"
@@ -215,7 +217,7 @@
 			<tab9 jcr:primaryType="cq:Panel" title="Products / Services">
 				<items jcr:primaryType="cq:WidgetCollection">
 					<productservice jcr:primaryType="cq:Widget"
-						allowBlank="false" fieldLabel="Text"
+						allowBlank="true" fieldLabel="Text"
 						name="./jcr:content/parProductsServices/text/text" xtype="richtext">
 						<rtePlugins jcr:primaryType="nt:unstructured">
 							<table jcr:primaryType="nt:unstructured" features="*" />
@@ -326,7 +328,7 @@
 			<tab12 jcr:primaryType="cq:Panel" title="Our Team">
 				<items jcr:primaryType="cq:WidgetCollection">
 					<ourteam jcr:primaryType="cq:Widget" fieldLabel="Text"
-						allowBlank="false" name="./jcr:content/parOurTeam/text/text"
+						allowBlank="true" name="./jcr:content/parOurTeam/text/text"
 						xtype="richtext">
 						<rtePlugins jcr:primaryType="nt:unstructured">
 							<table jcr:primaryType="nt:unstructured" features="*" />

@@ -12,11 +12,13 @@
                 <storename
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Store Name"
+                    allowBlank="false"
                     name="./storename"
                     xtype="textfield"/>
                 <address1
                     jcr:primaryType="cq:Widget"
                     fieldLabel="Street Address 1"
+                    allowBlank="false"
                     name="./address1"
                     xtype="textfield"/>
                 <address2
@@ -27,11 +29,13 @@
                 <city
                     jcr:primaryType="nt:unstructured"
                     fieldLabel="City"
+                    allowBlank="false"
                     name="./city"
                     xtype="textfield"/>
                 <state
                     jcr:primaryType="nt:unstructured"
                     fieldLabel="State"
+                    allowBlank="false"
                     name="./state"
                     options="/apps/searspartsdirect/components/content/partsRepairCenter/stateList.json"
                     type="select"
@@ -40,6 +44,7 @@
                     jcr:primaryType="nt:unstructured"
                     fieldDescription="format: xxxxx or xxxxx-xxxx"
                     fieldLabel="Zip Code"
+                    allowBlank="false"
                     name="./zipcode"
                     regex="/^([0-9]{5})(?:[-s]*([0-9]{4}))?$/"
                     regexText="Zip code format is wrong"
@@ -48,6 +53,7 @@
                     jcr:primaryType="nt:unstructured"
                     fieldDescription="format: XXX-XXX-XXXX or XXX-XXXX or (XXX) XXX-XXXX"
                     fieldLabel="Phone"
+                    allowBlank="false"
                     name="./phone"
                     regex="/^((((([0-9]{3})-)|((([0-9]{3}))s))([0-9]{3})-([0-9]{4}))|(([0-9]{3})-([0-9]{4})))$/"
                     regexText="Phone number pattern is wrong"
