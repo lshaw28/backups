@@ -43,6 +43,10 @@
                                     <cq:include path="parHoursOfOperation" resourceType="foundation/components/parsys" />
                                 </div>
                             </div>
+                            
+                            <div class="row-fluid">
+                            	<cq:include path="parAdSpaceTabletMobile" resourceType="foundation/components/parsys" />
+                            </div>
 
                             <div class="row-fluid">
                             	<% if(productsServicesText.length() > 0) {
