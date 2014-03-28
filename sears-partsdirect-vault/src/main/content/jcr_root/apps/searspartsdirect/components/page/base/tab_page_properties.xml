@@ -129,10 +129,6 @@
 				                    jcr:primaryType="nt:unstructured"
 				                    text="PartFitment"
 				                    value="PartFitment"/>   
-				                    <l27
-				                    jcr:primaryType="nt:unstructured"
-				                    text="Store Locator"
-				                    value="Store Locator"/>  
 				                   <l28
 				                    jcr:primaryType="nt:unstructured"
 				                    text="Error"
