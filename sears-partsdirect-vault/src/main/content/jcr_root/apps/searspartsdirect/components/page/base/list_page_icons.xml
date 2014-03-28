@@ -17,6 +17,10 @@
 		jcr:primaryType="nt:unstructured"
 		text="Cooktop"
 		value="svg-icon-cooktop"/>
+	<iconDehumidifier
+		jcr:primaryType="nt:unstructured"
+		text="Dehumidifier"
+		value="svg-icon-dehumidifier"/>
 	<iconDishwasher
 		jcr:primaryType="nt:unstructured"
 		text="Dishwasher"
@@ -65,6 +69,10 @@
 		jcr:primaryType="nt:unstructured"
 		text="Snowblower"
 		value="svg-icon-snowblower"/>
+	<iconTiller
+		jcr:primaryType="nt:unstructured"
+		text="Tiller"
+		value="svg-icon-tiller"/>
 	<iconVacuum
 		jcr:primaryType="nt:unstructured"
 		text="Vacuum"
@@ -77,4 +85,8 @@
 		jcr:primaryType="nt:unstructured"
 		text="Top-Loading Washer"
 		value="svg-icon-washer-topload"/>
+	<iconWindowAC
+		jcr:primaryType="nt:unstructured"
+		text="Window AC"
+		value="svg-icon-window-ac"/>
 </jcr:root>
