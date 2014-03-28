@@ -80,6 +80,7 @@
 			<tab4 jcr:primaryType="cq:Panel" title="Ad Space">
 				<items jcr:primaryType="cq:WidgetCollection">
 					<desktopImage jcr:primaryType="cq:Widget" border="true"
+						fieldLabel="Desktop Image"
 						cropParameter="./jcr:content/parAdSpace/responsiveimage/desktopImage/imageCrop"
 						ddGroups="[media]"
 						fileNameParameter="./jcr:content/parAdSpace/responsiveimage/desktopImage/fileName"
@@ -90,18 +91,55 @@
 						requestSuffix="/desktopImage.img.png"
 						rotateParameter="./jcr:content/parAdSpace/responsiveimage/desktopImage/imageRotate"
 						sizeLimit="100" xtype="html5smartimage" />
+					<tabletImage jcr:primaryType="cq:Widget" border="true"
+						fieldLabel="Tablet Image"
+						cropParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/imageCrop"
+						ddGroups="[media]"
+						fileNameParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/fileName"
+						fileReferenceParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/fileReference"
+						height="400" hideLabel="false"
+						mapParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/imageMap"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/file"
+						requestSuffix="/tabletImage.img.png"
+						rotateParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/imageRotate"
+						sizeLimit="100" xtype="html5smartimage" />
+					<mobileImage jcr:primaryType="cq:Widget" border="true"
+						fieldLabel="Mobile Image"
+						cropParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/imageCrop"
+						ddGroups="[media]"
+						fileNameParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/fileName"
+						fileReferenceParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/fileReference"
+						height="400" hideLabel="false"
+						mapParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/imageMap"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/file"
+						requestSuffix="/mobileImage.img.png"
+						rotateParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/imageRotate"
+						sizeLimit="100" xtype="html5smartimage" />
 				</items>
 			</tab4>
 			<tab5 jcr:primaryType="cq:Panel" title="Ad Space Image Link">
 				<items jcr:primaryType="cq:WidgetCollection">
-					<imageLink jcr:primaryType="cq:Widget" fieldLabel="Image Link"
+					<imageLink jcr:primaryType="cq:Widget" fieldLabel="Image Link (for desktop)"
 						name="./jcr:content/parAdSpace/responsiveimage/linkURL" xtype="pathfield" />
+					<imageLinkTabletMobile jcr:primaryType="cq:Widget" fieldLabel="Image Link (for tablet/mobile)"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/linkURL" xtype="pathfield" />
 					<desktopImageResType jcr:primaryType="cq:Widget"
 						ignoreData="true"
 						name="./jcr:content/parAdSpace/responsiveimage/desktopImage/sling:resourceType"
 						value="foundation/components/image" xtype="hidden" />
+					<tabletImageResType jcr:primaryType="cq:Widget"
+						ignoreData="true"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/sling:resourceType"
+						value="foundation/components/image" xtype="hidden" />
+					<mobileImageResType jcr:primaryType="cq:Widget"
+						ignoreData="true"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/sling:resourceType"
+						value="foundation/components/image" xtype="hidden" />
 					<resourceType jcr:primaryType="cq:Widget" ignoreData="true"
 						name="./jcr:content/parAdSpace/responsiveimage/sling:resourceType"
+						value="searspartsdirect/components/content/responsiveImage" xtype="hidden" />
+					<resourceTypeTabletMobile jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/sling:resourceType"
 						value="searspartsdirect/components/content/responsiveImage" xtype="hidden" />
 				</items>
 			</tab5>
