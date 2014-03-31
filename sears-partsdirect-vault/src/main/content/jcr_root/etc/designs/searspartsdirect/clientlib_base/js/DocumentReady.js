@@ -337,7 +337,7 @@ var pictureElements = [];
 
         /* Find and map all "picture" elements */
         $('.responsivePicture').each(function(index, ele){
-            window.pictureElements[index] = new ResponsvePicture( $(ele) );
+            window.pictureElements[index] = new ResponsivePicture( $(ele) );
             window.pictureElements[index]._checkSources($(window).width());
         });
 
