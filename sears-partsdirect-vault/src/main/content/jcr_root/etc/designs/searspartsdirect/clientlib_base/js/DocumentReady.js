@@ -322,7 +322,7 @@ var pictureElements = [];
 		/**
 		 * (Air/Water) Filter Banners class setup
 		 */
-        if( $('#js_filterBannerTemplate').length )  var newBanners = new banners();
+        if( $('#js_filterBannerTemplate').length ) var newBanners = new banners();
 
         /* Debounce resize event */
         function resizeCall(){
@@ -336,13 +336,11 @@ var pictureElements = [];
         window.onresize = debounceResize;
 
         /* Find and map all "picture" elements */
-        function main(){
+        $('.responsivePicture').each(function(index, ele){
+            window.pictureElements[index] = new ResponsvePicture( $(ele) );
+            window.pictureElements[index]._checkSources($(window).width());
+        });
 
-            $('.responsivePicture').each(function(index, ele){
-                window.pictureElements[index] = new ResponsvePicture( $(ele) );
-                window.pictureElements[index]._checkSources($(window).width());
-            });
-        }
 
 	});
 }(window));

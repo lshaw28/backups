@@ -6,9 +6,9 @@
 			
 			<spd:respImagePoc />
             <div class="responsivePicture">
-                <span data-min="0" data-max="360" data-src="${respImage}?wid=200" />
-                <span data-min="361" data-max="720" data-src="${respImage}?wid=500" data-default="true"  />
-                <span data-min="721" data-max="1360" data-src="${respImage}?wid=700" />
+                <span data-min="0" data-max="360" data-src="${respImage}?wid=200"></span>
+                <span data-min="361" data-max="720" data-src="${respImage}?wid=500" data-default="true"></span>
+                <span data-min="721" data-max="1360" data-src="${respImage}?wid=700"></span>
             </div>
 			
 			<div class="row-fluid">
