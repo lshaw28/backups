@@ -322,7 +322,7 @@ var pictureElements = [];
 		/**
 		 * (Air/Water) Filter Banners class setup
 		 */
-        var newBanners = new banners();
+        if( $('#js_filterBannerTemplate').length )  var newBanners = new banners();
 
         /* Debounce resize event */
         function resizeCall(){
