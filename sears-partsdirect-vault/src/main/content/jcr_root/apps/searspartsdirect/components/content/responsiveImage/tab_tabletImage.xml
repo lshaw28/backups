@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0"
+	xmlns:jcr="http://www.jcp.org/jcr/1.0" jcr:primaryType="cq:Widget"
+	itemId="tabletImageTab" cropParameter="./tabletImage/imageCrop"
+	ddGroups="[media]" fileNameParameter="./tabletImage/fileName"
+	fileReferenceParameter="./tabletImage/fileReference" blankText="An image is required"
+	name="./tabletImage/file" requestSuffix="/tabletImage.img.png"
+	rotateParameter="./tabletImage/imageRotate" sizeLimit="100" title="Tablet Image"
+	uploadUrl="/tmp/upload/*" xtype="html5smartimage" />

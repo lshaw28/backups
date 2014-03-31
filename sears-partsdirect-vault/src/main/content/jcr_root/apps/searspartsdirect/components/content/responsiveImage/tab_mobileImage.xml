@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0"
+	xmlns:jcr="http://www.jcp.org/jcr/1.0" jcr:primaryType="cq:Widget"
+	itemId="mobileImageTab" cropParameter="./mobileImage/imageCrop"
+	ddGroups="[media]" fileNameParameter="./mobileImage/fileName"
+	fileReferenceParameter="./mobileImage/fileReference" blankText="An image is required"
+	name="./mobileImage/file" requestSuffix="/mobileImage.img.png"
+	rotateParameter="./mobileImage/imageRotate" sizeLimit="100" title="Mobile Image"
+	uploadUrl="/tmp/upload/*" xtype="html5smartimage" />

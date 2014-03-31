@@ -4,9 +4,29 @@
     title="Responsive Image"
     xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
-        <responsiveImageSelection
+		<tabs jcr:primaryType="cq:TabPanel">
+			<items jcr:primaryType="cq:WidgetCollection">
+        <desktopImage
             jcr:primaryType="cq:Widget"
-            path="/apps/searspartsdirect/components/content/responsiveImage/tab_responsiveImage_information.infinity.json"
+            path="/apps/searspartsdirect/components/content/responsiveImage/tab_desktopImage.infinity.json"
             xtype="cqinclude"/>
+        <tabletImage
+            jcr:primaryType="cq:Widget"
+            path="/apps/searspartsdirect/components/content/responsiveImage/tab_tabletImage.infinity.json"
+            xtype="cqinclude"/>
+        <mobileImage
+            jcr:primaryType="cq:Widget"
+            path="/apps/searspartsdirect/components/content/responsiveImage/tab_mobileImage.infinity.json"
+            xtype="cqinclude"/>
+        <linkDetails
+            jcr:primaryType="cq:Widget"
+            path="/apps/searspartsdirect/components/content/responsiveImage/tab_link.infinity.json"
+            xtype="cqinclude"/>
+        <imageDetails
+            jcr:primaryType="cq:Widget"
+            path="/apps/searspartsdirect/components/content/responsiveImage/tab_imageDetails.infinity.json"
+            xtype="cqinclude"/>
+    </items>
+    </tabs>
     </items>
 </jcr:root>

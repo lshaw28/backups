@@ -55,25 +55,60 @@
     <c:if test="${showImage == 'true'}">
         </div> <%-- //end div.accessoryWithImage --%>
         <div class="imageHolder span4 clearfix">
-            <cq:include path="responsiveImage" resourceType="searspartsdirect/components/content/responsiveImage" />
+            <%-- <cq:include path="responsiveImage" resourceType="searspartsdirect/components/content/responsiveImage" /> --%>
+            <cq:include script="/apps/searspartsdirect/components/content/responsiveImage/responsiveImage.jsp" />
         </div>
 
-        <script>
+       <script>
             function setSymptomImageAlignment() {
                 $(".categorySymptoms .imageHolder").css({"height" : $(".categorySymptoms .accessoryWithImage").height()+"px"});
                 var fullOuterHeight = $(".imageHolder").height();
-                var imageHeight = $(".imageHolder .responsiveImage").height();
+                var imageHeight = $(".imageHolder div").height();
                 var marginVert = (fullOuterHeight - imageHeight)/2;
-                var fullOuterWidth = $(".imageHolder").width();
-                var imageWidth = $(".imageHolder .responsiveImage").width();
-                var marginHoriz = (fullOuterWidth - imageWidth)/2;
-                $(".imageHolder .responsiveImage").css({"margin-top" : marginVert, "margin-right" : marginHoriz, "margin-bottom" : marginVert, "margin-left" : marginHoriz});
+                if ($(".imageHolder .imageCaption").length === 1){
+                    marginVert = marginVert - 20;
+                }
+                $(".imageHolder div").css({"margin-top" : marginVert});
             }
 
+            (function($,sr){
+
+              // debouncing function from John Hann
+              // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
+              var debounce = function (func, threshold, execAsap) {
+                  var timeout;
+
+                  return function debounced () {
+                      var obj = this, args = arguments;
+                      function delayed () {
+                          if (!execAsap)
+                              func.apply(obj, args);
+                          timeout = null;
+                      };
+
+                      if (timeout)
+                          clearTimeout(timeout);
+                      else if (execAsap)
+                          func.apply(obj, args);
+
+                      timeout = setTimeout(delayed, threshold || 100);
+                  };
+              }
+              // smartresize
+              jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
+
+            })(jQuery,'smartresize');
+
             $(document).ready(function(){
+                //var target = $('[data-desktopimage]', $('.categorySymptoms .imageHolder')),
+                //newResponsiveImage = new responsiveImage(target);
+
                 if ($(".categorySymptoms .accessoryWithImage").length === 1){
                     setTimeout(setSymptomImageAlignment,1000);
                 }
+                $(window).smartresize(function(){
+  					setSymptomImageAlignment();
+				});
             });
         </script>
     </c:if>

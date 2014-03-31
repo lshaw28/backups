@@ -11,7 +11,6 @@ import javax.servlet.jsp.JspException;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,11 +43,6 @@ public class GetCategory101PagesTag extends CQBaseTag {
 	@Override
 	public int doStartTag() throws JspException {
 
-		ArrayList<ArticleModel> category101Models = new ArrayList<ArticleModel>();
-		Tag[] pageTags = null;
-		TagManager tm = resourceResolver.adaptTo(TagManager.class);
-		Tag cat101Tag = tm.resolve(category101TagID);
-
 		// find all articles, filtered by category
 		try {
 			ArrayList<Page> result = new ArrayList<Page>();
@@ -58,71 +52,51 @@ public class GetCategory101PagesTag extends CQBaseTag {
 			props.put("path", Constants.ARTICLES_ROOT);
 			props.put("property", Constants.ASSETS_PAGES_REL_PATH);
 			props.put("property.value", category.getPath());
+            ArrayList<ArticleModel> category101Models = new ArrayList<ArticleModel>();
 
 			List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
 
 			for (Hit hit: hits) {
 				result.add(pageManager.getPage(hit.getPath()));
 			}
-			for(Page page: result){
-				pageTags = page.getTags();
-				List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
+            for(Page page: result){
+                // turn pages to models
+                ArticleModel articleModel = getArticleModel(page);
+                if(articleModel != null) {
+                    category101Models.add(articleModel);
+                }
+            }
 
-				// filter those pages by cat101 tag
-				if(pageTagsArray.contains(cat101Tag)){
+            if(StringUtils.isNotEmpty(category.getPath())) { // check that categoryPath is not empty b/c page blows up otherwise
+                String categoryName = category.getTrueName();
+                String pagePathPrefix = Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName;
 
-					// We need to resolve the image path, and hand out a blank for image if the image does not exist
-					String imagePath = page.getPath() + Constants.ASSETS_IMAGE_PATH;
-					Resource imageResource = resourceResolver.getResource(imagePath);
-					if (imageResource == null) {
-						// If we cannot resolve to an image, we return a blank string
-						imagePath = Constants.EMPTY;
-					} else {
-						Node imageNode = imageResource.adaptTo(Node.class);
-						if (!(imageNode.hasProperty("fileReference") || imageNode.hasNode("file"))) {
-							// If the image is not set up one way or another, we return a blank string
-							imagePath = Constants.EMPTY;
-						}
-					}
+                if (PDUtils.doesPageContainCategoryAsset(pageManager, pagePathPrefix + Constants.COMMON_PARTS_PATH_SUFFIX)) {
+                    Page page = pageManager.getPage(pagePathPrefix + Constants.COMMON_PARTS_PATH_SUFFIX);
+                    ArticleModel articleModel = getArticleModel(page);
+                    if(articleModel != null) {
+                        category101Models.add(articleModel);
+                    }
+                }
 
-					// turn pages to models
-					category101Models.add(new ArticleModel(page,imagePath));
-					
-				}
-			}
-			
-			if(StringUtils.isNotEmpty(category.getPath())) { // check that categoryPath is not empty b/c page blows up otherwise
-				String categoryName = category.getTrueName();
-				
-				if (PDUtils.doesPageContainCategoryAsset(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" +  categoryName + Constants.COMMON_PARTS_PATH_SUFFIX)) {
-					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_PARTS_PATH_SUFFIX);
-					pageTags = page.getTags();
-					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
-					if(pageTagsArray.contains(cat101Tag)){
-						category101Models.add(new ArticleModel(page,Constants.EMPTY));
-					}
-				}
-				
-				if (PDUtils.doesPageContainCategoryAsset(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
-				Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.COMMON_QUESTIONS_PATH_SUFFIX);
-				pageTags = page.getTags();
-				List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
-				if(pageTagsArray.contains(cat101Tag)){
-					category101Models.add(new ArticleModel(page,Constants.EMPTY));
-					}
-				}
-				
-				if (PDUtils.doesPageContainCategoryAsset(pageManager, Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
-					Page page = pageManager.getPage(Constants.CATEGORIES_ROOT + "/" + categoryName + Constants.CATEGORY_PATH_SUFFIX + "/" + categoryName + Constants.MAINTENANCE_TIPS_PATH_SUFFIX);
-					pageTags = page.getTags();
-					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
-					if(pageTagsArray.contains(cat101Tag)){
-						category101Models.add(new ArticleModel(page,Constants.EMPTY));
-					}
-				}
-			}
+                if (PDUtils.doesPageContainCategoryAsset(pageManager, pagePathPrefix + Constants.COMMON_QUESTIONS_PATH_SUFFIX)) {
+                    Page page = pageManager.getPage(pagePathPrefix + Constants.COMMON_QUESTIONS_PATH_SUFFIX);
+                    ArticleModel articleModel = getArticleModel(page);
+                    if(articleModel != null) {
+                        category101Models.add(articleModel);
+                    }
+                }
 
-		pageContext.setAttribute("category101Models", category101Models);
+                if (PDUtils.doesPageContainCategoryAsset(pageManager, pagePathPrefix + Constants.MAINTENANCE_TIPS_PATH_SUFFIX)) {
+                    Page page = pageManager.getPage(pagePathPrefix + Constants.MAINTENANCE_TIPS_PATH_SUFFIX);
+                    ArticleModel articleModel = getArticleModel(page);
+                    if(articleModel != null) {
+                        category101Models.add(articleModel);
+                    }
+                }
+            }
+
+		    pageContext.setAttribute("category101Models", category101Models);
 
 		}
 		catch(Exception e){
@@ -139,4 +113,37 @@ public class GetCategory101PagesTag extends CQBaseTag {
 	public void setCategory(ProductCategoryModel category) {
 		this.category = category;
 	}
+
+    // turn pages to models
+    private ArticleModel getArticleModel(Page page) throws Exception{
+        TagManager tm = resourceResolver.adaptTo(TagManager.class);
+        Tag cat101Tag = tm.resolve(category101TagID);
+
+        Tag[] pageTags = page.getTags();
+        List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
+
+        ArticleModel articleModel = null;
+        // filter those pages by cat101 tag
+        if(pageTagsArray.contains(cat101Tag)){
+
+            // We need to resolve the image path, and hand out a blank for image if the image does not exist
+            String imagePath = page.getPath() + Constants.ASSETS_IMAGE_PATH;
+            Resource imageResource = resourceResolver.getResource(imagePath);
+            if (imageResource == null) {
+                // If we cannot resolve to an image, we return a blank string
+                imagePath = Constants.EMPTY;
+            } else {
+                Node imageNode = imageResource.adaptTo(Node.class);
+                if (!(imageNode.hasProperty("fileReference") || imageNode.hasNode("file"))) {
+                    // If the image is not set up one way or another, we return a blank string
+                    imagePath = Constants.EMPTY;
+                }
+            }
+
+            // turn pages to models
+            articleModel = new ArticleModel(page, imagePath);
+        }
+
+        return articleModel;
+    }
 }
