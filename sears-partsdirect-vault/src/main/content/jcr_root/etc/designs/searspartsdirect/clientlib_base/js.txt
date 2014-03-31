@@ -26,6 +26,7 @@ WindowResize.js
 handlebars-v1.3.0.js
 history.js
 
+
 #base=js/components/.
 addToCart.js
 airFilterPartDetails.js
@@ -53,6 +54,7 @@ video.js
 mervRatingHelp.js
 airFilterDimension.js
 banners.js
+responsivePicture.js
 
 #base=js/widgets/.
 AdUnit.js
