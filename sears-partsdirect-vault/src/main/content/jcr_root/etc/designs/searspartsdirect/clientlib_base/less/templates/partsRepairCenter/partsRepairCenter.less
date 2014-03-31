@@ -1,6 +1,6 @@
 @import "../../base.variables.less";
 @import "../../base.mixins.less";
-
+.partsRepairCenter {
   .hideElement {
     display: none
   }
@@ -21,11 +21,18 @@
   }
   .viewMapAndDirectionsButton {
     margin: 20px 0 15px;
+	&:hover {
+	  color: @primaryHueNormal;
+	  text-decoration: none;
+	}
   }
   .responsiveImage{
      .imageCaption {
         text-align: center;
       }
+	  img[src=""] {
+		display: none;
+	  }
   }
   .topListContent {
     p {
@@ -50,6 +57,6 @@
       }
     }
   }
-
+}
 @import "partsRepairCenter.mobile";
 @import "partsRepairCenter.tablet";

@@ -37,7 +37,7 @@
                             <div class="row-fluid">
                                 <div class="new-span-responsive">
                                     <cq:include path="parAddress" resourceType="foundation/components/parsys" />
-                                    <a href="<%=fullAddress%>" target="_blank"><input type="button" class="new-btn viewMapAndDirectionsButton" value="View Map & Directions"/></a>
+                                    <a href="<%=fullAddress%>" target="_blank" class="new-btn viewMapAndDirectionsButton">View Map & Directions</a>
                                 </div>
                                 <div class="new-span-responsive">
                                     <cq:include path="parHoursOfOperation" resourceType="foundation/components/parsys" />
