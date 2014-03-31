@@ -327,8 +327,8 @@
          * (PRC) Fix to hide the header-promo message and side-chat on PRC Landing Page
          */
         if ($('#partsRepairCenter').length > 0) {
-            $(".headerPromo").addClass('hideElement');
-            $(".sideChatNavigation").addClass('hideElement');
+            $(".headerPromo").addClass('hidden');
+            $(".sideChatNavigation").addClass('hidden');
         }
 
 	});
