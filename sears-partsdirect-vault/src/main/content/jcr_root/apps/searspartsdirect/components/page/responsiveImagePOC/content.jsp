@@ -5,9 +5,11 @@
 			<cq:include path="/content/searspartsdirect/en/jcr:content/modelHeader" resourceType="/apps/searspartsdirect/components/content/modelHeader" />
 			
 			<spd:respImagePoc />
-			<c:forEach var="respImage" items="${respImages}">
-				<img src="${respImage}" />
-			</c:forEach>
+            <div class="responsivePicture">
+                <span data-min="0" data-max="360" data-src="${respImage}?wid=200" />
+                <span data-min="361" data-max="720" data-src="${respImage}?wid=500" data-default="true"  />
+                <span data-min="721" data-max="1360" data-src="${respImage}?wid=700" />
+            </div>
 			
 			<div class="row-fluid">
 				<div class="span8">

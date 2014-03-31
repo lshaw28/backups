@@ -1,4 +1,9 @@
 /*global $:true, window:true, document:true, Class:true, searchPanel:true, revealPanel:true, responsiveImage: true, video:true, guideNavigation:true, regula:true */
+
+/* These two vars are for picture POC , refactor */
+var resizeTimer = false;
+var pictureElements = [];
+
 (function (window) {
 	"use strict";
 	/**
@@ -317,6 +322,27 @@
 		/**
 		 * (Air/Water) Filter Banners class setup
 		 */
-        var newBanners = new banners(); 
+        var newBanners = new banners();
+
+        /* Debounce resize event */
+        function resizeCall(){
+            $(document).trigger('debounceResize');
+        }
+
+        function debounceResize(){
+            if(window.resizeTimer) clearTimeout(window.resizeTimer);
+            window.resizeTimer = setTimeout(resizeCall,150);
+        }
+        window.onresize = debounceResize;
+
+        /* Find and map all "picture" elements */
+        function main(){
+
+            $('.responsivePicture').each(function(index, ele){
+                window.pictureElements[index] = new ResponsvePicture( $(ele) );
+                window.pictureElements[index]._checkSources($(window).width());
+            });
+        }
+
 	});
 }(window));
