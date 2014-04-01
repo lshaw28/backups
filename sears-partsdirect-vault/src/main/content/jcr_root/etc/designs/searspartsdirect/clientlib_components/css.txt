@@ -78,3 +78,4 @@ partsRepairCenter/address/address.less
 partsRepairCenter/teamMembers/teamMembers.less
 partsRepairCenter/hoursOfOperation/hoursOfOperation.less
 partsRepairCenter/topCategoriesAndServices/topCategoriesAndServices.less
+textImagePD/textImagePD.less

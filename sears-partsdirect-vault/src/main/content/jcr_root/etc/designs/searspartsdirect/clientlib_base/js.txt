@@ -53,6 +53,7 @@ video.js
 mervRatingHelp.js
 airFilterDimension.js
 banners.js
+seoParts.js
 
 #base=js/widgets/.
 AdUnit.js
