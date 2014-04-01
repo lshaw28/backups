@@ -53,7 +53,14 @@
 
 
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="<%=externalLinks.getExternalUrlForPage(currentPage.getPath()) %>" />
+<c:choose>
+	<c:when test="${template eq '/apps/searspartsdirect/templates/categorySymptom'}" >
+		<link rel="canonical" href="<%=externalLinks.getExternalUrlForPage(request.getRequestURI()) %>" />
+	</c:when>
+	<c:otherwise>
+		<link rel="canonical" href="<%=externalLinks.getExternalUrlForPage(currentPage.getPath()) %>" />
+	</c:otherwise>
+</c:choose>
 <meta property="og:title" content="<%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %>" />
 <meta property="og:type" content="business:business" />
 <meta property="og:image" content="<%=externalLinks.getExternalUrlForAsset("/etc/designs/searspartsdirect/clientlib_base/img/socialLogo.jpg") %>" />
