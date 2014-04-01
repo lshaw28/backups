@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 @SuppressWarnings("serial")
-public class ResponsiveImagePOCITag extends CQBaseTag {
-	protected final static Logger log = LoggerFactory.getLogger(ResponsiveImagePOCITag.class);
+public class ResponsiveImagePOCTag extends CQBaseTag {
+	protected final static Logger log = LoggerFactory.getLogger(ResponsiveImagePOCTag.class);
 
 	@Override
 	public int doStartTag() throws JspException {

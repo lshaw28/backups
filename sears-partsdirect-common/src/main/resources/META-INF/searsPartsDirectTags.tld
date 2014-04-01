@@ -590,7 +590,7 @@
 	</tag>
 	<tag>
 		<name>respImagePoc</name>
-		<tag-class>com.spd.cq.searspartsdirect.common.tags.ResponsiveImagePOCITag</tag-class>
-		<info>Displays Responsive POC image</info>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.ResponsiveImagePOCTag</tag-class>
+		<info>Displays Responsive image</info>
 	</tag>
 </taglib>
