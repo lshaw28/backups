@@ -18,6 +18,10 @@
             				jcr:primaryType="nt:unstructured"
             				text="SEO Text Component"
             				value="seoTextComponent"/>
+            			<three
+            				jcr:primaryType="nt:unstructured"
+            				text="Value Prop Component"
+            				value="valueprop"/>
             		</options>
             	</type>
             				

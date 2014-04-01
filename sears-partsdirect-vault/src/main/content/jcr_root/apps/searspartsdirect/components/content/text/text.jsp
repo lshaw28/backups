@@ -7,15 +7,17 @@
 		out.println("<img alt='Placeholder' src='/libs/cq/ui/widgets/themes/default/placeholders/list.png' />");
 	} else {
 		boolean hasSeoTextComponentEnabled = currentNode.hasProperty("componentType") && currentNode.getProperty("componentType").getString().equals("seoTextComponent");
-		if(hasSeoTextComponentEnabled) {		
-%>
-	<%-- [Mingle #8077] - SEO: Landing page - Text component --%>
- 	<h2><%=properties.get("title1", "") %></h2>
- 	<spd:cleanText text="${rawText}" />
- 			
-	<% } else {  %> <spd:cleanText text="${rawText}" /> <% } %>
+		boolean hasValuePropEnabled = currentNode.hasProperty("componentType") && currentNode.getProperty("componentType").getString().equals("valueprop");
+		if(hasValuePropEnabled) { %> 
+			<%-- [Mingle #8073] - SEO: Landing page - Value prop component --%>
+			<cq:include script="valuePropComponent" />        
+        <% } else if(hasSeoTextComponentEnabled) { %>
+			<%-- [Mingle #8077] - SEO: Landing page - Text component --%>
+		 	<h2><%=properties.get("title1", "") %></h2>
+		 	<spd:cleanText text="${rawText}" /> 			
+	<% } else { %> <spd:cleanText text="${rawText}" /> <% } %>
 
-<% } } else {%>
+<% } } else { %>
 	<%-- Default Text component --%>
 	<spd:cleanText text="${rawText}" /> 
 <% } %>
