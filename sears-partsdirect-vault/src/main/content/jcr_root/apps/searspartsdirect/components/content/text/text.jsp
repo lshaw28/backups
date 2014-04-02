@@ -2,7 +2,7 @@
 <%@ page import="com.day.cq.wcm.api.WCMMode" %>
 <c:set var="rawText"><cq:text property="text"/></c:set>
 
-<% if(currentNode != null) { 
+<% if(currentNode != null && currentNode.hasProperty("componentType")) { 
 	if(!currentNode.hasProperty("componentType") && WCMMode.fromRequest(request) != WCMMode.DISABLED) {
 		out.println("<img alt='Placeholder' src='/libs/cq/ui/widgets/themes/default/placeholders/list.png' />");
 	} else {
