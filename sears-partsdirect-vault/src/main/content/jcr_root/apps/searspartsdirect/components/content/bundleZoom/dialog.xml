@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="cq:TabPanel" activeTab="0" xtype="tabpanel">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<imageA jcr:primaryType="cq:Widget" blankText="An image is required"
+			cropParameter="./imageA/imageCrop" fileNameParameter="./imageA/fileName"
+			fileReferenceParameter="./imageA/fileReference" itemId="imageATab"
+			name="./imageA/file" requestSuffix="/imageA.img.png" rotateParameter="./imageA/imageRotate"
+			sizeLimit="100" title="Image A" uploadUrl="/tmp/upload/*" xtype="html5smartimage" />
+		<imageB jcr:primaryType="cq:Widget" blankText="An image is required"
+			cropParameter="./imageB/imageCrop" fileNameParameter="./imageB/fileName"
+			fileReferenceParameter="./imageB/fileReference" itemId="imageB"
+			name="./imageB/file" requestSuffix="/imageB.img.png" rotateParameter="./imageB/imageRotate"
+			sizeLimit="100" title="Image B" uploadUrl="/tmp/upload/*" xtype="html5smartimage" />
+		<imageDetails jcr:primaryType="cq:Widget" title="Image Details"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<imageA jcr:primaryType="cq:Widget" ignoreData="true"
+					name="./imageA/sling:resourceType" value="foundation/components/image"
+					xtype="hidden" />
+				<imageB jcr:primaryType="cq:Widget" ignoreData="true"
+					name="./imageB/sling:resourceType" value="foundation/components/image"
+					xtype="hidden" />
+				<caption jcr:primaryType="cq:Widget" fieldLabel="Bundle Caption"
+					name="./bundleCaption" xtype="textfield" />
+				<imageATitle jcr:primaryType="cq:Widget" fieldLabel="Image A Title"
+					name="./imageATitle" xtype="textfield" />
+				<imageBTitle jcr:primaryType="cq:Widget" fieldLabel="Image B Title"
+					name="./imageBTitle" xtype="textfield" />
+				<savePrice jcr:primaryType="cq:Widget" fieldLabel="Save Price"
+					name="./savePrice" xtype="textfield" />
+			</items>
+		</imageDetails>
+	</items>
+</jcr:root>
