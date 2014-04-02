@@ -34,7 +34,7 @@ if(shObject.getPartsDirectProductAPI()!=null){
 					We also found <span><a href="/content/searspartsdirect/en/partsearchresults.html?searchModPar=<%=modelNumber%>">(<span id="partCount"></span>) part number</a></span>
 				</p>
 			</h1>
-            <h3 id="SYWHeader">In addition to model results, we found either a <strong>Sears item number,</strong> a <strong>partial model number,</strong> or a <strong>UPC code</strong> that matches the number you submitted.</h3>
+            <!--<h3 id="SYWHeader">In addition to model results, we found either a <strong>Sears item number,</strong> a <strong>partial model number,</strong> or a <strong>UPC code</strong> that matches the number you submitted.</h3>-->
 		</div>
 	</div>
 </div>
@@ -60,7 +60,7 @@ if(shObject.getPartsDirectProductAPI()!=null){
 </div>
 
 <!-- SYW Section START -->
-<div class="row-fluid" id="SYW1">
+<!--<div class="row-fluid" id="SYW1">
     <h2 class="resultsHeadline">(<strong id="searchCountSYW" class="searchCountSYW"></strong>) model results found for <strong>Sears Partial Model # <%=modelNumber%></strong></h2>
 </div>
 
@@ -71,17 +71,17 @@ if(shObject.getPartsDirectProductAPI()!=null){
 	</div>
 </div>
 <div class="modelSearchResultsItemBkg" id="searchResultsUp">
-</div>
+</div>-->
 <!-- SYW Section END -->
 
-<div class="row-fluid" id="search1">
+<!--<div class="row-fluid" id="search1">
 	<h2 class="resultsHeadline">(<strong id="searchCountDown"></strong>) results found for <strong>model # <%= modelNumber%></strong></h2>
-</div>
+</div>-->
 
 <div class="row-fluid" id="search2">
 	<div class="resultsHeaderBar">
 		<div class="la-anim-2"></div>
-		<span><strong class="pageCountResults"></strong>Sort By: <select id="sorting">
+		<span><strong class="pageCountResults"></strong>1 - 10 of <strong id="resultsTotal"></strong> Sort By: <select id="sorting">
 				<option value="relevance" selected>Relevance</option>
 				<option value="ascending">Model number ascending</option>
 				<option value="descending">Model number descending</option>
@@ -124,12 +124,12 @@ if(shObject.getPartsDirectProductAPI()!=null){
 </script>
 <script id="brands-template" type="text/x-handlebars-template">
     {{#collection tag="select" id="brandSelect"}}
-        <option value="{{id}}">{{name}}</option>
+        <option value="{{name}}">{{name}}</option>
     {{/collection}}
 </script>
 <script id="products-template" type="text/x-handlebars-template">
     {{#collection tag="select" id="productSelect"}}
-        <option value="{{id}}">{{name}}</option>
+        <option value="{{name}}">{{name}}</option>
     {{/collection}}
 </script>
 <script id="footer-template" type="text/x-handlebars-template">
@@ -144,7 +144,9 @@ if(shObject.getPartsDirectProductAPI()!=null){
                     <p>Previous</p></span>
                 </a>
                 <select id="pageNumber" class="resultsFooterNavSelect">
-
+                    <option value="1">Page 1</option>
+                    <option value="2">Page 2</option>
+                    <option value="3">Page 3</option>
                 </select>
                 <a class="resultsFooterButtonRight">
                     <span><p>Next</p>

@@ -23,7 +23,7 @@ modelSearchResults.vent = _.extend({}, Backbone.Events);
  * Collection for brands select element
  */
 modelSearchResults.Brands = Thorax.Collection.extend({
-    url: "/bin/searspartsdirect/search/searchservlet",
+    url: "http://partsapivip.qa.ch3.s.com/pd-services/models/brands",
 
     parse: function(response) {
         var parsedData = $.parseJSON(response.brand);
@@ -48,10 +48,10 @@ modelSearchResults.Brands = Thorax.Collection.extend({
 });
 
 /**
- * Collection for brands select element
+ * Collection for products select element
  */
 modelSearchResults.Products = Thorax.Collection.extend({
-    url: "/bin/searspartsdirect/search/searchservlet",
+    url: "http://partsapivip.qa.ch3.s.com/pd-services/models/product-types",
 
     parse: function(response) {
         var parsedData = $.parseJSON(response.product);
@@ -79,7 +79,7 @@ modelSearchResults.Products = Thorax.Collection.extend({
  */
 modelSearchResults.Items = Thorax.Collection.extend({
 
-    url: "/bin/searspartsdirect/search/searchservlet",
+    url: "http://partsapivip.qa.ch3.s.com/pd-services/models",
 
     parse: function(response) {
         var data,
@@ -131,8 +131,9 @@ modelSearchResults.Items = Thorax.Collection.extend({
     },
 
     setUrlParams: function() {
-
-        this.url = "/bin/searspartsdirect/search/searchservlet";
+        var opts = {data : {}};
+        if(this.offset) opts.data.offset = $param(this.offset);
+        this.url = "http://partsapivip.qa.ch3.s.com/pd-services/models";
         this.url += "?modelnumber="+modelSearchResults.modelNumber;
         this.url += "&offset="+modelSearchResults.offset;
         this.url += "&limit="+modelSearchResults.limit;
@@ -141,9 +142,8 @@ modelSearchResults.Items = Thorax.Collection.extend({
             this.url += "&productType="+modelSearchResults.productType;
         }
         if (modelSearchResults.brandId != '') {
-            this.url += "&brand="+modelSearchResults.brandId;
+            this.url += "/brands?modelnumber="+modelSearchResults.modelNumber+"&brand="+modelSearchResults.brandId;
         }
-        this.url += "&flag="+modelSearchResults.flag;
 
     },
 
@@ -256,6 +256,7 @@ modelSearchResults.SearchResultsView = new Thorax.View({
     template: Handlebars.compile($('#msr-template').html()),
 
     initialize: function() {
+        console.log("This is the first step");
         modelSearchResults.vent.on('BrandsSelectView.brandChange', this.handleBrandChange, this);
         modelSearchResults.vent.on('ProductsSelectView.productTypeChange', this.handleProductTypeChange, this);
         modelSearchResults.vent.on('SearchResultsFooter.pageIndexChange', this.handlePageIndexChange, this);
@@ -325,5 +326,3 @@ modelSearchResults.SearchResultsView.appendTo('.modelSearchResultsMain');
 modelSearchResults.ProductsSelectView.appendTo('.productType');
 modelSearchResults.BrandsSelectView.appendTo('.brand');
 modelSearchResults.SearchResultsFooterView.appendTo('#footer');
-
-
