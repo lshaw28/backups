@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0"
+	xmlns:jcr="http://www.jcp.org/jcr/1.0" jcr:primaryType="cq:Widget"
+	title="Image Details" xtype="panel">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<displayWidth jcr:primaryType="cq:Widget"
+			fieldDescription="Set a specific display width for the image."
+			fieldLabel="Display Width" name="./displayWidth" xtype="textfield" />
+		<displayHeight jcr:primaryType="cq:Widget"
+			fieldDescription="Set a specific display height for the image."
+			fieldLabel="Display Height" name="./displayHeight" xtype="textfield" />
+		<desktopResType jcr:primaryType="cq:Widget" ignoreData="{Boolean}true"
+			name="./desktopImage/sling:resourceType" value="foundation/components/image"
+			xtype="hidden" />
+		<tabletResType jcr:primaryType="cq:Widget" ignoreData="{Boolean}true"
+			name="./tabletImage/sling:resourceType" value="foundation/components/image"
+			xtype="hidden" />
+		<mobileResType jcr:primaryType="cq:Widget" ignoreData="{Boolean}true"
+			name="./mobileImage/sling:resourceType" value="foundation/components/image"
+			xtype="hidden" />
+		<caption jcr:primaryType="cq:Widget" fieldLabel="Caption"
+			name="./imageCaption" xtype="textfield" />
+		<captionClickable jcr:primaryType="cq:Widget"
+			fieldLabel="Caption Clickable" name="./captionClickable" type="checkbox"
+			xtype="selection" />
+		<credit jcr:primaryType="cq:Widget" fieldLabel="Photo Credit"
+			name="./photoCredit" xtype="textfield" />
+	</items>
+</jcr:root>  

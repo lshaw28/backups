@@ -12,6 +12,8 @@ var sideChatNavigation = Class.extend(function() {
 			this.el = el;
 			// Perform setup
 			this.bindEvents();
+			this.bindSwipes();
+
 		},
 		/**
 		 * Bind events
@@ -20,10 +22,32 @@ var sideChatNavigation = Class.extend(function() {
 		bindEvents: function() {
 			var self = this;
 
-			$('[data-toggle="sidechattoggle"]', self.el).toggle(function () {
-				self.show();
-			}, function () {
-				self.hide();
+			$('[data-toggle="sidechattoggle"]', self.el).on('click', function () {
+
+				if ($('.sideChatNavigationIcon').hasClass('pchat-open')){
+					$('.sideChatNavigationIcon').removeClass('pchat-open');
+	             	self.hide();
+	        	} else {
+	            	$('.sideChatNavigationIcon').addClass('pchat-open');
+	            	self.show();
+	          	}
+
+			});
+
+		},
+		bindSwipes: function() {
+			var self = this;
+
+			self.el.swipe({
+			    swipeLeft:function(event, direction, distance, duration, fingerCount) {
+			    	$('.sideChatNavigationIcon').addClass('pchat-open');
+			    	self.show();
+			    },
+			    swipeRight:function(event, direction, distance, duration, fingerCount) {
+			    	$('.sideChatNavigationIcon').removeClass('pchat-open');
+			    	self.hide();
+			    },
+
 			});
 		},
 		/**

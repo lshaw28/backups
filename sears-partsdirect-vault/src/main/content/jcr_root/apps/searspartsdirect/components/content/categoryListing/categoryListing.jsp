@@ -1,7 +1,8 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %><%
 %><spd:tagsByPage tagType="parent_categories" /><%
 %><c:set var="defaultTitle" value="Select your product type for repair help" /><%
-%><c:set var="actualTitle"><cq:text property="componentHeader" placeholder="${defaultTitle}" /></c:set><%
+%><c:set var="actualTitle"><cq:text property="componentHeader" placeholder="${defaultTitle}" /></c:set>
+<%
 %><c:if test="${empty actualTitle}"><c:set var="actualTitle" value="${defaultTitle}" /></c:if><%
 %><h2><c:out value="${actualTitle}" /></h2><%
 %><c:forEach var="parentCategory" items="${parent_categoriesList}">
@@ -19,3 +20,25 @@
 	</c:forEach></div>
 </c:if>
 </c:forEach>
+
+<%-- <span data-tracking="{event:'loadChannel',
+                                values:{
+                                   'channel': 'Home Page',
+                                },
+                                componentPath:'<%=resource.getResourceType()%>'}"> --%>
+                                
+<%-- <span  data-tracking="SPDUtils.trackEvent({event: '', values: {'channel': 'Home Page'}, componentPath: '<%=resource.getResourceType()%>'}, 'Parts');"></span> --%>
+
+ <%-- <a class="new-btn" href="http://localhost:4502/cf#/content/searspartsdirect/en/repair-help.html" onclick="SPDUtils.trackEvent({event: '', values: {channel:'Home Page'}, componentPath: '<%=resource.getResourceType()%>'}, 'PD_CQ_Errorcode_box_#templateName');">View</a> --%> 
+                                
+<%--  <script type="text/javascript">
+     if (CQ_Analytics.Sitecatalyst) {
+         CQ_Analytics.record({
+             values: {
+                 channel: 'Home Page'
+             },
+             componentPath: '<%=resource.getResourceType()%>'
+         });
+     }
+</script>  --%>
+

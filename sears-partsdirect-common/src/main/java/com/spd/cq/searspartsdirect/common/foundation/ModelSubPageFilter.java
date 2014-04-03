@@ -42,13 +42,23 @@ public class ModelSubPageFilter implements Filter {
 	private final static Pattern brandCatModelRest = Pattern
 			.compile("^/([^/]*)/([^/]*)/" + Constants.MODELNO_PFX + "([^/]*)"
 					+ Constants.MODELNO_SFX + "(.*\\"+Constants.MARKUP_EXT+")$");
+	private final static Pattern airFilterPartDetailsPattern = Pattern
+							.compile(Constants.AIRFILTER_PART_DETAILS_PFX + "/([^/]*)/([^/]*)/([^/]*)"
+									+ "(.*\\"+Constants.MARKUP_EXT+")$");
 	private final static Pattern repairGuide = Pattern.compile("^"
 			+ Constants.REPAIR_GUIDES_ROOT);
 	private final static Pattern categoryRepair = Pattern.compile("^/[^/]*"
 			+ Constants.MODELNO_SFX + "[\\./]");
 	private final static Pattern symptomatic = Pattern
 			.compile(Constants.SYMPTOM_ROOT + "([^\\./]+)");
+	
+	private final static String CMS_URL_PREFIX = "/content/searspartsdirect/en";
+	
+	private final static Pattern PRCPattern = Pattern
+			.compile(Constants.PRC_PFX + "/([^/]*)"
+					+ "(.*\\"+Constants.MARKUP_EXT+")$");
 
+	
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain fc) throws IOException, ServletException {
 
@@ -95,6 +105,17 @@ public class ModelSubPageFilter implements Filter {
 				}
 			}
 
+			// Look for Air Filter Part Details page pattern
+			Matcher airFilterPartDetailsMatcher = airFilterPartDetailsPattern.matcher(resPath);
+			if (airFilterPartDetailsMatcher.find()) {
+				selectors.add(airFilterPartDetailsMatcher.group(1));
+				selectors.add(airFilterPartDetailsMatcher.group(2));
+				selectors.add(airFilterPartDetailsMatcher.group(3));
+				resPath = resPath.substring(0, airFilterPartDetailsMatcher.start(1) - 1) + Constants.MARKUP_EXT;
+				resPath = resPath.replace("part-number", "part-details");
+				mustForward = true;
+			}
+
 			Matcher symptom = symptomatic.matcher(resPath);
 			if (symptom.find()) {
 				// start of symptom-id group, - 1 to remove the slash or .
@@ -107,6 +128,12 @@ public class ModelSubPageFilter implements Filter {
 				resPath = Constants.CATEGORIES_PFX + resPath;
 				mustForward = true;
 			}
+			
+			/* Check for PRC Pattern */
+			Matcher prc = PRCPattern.matcher(resPath);
+			if(prc.find()){
+				redirectPRCURL(request, response, resPath);
+			}
 		}
 
 		if (mustForward) {
@@ -114,7 +141,7 @@ public class ModelSubPageFilter implements Filter {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher(forwardUrl);
 
 			//if (requestDispatcher == null) throw new RuntimeException("No dispatcher for "+forwardUrl);
-			log.debug("Forwarding to "+forwardUrl);
+			log.debug("Forwarding to " + forwardUrl);
 			requestDispatcher.forward(request, response);
 
 		} else {
@@ -122,6 +149,27 @@ public class ModelSubPageFilter implements Filter {
 		}
 		return;
 
+	}
+	
+	private static void redirectPRCURL(SlingHttpServletRequest request, SlingHttpServletResponse response, String pagePath) throws ServletException, IOException{
+		log.info("PRCPageFilter: doFilter(): for url " + pagePath);
+		
+		String cmsPageUrl = mapURLToCMSPagePath(pagePath);
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(cmsPageUrl);
+
+		if (requestDispatcher == null) throw new RuntimeException("PRCPageFilter: doFilter(): No dispatcher for " + cmsPageUrl);
+		
+		log.info("PRCPageFilter: doFilter(): forwarding request to " + cmsPageUrl);
+		requestDispatcher.forward(request, response);
+	}
+	
+	private static String mapURLToCMSPagePath(String pagePath) {
+		
+		StringBuffer fullPagePath = new StringBuffer();
+		fullPagePath.append(CMS_URL_PREFIX);
+		fullPagePath.append(pagePath);
+		return fullPagePath.toString();
 	}
 
 	boolean hasRepairGuide(String path) {

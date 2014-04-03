@@ -13,6 +13,7 @@ var searchPanel = Class.extend(function () {
 			// Initialize events
 			this.findItems();
 			this.bindEvents();
+			this.airFilterParts = this.checkIfAirFilterPart();
 		},
 		/**
 		 * Finds dropdown items
@@ -52,75 +53,50 @@ var searchPanel = Class.extend(function () {
 			// Update hidden fields
 			if (el.data('pathtaken') === 'modelSearch') {
 				modelNumber = value;
+				//$('#shdMod').attr('value', modelNumber);
+				$('input[name=shdMod]').val(modelNumber);
+
+				//partSearchString = partSearchString.replace(/\//g, '');
+				modelNumber = modelNumber.replace(/\ /g, '');
+				modelNumber = modelNumber.replace(/\'/g, '');
+				modelNumber = modelNumber.replace(/\%/g, '');
+				modelNumber = modelNumber.replace(/\#/g, '');
+				modelNumber = modelNumber.replace(/\&/g, '');
+				modelNumber = modelNumber.replace(/\(/g, '');
+				modelNumber = modelNumber.replace(/\)/g, '');
+				modelNumber = modelNumber.replace(/\-/g, '');
+				modelNumber = modelNumber.replace(/\*/g, '');
+				modelNumber = modelNumber.replace(/\$/g, '');
+				modelNumber = modelNumber.replace(/\^/g, '');
+				modelNumber = modelNumber.replace(/\,/g, '');
+				modelNumber = modelNumber.replace(/\"/g, '');
+				modelNumber = modelNumber.replace(/\//g, '');
+				modelNumber = modelNumber.replace(/\?/g, '');
+				modelNumber = modelNumber.replace(/\\/g, '');
+
+
+				if (modelNumber.indexOf('/') != -1){
+					modelNumber = modelNumber.replace(/\//g, '');
+				} else if ( modelNumber.indexOf('%') != -1 ){
+					modelNumber = modelNumber.replace(/\%/g, '');
+				}
+				value = modelNumber;
 			} else {
-				partNumber = value;
+
+				$('input[name=shdPart]').val(value);
+
+				if (value.indexOf('/') != -1){
+					value = value.replace(/\//g, '@SLASH@');
+				} else if ( value.indexOf('%') != -1 ){
+					value = value.replace(/\%/g, '@SLASHPERCENT@');
+				}
+
 			}
-			$('#shdMod').attr('value', modelNumber);
-			$('#shdPart').attr('value', partNumber);
+
+
 			$('#pathTaken').attr('value', el.data('pathtaken'));
 			// Update form action
-			//$('#searchBarForm').attr('action', action + encodeURIComponent(value));
-			//$('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
-			
-			 $('#searchBarForm').click(function( event ){
-				 
-				if(el.data('pathtaken') === 'modelSearch'){
-	                var urlName = "/bin/searspartsdirect/search/searchservlet?modelnumber="+modelNumber+"&offset=0&limit=25&sortType=revelence&flag=0";
-	                $.ajax({
-					type : "GET",
-					cache : false,
-					dataType : "json",
-					url : urlName,
-	                success : function(data) {
-	                	if(typeof data.modelResults !== 'undefined'){
-	                		var modelResults = data.modelResults;
-	                		modelResults = JSON.parse(modelResults);
-							var length = modelResults.length;
-							if(length != 0){
-								$('#searchBarForm').attr('action', "/content/searspartsdirect/en/modelsearchresults.html");
-							}else{
-								$('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-models-found.html");
-							}
-	                	}
-	                	else {
-	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-models-found.html");
-	                    }
-	                    $('#searchBarForm').submit();
-	                },
-					error : function() {
-						console.log("searchPanel -- No Response from Model Search API");
-					}
-	               }); 
-				} else if(el.data('pathtaken') === 'partSearch'){
-					var urlName = "/bin/searspartsdirect/search/searchservlet?partnumber="+partNumber;
-	                $.ajax({
-					type : "GET",
-					cache : false,
-					dataType : "json",
-					url : urlName,
-	                success : function(data) {
-	                	if(typeof data.partResults !== 'undefined'){
-	                		var partResults = data.partResults;
-							partResults = JSON.parse(partResults);
-							var length = partResults.length;
-							if(length != 0){
-								$('#searchBarForm').attr('action', "/content/searspartsdirect/en/partsearchresults.html");
-							}else{
-								$('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-models-found.html");
-							}
-	                	}
-	                	else {
-	                        $('#searchBarForm').attr('action', "/content/searspartsdirect/en/no-models-found.html");
-	                    }
-	                    $('#searchBarForm').submit();
-	                },
-					error : function() {
-						console.log("searchPanel -- No Response from Part Search API");
-					}
-	               });
-				}
-		    });
-			 
+			$('#searchBarForm').attr('action', action + encodeURIComponent(value));
 		},
 		/**
 		 * Sanitises the current value
@@ -136,10 +112,28 @@ var searchPanel = Class.extend(function () {
 				value = '';
 			}
 			// Sanitise non-alpha-numeric characters
-			value = value.replace(/[^0-9A-Za-z]/g, '');
+			//value = value.replace(/[^0-9A-Za-z]/g, '');
 			field.attr('value', value);
 
 			return value;
+		},
+		/**
+		 * checkIfAirFilterPart
+		 * @return airfilter partsearch term
+		 */
+		checkIfAirFilterPart : function() {
+
+			return [
+					{name : 'airfilter'},
+					{name : 'airfilters'},
+					{name : 'hvacfilter'},
+					{name : 'hvacfilter'},
+					{name : 'heatingfilter'},
+					{name : 'heaterfilter'},
+					{name : 'coolingfilter'},
+					{name : 'acfilter'},
+					{name : 'airconditioner'}
+					];
 		},
 		/**
 		 * Perform initial event binding
@@ -190,10 +184,28 @@ var searchPanel = Class.extend(function () {
 			// Bind event on button
 			$('#searchModelsParts').bind('click', function (e) {
 				e.preventDefault();
-
 				if (self.getValue() !== '' && $(selectStatement).length > 0) {
-					//$('#searchBarForm').submit();
-					$('#searchBarField').removeClass('error');
+					var ifairfilterpart = 'false',
+						searchTerm = self.getValue(),
+						UpdatedSearchTerm = searchTerm.toUpperCase();
+
+					for (i = 0; i < self.airFilterParts.length; ++i) {
+
+						var airFilterPartsName = self.airFilterParts[i].name,
+						UpdatedAirFilterPartsName = airFilterPartsName.toUpperCase();
+
+						if (UpdatedSearchTerm == UpdatedAirFilterPartsName) {
+							ifairfilterpart = 'true';
+						}
+					}
+					if (ifairfilterpart == 'true') {
+						e.preventDefault();
+						var loc = mainSitePath + '/replacement-parts/hvac-air-filters/dimensions.html';
+						window.location.href = loc;
+					} else {
+						$('#searchBarForm').submit();
+						$('#searchBarField').removeClass('error');
+					}
 				} else {
 					$('#searchBarField').addClass('error');
 				}

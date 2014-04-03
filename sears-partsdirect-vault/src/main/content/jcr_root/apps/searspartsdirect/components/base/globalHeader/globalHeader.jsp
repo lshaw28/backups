@@ -1,5 +1,9 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %><%
 %><div class="innerHeader ie_innerHeader ">
+	<spd:getPDEnvDetail />
+	<c:set var="promoAmount" scope="request" value="${promoAmount}"/>
+	<c:set var="promoDate" scope="request" value="${promoDate}"/>
+	
 	<div class="body_shadow_left"></div>
 	<div class="body_shadow_right"></div>
 	<cq:include path="homeLogo" resourceType="/apps/searspartsdirect/components/base/homeLogo" />
@@ -12,5 +16,9 @@
 		<cq:include path="cartNav" resourceType="/apps/searspartsdirect/components/base/cartNav" />
 	</div>
 	<cq:include path="searchPanel" resourceType="/apps/searspartsdirect/components/base/searchPanel" />
-	<cq:include path="headerPromo" resourceType="/apps/searspartsdirect/components/base/headerPromo" />
+	
+	 <c:if test="${promoFlag eq 'y'}">
+		<cq:include path="headaerPromo" resourceType="/apps/searspartsdirect/components/base/headerPromo" />
+     </c:if>
+	
 </div>

@@ -1,7 +1,7 @@
 @import "../../../../clientlib_base/less/base.variables.less";
 @import "../../../../clientlib_base/less/base.mixins.less";
 
-@media (max-width: 650px) {
+@media screen and (max-width: 650px) {
 	.categorySymptoms {
 		.row-fluid {
           margin-left: 0px;
@@ -13,4 +13,31 @@
 			}
 		}
 	}
+
 }
+
+@media screen and (max-width: 780px) {
+	.categorySymptoms {
+
+
+            h3 {display: none;}
+            
+            .accessoryWithImage {
+            width: 100%;
+        }
+
+		.imageHolder {
+            display: none;
+            .responsiveImage {
+                    display: none;
+                }
+        }
+
+         .row-fluid {
+          margin-left: 0px;
+          width: 100%;
+		}
+	}
+
+}
+

@@ -1,6 +1,7 @@
 package com.spd.cq.searspartsdirect.common.tags;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -20,6 +21,8 @@ import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
@@ -30,15 +33,17 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	private static final long serialVersionUID = 1L;
 	protected static Logger log = LoggerFactory.getLogger(GetCategoryArticleListTag.class);
 	protected ProductCategoryModel category;
+	private String category101TagID = Constants.TAGS_FEATURES_PATH + "/category_101";
 	
 	@Override
 	public int doStartTag() throws JspException {
 		
 		Map<String,List<ArticleModel>> articles = new LinkedHashMap<String,List<ArticleModel>>();
+		TagManager tm = resourceResolver.adaptTo(TagManager.class);
+		Tag cat101Tag = tm.resolve(category101TagID);
 		try {
 
 			List<Page> result = new ArrayList<Page>();
-
 			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
 			Map<String, String> props = new HashMap<String, String>();
 	        props.put("type", Constants.CQ_PAGE);
@@ -67,16 +72,21 @@ public class GetCategoryArticleListTag extends CQBaseTag {
 	        }
 	        
 	        Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
-	          
+	        Tag[] pageTags = null;
 	        for(Page page: result){
-	        	if (!page.equals(currentPage)) { // we exclude ourself from results
-	        		String subcategory = PDUtils.getSubcategoryFromPage(page);
-	        		List<ArticleModel> articleList = articles.get(subcategory);
-	        		if (articleList == null) {
-	        			articleList = new ArrayList<ArticleModel>();
-	        			articles.put(subcategory, articleList);
+	        	if (!page.equals(currentPage)){  // we exclude ourself from results
+	        		pageTags = page.getTags();
+					List<Tag> pageTagsArray = new ArrayList<Tag>(Arrays.asList(pageTags));
+					// filter those pages by cat101 tag
+					if(!pageTagsArray.contains(cat101Tag)){
+		        		String subcategory = PDUtils.getSubcategoryFromPage(page);
+		        		List<ArticleModel> articleList = articles.get(subcategory);
+		        		if (articleList == null) {
+		        			articleList = new ArrayList<ArticleModel>();
+		        			articles.put(subcategory, articleList);
+		        		}
+		        		articleList.add(getArticleModelFromPage(page));
 	        		}
-	        		articleList.add(getArticleModelFromPage(page));
 	        	}
 	        }	        	
 		}

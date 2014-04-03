@@ -6,4 +6,8 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Global Header"
 	jcr:description="Global header component."
-	componentGroup=".hidden" />
+	componentGroup="SearsPartsDirect">
+<analytics
+		jcr:primaryType="nt:unstructured"
+		cq:trackvars="channel,pageNameVar" />
+</jcr:root>

@@ -353,7 +353,6 @@
 		 */
 		trackEvent: function (params, componentName) {
 			var self = this;
-
 			// Grab the page title
 			params.values.pageTitle = $('title').text();
 

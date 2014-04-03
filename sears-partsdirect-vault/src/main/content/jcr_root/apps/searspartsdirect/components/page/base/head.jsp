@@ -26,7 +26,7 @@
 		<c:if test="${empty productCategoryRelation}">
 			<spd:getUrlRelation relationType="productCategory" />
 		</c:if>
-		
+
 		<spd:getUrlRelation relationType="model" />
 		<c:choose>
 		<c:when test="${!empty modelRelation}">
@@ -36,7 +36,7 @@
 			<title><c:out value="${productCategoryRelation.title}" /> <c:out value="${symptom.title}" /> | Symptom Diagnosis - Sears PartsDirect</title>
 		</c:otherwise>
 		</c:choose>
-		
+
 		<meta name="description" content="Learn why your <c:out value="${productCategoryRelation.title}" />  <c:out value="${symptom.title}" /> at Sears PartsDirect. Find out which repairs might help solve the problem, parts and more." />
 		<meta name="keywords" content="<c:out value="${productCategoryRelation.title}" /> repairs, <c:out value="${productCategoryRelation.title}" /> <c:out value="${symptom.title}" />, repair guides, repair help, diy" />
 	</c:when>
@@ -53,7 +53,14 @@
 
 
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="<%=externalLinks.getExternalUrlForPage(currentPage.getPath()) %>" />
+<c:choose>
+	<c:when test="${template eq '/apps/searspartsdirect/templates/categorySymptom'}" >
+		<link rel="canonical" href="<%=externalLinks.getExternalUrlForPage(request.getRequestURI()) %>" />
+	</c:when>
+	<c:otherwise>
+		<link rel="canonical" href="<%=externalLinks.getExternalUrlForPage(currentPage.getPath()) %>" />
+	</c:otherwise>
+</c:choose>
 <meta property="og:title" content="<%= currentPage.getTitle() == null ? StringEscapeUtils.escapeHtml4(currentPage.getName()) : StringEscapeUtils.escapeHtml4(currentPage.getTitle()) %>" />
 <meta property="og:type" content="business:business" />
 <meta property="og:image" content="<%=externalLinks.getExternalUrlForAsset("/etc/designs/searspartsdirect/clientlib_base/img/socialLogo.jpg") %>" />
@@ -63,6 +70,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black"><spd:getPDEnvDetail />
 <spd:getLocalUrl /><meta name="global-mainSitePath" content="${nonSecurePDUrl}" />
 <meta name="global-mainSitePathSecure" content="${securePDUrl}" />
+<meta name="global-pageNameVar" content="<%=currentPage.getTitle()%>" />
+<meta name="global-channelVar" content="<%=properties.get("channel", "") %>" />
+<meta name="global-PRCVar" content="<%=properties.get("parAddress/address/city","")+", " + properties.get("parAddress/address/state","")+" | " + properties.get("parAddress/address/zipcode","") %>" />
 <meta name="global-modelSearchServletPath" content="bin/searspartsdirect/modelsearch" />
 <meta name="global-apiPath" content="${PdApiRoot}" />
 <meta name="global-apiPathSecure" content="${PdApiRootSecure}" />

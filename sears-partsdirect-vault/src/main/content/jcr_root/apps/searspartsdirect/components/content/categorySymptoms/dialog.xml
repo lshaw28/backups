@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-	jcr:primaryType="cq:TabPanel"
-	activeTab="0"
-	xtype="panel">
+	jcr:primaryType="cq:Dialog" title="Category Symptoms" xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<text1 jcr:primaryType="cq:Widget"
-			fieldLabel="Text before product name"
-			name="./text1"
-			xtype="textfield"
-			maxlength="42"/>
-		<text2 jcr:primaryType="cq:Widget"
-			fieldLabel="Text after product name"
-			name="./text2"
-			xtype="textfield"
-			maxlength="42"/>
-		<optionalDescription jcr:primaryType="cq:Widget"
-			fieldLabel="Optional Description"
-			name="./optionalDescription"
-			xtype="richtext"
-			maxlength="500"
-			allowBlank="{Boolean}true">
-			<rtePlugins
-				jcr:primaryType="nt:unstructured"
-				path="/apps/searspartsdirect/components/content/text/limitedConfig.infinity.json"
-				xtype="cqinclude"/>
-			</optionalDescription>
+		<tabs jcr:primaryType="cq:TabPanel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<categorySymptomsInformation
+					jcr:primaryType="cq:Widget"
+					path="/apps/searspartsdirect/components/content/categorySymptoms/tab_categorySymptoms_information.infinity.json"
+					xtype="cqinclude" />
+				<desktopImage jcr:primaryType="cq:Widget"
+					path="/apps/searspartsdirect/components/content/responsiveImage/tab_desktopImage.infinity.json"
+					xtype="cqinclude" />
+				<tabletImage jcr:primaryType="cq:Widget"
+					path="/apps/searspartsdirect/components/content/responsiveImage/tab_tabletImage.infinity.json"
+					xtype="cqinclude" />
+				<mobileImage jcr:primaryType="cq:Widget"
+					path="/apps/searspartsdirect/components/content/responsiveImage/tab_mobileImage.infinity.json"
+					xtype="cqinclude" />
+				<linkDetails jcr:primaryType="cq:Widget"
+					path="/apps/searspartsdirect/components/content/responsiveImage/tab_link.infinity.json"
+					xtype="cqinclude" />
+				<imageDetails jcr:primaryType="cq:Widget"
+					path="/apps/searspartsdirect/components/content/responsiveImage/tab_imageDetails.infinity.json"
+					xtype="cqinclude" />
+				<!--<productTypeImageSelection jcr:primaryType="cq:Widget" title="Product 
+					Type Image Selection" xtype="panel" width="500"> <items jcr:primaryType="cq:WidgetCollection"> 
+					<responsiveImageSelection jcr:primaryType="cq:Widget" path="/apps/searspartsdirect/components/content/responsiveImage/tab_responsiveImage_information.infinity.json" 
+					xtype="cqinclude"/> </items> </productTypeImageSelection> -->
+			</items>
+		</tabs>
 	</items>
 </jcr:root>

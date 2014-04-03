@@ -1,137 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-		  jcr:primaryType="cq:TabPanel"
-		  activeTab="0"
-		  xtype="tabpanel">
+    jcr:primaryType="cq:Dialog"
+    title="Responsive Image"
+    xtype="dialog">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<desktopImageTab
-			jcr:primaryType="cq:Widget"
-			itemId="desktopImageTab"
-			cropParameter="./desktopImage/imageCrop"
-			ddGroups="[media]"
-			fileNameParameter="./desktopImage/fileName"
-			fileReferenceParameter="./desktopImage/fileReference"
-			blankText="An image is required"
-			name="./desktopImage/file"
-			requestSuffix="/desktopImage.img.png"
-			rotateParameter="./desktopImage/imageRotate"
-			sizeLimit="100"
-			title="Desktop Image"
-			uploadUrl="/tmp/upload/*"
-			xtype="html5smartimage" />
-		<tabletImageTab
-			jcr:primaryType="cq:Widget"
-			itemId="tabletImageTab"
-			cropParameter="./tabletImage/imageCrop"
-			ddGroups="[media]"
-			fileNameParameter="./tabletImage/fileName"
-			fileReferenceParameter="./tabletImage/fileReference"
-			blankText="An image is required"
-			name="./tabletImage/file"
-			requestSuffix="/tabletImage.img.png"
-			rotateParameter="./tabletImage/imageRotate"
-			sizeLimit="100"
-			title="Tablet Image"
-			uploadUrl="/tmp/upload/*"
-			xtype="html5smartimage" />
-		<mobileImageTab
-			jcr:primaryType="cq:Widget"
-			itemId="mobileImageTab"
-			cropParameter="./mobileImage/imageCrop"
-			ddGroups="[media]"
-			fileNameParameter="./mobileImage/fileName"
-			fileReferenceParameter="./mobileImage/fileReference"
-			blankText="An image is required"
-			name="./mobileImage/file"
-			requestSuffix="/mobileImage.img.png"
-			rotateParameter="./mobileImage/imageRotate"
-			sizeLimit="100"
-			title="Mobile Image"
-			uploadUrl="/tmp/upload/*"
-			xtype="html5smartimage" />
-		<linkTab
-			jcr:primaryType="cq:Widget"
-			title="Image Link"
-			xtype="panel">
+		<tabs jcr:primaryType="cq:TabPanel">
 			<items jcr:primaryType="cq:WidgetCollection">
-				<linkAlt
-					jcr:primaryType="cq:Widget"
-					fieldLabel="Alternative Text"
-					allowBlank="{Boolean}true"
-					itemId="linkAlt"
-					name="./linkAlt"
-					xtype="textfield" />
-				<linkURL
-					jcr:primaryType="cq:Widget"
-					fieldLabel="Link"
-					allowBlank="{Boolean}true"
-					itemId="linkURL"
-					name="./linkURL"
-					xtype="pathfield" />
-				<linkTarget
-					jcr:primaryType="cq:Widget"
-					fieldLabel="Target"
-					name="./linkTarget"
-					type="select"
-					xtype="selection">
-					<options
-						jcr:primaryType="cq:WidgetCollection">
-						<r1
-							jcr:primaryType="nt:unstructured"
-							text="New Window"
-							value="_blank" />
-						<r2
-							jcr:primaryType="nt:unstructured"
-							text="This Window"
-							value="_self" />
-					</options>
-				</linkTarget>
-			</items>
-		</linkTab>
-		<imageDetails
-			jcr:primaryType="cq:Widget"
-			title="Image Details"
-			xtype="panel">
-			<items jcr:primaryType="cq:WidgetCollection">
-				<displayWidth
-                    jcr:primaryType="cq:Widget"
-                    fieldDescription="Set a specific display width for the image."
-                    fieldLabel="Display Width"
-                    name="./displayWidth"
-                    xtype="textfield"/>
-				<displayHeight
-                    jcr:primaryType="cq:Widget"
-                    fieldDescription="Set a specific display height for the image."
-                    fieldLabel="Display Height"
-                    name="./displayHeight"
-                    xtype="textfield"/>
-				<desktopResType
-					jcr:primaryType="cq:Widget"
-					ignoreData="{Boolean}true"
-					name="./desktopImage/sling:resourceType"
-					value="foundation/components/image"
-					xtype="hidden" />
-				<tabletResType
-					jcr:primaryType="cq:Widget"
-					ignoreData="{Boolean}true"
-					name="./tabletImage/sling:resourceType"
-					value="foundation/components/image"
-					xtype="hidden" />
-				<mobileResType
-					jcr:primaryType="cq:Widget"
-					ignoreData="{Boolean}true"
-					name="./mobileImage/sling:resourceType"
-					value="foundation/components/image"
-					xtype="hidden" />
-				<caption jcr:primaryType="cq:Widget" 
-					fieldLabel="Caption"
-					name="./imageCaption" 
-					xtype="textfield" />
-				<credit jcr:primaryType="cq:Widget" 
-					fieldLabel="Photo Credit"
-					name="./photoCredit" 
-					xtype="textfield" />
-			</items>
-		</imageDetails>
-	</items>
+        <desktopImage
+            jcr:primaryType="cq:Widget"
+            path="/apps/searspartsdirect/components/content/responsiveImage/tab_desktopImage.infinity.json"
+            xtype="cqinclude"/>
+        <tabletImage
+            jcr:primaryType="cq:Widget"
+            path="/apps/searspartsdirect/components/content/responsiveImage/tab_tabletImage.infinity.json"
+            xtype="cqinclude"/>
+        <mobileImage
+            jcr:primaryType="cq:Widget"
+            path="/apps/searspartsdirect/components/content/responsiveImage/tab_mobileImage.infinity.json"
+            xtype="cqinclude"/>
+        <linkDetails
+            jcr:primaryType="cq:Widget"
+            path="/apps/searspartsdirect/components/content/responsiveImage/tab_link.infinity.json"
+            xtype="cqinclude"/>
+        <imageDetails
+            jcr:primaryType="cq:Widget"
+            path="/apps/searspartsdirect/components/content/responsiveImage/tab_imageDetails.infinity.json"
+            xtype="cqinclude"/>
+    </items>
+    </tabs>
+    </items>
 </jcr:root>

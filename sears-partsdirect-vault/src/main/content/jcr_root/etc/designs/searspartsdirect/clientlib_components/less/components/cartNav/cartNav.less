@@ -218,6 +218,21 @@
 	text-align: right;
 	width: 26%;
 }
+.cart-sub {
+	overflow: hidden;
+	padding-top: 10px;
+	span {
+		float: left;
+	}
+	span:first-child {
+		margin: -5px 5px 0 0;
+		width: 30px;
+	}
+}
+.cart-sub-freq {
+	text-align: center;
+	padding-top: 5px;
+}
 
 .parentheses {
 	&:before {
@@ -226,6 +241,10 @@
 	&:after {
 		content: ')';
 	}
+}
+.new-btn-add-to-cart{
+    border: 0px !important;
+    padding: 8px 0px !important;
 }
 
 @import "cartNav.tablet";

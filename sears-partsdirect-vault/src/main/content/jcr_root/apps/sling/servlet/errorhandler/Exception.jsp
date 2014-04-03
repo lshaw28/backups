@@ -1,0 +1,1 @@
+<%@include file="/apps/sling/servlet/errorhandler/500.jsp"%>

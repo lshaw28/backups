@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	xmlns:nt="http://www.jcp.org/jcr/nt/1.0" jcr:primaryType="cq:Dialog"
+	xtype="dialog">
+	<items jcr:primaryType="nt:unstructured" xtype="tabpanel">
+		<items jcr:primaryType="cq:WidgetCollection">
+			<tab1 jcr:primaryType="cq:Panel" title="Store Name">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<trueName jcr:primaryType="cq:Widget" allowBlank="false"
+						blankText="True name is required" fieldLabel="Store True Name"
+						fieldDescription="(this will appear in URL) ex.: grand-junction-colorado-75113-part-repair-store" name=":name"
+						regex="/^[a-zA-Z0-9-]*$/" regexText="True name may only contain letters, digits or hyphens" />
+					<storename jcr:primaryType="cq:Widget" fieldLabel="Store Name"
+						fieldDescription="(this will appear on page as store title)"
+						allowBlank="false" name="./jcr:content/jcr:title" />
+				</items>
+			</tab1>
+			<tab2 jcr:primaryType="cq:Panel" title="Store Image">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<desktopImage jcr:primaryType="cq:Widget" border="true"
+						fieldLabel="Desktop Image" allowBlank="false"
+						cropParameter="./jcr:content/parCarousel/responsiveimage/desktopImage/imageCrop"
+						ddGroups="[media]"
+						fileNameParameter="./jcr:content/parCarousel/responsiveimage/desktopImage/fileName"
+						fileReferenceParameter="./jcr:content/parCarousel/responsiveimage/desktopImage/fileReference"
+						height="400" hideLabel="false"
+						mapParameter="./jcr:content/parCarousel/responsiveimage/desktopImage/imageMap"
+						name="./jcr:content/parCarousel/responsiveimage/desktopImage/file"
+						requestSuffix="/desktopImage.img.png"
+						rotateParameter="./jcr:content/parCarousel/responsiveimage/desktopImage/imageRotate"
+						sizeLimit="100" xtype="html5smartimage" />
+					<tabletImage jcr:primaryType="cq:Widget" border="true"
+						fieldLabel="Tablet Image" allowBlank="false"
+						cropParameter="./jcr:content/parCarousel/responsiveimage/tabletImage/imageCrop"
+						ddGroups="[media]"
+						fileNameParameter="./jcr:content/parCarousel/responsiveimage/tabletImage/fileName"
+						fileReferenceParameter="./jcr:content/parCarousel/responsiveimage/tabletImage/fileReference"
+						height="400" hideLabel="false"
+						mapParameter="./jcr:content/parCarousel/responsiveimage/tabletImage/imageMap"
+						name="./jcr:content/parCarousel/responsiveimage/tabletImage/file"
+						requestSuffix="/tabletImage.img.png"
+						rotateParameter="./jcr:content/parCarousel/responsiveimage/tabletImage/imageRotate"
+						sizeLimit="100" xtype="html5smartimage" />
+					<mobileImage jcr:primaryType="cq:Widget" border="true"
+						fieldLabel="Mobile Image" allowBlank="false"
+						cropParameter="./jcr:content/parCarousel/responsiveimage/mobileImage/imageCrop"
+						ddGroups="[media]"
+						fileNameParameter="./jcr:content/parCarousel/responsiveimage/mobileImage/fileName"
+						fileReferenceParameter="./jcr:content/parCarousel/responsiveimage/mobileImage/fileReference"
+						height="400" hideLabel="false"
+						mapParameter="./jcr:content/parCarousel/responsiveimage/mobileImage/imageMap"
+						name="./jcr:content/parCarousel/responsiveimage/mobileImage/file"
+						requestSuffix="/mobileImage.img.png"
+						rotateParameter="./jcr:content/parCarousel/responsiveimage/mobileImage/imageRotate"
+						sizeLimit="100" xtype="html5smartimage" />
+				</items>
+			</tab2>
+			<tab3 jcr:primaryType="cq:Panel" title="Image Caption">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<caption jcr:primaryType="cq:Widget" fieldLabel="Image Caption"
+						name="./jcr:content/parCarousel/responsiveimage/imageCaption"
+						xtype="textarea" />
+					<desktopImageResType jcr:primaryType="cq:Widget"
+						ignoreData="true"
+						name="./jcr:content/parCarousel/responsiveimage/desktopImage/sling:resourceType"
+						value="foundation/components/image" xtype="hidden" />
+					<tabletImageResType jcr:primaryType="cq:Widget"
+						ignoreData="true"
+						name="./jcr:content/parCarousel/responsiveimage/tabletImage/sling:resourceType"
+						value="foundation/components/image" xtype="hidden" />
+					<mobileImageResType jcr:primaryType="cq:Widget"
+						ignoreData="true"
+						name="./jcr:content/parCarousel/responsiveimage/mobileImage/sling:resourceType"
+						value="foundation/components/image" xtype="hidden" />
+					<resourceType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parCarousel/responsiveimage/sling:resourceType"
+						value="searspartsdirect/components/content/responsiveImage" xtype="hidden" />
+				</items>
+			</tab3>
+			<tab4 jcr:primaryType="cq:Panel" title="Ad Space">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<desktopImage jcr:primaryType="cq:Widget" border="true"
+						fieldLabel="Desktop Image"
+						cropParameter="./jcr:content/parAdSpace/responsiveimage/desktopImage/imageCrop"
+						ddGroups="[media]"
+						fileNameParameter="./jcr:content/parAdSpace/responsiveimage/desktopImage/fileName"
+						fileReferenceParameter="./jcr:content/parAdSpace/responsiveimage/desktopImage/fileReference"
+						height="400" hideLabel="false"
+						mapParameter="./jcr:content/parAdSpace/responsiveimage/desktopImage/imageMap"
+						name="./jcr:content/parAdSpace/responsiveimage/desktopImage/file"
+						requestSuffix="/desktopImage.img.png"
+						rotateParameter="./jcr:content/parAdSpace/responsiveimage/desktopImage/imageRotate"
+						sizeLimit="100" xtype="html5smartimage" />
+					<tabletImage jcr:primaryType="cq:Widget" border="true"
+						fieldLabel="Tablet Image"
+						cropParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/imageCrop"
+						ddGroups="[media]"
+						fileNameParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/fileName"
+						fileReferenceParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/fileReference"
+						height="400" hideLabel="false"
+						mapParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/imageMap"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/file"
+						requestSuffix="/tabletImage.img.png"
+						rotateParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/imageRotate"
+						sizeLimit="100" xtype="html5smartimage" />
+					<mobileImage jcr:primaryType="cq:Widget" border="true"
+						fieldLabel="Mobile Image"
+						cropParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/imageCrop"
+						ddGroups="[media]"
+						fileNameParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/fileName"
+						fileReferenceParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/fileReference"
+						height="400" hideLabel="false"
+						mapParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/imageMap"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/file"
+						requestSuffix="/mobileImage.img.png"
+						rotateParameter="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/imageRotate"
+						sizeLimit="100" xtype="html5smartimage" />
+				</items>
+			</tab4>
+			<tab5 jcr:primaryType="cq:Panel" title="Ad Space Image Link">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<imageLink jcr:primaryType="cq:Widget" fieldLabel="Image Link (for desktop)"
+						name="./jcr:content/parAdSpace/responsiveimage/linkURL" xtype="pathfield" />
+					<imageLinkTabletMobile jcr:primaryType="cq:Widget" fieldLabel="Image Link (for tablet/mobile)"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/linkURL" xtype="pathfield" />
+					<desktopImageResType jcr:primaryType="cq:Widget"
+						ignoreData="true"
+						name="./jcr:content/parAdSpace/responsiveimage/desktopImage/sling:resourceType"
+						value="foundation/components/image" xtype="hidden" />
+					<tabletImageResType jcr:primaryType="cq:Widget"
+						ignoreData="true"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/tabletImage/sling:resourceType"
+						value="foundation/components/image" xtype="hidden" />
+					<mobileImageResType jcr:primaryType="cq:Widget"
+						ignoreData="true"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/mobileImage/sling:resourceType"
+						value="foundation/components/image" xtype="hidden" />
+					<resourceType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parAdSpace/responsiveimage/sling:resourceType"
+						value="searspartsdirect/components/content/responsiveImage" xtype="hidden" />
+					<resourceTypeTabletMobile jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parAdSpaceTabletMobile/responsiveimage/sling:resourceType"
+						value="searspartsdirect/components/content/responsiveImage" xtype="hidden" />
+				</items>
+			</tab5>
+			<tab6 jcr:primaryType="cq:Panel" title="About This Store">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<aboutstore jcr:primaryType="cq:Widget" fieldLabel="Text"
+						allowBlank="false" name="./jcr:content/parAbout/text/text" xtype="richtext">
+						<rtePlugins jcr:primaryType="nt:unstructured">
+							<table jcr:primaryType="nt:unstructured" features="*" />
+							<format jcr:primaryType="nt:unstructured" features="*" />
+							<lists jcr:primaryType="nt:unstructured" features="*" />
+							<justify jcr:primaryType="nt:unstructured" features="*" />
+							<edit jcr:primaryType="nt:unstructured" />
+							<findreplace jcr:primaryType="nt:unstructured"
+								features="*" />
+							<paraformat jcr:primaryType="nt:unstructured"
+								features="*" />
+							<subsuperscript jcr:primaryType="nt:unstructured"
+								features="*" />
+							<misctools jcr:primaryType="nt:unstructured" features="*" />
+							<links jcr:primaryType="nt:unstructured" features="*" />
+							<spellcheck jcr:primaryType="nt:unstructured"
+								features="*" invalidStyle="background-color: #ffdddd;" />
+							<undo jcr:primaryType="nt:unstructured" features="*" />
+							<image jcr:primaryType="nt:unstructured" features="*" />
+						</rtePlugins>
+					</aboutstore>
+					<richFlag jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parAbout/text/textIsRich" value="true" xtype="hidden" />
+					<resourceType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parAbout/text/sling:resourceType" value="foundation/components/text"
+						xtype="hidden" />
+				</items>
+			</tab6>
+			<tab7 jcr:primaryType="cq:Panel" title="Store Address">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<storename jcr:primaryType="cq:Widget" fieldLabel="Store Name"
+						allowBlank="false" name="./jcr:content/parAddress/address/storename"
+						xtype="textfield" />
+					<address1 jcr:primaryType="cq:Widget" fieldLabel="Street Address 1"
+						allowBlank="false" name="./jcr:content/parAddress/address/address1"
+						xtype="textfield" />
+					<address2 jcr:primaryType="nt:unstructured" fieldLabel="Street Address 2"
+						name="./jcr:content/parAddress/address/address2" xtype="textfield" />
+					<city jcr:primaryType="nt:unstructured" fieldLabel="City"
+						allowBlank="false" name="./jcr:content/parAddress/address/city"
+						xtype="textfield" />
+					<state jcr:primaryType="nt:unstructured" fieldLabel="State"
+						allowBlank="false" name="./jcr:content/parAddress/address/state"
+						options="/apps/searspartsdirect/components/content/partsRepairCenter/stateList.json"
+						type="select" xtype="selection" />
+					<zipcode jcr:primaryType="nt:unstructured" allowBlank="false"
+						fieldDescription="format: xxxxx or xxxxx-xxxx" fieldLabel="Zip Code"
+						name="./jcr:content/parAddress/address/zipcode" regex="/^([0-9]{5})(?:[-s]*([0-9]{4}))?$/"
+						regexText="Zip code format is wrong" xtype="textfield" />
+					<phone jcr:primaryType="nt:unstructured" allowBlank="false"
+						fieldDescription="format: XXX-XXX-XXXX or XXX-XXXX or (XXX) XXX-XXXX"
+						fieldLabel="Phone" name="./jcr:content/parAddress/address/phone"
+						regex="/^((((([0-9]{3})-)|((([0-9]{3}))s))([0-9]{3})-([0-9]{4}))|(([0-9]{3})-([0-9]{4})))$/"
+						regexText="Phone number pattern is wrong" xtype="textfield" />
+					<fax jcr:primaryType="nt:unstructured"
+						fieldDescription="format: XXX-XXX-XXXX or XXX-XXXX or (XXX) XXX-XXXX"
+						fieldLabel="Fax" name="./jcr:content/parAddress/address/fax"
+						regex="/^((((([0-9]{3})-)|((([0-9]{3}))s))([0-9]{3})-([0-9]{4}))|(([0-9]{3})-([0-9]{4})))$/"
+						regexText="Fax number pattern is wrong" xtype="textfield" />
+					<resourceType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parAddress/address/sling:resourceType"
+						value="searspartsdirect/components/content/partsRepairCenter/address"
+						xtype="hidden" />
+				</items>
+			</tab7>
+			<tab8 jcr:primaryType="cq:Panel" title="Hours of Operation">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<mon jcr:primaryType="cq:Widget" fieldLabel="Monday Hours"
+						allowBlank="false"
+						name="./jcr:content/parHoursOfOperation/hoursOfOperation/mon"
+						fieldDescription="format: 10 am - 6 pm" xtype="textfield" />
+					<tue jcr:primaryType="cq:Widget" fieldLabel="Tuesday Hours"
+						allowBlank="false"
+						name="./jcr:content/parHoursOfOperation/hoursOfOperation/tue"
+						xtype="textfield" />
+					<wed jcr:primaryType="cq:Widget" fieldLabel="Wednesday Hours"
+						allowBlank="false"
+						name="./jcr:content/parHoursOfOperation/hoursOfOperation/wed"
+						xtype="textfield" />
+					<thu jcr:primaryType="cq:Widget" fieldLabel="Thursday Hours"
+						allowBlank="false"
+						name="./jcr:content/parHoursOfOperation/hoursOfOperation/thu"
+						xtype="textfield" />
+					<fri jcr:primaryType="cq:Widget" fieldLabel="Friday Hours"
+						allowBlank="false"
+						name="./jcr:content/parHoursOfOperation/hoursOfOperation/fri"
+						xtype="textfield" />
+					<sat jcr:primaryType="cq:Widget" fieldLabel="Saturday Hours"
+						allowBlank="false"
+						fieldDescription="(if store is closed on these days, specify Closed)"
+						name="./jcr:content/parHoursOfOperation/hoursOfOperation/sat"
+						xtype="textfield" />
+					<sun jcr:primaryType="cq:Widget" fieldLabel="Sunday Hours"
+						allowBlank="false"
+						name="./jcr:content/parHoursOfOperation/hoursOfOperation/sun"
+						xtype="textfield" />
+					<optionalmessage jcr:primaryType="cq:Widget"
+						fieldLabel="Optional Message"
+						name="./jcr:content/parHoursOfOperation/hoursOfOperation/optionalmessage"
+						xtype="textfield" />
+					<resourceType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parHoursOfOperation/hoursOfOperation/sling:resourceType"
+						value="searspartsdirect/components/content/partsRepairCenter/hoursOfOperation"
+						xtype="hidden" />
+				</items>
+			</tab8>
+			<tab9 jcr:primaryType="cq:Panel" title="Products / Services">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<productservice jcr:primaryType="cq:Widget"
+						allowBlank="true" fieldLabel="Text"
+						name="./jcr:content/parProductsServices/text/text" xtype="richtext">
+						<rtePlugins jcr:primaryType="nt:unstructured">
+							<table jcr:primaryType="nt:unstructured" features="*" />
+							<format jcr:primaryType="nt:unstructured" features="*" />
+							<lists jcr:primaryType="nt:unstructured" features="*" />
+							<justify jcr:primaryType="nt:unstructured" features="*" />
+							<edit jcr:primaryType="nt:unstructured" />
+							<findreplace jcr:primaryType="nt:unstructured"
+								features="*" />
+							<paraformat jcr:primaryType="nt:unstructured"
+								features="*" />
+							<subsuperscript jcr:primaryType="nt:unstructured"
+								features="*" />
+							<misctools jcr:primaryType="nt:unstructured" features="*" />
+							<links jcr:primaryType="nt:unstructured" features="*" />
+							<spellcheck jcr:primaryType="nt:unstructured"
+								features="*" invalidStyle="background-color: #ffdddd;" />
+							<undo jcr:primaryType="nt:unstructured" features="*" />
+							<image jcr:primaryType="nt:unstructured" features="*" />
+						</rtePlugins>
+					</productservice>
+					<richFlag jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parProductsServices/text/textIsRich" value="true"
+						xtype="hidden" />
+					<resourceType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parProductsServices/text/sling:resourceType"
+						value="foundation/components/text" xtype="hidden" />
+				</items>
+			</tab9>
+			<tab10 jcr:primaryType="cq:Panel" title="Top Category Parts">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<text jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldLabel="Enter Title"
+						name="./jcr:content/parTopCategories/topCategoriesAndServices/title"
+						xtype="textfield" />
+					<viewAlltext jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldLabel="Top Catagory Parts" fieldDescription="enter every part in next line"
+						name="./jcr:content/parTopCategories/topCategoriesAndServices/topList"
+						xtype="richtext">
+						<rtePlugins jcr:primaryType="nt:unstructured">
+							<table jcr:primaryType="nt:unstructured" features="*" />
+							<format jcr:primaryType="nt:unstructured" features="*" />
+							<lists jcr:primaryType="nt:unstructured" features="*" />
+							<justify jcr:primaryType="nt:unstructured" features="*" />
+							<edit jcr:primaryType="nt:unstructured" />
+							<findreplace jcr:primaryType="nt:unstructured"
+								features="*" />
+							<paraformat jcr:primaryType="nt:unstructured"
+								features="*" />
+							<subsuperscript jcr:primaryType="nt:unstructured"
+								features="*" />
+							<misctools jcr:primaryType="nt:unstructured" features="*" />
+							<links jcr:primaryType="nt:unstructured" features="*" />
+							<spellcheck jcr:primaryType="nt:unstructured"
+								features="*" invalidStyle="background-color: #ffdddd;" />
+							<undo jcr:primaryType="nt:unstructured" features="*" />
+							<image jcr:primaryType="nt:unstructured" features="*" />
+						</rtePlugins>
+					</viewAlltext>
+					<richFlag jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parTopCategories/text/textIsRich" value="true"
+						xtype="hidden" />
+					<resourceType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parTopCategories/topCategoriesAndServices/sling:resourceType"
+						value="searspartsdirect/components/content/partsRepairCenter/topCategoriesAndServices"
+						xtype="hidden" />
+				</items>
+			</tab10>
+			<tab11 jcr:primaryType="cq:Panel" title="Repair Services">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<text jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldLabel="Enter Title"
+						name="./jcr:content/parRepairServices/topCategoriesAndServices/title"
+						xtype="textfield" />
+					<viewAlltext jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldLabel="Repair Services" fieldDescription="enter every repair service in next line"
+						name="./jcr:content/parRepairServices/topCategoriesAndServices/topList"
+						xtype="richtext">
+						<rtePlugins jcr:primaryType="nt:unstructured">
+							<table jcr:primaryType="nt:unstructured" features="*" />
+							<format jcr:primaryType="nt:unstructured" features="*" />
+							<lists jcr:primaryType="nt:unstructured" features="*" />
+							<justify jcr:primaryType="nt:unstructured" features="*" />
+							<edit jcr:primaryType="nt:unstructured" />
+							<findreplace jcr:primaryType="nt:unstructured"
+								features="*" />
+							<paraformat jcr:primaryType="nt:unstructured"
+								features="*" />
+							<subsuperscript jcr:primaryType="nt:unstructured"
+								features="*" />
+							<misctools jcr:primaryType="nt:unstructured" features="*" />
+							<links jcr:primaryType="nt:unstructured" features="*" />
+							<spellcheck jcr:primaryType="nt:unstructured"
+								features="*" invalidStyle="background-color: #ffdddd;" />
+							<undo jcr:primaryType="nt:unstructured" features="*" />
+							<image jcr:primaryType="nt:unstructured" features="*" />
+						</rtePlugins>
+					</viewAlltext>
+					<richFlag jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parRepairServices/text/textIsRich" value="true"
+						xtype="hidden" />
+					<resourceType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parRepairServices/topCategoriesAndServices/sling:resourceType"
+						value="searspartsdirect/components/content/partsRepairCenter/topCategoriesAndServices"
+						xtype="hidden" />
+				</items>
+			</tab11>
+			<tab12 jcr:primaryType="cq:Panel" title="Our Team">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<ourteam jcr:primaryType="cq:Widget" fieldLabel="Text"
+						allowBlank="true" name="./jcr:content/parOurTeam/text/text"
+						xtype="richtext">
+						<rtePlugins jcr:primaryType="nt:unstructured">
+							<table jcr:primaryType="nt:unstructured" features="*" />
+							<format jcr:primaryType="nt:unstructured" features="*" />
+							<lists jcr:primaryType="nt:unstructured" features="*" />
+							<justify jcr:primaryType="nt:unstructured" features="*" />
+							<edit jcr:primaryType="nt:unstructured" />
+							<findreplace jcr:primaryType="nt:unstructured"
+								features="*" />
+							<paraformat jcr:primaryType="nt:unstructured"
+								features="*" />
+							<subsuperscript jcr:primaryType="nt:unstructured"
+								features="*" />
+							<misctools jcr:primaryType="nt:unstructured" features="*" />
+							<links jcr:primaryType="nt:unstructured" features="*" />
+							<spellcheck jcr:primaryType="nt:unstructured"
+								features="*" invalidStyle="background-color: #ffdddd;" />
+							<undo jcr:primaryType="nt:unstructured" features="*" />
+							<image jcr:primaryType="nt:unstructured" features="*" />
+						</rtePlugins>
+					</ourteam>
+					<richFlag jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parOurTeam/text/textIsRich" value="true"
+						xtype="hidden" />
+					<resourceType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parOurTeam/text/sling:resourceType" value="foundation/components/text"
+						xtype="hidden" />
+				</items>
+			</tab12>
+			<tab13 jcr:primaryType="cq:Panel" title="Team Members (First)">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<memberName jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldLabel="Member Name"
+						name="./jcr:content/parTeamAssociate1/teamMembers/memberName"
+						xtype="textfield" />
+					<memberTitle jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldLabel="Member Title"
+						name="./jcr:content/parTeamAssociate1/teamMembers/memberTitle"
+						xtype="textfield" />
+					<memberDescription jcr:primaryType="cq:Widget"
+						allowBlank="true" fieldLabel="Description/Quote"
+						name="./jcr:content/parTeamAssociate1/teamMembers/memberDesc"
+						xtype="textfield" />
+					<memberEmail jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldDescription="format: xxx@xxx.xxx" fieldLabel="E-mail"
+						name="./jcr:content/parTeamAssociate1/teamMembers/memberEmail"
+						regex="/^[a-z0-9!#$%'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/"
+						regexText="Email pattern is wrong" xtype="textfield" />
+					<memberPhone jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldDescription="format: XXX-XXX-XXXX or XXX-XXXX or (XXX) XXX-XXXX"
+						fieldLabel="Phone"
+						name="./jcr:content/parTeamAssociate1/teamMembers/memberPhone"
+						regex="/^((((([0-9]{3})-)|((([0-9]{3}))s))([0-9]{3})-([0-9]{4}))|(([0-9]{3})-([0-9]{4})))$/"
+						regexText="Phone number pattern is wrong" xtype="textfield" />
+					<resType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parTeamAssociate1/teamMembers/sling:resourceType"
+						value="searspartsdirect/components/content/partsRepairCenter/teamMembers"
+						xtype="hidden" />
+				</items>
+			</tab13>
+			<tab14 jcr:primaryType="cq:Panel" title="Team Member Image">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<image jcr:primaryType="cq:Widget" border="true"
+						cropParameter=".jcr:content/parTeamAssociate1/teamMembers/image/imageCrop"
+						ddGroups="[media]"
+						fileNameParameter="./jcr:content/parTeamAssociate1/teamMembers/image/fileName"
+						fileReferenceParameter="./jcr:content/parTeamAssociate1/teamMembers/image/fileReference"
+						height="400" hideLabel="false"
+						mapParameter="./jcr:content/parTeamAssociate1/teamMembers/image/imageMap"
+						name="./jcr:content/parTeamAssociate1/teamMembers/image/file"
+						requestSuffix="/image.img.png"
+						rotateParameter="./jcr:content/parTeamAssociate1/teamMembers/image/imageRotate"
+						sizeLimit="100" xtype="html5smartimage" />
+					<resType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parTeamAssociate1/teamMembers/image/sling:resourceType"
+						value="foundation/components/image" xtype="hidden" />
+				</items>
+			</tab14>
+			<tab15 jcr:primaryType="cq:Panel" title="Team Members (Second)">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<memberName jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldLabel="Member Name"
+						name="./jcr:content/parTeamAssociate2/teamMembers/memberName"
+						xtype="textfield" />
+					<memberTitle jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldLabel="Member Title"
+						name="./jcr:content/parTeamAssociate2/teamMembers/memberTitle"
+						xtype="textfield" />
+					<memberDescription jcr:primaryType="cq:Widget"
+						allowBlank="true" fieldLabel="Description/Quote"
+						name="./jcr:content/parTeamAssociate2/teamMembers/memberDesc"
+						xtype="textfield" />
+					<memberEmail jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldDescription="format: xxx@xxx.xxx" fieldLabel="E-mail"
+						name="./jcr:content/parTeamAssociate2/teamMembers/memberEmail"
+						regex="/^[a-z0-9!#$%'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/"
+						regexText="Email pattern is wrong" xtype="textfield" />
+					<memberPhone jcr:primaryType="cq:Widget" allowBlank="true"
+						fieldDescription="format: XXX-XXX-XXXX or XXX-XXXX or (XXX) XXX-XXXX"
+						fieldLabel="Phone"
+						name="./jcr:content/parTeamAssociate2/teamMembers/memberPhone"
+						regex="/^((((([0-9]{3})-)|((([0-9]{3}))s))([0-9]{3})-([0-9]{4}))|(([0-9]{3})-([0-9]{4})))$/"
+						regexText="Phone number pattern is wrong" xtype="textfield" />
+					<resType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parTeamAssociate2/teamMembers/sling:resourceType"
+						value="searspartsdirect/components/content/partsRepairCenter/teamMembers"
+						xtype="hidden" />
+				</items>
+			</tab15>
+			<tab16 jcr:primaryType="cq:Panel" title="Team Member Image">
+				<items jcr:primaryType="cq:WidgetCollection">
+					<image jcr:primaryType="cq:Widget" border="true"
+						cropParameter=".jcr:content/parTeamAssociate2/teamMembers/image/imageCrop"
+						ddGroups="[media]"
+						fileNameParameter="./jcr:content/parTeamAssociate2/teamMembers/image/fileName"
+						fileReferenceParameter="./jcr:content/parTeamAssociate2/teamMembers/image/fileReference"
+						height="400" hideLabel="false"
+						mapParameter="./jcr:content/parTeamAssociate2/teamMembers/image/imageMap"
+						name="./jcr:content/parTeamAssociate2/teamMembers/image/file"
+						requestSuffix="/image.img.png"
+						rotateParameter="./jcr:content/parTeamAssociate2/teamMembers/image/imageRotate"
+						sizeLimit="100" xtype="html5smartimage" />
+					<resType jcr:primaryType="cq:Widget" ignoreData="true"
+						name="./jcr:content/parTeamAssociate2/teamMembers/image/sling:resourceType"
+						value="foundation/components/image" xtype="hidden" />
+				</items>
+			</tab16>
+		</items>
+	</items>
+</jcr:root>

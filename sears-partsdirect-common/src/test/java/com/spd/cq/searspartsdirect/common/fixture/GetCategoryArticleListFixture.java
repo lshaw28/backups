@@ -23,6 +23,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.spd.cq.searspartsdirect.common.helpers.Constants;
@@ -33,11 +34,15 @@ public class GetCategoryArticleListFixture {
 	private PageImpressionsComparatorFixture testPages;
 	private PageManager pageManager;
 	private ResourceResolver resourceResolver;
+	private Tag category101Tag;
 	
 	public GetCategoryArticleListFixture(PageContext pageContext, ResourceResolver resourceResolver, PageManager pageManager) throws RepositoryException {
 		this.pageManager = pageManager;
 		this.resourceResolver = resourceResolver;
-		
+		TagManager tm = mock(TagManager.class);
+		when(resourceResolver.adaptTo(TagManager.class)).thenReturn(tm);
+		category101Tag = mock(Tag.class);
+			
 		QueryBuilder ourFakeQueryBuilder = mock(QueryBuilder.class);
 		Query ourFakeQuery = mock(Query.class);
 		when(ourFakeQueryBuilder.createQuery(any(PredicateGroup.class),any(Session.class))).thenReturn(ourFakeQuery);

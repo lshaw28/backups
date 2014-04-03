@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:TabPanel"
+    xtype="tabpanel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <tab1
+            jcr:primaryType="cq:Widget"
+            title="Top Category Parts / Repair Services"
+            xtype="panel">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <memberName
+                    jcr:primaryType="cq:Widget"
+                    allowBlank="true"
+                    fieldLabel="Member Name"
+                    name="./memberName"
+                    xtype="textfield"/>
+                <memberTitle
+                    jcr:primaryType="cq:Widget"
+                    allowBlank="true"
+                    fieldLabel="Member Title"
+                    name="./memberTitle"
+                    xtype="textfield"/>
+                <memberDescription
+                    jcr:primaryType="cq:Widget"
+                    allowBlank="true"
+                    fieldLabel="Description/Quote"
+                    name="./memberDesc"
+                    xtype="textfield"/>
+                <memberEmail
+                    jcr:primaryType="cq:Widget"
+                    allowBlank="true"
+                    fieldDescription="format: xxx@xxx.xxx"
+                    fieldLabel="E-mail"
+                    name="./memberEmail"
+                    regex="/^[a-z0-9!#$%'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/"
+                    regexText="Email pattern is wrong"
+                    xtype="textfield"/>
+                <memberPhone
+                    jcr:primaryType="cq:Widget"
+                    allowBlank="true"
+                    fieldDescription="format: XXX-XXX-XXXX or XXX-XXXX or (XXX) XXX-XXXX"
+                    fieldLabel="Phone"
+                    name="./memberPhone"
+                    regex="/^((((([0-9]{3})-)|((([0-9]{3}))s))([0-9]{3})-([0-9]{4}))|(([0-9]{3})-([0-9]{4})))$/"
+                    regexText="Phone number pattern is wrong"
+                    xtype="textfield"/>
+                <resType
+                    jcr:primaryType="cq:Widget"
+                    ignoreData="true"
+                    name="./image/sling:resourceType"
+                    value="foundation/components/image"
+                    xtype="hidden"/>
+            </items>
+        </tab1>
+        <tab2
+            jcr:primaryType="cq:Widget"
+            cropParameter="./image/imageCrop"
+            fileNameParameter="./image/fileName"
+            fileReferenceParameter="./image/fileReference"
+            mapParameter="./image/imageMap"
+            name="./image/file"
+            requestSuffix="/image.img.png"
+            rotateParameter="./image/imageRotate"
+            sizeLimit="100"
+            title="Image"
+            xtype="html5smartimage"/>
+    </items>
+</jcr:root>

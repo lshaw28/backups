@@ -13,7 +13,7 @@ Here are the most common symptoms we've seen for this model. Select a symptom to
 
 		<c:choose>
 			<c:when test="${not empty modelSymptoms}">
-				<table class="table table-striped">
+				<table class="table table-striped" summary="Common Symptoms">
 					<thead>
 						<tr>
 							<th>Symptom</th>

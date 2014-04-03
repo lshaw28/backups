@@ -12,6 +12,7 @@
 <spd:getLocalUrl />
 <meta name="global-mainSitePath" content="${nonSecurePDUrl}" />
 <meta name="global-mainSitePathSecure" content="${securePDUrl}" />
+<meta name="global-channelVar" content="Home Page" />
 <meta name="global-modelSearchServletPath" content="bin/searspartsdirect/modelsearch" />
 <spd:getHeaderHelperData />
 <meta name="global-apiPath" content="${PdApiRoot}" />

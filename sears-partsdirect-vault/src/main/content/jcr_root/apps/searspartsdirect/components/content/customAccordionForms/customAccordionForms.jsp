@@ -6,8 +6,11 @@
 	<div class="accordion-group">
 		<div class="accordion-heading cafHeadingOpen">
 			<a class="accordion-toggle" id="toggle_${uniqueId}1" data-toggle="false" data-status="incomplete" data-parent="#parent_${uniqueId}1" data-href="#${uniqueId}1">
-				1 &nbsp; Select Water Filter and Reorder Frequency
-				<span class="hidden"><i class="icon-pencil"></i> EDIT</span>
+				<div class="cafStepNumber">1</div>
+				<div class="cafStepEdit hidden">
+					<span><i class="icon-pencil"></i> EDIT</span>
+				</div>
+				<div>Select Water Filter and Reorder Frequency</div>
 			</a>
 		</div>
 		<div id="${uniqueId}1" class="accordion-body in">
@@ -67,7 +70,7 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="waterFilterQuantity">Qty</label>
-								<input class="cafText" name="quantity" id="waterFilterQuantity" value="1" pattern="[0-9]*" />
+								<input type="tel" class="cafText" name="quantity" id="waterFilterQuantity" value="1" pattern="[0-9]*" />
 							</div>
 						</div>
 					</fieldset>
@@ -85,8 +88,11 @@
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" id="toggle_${uniqueId}2" data-toggle="false" data-status="unavailable" data-parent="#parent_${uniqueId}2" data-href="#${uniqueId}2">
-				2 &nbsp; Enter Shipping Address
-				<span class="hidden"><i class="icon-pencil"></i> EDIT</span>
+				<div class="cafStepNumber">2</div>
+				<div class="cafStepEdit hidden">
+					<span><i class="icon-pencil"></i> EDIT</span>
+				</div>
+				<div>Enter Shipping Address</div>
 			</a>
 		</div>
 		<div id="${uniqueId}2" class="accordion-body collapse">
@@ -133,8 +139,7 @@
 							<div class="span10 offset1">
 								<label for="shippingState">State <span>Required</span></label>
 								<div class="comboContainer">
-									<select name="state" id="shippingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
-										<option value="ZZ">--</option>
+									<select name="state" id="shippingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true" data-changed="false">
 										<option value="AA">AA</option>
 										<option value="AE">AE</option>
 										<option value="AL">AL</option>
@@ -198,14 +203,14 @@
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingZip">ZIP Code <span>Required</span></label>
-								<input type="text" class="cafText cafZip" name="zip" id="shippingZip" pattern="[0-9]*" data-mask="99999" data-placeholder=" " />
+								<input type="tel" class="cafText cafZip" name="zip" id="shippingZip" pattern="[0-9]*" data-mask="99999" data-placeholder=" " />
 							</div>
 						</div>
 						<div class="row-fluid countyRow hidden">
 							<div class="span10 offset1">
 								<label for="shippingCounty">Select County <span>Required</span></label>
 								<div class="comboContainer countyWidth">
-									<select name="year" id="shippingCounty" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
+									<select name="year" id="shippingCounty" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true" data-changed="false">
 										<option value="ZZ">----</option>
 										<option value="DN">I don't know</option>
 										<option value="NL">My City/County is not listed</option>
@@ -217,24 +222,24 @@
 							<div class="span10 offset1">
 								<div class="cafSameRow phoneWidth">
 									<label for="shippingPhone">Phone Number <span>Required</span></label>
-									<input type="text" class="cafText cafZip" name="phone" id="shippingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
+									<input type="tel" class="cafText cafZip" name="phone" id="shippingPhone" pattern="[0-9]*" data-mask="999-999-9999" data-placeholder=" " />
 								</div>
 								<div class="cafSameRow">
 									<label for="shippingExt">Ext. # <span>Optional</span></label>
-									<input type="text" class="cafText cafExt" name="ext" id="shippingExt" pattern="[0-9]*" />
+									<input type="tel" class="cafText cafExt" name="ext" id="shippingExt" pattern="[0-9]*" />
 								</div>
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingEmail">Email Address <span>Required</span></label>
-								<input type="text" class="cafText cafCity" name="email" id="shippingEmail" />
+								<input type="email" class="cafText cafCity" name="email" id="shippingEmail" />
 							</div>
 						</div>
 						<div class="row-fluid">
 							<div class="span10 offset1">
 								<label for="shippingConfirm">Confirm Email Address <span>Required</span></label>
-								<input type="text" class="cafText cafCity" name="confirm" id="shippingConfirm" />
+								<input type="email" class="cafText cafCity" name="confirm" id="shippingConfirm" />
 							</div>
 						</div>
 						<div class="row-fluid cafCheckboxField">
@@ -246,7 +251,10 @@
 					</fieldset>
 					<div class="row-fluid">
 						<div class="span2 offset1">
-							<button type="button" class="new-btn new-btn-search cafSubmit hidden" id="shippingSubmit" data-submit="true" data-form-number="2" data-alert-id="alert_${uniqueId}2" data-this-toggle-id="toggle_${uniqueId}2">Continue</button>
+							<button type="button" class="new-btn new-btn-search cafSubmit" id="shippingSubmit" data-submit="true" data-form-number="2" data-alert-id="alert_${uniqueId}2" data-this-toggle-id="toggle_${uniqueId}2">Continue</button>
+						</div>
+						<div class="span9">
+							<span class="cafValidating hidden">Validating your address<span class="cafValidatingDots"></span></span>
 						</div>
 					</div>
 				</form>
@@ -258,8 +266,11 @@
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle billingToggle" id="toggle_${uniqueId}3" data-toggle="false" data-status="unavailable" data-parent="#parent_${uniqueId}3" data-href="#${uniqueId}3">
-				3 &nbsp; Enter Billing Address
-				<span class="hidden"><i class="icon-pencil"></i> EDIT</span>
+				<div class="cafStepNumber">3</div>
+				<div class="cafStepEdit hidden">
+					<span><i class="icon-pencil"></i> EDIT</span>
+				</div>
+				<div>Enter Billing Address</div>
 			</a>
 		</div>
 		<div id="${uniqueId}3" class="accordion-body collapse">
@@ -300,8 +311,7 @@
 							<div class="span10 offset1">
 								<label for="billingState">State <span>Required</span></label>
 								<div class="comboContainer billingStateDrop">
-									<select name="state" id="billingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true">
-										<option value="ZZ">--</option>
+									<select name="state" id="billingState" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Select" data-display="true" data-changed="false">
 										<option value="AA">AA</option>
 										<option value="AE">AE</option>
 										<option value="AL">AL</option>
@@ -401,8 +411,11 @@
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" id="toggle_${uniqueId}4" data-toggle="false" data-status="unavailable" data-parent="#parent_${uniqueId}4" data-href="#${uniqueId}4">
-				4 &nbsp; Enter Payment Information
-				<span class="hidden"><i class="icon-pencil"></i> EDIT</span>
+				<div class="cafStepNumber">4</div>
+				<div class="cafStepEdit hidden">
+					<span><i class="icon-pencil"></i> EDIT</span>
+				</div>
+				<div>Enter Payment Information</div>
 			</a>
 		</div>
 		<div id="${uniqueId}4" class="accordion-body collapse">
@@ -444,8 +457,7 @@
 							<div class="span10 offset1">
 								<label for="payMonth">Expiration Date <span>Required</span></label>
 								<div class="comboContainer monthWidth">
-									<select name="month" id="payMonth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Month" data-display="true">
-										<option value="ZZ">Month</option>
+									<select name="month" id="payMonth" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Month" data-display="true" data-changed="false">
 										<option value="01">January</option>
 										<option value="02">February</option>
 										<option value="03">March</option>
@@ -461,8 +473,7 @@
 									</select>
 								</div>
 								<div class="comboContainer">
-									<select name="year" id="payYear" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Year" data-display="true">
-										<option value="ZZ">Year</option>
+									<select name="year" id="payYear" data-toggle="responsive-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Year" data-display="true" data-changed="false">
 										<option value="2013">2013</option>
 										<option value="2014">2014</option>
 										<option value="2015">2015</option>
@@ -507,7 +518,8 @@
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" id="toggle_${uniqueId}5" data-toggle="false" data-status="unavailable" data-parent="#parent_${uniqueId}5" data-href="#${uniqueId}5">
-				5 &nbsp; Review Subscription
+				<div class="cafStepNumber">5</div>
+				<div>Review Subscription</div>
 			</a>
 		</div>
 		<div id="${uniqueId}5" class="accordion-body collapse">
@@ -589,7 +601,7 @@
 	<p><strong>Please note:</strong> Some items can't be shipped to a P.O. box and require a physical address for delivery.</p>
 	<h4>Can orders be shipped to a military address?</h4>
 	<p>The U.S. Postal Service delivers all orders to military APO/FPO addresses. Please allow an additional 4-6 weeks for the military postal service to deliver your package to its final overseas destination.</p>
-	<a href="#" class="btn" data-dismiss="modal">Close</a>
+	<a href="#" class="new-btn new-btn-modal" data-dismiss="modal">Close</a>
 </div>
 <div id="modalCode" class="modal hide fade in" style="display: none; ">
 	<h3>How to find your security code</h3>
@@ -618,7 +630,7 @@
 			<p>The security code is on the front of American Express cards.</p>
 		</div>
 	</div>
-	<a href="#" class="btn" data-dismiss="modal">Close</a>
+	<a href="#" class="new-btn new-btn-modal" data-dismiss="modal">Close</a>
 </div>
 <div id="processingIcon" class="addToCartAnimation">
 	<i class="icon-refresh">&nbsp;</i>

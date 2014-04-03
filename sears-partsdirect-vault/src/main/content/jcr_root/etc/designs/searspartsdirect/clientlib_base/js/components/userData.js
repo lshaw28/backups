@@ -123,6 +123,7 @@ var userData = Class.extend(function () {
 			NS('shc.pd').lastName = lastName;
 			NS('shc.pd').casId = casId;
 			NS('shc.pd').unitCenterId = unitCenterId;
+			NS('shc.pd').roles = resp.roles;
 
 			// Set loginNav items
 			if (username !== '') {
@@ -241,7 +242,7 @@ var userData = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils,
 				quantity = 0,
-				li = new cartItemTemplate(item.part, item.quantity);
+				li = new cartItemTemplate(item, item.quantity);
 
 			// Retrieve quantity
 			quantity = item.quantity;

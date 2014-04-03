@@ -19,18 +19,18 @@
 			}
 			$('html').addClass('ie-v' + v);
 		}
-        */
-        if (BrowserDetect.browser == 'Explorer') {
-            var v = BrowserDetect.version;
-            v = v.slice(0, v.indexOf('.'));
-            if (window.SPDUtils.validNumber(v, 1000) < 10) {
-                $('html').addClass('lt-ie10');
-            }
-            if (window.SPDUtils.validNumber(v, 1000) < 9) {
-                $('html').addClass('lt-ie9');
-            }
-            $('html').addClass('ie-v' + v);
-        }
+		*/
+		if (BrowserDetect.browser == 'Explorer') {
+			var v = BrowserDetect.version;
+			v = v.slice(0, v.indexOf('.'));
+			if (window.SPDUtils.validNumber(v, 1000) < 10) {
+				$('html').addClass('lt-ie10');
+			}
+			if (window.SPDUtils.validNumber(v, 1000) < 9) {
+				$('html').addClass('lt-ie9');
+			}
+			$('html').addClass('ie-v' + v);
+		}
 
 		/**
 		 * Set up userData singleton class before all else
@@ -137,6 +137,32 @@
 		 */
 		$('[data-toggle="responsive-dropdown"]').each(function () {
 			var newResponsiveDropdown = new responsiveDropdown($(this));
+		});
+		/**
+		 * scrub values in select options to remove '.00'
+		 * for responsive filter dropdown
+		 */
+		$('[data-toggle="responsive-filter-dropdown"] option').each(function () {
+			var temp;
+			if (this.innerHTML.indexOf('.00') != -1) {
+				temp = this.innerHTML.slice(0, -3);
+				this.innerHTML = temp;
+				this.value = temp;
+			}
+		});
+		/**
+		 * responsiveFilterDropdown class setup
+		 */
+		$('[data-toggle="responsive-filter-dropdown"]').each(function (index) {
+
+			var newResponsiveDropdown = new responsiveFilterDropdown($(this), index);
+
+		});
+		/**
+		 * airFilterPartDetails class setup
+		 */
+		$('.airFilterPartDetails').each(function () {
+			var newAFPD = new airFilterPartDetails($(this));
 		});
 		/**
 		 * video class setup
@@ -277,10 +303,45 @@
 		$('.sideChatNavigation').each(function () {
 			var newSideChatNavigation = new sideChatNavigation($(this));
 		});
-        /*
-        $('.modelSearchResultsMain').each(function() {
-            var msrExperiment = new modelSearchResults($(this));
-        });
-        */
+
+		/**
+			*
+		* NOTE:
+		* Please update your the code in the bindEvents fn to
+		* more specifically select the accordion(aka collapse) components
+		* that are required in the mervRatingHelp update.
+			*
+		* As it stands, your code will now break the other accordions used
+		* throughout the project. Thanks!
+			*
+		* (See recommendedParts.less for an example of how this works with less,
+			* no js/jquery needed.
+			*
+		*/
+
+		//Merv Rating Help
+		//var newMervRatingHelp = new mervRatingHelp($(this));
+		/**
+		 * airFilterDimension class setup
+		 */
+		var newFilterDim = new airFilterDimension();
+
+		/**
+		 * (Air/Water) Filter Banners class setup
+		 */
+
+		var filterBannerTemplate = $('#js_filterBannerTemplate').length;
+		if (filterBannerTemplate === 1 ) {
+			var newBanners = new banners();
+		}
+
+		/**
+		 * (PRC) Fix to hide the header-promo message and side-chat on PRC Landing Page
+		 */
+		if ($('#partsRepairCenter').length > 0) {
+			$(".headerPromo").addClass('hidden');
+			$(".sideChatNavigation").addClass('hidden');
+		}
+
 	});
 }(window));

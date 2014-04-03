@@ -23,6 +23,8 @@ var addToCart = Class.extend(function () {
 			this.partNumber = '';
 			this.divId = '';
 			this.plsId = '';
+			this.subPer = -1;
+			this.component = '';
 			// Elements
 			this.cartItems = {
 				header: null,
@@ -34,7 +36,6 @@ var addToCart = Class.extend(function () {
 			}
 			this.cartEmpty = null;
 			// Setup
-			this.setProperties();
 			this.bindEvents();
 		},
 		/**
@@ -42,13 +43,17 @@ var addToCart = Class.extend(function () {
 		 * @return {void}
 		 */
 		setProperties: function () {
-			var self = this,
-				su = window.SPDUtils;
+			var self = this;
 
 			// Retrieve properties
-			self.partNumber = self.el.data('partnumber');
-			self.divId = self.el.data('divid');
-			self.plsId = self.el.data('plsid');
+			self.partNumber = self.el.attr('data-partnumber');
+			self.divId = self.el.attr('data-divid');
+			self.plsId = self.el.attr('data-plsid');
+			if (self.el.attr('data-subper') != undefined) {
+				self.subPer = self.el.attr('data-subper');
+			}
+			self.location = self.el.attr('data-location');
+			self.component = self.el.attr('data-component');
 			// Retrieve elements
 			self.cartItems.header = $('#cartShop .cartShopHeader_js');
 			self.cartItems.checkOut = $('#cartShop .cartShopCheckOut_js');
@@ -57,6 +62,24 @@ var addToCart = Class.extend(function () {
 			self.cartItems.count = $('.cartShopCount_js', self.cartItems.totals);
 			self.cartItems.countBadge = $('#cartShop .count-badge');
 			self.cartEmpty = $('#cartShop .cartShopEmpty_js');
+		},
+		/**
+		 * Set instance Omniture for the click event
+		 * @return {void}
+		 */
+		setOmniture: function () {
+			var self = this,
+				prodVar = ';' + self.divId + self.plsId + self.partNumber;
+
+			// Set CQ values
+			if (self.subPer > -1) {
+				if (self.subPer == 0) {
+					prodVar += ';;;eVar=57="One-Time Purchase"';
+				} else {
+					prodVar += ';;;eVar=57="Every ' + self.subPer + ' Months"';
+				}
+			}
+			SPDUtils.trackEvent({event: 'atcEvent', values: {atcLocation: self.location, atcProduct: prodVar}, componentPath: self.component}, 'Add_To_Cart_#templateName');
 		},
 		/**
 		 * Add item to cart
@@ -83,6 +106,10 @@ var addToCart = Class.extend(function () {
 				// Add cart ID param if available
 				if (NS('shc.pd.cookies').cid !== '') {
 					params.cid = NS('shc.pd.cookies').cid;
+				}
+				// Add subscription period if part is to be subscribed
+				if (self.subPer > 0) {
+					params.renewalPeriod = self.subPer;
 				}
 
 				// Make an AJAX call
@@ -225,6 +252,9 @@ var addToCart = Class.extend(function () {
 
 			self.el.bind('click', function (e) {
 				e.preventDefault();
+				//Properties are set here in case data on the Add to Cart button is updated with javascript
+                self.setProperties();
+                self.setOmniture();
 				self.addItem();
 			});
 		}

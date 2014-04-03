@@ -6,4 +6,5 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Category Listing"
 	jcr:description="Lists Parent Categories and Subcategories"
-	componentGroup=".hidden" />
+	componentGroup="SearsPartsDirect">
+</jcr:root>

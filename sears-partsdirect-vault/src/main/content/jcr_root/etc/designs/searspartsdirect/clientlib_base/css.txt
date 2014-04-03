@@ -12,3 +12,4 @@ core.svgIcons.less
 
 #base=less/templates/.
 repairHelpHome/repairHelpHome.less
+partsRepairCenter/partsRepairCenter.less

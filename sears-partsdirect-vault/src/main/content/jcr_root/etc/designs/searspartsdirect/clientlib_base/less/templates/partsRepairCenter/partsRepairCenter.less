@@ -1,0 +1,60 @@
+@import "../../base.variables.less";
+@import "../../base.mixins.less";
+.partsRepairCenter {
+  .row-fluid [class*="span10"] {
+    margin-left: 0px;
+  }
+  .row-fluid [class*="new-span-responsive"] {
+    margin-left: 0px;
+    min-width: 45%;
+  }
+  .prcTitle {
+    font-size: @h1Size;
+    margin: 25px 0 20px;
+  }
+  .prcSubTitle {
+    font-size: @h3Size;
+    margin: 30px 0 10px 0;
+  }
+  .viewMapAndDirectionsButton {
+    margin: 20px 0 15px;
+	&:hover {
+	  color: @primaryHueNormal;
+	  text-decoration: none;
+	}
+  }
+  .responsiveImage{
+     .imageCaption {
+        text-align: center;
+      }
+	  img[src=""] {
+		display: none;
+	  }
+  }
+  .topListContent {
+    p {
+      margin: 0px;
+    }
+  }
+  .new-span-responsive {
+    min-width: 300px;
+    margin: 0 20px 0 0;
+  }
+  .topCategoriesAndServicesContainer,
+  .hoursOfOperationContainer,
+  .teamMemberContainer,
+  .addressContainer,
+  .address {
+    width: 100%;
+  }
+  .banners {
+    #bannerContainer {
+      .banner {
+        margin: 0px;
+      }
+    }
+  }
+}
+
+@import "partsRepairCenter.mobile";
+@import "partsRepairCenter.tablet";

@@ -6,6 +6,7 @@ plugins/bootstrap-inputmask.js
 plugins/bootstrap-datepicker.js
 plugins/jquery.migrate-1.2.1.js
 Class.js
+html5shiv.js
 core/Namespace.js
 fx/Easing.js
 fx/Translate3d.js
@@ -28,12 +29,15 @@ thorax.js
 
 #base=js/components/.
 addToCart.js
+airFilterPartDetails.js
 browseModels.js
 cartNav.js
 collapse101.js
 commonParts.js
 customAccordionForms.js
 guideNavigation.js
+handlebars-v1.3.0.js
+history.js
 messageHandler.js
 modelDiagram.js
 modelHeader.js
@@ -43,6 +47,7 @@ modelSearchResults.js
 partSearchResults.js
 recommendedParts.js
 responsiveDropdown.js
+responsiveFilterDropdown.js
 responsiveCollapse.js
 responsiveImage.js
 responsivePinchImage.js
@@ -57,6 +62,10 @@ textModelNo.js
 headerPD.js
 modelAllDiagram.js
 partDetail.js
+mervRatingHelp.js
+airFilterDimension.js
+banners.js
+
 
 #base=js/widgets/.
 AdUnit.js
@@ -65,6 +74,7 @@ TouchCarousel.js
 ResponsiveTable.js
 SearchPanelFinder.js
 SearchPanelFinderResult.js
+touchSwipe.js
 
 #base=js/templates/.
 cartItemTemplate.js

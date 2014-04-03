@@ -3,8 +3,8 @@
 	<div id="searchContainer">
 		<div id="searchLeftShadow" class="search-shadow"></div>
 		<ul id="searchTabs">
-			<li id="searchTab" class="header-search-tab active"> <a data-toggle="tab" data-target="#searchContent"><i class="icon-search">&nbsp;</i> Search</a></li>
-			<li id="headerManualTab" class="header-search-tab"><a data-toggle="tab" data-target="#manualContent">Manuals & Repair Help</a></li>
+			<li id="searchTab" class="header-search-tab active"> <a href="#" tabindex="0" data-toggle="tab" data-target="#searchContent"><i class="icon-search">&nbsp;</i> Search</a></li>
+			<li id="headerManualTab" class="header-search-tab"><a href="#" tabindex="0" data-toggle="tab" data-target="#manualContent">Manuals & Repair Help</a></li>
 		</ul>
 		<!-- new dev starts here for PD season 2 -->
 		
@@ -12,12 +12,12 @@
 			<input id="searchBarField" type="text" maxlength="100" tabindex="1" data-inputhelp="Enter model or part number" data-inputhelpmobile="Model/Part #" name="searchModPar"><span class="large">in</span><div class="btn-group ">
 				<a class="btn btn-type" href="#" data-toggle="dropdown"><span id="searchTypeLabel" data-texthelp="Select Type" data-texthelpmobile="Type">Type</span> <i class="icon-chevron-sign-down">&nbsp;</i></a>
 				<ul class="dropdown-menu">
-					<li><a data-postpath="part-model" data-pathtaken="modelSearch" data-label="Model #">Model #</a></li>
-					<li><a data-postpath="part-number" data-pathtaken="partSearch" data-label="Part #">Part #</a></li>
+					<li><a href="#" tabindex="0" data-postpath="part-model" data-pathtaken="modelSearch" data-label="Model #">Model #</a></li>
+					<li><a href="#" tabindex="0" data-postpath="part-number" data-pathtaken="partSearch" data-label="Part #">Part #</a></li>
 				</ul>
 			</div><button id="searchModelsParts" class="new-btn new-btn-search">Search</button>
-			<p class="modelFinderClose">Can't locate your model number? <a class="searchPanelFinder_js">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
-			<p class="modelFinderOpen" style="display: none;"><a class="searchPanelFinder_js">Close the finder</a></p>
+			<p class="modelFinderClose">Can't locate your model number? <a href="#" tabindex="0" class="searchPanelFinder_js">Use our finder <i class="icon-chevron-down">&nbsp;</i></a></p>
+			<p class="modelFinderOpen" style="display: none;"><a href="#" tabindex="0" class="searchPanelFinder_js">Close the finder</a></p>
 			<input name="pathTaken" id="pathTaken" type="hidden"/>
 			<input name="prst" id="prst" type="hidden"/>
 			<input name="shdMod" id="shdMod" type="hidden"/>
