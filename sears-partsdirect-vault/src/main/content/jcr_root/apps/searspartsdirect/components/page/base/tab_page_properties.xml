@@ -202,19 +202,6 @@
 					xtype="hidden"
 					name="./image/sling:resourceType"
 					value="foundation/components/image"/>
-					
-				<brandName jcr:primaryType="cq:Widget"
-							fieldLabel="Brand Name"
-							fieldDescription="Character limit is 50"
-							name="./brandName"
-							maxLength="50"
-							xtype="textfield" />
-				<productType jcr:primaryType="cq:Widget"
-							fieldLabel="Product Type"
-							fieldDescription="Character limit is 50"
-							name="./productType"
-							maxLength="50"
-							xtype="textfield" />
 			</items>
 		</subcontainer2>
 

@@ -4,35 +4,11 @@
 	activeTab="0"
 	xtype="tabpanel">
 	<items jcr:primaryType="cq:WidgetCollection">
-	<tab1 jcr:primaryType="cq:Widget" title="Type"
-			xtype="panel">
-			<items jcr:primaryType="cq:WidgetCollection">
-				<type jcr:primaryType="cq:Widget" fieldLabel="Component Type" defaultValue="default"
-					name="./componentType" type="select" xtype="selection">
-					<options jcr:primaryType="cq:WidgetCollection">
-						<one
-            				jcr:primaryType="nt:unstructured"
-            				text="Default Text Type"
-            				value="default"/> 
-            			<two
-            				jcr:primaryType="nt:unstructured"
-            				text="SEO Text Component"
-            				value="seoTextComponent"/>
-            			<three
-            				jcr:primaryType="nt:unstructured"
-            				text="Value Prop Component"
-            				value="valueprop"/>
-            		</options>
-            	</type>
-            				
-			</items>
-		</tab1>
-		<tab2
+		<tab1
 			jcr:primaryType="cq:Widget"
 			title="Text"
 			xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-				<ContentTiyle jcr:primaryType="cq:Widget" allowBlank="true" fieldLabel="Content Title" itemId="text1" name="./title1" xtype="textfield" />
 				<text
 					jcr:primaryType="cq:Widget"
 					fieldLabel="Text"
@@ -51,6 +27,6 @@
 					value="true"
 					xtype="hidden"/>
 			</items>
-		</tab2>
+		</tab1>
 	</items>
 </jcr:root>

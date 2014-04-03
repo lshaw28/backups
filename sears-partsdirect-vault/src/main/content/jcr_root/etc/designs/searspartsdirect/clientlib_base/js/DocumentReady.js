@@ -330,11 +330,6 @@
             $(".headerPromo").addClass('hidden');
             $(".sideChatNavigation").addClass('hidden');
         }
-        
-        /**
-		 * Seo landing Page
-		 */
-	    var newSeoHeroImage = new seoHeroImage();
 
 	});
 }(window));
