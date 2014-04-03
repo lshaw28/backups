@@ -4,6 +4,11 @@
 	title="Component Information"
     width="500">
     <items jcr:primaryType="cq:WidgetCollection">
+        <hideComponent jcr:primaryType="cq:Widget"
+            fieldLabel="Hide Component"
+            name="./hideComponent"
+            type="checkbox"
+            xtype="selection"/>
         <showImage jcr:primaryType="cq:Widget"
             fieldLabel="Show Product Type Image"
             name="./showImage"

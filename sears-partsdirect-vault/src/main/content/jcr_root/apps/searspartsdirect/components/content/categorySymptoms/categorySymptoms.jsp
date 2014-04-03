@@ -7,9 +7,10 @@
 </c:if>
 
 <c:set var="showImage"><cq:text property="showImage"/></c:set>
+<c:set var="hideComponent"><cq:text property="hideComponent"/></c:set>
 
 <%-- if symptom list empty then the component wont appear --%>
-<c:if test="${!empty symptomList}">
+<c:if test="${hideComponent != 'true' && !empty symptomList}">
 
     <%-- header --%>
     <h3>
@@ -100,8 +101,8 @@
             })(jQuery,'smartresize');
 
             $(document).ready(function(){
-                //var target = $('[data-desktopimage]', $('.categorySymptoms .imageHolder')),
-                //newResponsiveImage = new responsiveImage(target);
+                var target = $('[data-desktopimage]', $('.categorySymptoms .imageHolder')),
+                newResponsiveImage = new responsiveImage(target);
 
                 if ($(".categorySymptoms .accessoryWithImage").length === 1){
                     setTimeout(setSymptomImageAlignment,1000);
