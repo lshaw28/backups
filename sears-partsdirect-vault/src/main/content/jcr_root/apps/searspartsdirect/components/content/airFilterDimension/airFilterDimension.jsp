@@ -8,19 +8,20 @@
 <p class="shippingDisclaimer">*You choose how often to get delivery. We'll automatically ship you new filters when you want them. It's that simple. Enjoy FREE SHIPPING on every order that includes an automatic reorder of air filters. <a data-toggle="modal" data-target="#airFilterPromoModal">Promotional Details</a></p>
 
 <div id="js_AirFilterDimensionSelection" class="airfilterDimensionSection  row-fluid">
-
 	<form id="airFilterSelectionForm" method="post" action="">
 	<h4>To find the right filter, please select your dimensions. All fields are required.</h4>
 		<div class="row-fluid">
 			<div class="span4">
 				<select name="airFilterWidth" id="airFilterWidth" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Width (in.)" data-display="true" data-changed="false">
-					<c:forEach items="${airFilterDimensionList.width}" var="objDimension">
+                    <option value=""></option>
+                    <c:forEach items="${airFilterDimensionList.width}" var="objDimension">
 						<option value="${objDimension}">${objDimension}</option>
 					</c:forEach>
 				</select>
 				<span class="dimensionCross hidden-phone">X</span>
 			</div>
 			<div class="span4">
+                <option value=""></option>
 				<select name="airFilterHeight" id="airFilterHeight" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Height (in.)" data-display="true" data-changed="false">
 					<c:forEach items="${airFilterDimensionList.height}" var="objDimension">
 						<option value="${objDimension}">${objDimension}</option>
@@ -30,7 +31,8 @@
 			</div>
 			<div class="span4">
 				<select name="airFilterDepth" id="airFilterDepth" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Depth (in.)" data-display="true" data-changed="false">
-					<c:forEach items="${airFilterDimensionList.depth}" var="objDimension">
+                    <option value=""></option>
+                    <c:forEach items="${airFilterDimensionList.depth}" var="objDimension">
 						<option value="${objDimension}">${objDimension}</option>
 					</c:forEach>
 				</select>
