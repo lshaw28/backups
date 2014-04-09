@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Dialog"
+    deferredRender="false"
+    title="Scene7 Dynamic Image"
+    xtype="tabpanel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <layout
+            jcr:primaryType="cq:Widget"
+            beforeSubmitHandler="function(component) {CQ.scene7.dynamicImageHelper.beforeDialogSubmit(component);}"
+            cropParameter="./imageCrop"
+            ddGroups="[media,s7media]"
+            fileNameParameter="./fileName"
+            fileReferenceParameter="./fileReference"
+            mapParameter="./imageMap"
+            name="./file"
+            requestSuffix=".img.png"
+            s7DropUpdateFormParams="function(comp) {CQ.scene7.dynamicImageHelper.s7DropUpdateFormParams(comp);}"
+            title="Image"
+            xtype="shcS7html5smartimage"/>
+        <advanced
+            jcr:primaryType="cq:Widget"
+            title="Advanced"
+            xtype="panel">
+            <listeners
+                jcr:primaryType="nt:unstructured"
+                activate="function(panel) {CQ.scene7.dynamicImageHelper.activateAdvancedTab(panel);}"/>
+            <items jcr:primaryType="cq:WidgetCollection">
+                <title
+                    jcr:primaryType="cq:Widget"
+                    fieldLabel="Title"
+                    name="./jcr:title"
+                    xtype="textfield"/>
+                <alt
+                    jcr:primaryType="cq:Widget"
+                    fieldDescription="(leave empty to use the above title)"
+                    fieldLabel="Alt Text"
+                    name="./alt"
+                    xtype="textfield"/>
+                <linkUrl
+                    jcr:primaryType="cq:Widget"
+                    fieldDescription="Adds a link to the image, if set."
+                    fieldLabel="URL"
+                    name="./linkUrl"
+                    xtype="pathfield"/>
+                <linkTarget
+                    jcr:primaryType="cq:Widget"
+                    editable="true"
+                    fieldDescription="The link target to use."
+                    fieldLabel="Open in"
+                    name="./linkTarget"
+                    type="select"
+                    xtype="selection">
+                    <options jcr:primaryType="cq:WidgetCollection">
+                        <left
+                            jcr:primaryType="nt:unstructured"
+                            text="Same Window"
+                            value="_self"/>
+                        <right
+                            jcr:primaryType="nt:unstructured"
+                            text="New Window"
+                            value="_blank"/>
+                    </options>
+                </linkTarget>
+                <height
+                    jcr:primaryType="cq:Widget"
+                    allowDecimals="false"
+                    allowNegative="false"
+                    fieldLabel="Height"
+                    name="./height"
+                    xtype="numberfield"/>
+                <imageHeight
+                    jcr:primaryType="cq:Widget"
+                    allowDecimals="false"
+                    allowNegative="false"
+                    fieldLabel="Height"
+                    hidden="true"
+                    name="./imageHeight"
+                    xtype="numberfield"/>
+                <width
+                    jcr:primaryType="cq:Widget"
+                    allowDecimals="false"
+                    allowNegative="false"
+                    fieldLabel="Width"
+                    name="./width"
+                    xtype="numberfield"/>
+                <imageWidth
+                    jcr:primaryType="cq:Widget"
+                    allowDecimals="false"
+                    allowNegative="false"
+                    fieldLabel="Width"
+                    hidden="true"
+                    name="./imageWidth"
+                    xtype="numberfield"/>
+            </items>
+        </advanced>
+    </items>
+</jcr:root>
