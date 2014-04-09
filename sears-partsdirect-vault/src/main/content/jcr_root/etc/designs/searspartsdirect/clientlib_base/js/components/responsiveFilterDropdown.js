@@ -104,6 +104,9 @@ var responsiveFilterDropdown = Class.extend(function () {
             // Setup dropdown items
             self.renderItems();
             self.buttonGroup.append(self.dropdownItems);
+			if (self.el.context[0].value == '') {
+				self.el.val('');
+			}
             // Hide the select element
             self.el.addClass('responsiveDropdownHidden');
             self.buttonGroup.insertBefore(self.el);
@@ -118,7 +121,6 @@ var responsiveFilterDropdown = Class.extend(function () {
 
             $('option', self.el).each(function () {
                 var val = $(this).attr('value');
-
                 if (su.validString(val) !== '') {
                     $(this).attr('data-value', val);
                     self.renderItem($(this));

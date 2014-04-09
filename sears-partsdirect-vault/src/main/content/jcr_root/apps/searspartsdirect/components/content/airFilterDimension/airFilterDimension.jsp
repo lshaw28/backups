@@ -23,6 +23,7 @@
 			<div class="span4">
                 <option value=""></option>
 				<select name="airFilterHeight" id="airFilterHeight" data-toggle="responsive-filter-dropdown" data-buttonclass="new-btn-dropdown" data-buttoncontent="Height (in.)" data-display="true" data-changed="false">
+                    <option value=""></option>
 					<c:forEach items="${airFilterDimensionList.height}" var="objDimension">
 						<option value="${objDimension}">${objDimension}</option>
 					</c:forEach>
