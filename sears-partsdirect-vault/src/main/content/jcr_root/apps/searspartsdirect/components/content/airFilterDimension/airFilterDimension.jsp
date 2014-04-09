@@ -7,7 +7,7 @@
 <i class="truckIcon svg-icon-truck"></i>
 <p class="shippingDisclaimer">*You choose how often to get delivery. We'll automatically ship you new filters when you want them. It's that simple. Enjoy FREE SHIPPING on every order that includes an automatic reorder of air filters. <a data-toggle="modal" data-target="#airFilterPromoModal">Promotional Details</a></p>
 
-<div id="js_AirFilterDimensionSelection" class="airfilterDimensionSection  row-fluid">
+<div id="js_AirFilterDimensionSelection" class="airfilterDimensionSection row-fluid" data-component="<%=resource.getResourceType()%>">
 	<form id="airFilterSelectionForm" method="post" action="">
 	<h4>To find the right filter, please select your dimensions. All fields are required.</h4>
 		<div class="row-fluid">

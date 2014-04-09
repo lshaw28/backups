@@ -78,6 +78,7 @@ var airFilterDimension = Class.extend(function() {
 			// show "not found" msg
 			$('.filterResults').addClass('hide');
 			$('#noAirFilters').removeClass('hide');
+			SPDUtils.trackEvent({event: 'searchFail', values: {searchDimensions: $('#airFilterWidth').val() + 'x' + $('#airFilterHeight').val() + 'x' + $('#airFilterDepth').val(), searchType: 'Air Filter Dimensions', searchTotal: '0', resultType: 'Air Filter 0 Results'}, componentPath: $('#js_AirFilterDimensionSelection').attr('data-component')}, 'Air_Filter_Dimensions_#templateName');
 		},
 
 		coalesceData:function(subSet){
@@ -198,7 +199,26 @@ var airFilterDimension = Class.extend(function() {
 				resultSet.goodAirFilters.part = this.coalesceData( resultSet.goodAirFilters.part );
 				this.renderResultType ( resultSet.goodAirFilters.part, '#goodAirFilters' );
 			}
-
+			
+			var filterTypes = '';
+			if (!$('#bestAirFilters').hasClass('hide')) {
+				filterTypes = 'Best';
+			}
+			if (!$('#betterAirFilters').hasClass('hide')) {
+				if (filterTypes == '') {
+					filterTypes = 'Better';
+				} else {
+					filterTypes += ':Better';
+				}
+			}
+			if (!$('#goodAirFilters').hasClass('hide')) {
+				if (filterTypes == '') {
+					filterTypes = 'Good';
+				} else {
+					filterTypes += ':Good';
+				}
+			}
+			SPDUtils.trackEvent({event: 'searchSuccess', values: {searchDimensions: $('#airFilterWidth').val() + 'x' + $('#airFilterHeight').val() + 'x' + $('#airFilterDepth').val(), searchType: 'Air Filter Dimensions', searchTotal: $('.airFilterSearchResultsItemLeft').length, resultType: filterTypes}, componentPath: $('#js_AirFilterDimensionSelection').attr('data-component')}, 'Air_Filter_Dimensions_#templateName');
 		},
 
 		// end to view or template
