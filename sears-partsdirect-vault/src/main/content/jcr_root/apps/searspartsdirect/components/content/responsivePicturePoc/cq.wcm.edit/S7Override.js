@@ -1,6 +1,6 @@
 console.log("S7 Overrides In PLace...");
 
-CQ.form.ShcS7SmartImage = CQ.Ext.extend(CQ.scene7.S7SmartImage, {
+CQ.form.S7SmartImage = CQ.Ext.extend(CQ.scene7.S7SmartImage, {
 
         
         
@@ -96,7 +96,7 @@ CQ.form.ShcS7SmartImage = CQ.Ext.extend(CQ.scene7.S7SmartImage, {
     
     
     // register xtype
-CQ.Ext.reg('shcS7html5smartimage', CQ.form.ShcS7SmartImage);
+CQ.Ext.reg('s7html5smartimage', CQ.form.S7SmartImage);
 
 
 CQ.form.ImageMap.Sears = CQ.Ext.extend(CQ.form.ImageMap, {

@@ -15,6 +15,6 @@
             name="./file"
             requestSuffix=".img.png"
             title="Image"
-            xtype="shcS7html5smartimage"/>
+            xtype="s7html5smartimage"/>
     </items>
 </jcr:root>
