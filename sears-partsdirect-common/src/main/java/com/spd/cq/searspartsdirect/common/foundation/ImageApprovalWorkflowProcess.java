@@ -16,7 +16,6 @@ import com.adobe.granite.workflow.exec.WorkItem;
 import com.adobe.granite.workflow.exec.WorkflowData;
 import com.adobe.granite.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.metadata.MetaDataMap;
-import com.spd.cq.searspartsdirect.common.helpers.Constants;
  
 /**
  * Workflow that migrates approved DAM Assets to the appropriate sub-section of the DAM
@@ -44,15 +43,20 @@ public class ImageApprovalWorkflowProcess implements WorkflowProcess {
             try {
                 Session jcrSession = session.adaptTo(Session.class); 
                 Node node = (Node) jcrSession.getItem(path);
+                log.debug("###PATH IS "+path);
+                
+                String damApprovedPath = path.replaceAll("assetspendingapproval/", "");
+                log.debug("### damApprovedPath "+damApprovedPath);
+                
                 if (node != null) {
                 	//node.setPrimaryType("dam:Asset");
                 	//log.debug("node.getName() "+node.getName());
                 	//log.debug("node path "+Constants.DAM_APPROVED_PATH + "/" + node.getName());
-                	if (jcrSession.nodeExists(Constants.DAM_APPROVED_PATH + "/"+ node.getName())) {
-                		//log.debug("$$$node exists");
-                		jcrSession.removeItem(Constants.DAM_APPROVED_PATH + "/"+ node.getName());
+                	if (jcrSession.nodeExists(damApprovedPath)) {
+                		log.debug("$$$node exists");
+                		jcrSession.removeItem(damApprovedPath);
                 	}
-                	jcrSession.move(node.getPath(), node.getPath().replace(Constants.DAM_PENDING_APPROVAL_PATH, Constants.DAM_APPROVED_PATH));
+                	jcrSession.move(node.getPath(), damApprovedPath);
                 }
             } catch (RepositoryException e) {
             	log.error("^^image approval error" + e);
