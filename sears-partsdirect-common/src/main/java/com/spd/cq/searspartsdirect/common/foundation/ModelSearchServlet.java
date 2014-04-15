@@ -79,7 +79,7 @@ public class ModelSearchServlet extends SlingAllMethodsServlet {
 					brandTrueName = JcrUtil.createValidName(brand);
 				}
 				String categoryTrueName = categoryResult.getHits().get(0).getNode().getName();
-				response.sendRedirect("/" + brandTrueName + "/" + categoryTrueName + "/model-" + model + "-repair.html");
+				response.sendRedirect("/" + brandTrueName + "/" + categoryTrueName + "/model-" + model + "-repair.html?searchType=RepairHelp");
 			}
 			catch (Exception e) {
 				log.error(ExceptionUtils.getFullStackTrace(e));
