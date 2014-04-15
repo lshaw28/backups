@@ -44,6 +44,10 @@
 		 */
 		var newModelHeader = new modelHeader();
 		/**
+		 * modelSymptoms singleton class setup
+		 */
+		var newModelSymptoms = new modelSymptoms();
+		/**
 		 * searchPanel singleton class setup
 		 */
 		var mainSearchPanel = new searchPanel();

@@ -6,4 +6,9 @@
 	jcr:primaryType="cq:Component"
 	jcr:title="Model Repair Symptoms"
 	jcr:description="common model repair symptoms"
-	componentGroup="SearsPartsDirect" />
+	componentGroup="SearsPartsDirect">
+	<analytics
+		jcr:primaryType="nt:unstructured"
+		cq:trackevents="searchSuccess"
+		cq:trackvars="searchTerm,searchType,searchResult,resultType" />
+</jcr:root>

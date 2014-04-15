@@ -4,7 +4,7 @@
 <spd:getUrlRelation relationType="model" />
 
 <h2>
-	Repair Symptoms for ${brandRelation.title}  ${productCategoryRelation.title} Model #${modelRelation}
+	Repair Symptoms for ${brandRelation.title}  ${productCategoryRelation.title} Model <span id='modelNo' data-search='${param.searchType}' data-component='<%=resource.getResourceType()%>'>#${modelRelation}</span>
 </h2>
 Here are the most common symptoms we've seen for this model. Select a symptom to view which parts have been used to fix that problem.<br/>
 <spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryRelation.path}" />

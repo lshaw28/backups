@@ -37,6 +37,7 @@ guideNavigation.js
 messageHandler.js
 modelHeader.js
 modelNumberSearch.js
+modelSymptoms.js
 recommendedParts.js
 responsiveDropdown.js
 responsiveFilterDropdown.js
