@@ -65,6 +65,7 @@ partDetail.js
 mervRatingHelp.js
 airFilterDimension.js
 banners.js
+pdImageZoom.js
 
 
 #base=js/widgets/.

@@ -9,6 +9,7 @@ core.buttons.tablet.less
 core.forms.less
 core.tables.less
 core.svgIcons.less
+pdImageZoom.lesss
 
 #base=less/templates/.
 repairHelpHome/repairHelpHome.less
