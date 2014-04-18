@@ -598,4 +598,9 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.ResponsivePicturePOCTag</tag-class>
 		<info>Displays Responsive picture</info>
 	</tag>
+	<tag>
+		<name>getBlurb</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetBlurbTag</tag-class>
+		<info>Loads page attributes for the blurb component</info>
+	</tag>
 </taglib>
