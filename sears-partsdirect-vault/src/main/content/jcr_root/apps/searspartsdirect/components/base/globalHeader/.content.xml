@@ -7,8 +7,8 @@
 	jcr:title="Global Header"
 	jcr:description="Global header component."
 	componentGroup="SearsPartsDirect">
-<analytics
+	<analytics
 		jcr:primaryType="nt:unstructured"
-		cq:trackevents="globalHeaderLoadEvent"
-		cq:trackvars="channel,pageNameVar" />
+		cq:trackevents="globalHeaderLoadEvent,searchSuccess"
+		cq:trackvars="channel,pageNameVar,searchTerm,searchType,searchTotal,resultType" />
 </jcr:root>

@@ -3,7 +3,7 @@
 <spd:getUrlRelation relationType="brand" />
 <spd:getUrlRelation relationType="model" />
 
-<c:if test="${param.searchType == 'RepairHelp'}">
+<c:if test="${param.searchType == ''}">
 	<span record="'searchSuccess',{'searchTerm': '${modelRelation}', 'searchType': 'Repair Help Model Search', 'searchTotal': '1.1', 'resultType': 'Model Repair Help Section'}"></span>
 </c:if>
 
