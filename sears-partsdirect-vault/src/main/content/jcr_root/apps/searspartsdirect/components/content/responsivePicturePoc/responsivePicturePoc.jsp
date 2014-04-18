@@ -7,5 +7,6 @@
         <span data-min="301" data-max="500" data-src="${respImage}?wid=300" data-default="true"></span>
         <span data-min="501" data-max="1360" data-src="${respImage}?wid=600"></span>
     </div>
+<spd:getBlurb />
     <c:catch><cq:include script="layouts/layout_${layout}.jsp"/></c:catch>
 </div>
