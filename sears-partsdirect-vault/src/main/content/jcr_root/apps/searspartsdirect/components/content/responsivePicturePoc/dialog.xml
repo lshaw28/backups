@@ -15,6 +15,15 @@
             name="./file"
             requestSuffix=".img.png"
             title="Image"
+            type="selection"
             xtype="s7html5smartimage"/>
+        <tab1
+                jcr:primaryType="cq:Widget"
+                fieldLabel="Layout"
+                name="./layout"
+                title="Layouts"
+                options="$PATH.displayoption.json"
+                type="select"
+                xtype="selection"/>
     </items>
 </jcr:root>
