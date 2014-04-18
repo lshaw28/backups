@@ -70,8 +70,6 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black"><spd:getPDEnvDetail />
 <spd:getLocalUrl /><meta name="global-mainSitePath" content="${nonSecurePDUrl}" />
 <meta name="global-mainSitePathSecure" content="${securePDUrl}" />
-<meta name="global-pageNameVar" content="<%=currentPage.getTitle()%>" />
-<meta name="global-channelVar" content="<%=properties.get("channel", "") %>" />
 <meta name="global-PRCVar" content="<%=properties.get("parAddress/address/city","")+", " + properties.get("parAddress/address/state","")+" | " + properties.get("parAddress/address/zipcode","") %>" />
 <meta name="global-modelSearchServletPath" content="bin/searspartsdirect/modelsearch" />
 <meta name="global-apiPath" content="${PdApiRoot}" />

@@ -9,5 +9,6 @@
 	componentGroup="SearsPartsDirect">
 <analytics
 		jcr:primaryType="nt:unstructured"
+		cq:trackevents="globalHeaderLoadEvent"
 		cq:trackvars="channel,pageNameVar" />
 </jcr:root>

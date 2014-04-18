@@ -22,3 +22,6 @@
      </c:if>
 	
 </div>
+
+<span record="'globalHeaderLoadEvent',{'pageNameVar': '<%=currentPage.getTitle()%>',
+ 'channel':'<%=currentPage.getProperties().get("channel") %>'}"></span>
