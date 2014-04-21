@@ -218,7 +218,7 @@ var airFilterDimension = Class.extend(function() {
 					filterTypes += ':Good';
 				}
 			}
-			SPDUtils.trackEvent({event: 'searchSuccess', values: {searchDimensions: $('#airFilterWidth').val() + 'x' + $('#airFilterHeight').val() + 'x' + $('#airFilterDepth').val(), searchType: 'Air Filter Dimensions', searchTotal: $('.airFilterSearchResultsItemLeft').length, resultType: filterTypes}, componentPath: $('#js_AirFilterDimensionSelection').attr('data-component')}, 'Air_Filter_Dimensions_#templateName');
+			SPDUtils.trackEvent({event: 'searchSuccess', values: {searchTerm: $('#airFilterWidth').val() + 'x' + $('#airFilterHeight').val() + 'x' + $('#airFilterDepth').val(), searchType: 'Air Filter Dimensions', searchTotal: $('.airFilterSearchResultsItemLeft').length, resultType: filterTypes}, componentPath: $('#js_AirFilterDimensionSelection').attr('data-component')}, 'Air_Filter_Dimensions_#templateName');
 		},
 
 		// end to view or template

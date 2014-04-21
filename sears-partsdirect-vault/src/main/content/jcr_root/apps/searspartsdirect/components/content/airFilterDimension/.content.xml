@@ -10,5 +10,5 @@
 	<analytics
 		jcr:primaryType="nt:unstructured"
 		cq:trackevents="searchSuccess,searchFail"
-		cq:trackvars="searchDimensions,searchType,searchTotal,resultType" />
+		cq:trackvars="searchTerm,searchType,searchTotal,resultType" />
 </jcr:root>
