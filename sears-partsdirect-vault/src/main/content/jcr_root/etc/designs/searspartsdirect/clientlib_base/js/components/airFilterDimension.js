@@ -78,7 +78,7 @@ var airFilterDimension = Class.extend(function() {
 			// show "not found" msg
 			$('.filterResults').addClass('hide');
 			$('#noAirFilters').removeClass('hide');
-			SPDUtils.trackEvent({event: 'searchFail', values: {searchDimensions: $('#airFilterWidth').val() + 'x' + $('#airFilterHeight').val() + 'x' + $('#airFilterDepth').val(), searchType: 'Air Filter Dimensions', searchTotal: '0', resultType: 'Air Filter 0 Results'}, componentPath: $('#js_AirFilterDimensionSelection').attr('data-component')}, 'Air_Filter_Dimensions_#templateName');
+			SPDUtils.trackEvent({event: 'searchFail', values: {searchTerm: $('#airFilterWidth').val() + 'x' + $('#airFilterHeight').val() + 'x' + $('#airFilterDepth').val(), searchType: 'Air Filter Dimensions', searchTotal: '0', resultType: 'Air Filter 0 Results'}, componentPath: $('#js_AirFilterDimensionSelection').attr('data-component')}, 'Air_Filter_Dimensions_#templateName');
 		},
 
 		coalesceData:function(subSet){
