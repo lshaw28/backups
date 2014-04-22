@@ -20,6 +20,10 @@
 			$('html').addClass('ie-v' + v);
 		}
 		/**
+		 * Seo landing Page
+		 */
+	    var newSeoHeroImage = new seoHeroImage();
+		/**
 		 * Set up userData singleton class before all else
 		 */
 		var newUserData = new userData();
@@ -312,7 +316,8 @@
         /**
 		 * airFilterDimension class setup
 		 */
-        var newFilterDim = new airFilterDimension();
+        var newFilterDim = new airFilterDimension();           
+		
 		
 		/**
 		 * (Air/Water) Filter Banners class setup
@@ -330,6 +335,6 @@
             $(".headerPromo").addClass('hidden');
             $(".sideChatNavigation").addClass('hidden');
         }
-
+        
 	});
 }(window));

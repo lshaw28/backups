@@ -1,5 +1,6 @@
 PageMapper.js
 ScaffoldingPageMapper.js
+imagemultifield.js
 
 #base=rte
 Compatibility.js

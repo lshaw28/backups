@@ -1,23 +1,47 @@
+<%--Mingle #8075--%>
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-
-<%-- get symptom list --%>
-<spd:getRelation single="true" assetType="productCategory" />
-<c:if test="${productCategoryRelation != null}">
-    <spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryRelation.path}" />
-</c:if>
+<%@page import="com.spd.cq.searspartsdirect.common.helpers.Constants" %>
 
 <c:set var="showImage"><cq:text property="showImage"/></c:set>
-<c:set var="hideComponent"><cq:text property="hideComponent"/></c:set>
+<c:set var="productType"><%=currentPage.getProperties().get("productType", "") %></c:set>
+
+<%-- If product type is provided, use that --%>
+
+<%-- set productCategoryFilter --%>
+<c:set var="assetType" value="productCategory" />
+<c:choose>
+    <c:when test='${productType != ""}'>
+        <c:set var="productCategoryFilter"><%=Constants.ASSETS_PATH %>/${assetType}/${productType}</c:set>
+    </c:when>
+    <c:otherwise>
+        <spd:getRelation single="true" assetType="${assetType}" />
+        <c:if test="${productCategoryRelation != null}">
+            <c:set var="productCategoryFilter">${productCategoryRelation.path}</c:set>
+        </c:if>
+    </c:otherwise>
+</c:choose>
+
+<%-- get symptom list --%>
+<c:if test="${productCategoryFilter != null}">
+    <spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryFilter}" />
+</c:if>
 
 <%-- if symptom list empty then the component wont appear --%>
-<c:if test="${hideComponent != 'true' && !empty symptomList}">
+<c:if test="${!empty symptomList}">
 
     <%-- header --%>
     <h3>
         <cq:text property="text1" placeholder=""/>
-        <spd:tagsByPage tagType="subcategories"/>
-        <c:if test="${fn:length(subcategoriesList) eq 1}"> ${subcategoriesList[0].title} </c:if>
-        ${productCategoryRelation.title}
+        <c:choose>
+            <c:when test='${productType != ""}'>
+                ${productType}
+            </c:when>
+            <c:otherwise>
+               <spd:tagsByPage tagType="subcategories"/>
+               <c:if test="${fn:length(subcategoriesList) eq 1}"> ${subcategoriesList[0].title} </c:if>
+               ${productCategoryRelation.title}
+            </c:otherwise>
+        </c:choose>
         <cq:text property="text2" placeholder=""/>
     </h3>
     <cq:text property="optionalDescription" placeholder=""/>
@@ -42,7 +66,14 @@
             </c:when>
         </c:choose>
         <div class="span6">
-            <c:set var="symptomUrl" value="/content/searspartsdirect/en/categories/${productCategoryRelation.trueName}-repair/symptom/${symptom.id}.html" />
+            <c:choose>
+                <c:when test='${productType != ""}'>
+                    <c:set var="symptomUrl" value="/content/searspartsdirect/en/categories/${productType}-repair/symptom/${symptom.id}.html" />
+                </c:when>
+                <c:otherwise>
+                    <c:set var="symptomUrl" value="/content/searspartsdirect/en/categories/${productCategoryRelation.trueName}-repair/symptom/${symptom.id}.html" />
+                </c:otherwise>
+            </c:choose>
             <a href="${symptomUrl}"><c:out value="${symptom.title} "/></a>
         </div>
         <c:choose>
@@ -62,13 +93,13 @@
 
        <script>
             function setSymptomImageAlignment() {
-                $(".categorySymptoms .imageHolder").css({"height" : $(".categorySymptoms .accessoryWithImage").height()+"px"});
-                var fullOuterHeight = $(".imageHolder").height();
-                var imageHeight = $(".imageHolder div").height();
+                $(".categorySymptoms .imageHolder").css({"height" : $(".categorySymptoms .accessoryWithImage:first").height()+"px"});
+                var fullOuterHeight = $(".imageHolder:first").height();
+                var imageHeight = $(".imageHolder div:first").height();
                 var marginVert = (fullOuterHeight - imageHeight)/2;
-                if ($(".imageHolder .imageCaption").length === 1){
+                //if ($(".imageHolder .imageCaption").length === 1){
                     marginVert = marginVert - 20;
-                }
+                //}
                 $(".imageHolder div").css({"margin-top" : marginVert});
             }
 
@@ -101,15 +132,17 @@
             })(jQuery,'smartresize');
 
             $(document).ready(function(){
-                var target = $('[data-desktopimage]', $('.categorySymptoms .imageHolder')),
-                newResponsiveImage = new responsiveImage(target);
+                if($('[data-desktopimage] a img', $('.categorySymptoms .imageHolder:first')).length === 0) {
+                    var target = $('[data-desktopimage]', $('.categorySymptoms .imageHolder:first')),
+                    newResponsiveImage = new responsiveImage(target);
 
-                if ($(".categorySymptoms .accessoryWithImage").length === 1){
-                    setTimeout(setSymptomImageAlignment,1000);
+                    //if ($(".categorySymptoms .accessoryWithImage").length === 1){
+                        setTimeout(setSymptomImageAlignment, 1000);
+                    //}
+                    $(window).smartresize(function(){
+                        setSymptomImageAlignment();
+                    });
                 }
-                $(window).smartresize(function(){
-  					setSymptomImageAlignment();
-				});
             });
         </script>
     </c:if>

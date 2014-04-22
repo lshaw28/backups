@@ -1,0 +1,54 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+@media (max-width: 767px) {
+
+    .seoAccessoryComponent{
+
+        .partListItems {
+            margin: 0;
+
+            .partListItem{
+                border-bottom: 5px solid @secondaryHueLight;
+                margin-bottom: 10px;
+
+                .partListItemCart{
+                    position: relative;
+                    padding: 2% 2% 2% 100px;
+
+                    .partImage{
+                        position: absolute;
+                        left: 10px;
+                        top: 10px;
+                        width: 77px;
+                        padding: 2%;
+                        margin: 0;
+                    }
+                    .partDescription{
+                        height: auto;
+                    	margin: 0;
+                    }
+
+                    .partInfo{
+                        width: 100%;
+                        padding: 0;
+
+                            *{
+                            display: inline;
+                        }
+
+                    }
+                    .partListItemQuantity,
+                    button {
+                        display: none;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

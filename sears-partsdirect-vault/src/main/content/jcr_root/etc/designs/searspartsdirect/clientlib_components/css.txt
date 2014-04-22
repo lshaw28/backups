@@ -78,3 +78,9 @@ partsRepairCenter/address/address.less
 partsRepairCenter/teamMembers/teamMembers.less
 partsRepairCenter/hoursOfOperation/hoursOfOperation.less
 partsRepairCenter/topCategoriesAndServices/topCategoriesAndServices.less
+seoParts/seoParts.less
+textImagePD/textImagePD.less
+seoAccessoryComponent/seoAccessoryComponent.less
+seoAccessoryComponent/seoAccessoryComponent.mobile.less
+seoParts/seoBrandList.less
+seoParts/seoBrandList.mobile.less

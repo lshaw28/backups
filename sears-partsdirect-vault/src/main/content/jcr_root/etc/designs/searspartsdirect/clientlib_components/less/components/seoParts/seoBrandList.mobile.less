@@ -1,0 +1,83 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.animation(){
+	@-webkit-keyframes swipe-animation {.animation-frames()}
+  	@-moz-keyframes swipe-animation {.animation-frames()}
+  	@-ms-keyframes swipe-animation {.animation-frames()}
+  	@-o-keyframes swipe-animation {.animation-frames()}
+	@keyframes swipe-animation {.animation-frames()}
+}
+
+.translateX(@valueScale, @valueTranslate, @valueOpacity){
+	-webkit-transform: scale(@valueScale) translateX(@valueTranslate);
+	-moz-transform: scale(@valueScale) translateX(@valueTranslate);
+	-ms-transform: scale(@valueScale) translateX(@valueTranslate);
+	-o-transform: scale(@valueScale) translateX(@valueTranslate);
+	transform: scale(@valueScale) translateX(@valueTranslate);
+
+	opacity: (@valueOpacity);
+}
+
+.animation-frames(){
+   0% {
+		.translateX(1, 0%, 0);
+	}
+	25%{
+		.translateX(0.9, -50%, 1);
+	}
+	100%{
+		.translateX(1, -100%, 0);
+	}
+}
+
+.animation();
+
+
+@media (max-width: 767px) {
+	.brandList{ 
+		@brandlistHeight: 270px;
+		@brandlistWidth: 300px;
+
+		.swipeViewGuide{
+			width: 100%;
+			color: @primaryHueNormal;
+			text-align: center;
+			padding: 10px 0;
+
+				.icon-hand-up{
+					display: inline-block;
+				-webkit-animation: swipe-animation 1s infinite; 
+			  -moz-animation:    swipe-animation 1s infinite; 
+			  -o-animation:      swipe-animation 1s infinite; 
+			  animation:         swipe-animation 1s infinite;
+			  -webkit-transition: opacity 2s ease 1s;
+			}
+
+		}
+
+
+
+		#slider-caro-applianceV2{
+
+			&.blockLevel{
+				height: @brandlistHeight;
+
+				.brand-wraper{
+					height: @brandlistHeight;
+
+					div.row-item{
+						height: @brandlistHeight;
+						top: 0;
+						float: left;
+
+						[class*="span"] {
+							width: 50%;
+							float: left;
+						}
+					}
+				}
+			}
+		}
+	}
+}
