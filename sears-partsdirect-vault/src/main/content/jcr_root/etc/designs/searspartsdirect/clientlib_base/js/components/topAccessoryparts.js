@@ -29,6 +29,7 @@ function topAccessoryparts(productGroupId, supplierId, partNumber, div, partsUrl
 						$('#' + div + ' .partListItemPrice strong').text('$' + priceStr);
 						status == "INST" ? $('#' + div + ' .partAvailability strong').text('In stock') : $('#' + div + ' .partAvailability strong').text('Back Order');
 						$('#' + div + ' .partListItemAdd button').attr('data-partnumber', partNumber).attr('data-divid', jsonResponse.partCompositeKey.productGroupId).attr('data-plsid', jsonResponse.partCompositeKey.supplierId);
+						$('#' + div + ' a.mobile-curtain').attr('href', partsUrl + '/partsdirect/part-number/' + partNumber + '/' + jsonResponse.partCompositeKey.productGroupId + '/' + jsonResponse.partCompositeKey.supplierId);
 						
 						var newapiPath;
                         if(apiPath.indexOf('v1/') > -1){
@@ -69,4 +70,18 @@ function topAccessoryparts(productGroupId, supplierId, partNumber, div, partsUrl
 			$('#' + div).addClass('hidden');
 		}
 	});
+
+	var quantityField = $('#'+div+' .addToCartQuantity_js');
+	quantityField.keydown(function(e){
+		numbersOnly(e);
+	});
+
+	numbersOnly = function(evt) {
+	    if (evt.keyCode === 46 || evt.keyCode === 8 || evt.keyCode === 9 || evt.keyCode === 27 || evt.keyCode === 13 || (evt.keyCode === 65 && evt.ctrlKey === true) || (evt.keyCode >= 35 && evt.keyCode <= 39)) {
+
+	    } else if (evt.shiftKey || (evt.keyCode < 48 || evt.keyCode > 57) && (evt.keyCode < 96 || evt.keyCode > 105)) {
+	      return evt.preventDefault();
+	    }
+	}
+
 }

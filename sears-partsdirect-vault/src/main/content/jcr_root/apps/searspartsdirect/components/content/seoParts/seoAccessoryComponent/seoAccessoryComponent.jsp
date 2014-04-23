@@ -70,6 +70,7 @@
 				</div>
 			</div>
 		</div>
+		<a class="mobile-curtain hidden-desktop"></a>
 	</div>
 	<div id="div2" class="span3">
 		<div class="partListItem">
@@ -109,6 +110,7 @@
 				</div>
 			</div>
 		</div>
+		<a class="mobile-curtain hidden-desktop"></a>
 	</div>
 	<div id="div3" class="span3">
 		<div class="partListItem">
@@ -148,6 +150,7 @@
 				</div>
 			</div>
 		</div>
+		<a class="mobile-curtain hidden-desktop"></a>
 	</div>
 	<div id="div4" class="span3">
 		<div class="partListItem">
@@ -187,6 +190,7 @@
 				</div>
 			</div>
 		</div>
+		<a class="mobile-curtain hidden-desktop"></a>
 	</div>
 </div>
 <%}
