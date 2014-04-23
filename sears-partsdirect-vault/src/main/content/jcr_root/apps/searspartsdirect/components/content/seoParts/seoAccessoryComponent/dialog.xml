@@ -5,10 +5,8 @@
 	<items jcr:primaryType="cq:WidgetCollection">
 		<tab1 jcr:primaryType="cq:Widget" title="Heading" xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
-				<brand jcr:primaryType="cq:Widget" fieldLabel="Brand"
-					name="./brand" xtype="textfield" />
-				<prodtype jcr:primaryType="cq:Widget" fieldLabel="Product Type"
-					name="./prodtype" xtype="textfield" />
+				<title jcr:primaryType="cq:Widget" fieldLabel="Component Title"
+					name="./title" xtype="textfield" />
 			</items>
 		</tab1>
 		<tab2 jcr:primaryType="cq:Widget" title="First Part" xtype="panel">

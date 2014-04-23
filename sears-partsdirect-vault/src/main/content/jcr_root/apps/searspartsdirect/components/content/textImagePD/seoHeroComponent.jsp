@@ -20,7 +20,7 @@
 	<div class="heroImageContent span8">
 		<div class="brandHeading span12">
 			<% if (!brandImageURL.equals("")) {%> <div class="brandImage span3"><img src="<%= brandImageURL %>" /></div> <% } %>
-			<div class="span9"><h1><%=properties.get("headerText", "Find Parts To Repair ") %><%= brandName %>&nbsp;<%= productType %></h1></div>
+			<div class="span9"><h1><%=properties.get("headerText", "Find Parts To Repair") %>&nbsp;<%= brandName %>&nbsp;<%= productType %></h1></div>
 		</div>
 		<div class="brandDesc"><%=properties.get("description", "") %></div>
 		<div class="seoForm">

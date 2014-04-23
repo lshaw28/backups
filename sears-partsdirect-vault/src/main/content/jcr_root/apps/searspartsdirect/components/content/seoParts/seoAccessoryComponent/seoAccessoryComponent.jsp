@@ -4,8 +4,7 @@
 <cq:includeClientLib categories="apps.searspartsdirect,apps.searspartsdirect.base" />
 
 <% 
-	String brand=properties.get("brand", "");
-	String productType=properties.get("prodtype", "");
+	String componentTitle = properties.get("title", "");
 
 	String partNumber=properties.get("partnumber1", "");
 	String productGroupId=properties.get("divId1", "");
@@ -31,7 +30,7 @@
 <% if(currentNode.hasProperty("brand")){
 %>
 <div class="new-span-general partListItems">
-	<h3>Top Selling Parts for <%=brand%> <%=productType%>s</h3>	
+	<h3><%=componentTitle%></h3>	
 	<div id="div1" class="span3">
 		<div class="partListItem">
 			<div class="partListItemCart">
