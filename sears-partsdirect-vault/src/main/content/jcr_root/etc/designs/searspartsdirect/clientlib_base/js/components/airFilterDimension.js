@@ -114,7 +114,7 @@ var airFilterDimension = Class.extend(function() {
 		// to view or template
 
 		renderDimensionString : function(){
-			return this.width+' x '+this.height+' x'
+			return this.width+' x '+this.height+' x '+this.depth
 		},
 
 		renderTitle : function(maker, string, merv){
@@ -245,6 +245,22 @@ var airFilterDimension = Class.extend(function() {
 				self.getResults();
 			  }
 		  });
+
+          /*PD-11484*/
+		  $('.responsiveDropdown').bind("DOMSubtreeModified", function(){
+		    if($(this).children("ul").hasClass("active")) {
+              // get the selected element
+              var selected = $(this).siblings("select").attr("id");
+
+              // collapse all other
+              $(".responsiveDropdown").each(function( index ) {
+                var current = $(this).siblings("select").attr("id");
+                if(selected != current) {
+                  $(this).children("ul.active").removeClass("active");
+                }
+              });
+		    }
+          });
 		}
 	}
 }());

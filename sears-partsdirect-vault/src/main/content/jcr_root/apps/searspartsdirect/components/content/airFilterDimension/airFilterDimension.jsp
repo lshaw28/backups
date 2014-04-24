@@ -138,7 +138,7 @@
 				<div class="span3 airFilterSearchResultsItemRight">
 					<ul class="airFilterList">
 						{{#packSizes}}
-						<li class="packOption">{{size}}-pack <span class="packPrice">{{price}}</span></li>
+						<li class="packOption">{{size}}-pack <span class="packPrice">&#36;{{price}}</span></li>
 						{{/packSizes}}
 					</ul>
 					<a href={{pdpURL}} class="new-btn new-btn-square filterResultBtn hidden-phone">Product Details</a>
