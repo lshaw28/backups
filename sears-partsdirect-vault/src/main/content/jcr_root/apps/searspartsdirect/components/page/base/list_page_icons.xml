@@ -61,6 +61,10 @@
 		jcr:primaryType="nt:unstructured"
 		text="Gas/Electric Range"
 		value="svg-icon-range-gaselectric"/>
+	<iconRangeVentHood
+		jcr:primaryType="nt:unstructured"
+		text="Range vent hood"
+		value="svg-icon-range-vent-hoods"/>
 	<iconRefrigerator
 		jcr:primaryType="nt:unstructured"
 		text="Refrigerator"
