@@ -86,11 +86,10 @@
 		/**
 		 * Navigation hover
 		 */
-		$('.cartNavItems a[data-toggle]').hover(function() {
-			console.log('open');
-		  $(this).parent().find('.dropdown-menu').stop(true, true).delay(100).fadeIn(200);
+		$('.cartNavItem').hover(function() {
+		  $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(200);
 		}, function() {
-		  $(this).parent().find('.dropdown-menu').stop(true, true).delay(100).fadeOut(200);
+		  $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(200);
 		});
 		/**
 		 * customAccordionForms component setup
