@@ -17,6 +17,7 @@ var airFilterDimension = Class.extend(function() {
 			this.bindEvent();
 			this.width = this.height = this.depth = false;
 			this.template = Handlebars.compile( $('#js_airFilterResultTemplate').html() );
+			this.pageUrl = document.location.href;
 		},
 		/**
 		* toggle airFilter section
@@ -199,14 +200,17 @@ var airFilterDimension = Class.extend(function() {
 				resultSet.goodAirFilters.part = this.coalesceData( resultSet.goodAirFilters.part );
 				this.renderResultType ( resultSet.goodAirFilters.part, '#goodAirFilters' );
 			}
-			
+
 			var filterTypes = '';
 			if (!$('#bestAirFilters').hasClass('hide')) {
 				filterTypes = 'Best';
+				// PD-11487 : When search results load, anchor first search result to top of page
+                document.location.href = this.pageUrl + '#bestAirFilters';
 			}
 			if (!$('#betterAirFilters').hasClass('hide')) {
 				if (filterTypes == '') {
 					filterTypes = 'Better';
+					document.location.href = this.pageUrl + '#betterAirFilters';
 				} else {
 					filterTypes += ':Better';
 				}
@@ -214,6 +218,7 @@ var airFilterDimension = Class.extend(function() {
 			if (!$('#goodAirFilters').hasClass('hide')) {
 				if (filterTypes == '') {
 					filterTypes = 'Good';
+					document.location.href = this.pageUrl + '#goodAirFilters';
 				} else {
 					filterTypes += ':Good';
 				}
