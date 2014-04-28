@@ -142,6 +142,12 @@
       isDragging = false,
 
       /**
+       * Flag to determine if touch moved
+       * @type {Boolean}
+       */
+      moved = false,
+
+      /**
        * Bool flag to specify if slider is active or not
        */
       active = true,
@@ -205,6 +211,7 @@
         viewport.addEventListener(ZUIEvent.START, startHandler, false);
         viewport.addEventListener(ZUIEvent.MOVE, moveHandler, false);
         viewport.addEventListener(ZUIEvent.END, endHandler, false);
+        viewport.addEventListener(ZUIEvent.CLICK, clickHandler, false);
       }
 
       if (!Utils.touch()) {
@@ -260,6 +267,7 @@
         viewport.removeEventListener(ZUIEvent.START, startHandler, false);
         viewport.removeEventListener(ZUIEvent.MOVE, moveHandler, false);
         viewport.removeEventListener(ZUIEvent.END, endHandler, false);
+        viewport.removeEventListener(ZUIEvent.CLICK, clickHandler, false);
       }
       
       // fix for desktop dragging
@@ -322,11 +330,11 @@
      */
     function startHandler(e) {
       e.stopPropagation();
-      e.preventDefault();
       initialCoords.x =  e.touches ? e.touches[0].pageX : e.clientX;
       initialCoords.y =  e.touches ? e.touches[0].pageY : e.clientY;
 
       isDragging = true;
+      moved = false;
       initialPos = initialCoords.x;
       
       lastPos = initialPos;
@@ -358,6 +366,7 @@
 
         goTo(pos - lastPos + currentDragPos);
         lastPos = currentDragPos;
+        moved = true;
       }
     }
 
@@ -366,13 +375,19 @@
      * @event
      */
     function endHandler(e) {
+
+      if (!moved) {
+        return;
+      }
       e.stopPropagation();
+      e.preventDefault();
       
       if (!isDragging) {
         return;
       }
+      
       var currentDragPos = e.changedTouches ? e.changedTouches[0].pageX : e.clientX;
-      isDragging = false;
+      
 
       changeTransition(SETTINGS.time);
 
@@ -388,8 +403,19 @@
       }
 
       if (typeof SETTINGS.onRelease === 'function'){
-          SETTINGS.onRelease();
-        }
+        SETTINGS.onRelease();
+      }
+      isDragging = false;
+    }
+
+    function clickHandler(e) {
+      if (!moved) {
+        return;
+      }
+      e.preventDefault();
+      e.stopPropagation();
+      
+      isDragging = false;
     }
 
     /**
@@ -398,11 +424,12 @@
      */
     function releaseDragging(e) {
       e.preventDefault();
-      
+      e.stopPropagation();
+
       if (!isDragging) {
         return;
       }
-      isDragging = false;
+      
       changeTransition(SETTINGS.time);
       goTo(-size * index);
     }
@@ -420,7 +447,7 @@
     START: 'touchstart',
     MOVE: 'touchmove',
     END: 'touchend',
-    CLICK: 'touchstart'
+    CLICK: 'touchend'
   } : {
     START: 'mousedown',
     MOVE: 'mousemove',
