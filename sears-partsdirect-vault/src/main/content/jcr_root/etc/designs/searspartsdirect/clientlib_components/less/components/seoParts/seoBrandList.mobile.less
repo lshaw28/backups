@@ -36,7 +36,7 @@
 
 @media (max-width: 767px) {
 	.brandList{ 
-		@brandlistHeight: 270px;
+		@brandlistHeight: 210px;
 		@brandlistWidth: 300px;
 
 		.swipeViewGuide{
@@ -46,12 +46,14 @@
 			padding: 10px 0;
 
 				.icon-hand-up{
-					display: inline-block;
+				height: 18px;
+				width: 25px;
+				display: inline-block;
 				-webkit-animation: swipe-animation 1s infinite; 
-			  -moz-animation:    swipe-animation 1s infinite; 
-			  -o-animation:      swipe-animation 1s infinite; 
-			  animation:         swipe-animation 1s infinite;
-			  -webkit-transition: opacity 2s ease 1s;
+				-moz-animation:    swipe-animation 1s infinite; 
+				-o-animation:      swipe-animation 1s infinite; 
+				animation:         swipe-animation 1s infinite;
+				-webkit-transition: opacity 2s ease 1s;
 			}
 
 		}
@@ -70,6 +72,10 @@
 						height: @brandlistHeight;
 						top: 0;
 						float: left;
+
+						i {
+				          margin: 10px 0;
+				        }
 
 						[class*="span"] {
 							width: 50%;
