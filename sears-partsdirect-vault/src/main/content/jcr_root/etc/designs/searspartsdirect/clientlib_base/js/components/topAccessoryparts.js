@@ -1,9 +1,7 @@
 function topAccessoryparts(productGroupId, supplierId, partNumber, div, partsUrl) {
 	$('#' + div).addClass('hidden');
 	if(partNumber.length != 0){
-		urlName = "http://partsapivip.qa.ch3.s.com/pd-services/parts/"
-			+ partNumber + "?productGroupId=" + productGroupId + "&supplierId="
-			+ supplierId;
+		urlName = apiPath.replace('v1', 'parts') + partNumber + "?productGroupId=" + productGroupId + "&supplierId=" + supplierId;
 		
 		$.ajax({
 			type : "GET",
