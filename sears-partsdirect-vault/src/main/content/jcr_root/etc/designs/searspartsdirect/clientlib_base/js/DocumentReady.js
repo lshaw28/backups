@@ -66,7 +66,9 @@
 		/**
 		 * Login Navigation toggles
 		 */
-		$('.trigger').bind('click', function () {
+		var hamburgerOverlay = $('<div></div>').addClass('hamburger-overlay').appendTo('#viewport');
+		$('.trigger').add(hamburgerOverlay).bind('click', function (e) {
+			e.preventDefault();
 			$('body').toggleClass('loginNav-open');
 		});
 		$('#loginNavGetHelp').bind('click', function () {

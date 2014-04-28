@@ -25,5 +25,21 @@
 	z-index: 998;
 }
 
+.hamburger-overlay{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.3);
+	top: 0;
+	display:none;
+	z-index: 999;
+}
+
+.loginNav-open{
+	.hamburger-overlay{
+		display:block;
+	}
+}
+
 @import "globalHeader.tablet";
 @import "globalHeader.mobile";
