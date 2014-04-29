@@ -6,11 +6,19 @@ function brandList(brandJSON, partsUrl) {
       rowElement = '<div class="row-fluid row-item brandsSection">',
       brand = rowElement,
       elements = brandJSON.length,
-      resizeTimer, zsliderMobile;
+      resizeTimer, zsliderMobile,
+	  winWidth = $(window).width(),
+	  winHeight = $(window).height();
 
       $(window).on('resize',function(){
           clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(resizeTrigger,1000);
+		  var winNewWidth = $(window).width(),
+			winNewHeight = $(window).height();
+		  if (winWidth!=winNewWidth || winHeight!=winNewHeight) {
+			resizeTimer = setTimeout(resizeTrigger,1000);
+			winWidth = winNewWidth;
+			winHeight = winNewHeight;
+		  }
       });
 
 
