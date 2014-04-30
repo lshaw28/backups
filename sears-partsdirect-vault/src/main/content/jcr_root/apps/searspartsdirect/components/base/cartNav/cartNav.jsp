@@ -25,6 +25,7 @@
 			<ul class="dropdown-menu">
 				<li class="cart-title"><strong>Your Shopping Cart</strong></li>
 				<li class="cartShopCheckout_js cartShopCheckOut_js inactive"><a class="new-btn new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Checkout Now</a></li>
+				<li class="cartShopStatusMessage_js inactive"></li>
 				<li class="cartShopHeader_js inactive"><strong><span class="cart-part">Parts</span><span class="cart-quantity">Quantity</span></strong></li>
 				<li class="cartShopTotals_js inactive"><strong>Total items: <span class="cartShopCount_js">0</span></strong></li>
 				<li class="cartShopView_js inactive"><a class="new-btn new-btn-add-to-cart" href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</a></li>
