@@ -26,6 +26,14 @@ function brandList(brandJSON, partsUrl) {
 
         brand += '</div>';
         wraper.append(brand);
+		if ($.browser.msie != undefined && parseInt($.browser.version) < 9) {
+			var url = $('.svg-icon-hoover').css('background-image').replace('url(', '').replace(')', '').replace(/"/g, '');
+			$('.svg-icon-hoover').parent().html('<img id="svg-icon-hoover" src="' + url + '" />');
+			url = $('.svg-icon-black-decker').css('background-image').replace('url(', '').replace(')', '').replace(/"/g, '');
+			$('.svg-icon-black-decker').parent().html('<img id="svg-icon-black-decker" src="' + url + '" />');
+			url = $('.svg-icon-homelite').css('background-image').replace('url(', '').replace(')', '').replace(/"/g, '');
+			$('.svg-icon-homelite').parent().html('<img id="svg-icon-homelite" src="' + url + '" />');
+		}
 
         initSlideCarrol.init();
 

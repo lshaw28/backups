@@ -13,14 +13,10 @@ function topAccessoryparts(productGroupId, supplierId, partNumber, div, partsUrl
 				if(typeof data !== 'undefined'){
 				
 					var jsonResponse = data;
-				
-					var len = Object.keys(jsonResponse).length;	
-					var searchResults = jsonResponse[Object.keys(jsonResponse)[0]];
-					searchResults = JSON.parse(searchResults);
 					
 					$('#' + div).removeClass('hidden');
 					
-					if (len != 0) {
+					if (jsonResponse != undefined) {
 						var status = jsonResponse.priceAndAvailability.availabilityStatus;
 						// In stock or back-order
 						if (status == "INST" || status == "BORD" ) {
@@ -74,7 +70,6 @@ function topAccessoryparts(productGroupId, supplierId, partNumber, div, partsUrl
 				}
 			},
 			error : function() {
-			
 				//console.log("Top Accessory Parts  -- API Failure");
 				$('#' + div).addClass('hidden');
 			}
