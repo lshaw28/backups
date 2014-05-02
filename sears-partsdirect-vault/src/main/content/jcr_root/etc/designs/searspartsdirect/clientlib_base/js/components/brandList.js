@@ -51,7 +51,9 @@ function brandList(brandJSON, partsUrl) {
       }
 
       function sliderReleased(){
-        swipeGuide.hide();
+        setTimeout(function(){
+          swipeGuide.hide();
+        }, 1000);
       }
 
         function swipeView(){
