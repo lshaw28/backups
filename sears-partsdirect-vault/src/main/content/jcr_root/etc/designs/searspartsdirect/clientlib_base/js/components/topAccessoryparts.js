@@ -28,7 +28,7 @@ function topAccessoryparts(productGroupId, supplierId, partNumber, div, partsUrl
 								$('#' + div + ' .partImage img').attr('src', mainSitePath + '/partsdirect/assets/img/images/no_part.gif');
 							}
 							$('#' + div + ' .partImage a').attr('href', partsUrl + '/partsdirect/part-number/' + partNumber + '/' + jsonResponse.partCompositeKey.productGroupId + '/' + jsonResponse.partCompositeKey.supplierId);
-							$('#' + div + ' .partDescription strong a').html(jsonResponse.description).attr({ href:"partsUrl + '/partsdirect/part-number/' + partNumber + '/' + jsonResponse.partCompositeKey.productGroupId + '/' + jsonResponse.partCompositeKey.supplierId", title: jsonResponse.description});
+							$('#' + div + ' .partDescription strong a').html(jsonResponse.description).attr({ href: partsUrl + '/partsdirect/part-number/' + partNumber + '/' + jsonResponse.partCompositeKey.productGroupId + '/' + jsonResponse.partCompositeKey.supplierId, title: jsonResponse.description});
 							$('#' + div + ' .partNo strong span').text(jsonResponse.partCompositeKey.partNumber);
 							$('#' + div + ' .partListItemPrice strong').text('$' + priceStr);
 							status == "INST" ? $('#' + div + ' .partAvailability strong').text('In stock') : $('#' + div + ' .partAvailability strong').text('Back Order');
