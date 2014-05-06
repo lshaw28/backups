@@ -84,3 +84,4 @@ seoAccessoryComponent/seoAccessoryComponent.less
 seoAccessoryComponent/seoAccessoryComponent.mobile.less
 seoParts/seoBrandList.less
 seoParts/seoBrandList.mobile.less
+chatOfflineModal/chatOfflineModal.less

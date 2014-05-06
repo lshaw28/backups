@@ -2,7 +2,6 @@
 @import "../../../../clientlib_base/less/base.mixins.less";
 
 .seoAccessoryComponent{
-
     div.new-span-general,
         #div1{
         margin-left: 0;
@@ -18,9 +17,16 @@
             }
 
             .partDescription{
-                height: 40px;
                 margin: 5% 0 0 0;
             }
+
+                .partDescription strong{
+                    display: block;
+                    width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
 
             .partListItemQuantity,
                 .partInfo{

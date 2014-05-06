@@ -101,12 +101,12 @@
 						<headerText jcr:primaryType="cq:Widget"
 								fieldLabel="HeaderText"
 								name="./headerText"
-								allowBlank="{Boolean}true"
+								allowBlank="{Boolean}false"
 								xtype="textarea" />
 						<description jcr:primaryType="cq:Widget"
 								fieldLabel="Description"
 								name="./description"
-								allowBlank="{Boolean}true"
+								allowBlank="{Boolean}false"
 								xtype="textarea" />
 							
 						<buttonText jcr:primaryType="cq:Widget"

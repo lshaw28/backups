@@ -2,6 +2,7 @@
 @import "../../../../clientlib_base/less/base.mixins.less";
 
 .brandList {
+
   #stopShowStart {
     display: none;
     position: relative;
@@ -74,13 +75,22 @@
           vertical-align: bottom;
           -webkit-backface-visibility: hidden;
           text-align: center;
+		  #svg-icon-hoover {
+			margin: 12px 0;
+		  }
+		  #svg-icon-black-decker {
+			margin: 8px 0;
+		  }
+		  #svg-icon-homelite {
+			height: 100px;
+		  }
         }
 
         i {
           display: inline-block;
           width: 100px;
           height: 50px;
-          margin-left: 0;
+          margin: 25px 0;
         }
 
         &.fadeOutSlide {
@@ -95,4 +105,8 @@
           }
         }
     }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+    .brandList div.hidden-desktop    { display: none !important; }
 }

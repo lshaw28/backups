@@ -15,7 +15,8 @@ var userData = Class.extend(function () {
 				totals: $('#cartShop .cartShopTotals_js'),
 				view: $('#cartShop .cartShopView_js'),
 				count: $('#cartShop .cartShopCount_js'),
-				countBadge: $('#cartShop .count-badge')
+				countBadge: $('#cartShop .count-badge'),
+				statusMessage: $('#cartShop .cartShopStatusMessage_js')
 			}
 			this.cartEmpty = $('#cartShop .cartShopEmpty_js');
 			this.modelsItems = {
@@ -209,20 +210,35 @@ var userData = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils,
 				itemCount = 0,
-				i = 0;
+				i = 0,
+				insert = false,
+				message = '',
+				statusMessages = [
+					'Showing last added item',
+					'Showing last 2 added items',
+					'Showing last 3 added items'
+				];;
 
 			// Handle items
 			if (cartLines.length > 0) {
+				// update cart status message
+				message = statusMessages[cartLines.length-1] ? statusMessages[cartLines.length-1] : statusMessages[statusMessages.length-1];
+				self.cartItems.statusMessage.text(message);
+
 				// Set visibility of elements
 				self.cartItems.header.removeClass('inactive');
 				self.cartItems.checkOut.removeClass('inactive');
 				self.cartItems.totals.removeClass('inactive');
 				self.cartItems.view.removeClass('inactive');
 				self.cartEmpty.addClass('inactive');
+				self.cartItems.statusMessage.removeClass('inactive');
 
 				// Render items
 				for (i = 0; i < cartLines.length; i = i + 1) {
-					itemCount += self.renderCartItem(cartLines[i]);
+					// insert into html, only last 3 items
+					insert = (cartLines.length - i <= 3) ? true : false;
+					// accumulate total items in cart count, even if not in html
+					itemCount += self.renderCartItem(cartLines[i], insert);
 				}
 
 				// Set total item count
@@ -231,6 +247,8 @@ var userData = Class.extend(function () {
 				}
 				self.cartItems.count.text(itemCount);
 				self.cartItems.countBadge.text(itemCount);
+			}else{
+				
 			}
 		},
 		/**
@@ -238,7 +256,7 @@ var userData = Class.extend(function () {
 		 * @param {object} item Returned data item
 		 * @return {number} Quantity of current item added
 		 */
-		renderCartItem: function (item) {
+		renderCartItem: function (item, insert) {
 			var self = this,
 				su = window.SPDUtils,
 				quantity = 0,
@@ -247,7 +265,9 @@ var userData = Class.extend(function () {
 			// Retrieve quantity
 			quantity = item.quantity;
 			// Insert element
-			self.cartItems.totals.before(li);
+			if (insert) {
+				self.cartItems.totals.before(li);
+			}
 
 			return quantity;
 		}

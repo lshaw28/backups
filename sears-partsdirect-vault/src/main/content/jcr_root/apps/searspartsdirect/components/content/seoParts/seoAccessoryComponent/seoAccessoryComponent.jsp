@@ -1,10 +1,19 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %>
-<%@ page import="javax.jcr.Property, javax.jcr.Value, com.day.cq.wcm.api.WCMMode, com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings"%>
+<%@ page import="javax.jcr.Property,
+				javax.jcr.Value,
+				com.day.cq.wcm.api.WCMMode,
+				com.spd.cq.searspartsdirect.common.environment.EnvironmentSettings,
+				org.apache.commons.lang.StringUtils"%>
 
 <cq:includeClientLib categories="apps.searspartsdirect,apps.searspartsdirect.base" />
 
+
 <% 
-	String componentTitle = properties.get("title", "");
+	String componentTitle = properties.get("componentTitle", "");
+	String brand=properties.get("brand", "");
+	String productType=properties.get("prodtype", "");
+	
+	componentTitle = (StringUtils.isNotEmpty(componentTitle)) ? componentTitle : "Top Selling Parts for " + brand + " " + productType;
 
 	String partNumber=properties.get("partnumber1", "");
 	String productGroupId=properties.get("divId1", "");
@@ -27,10 +36,10 @@
 	externalPrefix = envSettings.getExternalAddedPrefix();
 %>
 
-<% if(currentNode.hasProperty("brand")){
+<% if(StringUtils.isNotEmpty(componentTitle)){
 %>
 <div class="new-span-general partListItems">
-	<h3><%=componentTitle%></h3>	
+	<h3><%= componentTitle %></h3>		
 	<div id="div1" class="span3">
 		<div class="partListItem">
 			<div class="partListItemCart">
@@ -69,6 +78,7 @@
 				</div>
 			</div>
 		</div>
+		<a class="mobile-curtain hidden-desktop"></a>
 	</div>
 	<div id="div2" class="span3">
 		<div class="partListItem">
@@ -108,6 +118,7 @@
 				</div>
 			</div>
 		</div>
+		<a class="mobile-curtain hidden-desktop"></a>
 	</div>
 	<div id="div3" class="span3">
 		<div class="partListItem">
@@ -147,6 +158,7 @@
 				</div>
 			</div>
 		</div>
+		<a class="mobile-curtain hidden-desktop"></a>
 	</div>
 	<div id="div4" class="span3">
 		<div class="partListItem">
@@ -186,6 +198,7 @@
 				</div>
 			</div>
 		</div>
+		<a class="mobile-curtain hidden-desktop"></a>
 	</div>
 </div>
 <%}

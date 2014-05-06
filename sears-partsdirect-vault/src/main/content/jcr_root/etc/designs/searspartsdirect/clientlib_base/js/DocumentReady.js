@@ -66,7 +66,9 @@
 		/**
 		 * Login Navigation toggles
 		 */
-		$('.trigger').bind('click', function () {
+		var hamburgerOverlay = $('<div></div>').addClass('hamburger-overlay').appendTo('#viewport');
+		$('.trigger').add(hamburgerOverlay).bind('click', function (e) {
+			e.preventDefault();
 			$('body').toggleClass('loginNav-open');
 		});
 		$('#loginNavGetHelp').bind('click', function () {
@@ -80,6 +82,14 @@
 		var newCartNav = new cartNav();
 		$('#cartShop [data-toggle]').bind('click', function () {
 			$('body').toggleClass('cartNav-open');
+		});
+		/**
+		 * Navigation hover
+		 */
+		$('.cartNavItem').hover(function() {
+		  $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(200);
+		}, function() {
+		  $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(200);
 		});
 		/**
 		 * customAccordionForms component setup
