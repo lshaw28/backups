@@ -80,8 +80,12 @@
 		 * Cart Navigation toggles
 		 */
 		var newCartNav = new cartNav();
-		$('#cartShop [data-toggle]').bind('click', function () {
-			$('body').toggleClass('cartNav-open');
+		$('#cartShop [data-toggle]').bind('click', function (e) {
+			var isMobile = false; // Pending mobile breakpoint detection
+			if (isMobile){
+				e.preventDefault();
+				$('body').toggleClass('cartNav-open');
+			}
 		});
 		/**
 		 * Navigation hover
