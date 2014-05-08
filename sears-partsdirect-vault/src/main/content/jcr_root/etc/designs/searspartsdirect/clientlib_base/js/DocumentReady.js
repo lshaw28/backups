@@ -81,11 +81,11 @@
 		 */
 		var newCartNav = new cartNav();
 		$('#cartShop [data-toggle]').bind('click', function (e) {
-			var isMobile = false; // Pending mobile breakpoint detection
-			if (isMobile){
+			if (window.SPDUtils.isMobileBreakpoint()){
 				e.preventDefault();
 				$('body').toggleClass('cartNav-open');
 			}
+			// else, follow link to cart page via postback
 		});
 		/**
 		 * Navigation hover
