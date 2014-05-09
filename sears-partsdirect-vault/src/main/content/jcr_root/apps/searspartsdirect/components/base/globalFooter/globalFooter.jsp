@@ -64,7 +64,7 @@
 		<img src="${contextPath}/etc/designs/searspartsdirect/clientlib_base/img/bbb.jpg" />
 	</div>
 </div>
-<!--<c:if test="${not empty pd247ChatFlag}">-->
+<c:if test="${not empty pd247ChatFlag}">
 <div class="sideChatNavigation">
 	<div class="sideChatNavigationContent">
 		<h3>for questions or assistance, call <span class="semi-bold"><!--<script type="text/JavaScript" src="https://secure.ifbyphone.com/js/keyword_replacement.js"></script>--> 1-800-252-1698</span></h3>
@@ -79,4 +79,4 @@
 		<div class="sideChatNavigationIcon EmailTile"><a href="${mainSitePath}/partsdirect/contactus.pd"><i class="icon-envelope icon-2x"></i><br />Email</a></div>
 	</div>
 </div>
-<!--</c:if>-->
+</c:if>
