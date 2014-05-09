@@ -4,11 +4,11 @@
 	<div id="footerColumn1">
 		<div class="footerIcon" id="lpchatbutton4"></div>
 		<div class="footerIcon" id="lpvoicebutton4"></div>
-		<p><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-question icon-light"></i></span> FAQs<br />
+		<p><a href="${mainSitePath}/partsdirect/faq.pd?pop=flush&commercialUI=false"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-question icon-light"></i></span> FAQs<br>
 				<span class="footerIconHelp hidden-mobile">Check out the most frequently asked questions</span></a></p>
-		<p><a href="${mainSitePath}/partsdirect/contactus.pd"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-envelope icon-light"></i></span> Email us<br />
+		<p><a href="${mainSitePath}/partsdirect/contactus.pd"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i><i class="icon-envelope icon-light"></i></span> Email us<br>
 				<span class="footerIconHelp hidden-mobile">We'll reply within 24 hours</span></a></p>
-		<p><a href="${mainSitePath}/partsdirect/how-to-use-this-site/"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i> <i class="icon-play-sign icon-light"></i> </span> Video<br />
+		<p><a href="${mainSitePath}/partsdirect/how-to-use-this-site/"><span class="icon-stack"><i class="icon-circle icon-stack-base"></i> <i class="icon-play-sign icon-light"></i> </span> Video<br>
 				<span class="footerIconHelp hidden-mobile">How to use the site (3:58)</span></a></p>
 	</div>
 	<div id="footerColumn2">
@@ -73,10 +73,10 @@
 		<p>Sun&nbsp;&nbsp;7:30 a.m. - 9:30 p.m.&nbsp;&nbsp;CT</p>
 	</div>
 	<div class="sideChatNavigationControls">
-		<div class="sideChatNavigationIcon ChatTile ChatNotAvailable" id="pC_chat_id"><i class="icon-comments-alt icon-2x"></i><br />Chat</div>
-		<div class="sideChatNavigationIcon ChatTile2 offline" id="pC_chat_offline_id"><a href="" data-toggle="modal" data-target="#chatOfflineModal"><i class="icon-comments-alt icon-2x"></i><br />Chat offline</a></div>
-		<div data-toggle="sidechattoggle" class="sideChatNavigationIcon"><i class="icon-phone icon-2x"></i><br />Call</div>
-		<div class="sideChatNavigationIcon EmailTile"><a href="${mainSitePath}/partsdirect/contactus.pd"><i class="icon-envelope icon-2x"></i><br />Email</a></div>
+		<div class="sideChatNavigationIcon ChatTile ChatNotAvailable" id="pC_chat_id"><i class="icon-comments-alt icon-2x"></i><br>Chat</div>
+		<div class="sideChatNavigationIcon ChatTile2 offline" id="pC_chat_offline_id"><a href="" data-toggle="modal" data-target="#chatOfflineModal"><i class="icon-comments-alt icon-2x"></i><br>Chat</a></div>
+		<div data-toggle="sidechattoggle" class="sideChatNavigationIcon"><i class="icon-phone icon-2x"></i><br>Call</div>
+		<div class="sideChatNavigationIcon EmailTile"><a href="${mainSitePath}/partsdirect/contactus.pd"><i class="icon-envelope icon-2x"></i><br>Email</a></div>
 	</div>
 </div>
 </c:if>
