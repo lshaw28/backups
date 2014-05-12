@@ -25,6 +25,7 @@ NS('shc.pd.base.widgets').SearchPanelFinder = (function () {
 			var i,
 				products = this.getProductTypeSelection(),
 				item,
+				placeholderOption = $('<option value="0">Select</option>'),
 				_this = this;
 
 			this.parent = parent;
@@ -38,7 +39,8 @@ NS('shc.pd.base.widgets').SearchPanelFinder = (function () {
 			$('.modelFinderOpen').hide();
 
 			// append selection node
-			this.productTypeSelect.append($('<option value="0">Select</option>'));
+
+			this.productTypeSelect.append(placeholderOption);
 
 			for (i = 0; i < products.length; ++i) {
 				// set option node
@@ -57,8 +59,16 @@ NS('shc.pd.base.widgets').SearchPanelFinder = (function () {
 			this.productTypeSelect.change(function () {
 				var value = $(this).val();
 
-				if (value !== 0) {
+				// remove the "Select", placeholder option
+				if (placeholderOption){
+					placeholderOption.remove();
+					placeholderOption = null;
+				}
+
+				if (value !== "0") {
 					_this.results.requestProductData(value);
+				}else{
+					_this.reset();
 				}
 			});
 
@@ -85,6 +95,15 @@ NS('shc.pd.base.widgets').SearchPanelFinder = (function () {
 				{name: 'Refrigerators', value: 'refrigerator'},
 				{name: 'Washers', value: 'washer'}
 			];
+		},
+		/**
+		 * Resets the panel's contents to default
+		 * @return {undefined}
+		 */
+		reset: function() {
+			$('.modelFinderOutput').html('');
+			$('.modelFinderPaneManager').hide();
+			$('.modelFinderHelper').show();
 		},
 		/**
 		 * Opens search panel (not using slideDown/slideUp for border purposes)
