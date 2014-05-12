@@ -21,13 +21,13 @@
 	</li>
 	<li id="cartShop" class="cartNavItem">
 		<div class="btn-group">
-			<a tabindex="0" data-toggle="dropdown" href="#"><i class="icon-shopping-cart">&nbsp;</i><span class="hidden-phone"> Cart</span>&nbsp;<span class="count-badge">0</span>&nbsp;<i class="icon-caret-down hidden-phone">&nbsp;</i></a>
+			<a tabindex="0" data-toggle="dropdown" href="${mainSitePath}/partsdirect/showCart.pd"><i class="icon-shopping-cart">&nbsp;</i><span class="hidden-phone"> Cart</span>&nbsp;<span class="count-badge">0</span>&nbsp;<i class="icon-caret-down hidden-phone">&nbsp;</i></a>
 			<ul class="dropdown-menu">
 				<li class="cart-title"><strong>Your Shopping Cart</strong></li>
 				<li class="cartShopCheckout_js cartShopCheckOut_js inactive"><a class="new-btn new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Checkout Now</a></li>
 				<li class="cartShopStatusMessage_js inactive"></li>
-				<li class="cartShopHeader_js inactive"><strong><span class="cart-part">Parts</span><span class="cart-quantity">Quantity</span></strong></li>
-				<li class="cartShopTotals_js inactive"><strong>Total items: <span class="cartShopCount_js">0</span></strong></li>
+				<li class="cart-shop-header cartShopHeader_js inactive"><strong><span class="cart-part">Parts</span><span class="cart-quantity">Quantity</span></strong></li>
+				<li class="cart-shop-totals cartShopTotals_js inactive"><strong>Total items: <span class="cartShopCount_js">0</span></strong></li>
 				<li class="cartShopView_js inactive"><a class="new-btn new-btn-add-to-cart" href="${mainSitePath}/partsdirect/showCart.pd">View Entire Cart</a></li>
 				<li class="cartShopEmpty_js">Your shopping cart is empty.</li>
 			</ul>
