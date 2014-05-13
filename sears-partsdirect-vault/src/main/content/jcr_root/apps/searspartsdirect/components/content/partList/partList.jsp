@@ -16,18 +16,22 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 <%@include file="/apps/searspartsdirect/components/content/headerPD/headerPD.jsp"%>
 
 <div class="row-fluid">
-	<div class="new-span-general partListDiagram">
+	<div id="partListDiagram" class="new-span-general partListDiagram">
 		<cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />
 	</div>
 
-	<div class="new-span-general partListItems">
+    <div id="partListTitle">
+        <p>Parts in this Diagram</p>
+    </div>
+
+	<div id="partListItems" class="new-span-general partListItems">
 <%	// This should be a for each going through each part
 	// I don't know how these are supposed to be populated %>
 		<div class="partListItem row-fluid">
-			<div class="new-span-general diagramPosition">
+			<div id="diagramPosition" class="new-span-general diagramPosition">
 				<p><span>1</span><br />on diagram</p>
 			</div>
-			<div class="new-span-general partListItemDescription">
+			<div id="partListItemDescription" class="new-span-general partListItemDescription">
 				<% // If there is an image URL %>
 				<div class="partListItemImage">
 					<img src="http://www.urlforthepartimage.com/image/jpg" />
@@ -43,17 +47,17 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 				<% // End if %>
 				</p>
 			</div>
-			<div class="new-span-general partListItemCart">
+			<div id="partListItemCart" class="new-span-general partListItemCart">
 				<% // If the user needs to contact customer support %>
 				<p>Contact customer support for availability: <strong>1-800-252-1698</strong></p>
 				<% // If the item is no longer available %>
 				<p>We're sorry, this item is no longer available.</p>
 				<% // Otherwise %>
-				<div class="partListItemPrice">
+				<div id="partListItemPrice" class="partListItemPrice">
 					<strong>$X.XX</strong> In stock
 				</div>
 				<% // End If %>
-				<div class="partListItemQuantity">
+				<div id="partListItemQuantity" class="partListItemQuantity">
 					<label>Qty</label>
 					<input type="text" class="addToCartQuantity_js" value="1" />
 				</div>

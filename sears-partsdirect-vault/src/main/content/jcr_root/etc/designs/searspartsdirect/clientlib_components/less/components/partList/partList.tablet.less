@@ -26,6 +26,11 @@
 		}
 		.partListItemCart {
 			.spanWidth(5);
+
+            p {
+              width: 56%;
+              margin-left: 40%;
+            }
 			
 			.partListItemPrice, .partListItemQuantity, .partListItemAdd {
 				float: left;
@@ -52,29 +57,62 @@
 			}
 		}
 	}
-  #partListDiagram {
-    width: 100%;
-    div {
-      width:100%;
+}
+
+@media (min-width: 651px) and (max-width: 768px) {
+    #pinchImage {
+      padding-left: 20px;
+      #fullscreenImage {
+        display: none;
+      }
+      #printImage {
+        display: none;
+      }
+      div {
+        width: 20% !important;
+        display: block;
+      }
     }
-  }
-  #partListItems {
-    width: 100%;
-  }
-  #diagramPosition {
-    .spanWidth(1.4);
-    margin-top:20px;
-  }
-  #partListItemDescription {
-    .spanWidth(5.66);
-  }
-  #partListItemCart {
-    .spanWidth(5);
-  }
-  #partListItemQuantity {
-    .spanWidth(3);
-  }
-  #partListItemAdd {
-    .spanWidth(6);
-  }
+    #partListDiagram {
+      width: 100%;
+      border-bottom: 1px solid #dedede;
+      div {
+        width:100%;
+      }
+    }
+    #partListTitle {
+      position: relative;
+      float: left;
+      display: block;
+      width: 100%;
+      margin: 20px 8px 0 0;
+      p {
+        display: block;
+        font-size: 16px;
+        color: white;
+        background-color: gray;
+        padding: 10px 20px;
+        margin-bottom: 0px;
+      }
+    }
+    #partListItems {
+      width: 100%;
+      margin-left: 0px;
+    }
+    #diagramPosition {
+      .spanWidth(1.4);
+      margin-top:20px;
+    }
+    #partListItemDescription {
+      .spanWidth(5.66);
+    }
+    #partListItemCart {
+      .spanWidth(5);
+    }
+    #partListItemQuantity {
+      .spanWidth(3);
+    }
+    #partListItemAdd {
+      .spanWidth(6);
+    }
 }

@@ -11,7 +11,7 @@
 		.partListItem {
 			border-bottom: 1px solid @secondaryHueLight;
 			padding: 20px 0;
-			
+
 			&:first-child {
 				border-top: 1px solid @secondaryHueLight;
 			}
@@ -54,6 +54,10 @@
 	.partListItemCart {
 		.spanWidth(3);
 
+        p {
+          text-align: right;
+        }
+
 		.partListItemPrice, .partListItemQuantity {
 			clear: none;
 			float: left;
@@ -62,8 +66,8 @@
 		}
 		.partListItemPrice {
 			color: @secondaryHueDarkest;
-            padding-left: 2em;
-            width: 33%;
+            text-align: right;
+            width: 50%;
 			strong {
 				display: inline-block;
 				font-size: @h4Size;
@@ -72,12 +76,14 @@
 			}
 		}
 		.partListItemQuantity {
+            padding-left: 1.8%;
 			input[type="text"] {
 				.boxSizing(border-box);
 				display: block;
 				padding: 16px 8px;
-				width: 28px;
+				width: 36px;
                 float: right;
+                text-align: center;
 			}
             label {
                 float: right;
@@ -85,7 +91,7 @@
 		}
 		.partListItemAdd {
 			text-align: center;
-			
+
 			button {
 				.boxSizing(border-box);
 				margin: 0;
@@ -94,6 +100,22 @@
 		}
 	}
 }
+#pinchImage {
+  #fullscreenImage {
+    display: block;
+  }
+  #printImage {
+    display: block;
+  }
+  div {
+    display: none;
+  }
+}
+#partListTitle {
+  p {
+    display: none;
+  }
+}
 #partListDiagram {
   .spanWidth(4);
 }
@@ -101,7 +123,7 @@
   .spanWidth(8);
 }
 #diagramPosition {
-  .spanWidth(2);
+  .spanWidth(1.6);
 }
 #partListItemDescription {
   .spanWidth(7);
