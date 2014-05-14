@@ -192,7 +192,7 @@ var userData = Class.extend(function () {
 				// Render items
 				for (i = 0; i < myModelsItems.length; i = i + 1) {
 					span = new myModelsItemTemplate(myModelsItems[i]);
-					self.modelsItems.items.append(span);
+					self.modelsItems.items.append(span, "<br />");
 				}
 
 				// Set item count
