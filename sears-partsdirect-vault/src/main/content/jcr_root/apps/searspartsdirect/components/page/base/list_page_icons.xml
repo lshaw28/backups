@@ -93,4 +93,37 @@
 		jcr:primaryType="nt:unstructured"
 		text="Window AC"
 		value="svg-icon-window-ac"/>
+        <iconFreezer
+		jcr:primaryType="nt:unstructured"
+		text="Freezer"
+		value="svg-icon-freezer"/>
+         <iconIceMaker
+		jcr:primaryType="nt:unstructured"
+		text="Icemaker"
+		value="svg-icon-icemaker"/>
+         <iconLeafBlower
+		jcr:primaryType="nt:unstructured"
+		text="Leafblower"
+		value="svg-icon-leafblower"/>
+         <iconLogSplitter
+		jcr:primaryType="nt:unstructured"
+		text="Logsplitter"
+		value="svg-icon-logsplitter"/>
+          <iconPressureWasher
+		jcr:primaryType="nt:unstructured"
+		text="Pressure Washer"
+		value="svg-icon-pressurewasher"/>
+           <iconRangeHood
+		jcr:primaryType="nt:unstructured"
+		text="Range Hood"
+		value="svg-icon-rangehood"/>
+            <iconWallHeater
+		jcr:primaryType="nt:unstructured"
+		text="Wall Heater"
+		value="svg-icon-wallheater"/>
+           <iconWaterSoftener
+		jcr:primaryType="nt:unstructured"
+		text="Water Softener"
+		value="svg-icon-watersoftener"/>
+          
 </jcr:root>
