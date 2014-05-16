@@ -21,7 +21,7 @@
 	</li>
 	<li id="cartShop" class="cartNavItem">
 		<div class="btn-group">
-			<a tabindex="0" data-toggle="dropdown" href="${mainSitePath}/partsdirect/showCart.pd"><i class="icon-shopping-cart">&nbsp;</i><span class="hidden-phone"> Cart</span>&nbsp;<span class="count-badge">0</span>&nbsp;<i class="icon-caret-down hidden-phone">&nbsp;</i></a>
+			<a tabindex="0" data-toggle="not-dropdown" href="${mainSitePath}/partsdirect/showCart.pd"><i class="icon-shopping-cart">&nbsp;</i><span class="hidden-phone"> Cart</span>&nbsp;<span class="count-badge">0</span>&nbsp;<i class="icon-caret-down hidden-phone">&nbsp;</i></a>
 			<ul class="dropdown-menu">
 				<li class="cart-title"><strong>Your Shopping Cart</strong></li>
 				<li class="cartShopCheckout_js cartShopCheckOut_js inactive"><a class="new-btn new-btn-search" href="${mainSitePath}/partsdirect/showCart.pd">Checkout Now</a></li>
