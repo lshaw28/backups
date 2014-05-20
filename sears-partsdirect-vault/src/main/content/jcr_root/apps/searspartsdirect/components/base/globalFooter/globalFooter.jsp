@@ -74,7 +74,7 @@
 	</div>
 	<div class="sideChatNavigationControls">
 		<div class="sideChatNavigationIcon ChatTile ChatNotAvailable linklessIcon" id="pC_chat_id"><i class="icon-comments-alt icon-2x"></i><br>Chat</div>
-		<div class="sideChatNavigationIcon ChatTile2 offline" id="pC_chat_offline_id"><a href="" data-toggle="modal" data-target="#chatOfflineModal"><i class="icon-comments-alt icon-2x"></i><br>Chat </a></div>
+		<div class="sideChatNavigationIcon ChatTile2 offline" id="pC_chat_offline_id"><a href="#" data-toggle="modal" data-target="#chatOfflineModal"><i class="icon-comments-alt icon-2x"></i><br>Chat</a></div>
 		<div data-toggle="sidechattoggle" class="sideChatNavigationIcon linklessIcon"><i class="icon-phone icon-2x"></i><br>Call</div>
 		<div class="sideChatNavigationIcon EmailTile"><a href="${mainSitePath}/partsdirect/contactus.pd"><i class="icon-envelope icon-2x"></i><br>Email</a></div>
 	</div>
