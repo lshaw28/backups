@@ -31,10 +31,11 @@ function getDynamicTabs(modelNumber,brandId,categoryId){
 				}
 			});
 	}
-	else{
+    //Will remove comment when I finish styling
+	/*else{
 		$("#headerPD").hide();
 		console.log("Get Dynamic Tabs -- parameters not valid");
-	}
+	}*/
 }
 
 

@@ -2,103 +2,130 @@
 @import "../../../../clientlib_base/less/base.mixins.less";
 
 .partList {
-	.partListDiagram {
-		.spanWidth(4);
-	}
-	.partListItems {
-		.spanWidth(8);
+  div.partListTitle {
+    p {
+      display: none;
+    }
+  }
+  div {
+    .partListDiagram {
+      .spanWidth(4);
+    }
+  }
+  div {
+    .partListItems {
+      .spanWidth(8);
 
-		.partListItem {
-			border-bottom: 1px solid @secondaryHueLight;
-			padding: 20px 0;
+      .partListItem {
+        border-bottom: 1px solid @secondaryHueLight;
+        padding: 20px 0;
 
-			&:first-child {
-				border-top: 1px solid @secondaryHueLight;
-			}
-		}
-	}
-	// # Typically I would nest these inside .partListItems .partListItem
-	// # The styles would be complex, slower to paint, harder to override
-	.diagramPosition {
-		color: @secondaryHueNormal;
-		font-size: @noteSize;
-		text-align: center;
-        margin: 30px 0;
-		.spanWidth(2);
+        &:first-child {
+          border-top: 1px solid @secondaryHueLight;
+        }
+      }
+    }
+  }
+  // # Typically I would nest these inside .partListItems .partListItem
+  // # The styles would be complex, slower to paint, harder to override
+  div.diagramPosition {
+    color: @secondaryHueNormal;
+    font-size: @noteSize;
+    text-align: center;
+    margin: 30px 0;
+    .spanWidth(2);
 
-		span {
-			font-size: @h2Size;
-		}
-	}
-	.partListItemDescription {
-		.spanWidth(7);
+    span {
+      font-size: @h2Size;
+    }
+  }
+  div.partListItemDescription {
+    .spanWidth(7);
 
-		.partListItemImage {
-			border: 1px solid @secondaryHueLight;
-			clear: none;
-			float: left;
-			height: 58px;
-			margin: 0 10px 10px;
-			width: 58px;
+    .partListItemImage {
+      border: 1px solid @secondaryHueLight;
+      clear: none;
+      float: left;
+      height: 58px;
+      margin: 0 10px 10px;
+      width: 58px;
 
-			img {
-				width: 100%;
-			}
-		}
-		p {
-			a {
-				font-size: @h5Size;
-			}
-		}
-	}
-	.partListItemCart {
-		.spanWidth(3);
+      img {
+        width: 100%;
+      }
+    }
+    p {
+      a {
+        font-size: @h5Size;
+      }
+    }
+  }
+  div.partListItemCart {
+        .spanWidth(3);
 
         p {
           text-align: right;
         }
 
-		.partListItemPrice, .partListItemQuantity {
-			clear: none;
-			float: left;
-			margin-bottom: 5px;
-            width: 50%;
-		}
-		.partListItemPrice {
-			color: @secondaryHueDarkest;
-            text-align: right;
-            width: 50%;
-			strong {
-				display: inline-block;
-				font-size: @h4Size;
-				margin-top: @h3Size;
-				width: 100%;
-			}
-		}
-		.partListItemQuantity {
-            padding-left: 1.8%;
-			input[type="text"] {
-				.boxSizing(border-box);
-				display: block;
-				padding: 16px 8px;
-				width: 36px;
-                float: right;
-                text-align: center;
-			}
-            label {
-                float: right;
-            }
-		}
-		.partListItemAdd {
-			text-align: center;
+        strong {
+          white-space: nowrap;
+        }
 
-			button {
-				.boxSizing(border-box);
-				margin: 0;
-				width: 100%;
-			}
-		}
-	}
+        div.partListItemPrice, div.partListItemQuantity {
+          clear: none;
+          float: left;
+          margin-bottom: 5px;
+          width: 36%;
+        }
+        div.partListItemPrice {
+          color: @secondaryHueDarkest;
+          text-align: right;
+          width: 50%;
+          strong {
+            display: inline-block;
+            font-size: @h4Size;
+            margin-top: @h3Size;
+            width: 100%;
+          }
+        }
+        div.partListItemQuantity {
+          padding-left: 1.8%;
+          input[type="text"] {
+            .boxSizing(border-box);
+            display: block;
+            padding: 16px 8px;
+            width: 36px;
+            float: right;
+            text-align: center;
+          }
+          label {
+            float: right;
+          }
+        }
+        .partListItemAdd {
+          text-align: center;
+
+          button {
+            .boxSizing(border-box);
+            margin: 0;
+            width: 100%;
+          }
+        }
+  }
+}
+.modelHeader {
+  ul li.current {
+    background-image: none;
+    border-bottom: 1px solid #fff;
+  }
+}
+ul#dynamicTabs {
+  li:first-child {
+    border-left: 1px solid #aeaeae;
+  }
+  li:last-child {
+    border-right: 1px solid #aeaeae;
+  }
 }
 #pinchImage {
   #fullscreenImage {
@@ -111,28 +138,14 @@
     display: none;
   }
 }
+#diagramTablet {
+  display: none;
+}
+#diagram {
+  display: block;
+}
 #partListTitle {
-  p {
-    display: none;
-  }
-}
-#partListDiagram {
-  .spanWidth(4);
-}
-#partListItems {
-  .spanWidth(8);
-}
-#diagramPosition {
-  .spanWidth(1.6);
-}
-#partListItemDescription {
-  .spanWidth(7);
-}
-#partListItemCart {
-  .spanWidth(3);
-}
-#partListItemQuantity {
-  width: 50px;
+  display: none;
 }
 
 @import "partList.tablet";

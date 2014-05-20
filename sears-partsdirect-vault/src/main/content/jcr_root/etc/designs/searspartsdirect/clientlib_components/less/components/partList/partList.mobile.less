@@ -3,13 +3,13 @@
 
 @media (max-width: 650px) {
 	.partList {
-		.partListItems {
+		div.partListItems {
 			background-color: @secondaryHueLighter;
 			.boxSizing(content-box);
 			margin: 0 -10px 10px;
 			padding: 10px;
 
-			.partListItem {
+			div.partListItem {
 				background-color: @bodyColor;
 				border: 0;
 				.boxSizing(border-box);
@@ -20,33 +20,33 @@
 					border: 0;
 				}
 			}
-			.partListItem + .partListItem {
+			div.partListItem + div.partListItem {
 				margin-top: 10px;
 			}
 		}
-		.diagramPosition {
+		div.diagramPosition {
             margin: 30px 0;
 			.spanWidth(3.2);
 		}
-		.partListItemDescription, .partListItemCart {
+		div.partListItemDescription, div.partListItemCart {
 			float: right;
 			.spanWidth(10);
 		}
-		.partListItemDescription {
+		div.partListItemDescription {
             .spanWidth(8.8);
             padding-top: 0px;
 			.partListItemImage {
 				display: none;
 			}
 		}
-		.partListItemCart {
+		div.partListItemCart {
             padding-top: 0px;
             p {
                 padding-left: 10px;
                 margin-left: 0px;
                 text-align: left;
             }
-			.partListItemPrice {
+			div.partListItemPrice {
 				float: none;
 				width: 140px;
                 text-align: left;
@@ -56,14 +56,19 @@
 					width: auto;
 				}
 			}
-			.partListItemQuantity, .partListItemAdd {
+			div.partListItemQuantity, div.partListItemAdd {
 				display: none;
 			}
 		}
 	}
+    #dynamicTabs {
+      display: none;
+    }
     #partListItemCart {
       margin-left: 0px;
       width: 80%;
+      text-align: left;
+      padding-left: 20px;
       p {
         width: 80%;
       }
@@ -106,15 +111,21 @@
     }
     #diagramPosition {
       margin: 30px 0;
-      .spanWidth(2.2);
+      .spanWidth(3.2);
       text-align: center;
     }
     #partListItemDescription {
-      .spanWidth(8.8);
+      .spanWidth(9);
       padding-left: 10px;
     }
     #partListItemPrice {
         float: none;
         width: 140px;
+    }
+    #diagramTablet {
+      display: none;
+    }
+    #diagram {
+      display: block;
     }
 }

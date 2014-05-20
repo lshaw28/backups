@@ -1,7 +1,13 @@
 <%@ include file="/apps/searspartsdirect/global.jsp" %><%
 %><spd:getImagePathTag/><%
 %><c:set var="imageAlt"><cq:text property="imageAlt" placeholder=""/></c:set><%
-%><div id="diagramImage" data-toggle="pinch-image" data-desktopimage="" data-tabletimage="${tabletImage}" data-mobileimage="${mobileImage}" data-alttext="${imageAlt}"></div>
+%><div class="pageTitleHeader">
+    <h1>Diagram Name</h1>
+</div>
+    <div id="diagramImage" data-toggle="pinch-image" data-desktopimage="" data-tabletimage="${tabletImage}" data-mobileimage="${mobileImage}" data-alttext="${imageAlt}">
+    <img id="diagram" src="http://i1304.photobucket.com/albums/s538/Laurence_Shaw/PartListDiagram_zpsa126eb06.png"/>
+    <img id="diagramTablet" src="http://i1304.photobucket.com/albums/s538/Laurence_Shaw/Diagram_zps3cfc9396.png"/>
+</div>
 <div id="pinchImage" class="row-fluid">
 	<div id="fullscreenImage" class="new-span-responsive">
 		<a data-toggle="pinch-fullscreen" target="_blank"><i class="icon-zoom-in"></i> Full Size</a>

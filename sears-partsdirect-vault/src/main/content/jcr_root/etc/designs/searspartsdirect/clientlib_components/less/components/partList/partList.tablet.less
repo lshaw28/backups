@@ -1,44 +1,64 @@
 @import "../../../../clientlib_base/less/base.variables.less";
 @import "../../../../clientlib_base/less/base.mixins.less";
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 	.partList {
-		.partListDiagram {
-			width: 100%;
+        div.partListTitle {
+          position: relative;
+          float: left;
+          display: block;
+          width: 100%;
+          margin: 20px 8px 0 0;
+          p {
+            display: block;
+            font-size: 16px;
+            color: white;
+            background-color: gray;
+            padding: 10px 20px;
+            margin-bottom: 0px;
+          }
+        }
+		div.partListDiagram {
+            width: 100%;
+            border-bottom: 1px solid #dedede;
             div {
               width:100%;
             }
 		}
-		.partListItems {
+		div.partListItems {
 			margin-left: 0;
 			width: 100%;
 		}
-		.diagramPosition {
+		div.diagramPosition {
 			.spanWidth(1.4);
             margin-top:20px;
 		}
-		.partListItemDescription {
+		div.partListItemDescription {
             .spanWidth(5.66);
 			.partListItemImage {
 				height: 78px;
 				width: 78px;
 			}
 		}
-		.partListItemCart {
+		div.partListItemCart {
 			.spanWidth(5);
 
             p {
               width: 56%;
               margin-left: 40%;
             }
+
+            strong {
+              white-space: nowrap;
+            }
 			
-			.partListItemPrice, .partListItemQuantity, .partListItemAdd {
+			div.partListItemPrice, div.partListItemQuantity, div.partListItemAdd {
 				float: left;
 			}
-			.partListItemPrice, .partListItemQuantity {
+			div.partListItemPrice, div.partListItemQuantity {
 				.spanWidth(3);
 			}
-			.partListItemQuantity {
+			div.partListItemQuantity {
 				input[type="text"] {
 					padding: 20px 10px;
 					width: 60%;
@@ -48,7 +68,7 @@
                     float: none;
                 }
 			}
-			.partListItemAdd {
+			div.partListItemAdd {
 				.spanWidth(6);
 				
 				button {
@@ -57,9 +77,26 @@
 			}
 		}
 	}
+    div.pageTitleHeader {
+      text-align: left;
+    }
 }
 
-@media (min-width: 651px) and (max-width: 768px) {
+@media (min-width: 651px) and (max-width: 1024px) {
+    .modelHeader {
+      ul li.current {
+        background-image: none;
+        border-bottom: 1px solid #fff;
+      }
+    }
+    ul#dynamicTabs {
+      li:first-child {
+        border-left: 1px solid #aeaeae;
+      }
+      li:last-child {
+        border-right: 1px solid #aeaeae;
+      }
+    }
     #pinchImage {
       padding-left: 20px;
       #fullscreenImage {
@@ -99,13 +136,6 @@
       width: 100%;
       margin-left: 0px;
     }
-    #diagramPosition {
-      .spanWidth(1.4);
-      margin-top:20px;
-    }
-    #partListItemDescription {
-      .spanWidth(5.66);
-    }
     #partListItemCart {
       .spanWidth(5);
     }
@@ -115,4 +145,10 @@
     #partListItemAdd {
       .spanWidth(6);
     }
+}
+
+@media (min-width: 651px) and (max-width: 900px) {
+  .modelHeader ul li {
+    min-width: 22%;
+  }
 }

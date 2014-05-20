@@ -20,8 +20,57 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
 <div class="row-fluid">
 	<div class="modelHeader">
 		<ul id="dynamicTabs">
-		</ul>
+            <!-- Used only for styling -->
+            <li class="tabNavigation current">
+                <a href="javascript:void(0)">
+                    <span> Shop Parts</span>
+                </a>
+            </li>
+            <li class="tabNavigation">
+                <a href="#">
+                    <span>Manuals()</span>
+                </a>
+            </li>
+            <li class="tabNavigation">
+                <a href="#">
+                    <span>Repair Help</span>
+                </a>
+            </li>
+            <li class="tabNavigation">
+                <a href="#">
+                    <span>Expert Q&A</span>
+                </a>
+            </li>
+        </ul>
 	</div>
 </div>
+
+<!--<div class="responsiveDropdown">
+    <div class="new-btn-dropdown">Width (in.)<i class="icon-chevron-sign-down">&nbsp;</i></div>
+    <ul class="active">
+        <!-- Used only for styling -->
+        <!--<li class="tabNavigation current" id="shopParts">
+            <a href="#">
+                <span> Shop Parts</span>
+            </a>
+        </li>
+        <li class="tabNavigation" id="manuals">
+            <a href="#">
+                <span>Manuals()</span>
+            </a>
+        </li>
+        <li class="tabNavigation" id="repairHelp">
+            <a href="#">
+                <span>Repair Help</span>
+            </a>
+        </li>
+        <li class="tabNavigation" id="expertQA">
+            <a href="#">
+                <span>Expert Q&A</span>
+            </a>
+        </li>
+    </ul>
+</div>-->
+
 </div>
 <script>getDynamicTabs('<%=modelNumber%>', '<%=brandId%>', '<%=categoryId%>');</script>
