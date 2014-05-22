@@ -588,4 +588,27 @@
 		<tag-class>com.spd.cq.searspartsdirect.common.tags.BrowseGlossaryTag</tag-class>
 		<info>Gets the Common Category Parts</info>
 	</tag>
+	<tag>
+		<name>getResponsiveTabs</name>
+		<tag-class>com.spd.cq.searspartsdirect.common.tags.GetResponsiveTabsTag</tag-class>
+		<info>Gets responsive tabs</info>
+		<attribute>
+			<name>formattedModelNumber</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>brandId</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>productCategoryId</name>
+			<type>java.lang.String</type>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>
