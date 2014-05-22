@@ -4,6 +4,6 @@
 	xmlns:jcr="http://www.jcp.org/jcr/1.0"
 	xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
 	jcr:primaryType="cq:Component"
-	jcr:title="textImagePD"
-	componentGroup="SearsPartsDirect" 
-	sling:resourceSuperType="foundation/components/parbase"/>
+	jcr:title="TextImagePD"
+	jcr:description="Custom Text component for Sears"
+	componentGroup="SearsPartsDirect" />

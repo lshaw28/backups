@@ -33,6 +33,10 @@
 		}
 
 		/**
+		 * Seo landing Page
+		 */
+		var newSeoHeroImage = new seoHeroImage();
+		/**
 		 * Set up userData singleton class before all else
 		 */
 		var newUserData = new userData();
@@ -75,7 +79,9 @@
 		/**
 		 * Login Navigation toggles
 		 */
-		$('.trigger').bind('click', function () {
+		var hamburgerOverlay = $('<div></div>').addClass('hamburger-overlay').appendTo('#viewport');
+		$('.trigger').add(hamburgerOverlay).bind('click', function (e) {
+			e.preventDefault();
 			$('body').toggleClass('loginNav-open');
 		});
 		$('#loginNavGetHelp').bind('click', function () {
@@ -87,8 +93,20 @@
 		 * Cart Navigation toggles
 		 */
 		var newCartNav = new cartNav();
-		$('#cartShop [data-toggle]').bind('click', function () {
-			$('body').toggleClass('cartNav-open');
+		$('#cartShop [data-toggle]').bind('click', function (e) {
+			if (window.SPDUtils.isMobileBreakpoint()){
+				e.preventDefault();
+				$('body').toggleClass('cartNav-open');
+			}
+			// else, follow link to cart page via postback
+		});
+		/**
+		 * Navigation hover
+		 */
+		$('.cartNavItem').hover(function() {
+		$(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(200);
+		}, function() {
+		$(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(200);
 		});
 		/**
 		 * customAccordionForms component setup
@@ -324,6 +342,7 @@
 		/**
 		 * airFilterDimension class setup
 		 */
+
 		var newFilterDim = new airFilterDimension();
 
 		/**

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	xmlns:nt="http://www.jcp.org/jcr/nt/1.0" jcr:primaryType="cq:TabPanel"
+	title="Author Details" xtype="dialog">
+	<items jcr:primaryType="cq:WidgetCollection">
+		<tab jcr:primaryType="cq:Widget" title="Heading" xtype="tabpanel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<tab1 jcr:primaryType="cq:Widget" title="Heading" xtype="panel">
+					<items jcr:primaryType="cq:WidgetCollection">
+						<componentTitle jcr:primaryType="cq:Widget"
+							fieldLabel="Component Title" itemId="componentTitle"
+							fieldDescription="If specified, this takes precedence over brand and product type"
+							name="./componentTitle" xtype="textfield" />
+						<brand jcr:primaryType="cq:Widget" fieldLabel="Brand"
+							itemId="brand" name="./brand" xtype="textfield" />
+						<prodtype jcr:primaryType="cq:Widget" fieldLabel="Product Type"
+							itemId="productType" name="./prodtype" xtype="textfield" />
+					</items>
+				</tab1>
+				<tab2 jcr:primaryType="cq:Widget" title="First Part" xtype="panel">
+					<items jcr:primaryType="cq:WidgetCollection">
+						<partnumber1 jcr:primaryType="cq:Widget" fieldLabel="Part Number"
+							allowBlank="false" name="./partnumber1" xtype="textfield" />
+						<plsId1 jcr:primaryType="cq:Widget" fieldLabel="Pls Number"
+							allowBlank="false" name="./plsId1" xtype="textfield" />
+						<divId1 jcr:primaryType="cq:Widget" fieldLabel="Div Number"
+							allowBlank="false" name="./divId1" xtype="textfield" />
+					</items>
+				</tab2>
+				<tab3 jcr:primaryType="cq:Widget" title="Second Part" xtype="panel">
+					<items jcr:primaryType="cq:WidgetCollection">
+						<partnumber2 jcr:primaryType="cq:Widget" fieldLabel="Part Number"
+							name="./partnumber2" xtype="textfield" />
+						<plsId2 jcr:primaryType="cq:Widget" fieldLabel="Pls Number"
+							name="./plsId2" xtype="textfield" />
+						<divId2 jcr:primaryType="cq:Widget" fieldLabel="Div Number"
+							name="./divId2" xtype="textfield" />
+					</items>
+				</tab3>
+				<tab4 jcr:primaryType="cq:Widget" title="Third Part" xtype="panel">
+					<items jcr:primaryType="cq:WidgetCollection">
+						<partnumber3 jcr:primaryType="cq:Widget" fieldLabel="Part Number"
+							name="./partnumber3" xtype="textfield" />
+						<plsId3 jcr:primaryType="cq:Widget" fieldLabel="Pls Number"
+							name="./plsId3" xtype="textfield" />
+						<divId3 jcr:primaryType="cq:Widget" fieldLabel="Div Number"
+							name="./divId3" xtype="textfield" />
+					</items>
+				</tab4>
+				<tab5 jcr:primaryType="cq:Widget" title="Fourth Part" xtype="panel">
+					<items jcr:primaryType="cq:WidgetCollection">
+						<partnumber4 jcr:primaryType="cq:Widget" fieldLabel="Part Number"
+							name="./partnumber4" xtype="textfield" />
+						<plsId4 jcr:primaryType="cq:Widget" fieldLabel="Pls Number"
+							name="./plsId4" xtype="textfield" />
+						<divId4 jcr:primaryType="cq:Widget" fieldLabel="Div Number"
+							name="./divId4" xtype="textfield" />
+					</items>
+				</tab5>
+			</items>
+		</tab>
+	</items>
+	<listeners jcr:primaryType="nt:unstructured"
+		beforesubmit="function(dialog){return check.titleField(dialog);}"></listeners>
+</jcr:root>

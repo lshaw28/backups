@@ -17,6 +17,7 @@ var airFilterDimension = Class.extend(function() {
 			this.bindEvent();
 			this.width = this.height = this.depth = false;
 			this.template = Handlebars.compile( $('#js_airFilterResultTemplate').html() );
+			this.pageUrl = document.location.href;
 		},
 		/**
 		* toggle airFilter section
@@ -78,6 +79,7 @@ var airFilterDimension = Class.extend(function() {
 			// show "not found" msg
 			$('.filterResults').addClass('hide');
 			$('#noAirFilters').removeClass('hide');
+			SPDUtils.trackEvent({event: 'searchFail', values: {searchTerm: $('#airFilterWidth').val() + 'x' + $('#airFilterHeight').val() + 'x' + $('#airFilterDepth').val(), searchType: 'Air Filter Dimensions', searchTotal: '0', resultType: 'Air Filter 0 Results'}, componentPath: $('#js_AirFilterDimensionSelection').attr('data-component')}, 'Air_Filter_Dimensions_#templateName');
 		},
 
 		coalesceData:function(subSet){
@@ -113,7 +115,7 @@ var airFilterDimension = Class.extend(function() {
 		// to view or template
 
 		renderDimensionString : function(){
-			return this.width+' x '+this.height+' x'
+			return this.width+' x '+this.height+' x '+this.depth
 		},
 
 		renderTitle : function(maker, string, merv){
@@ -199,6 +201,29 @@ var airFilterDimension = Class.extend(function() {
 				this.renderResultType ( resultSet.goodAirFilters.part, '#goodAirFilters' );
 			}
 
+			var filterTypes = '';
+			if (!$('#bestAirFilters').hasClass('hide')) {
+				filterTypes = 'Best';
+				// PD-11487 : When search results load, anchor first search result to top of page
+                document.location.href = this.pageUrl + '#bestAirFilters';
+			}
+			if (!$('#betterAirFilters').hasClass('hide')) {
+				if (filterTypes == '') {
+					filterTypes = 'Better';
+					document.location.href = this.pageUrl + '#betterAirFilters';
+				} else {
+					filterTypes += ':Better';
+				}
+			}
+			if (!$('#goodAirFilters').hasClass('hide')) {
+				if (filterTypes == '') {
+					filterTypes = 'Good';
+					document.location.href = this.pageUrl + '#goodAirFilters';
+				} else {
+					filterTypes += ':Good';
+				}
+			}
+			SPDUtils.trackEvent({event: 'searchSuccess', values: {searchTerm: $('#airFilterWidth').val() + 'x' + $('#airFilterHeight').val() + 'x' + $('#airFilterDepth').val(), searchType: 'Air Filter Dimensions', searchTotal: $('.airFilterSearchResultsItemLeft').length, resultType: filterTypes}, componentPath: $('#js_AirFilterDimensionSelection').attr('data-component')}, 'Air_Filter_Dimensions_#templateName');
 		},
 
 		// end to view or template
@@ -225,6 +250,22 @@ var airFilterDimension = Class.extend(function() {
 				self.getResults();
 			  }
 		  });
+
+          /*PD-11484*/
+		  $('.responsiveDropdown').bind("DOMSubtreeModified", function(){
+		    if($(this).children("ul").hasClass("active")) {
+              // get the selected element
+              var selected = $(this).siblings("select").attr("id");
+
+              // collapse all other
+              $(".responsiveDropdown").each(function( index ) {
+                var current = $(this).siblings("select").attr("id");
+                if(selected != current) {
+                  $(this).children("ul.active").removeClass("active");
+                }
+              });
+		    }
+          });
 		}
 	}
 }());

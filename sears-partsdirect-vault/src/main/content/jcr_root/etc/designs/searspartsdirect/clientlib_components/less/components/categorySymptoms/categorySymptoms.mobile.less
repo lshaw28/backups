@@ -3,41 +3,57 @@
 
 @media screen and (max-width: 650px) {
 	.categorySymptoms {
-		.row-fluid {
+		
+        .accessoryWithImage {
+            float: none;
+        }
+
+        .row-fluid {
           margin-left: 0px;
           width: 100%;
+          float: none;
+
 			.span6 {
 				a {
 					display: block;
 				}
 			}
 		}
-	}
 
+		.linkageHeader {
+            margin-left: 0px;
+        }
+	}
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 767px) {
 	.categorySymptoms {
-
-
-            h3 {display: none;}
             
-            .accessoryWithImage {
+        .accessoryWithImage {
+            float: none; 
             width: 100%;
         }
 
 		.imageHolder {
-            display: none;
+            display: none!important;
+            
             .responsiveImage {
-                    display: none;
-                }
+                display: none;
+            }
+            .imageCaption {
+                display: none;
+            }
         }
 
-         .row-fluid {
-          margin-left: 0px;
-          width: 100%;
-		}
-	}
+        .row-fluid {
+            float: none;
+            margin-left: 0px;
+            width: 100%;
+        }
 
+		.linkageHeader {
+            margin-left: 0px;
+        }
+	}
 }
 

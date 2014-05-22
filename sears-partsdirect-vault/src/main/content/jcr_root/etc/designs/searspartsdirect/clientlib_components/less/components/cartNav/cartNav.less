@@ -52,6 +52,7 @@
 				padding: 0 8px 0 7px;
 				position: relative;
 
+				&.hover,
 				&:hover {
 					background: @primaryHueDarker;
 					border-right: 1px solid @primaryHueDarkest;
@@ -105,14 +106,30 @@
 					display: block;
 					font-size: @smallerPSize;
 					height: auto;
-					padding: 10px 0 0 0;
+					padding: 6px 0;
 					width: 100%;
+					text-align: center;
 
 					&:first-child {
 						padding: 0;
 					}
 					a {
 						white-space: normal;
+						width: 70%;
+					}
+
+					&.cart-shop-header{
+						border-bottom:2px solid @secondaryHueLight;
+						& + .cart-item{
+							border:0;
+						}
+					}
+					&.cart-shop-totals{
+						border-top:2px solid @secondaryHueLight;
+					}
+					&.cart-item{
+						padding: 10px 0;
+						border-top:1px solid @secondaryHueLight;
 					}
 				}
 				.cartModelItem {

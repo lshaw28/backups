@@ -13,12 +13,16 @@
             fieldLabel="Text before product-type name"
             name="./text1"
             xtype="textfield"
-            maxlength="42"/>
+            maxlength="42"
+            allowBlank="{Boolean}false"
+            validator="function(value) {return (value.length==0 || CQ.Ext.util.Format.trim(value).length!=0);}"/>
         <text2 jcr:primaryType="cq:Widget"
             fieldLabel="Text after product-type name"
             name="./text2"
             xtype="textfield"
-            maxlength="42"/>
+            maxlength="42"
+            allowBlank="{Boolean}false"
+            validator="function(value) {return (value.length==0 || CQ.Ext.util.Format.trim(value).length!=0);}"/>
         <optionalDescription jcr:primaryType="cq:Widget"
             fieldLabel="Optional Description"
             name="./optionalDescription"

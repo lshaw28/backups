@@ -1,0 +1,67 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+@media (max-width: 767px) {
+
+    .seoAccessoryComponent{
+
+        .partListItems {
+            margin: 0;
+
+            > div{
+                position: relative;
+            }
+
+            .partListItem{
+                border-bottom: 5px solid @secondaryHueLight;
+                margin-bottom: 10px;
+
+                .partListItemCart{
+                    position: relative;
+                    padding: 2% 2% 2% 100px;
+
+                    .partImage{
+                        position: absolute;
+                        left: 2.5%;
+                        top: 50%;
+                        width: 77px;
+                        padding: 3px;
+                        margin-top: -42px;
+                    }
+                    .partDescription{
+                        height: auto;
+                    	margin: 0;
+                    }
+
+                    .partInfo{
+                        width: 100%;
+                        padding: 0;
+
+                            *{
+                            display: inline;
+                        }
+
+                    }
+                    .partListItemQuantity,
+                    button {
+                        display: none;
+                    }
+
+                }
+
+            }
+
+        }
+
+        a.mobile-curtain{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: block;
+        }
+
+    }
+
+}

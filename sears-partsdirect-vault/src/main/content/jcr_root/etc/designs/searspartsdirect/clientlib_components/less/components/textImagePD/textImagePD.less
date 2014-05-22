@@ -1,0 +1,69 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+
+.seoHeroImageContanier{
+	background: @secondaryHueLightest;
+	margin: 20px 0;
+	float: left;
+	
+	.singleColumnLayout{
+		padding: 20px 20px 0 20px !important;
+		width: auto !important;
+	}
+	
+	.heroImage{
+		float: left;
+		padding: 10px 0px;
+	}
+	
+	.heroImageContent{
+		padding: 20px 20px 0 0;
+		.brandHeading {
+			
+			h1 {
+				line-height: normal;
+			}
+			
+			.brandImage{
+				background: transparent;
+				width: auto;
+				max-width: 120px;
+
+				img {
+					position: relative;
+					top: 3px;
+					height: 50px;
+					width: auto;
+					max-width: 100px;
+				}
+			}			
+		}
+		.brandDesc{
+			float: left;
+			margin: 10px 0 15px 0;
+			width: 96%;
+		}		
+		
+		.seoForm{
+			.seoInput{ 
+				width: 395px;
+				
+				input
+				{
+					width: 93%;
+				}
+			}
+			.seoInputSingleColumn { 
+				width: 680px;
+				input{ width:96%; }
+			}
+			.seoBtn {
+	    		padding: 13px 38px;
+	    		margin: 0 0 10px;
+			}
+		}
+	}
+}
+@import "textImagePD.mobile.less";
+@import "textImagePD.tablet.less";

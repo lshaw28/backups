@@ -140,7 +140,7 @@ var modelNumberSearch = Class.extend(function () {
 				query += '?brand=' + brandName;
 				query += '&category=' + categoryName;
 				query += '&model=' + modelNumber;
-				query += '&link=' + modelUrl;
+				query += '&link=' + modelUrl + '?searchType=RepairHelp';
 
 				document.location.href = su.getLocationDetails().fullAddress + modelSearchServletPath + query;
 			} else {

@@ -42,3 +42,7 @@
 	</div>
 	<cq:include path="modelSearch" resourceType="searspartsdirect/components/content/responsiveFindThisPart" />
 </c:forEach>
+
+<div class="categorySymptoms">
+    <cq:include script="/apps/searspartsdirect/components/content/categorySymptoms/categorySymptoms.jsp" />
+</div>
