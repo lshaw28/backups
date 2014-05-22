@@ -86,7 +86,3 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
         </div>
     </div>
 </div>
-
-<div class="pageTitleHeader">
-    <h1>Diagram Name</h1>
-</div>
