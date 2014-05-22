@@ -5,6 +5,7 @@
 All pages including this files should describe below parameters
 modelNumber, brandId, categoryId, brandName,  modelDescription.
  -->
+    <spd:getResponsiveTabs formattedModelNumber="123848F401" brandId="0736" productCategoryId="1500600" />
 <div id="headerPD">
 <div class="row-fluid">
 	<div class="repairHelpHomeTitle">
