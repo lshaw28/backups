@@ -9,15 +9,13 @@ import org.slf4j.LoggerFactory;
 
 @Component(immediate = true, metatype = true, label = "PartsDirect API ROOT Configuration", description = "Component interfaces with partsDirect services ")
 @Service(value = PSSettingsHelper.class)
-
 public class PSSettingsHelper {
 	Logger log = LoggerFactory.getLogger(PSSettingsHelper.class);
-	
+
 	public static final String SERVICE_NAME = "com.spd.cq.searspartsdirect.common.helpers.PSsettingsHelper";
-	
+
 	public static final String API_URL = "apiUrl";
 	@Property(name = API_URL, label = "Product API URL", description = "PartsDirect Product API URL")
-	
 	protected ComponentContext context = null;
 
 	protected void activate(ComponentContext context) throws Exception {

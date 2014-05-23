@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Dialog"
+    title="Edit Brand List"
+    xtype="panel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <title
+            jcr:primaryType="cq:Widget"
+            allowBlank="false"
+            fieldLabel="Title"
+            name="./title"
+            xtype="textfield"/>
+        <pages
+            jcr:primaryType="cq:Widget"
+            fieldDescription="Click the '+' to add a new logo"
+            fieldLabel="Brand Logo"
+            name="./brands"
+            xtype="multifield">
+            <fieldConfig
+                jcr:primaryType="cq:Widget"
+                limit="18"
+                type="combobox"
+                xtype="selection">
+                <options
+                    jcr:primaryType="cq:WidgetCollection"
+                    path="/apps/searspartsdirect/components/content/seoParts/brandList/list_brand_logo.infinity.json"
+                    xtype="cqinclude"/>
+            </fieldConfig>
+            <listeners
+                jcr:primaryType="nt:unstructured"
+                beforeadd="function(list,component,index){ if(this.fieldConfig.limit!=0) { if(this.fieldConfig.limit == (list.items.getCount()-1)) { CQ.Ext.Msg.show( {title: 'Limit reached', msg: 'You are only allowed to add '+this.fieldConfig.limit+' brands',icon:CQ.Ext.MessageBox.WARNING,buttons: CQ.Ext.Msg.OK} );;return false; } } if(index!=0){ var brand=list.items.item(index-1).getValue(); if(brand.length == 0){ CQ.Ext.Msg.show({title:'Validation Error',msg:'Brand can not be empty!',buttons:CQ.Ext.MessageBox.OK,icon:CQ.Ext.MessageBox.ERROR}); return false; } } }"/>
+        </pages>
+    </items>
+</jcr:root>

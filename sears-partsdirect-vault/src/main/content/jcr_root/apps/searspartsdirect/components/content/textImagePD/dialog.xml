@@ -2,7 +2,30 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 	jcr:primaryType="cq:TabPanel" activeTab="0" xtype="tabpanel">
 	<items jcr:primaryType="cq:WidgetCollection">
-		<tab1 jcr:primaryType="cq:Widget" anchor="100%" title="Text"
+
+		<tab1 jcr:primaryType="cq:Widget" title="Component Type"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+				<type jcr:primaryType="cq:Widget" fieldLabel="Component Type"
+					name="./componentType" type="select" xtype="selection">
+					<options jcr:primaryType="cq:WidgetCollection">
+						<one
+							jcr:primaryType="nt:unstructured"
+							text="Default Type"
+							value="default"/>
+						<two
+							jcr:primaryType="nt:unstructured"
+							text="Hero Image Component "
+							value="heroimage"/>
+					</options>
+				</type>
+
+				<enableTwoColumnLayOut jcr:primaryType="cq:Widget" fieldLabel="Enable two column lay out" name="./enableTwoColumnLayout" itemId="enable" type="checkbox" xtype="selection">
+						</enableTwoColumnLayOut>
+			</items>
+		</tab1>
+
+		<tab2 jcr:primaryType="cq:Widget" anchor="100%" title="Text"
 			xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
 				<type jcr:primaryType="cq:Widget" allowBlank="false"
@@ -52,13 +75,15 @@
 				<richFlag jcr:primaryType="cq:Widget" ignoreData="true"
 					name="./textIsRich" value="true" xtype="hidden" />
 			</items>
-		</tab1>
-		<tab2 jcr:primaryType="cq:Widget"
+		</tab2>
+
+		<tab3 jcr:primaryType="cq:Widget"
 			fileNameParameter="./image/fileName" fileReferenceParameter="./image/fileReference"
 			name="./image/file" requestSuffix="/image.img.png"
 			sizeLimit="100" title="Image"
 			xtype="html5smartimage" />
-		<tab3 jcr:primaryType="cq:Widget" title="Advanced Image Properties"
+
+		<tab4 jcr:primaryType="cq:Widget" title="Advanced Image Properties"
 			xtype="panel">
 			<items jcr:primaryType="cq:WidgetCollection">
 				<title jcr:primaryType="cq:Widget" fieldLabel="Title"
@@ -73,6 +98,29 @@
 					name="./image/sling:resourceType" value="foundation/components/image"
 					xtype="hidden" />
 			</items>
-		</tab3>
+		</tab4>
+
+		<tab5 jcr:primaryType="cq:Widget" title="Hero Image Details"
+			xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+						<headerText jcr:primaryType="cq:Widget"
+								fieldLabel="HeaderText"
+								name="./headerText"
+								allowBlank="{Boolean}false"
+								xtype="textarea" />
+						<description jcr:primaryType="cq:Widget"
+								fieldLabel="Description"
+								name="./description"
+								allowBlank="{Boolean}false"
+								xtype="textarea" />
+
+						<buttonText jcr:primaryType="cq:Widget"
+								fieldLabel="Text for button"
+								name="./buttonText"
+								allowBlank="{Boolean}true"
+								xtype="textarea" />
+				</items>
+
+			</tab5>
 	</items>
 </jcr:root>

@@ -391,7 +391,7 @@ var airFilterPartDetails = Class.extend(function () {
 			//Add code for images
 			if (filter.image == null) {
 				$('.responsivePinchImage').addClass('hidden');
-				$('.responsivePinchImage').after('<img src="http://partsbetavip.qa.ch3.s.com/partsdirect/assets/img/images/no_part.gif" />');
+				$('.responsivePinchImage').after('<img src="' + mainSitePath + '/partsdirect/assets/img/images/no_part.gif" />');
 			} else {
 				$('.responsivePinchImage [data-toggle=pinch-image]').attr('data-desktopimage', filter.image);
 				$('.responsivePinchImage [data-toggle=pinch-image]').change();

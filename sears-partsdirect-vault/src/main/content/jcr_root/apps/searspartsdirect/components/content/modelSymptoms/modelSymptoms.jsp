@@ -3,8 +3,12 @@
 <spd:getUrlRelation relationType="brand" />
 <spd:getUrlRelation relationType="model" />
 
+<c:if test="${param.searchType == ''}">
+	<span record="'searchSuccess',{'searchTerm': '${modelRelation}', 'searchType': 'Repair Help Model Search', 'searchTotal': '1.1', 'resultType': 'Model Repair Help Section'}"></span>
+</c:if>
+
 <h2>
-	Repair Symptoms for ${brandRelation.title}  ${productCategoryRelation.title} Model #${modelRelation}
+	Repair Symptoms for ${brandRelation.title}  ${productCategoryRelation.title} Model #<span id='modelNo'>${modelRelation}</span>
 </h2>
 Here are the most common symptoms we've seen for this model. Select a symptom to view which parts have been used to fix that problem.<br/>
 <spd:getAssets assetType="symptom" productCategoryFilter="${productCategoryRelation.path}" />

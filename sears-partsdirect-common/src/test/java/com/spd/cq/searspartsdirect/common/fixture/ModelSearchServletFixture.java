@@ -114,7 +114,7 @@ public class ModelSearchServletFixture {
 	}
 	
 	public String getExpectedRedirect() {
-		return "/" + getBrand() + "/" + getCategory() + "/model-" + getModel() + "-repair.html";
+		return "/" + getBrand() + "/" + getCategory() + "/model-" + getModel() + "-repair.html?searchType=RepairHelp";
 	}
 
 	public void setUpCategoryFound() throws RepositoryException {

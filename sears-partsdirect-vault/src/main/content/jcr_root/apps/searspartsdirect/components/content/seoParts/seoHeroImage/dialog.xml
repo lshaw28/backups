@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="cq:TabPanel"
+		  activeTab="0"
+		  xtype="tabpanel">
+	<items jcr:primaryType="cq:WidgetCollection">
+		 <tab1 jcr:primaryType="cq:Widget"
+					   title="heroImage"
+					   xtype="panel">
+			<items jcr:primaryType="cq:WidgetCollection">
+						<enableTwoColumnLayOut jcr:primaryType="cq:Widget" fieldLabel="Enable two column lay out" name="./enableTwoColumnLayout" itemId="enable" type="checkbox" xtype="selection">
+						</enableTwoColumnLayOut>
+						<headerText jcr:primaryType="cq:Widget"
+								fieldLabel="Header"
+								name="./headerText"
+								allowBlank="{Boolean}false"
+								xtype="textarea" />
+						<description jcr:primaryType="cq:Widget"
+								fieldLabel="Description"
+								name="./desc"
+								allowBlank="{Boolean}false"
+								xtype="textarea" />
+							
+						<buttonText jcr:primaryType="cq:Widget"
+								fieldLabel="Text for button"
+								name="./buttonText"
+								allowBlank="{Boolean}true"
+								xtype="textarea" />
+				</items>
+								
+			</tab1>
+		
+		<brandImageTab
+			jcr:primaryType="cq:Widget"
+			itemId="brandImageImageTab"
+			cropParameter="./brandImage/imageCrop"
+			ddGroups="[media]"
+			fileNameParameter="./brandImage/fileName"
+			fileReferenceParameter="./brandImage/fileReference"
+			blankText="An image is required"
+			name="./brandImage/file"
+			requestSuffix="/brandImage.img.png"
+			rotateParameter="./brandImage/imageRotate"
+			sizeLimit="100"
+			title="Brand Image"
+			uploadUrl="/tmp/upload/*"
+			xtype="html5smartimage" />
+	</items>
+</jcr:root>
+   
+
+

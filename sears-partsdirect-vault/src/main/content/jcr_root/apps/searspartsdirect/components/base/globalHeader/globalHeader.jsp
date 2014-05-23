@@ -22,3 +22,12 @@
      </c:if>
 	
 </div>
+
+<c:choose>
+	<c:when test="${param.searchTerm != null}">
+		<span record="'searchSuccess',{'pageNameVar': '<%=currentPage.getTitle()%>', 'channel': '<%=currentPage.getProperties().get("channel") %>', 'searchTerm': '${param.searchTerm}', 'searchType': '${param.searchType}', 'searchTotal': '-1', 'resultType': 'Common Terms'}"></span>
+	</c:when>
+	<c:otherwise>
+		<span record="'globalHeaderLoadEvent',{'pageNameVar': '<%=currentPage.getTitle()%>', 'channel': '<%=currentPage.getProperties().get("channel") %>'}"></span>
+	</c:otherwise>
+</c:choose>

@@ -19,11 +19,11 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
     <div class="pageTitleHeader">
         <h1>Diagram Name</h1>
     </div>
-	<div id="partListDiagram" class="new-span-general partListDiagram">
+	<div class="new-span-general partListDiagram styleFix">
 		<cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />
 	</div>
 
-    <div id="partListTitle">
+    <div class="partListTitle">
         <p>Parts in this Diagram</p>
     </div>
 

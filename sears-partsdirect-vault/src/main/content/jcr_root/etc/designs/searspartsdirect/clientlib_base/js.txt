@@ -65,6 +65,10 @@ partDetail.js
 mervRatingHelp.js
 airFilterDimension.js
 banners.js
+seoParts.js
+topAccessoryparts.js
+zlider.js
+brandList.js
 pdImageZoom.js
 
 

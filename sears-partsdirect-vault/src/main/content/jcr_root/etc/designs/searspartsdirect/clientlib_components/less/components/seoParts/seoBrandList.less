@@ -1,0 +1,112 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.brandList {
+
+  #stopShowStart {
+    display: none;
+    position: relative;
+    width: 100%;
+    padding: 0;
+    margin:0;
+    color: #666;
+    border-top: 1px solid #F3f3f3;
+    display:none;
+
+    .iconArrow {
+      margin: 1.1em auto 0;
+      text-align: center;
+      cursor: pointer;
+
+      &.fsHide {display: none;}
+    }
+  }
+
+  .swipeViewGuide{display: none;}
+}
+
+#slider-caro-applianceV2 {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    margin: 10px 0;
+    -webkit-backface-visibility: hidden;
+
+        &.blockLevel .row-item {
+        position: relative;
+      }
+
+      &.blockLevel{ 
+          height: 100px;
+          -webkit-transition: height 800ms ease-in-out;
+          -moz-transition: height 800ms ease-in-out;
+          -o-transition: height 800ms ease-in-out;
+          -ms-transition: height 800ms ease-in-out;
+          transition: height 800ms ease-in-out;
+
+          + #stopShowStart .fsHide { display: block; }
+          + #stopShowStart .fsShow { display: none; }
+      }
+
+      &.default {
+            height: 100px;
+            -webkit-transition: height 200ms ease-in-out;
+            -moz-transition: height 200ms ease-in-out;
+            -o-transition: height 200ms ease-in-out;
+            -ms-transition: height 200ms ease-in-out;
+            transition: height 200ms ease-in-out;
+      }
+
+      .row-item {
+        background: #fff;
+        height: 110px;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        -webkit-transition: top 950ms ease-in-out;
+        -moz-transition: top 950ms ease-in-out;
+        -o-transition: top 950ms ease-in-out;
+        -ms-transition: top 950ms ease-in-out;
+        transition: top 950ms ease-in-out;
+
+        > div {
+          vertical-align: bottom;
+          -webkit-backface-visibility: hidden;
+          text-align: center;
+		  #svg-icon-hoover {
+			margin: 12px 0;
+		  }
+		  #svg-icon-black-decker {
+			margin: 8px 0;
+		  }
+		  #svg-icon-homelite {
+			height: 100px;
+		  }
+        }
+
+        i {
+          display: inline-block;
+          width: 100px;
+          height: 50px;
+          margin: 25px 0;
+        }
+
+        &.fadeOutSlide {
+
+          > div {
+            opacity: 0;
+            -webkit-transition: opacity 0.4s ease-in-out;
+            -moz-transition: opacity 0.4s ease-in-out;
+            -o-transition: opacity 0.4s ease-in-out;
+            -ms-transition: opacity 0.4s ease-in-out;
+            transition: opacity 0.4s ease-in-out;
+          }
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+    .brandList div.hidden-desktop    { display: none !important; }
+}

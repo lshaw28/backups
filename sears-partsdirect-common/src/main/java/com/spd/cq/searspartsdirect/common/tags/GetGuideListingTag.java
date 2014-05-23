@@ -5,17 +5,17 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
 import javax.jcr.Session;
+import javax.jcr.query.Query;
+import javax.jcr.query.QueryResult;
 import javax.servlet.jsp.JspException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
 import com.day.cq.wcm.api.Page;
-import com.spd.cq.searspartsdirect.common.helpers.Constants;
 import com.spd.cq.searspartsdirect.common.helpers.PDUtils;
 import com.spd.cq.searspartsdirect.common.helpers.PageImpressionsComparator;
 import com.spd.cq.searspartsdirect.common.model.ArticleModel;
@@ -28,24 +28,22 @@ public class GetGuideListingTag extends CQBaseTag{
 
 	@Override
 	public int doStartTag() throws JspException {
-
-		
 		try {
 			HashMap<String, List<ArticleModel>> guides = new HashMap<String, List<ArticleModel>>();
 			ArrayList<Page> result = new ArrayList<Page>();
 			//Get the guides based on the category
-			QueryBuilder qb = resourceResolver.adaptTo(QueryBuilder.class);
-			HashMap<String, String> props = new HashMap<String, String>();
-			props.put("type", "cq:Page");
-			props.put("path", Constants.GUIDES_ROOT);
-			props.put("property", Constants.ASSETS_PAGES_REL_PATH);
-			props.put("property.value", categoryPath);
-
-			List<Hit> hits = qb.createQuery(PredicateGroup.create(props),resourceResolver.adaptTo(Session.class)).getResult().getHits();
-			for (Hit hit: hits) {
-				result.add(pageManager.getPage(hit.getPath()));
+			String nodeDetails = "select * from nt:base where jcr:path like '/content/searspartsdirect/en/repair-guide/%' and pages  like '%"+categoryPath+"%'";
+			Session session = resourceResolver.adaptTo(Session.class);
+			Query nodeDetailsQuery = session.getWorkspace().getQueryManager()
+					.createQuery(nodeDetails, Query.SQL);
+			QueryResult results = nodeDetailsQuery.execute();
+			if (results.getNodes().hasNext()) {
+				NodeIterator it = results.getNodes();
+				while (it.hasNext()) {
+					Node node = it.nextNode();
+					result.add(pageManager.getPage(node.getParent().getPath()));
+				}
 			}
-
 			Collections.sort(result, Collections.reverseOrder(new PageImpressionsComparator(resourceResolver)));
 			for(Page page: result){
 

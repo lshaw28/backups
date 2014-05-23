@@ -104,6 +104,9 @@ var responsiveFilterDropdown = Class.extend(function () {
             // Setup dropdown items
             self.renderItems();
             self.buttonGroup.append(self.dropdownItems);
+			if (self.el.context[0].value == '') {
+				self.el.val('');
+			}
             // Hide the select element
             self.el.addClass('responsiveDropdownHidden');
             self.buttonGroup.insertBefore(self.el);
@@ -118,7 +121,6 @@ var responsiveFilterDropdown = Class.extend(function () {
 
             $('option', self.el).each(function () {
                 var val = $(this).attr('value');
-
                 if (su.validString(val) !== '') {
                     $(this).attr('data-value', val);
                     self.renderItem($(this));
@@ -218,7 +220,8 @@ var responsiveFilterDropdown = Class.extend(function () {
                 valStripped = '',
                 scrollPos = 0,
                 targetEl = null,
-                buttonTxt = '';
+                buttonTxt = '',
+                triggerChange = false;
 
             val = val.toString();
             valStripped = val.replace('#');
@@ -241,11 +244,12 @@ var responsiveFilterDropdown = Class.extend(function () {
             // Update the Bootstrap dropdown items
             $('li', self.dropdownItems).removeClass('selected');
             $('li[data-value="' + val + '"]', self.dropdownItems).addClass('selected');
+            triggerChange = (val !== self.el.val());
             // Update the select element
             $('option', self.el).attr('selected', false);
             $('option[data-value="' + val + '"]', self.el).attr('selected', 'selected');
             // Fire on change event on desktop
-            if (isMobile === false) {
+            if (triggerChange) {
                 self.el.change();
             }
             // Update the optional hidden field

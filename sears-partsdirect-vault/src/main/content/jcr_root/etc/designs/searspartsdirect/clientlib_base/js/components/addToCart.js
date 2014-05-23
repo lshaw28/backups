@@ -27,12 +27,14 @@ var addToCart = Class.extend(function () {
 			this.component = '';
 			// Elements
 			this.cartItems = {
+				dropdownButton: null,
 				header: null,
 				checkOut: null,
 				totals: null,
 				view: null,
 				count: null,
-				countBadge: null
+				countBadge: null,
+				statusMessage: null,
 			}
 			this.cartEmpty = null;
 			// Setup
@@ -55,6 +57,7 @@ var addToCart = Class.extend(function () {
 			self.location = self.el.attr('data-location');
 			self.component = self.el.attr('data-component');
 			// Retrieve elements
+			self.cartItems.dropdownButton = $('#cartShop > div > a');
 			self.cartItems.header = $('#cartShop .cartShopHeader_js');
 			self.cartItems.checkOut = $('#cartShop .cartShopCheckOut_js');
 			self.cartItems.totals = $('#cartShop .cartShopTotals_js');
@@ -62,6 +65,7 @@ var addToCart = Class.extend(function () {
 			self.cartItems.count = $('.cartShopCount_js', self.cartItems.totals);
 			self.cartItems.countBadge = $('#cartShop .count-badge');
 			self.cartEmpty = $('#cartShop .cartShopEmpty_js');
+			self.cartItems.statusMessage = $('#cartShop .cartShopStatusMessage_js');
 		},
 		/**
 		 * Set instance Omniture for the click event
@@ -181,7 +185,14 @@ var addToCart = Class.extend(function () {
 			var self = this,
 				su = window.SPDUtils,
 				i = 0,
-				itemCount = 0;
+				itemCount = 0,
+				insert = false,
+				message = '',
+				statusMessages = [
+					'Showing last added item',
+					'Showing last 2 added items',
+					'Showing last 3 added items'
+				];
 
 			// Set cartID cookie
 			NS('shc.pd.cookies').cid = data.cartId;
@@ -191,19 +202,30 @@ var addToCart = Class.extend(function () {
 				// Show message to user
 				self.showAddedMessage();
 
+				// update cart status message
+				message = statusMessages[data.cartParts.length-1] ? statusMessages[data.cartParts.length-1] : statusMessages[statusMessages.length-1];
+				self.cartItems.statusMessage.text(message);
+
+				// set cart dropdown into hover state
+				self.cartItems.dropdownButton.addClass('hover');
+
 				// Set visibility of elements
 				self.cartItems.header.removeClass('inactive');
 				self.cartItems.checkOut.removeClass('inactive');
 				self.cartItems.totals.removeClass('inactive');
 				self.cartItems.view.removeClass('inactive');
 				self.cartEmpty.addClass('inactive');
+				self.cartItems.statusMessage.removeClass('inactive');
 
 				// Remove current items - ensures quantity changes are reflected
 				$('#cartShop .cart-item').remove();
 
 				// Render new items
 				for (i = 0; i < data.cartParts.length; i = i + 1) {
-					itemCount += self.renderItem(data.cartParts[i]);
+					// insert into html, only last 3 items
+					insert = (data.cartParts.length - i <= 3) ? true : false;
+					// accumulate total items in cart count, even if not in html
+					itemCount += self.renderItem(data.cartParts[i], insert);
 				}
 
 				// Set total item count
@@ -219,10 +241,13 @@ var addToCart = Class.extend(function () {
 				self.cartItems.totals.addClass('inactive');
 				self.cartItems.view.addClass('inactive');
 				self.cartEmpty.removeClass('inactive');
+				self.cartItems.statusMessage.addClass('inactive');
+				self.cartItems.dropdownButton.removeClass('hover');
 
 				// Set total item count
 				self.cartItems.count.text('0');
 				self.cartItems.countBadge.text('0');
+				self.cartItems.statusMessage.text('');
 			}
 		},
 		/**
@@ -230,7 +255,7 @@ var addToCart = Class.extend(function () {
 		 * @param {object} item Returned data item
 		 * @return {number} Quantity of current item added
 		 */
-		renderItem: function (item) {
+		renderItem: function (item, insert) {
 			var self = this,
 				su = window.SPDUtils,
 				quantity = 0,
@@ -239,7 +264,9 @@ var addToCart = Class.extend(function () {
 			// Retrieve quantity
 			quantity = item.quantity;
 			// Insert element
-			self.cartItems.totals.before(li);
+			if (insert){
+				self.cartItems.totals.before(li);
+			}
 
 			return quantity;
 		},

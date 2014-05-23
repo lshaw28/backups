@@ -7,34 +7,35 @@
       p {
         display: none;
       }
-      .partListDiagram {
-        .spanWidth(4);
-      }
+    }
+    .partListDiagram {
+      .spanWidth(4);
+    }
+    .partListItem {
+      .spanWidth(8);
+
       .partListItems {
-        .spanWidth(8);
+        border-bottom: 1px solid @secondaryHueLight;
+        padding: 20px 0;
 
-        .partListItem {
-          border-bottom: 1px solid @secondaryHueLight;
-          padding: 20px 0;
-
-          &:first-child {
-            border-top: 1px solid @secondaryHueLight;
-          }
+        &:first-child {
+          border-top: 1px solid @secondaryHueLight;
         }
       }
-      // # Typically I would nest these inside .partListItems .partListItem
-      // # The styles would be complex, slower to paint, harder to override
-      .diagramPosition {
-        color: @secondaryHueNormal;
-        font-size: @noteSize;
-        text-align: center;
-        margin: 30px 0;
-        .spanWidth(2);
+    }
+    // # Typically I would nest these inside .partListItems .partListItem
+    // # The styles would be complex, slower to paint, harder to override
+    .diagramPosition {
+      color: @secondaryHueNormal;
+      font-size: @noteSize;
+      text-align: center;
+      margin: 30px 0;
+      .spanWidth(2);
 
-        span {
-          font-size: @h2Size;
-        }
+      span {
+        font-size: @h2Size;
       }
+    }
     .partListItemDescription {
       .spanWidth(7);
 
@@ -55,57 +56,60 @@
           font-size: @h5Size;
         }
       }
-      .partListItemCart {
-        .spanWidth(3);
+    }
+    .partListItemCart {
+      .spanWidth(3);
 
-        p {
-          text-align: right;
-        }
+      p {
+        text-align: right;
+      }
 
+      strong {
+        white-space: nowrap;
+      }
+      .partListItemPrice, .partListItemQuantity {
+        clear: none;
+        float: left;
+        margin-bottom: 5px;
+        width: 36%;
+      }
+      .partListItemPrice {
+        color: @secondaryHueDarkest;
+        text-align: right;
+        width: 50%;
         strong {
-          white-space: nowrap;
-        }
-        .partListItemPrice, .partListItemQuantity {
-          clear: none;
-          float: left;
-          margin-bottom: 5px;
-          width: 36%;
-        }
-        .partListItemPrice {
-          color: @secondaryHueDarkest;
-          text-align: right;
-          width: 50%;
-          strong {
-            display: inline-block;
-            font-size: @h4Size;
-            margin-top: @h3Size;
-            width: 100%;
-          }
-        }
-        .partListItemQuantity {
-          padding-left: 1.8%;
-          input[type="text"] {
-            .boxSizing(border-box);
-            display: block;
-            padding: 16px 8px;
-            width: 36px;
-            float: right;
-            text-align: center;
-          }
-          label {
-            float: right;
-          }
-        }
-        .partListItemAdd {
-          text-align: center;
-
-          button {
-            .boxSizing(border-box);
-            margin: 0;
-            width: 100%;
-          }
+          display: inline-block;
+          font-size: @h4Size;
+          margin-top: @h3Size;
+          width: 100%;
         }
       }
+      .partListItemQuantity {
+        padding-left: 1.8%;
+        input[type="text"] {
+          .boxSizing(border-box);
+          display: block;
+          padding: 16px 8px;
+          width: 36px;
+          float: right;
+          text-align: center;
+        }
+        label {
+          float: right;
+        }
+      }
+      .partListItemAdd {
+        text-align: center;
+
+        button {
+          .boxSizing(border-box);
+          margin: 0;
+          width: 100%;
+        }
+      }
+    }
+    .styleFix {
+      margin-left: 0px;
     }
   }
 }
@@ -118,10 +122,7 @@
 #diagramPosition {
   .spanWidth(1.4);
 }
-#partListItemDescription {
-  .spanWidth(7);
-}
-ul#dynamicTabs {
+#dynamicTabs {
   li:first-child {
     border-left: 1px solid #aeaeae;
   }
@@ -145,9 +146,6 @@ ul#dynamicTabs {
 }
 #diagram {
   display: block;
-}
-#partListTitle {
-  display: none;
 }
 
 @import "partList.tablet";
