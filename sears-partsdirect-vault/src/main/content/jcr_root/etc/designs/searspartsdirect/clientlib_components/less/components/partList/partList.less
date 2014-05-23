@@ -2,65 +2,60 @@
 @import "../../../../clientlib_base/less/base.mixins.less";
 
 .partList {
-  div.partListTitle {
-    p {
-      display: none;
-    }
-  }
   div {
-    .partListDiagram {
-      .spanWidth(4);
-    }
-  }
-  div {
-    .partListItems {
-      .spanWidth(8);
+    .partListTitle {
+      p {
+        display: none;
+      }
+      .partListDiagram {
+        .spanWidth(4);
+      }
+      .partListItems {
+        .spanWidth(8);
 
-      .partListItem {
-        border-bottom: 1px solid @secondaryHueLight;
-        padding: 20px 0;
+        .partListItem {
+          border-bottom: 1px solid @secondaryHueLight;
+          padding: 20px 0;
 
-        &:first-child {
-          border-top: 1px solid @secondaryHueLight;
+          &:first-child {
+            border-top: 1px solid @secondaryHueLight;
+          }
         }
       }
-    }
-  }
-  // # Typically I would nest these inside .partListItems .partListItem
-  // # The styles would be complex, slower to paint, harder to override
-  div.diagramPosition {
-    color: @secondaryHueNormal;
-    font-size: @noteSize;
-    text-align: center;
-    margin: 30px 0;
-    .spanWidth(2);
+      // # Typically I would nest these inside .partListItems .partListItem
+      // # The styles would be complex, slower to paint, harder to override
+      .diagramPosition {
+        color: @secondaryHueNormal;
+        font-size: @noteSize;
+        text-align: center;
+        margin: 30px 0;
+        .spanWidth(2);
 
-    span {
-      font-size: @h2Size;
-    }
-  }
-  div.partListItemDescription {
-    .spanWidth(7);
-
-    .partListItemImage {
-      border: 1px solid @secondaryHueLight;
-      clear: none;
-      float: left;
-      height: 58px;
-      margin: 0 10px 10px;
-      width: 58px;
-
-      img {
-        width: 100%;
+        span {
+          font-size: @h2Size;
+        }
       }
-    }
-    p {
-      a {
-        font-size: @h5Size;
+    .partListItemDescription {
+      .spanWidth(7);
+
+      .partListItemImage {
+        border: 1px solid @secondaryHueLight;
+        clear: none;
+        float: left;
+        height: 58px;
+        margin: 0 10px 10px;
+        width: 58px;
+
+        img {
+          width: 100%;
+        }
       }
-    }
-  }
-  div.partListItemCart {
+      p {
+        a {
+          font-size: @h5Size;
+        }
+      }
+      .partListItemCart {
         .spanWidth(3);
 
         p {
@@ -70,14 +65,13 @@
         strong {
           white-space: nowrap;
         }
-
-        div.partListItemPrice, div.partListItemQuantity {
+        .partListItemPrice, .partListItemQuantity {
           clear: none;
           float: left;
           margin-bottom: 5px;
           width: 36%;
         }
-        div.partListItemPrice {
+        .partListItemPrice {
           color: @secondaryHueDarkest;
           text-align: right;
           width: 50%;
@@ -88,7 +82,7 @@
             width: 100%;
           }
         }
-        div.partListItemQuantity {
+        .partListItemQuantity {
           padding-left: 1.8%;
           input[type="text"] {
             .boxSizing(border-box);
@@ -111,13 +105,21 @@
             width: 100%;
           }
         }
+      }
+    }
   }
 }
-.modelHeader {
-  ul li.current {
-    background-image: none;
-    border-bottom: 1px solid #fff;
-  }
+#partListDiagram {
+  .spanWidth(4);
+}
+#partListItems {
+  .spanWidth(8);
+}
+#diagramPosition {
+  .spanWidth(1.4);
+}
+#partListItemDescription {
+  .spanWidth(7);
 }
 ul#dynamicTabs {
   li:first-child {

@@ -28,7 +28,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
     </div>
 
 	<div id="partListItems" class="new-span-general partListItems">
-<%// This should be a for each going through each part
+<%	// This should be a for each going through each part
 	// I don't know how these are supposed to be populated %>
 		<div class="partListItem row-fluid">
 			<div id="diagramPosition" class="new-span-general diagramPosition">
