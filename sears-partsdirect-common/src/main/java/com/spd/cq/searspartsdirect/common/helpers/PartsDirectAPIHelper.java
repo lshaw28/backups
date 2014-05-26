@@ -17,7 +17,7 @@ public class PartsDirectAPIHelper {
 	protected static Logger log = LoggerFactory.getLogger(PartsDirectAPIHelper.class);
 
 	public String readJsonData(String apiUrl) throws IOException {
-		return readJsonData(apiUrl, 3000);
+		return readJsonData(apiUrl, 5000);
 	}
 
 	public String readJsonData(String apiUrl, int timeoutValue) throws IOException {
