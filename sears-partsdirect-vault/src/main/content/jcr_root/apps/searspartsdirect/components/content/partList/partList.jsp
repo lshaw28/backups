@@ -1,9 +1,43 @@
 <%@ include file="/apps/searspartsdirect/global.jsp"%>
 <%@ page import="org.apache.sling.commons.json.JSONObject,
+ 	com.spd.cq.searspartsdirect.common.model.ModelWithPartList,
+    com.spd.cq.searspartsdirect.common.model.ModelPart,
+    com.spd.cq.searspartsdirect.common.model.Component,
+    com.spd.cq.searspartsdirect.common.model.PartCompositeKey,
+    com.spd.cq.searspartsdirect.common.model.PartRestriction,
+    com.spd.cq.searspartsdirect.common.model.PriceAndAvailability,
+    com.spd.cq.searspartsdirect.common.model.PartImage,
 				com.spd.cq.searspartsdirect.common.helpers.PSFlagStatus" %>
 <cq:includeClientLib categories="apps.searspartsdirect,apps.searspartsdirect.base" />
-
+<spd:modelPartList modelNumber="9030" brandId="1232" productCategoryId="1220000" diagramPageId="00002" documentId="10037297"/>
 <%
+
+ModelWithPartList model=(ModelWithPartList)pageContext.getAttribute("modelPartList");
+ModelPart[] modelParts=model.getModelPart();
+Component[] components=model.getComponents();
+
+
+// retrive component data
+for(int i=0;i<components.length;i++)
+{
+    out.println(components[i].getPartCount());
+}
+
+//retrive part data
+for(int i=0;i<modelParts.length;i++)
+{
+    PartCompositeKey partCompositeKey=modelParts[i].getPartCompositeKey();
+    PriceAndAvailability priceAndAvailability=modelParts[i].getPriceAndAvailability();
+    PartRestriction[] partRestrictions=modelParts[i].getPartRestrictions();
+    PartImage partImage=modelParts[i].getPartImage();
+
+    for(int j=0;j<partRestrictions.length;j++)
+    {
+
+    }
+
+}
+
 String modelNumber = (request.getParameter("modelNumber") != null) ? request.getParameter("modelNumber") : "";
 String formattedModelNumber = (request.getParameter("formattedModelNumber") != null) ? request.getParameter("formattedModelNumber") : "";
 String brandId = (request.getParameter("brandId") != null) ? request.getParameter("brandId") : "";
