@@ -3,7 +3,8 @@
 
 @media (max-width: 1024px) {
 	.partList {
-        div.partListTitle {
+      div {
+        .partListTitle {
           position: relative;
           float: left;
           display: block;
@@ -18,78 +19,74 @@
             margin-bottom: 0px;
           }
         }
-		div.partListDiagram {
-            width: 100%;
-            border-bottom: 1px solid #dedede;
-            div {
-              width:100%;
-            }
-		}
-		div.partListItems {
-			margin-left: 0;
-			width: 100%;
-		}
-		div.diagramPosition {
-			.spanWidth(1.4);
-            margin-top:20px;
-		}
-		div.partListItemDescription {
-            .spanWidth(5.66);
-			.partListItemImage {
-				height: 78px;
-				width: 78px;
-			}
-		}
-		div.partListItemCart {
-			.spanWidth(5);
+        .partListDiagram {
+          width: 100%;
+          border-bottom: 1px solid #dedede;
+          div {
+            width:100%;
+          }
+        }
+        .partListItems {
+          margin-left: 0;
+          width: 100%;
+        }
+        .diagramPosition {
+          .spanWidth(1.4);
+          margin-top:20px;
+        }
+        .partListItemDescription {
+          .spanWidth(5.66);
+          .partListItemImage {
+            height: 78px;
+            width: 78px;
+          }
+        }
+        .partListItemCart {
+          .spanWidth(5);
 
-            p {
-              width: 56%;
-              margin-left: 40%;
-            }
+          p {
+            width: 56%;
+            margin-left: 40%;
+          }
 
-            strong {
-              white-space: nowrap;
+          strong {
+            white-space: nowrap;
+          }
+
+          .partListItemPrice, .partListItemQuantity, .partListItemAdd {
+            float: left;
+          }
+          .partListItemPrice, .partListItemQuantity {
+            .spanWidth(3);
+          }
+          .partListItemQuantity {
+            input[type="text"] {
+              padding: 20px 10px;
+              width: 60%;
+              float: none;
             }
-			
-			div.partListItemPrice, div.partListItemQuantity, div.partListItemAdd {
-				float: left;
-			}
-			div.partListItemPrice, div.partListItemQuantity {
-				.spanWidth(3);
-			}
-			div.partListItemQuantity {
-				input[type="text"] {
-					padding: 20px 10px;
-					width: 60%;
-                    float: none;
-				}
-                label {
-                    float: none;
-                }
-			}
-			div.partListItemAdd {
-				.spanWidth(6);
-				
-				button {
-					margin-top: @h3Size;
-				}
-			}
-		}
+            label {
+              float: none;
+            }
+          }
+          .partListItemAdd {
+            .spanWidth(6);
+
+            button {
+              margin-top: @h3Size;
+            }
+          }
+        }
+      }
 	}
-    div.pageTitleHeader {
+    .pageTitleHeader {
       text-align: left;
     }
-}
-
-@media (min-width: 651px) and (max-width: 1024px) {
     .modelHeader {
       ul li.current {
         background-image: none;
         border-bottom: 1px solid #fff;
       }
-    }
-    ul#dynamicTabs {
       li:first-child {
         border-left: 1px solid #aeaeae;
       }
@@ -97,12 +94,12 @@
         border-right: 1px solid #aeaeae;
       }
     }
-    #pinchImage {
+    .pinchImage {
       padding-left: 20px;
-      #fullscreenImage {
-        display: none;
+      div:first-child, div:nth-child(2) {
+        display: block;
       }
-      #printImage {
+      div:nth-child(3), div:nth-child(4) {
         display: none;
       }
       div {
@@ -110,45 +107,7 @@
         display: block;
       }
     }
-    #partListDiagram {
-      width: 100%;
-      border-bottom: 1px solid #dedede;
-      div {
-        width:100%;
-      }
-    }
-    #partListTitle {
-      position: relative;
-      float: left;
-      display: block;
-      width: 100%;
-      margin: 20px 8px 0 0;
-      p {
-        display: block;
-        font-size: 16px;
-        color: white;
-        background-color: gray;
-        padding: 10px 20px;
-        margin-bottom: 0px;
-      }
-    }
-    #partListItems {
-      width: 100%;
-      margin-left: 0px;
-    }
-    #partListItemCart {
-      .spanWidth(5);
-    }
-    #partListItemQuantity {
-      .spanWidth(3);
-    }
-    #partListItemAdd {
+    .partListItemAdd {
       .spanWidth(6);
     }
-}
-
-@media (min-width: 651px) and (max-width: 900px) {
-  .modelHeader ul li {
-    min-width: 22%;
-  }
 }

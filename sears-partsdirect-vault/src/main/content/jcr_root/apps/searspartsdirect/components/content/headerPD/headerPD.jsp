@@ -36,7 +36,7 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
     <!-- DYNAMIC TABS -->
     <div class="row-fluid">
         <div class="modelHeader">
-            <ul id="dynamicTabs">
+            <ul class="dynamicTabs">
                 <c:forEach var="responsiveTab" items="${responsiveTabs}">
                     <c:choose>
                         <c:when test="${!empty responsiveTabs}">

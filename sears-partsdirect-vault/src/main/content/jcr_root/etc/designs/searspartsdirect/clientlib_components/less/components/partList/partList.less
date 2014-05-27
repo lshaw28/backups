@@ -11,10 +11,10 @@
     .partListDiagram {
       .spanWidth(4);
     }
-    .partListItem {
+    .partListItems {
       .spanWidth(8);
 
-      .partListItems {
+      .partListItem {
         border-bottom: 1px solid @secondaryHueLight;
         padding: 20px 0;
 
@@ -113,39 +113,31 @@
     }
   }
 }
-#partListDiagram {
-  .spanWidth(4);
-}
-#partListItems {
-  .spanWidth(8);
-}
-#diagramPosition {
-  .spanWidth(1.4);
-}
-#dynamicTabs {
-  li:first-child {
-    border-left: 1px solid #aeaeae;
-  }
-  li:last-child {
-    border-right: 1px solid #aeaeae;
+.modelHeader {
+  ul {
+    li:first-child {
+      border-left: 1px solid #aeaeae;
+    }
+    li:last-child {
+      border-right: 1px solid #aeaeae;
+    }
   }
 }
-#pinchImage {
-  #fullscreenImage {
+.pinchImage {
+  div:first-child, div:nth-child(2) {
     display: block;
   }
-  #printImage {
-    display: block;
-  }
-  div {
+  div:nth-child(3), div:nth-child(4) {
     display: none;
   }
 }
-#diagramTablet {
-  display: none;
-}
-#diagram {
-  display: block;
+.diagramImage {
+  img:first-child {
+    display: block;
+  }
+  img:last-child {
+    display: none;
+  }
 }
 
 @import "partList.tablet";
