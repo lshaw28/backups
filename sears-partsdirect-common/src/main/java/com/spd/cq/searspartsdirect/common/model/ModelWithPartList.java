@@ -1,5 +1,7 @@
 package com.spd.cq.searspartsdirect.common.model;
 
+import com.google.gson.annotations.SerializedName;
+
 
 
 public class ModelWithPartList {
@@ -14,6 +16,7 @@ private String seoFormattedBrandName;
 private String categoryId;
 private String categoryName;
 private String seoFormattedProductTypeName;
+@SerializedName("parts")
 private ModelPart[]modelPart ;
 private Boolean hasManuals;
 private Component[] components;
