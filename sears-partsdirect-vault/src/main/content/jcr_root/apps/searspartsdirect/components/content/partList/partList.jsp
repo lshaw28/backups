@@ -7,36 +7,11 @@
     com.spd.cq.searspartsdirect.common.model.PartRestriction,
     com.spd.cq.searspartsdirect.common.model.PriceAndAvailability,
     com.spd.cq.searspartsdirect.common.model.PartImage,
-				com.spd.cq.searspartsdirect.common.helpers.PSFlagStatus" %>
+	com.spd.cq.searspartsdirect.common.helpers.PSFlagStatus" %>
 <cq:includeClientLib categories="apps.searspartsdirect,apps.searspartsdirect.base" />
 <spd:modelPartList modelNumber="9030" brandId="1232" productCategoryId="1220000" diagramPageId="00002" documentId="10037297"/>
 <%
 
-ModelWithPartList model=(ModelWithPartList)pageContext.getAttribute("modelPartList");
-ModelPart[] modelParts=model.getModelPart();
-Component[] components=model.getComponents();
-
-
-// retrive component data
-for(int i=0;i<components.length;i++)
-{
-    out.println(components[i].getPartCount());
-}
-
-//retrive part data
-for(int i=0;i<modelParts.length;i++)
-{
-    PartCompositeKey partCompositeKey=modelParts[i].getPartCompositeKey();
-    PriceAndAvailability priceAndAvailability=modelParts[i].getPriceAndAvailability();
-    PartRestriction[] partRestrictions=modelParts[i].getPartRestrictions();
-    PartImage partImage=modelParts[i].getPartImage();
-
-    for(int j=0;j<partRestrictions.length;j++)
-    {
-
-    }
-
-}
 
 String modelNumber = (request.getParameter("modelNumber") != null) ? request.getParameter("modelNumber") : "";
 String formattedModelNumber = (request.getParameter("formattedModelNumber") != null) ? request.getParameter("formattedModelNumber") : "";
@@ -146,6 +121,48 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 			</div>
 		</div>
 <% // End second item %>
+Laurence
+
+
+            <div class="partListItem row-fluid">
+                <div class="new-span-general diagramPosition">
+                    <p><span>1</span><br />on diagram</p>
+                </div>
+                <div class="new-span-general partListItemDescription">
+                    <% // If there is an image URL %>
+                    <div class="partListItemImage">
+                        <img src="http://www.urlforthepartimage.com/image/jpg" />
+                    </div>
+                    <% // End if %>
+                    <p><a href="http://www.urlforthepart.com">The long name for the part</a><br />
+                    Part #: XXXXXXXX
+                    <% // If the part has a substitution %>
+                    <br /><small><i class="icon-share flip-vertical">&nbsp;</i> Substitution: YYYYYYYY</small>
+                    <% // End If
+                            // If the item is not returnable %>
+                    <br /><span class="error">This item is not returnable</span>
+                    <% // End if %>
+                    </p>
+                </div>
+                <div class="new-span-general partListItemCart">
+                    <% // If the user needs to contact customer support %>
+                    <p>Contact customer support for availability: <strong>1-800-252-1698</strong></p>
+                    <% // If the item is no longer available %>
+                    <p>We're sorry, this item is no longer available.</p>
+                    <% // Otherwise %>
+                    <div class="partListItemPrice">
+                        <strong>$X.XX</strong> In stock
+                    </div>
+                    <% // End If %>
+                    <div class="partListItemQuantity">
+                        <label>Qty</label>
+                        <input type="text" class="addToCartQuantity_js" value="1" />
+                    </div>
+                    <div class="partListItemAdd">
+                        <button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" data-location="Symptom Part List Page" data-component="<%=resource.getResourceType()%>" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
 
 	</div>
 </div>

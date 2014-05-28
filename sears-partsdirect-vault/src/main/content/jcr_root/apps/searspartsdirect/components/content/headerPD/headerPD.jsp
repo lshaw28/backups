@@ -12,10 +12,10 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
 		<div class="pageTitleHeader">
 			<h1>
 				Model #
-                ${diagramList.modelNumber}
-                ${diagramList.brandName}
-                ${diagramList.categoryName}
-				</h1>
+                ${modelPartList.modelNumber}
+                ${modelPartList.brandName}
+                ${modelPartList.categoryName}
+            </h1>
 		</div>
 	</div>
 </div>
@@ -45,11 +45,11 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
                                 <a href="${legacyTabUrl}">${responsiveTab.tabName}</a>
                             </li>
                         </c:when>
-                    <c:otherwise>
-                        <!--- no responsive tabs --->
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
+                        <c:otherwise>
+                            <!--- no responsive tabs --->
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
             </ul>
         </div>
     </div>
