@@ -4,12 +4,16 @@ import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
 
+import org.apache.sling.commons.json.JSONException;
+import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
+import com.spd.cq.searspartsdirect.common.helpers.PSFlagStatus;
 import com.spd.cq.searspartsdirect.common.helpers.PSSettingsHelper;
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectAPIHelper;
+import com.spd.cq.searspartsdirect.common.model.ModelPart;
 import com.spd.cq.searspartsdirect.common.model.ModelWithPartList;
 
 
@@ -33,14 +37,30 @@ public class ModelPartListTag extends CQBaseTag{
 			apiHelper = new PartsDirectAPIHelper();
 
 			String jsonModelWithPartList = getModelWithPartList();
-			pageContext.setAttribute("jsonModelWithPartList", jsonModelWithPartList);
+			
 			Gson gson = new Gson();
 			ModelWithPartList modelPartList = gson.fromJson(jsonModelWithPartList,
 					ModelWithPartList.class);
+			
+			PSFlagStatus flagStatus = sling.getService(PSFlagStatus.class);
+			JSONObject flagStatusJson = flagStatus
+					.getStockAvailabilityMessage();
+			
+			ModelPart[] modelPart = modelPartList.getModelPart();
+			
+			for (int i = 0; i < modelPart.length; i++) {
+				modelPart[i].getPriceAndAvailability().setAvailabilityStatusMessage(
+						flagStatusJson.getString(modelPart[i]
+								.getPriceAndAvailability()
+								.getAvailabilityStatus()));
+			}
             
-			pageContext.setAttribute("modelPartList", modelPartList);
+			pageContext.setAttribute("jsonResponse", modelPartList);
 		} catch (IOException e) {
 			log.error("IO Exception: ModelWithPartListTag: doStartTag(): ",
+					e.getMessage());
+		} catch (JSONException e) {
+			log.error("JSON Exception: ModelWithPartListTag: doStartTag(): ",
 					e.getMessage());
 		}
 		return SKIP_BODY;

@@ -12,9 +12,9 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
 		<div class="pageTitleHeader">
 			<h1>
 				Model #
-                ${modelPartList.modelNumber}
-                ${modelPartList.brandName}
-                ${modelPartList.categoryName}
+                ${jsonResponse.modelNumber}
+                ${jsonResponse.brandName}
+                ${jsonResponse.categoryName}
             </h1>
 		</div>
 	</div>
