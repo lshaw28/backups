@@ -29,7 +29,11 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
         <h1>Diagram Name</h1>
     </div>
 	<div class="new-span-general partListDiagram styleFix">
-		<cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />
+        <div id="partListDiagramImage">
+    Hello
+		    <cq:include path="responsivePinchImage" resourceType="searspartsdirect/components/content/responsivePinchImage" />
+
+        </div>
 	</div>
 
     <div class="partListTitle">
@@ -121,8 +125,6 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 			</div>
 		</div>
 <% // End second item %>
-Laurence
-
 
             <div class="partListItem row-fluid">
                 <div class="new-span-general diagramPosition">

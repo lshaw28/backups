@@ -99,3 +99,9 @@ function showPartList(data, flagMessage, modelNumber, brandId, categoryId, brand
     var diagramImage = document.getElementById('diagramImage');
     diagramImage.setAttribute('data-desktopimage',imageURL);
 }
+var modelPartListDiagram = new stickyItem('#partListDiagramImage');
+modelPartListDiagram.setBreakPoint('top');
+modelPartListDiagram.setClassToggles('fixed','sticky');
+$(window).scroll(function(){
+    modelPartListDiagram.checkState( $(window).scrollTop() );
+});

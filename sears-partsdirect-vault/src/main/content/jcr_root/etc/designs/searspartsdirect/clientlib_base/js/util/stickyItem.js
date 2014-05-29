@@ -100,18 +100,12 @@ stickyItem = (function() {
 
 $(document).ready((function(_this) {
     return function() {
-        var modelPartListDiagram = new stickyItem('#selector');
-        modelPartListDiagram.setBreakPoint('top');
-        modelPartListDiagram.setClassToggles('fixed','sticky');
-        $(window).scroll(function(){
-           modelPartListDiagram.checkState( $(window).scrollTop() );
-        });
-        var $consultBox, $footer, $pgHeader, $repairNav, $scBtn, $tabReminder, consultBoxIsOnPage, consultationBreakpoint, footerDepth, heroImg, isImprovePage, isTabsHSlayout, mobileBrowser, navTopBar, railHeight, scrollDist;
+        var $consultBox, $footer, $modelPartListDiagram, $pgHeader, $repairNav, $scBtn, $tabReminder, consultBoxIsOnPage, consultationBreakpoint, footerDepth, heroImg, isImprovePage, isTabsHSlayout, mobileBrowser, navTopBar, railHeight, scrollDist;
         mobileBrowser = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        if (!mobileBrowser && $(window).width() > 980) {
-            $pgHeader = new stickyItem('#pageNav');
-            $pgHeader.setBreakPoint('top');
-            $pgHeader.setClassToggles('sticky', 'unsticky');
+        if (!mobileBrowser && $(window).width() > 650) {
+            $modelPartListDiagram = new stickyItem('#partListDiagramImage');
+            $modelPartListDiagram.setBreakPoint('top');
+            $modelPartListDiagram.setClassToggles('sticky', 'unsticky');
             isTabsHSlayout = $('.heroTabsHSlayout');
             isImprovePage = $('.moduleHero');
             if (isTabsHSlayout.length) {
@@ -135,14 +129,14 @@ $(document).ready((function(_this) {
                 $repairNav.setBreakPoint('top', consultationBreakpoint);
                 $repairNav.setClassToggles('show', 'hidden');
             }
-            $pgHeader.setOnCallback(function() {
+            $modelPartListDiagram.setOnCallback(function() {
                 var $subMenu;
                 $subMenu = $('#json_submenus_container');
                 $subMenu.find('.megamenu').trigger('mouseleave');
                 return $subMenu.css('height', '0px');
             });
             window.$rightRail = new stickyItem('#rightRail');
-            $rightRail.setBreakPoint('top' + 21, $pgHeader.breakpoint - 21);
+            $rightRail.setBreakPoint('top' + 21, $modelPartListDiagram.breakpoint - 21);
             $rightRail.setClassToggles('sticky', 'unsticky');
             consultBoxIsOnPage = $('#rightRail-improve');
             if (consultBoxIsOnPage.length) {
@@ -157,7 +151,7 @@ $(document).ready((function(_this) {
             if ($footer.length === 1) {
                 railHeight = $('#rightRail').height();
                 footerDepth = $footer.offset()['top'];
-                $pgHeader.maxScroll(footerDepth);
+                $modelPartListDiagram.maxScroll(footerDepth);
                 $rightRail.maxScroll(footerDepth + railHeight);
             }
             $rightRail.setCallBack(function(scrollDist) {
@@ -189,7 +183,7 @@ $(document).ready((function(_this) {
                 }
             });
             scrollDist = $(window).scrollTop();
-            $pgHeader.checkState(scrollDist);
+            $modelPartListDiagram.checkState(scrollDist);
             $rightRail.checkState(scrollDist);
             if (consultBoxIsOnPage.length) {
                 $consultBox.checkState(scrollDist);
@@ -204,7 +198,7 @@ $(document).ready((function(_this) {
             }
             return $(window).scroll(function() {
                 scrollDist = $(window).scrollTop();
-                $pgHeader.checkState(scrollDist);
+                $modelPartListDiagram.checkState(scrollDist);
                 $rightRail.checkState(scrollDist);
                 if (consultBoxIsOnPage.length) {
                     $consultBox.checkState(scrollDist);
