@@ -58,7 +58,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
                     <% // End if %>
                     <p><a href="http://www.urlforthepart.com">${part.description}</a><br />
                     Part #: ${part.priceAndAvailability.originalPartNumber}
-                    <c:if test="${part.partCompositeKey.partNumber!=''}">
+                    <c:if test="${part.priceAndAvailability.originalPartNumber != part.partCompositeKey.partNumber}">
                     <br /><small><i class="icon-share flip-vertical">&nbsp;</i> Substitution:&nbsp;${part.partCompositeKey.partNumber}</small>
                     </c:if>
                     <c:if test="${part.priceAndAvailability.partReturnable=='false'}">
