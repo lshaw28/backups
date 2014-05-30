@@ -140,20 +140,27 @@
   }
 }
 #partListDiagramImage.unsticky {
+  .boxSizing(border-box);
   position: absolute;
-  z-index: 0;
-  box-sizing: border-box;
-  cursor: pointer;
-  height: 315px;
+  height: auto;
   width: 27%;
+    img {
+      border: 1px solid @secondaryHueLight;
+      height: 100%;
+      margin-bottom: 10px;
+    }
 }
 #partListDiagramImage.sticky {
+  .boxSizing(border-box);
   position: fixed;
-  box-sizing: border-box;
-  cursor: pointer;
-  height: 315px;
+  height: auto;
   width: 23.6%;
   top: 0px;
+    img {
+      border: 1px solid @secondaryHueLight;
+      height: 100%;
+      margin-bottom: 10px;
+    }
 }
 
 @import "partList.tablet";

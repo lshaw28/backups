@@ -19,19 +19,6 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
 		</div>
 	</div>
 </div>
-    <!-- I OWN THIS -->
-    <div class="mainContainer">
-        <div class="leftSide">
-            <a id="addModelNumber" class="new-btn iOwnThisButton">I Own This</a>
-        </div>
-        <div class="rightSide">
-            <p class="textSection">Add this model to <br class="visibleMobile" /> "My Models" <br class="visibleDesktop" />for easy access later.</p>
-        </div>
-        <div class="message">
-            <p id="successMessage" class="success">Model #<span id="modelNumber"></span> was saved to your profile</p>
-            <p id="errorMessage" class="error">Ups, an error occurred!</p>
-        </div>
-    </div>
 
     <!-- DYNAMIC TABS -->
     <div class="row-fluid">

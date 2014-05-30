@@ -95,9 +95,6 @@ function showPartList(data, flagMessage, modelNumber, brandId, categoryId, brand
 			}
 		}
 	}
-	var imageURL = jsonPartList.components[0].diagramImage.imageURL;
-    var diagramImage = document.getElementById('diagramImage');
-    diagramImage.setAttribute('data-desktopimage',imageURL);
 }
 var modelPartListDiagram = new stickyItem('#partListDiagramImage');
 modelPartListDiagram.setBreakPoint('top');
