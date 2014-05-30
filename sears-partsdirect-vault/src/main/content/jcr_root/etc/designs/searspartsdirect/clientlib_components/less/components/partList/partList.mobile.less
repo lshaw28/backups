@@ -129,18 +129,24 @@
     }
   }
   #partListDiagramImage.unsticky {
-    z-index: 0;
-    box-sizing: border-box;
-    cursor: pointer;
-    height: 315px;
+    .boxSizing(border-box);
+    height: auto;
     width: 100%;
+    img {
+      border: 1px solid @secondaryHueLight;
+      height: 100%;
+      margin-bottom: 10px;
+    }
   }
   #partListDiagramImage.sticky {
-    box-sizing: border-box;
-    cursor: pointer;
-    height: 315px;
+    .boxSizing(border-box);
+    height: auto;
     width: 100%;
-    top: 0px;
+    img {
+      border: 1px solid @secondaryHueLight;
+      height: 100%;
+      margin-bottom: 10px;
+    }
   }
 }
 
