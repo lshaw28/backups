@@ -58,31 +58,33 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
                     <% // End if %>
                     <p><a href="http://www.urlforthepart.com">${part.description}</a><br />
                     Part #: ${part.priceAndAvailability.originalPartNumber}
-                    <% // If the part has a substitution %>
+                    <c:if test="${part.partCompositeKey.partNumber!=''}">
                     <br /><small><i class="icon-share flip-vertical">&nbsp;</i> Substitution:&nbsp;${part.partCompositeKey.partNumber}</small>
-                    <% // End If
-                            // If the item is not returnable %>
+                    </c:if>
+                    <c:if test="${part.priceAndAvailability.partReturnable=='false'}">
                     <br /><span class="error">This item is not returnable</span>
-                    <% // End if %>
+                    </c:if>
                     </p>
                 </div>
                 <div class="new-span-general partListItemCart">
-                    <% // If the user needs to contact customer support %>
-                    <p>Contact customer support for availability: <strong>1-800-252-1698</strong></p>
-                    <% // If the item is no longer available %>
-                    <p>We're sorry, this item is no longer available.</p>
-                    <% // Otherwise %>
-                    <div class="partListItemPrice">
-                        <strong>$${part.priceAndAvailability.sellingPrice}</strong> In stock
-                    </div>
-                    <% // End If %>
-                    <div class="partListItemQuantity">
-                        <label>Qty</label>
-                        <input type="text" class="addToCartQuantity_js" value="1" />
-                    </div>
-                    <div class="partListItemAdd">
-                        <button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" data-location="Symptom Part List Page" data-component="<%=resource.getResourceType()%>" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
-                    </div>
+                    <c:if test="${part.priceAndAvailability.availabilityStatus=='PNF'}">
+                        <p>Contact customer support for availability: <strong>1-800-252-1698</strong></p>
+                    </c:if>
+                    <c:if test="${part.priceAndAvailability.availabilityStatus=='NLA'}">
+                        <p>We're sorry, this item is no longer available.</p>
+                    </c:if>
+                    <c:if test="${part.priceAndAvailability.availabilityStatus=='INST'}">
+                        <div class="partListItemPrice">
+                            <strong>$${part.priceAndAvailability.sellingPrice}</strong> In stock
+                        </div>
+                        <div class="partListItemQuantity">
+                            <label>Qty</label>
+                            <input type="text" class="addToCartQuantity_js" value="1" />
+                        </div>
+                        <div class="partListItemAdd">
+                            <button type="button" data-partnumber="partNumber" data-divid="productGroupID" data-plsid="supplierID" data-location="Symptom Part List Page" data-component="<%=resource.getResourceType()%>" class="new-btn new-btn-search addToCart_js">Add to Cart</button>
+                        </div>
+                    </c:if>
                 </div>
             </div>
 
