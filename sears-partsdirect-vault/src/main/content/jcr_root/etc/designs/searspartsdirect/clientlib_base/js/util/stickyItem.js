@@ -154,63 +154,39 @@ $(document).ready((function(_this) {
                 $modelPartListDiagram.maxScroll(footerDepth);
                 $rightRail.maxScroll(footerDepth + railHeight);
             }
-            $rightRail.setCallBack(function(scrollDist) {
-                var mainfooterOff, railSpot, stickyFootCheck;
+            $modelPartListDiagram.setCallBack(function(scrollDist) {
+                var mainfooterOff, diagramSpot, stickyFootCheck;
                 if (scrollDist == null) {
                     scrollDist = false;
                 }
                 if (scrollDist === false) {
                     return;
                 }
-                mainfooterOff = $('.mainFooter').offset();
+                mainfooterOff = $('.global_footer').offset();
                 if (typeof mainfooterOff === "undefined") {
-                    mainfooterOff = $('#footer').offset();
+                    mainfooterOff = $('#globalFooter').offset();
                 }
-                railSpot = $('#rightRail').height() + 174;
-                if ($('.js_rhrCollide').length > 0) {
-                    mainfooterOff = $('.js_rhrCollide').offset();
+                diagramSpot = $('#partListDiagramImage').height() + 80;
+                if ($('.global_footer').length > 0) {
+                    mainfooterOff = $('.global_footer').offset();
                 } else {
                     stickyFootCheck = 0;
                 }
-                stickyFootCheck = mainfooterOff.top - (scrollDist + railSpot);
+                stickyFootCheck = mainfooterOff.top - (scrollDist + diagramSpot);
                 if (stickyFootCheck < 0) {
-                    $('#rightRail').css('margin-top', stickyFootCheck + 34);
+                    $('#partListDiagramImage').css('margin-top', stickyFootCheck + 34);
                 } else if (stickyFootCheck >= 0) {
-                    $('.right_rail.sticky').css('margin-top', 34);
+                    $('#partListDiagramImage.sticky').css('margin-top', 34);
                 }
-                if ($('.right_rail.unsticky').length) {
-                    return $('.right_rail.unsticky').css('margin-top', 0);
+                if ($('#partListDiagramImage.unsticky').length) {
+                    return $('#partListDiagramImage.unsticky').css('margin-top', 0);
                 }
             });
             scrollDist = $(window).scrollTop();
             $modelPartListDiagram.checkState(scrollDist);
-            $rightRail.checkState(scrollDist);
-            if (consultBoxIsOnPage.length) {
-                $consultBox.checkState(scrollDist);
-            }
-            if (isTabsHSlayout.length) {
-                $repairNav.checkState(scrollDist);
-                $scBtn.checkState(scrollDist);
-                $tabReminder.checkState(scrollDist);
-            }
-            if (isImprovePage.length) {
-                $repairNav.checkState(scrollDist);
-            }
             return $(window).scroll(function() {
                 scrollDist = $(window).scrollTop();
                 $modelPartListDiagram.checkState(scrollDist);
-                $rightRail.checkState(scrollDist);
-                if (consultBoxIsOnPage.length) {
-                    $consultBox.checkState(scrollDist);
-                }
-                if (isTabsHSlayout.length) {
-                    $repairNav.checkState(scrollDist);
-                    $scBtn.checkState(scrollDist);
-                    $tabReminder.checkState(scrollDist);
-                }
-                if (isImprovePage.length) {
-                    return $repairNav.checkState(scrollDist);
-                }
             });
         }
     };
