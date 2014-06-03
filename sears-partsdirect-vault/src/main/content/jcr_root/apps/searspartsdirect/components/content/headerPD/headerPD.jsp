@@ -7,18 +7,18 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
  -->
     <spd:getResponsiveTabs formattedModelNumber="123848F401" brandId="0736" productCategoryId="1500600" />
 <div id="headerPD">
-<div class="row-fluid">
-	<div class="repairHelpHomeTitle">
-		<div class="pageTitleHeader">
-			<h1>
-				Model #
-                ${jsonResponse.modelNumber}
-                ${jsonResponse.brandName}
-                ${jsonResponse.categoryName}
-            </h1>
-		</div>
-	</div>
-</div>
+    <div class="row-fluid">
+        <div class="repairHelpHomeTitle">
+            <div class="pageTitleHeader">
+                <h1>
+                    Model #
+                    ${jsonResponse.modelNumber}
+                    ${jsonResponse.brandName}
+                    ${jsonResponse.categoryName}
+                </h1>
+            </div>
+        </div>
+    </div>
     <!-- I OWN THIS -->
     <div class="mainContainer">
         <div class="leftSide">
@@ -34,11 +34,15 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
     </div>
 
     <!-- DYNAMIC TABS -->
-    <div class="row-fluid">
+    <div class="row-fluid headerStyle">
+        <p>Browse by section:</p>
         <div class="modelHeader">
             <ul class="dynamicTabs">
-                <li class="current">
-                <a href="#">Shop Parts</a>
+                <li class="current drop">
+                    <a href="#">Shop Parts</a>
+                    <!-- Begin Toggle Icon -->
+                    <span class="toggle">&nbsp;</span>
+                    <!-- End Toggle Icon -->
                 </li>
                 <c:forEach var="responsiveTab" items="${responsiveTabs}">
                     <c:choose>

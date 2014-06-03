@@ -174,9 +174,9 @@ $(document).ready((function(_this) {
                 }
                 stickyFootCheck = mainfooterOff.top - (scrollDist + diagramSpot);
                 if (stickyFootCheck < 0) {
-                    $('#partListDiagramImage').css('margin-top', stickyFootCheck + 34);
+                    $('#partListDiagramImage').css('margin-top', stickyFootCheck);
                 } else if (stickyFootCheck >= 0) {
-                    $('#partListDiagramImage.sticky').css('margin-top', 34);
+                    $('#partListDiagramImage.sticky').css('margin-top', 0);
                 }
                 if ($('#partListDiagramImage.unsticky').length) {
                     return $('#partListDiagramImage.unsticky').css('margin-top', 0);
