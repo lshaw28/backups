@@ -88,3 +88,6 @@ seoAccessoryComponent/seoAccessoryComponent.mobile.less
 seoParts/seoBrandList.less
 seoParts/seoBrandList.mobile.less
 chatOfflineModal/chatOfflineModal.less
+headerPD/headerPD.less
+headerPD/headerPD.tablet.less
+headerPD/headerPD.mobile.less

@@ -1,0 +1,42 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+@media (max-width: 480px) {
+  .repairHelpHomeTitle {
+    font-size: 24px;
+    margin: 30px auto 0;
+    width: 100%;
+  }
+  .mainContainer {
+    border: 8px solid #E7F2F7;
+    border-top: 10px solid #E7F2F7;
+    border-bottom: 10px solid #E7F2F7;
+    width: 280px;
+    padding: 0;
+    margin: 10px auto;
+    .leftSide {
+      .iOwnThisButton {
+        padding: 20px 0;
+        margin: 0 10px 0 0;
+      }
+    }
+    .rightSide {
+      line-heignt: 0.8;
+      .textSection {
+        padding: 0;
+      }
+    }
+  }
+  .modelHeader {
+    background: #333;
+    ul {
+      background: #333;
+      list-style: none;
+      position: absolute;
+      left: -9999px;
+      li {
+        float: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+@import "../../../../clientlib_base/less/base.variables.less";
+@import "../../../../clientlib_base/less/base.mixins.less";
+
+.repairHelpHomeTitle{
+  margin-top: 30px;
+}
+.mainContainer {
+  border: 5px solid #E7F2F7;
+  background: #E7F2F7;
+  margin: 20px 0;
+  padding: 4px;
+  width: 360px;
+  .leftSide{
+    float:left;
+    .iOwnThisButton {
+      text-decoration: none;
+      margin: 0 10px 0 0;
+      padding: 10px 0;
+      text-align: center;
+      width: 135px;
+    }
+  }
+  .rightSide {
+    .textSection {
+      margin: 0 0 0 135px;
+      color: @primaryHueDark;
+    }
+  }
+
+  .unclickable {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .message {
+    .error {
+      color: @highlightHueNormal;
+      display: block;
+      padding: 5px;
+      margin: 0;
+    }
+    .success {
+      color: #61b832;
+      display: block;
+      padding: 5px;
+      margin: 0;
+    }
+  }
+
+  .hideSuccess > *:first-child {
+    display: none;
+  }
+
+  .hideError > *:last-child {
+    display: none;
+  }
+
+
+
+
+
+}
+
+@import "headerPD.mobile.less";
+@import "headerPD.tablet.less";
