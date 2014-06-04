@@ -293,11 +293,15 @@ var responsivePinchImage = Class.extend(function () {
 			var
 				self = this,
 				image = self.chooseImage(self.desktopImage, self.tabletImage, self.mobileImage),
-				newWindow = window.open('', '', 'width=100%, height=100%');
+                //newWindow = window.open('', '', 'width=100%, height=100%');
+                newWindow = window.open('', '');
+                newWindow.document.write("<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\" />\n<title>${part.description}</title>\n</head>\n<body>\n<img src=\""+image+"\" width=\"804\" height=\"auto\" />\n</body>\n</html>");
+                newWindow.document.close();
 
-			var preview=getDiagramPagePreview();
-			// Render the image
-			newWindow.document.write('<img src="' + image + '" />');
+
+            /*var preview=getDiagramPagePreview();
+             // Render the image
+             newWindow.document.write('<img src="' + image + '" />');*/
 
 			// Resize Window
 			if (print === true) {

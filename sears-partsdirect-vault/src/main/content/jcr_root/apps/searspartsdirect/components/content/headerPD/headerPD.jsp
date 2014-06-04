@@ -58,6 +58,29 @@ modelNumber, brandId, categoryId, brandName,  modelDescription.
                     </c:choose>
                 </c:forEach>
             </ul>
+            <ul class="dynamicDropDown">
+                <li class="current drop">
+                    <a href="#">Shop Parts</a>
+                    <!-- Begin Toggle Icon -->
+                    <span class="toggle">&nbsp;</span>
+                    <!-- End Toggle Icon -->
+                </li>
+                <ul>
+                    <c:forEach var="responsiveTab" items="${responsiveTabs}">
+                        <c:choose>
+                            <c:when test="${!empty responsiveTabs}">
+                                <c:set var="legacyTabUrl" value="${responsiveTab.legacyTabUrl}"/>
+                                <li>
+                                    <a href="${legacyTabUrl}">${responsiveTab.tabName}</a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                            <!--- no responsive tabs --->
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </ul>
+            </ul>
         </div>
     </div>
 </div>
