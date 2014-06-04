@@ -20,4 +20,6 @@
 	<filter root="/etc/workflow/launcher/config/-643961773" />
 	<filter root="/etc/workflow/models/searspartsdirectcategorycreation" />
 	<filter root="/etc/workflow/models/spd-image-upload" />
+	<filter root="/etc/workflow/launcher/config/645464578" />
+	<filter root="/etc/workflow/launcher/config/645464579" />
 </workspaceFilter>
