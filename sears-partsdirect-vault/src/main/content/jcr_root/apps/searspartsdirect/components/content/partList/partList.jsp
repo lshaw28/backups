@@ -27,30 +27,12 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
     <c:forEach var="component" items="${jsonResponse.components}">
     <div class="pageTitleHeader">
         <h1>${component.componentDescription}&nbsp;(${component.partCount})&nbsp;Parts</h1>
-        <c:set var="diagramImage" value="${component.diagramImage.imageURL}"/>
     </div>
     </c:forEach>
 
 <div class="row-fluid">
 	<div class="new-span-general partListDiagram styleFix">
-        <div id="partListDiagramImage">
-            <img id="diagramImage" src="" />
-
-            <div class="pinchImage row-fluid">
-                <div class="new-span-responsive">
-                    <a data-toggle="pinch-fullscreen" target="_blank"><i class="icon-zoom-in"></i> Full Size</a>
-                </div>
-                <div class="new-span-responsive">
-                    <a data-toggle="pinch-print" target="_blank"><i class="icon-print"></i> Print</a>
-                </div>
-                <div class="new-span-responsive">
-                    <a data-toggle="pinch-fullscreen" target="_blank"><i class="icon-zoom-in"></i> View Full Size</a>
-                </div>
-                <div class="new-span-responsive">
-                    <a data-toggle="pinch-print" target="_blank"><i class="icon-print"></i> Print Diagram</a>
-                </div>
-            </div><!-- /responsivePinchImage --->
-        </div>
+            <cq:include path="resp" resourceType="/apps/searspartsdirect/components/content/responsivePinchImage" />
 	</div>
 
     <div class="partListTitle">
@@ -107,11 +89,8 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 
 	</div>
 </div>
-<%
-	PSFlagStatus flagStatus = sling.getService(PSFlagStatus.class);	// calling PSFlagStatus -- to get data from Felix
-	JSONObject flagMessage = flagStatus.getStockAvailabilityMessage();
-%>
-<script>modelDiagramPartList('<%=modelNumber%>', '<%=formattedModelNumber%>', '<%=brandId%>', '<%=categoryId%>', '<%=diagramPageId%>', '<%=documentId%>', '<%=flagMessage%>','<%=brandName%>','<%=modelDescription%>');</script>
+
+
 
 <script>
 	function getDiagramPagePreview(){
@@ -120,9 +99,4 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 		var pageHtml= $('#partListItems').parent().html();
 		return pageHtml;
 	}
-    $(document).ready(function(){
-        var imageURL = '<c:out value="${diagramImage}"/>';
-        var diagramImage = document.getElementById('diagramImage');
-        diagramImage.setAttribute('src',imageURL);
-    });
 </script>
