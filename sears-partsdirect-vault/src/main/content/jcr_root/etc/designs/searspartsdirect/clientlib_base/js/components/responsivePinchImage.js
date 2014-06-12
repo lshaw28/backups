@@ -80,11 +80,13 @@ var responsivePinchImage = Class.extend(function () {
 			// Choose the best image
 			if (isMobile) {
 				newImage = self.chooseImage(self.mobileImage, self.tabletImage, self.desktopImage);
-			} else if (isTablet) {
-				newImage = self.chooseImage(self.tabletImage, self.mobileImage, self.desktopImage);
 			} else {
-				newImage = self.chooseImage(self.desktopImage, self.tabletImage, self.mobileImage);
-			}
+                if (isTablet) {
+                    newImage = self.chooseImage(self.tabletImage, self.mobileImage, self.desktopImage);
+                } else {
+                    newImage = self.chooseImage(self.desktopImage, self.tabletImage, self.mobileImage);
+                }
+            }
 			// If there is no image already, create it
 			if (self.image === null) {
 				self.image = $('<img />');
@@ -149,11 +151,13 @@ var responsivePinchImage = Class.extend(function () {
 		chooseImage: function (best, nextBest, worst) {
 			if (best !== '') {
 				return best;
-			} else if (nextBest !== '') {
-				return nextBest;
 			} else {
-				return worst;
-			}
+                if (nextBest !== '') {
+                    return nextBest;
+                } else {
+                    return worst;
+                }
+            }
 		},
 		/**
 		 * Binds events for scaling and displaying the image
@@ -225,7 +229,7 @@ var responsivePinchImage = Class.extend(function () {
 					self.lastScale = self.scale;
 					break;
 				case 'drag':
-					if (self.scale != 1) {
+					if (self.scale !== 1) {
 						self.posX = self.lastPosX + ev.gesture.deltaX;
 						self.posY = self.lastPosY + ev.gesture.deltaY;
 						if (self.posX > self.maxX) {
@@ -271,7 +275,7 @@ var responsivePinchImage = Class.extend(function () {
 			}
 
 			// Handle transforms, falling back to normal CSS for IE <= 9
-			if (self.scale != 1) {
+			if (self.scale !== 1) {
 				transform = "translate3d(" + self.posX + "px," + self.posY + "px, 0) " + "scale3d(" + self.scale + "," + self.scale + ", 0) ";
 			}
 			if (!$('body').hasClass('lt-ie10')) {
@@ -290,8 +294,7 @@ var responsivePinchImage = Class.extend(function () {
 		 * @params {boolean} print Optional image printing
 		 */
 		openImage: function (print) {
-			var
-				self = this,
+			var self = this,
 				image = self.chooseImage(self.desktopImage, self.tabletImage, self.mobileImage),
 				newWindow = window.open('', '', 'width=100%, height=100%');
 

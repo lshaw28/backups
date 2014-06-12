@@ -23,7 +23,6 @@ render/WidgetBreakpointRegistry.js
 src/IndexController.js
 src/Carousel.js
 Utilities.js
-DocumentReady.js
 WindowResize.js
 thorax.js
 
@@ -44,7 +43,6 @@ modelDiagram.js
 modelHeader.js
 modelNumberSearch.js
 modelSearchByPartName.js
-modelSearchResults.js
 partSearchResults.js
 recommendedParts.js
 responsiveDropdown.js
@@ -88,3 +86,5 @@ modelItemTemplate.js
 myModelsItemTemplate.js
 partItemTemplate.js
 
+#base=js/.
+DocumentReady.js

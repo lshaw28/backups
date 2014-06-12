@@ -393,8 +393,8 @@ var airFilterPartDetails = Class.extend(function () {
 				$('.responsivePinchImage').addClass('hidden');
 				$('.responsivePinchImage').after('<img src="' + mainSitePath + '/partsdirect/assets/img/images/no_part.gif" />');
 			} else {
-				$('.responsivePinchImage [data-toggle=pinch-image]').attr('data-desktopimage', filter.image);
-				$('.responsivePinchImage [data-toggle=pinch-image]').change();
+				$('.responsivePinchImage [data-toggle="pinch-image"]').attr('data-desktopimage', filter.image);
+				$('.responsivePinchImage [data-toggle="pinch-image"]').change();
 			}
 			
 			//Check if it lacks packs

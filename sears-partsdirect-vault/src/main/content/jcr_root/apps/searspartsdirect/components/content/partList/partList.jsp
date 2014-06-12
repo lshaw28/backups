@@ -32,7 +32,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 
 <div class="row-fluid">
 	<div class="new-span-general partListDiagram styleFix">
-            <cq:include path="resp" resourceType="/apps/searspartsdirect/components/content/responsivePinchImage" />
+            <cq:include path="responsivePinchImage" resourceType="/apps/searspartsdirect/components/content/responsivePinchImage" />
 	</div>
 
     <div class="partListTitle">

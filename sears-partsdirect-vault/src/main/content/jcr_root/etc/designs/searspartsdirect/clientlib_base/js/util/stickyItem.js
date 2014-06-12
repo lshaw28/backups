@@ -103,7 +103,7 @@ $(document).ready((function(_this) {
         var $consultBox, $footer, $modelPartListDiagram, $pgHeader, $repairNav, $scBtn, $tabReminder, consultBoxIsOnPage, consultationBreakpoint, footerDepth, heroImg, isImprovePage, isTabsHSlayout, mobileBrowser, navTopBar, railHeight, scrollDist;
         mobileBrowser = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         if (!mobileBrowser && $(window).width() > 650) {
-            $modelPartListDiagram = new stickyItem('#partListDiagramImage');
+            $modelPartListDiagram = new stickyItem('.responsivePinchImage');
             $modelPartListDiagram.setBreakPoint('top');
             $modelPartListDiagram.setClassToggles('sticky', 'unsticky');
             isTabsHSlayout = $('.heroTabsHSlayout');
@@ -166,7 +166,7 @@ $(document).ready((function(_this) {
                 if (typeof mainfooterOff === "undefined") {
                     mainfooterOff = $('#globalFooter').offset();
                 }
-                diagramSpot = $('#partListDiagramImage').height() + 80;
+                diagramSpot = $('.responsivePinchImage').height() + 80;
                 if ($('.global_footer').length > 0) {
                     mainfooterOff = $('.global_footer').offset();
                 } else {
@@ -174,12 +174,12 @@ $(document).ready((function(_this) {
                 }
                 stickyFootCheck = mainfooterOff.top - (scrollDist + diagramSpot);
                 if (stickyFootCheck < 0) {
-                    $('#partListDiagramImage').css('margin-top', stickyFootCheck);
+                    $('.responsivePinchImage').css('margin-top', stickyFootCheck);
                 } else if (stickyFootCheck >= 0) {
-                    $('#partListDiagramImage.sticky').css('margin-top', 0);
+                    $('.responsivePinchImage.sticky').css('margin-top', 0);
                 }
-                if ($('#partListDiagramImage.unsticky').length) {
-                    return $('#partListDiagramImage.unsticky').css('margin-top', 0);
+                if ($('.responsivePinchImage.unsticky').length) {
+                    return $('.responsivePinchImage.unsticky').css('margin-top', 0);
                 }
             });
             scrollDist = $(window).scrollTop();
