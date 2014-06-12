@@ -35,11 +35,11 @@
 		/**
 		 * Seo landing Page
 		 */
-		var newSeoHeroImage = new seoHeroImage();
+		//var newSeoHeroImage = new seoHeroImage();
 		/**
 		 * Set up userData singleton class before all else
 		 */
-		var newUserData = new userData();
+		//var newUserData = new userData();
 		/**
 		 * Cross-Domain Window Message Handling
 		 */
