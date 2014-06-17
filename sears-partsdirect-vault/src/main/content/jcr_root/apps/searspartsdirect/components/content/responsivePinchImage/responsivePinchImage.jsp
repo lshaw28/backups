@@ -16,7 +16,7 @@
     </c:otherwise>
 </c:choose>
 
-<div data-toggle="pinch-image" data-desktopimage="http://c.searspartsdirect.com/lis_png/PLDM/10037297-00002.png" data-tabletimage="${tabletImage}" data-mobileimage="${mobileImage}" data-alttext="${imageAlt}">
+<div data-toggle="pinch-image" data-desktopimage="${desktopImage}" data-tabletimage="${tabletImage}" data-mobileimage="${mobileImage}" data-alttext="${imageAlt}">
 </div>
 
 <div class="imageSizePrint row-fluid">

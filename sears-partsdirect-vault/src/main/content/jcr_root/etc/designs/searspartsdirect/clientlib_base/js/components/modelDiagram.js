@@ -102,3 +102,10 @@ modelPartListDiagram.setClassToggles('fixed','sticky');
 $(window).scroll(function(){
     modelPartListDiagram.checkState( $(window).scrollTop() );
 });
+
+var airFilterPartDetails = Class.extend(function () {
+    "use strict";
+    return {
+
+    }
+}());
