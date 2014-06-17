@@ -15,6 +15,7 @@ import com.spd.cq.searspartsdirect.common.helpers.PSSettingsHelper;
 import com.spd.cq.searspartsdirect.common.helpers.PartsDirectAPIHelper;
 import com.spd.cq.searspartsdirect.common.model.ModelPart;
 import com.spd.cq.searspartsdirect.common.model.ModelWithPartList;
+import com.spd.cq.searspartsdirect.common.helpers.Constants;
 
 
 @SuppressWarnings("serial")
@@ -53,6 +54,7 @@ public class ModelPartListTag extends CQBaseTag{
 						flagStatusJson.getString(modelPart[i]
 								.getPriceAndAvailability()
 								.getAvailabilityStatus()));
+                modelPart[i].getPartCompositeKey().setKeyId(modelPart[i].getPartCompositeKey().getKeyId().replaceFirst("^0*", Constants.EMPTY));
 			}
             
 			pageContext.setAttribute("jsonResponse", modelPartList);
