@@ -123,14 +123,6 @@
     }
   }
 }
-.imageSizePrint {
-  div:first-child, div:nth-child(2) {
-    display: block;
-  }
-  div:nth-child(3), div:nth-child(4) {
-    display: none;
-  }
-}
 .diagramImage {
   img:first-child {
     display: block;
@@ -148,10 +140,9 @@ ul.dynamicTabs li.current {
 .responsivePinchImage.unsticky {
   .boxSizing(border-box);
   position: absolute;
-  height: auto;
+  height: 302px;
   width: 27%;
     img {
-      border: 1px solid @secondaryHueLight;
       height: 100%;
       margin-bottom: 10px;
     }
@@ -159,15 +150,15 @@ ul.dynamicTabs li.current {
 .responsivePinchImage.sticky {
   .boxSizing(border-box);
   position: fixed;
-  height: auto;
+  height: 302px;
   width: 23.6%;
   top: 0px;
     img {
-      border: 1px solid @secondaryHueLight;
       height: 100%;
       margin-bottom: 10px;
     }
 }
+
 
 @import "partList.tablet";
 @import "partList.mobile";

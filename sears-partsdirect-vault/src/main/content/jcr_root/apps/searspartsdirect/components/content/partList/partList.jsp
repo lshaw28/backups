@@ -42,17 +42,17 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
 	<div class="new-span-general partListItems">
 
     <c:forEach var="part" items="${jsonResponse.modelPart}">
-
+            <c:if test="${part.partCompositeKey.keyId !='NI'}">
             <div class="partListItem row-fluid">
                 <div class="new-span-general diagramPosition">
-                    <p><span>1</span><br />on diagram</p>
+                    <p><span>${part.partCompositeKey.keyId}</span><br />on diagram</p>
                 </div>
                 <div class="new-span-general partListItemDescription">
-                    <% // If there is an image URL %>
+                    <c:if test="${!empty part.partImage.imageURL}">
                     <div class="partListItemImage">
-                        <img src="http://www.urlforthepartimage.com/image/jpg" />
+                        <img src="${part.partImage.imageURL}" />
                     </div>
-                    <% // End if %>
+                    </c:if>
                     <p><a href="http://www.urlforthepart.com">${part.description}</a><br />
                     Part #: ${part.priceAndAvailability.originalPartNumber}
                     <c:if test="${part.priceAndAvailability.originalPartNumber != part.partCompositeKey.partNumber}">
@@ -84,6 +84,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
                     </c:if>
                 </div>
             </div>
+            </c:if>
 
     </c:forEach>
 
