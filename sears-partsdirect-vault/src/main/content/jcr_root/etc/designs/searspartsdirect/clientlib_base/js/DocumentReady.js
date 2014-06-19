@@ -150,6 +150,25 @@
 		$('.responsivePinchImage').each(function () {
 			var newResponsivePinchImage = new responsivePinchImage($(this));
 		});
+        /**
+         * Diagram Print class setup
+         */
+        $('#diagram-print').click(function () {
+            $("#diagramPinchImage").jqprint();
+        });
+        /**
+         * Part List Print class setup
+         */
+        $('#list-print').click(function () {
+            $("#diagramList").jqprint();
+        });
+        /**
+         * Diagram and Part List Print class setup
+         */
+        $('#diagram-list-print').click(function () {
+            $("#diagramPinchImage").jqprint();
+            $("#diagramList").jqprint();
+        });
 		/**
 		 * responsiveDropdown class setup
 		 */

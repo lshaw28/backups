@@ -96,6 +96,7 @@ function showPartList(data, flagMessage, modelNumber, brandId, categoryId, brand
 		}
 	}
 }
+
 var modelPartListDiagram = new stickyItem('#partListDiagramImage');
 modelPartListDiagram.setBreakPoint('top');
 modelPartListDiagram.setClassToggles('fixed','sticky');
@@ -103,9 +104,3 @@ $(window).scroll(function(){
     modelPartListDiagram.checkState( $(window).scrollTop() );
 });
 
-var airFilterPartDetails = Class.extend(function () {
-    "use strict";
-    return {
-
-    }
-}());

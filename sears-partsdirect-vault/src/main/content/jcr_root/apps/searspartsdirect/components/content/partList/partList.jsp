@@ -39,7 +39,7 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
         <p>Parts in this Diagram</p>
     </div>
 
-	<div class="new-span-general partListItems">
+	<div id="diagramList" class="new-span-general partListItems">
 
     <c:forEach var="part" items="${jsonResponse.modelPart}">
             <c:if test="${part.partCompositeKey.keyId !='NI'}">

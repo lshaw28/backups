@@ -302,6 +302,10 @@ var responsivePinchImage = Class.extend(function () {
 				newWindow.focus();
 				newWindow.print();
 			}
+            $("#diagram-print").click(function(){
+                $('[data-toggle="pinch-image"] img').removeClass("print-only");
+                $("body").addClass("noprint");
+            });
 		}
 
 	};

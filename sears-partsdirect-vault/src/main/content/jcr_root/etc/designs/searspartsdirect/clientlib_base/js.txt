@@ -16,6 +16,7 @@ util/Enums.js
 util/Timer.js
 util/ViewChange.js
 util/stickyItem.js
+util/jqprint.js
 render/Breakpoint.js
 render/BreakpointConfig.js
 render/ResponsiveEngineImpl.js
