@@ -166,8 +166,7 @@
          * Diagram and Part List Print class setup
          */
         $('#diagram-list-print').click(function () {
-            $("#diagramPinchImage").jqprint();
-            $("#diagramList").jqprint();
+            $(".diagram-list-print").jqprint();
         });
 		/**
 		 * responsiveDropdown class setup

@@ -16,7 +16,7 @@
     </c:otherwise>
 </c:choose>
 
-<div id="diagramPinchImage" data-toggle="pinch-image" data-desktopimage="${desktopImage}" data-tabletimage="${tabletImage}" data-mobileimage="${mobileImage}" data-alttext="${imageAlt}">
+<div id="diagramPinchImage" class="diagram-list-print" data-toggle="pinch-image" data-desktopimage="${desktopImage}" data-tabletimage="${tabletImage}" data-mobileimage="${mobileImage}" data-alttext="${imageAlt}">
 </div>
 
 <div class="row-fluid">
