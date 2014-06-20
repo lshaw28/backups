@@ -27,12 +27,13 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
     <c:forEach var="component" items="${jsonResponse.components}">
     <div class="pageTitleHeader">
         <h1>${component.componentDescription}&nbsp;(${component.partCount})&nbsp;Parts</h1>
+        <c:set var="diagramImage" value="${component.diagramImage.imageURL}" scope="request" />
     </div>
     </c:forEach>
 
 <div class="row-fluid">
 	<div class="new-span-general partListDiagram styleFix">
-            <cq:include path="responsivePinchImage" resourceType="/apps/searspartsdirect/components/content/responsivePinchImage" />
+            <cq:include path="responsiveImage" resourceType="/apps/searspartsdirect/components/content/responsivePinchImage" />
 	</div>
 
     <div class="partListTitle">
@@ -56,7 +57,10 @@ String modelDescription = (request.getParameter("modelDescription") != null) ? r
                     <p><a href="http://www.urlforthepart.com">${part.description}</a><br />
                     Part #: ${part.priceAndAvailability.originalPartNumber}
                     <c:if test="${part.priceAndAvailability.originalPartNumber != part.partCompositeKey.partNumber}">
-                    <br /><small><i class="icon-share flip-vertical">&nbsp;</i> Substitution:&nbsp;${part.partCompositeKey.partNumber}</small>
+                    <br /><small><i class="icon-share flip-vertical">&nbsp;</i> Substitution:&nbsp;${part.partCompositeKey.partNumber}&nbsp;</small><a href="#" class="learnWhy" title="This is a manufacturer substitution.
+    Part may differ in appearance but is a
+    functional equivalent to prior parts
+    including&nbsp;${part.partCompositeKey.partNumber}">Learn why</a>
                     </c:if>
                     <c:if test="${part.priceAndAvailability.partReturnable=='false'}">
                     <br /><span class="error">This item is not returnable</span>

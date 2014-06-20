@@ -58,9 +58,9 @@ var responsivePinchImage = Class.extend(function () {
 				su = window.SPDUtils;
 
 			// Retrieve images
-			self.desktopImage = su.validString(self.container.attr('data-desktopimage'));
-			self.tabletImage = su.validString(self.container.attr('data-tabletimage'));
-			self.mobileImage = su.validString(self.container.attr('data-mobileimage'));
+			self.desktopImage = su.validString(self.container.attr('data-desktoppinchimage'));
+			self.tabletImage = su.validString(self.container.attr('data-tabletpinchimage'));
+			self.mobileImage = su.validString(self.container.attr('data-mobilepinchimage'));
 			if (self.desktopImage !== '' || self.tabletImage !== '' || self.mobileImage !== '') {
 				self.hasImage = true;
 			}
@@ -302,10 +302,6 @@ var responsivePinchImage = Class.extend(function () {
 				newWindow.focus();
 				newWindow.print();
 			}
-            $("#diagram-print").click(function(){
-                $('[data-toggle="pinch-image"] img').removeClass("print-only");
-                $("body").addClass("noprint");
-            });
 		}
 
 	};

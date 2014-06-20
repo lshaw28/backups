@@ -9,14 +9,14 @@
         <c:set var="imageAlt"><cq:text property="imageAlt" placeholder=""/></c:set>
     </c:when>
     <c:otherwise>
-        <c:set var="desktopImage" value="${diagramImage}" />
-        <c:set var="tabletImage" value="${diagramImage}" />
-        <c:set var="mobileImage" value="${diagramImage}" />
+        <c:set var="desktopPinchImage" value="${diagramImage}" />
+        <c:set var="tabletPinchImage" value="${diagramImage}?wid=720" />
+        <c:set var="mobilePinchImage" value="${diagramImage}" />
         <c:set var="imageAlt" value="Sears Part Image" />
     </c:otherwise>
 </c:choose>
 
-<div id="diagramPinchImage" class="diagram-list-print" data-toggle="pinch-image" data-desktopimage="${desktopImage}" data-tabletimage="${tabletImage}" data-mobileimage="${mobileImage}" data-alttext="${imageAlt}">
+<div id="diagramPinchImage" class="diagram-list-print" data-toggle="pinch-image" data-desktoppinchimage="${desktopPinchImage}" data-tabletpinchimage="${tabletPinchImage}" data-mobilepinchimage="${mobilePinchImage}" data-alttext="${imageAlt}">
 </div>
 
 <div class="row-fluid">
