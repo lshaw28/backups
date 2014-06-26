@@ -14,6 +14,7 @@ var responsivePinchImage = Class.extend(function () {
 			this.container = $('[data-toggle="pinch-image"]', this.el);
 			this.fullscreen = $('[data-toggle="pinch-fullscreen"]', this.el);
 			this.print = $('[data-toggle="pinch-print"]', this.el);
+            this.printDiagram = $('[data-toggle="pinch-print-diagram"]', this.el);
 			this.image = null;
 			this.plusButton = null;
 			this.minusButton = null;
@@ -205,6 +206,9 @@ var responsivePinchImage = Class.extend(function () {
 			self.print.bind('click', function () {
 				self.openImage(true);
 			});
+            self.printDiagram.bind('click', function () {
+                self.openDiagram(true);
+            });
 			// Window resize
 			shc.pd.base.util.ViewChange.getInstance().onResponsive(function () {
 				self.renderImage();
@@ -293,16 +297,43 @@ var responsivePinchImage = Class.extend(function () {
 			var
                 self = this,
 				image = self.chooseImage(self.desktopImage, self.tabletImage, self.mobileImage),
+                homeLogo = "http://localhost:4502/etc/designs/searspartsdirect/clientlib_base/img/sears_logo_new.svg",
 				newWindow = window.open('', '', 'width=100%, height=100%');
 
 			// Render the image
-			newWindow.document.write('<img src="' + image + '" />');
+			newWindow.document.write('<img src="' + homeLogo + '" /><br /><img src="' + image + '" />');
             // Resize Window
 			if (print === true) {
+                newWindow.resizeTo(800, 900);
 				newWindow.focus();
 				newWindow.print();
-			}
-		}
+                newWindow.close();
+			} else {
+                newWindow.resizeTo(800, 900);
+                newWindow.focus();
+            }
+		},
+        /**
+         * Opens the image in a new window with optional printing
+         * @params {boolean} print Optional image printing
+         */
+        openDiagram: function (print) {
+            var
+                self = this,
+                image = self.chooseImage(self.desktopImage, self.tabletImage, self.mobileImage),
+                homeLogo = "http://localhost:4502/etc/designs/searspartsdirect/clientlib_base/img/sears_logo_new.svg",
+                newWindow = window.open('', '', 'width=100%, height=100%');
+
+            // Render the image
+            newWindow.document.write('<img src="' + homeLogo + '" /><br /><img src="' + image + '" />');
+            // Resize Window
+            if (print === true) {
+                newWindow.resizeTo(800, 900);
+                newWindow.focus();
+                newWindow.print();
+                newWindow.close();
+            }
+        }
 
 	};
 }());

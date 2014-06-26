@@ -160,13 +160,19 @@
          * Part List Print class setup
          */
         $('#list-print').click(function () {
-            $("#diagramList").jqprint();
+            $("body > *").addClass("no-print");
+            $("#viewport").removeClass("no-print");
+            $("#headerNavigation, .searchPanel, .headerPromo, #headerPD, .pageTitleHeader, .partListDiagram, .responsivePinchImage, .diagram-list-print, .partListTitle, .globalFooter").addClass("no-print");
+            window.print();
         });
         /**
          * Diagram and Part List Print class setup
          */
         $('#diagram-list-print').click(function () {
-            $(".diagram-list-print").jqprint();
+            $("body > *").addClass("no-print");
+            $("#viewport").removeClass("no-print");
+            $("#headerNavigation, .searchPanel, .headerPromo, #headerPD, .pageTitleHeader, .pinch-options, .control, .partListTitle, .globalFooter").addClass("no-print");
+            window.print();
         });
 		/**
 		 * responsiveDropdown class setup

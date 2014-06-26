@@ -52,6 +52,7 @@ noModelsFound/moModelsFound.less
 notice/notice.less
 overviewImage/overviewImage.less
 partList/partList.less
+partList/partList.print.less
 partsRequiredRepair/partsRequiredRepair.less
 plainText/plainText.less
 recommendedParts/recommendedParts.less

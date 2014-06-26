@@ -1,0 +1,31 @@
+@media print {
+  .no-print {
+    display: none;
+  }
+  .globalHeader {
+    height: 200px;
+    div.homeLogo {
+      content: url(http://localhost:4502/etc/designs/searspartsdirect/clientlib_base/img/sears_logo_new.svg);
+    }
+  }
+  .partListDiagram {
+    width: 650px;
+    height: 780px;
+    .responsivePinchImage {
+      width: 650px;
+      height: 780px;
+      #diagramPinchImage {
+        img {
+          width: 600px;
+          height: 718px;
+        }
+      }
+    }
+  }
+  div.partListTitle * {
+    display: none;
+  }
+  .pinch-options * {
+    display: none;
+  }
+}
